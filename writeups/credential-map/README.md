@@ -28,7 +28,7 @@ First, we extracted the factory `SECURITY` record through `libextfs.so`. The fie
 
 Next we changed the WebUI `superadmin` password and read the stored values again. The normal `cfgcli` display masked password fields, so the comparison required a read-only diagnostic using `cfg_GetParamValueByUri()` in `libcfg.so`. It showed that `WebAccount.Password` now held a different hash while `PresetPassword` and the Linux shadow value remained unchanged. The new plaintext verified against the first but not the others.
 
-That is why the [WebUI password tutorial](../tutorials/set-webui-superadmin-password/README.MD) changes only the mutable `WebAccount.Password` field. It neither promises nor attempts to rotate Linux's factory `superadmin` credential.
+That is why the [WebUI password tutorial](../../tutorials/set-webui-superadmin-password/README.MD) changes only the mutable `WebAccount.Password` field. It neither promises nor attempts to rotate Linux's factory `superadmin` credential.
 
 ## Why `ONTUSER` was a different discovery
 
@@ -40,13 +40,13 @@ We also discovered that the account-update code recognizes an optional `EXT_DBG_
 
 A comparison with the newer Beacon 9 firmware made that limit more concrete. Its version-derived generator and selected key2 bytes remained, but the normal boot and settings-change callers reached a no-op instead of the working G6 account creator. Both images retained the same defaults for `DebugRnPassEnable` and `LimitAccount_ONTUSER`. The difference was established by following the account writer, not by either setting's name or the presence of the generator.
 
-The full sequence, including the failed hypothesis, is documented in [the credential investigation](credential-reverse-engineering.md).
+The full sequence, including the failed hypothesis, is documented in [the credential investigation](../credential-reverse-engineering/README.md).
 
 ## Why `Password2` is not another Linux password
 
 At `Cortina#`, the `shell` command passes to the `sec_cli` security utility and requests `Password2`. Inspecting that path showed that the stock firmware verifies a Base64-encoded ECC signature over the router's `keysrc1` string, with SHA-256 and a public key in `/usr/etc/ecc_pub.pem`. The original private signing key was not present in the examined runtime filesystem.
 
-An ordinary Linux password hash answers whether a typed plaintext matches a saved verifier. The UART signature check instead answers whether an appropriate private signing key authorized a particular device-specific message. No amount of reading `/etc/shadow` explains `Password2`, and replacing the ECC public key does not change a Linux user's password. The [boot and console writeup](boot-and-console.md) follows the discovery of this mechanism.
+An ordinary Linux password hash answers whether a typed plaintext matches a saved verifier. The UART signature check instead answers whether an appropriate private signing key authorized a particular device-specific message. No amount of reading `/etc/shadow` explains `Password2`, and replacing the ECC public key does not change a Linux user's password. The [boot and console writeup](../boot-and-console/README.md) follows the discovery of this mechanism.
 
 ## U-Boot's `en` gate uses a short verifier in flash
 
@@ -82,3 +82,7 @@ cfgcli -h
 The unifying lesson is that the G6 has multiple **sources** of credentials and multiple **verifiers**. A factory field can be copied into Linux and into a WebUI preset; a current WebUI field can subsequently change; a debug user can use a version-derived password; U-Boot can check its own truncated digest; and a support shell can demand a signature.
 
 Before changing or generating any credential, ask two questions: which program accepts this login, and where does it obtain the value it checks? The other writeups answer those questions step by step instead of treating every privileged prompt as a route to the same password.
+
+## Second-unit comparison
+
+The [two-G6 comparison](../two-g6-key-comparison/README.md) separates unit-specific factory records and Password2 messages from shared current-build ONTUSER calculations, root templates and configuration key7_2. It also traces the older IJL.J03 slot. A shared key or account name still does not merge these credential paths.

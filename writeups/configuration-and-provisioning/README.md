@@ -44,7 +44,7 @@ Another possible field, `EXT_DBG_PWD`, was referenced by the account-update logi
 
 Following that reader further revealed another condition: `InternetGatewayDevice.DeviceInfo.X_CT-COM_ServiceManage.DebugRnPassEnable`. The G6's `cfgUtlAddDebugUser()` first generates the version-derived password and recreates ONTUSER, then checks this flag. When it is false, the generated credential remains. When it is true, the routine attempts to read `EXT_DBG_PWD` and replaces the ONTUSER hash in `/tmp/shadow` if the value is usable. An absent or invalid field leaves the generated entry in place.
 
-The flag therefore controls the factory-override attempt, rather than whether the G6 creates the account. Its schema default is false; the similarly named `LimitAccount_ONTUSER` defaults to true. Both defaults also appear in the examined Beacon 9 image, even though that build's normal debug-account updater is a no-op. A schema field and a provisioned hash are only useful to this credential path if the account writer actually consumes them. The [credential investigation](credential-reverse-engineering.md#the-flag-that-controls-the-factory-override) follows that comparison and its limits.
+The flag therefore controls the factory-override attempt, rather than whether the G6 creates the account. Its schema default is false; the similarly named `LimitAccount_ONTUSER` defaults to true. Both defaults also appear in the examined Beacon 9 image, even though that build's normal debug-account updater is a no-op. A schema field and a provisioned hash are only useful to this credential path if the account writer actually consumes them. The [credential investigation](../credential-reverse-engineering/README.md#the-flag-that-controls-the-factory-override) follows that comparison and its limits.
 
 ## The preconfiguration file that seemed to contradict the hashes
 
@@ -87,7 +87,7 @@ One particularly useful negative result was that the recovered `key14` material 
 
 The eventual Linux `ONTUSER` discovery used a different key mechanism. In `cfgmgr`, the debug-user routine constructed a seed from the image version and passed **no optional key** to `CS_getSha256Str()`. The security library then selected *deprecated key index 2*, an embedded 32-byte constant we call `key2`. It is not the ONTUSER slot of decrypted `key14`.
 
-That distinction was central to resolving the original failed hypothesis. Both mechanisms exist in the firmware, and both can generate password-like text, but the account writer selected the second one. The [credential investigation](credential-reverse-engineering.md) gives the complete chronology, including the independently verified `/etc/shadow` result.
+That distinction was central to resolving the original failed hypothesis. Both mechanisms exist in the firmware, and both can generate password-like text, but the account writer selected the second one. The [credential investigation](../credential-reverse-engineering/README.md) gives the complete chronology, including the independently verified `/etc/shadow` result.
 
 ## What we know, and what we still don't
 
@@ -99,4 +99,8 @@ One interesting observation though was that a Beacon G6 and a Beacon 9, with the
 
 The broader conclusion is that the Beacon G6 has several layers of defaults and state, and the direction of copying matters. A precomputed field being read by a daemon is not proof that the daemon originally generated its plaintext. A change to a mutable copy is not a change to the factory source. Understanding these boundaries made the rest of the credentials understandable.
 
-For the physical location of these records see [storage and flash](storage-and-flash.md); for the exact interfaces they protect see [credential map](credential-map.md).
+For the physical location of these records see [storage and flash](../storage-and-flash/README.md); for the exact interfaces they protect see [credential map](../credential-map/README.md).
+
+## What the second factory record established
+
+The [second-G6 comparison](../two-g6-key-comparison/README.md) verifies both factory admin hashes against their own label codes and finds different salted factory superadmin hashes. It also confirms the shared root template and shared key7_2/key14/key17 across the two current devices and older IJL.J03 firmware. The new sample supports the same source distinctions; it does not recover a factory superadmin plaintext generator.
