@@ -11,7 +11,9 @@ you can't bypass server-side permission checks, which most (but not all) of the 
 This tutorial will use the [OWASP ZAP](https://www.zaproxy.org/) software
 
 
-## Tutorial
+---
+
+## Steps
 
 1. Download and install the correct ZAP software for your version from [here](https://www.zaproxy.org/download/)
 2. Open the software, and click on the PLUS icon (top left, near "Sites"), and then "Scripts"

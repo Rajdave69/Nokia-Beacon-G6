@@ -22,8 +22,8 @@ path is deliberately suppressed.
 The important point is that this is **not a hardware limitation**. The UART is present and working; 
 the firmware is choosing not to expose it.
 
-The switch that controls this behavior is the U-Boot environment variable `console`. When `console=1`, 
-the stock bootloader enables the serial console and constructs the Linux command line with 
+On the examined bootloaders, the switch that controls this behavior is the U-Boot environment variable `console`. When `console=1`, 
+the bootloader enables the serial console and constructs the Linux command line with 
 `serial_is_dis=0` instead of `serial_is_dis=1`. This means we can enable the existing console without 
 replacing U-Boot, patching the kernel, or altering the signed boot chain.
 
@@ -34,8 +34,7 @@ authentication step; only after entering the correct `en` password do you reach 
 U-Boot prompt.
 
 > [!note]
-> This tutorial covers only the UART-console switch. To set your own password for the `en` gate, see 
-[`tutorial-uboot-en-password.md`](tutorial-uboot-en-password.md).
+> This tutorial covers only the UART-console switch. To set your own password for the `en` gate, see the [U-Boot `en` tutorial](../unlock-uboot-en-console/README.MD).
 
 There is another environment variable named `secboot`, and it is important not to confuse the two. On 
 the analyzed bootloader, `secboot=1` is connected to a **security-provisioning path**, not to ordinary 
@@ -73,6 +72,10 @@ For this reason, the console change in this tutorial touches only `console`. The
 > Leave `secboot` at its existing provisioned value. On the analyzed unit that value is `2`. 
 Never use `secboot=1` as a console-unlock step.
 
+---
+
+## Steps
+
 ### 1. Inspect the variables
 
 Start by reading the two variables that matter to this procedure:
@@ -82,9 +85,9 @@ fw_printenv console
 fw_printenv secboot
 ```
 
-If `console` is absent or reports `0`, that is consistent with the stock serial-suppressed 
-state. Record the current value of `secboot` as well. We are not going to change it, but 
-writing it down gives you an easy before-and-after check.
+If `console` is absent or reports `0`, that is consistent with the serial-suppressed state on the first examined bootloader. An absent entry is valid: neither supplied G6 bootloader includes `console` in its compiled default environment. It can first appear when `fw_setenv console 1` creates and saves it. A missing `fw_printenv` entry therefore does not establish that the bootloader lacks code to use that variable.
+
+Record the current value of `secboot` as well. We are not going to change it, but writing it down gives you an easy before-and-after check.
 
 On the development unit used for this project, the desired final state is `console=1` 
 while `secboot` remains `2`.
@@ -142,7 +145,7 @@ the entire partition, including both redundant copies.
 
 ### 4. Enable the console
 
-The actual change is deliberately small. Run only:
+The actual change is deliberately small. This creates `console` if it is absent, or updates its existing value. Run only:
 
 ```shell
 fw_setenv console 1
@@ -190,12 +193,12 @@ At this point the UART change has succeeded. The prompt is still intentionally r
 entering the command `en` starts a separate password check before the full U-Boot console is exposed.
 
 > [!note]
-> To replace that password with one you know, continue with [`tutorial-uboot-en-password.md`](tutorial-uboot-en-password.md).
+> To set your own `en` password, continue with the [U-Boot `en` tutorial](../unlock-uboot-en-console/README.MD).
 
 
 ---
 
-## Why `console=1` does not disable secure boot
+### Why `console=1` does not disable secure boot
 
 It is useful to separate console exposure from boot authentication, because the names 
 can otherwise make the mechanism sound more dramatic than it is.
@@ -210,3 +213,11 @@ reaches a provisioning path that attempts to write security material into OTP. T
 
 The safe development change is therefore very narrow: set `console=1`, verify that 
 `secboot` is unchanged, and leave the rest of the boot-security configuration alone.
+
+
+### Persistence
+
+The saved `console=1` value is in the shared `uboot-env` flash partition (`mtd1` in the examined 
+G6 layout), separate from the `rootfs0` and `rootfs1` Linux banks. It therefore survives an ordinary 
+reboot and a bank-only firmware switch; it is not a change to the RAM overlay or either Linux 
+rootfs. A generic router update (assuming it is rootfs-only) should not erase it.

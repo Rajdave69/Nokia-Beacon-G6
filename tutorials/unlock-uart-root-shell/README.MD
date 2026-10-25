@@ -1,5 +1,7 @@
 # Setting your own UART root shell
 
+## Introduction
+
 When you boot into Linux, the Nokia Beacon G6 does not directly present a conventional root shell 
 on UART. Instead, the serial session lands in a restricted Quagga/vytsh command line:
 
@@ -57,8 +59,7 @@ tokens.
 that checks a plaintext Password2 stored under `/configs`.  
    This is simpler for development, but deliberately removes the cryptographic-token design. 
 
-I prefer the second method since it lets me use whatever password I want, or even remove the password
-entirely.
+The overlay method is convenient for development, but the public-key method retains the original signature-based authentication. The persistence instructions below use the `HJL.L91` early startup hook; older `IJL.J03` does **not** have that caller. For cross-bank use, follow the [late-hook migration](../setup-startup-across-firmware-banks/README.md) after setting up your chosen method.
 
 
 ### What you will do:
@@ -617,6 +618,21 @@ sha256sum \
 
 The hashes should match.
 
+### What is persistent in the binary-overlay method?
+
+There are two copies of the helper with different lifetimes:
+
+| File or change | Lifetime |
+| --- | --- |
+| `/configs/debug/sec_cli_password2_overlay` | Stored helper on persistent data, while that volume is retained |
+| `/configs/debug/password2.txt` | Stored password on the same persistent data |
+| `/configs/debug/replace_with_test.sh` and, after migration, `/configs/pre_app_boot.sh` | Stored instructions that reinstall the runtime helper |
+| The replacement at the path returned by `command -v sec_cli` | RAM-overlay change; recreated by the script on each boot |
+
+The stock rootfs and `/sbin/secmulti` are not permanently patched by this method. Until the script has reapplied the helper after boot, the normal sec_cli path uses Nokia's stock Password2 verifier. This is Linux-side authentication, separate from U-Boot's en password.
+
+On HJL.L91 the original early hook supplies the caller. For IJL.J03, use the [shared late-hook migration](../setup-startup-across-firmware-banks/README.md). That supplies a caller in both inspected banks, but actual older-bank login remains untested. If the selected data volume is erased, the hook is removed, or the CLI no longer invokes the replaced path, the overlay will not provide entry. A bootloader update does not move this helper into U-Boot or make it permanent.
+
 ### 9. Change the overlay Password2 later
 
 Simply replace the file:
@@ -677,3 +693,16 @@ or preserving its support-token architecture, replace the ECC public key and gen
 > Both methods give shell access through a path that Nokia originally protected. Keep the private 
 signing key, persistent overlay files, and `/configs/debug` permissions appropriate for your own 
 development environment.
+
+## Recovering when the Password2 overlay is missing
+
+The [U-Boot UART recovery tutorial](../recover-uart-root-shell-from-uboot/README.md) now provides a live-tested alternative for the supplied rootfs0/current-kernel setup. It boots the existing stock FIT with init=/bin/sh, producing UID0/PID1 before Nokia's CLI starts. It requires the existing console/en entry, but does not require the Password2 helper, password file or startup hook to survive. Use that shell to inspect and restore the persistent arrangement for a subsequent normal boot. The partition-map setup in that tutorial is mandatory; do not use the crashing unset-state mtdparts listing. Older-bank boot and actual file restoration remain separately untested.
+
+
+## Persistence across firmware banks and upgrades
+
+**Neither method permanently patches the stock rootfs.** The custom public key (Method A) or helper and password file (Method B) live under persistent `/configs`; the copy at `/usr/etc/ecc_pub.pem` or the runtime `sec_cli` path lives in the RAM overlay and must be reinstalled after every reboot. A retained file does not prove its startup hook executed. The separate UART `console` and U-Boot `en` changes live outside the Linux banks, but are unrelated to the runtime Password2 replacement.
+
+The early `/configs/debug/replace_with_test.sh` hook used in the steps above is available in `HJL.L91` but missing from recovered older `IJL.J03`. Both known banks have a later `/configs/pre_app_boot.sh` caller. To cover both versions, complete one method above **then** use the [cross-bank startup tutorial](../setup-startup-across-firmware-banks/README.md), which sets the original payload to mode `600` and invokes it with `sh` from the late wrapper. Do **not** restore its execute bit after migration, or the newer bank can invoke it twice. For Method B, check helper/stock-binary compatibility before assuming it works on a new firmware. The older-bank login and migration still require live testing.
+
+`/configs` can be erased by upgrade or factory reset. On the captured devices `cfg_partition` selects `rootfs_data1`, and the known Linux updater can format that partition when upgrading from bank0. Loss of the stored payload, its caller, or the expected `sec_cli` entry point prevents automatic restoration. Keep an independent access path and off-router backups. The [U-Boot recovery tutorial](../recover-uart-root-shell-from-uboot/README.md) may provide a temporary root entry when Password2 is unavailable, but has its own documented compatibility limits.

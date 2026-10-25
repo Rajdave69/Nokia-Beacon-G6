@@ -4,6 +4,8 @@
 
 During the Beacon G6 reverse-engineering work, one particularly useful discovery was that the stock firmware already contains a development-style startup hook. If the file `/configs/debug/replace_with_test.sh` exists and is executable, Nokia's normal boot scripts run it during startup.
 
+This early hook is present in the examined `HJL.L91` firmware, but **absent from older `IJL.J03`**. If your router runs the older bank, use the [common late-hook migration](../setup-startup-across-firmware-banks/README.md) after installing the payload, as explained in the persistence section.
+
 That hook is useful because `/configs` is persistent UBIFS storage while the normal root filesystem is a read-only squashfs with a RAM-backed writable overlay. A file placed only under `/usr` or `/etc` at runtime can disappear after reboot, but a script kept in `/configs` survives and can re-apply development changes every time Linux starts.
 
 This tutorial uses that existing hook to launch BusyBox `telnetd` on TCP port `2323` with `/bin/sh` as its login program.
@@ -26,7 +28,7 @@ You will confirm that the vendor hook exists, verify that `/configs` is persiste
 
 ### What you need
 
-You need an existing privileged shell, a trusted development LAN, and the included `resources/replace_with_test.root-telnet.sh`.
+You need an existing privileged shell, a trusted development LAN, and the included `replace_with_test.sh`.
 
 > [!caution]
 > This configuration intentionally exposes an unauthenticated root shell. Any host that can reach TCP/2323 can execute commands as root. Do not expose it through WAN, guest, or other untrusted networks.
@@ -39,15 +41,19 @@ The hook is invoked by Nokia's stock `wifi_fw_mount` init script. Inspect the re
 
 ```shell
 grep -n -A12 -B3 \
-    'replace_with_test.sh' \
+    'test.sh' \
     /rom/etc/init.d/wifi_fw_mount
 ```
+
+> [!NOTE]
+> Newer firmware on newer Nokia Beacon models (Beacon 9) uses `wifi_test.sh` instead. Please verify with the above command
+> Older firmware on the Beacon G6 doesn't have this early startup hook at all. 
 
 You should see code that checks for `/configs/debug/replace_with_test.sh` and executes it when the file is present and executable.
 
 This matters because the persistence technique is **not** an added init-system modification. We are using a call site that already exists in the vendor firmware.
 
-For a deeper explanation of where this runs in the boot process, see TODO [`writeup-startup-hook.md`]().
+For a deeper explanation of how the startup hooks and persistent storage work, see the [startup persistence knowledgebase](../../knowledgebases/startup-persistence.md).
 
 ## 2. Confirm why `/configs` survives reboot
 
@@ -86,7 +92,7 @@ Then locate `telnetd` with `command -v telnetd`. If that prints nothing, check `
 
 ## 4. Install the persistent hook
 
-Transfer `resources/replace_with_test.root-telnet.sh` to `/tmp/replace_with_test.root-telnet.sh` on the router.
+Transfer `replace_with_test.sh` to `/tmp/replace_with_test.root-telnet.sh` on the router.
 
 Install it as the filename the stock boot script expects:
 
@@ -233,6 +239,10 @@ If Password2 or another overlay also uses the same hook, edit only the Telnet bl
 
 ---
 
+### Disabling it after the common late-hook migration
+
+The chmod-x command above disables the original executable early hook. After migration, the late wrapper deliberately invokes the payload with `sh`, so changing that payload's execute bit no longer disables it. Remove only the Telnet action from a shared payload, or, if the entire payload should be disabled, rename it away from `/configs/debug/replace_with_test.sh` while retaining a backup. This also disables any UART override in the same file. Review the late wrapper and keep another access route before removing it. A process already running must still be stopped separately.
+
 ## Why this produces GID 0 when ONTUSER does not
 
 The result comes from process credentials, not from Telnet itself.
@@ -270,3 +280,12 @@ telnetd launches /bin/sh for each connection
 ```
 
 Once this distinction is clear, the startup hook becomes useful for more than Telnet: the same persistent script can re-apply runtime overlays such as the custom Password2 public key or `sec_cli` development binary after the read-only stock root filesystem is mounted.
+
+
+## Persistence across firmware banks and upgrades
+
+The `telnetd` **process** and its firewall rule are ephemeral; the hook must start a new process on each boot. The payload under `/configs/debug/replace_with_test.sh` is on persistent UBIFS storage in the examined setup, but its execution is **firmware-dependent**. The early `wifi_fw_mount` caller exists on current `HJL.L91` and is **absent** from older `IJL.J03`. Both known banks instead contain the later `/configs/pre_app_boot.sh` caller. For operation on either known bank, first finish the original setup, then follow the [shared late-hook migration](../setup-startup-across-firmware-banks/README.md).
+
+That migration runs the existing payload with `sh`, deliberately sets its permissions to mode `600` so the HJL early executable test no longer invokes it, and installs an executable late wrapper. **Do not run `chmod 700 /configs/debug/replace_with_test.sh` after migrating**, and do not assume `chmod -x` will disable it. The actual listener, runtime firewall, and authentication/reachability need separate validation after each boot.
+
+A firmware-bank switch alone need not erase `/configs` on these two devices because their saved `cfg_partition` points to the same `rootfs_data1`, but an upgrade may format that data partition, and reset/migration paths can delete custom files. Even if files survive, the new firmware may not execute their hook. This is **not a guaranteed persistent service** across arbitrary upgrades, nor a safe configuration for any untrusted network.

@@ -85,8 +85,11 @@ You will confirm the `extfs` partition, back it up, read the current verifier, c
 reaches an OTP/hash-key provisioning path. Leave `secboot` at its existing provisioned value; on 
 the analyzed unit it is `2`.
 
+---
 
-## 1. Confirm the `extfs` partition
+## Steps
+
+### 1. Confirm the `extfs` partition
 
 The verifier is stored inside the logical `SECURITY` object managed by the router's 
 `extfs` subsystem. On the analyzed unit, the backing MTD partition is:
@@ -100,7 +103,7 @@ different MTD number, use what your router reports rather than copying `mtd9` bl
 
 This distinction matters because the raw backup in the next step must come from the correct partition.
 
-## 2. Check the console and `secboot` state
+### 2. Check the console and `secboot` state
 
 Read the U-Boot environment with:
 
@@ -115,7 +118,7 @@ If UART is already enabled, `console` should be `1`. If it is not, follow
 Record the existing `secboot` value and leave it alone. `console=1` exposes serial I/O; 
 `secboot=1` is a different path entirely and is not required to change the `en` credential.
 
-## 3. Make a raw backup of `extfs`
+### 3. Make a raw backup of `extfs`
 
 If your router confirmed that `extfs` is `/dev/mtd9`, back up the complete partition:
 
@@ -136,20 +139,20 @@ of the logical 8192-byte `SECURITY` object immediately before it changes the ver
 Keeping both is useful: the former protects the entire partition, while the latter is convenient for 
 a clean logical rollback.
 
-## 4. Copy the guarded helper to the router
+### 4. Copy the guarded helper to the router
 
 Transfer `./set_ext_boot_pwd` to `/tmp/set_ext_boot_pwd`, make it executable, and inspect it.
 
 ```shell
 chmod 755 /tmp/set_ext_boot_pwd
 
-file /tmp/set_ext_boot_pwd
+ls -la set_ext_boot_pwd
 ```
 
 It should identify as an AArch64 executable. The helper uses the router's existing API found in
 `/usr/lib/libextfs.so`; it is not a raw NAND patcher.
 
-## 5. Read the current `EXT_BOOT_PWD`
+### 5. Read the current `EXT_BOOT_PWD`
 
 Run:
 
@@ -168,7 +171,7 @@ accidental write when the router is not in the state the tutorial expects.
 For example, if your actual current verifier is the factory value, you might later 
 set `OLD='+i65eN5i/yIs'`.
 
-## 6. Choose a new 12-character plaintext password
+### 6. Choose a new 12-character plaintext password
 
 The analyzed checker expects the entered plaintext to be exactly 12 characters long. 
 Choose your own value and count it before generating the verifier.
@@ -186,7 +189,7 @@ The output must be `12`.
 The password itself is what you will type at the U-Boot prompt. The router does not
 store this string in `EXT_BOOT_PWD`.
 
-## 7. Generate the verifier
+### 7. Generate the verifier
 
 The stored value is the first 12 characters of standard Base64 applied to the SHA-256 
 digest of the plaintext.
@@ -214,7 +217,7 @@ This is why the value stored in `EXT_BOOT_PWD` should be thought of as a verifie
 an encrypted password. The bootloader can test a candidate by repeating the same one-way 
 transformation, but the 12-character verifier does not directly contain the original plaintext.
 
-## 8. Write the new verifier
+### 8. Write the new verifier
 
 Back on the router, set shell variables to the exact value you read in step 5 and the verifier 
 you just calculated. For the example:
@@ -249,7 +252,7 @@ The important property here is that the tutorial is not asking you to calculate 
 and overwrite NAND manually. It is using the same logical storage layer that the Nokia firmware
 itself uses.
 
-## 9. Verify the stored value before rebooting
+### 9. Verify the stored value before rebooting
 
 Run `/tmp/set_ext_boot_pwd --show` again. It should now display the new verifier.
 
@@ -265,7 +268,7 @@ Finally run `sync`.
 At this stage the password change is already stored. The reboot is only needed so that 
 you can test it from the bootloader.
 
-## 10. Enter U-Boot with the new plaintext
+### 10. Enter U-Boot with the new plaintext
 
 Reboot with UART connected and interrupt autoboot until you reach `NOKIA >`.
 
@@ -281,7 +284,7 @@ VENUS#
 
 You have now changed the credential used by the stock `en` gate without replacing U-Boot itself.
 
-## 11. Confirm the logical value from U-Boot
+### 11. Confirm the logical value from U-Boot
 
 The stock bootloader includes `extfstool`. From `VENUS#`, `extfstool get SECURITY` should 
 print the SECURITY record and include your new `EXT_BOOT_PWD` value.
@@ -290,7 +293,7 @@ The formatting is compact, but the 12-character verifier should match the value 
 
 ---
 
-## Restoring the previous SECURITY object
+### Restoring the previous SECURITY object
 
 The helper's first successful change creates `/configs/security-before-uboot-password-change.bin`.
 
@@ -309,7 +312,7 @@ SECURITY backup taken before unrelated provisioning changes.
 
 ---
 
-## Why the BLDR-derived password is not the active password here
+### Why the BLDR-derived password is not the active password here
 
 Reverse engineering also uncovered a fallback path that combines the lowercase G984 serial 
 with the `BLDR` slot from the security key material. On the examined unit that path reconstructed 
@@ -323,9 +326,15 @@ This distinction is useful because the presence of BLDR key material can otherwi
 look as though the boot password must always be generated from the serial number. On this 
 unit, it is not.
 
----
 
-## What this procedure changes, and what it does not
+### Persistence
+
+The changed `SECURITY.EXT_BOOT_PWD` verifier is a **logical record in shared `extfs`** (`mtd9` on the examined layout), not part of either Linux rootfs. It persists across reboots and **bank-only** switches between `rootfs0` and `rootfs1`; both examined G6 bootloaders retain the verifier path. The separate UART `console=1` switch is in `uboot-env`, not in `extfs`.
+
+A firmware package that updates shared boot components, changes `extfs` or its authentication policy, or a factory/reset path that overwrites the record can affect access. This tutorial cannot promise survival of arbitrary firmware upgrades. Preserve an off-router backup before modifying the verifier, and remember that `VENUS#` access by itself does not provide a Linux root shell.
+
+
+### What this procedure changes, and what it does not
 
 This tutorial changes one credential verifier inside the existing SECURITY record. It does
 not replace BL1, BL2, BL31, or BL33; it does not patch the authenticated U-Boot binary; 
@@ -335,3 +344,6 @@ setting `secboot=1`.
 It also has no effect on Linux `ONTUSER`, Linux or WebUI `superadmin`, or Quagga Password2. 
 Those are separate credential systems.
 
+If the number of passwords on this router is becoming confusing, 
+[`writeup-credential-map.md`](../../knowledgebases/password-reverse-engineering.md) provides a useful map of which mechanism 
+protects which interface.
