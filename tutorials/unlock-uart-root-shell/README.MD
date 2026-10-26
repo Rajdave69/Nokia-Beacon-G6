@@ -475,14 +475,9 @@ Then, run
 ```shell
 chmod 755 /tmp/sec_cli_password2_overlay
 
-file /tmp/sec_cli_password2_overlay
+ls -la /tmp/sec_cli_password2_overlay
 ```
 
-Expected architecture:
-
-```text
-ELF 64-bit ... ARM aarch64 ... statically linked
-```
 
 ### 3. Find the live `sec_cli` path
 
@@ -546,14 +541,20 @@ You should receive the stock `eccpwd` usage/error behavior rather than an error 
 
 ### 7. Test Password2
 
-Return to the UART Quagga shell:
+If you already have UART, directly test it in the Quagga shell:
 
 ```text
 Cortina# shell
 Password2:
 ```
 
-Enter the exact line stored in `/configs/debug/password2.txt`, uou should enter `/bin/sh`.
+Else, if you have only SSH/Telnet access, you can call vtysh manually:
+
+```shell
+sec_cli startshell vtysh
+```
+
+Enter the exact line stored in `/configs/debug/password2.txt`, you should enter `/bin/sh`.
 
 ### 8. Make the overlay persistent
 
@@ -618,22 +619,27 @@ sha256sum \
 
 The hashes should match.
 
+---
+
 ### What is persistent in the binary-overlay method?
 
 There are two copies of the helper with different lifetimes:
 
-| File or change | Lifetime |
-| --- | --- |
-| `/configs/debug/sec_cli_password2_overlay` | Stored helper on persistent data, while that volume is retained |
-| `/configs/debug/password2.txt` | Stored password on the same persistent data |
-| `/configs/debug/replace_with_test.sh` and, after migration, `/configs/pre_app_boot.sh` | Stored instructions that reinstall the runtime helper |
-| The replacement at the path returned by `command -v sec_cli` | RAM-overlay change; recreated by the script on each boot |
+| File or change                                                                         | Lifetime                                                        |
+|----------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `/configs/debug/sec_cli_password2_overlay`                                             | Stored helper on persistent data, while that volume is retained |
+| `/configs/debug/password2.txt`                                                         | Stored password on the same persistent data                     |
+| `/configs/debug/replace_with_test.sh` and, after migration, `/configs/pre_app_boot.sh` | Stored instructions that reinstall the runtime helper           |
+| The replacement at the path returned by `command -v sec_cli`                           | RAM-overlay change; recreated by the script on each boot        |
 
 The stock rootfs and `/sbin/secmulti` are not permanently patched by this method. Until the script has reapplied the helper after boot, the normal sec_cli path uses Nokia's stock Password2 verifier. This is Linux-side authentication, separate from U-Boot's en password.
 
 On HJL.L91 the original early hook supplies the caller. For IJL.J03, use the [shared late-hook migration](../setup-startup-across-firmware-banks/README.md). That supplies a caller in both inspected banks, but actual older-bank login remains untested. If the selected data volume is erased, the hook is removed, or the CLI no longer invokes the replaced path, the overlay will not provide entry. A bootloader update does not move this helper into U-Boot or make it permanent.
 
-### 9. Change the overlay Password2 later
+
+---
+
+### Changing the overlay Password2 later
 
 Simply replace the file:
 
@@ -651,7 +657,7 @@ No binary rebuild is required.
 
 ---
 
-## Removing the overlay method
+### Removing the overlay method
 
 Remove or comment out the `sec_cli_password2_overlay` block in:
 
@@ -672,7 +678,7 @@ After reboot the stock `/usr/bin/sec_cli` path comes from the read-only firmware
 
 ---
 
-## Which method should you use?
+### Which method should you use?
 
 The normal method retains the firmware's original design:
 
@@ -694,12 +700,15 @@ or preserving its support-token architecture, replace the ECC public key and gen
 signing key, persistent overlay files, and `/configs/debug` permissions appropriate for your own 
 development environment.
 
-## Recovering when the Password2 overlay is missing
+---
+
+### Recovering when the Password2 overlay is missing
 
 The [U-Boot UART recovery tutorial](../recover-uart-root-shell-from-uboot/README.md) now provides a live-tested alternative for the supplied rootfs0/current-kernel setup. It boots the existing stock FIT with init=/bin/sh, producing UID0/PID1 before Nokia's CLI starts. It requires the existing console/en entry, but does not require the Password2 helper, password file or startup hook to survive. Use that shell to inspect and restore the persistent arrangement for a subsequent normal boot. The partition-map setup in that tutorial is mandatory; do not use the crashing unset-state mtdparts listing. Older-bank boot and actual file restoration remain separately untested.
 
+---
 
-## Persistence across firmware banks and upgrades
+### Persistence across firmware banks and upgrades
 
 **Neither method permanently patches the stock rootfs.** The custom public key (Method A) or helper and password file (Method B) live under persistent `/configs`; the copy at `/usr/etc/ecc_pub.pem` or the runtime `sec_cli` path lives in the RAM overlay and must be reinstalled after every reboot. A retained file does not prove its startup hook executed. The separate UART `console` and U-Boot `en` changes live outside the Linux banks, but are unrelated to the runtime Password2 replacement.
 

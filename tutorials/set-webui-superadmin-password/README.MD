@@ -1,5 +1,6 @@
 # Setting the WebUI's superadmin password
 
+**Second-unit comparison (2026-10-22):** Both devices' factory admin verifiers match their own label codes, while their factory superadmin hashes and salts differ. Their BOQA account policy is unchanged across the two recovered G6 builds. See the [two-G6 comparison](../../writeups/two-g6-key-comparison/README.md).
 
 ## Introduction
 
@@ -40,74 +41,72 @@ We will be modifying only the former.
 
 ### What you need:
 1. An existing privileged UART/shell session on your router
-2. The router's cfgcli utility (should be present by default)
-3. A trusted computer with OpenSSL available to generate the hash
 
 
+## Steps
 
+### 1. Confirm the command syntax
 
-### 1. Confirm your `cfgcli` syntax
-
-We will be using the command line tool cfgcli to set the password instead of manually modifying the storage.
-
-Run: 
-```shell
+```sh
 cfgcli -h
 ```
 
-On this Nokia firmware family, the syntax is:
-```shell
--s [path value]    set parameter value by path
--f                 force write; used with -s
--g [path]          get parameter value by path
+The examined HJL.L91p01 build supports `-s PATH VALUE`, `-f` and
+`--save-flash-now`. Put the flags before the path and value. `-f` forces a
+parameter write; it does not skip the account's password-policy callback.
+
+## 2. Choose a password that satisfies the current policy
+
+In our saved BOQA G6 configuration, the password must contain 8–24 characters,
+use at least two character classes, and start with a letter or digit. The
+allowed characters are letters, digits and:
+
+```text
+!#+,-./:=@_
 ```
 
-Therefore, the command form is:
-```shell
-cfgcli -f -s URI VALUE
+The dollar sign is not allowed. These are captured configuration values, not a
+promise that every operator or future firmware uses the same policy. You can
+read the current rule object without reading an account password:
+
+```sh
+cfgcli -g 'InternetGatewayDevice.DeviceInfo.X_CT-COM_ServiceManage.PasswordRule.Enable'
+cfgcli -g 'InternetGatewayDevice.DeviceInfo.X_CT-COM_ServiceManage.PasswordRule.MiniLenRule'
+cfgcli -g 'InternetGatewayDevice.DeviceInfo.X_CT-COM_ServiceManage.PasswordRule.MaxLenRule'
+cfgcli -g 'InternetGatewayDevice.DeviceInfo.X_CT-COM_ServiceManage.PasswordRule.IllegalCharRule'
 ```
 
-### 2. Hash your password
+The saved rules describe rejected patterns: `^.{0,7}$` rejects short passwords,
+`^.{25,}$` rejects long passwords, and `[^a-zA-Z0-9!#+,-./:=@_]+` rejects characters
+outside the allowed set.
 
-On the firmware analyzed, the password is passed in as a SHA-256-crypt value in the normal 
-linux `$5$...` format. We cannot set a plaintext password directly.
+## 3. Set the plaintext password
 
-Example shape:
-```shell
-$5$random_salt$hash_data
+Replace the example below with your own new plaintext password:
+
+```sh
+cfgcli --save-flash-now -f -s 'InternetGatewayDevice.X_Authentication.WebAccount.Password' 'YourNewPass42!'
 ```
 
-Generate the hash on a trusted computer with `openssl`:
-```shell
-openssl passwd -5
-```
+Single quotes preserve the value exactly. The intended value is the password
+you will type into the WebUI, not a string beginning with `$5$`.
 
-Copy the generated hash.
+The setter should report success. The stock WebAccount callback checks the
+password rules and then calls `sec_update_pwd()` to produce the stored verifier.
+This route is established by tracing the saved HJL firmware. The owner reported
+the failed hash commands; a successful execution of the corrected plaintext
+command on the owner's router has not yet been reported.
 
-### 3. Setting the password 
+## 4. Save and verify
 
-On the router, execute:
+`--save-flash-now` requests an immediate configuration save as part of the
+setter operation. `sync` only flushes pending filesystem writes; it cannot make
+a rejected setter succeed or independently commit cfgmgr's in-memory database.
 
-```shell
-cfgcli -f -s "InternetGatewayDevice.X_Authentication.WebAccount.Password" '$5$YOUR_SALT$YOUR_HASH'
-```
-
-Replace YOUR_SALT and YOUR_HASH with the relevant values obtained from the previous step.
-
-
-### 4. Password Persistence
-
-After writing the password, execute:
-```shell
-sync
-```
-
-This makes the change persistent. A reboot is the simplest way to make sure the authentication process
-reloads the value. After the router turns back on, log into the WebUI with your superadmin credentials 
-and confirm.
-
-> [!caution]
-> Keep your shell session open until you have tested the new login. 
+Keep your shell session open while testing a fresh WebUI login as `superadmin`
+with the new plaintext password. Once login works and the save has completed,
+a later reboot can verify persistence. Do not reboot to try to fix a command
+which still reports `failed`.
 
 
 

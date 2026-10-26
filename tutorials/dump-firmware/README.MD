@@ -46,7 +46,7 @@ On the two inspected G6 units, Linux reports this physical map (check yours befo
 | `mtd10`         | `0:ART`                         |       1 MiB | Yes                  |
 | `mtd11`         | `user_data`                     |     256 MiB | Only with `full`     |
 
-This is **physical-partition scope**, not a logical UBI-volume export. Additional Linux `mtd12`–`mtd17` entries on the inspected units are `gluebi` views of volumes already inside physical partitions; including them would double-count data and can produce empty or incomplete reads. The older scripts attempted those logical views and did not capture raw `mtd8` or `mtd11`, so older archives should **not** be mistaken for a complete 512 MiB NAND dump. Their documented coverage and missing regions are explained in the [storage knowledgebase](../../knowledgebases/storage-and-flash.md).
+This is **physical-partition scope**, not a logical UBI-volume export. Additional Linux `mtd12`–`mtd17` entries on the inspected units are `gluebi` views of volumes already inside physical partitions; including them would double-count data and can produce empty or incomplete reads. Both firmware banks are included as physical `mtd3` and `mtd4`; skipping the logical views does not omit the alternate firmware. Logical-volume dumps can be extracted separately for analysis, but do not add physical NAND coverage. The older scripts attempted those logical views and did not capture raw `mtd8` or `mtd11`, so older archives should **not** be mistaken for a complete 512 MiB NAND dump. Their documented coverage and missing regions are explained in the [storage knowledgebase](../../knowledgebases/storage-and-flash.md).
 
 ---
 
