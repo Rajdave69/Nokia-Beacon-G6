@@ -1,0 +1,1416 @@
+{
+  "observed_on": "2026-10-26",
+  "scope": "Read stock sources and test only UCI against isolated temporary config paths.\nRequires Capstone, qemu-aarch64 and the project ELF reader. No router connection,\nfw3 startup, kernel mount, real firewall or upgrade operation is performed.\n",
+  "builds": {
+    "old": {
+      "source_root": "/tmp/g6-old-slot-review-20261025-by5iaikl/old",
+      "sources": {
+        "etc/init.d/startup": {
+          "bytes": 14282,
+          "sha256": "8c7ba632ba5e360cf20a63f5a8e8adab7cf150079b64a59d8ede3e6d738e67be",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n\nSTART=00\nSTOP=99\n\n. /usr/exe/backdefault.sh\n. /usr/exe/data_guardian.sh\n. /usr/exe/link.sh\n. /usr/exe/varset.sh\n\ncurrent=$(uenv_get active_part)\nstandby=$(( 1 - $current ))\nBACKUP_OVERLAY_MOUNT_DIR=/tmp/backup_overlay\nno_cfg_env=0\ncfg_partition=`/usr/sbin/fw_printenv|grep cfg_partition`\n\nmount_backup_overlay()\n{\n\tbackup_overlay_mtd=$(cat /proc/mtd |grep rootfs_data$standby |cut -d: -f 1 |cut -c4-)\n\n\t$UBIATTACH $UBIDEVCTL -m $backup_overlay_mtd -d $backup_overlay_mtd &>/dev/null\n\tmdev -s &>/dev/null\n\tmkdir -p $BACKUP_OVERLAY_MOUNT_DIR\n\tmount -t ubifs /dev/ubi${backup_overlay_mtd}_0 $BACKUP_OVERLAY_MOUNT_DIR &>/dev/null\n\t[ -e /configs/bosa ] || mkdir -p /configs/bosa\n\t[ -e $BACKUP_OVERLAY_MOUNT_DIR/upper/config/bosa/cfg.bob ] && mv -f $BACKUP_OVERLAY_MOUNT_DIR/upper/config/bosa/cfg.bob /configs/bosa/cfg.bob && sync\n\tumount $BACKUP_OVERLAY_MOUNT_DIR &>/dev/null\n\t$UBIDETACH $UBIDEVCTL -m $backup_overlay_mtd &>/dev/null\n\trm -rf $BACKUP_OVERLAY_MOUNT_DIR\n}\n\nrestore_configs()\n{\n\t[ -e /configs/sysupgrade.tgz ] && tar -xzf /configs/sysupgrade.tgz -C / && rm -f /configs/sysupgrade.tgz\n}\n\nupgrade_logsize()\n{\n\tSIZELIMIT=32768\n\tlog_size=$(ls -al $UPGRADELOG 2>/dev/null | awk '{print $5}')\n\t[ $log_size -ge $SIZELIMIT ] && mv $UPGRADELOG $UPGRADELOGBAK\n}\n\nversion_check()\n{\n\tthreshold=4\n\tif [ $(uenv_get bootfail${standby}) -ge ${threshold} ]; then\n\t\techo \"WARNING: bootfail${standby} is more than ${threshold}, set buildinfo null\" >> $UPGRADELOG\n\t\tsed -i \"s/=.*$/=null/g\" $BACKUPROOTFSINFO\n\tfi\n\n\tcurrentImgVersion=$(cat /etc/buildinfo | grep IMAGEVERSION | cut -d'=' -f2)\n\tstandbyImgVersion=$(cat $BACKUPROOTFSINFO | grep IMAGEVERSION | cut -d'=' -f2)\n\n\timg_current=$(uenv_get img_version$current)\n\tif [ $? != 0 -o \"X$img_current\" != \"X$currentImgVersion\" ]; then\n\t\tuenv_set img_version$current $currentImgVersion\n\tfi\n\n\timg_standby=$(uenv_get img_version$standby)\n\tif [ $? != 0 -o \"X$img_standby\" != \"X$standbyImgVersion\" ]; then\n\t\tuenv_set img_version$standby $standbyImgVersion\n\tfi\n}\n\nmount_backup_rootfs_partition()\n{\n\tbackup_mtd=$(cat /proc/mtd |grep -w rootfs$standby |cut -d: -f1 |cut -c4-)\n\n\techo \"[`date '+%F.%T%z'`]MSG: mount backup rootfs mtd: $backup_mtd start ...\" | tee -a /tmp/${LOGDEFAULT} &>/dev/null\n\t$UBIATTACH $UBIDEVCTL -m $backup_mtd -d $backup_mtd &> /dev/null\n\t[ $? != 0 ] && echo \"[`date '+%F.%T%z'`]$UBIATTACH $UBIDEVCTL -m $backup_mtd -d $backup_mtd failed \" | tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\tmdev -s &>/dev/null\n\t$UBIBLOCK --create /dev/ubi${backup_mtd}_1 &>/dev/null\n\t[ ! -e /dev/ubiblock${backup_mtd}_1 ] && echo \"[`date '+%F.%T%z'`]MSG: $UBIBLOCK --create /dev/ubiblock${backup_mtd}_1 failed\" | tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\tmdev -s &>/dev/null\n\tmkdir -p /tmp/backup_rootfs\n\tmount -t squashfs -root /dev/ubiblock${backup_mtd}_1 /tmp/backup_rootfs &>/dev/null\n\t[ $? != 0 ] && echo \"[`date '+%F.%T%z'`]MSG: mount -t squashfs -root /dev/ubiblock${backup_mtd}_1 /tmp/backup_rootfs failed\" | tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\n\tcat /tmp/backup_rootfs/etc/buildinfo > $BACKUPROOTFSINFO\n\t# if mount backup rootfs failed, reboot and try again\n\t#[ -s $BACKUPROOTFSINFO ] || echo \"MSG: mount backup rootfs failed\" >/dev/console && reboot\n\tumount -l /tmp/backup_rootfs\n\t$UBIDETACH $UBIDEVCTL -m $backup_mtd &>/dev/null\n\trm -rf /tmp/backup_rootfs\n}\n\n\n_mount_ubifs()\n{\n    ubi_map=$1\n    ubi_part=$(echo \"${ubi_map}\" |cut -d: -f1)\n    ubi_seed=$(echo \"${ubi_map}\" |cut -d: -f2)\n    ubi_port=$(echo \"${ubi_map}\" |cut -d: -f3)\n    echo \"[`date '+%F.%T%z'`]MSG: ubi_part=${ubi_part} ubi_port=${ubi_port}\" |tee -a /tmp/${LOGDEFAULT} &>/dev/console\n    if grep -q \"\\<${ubi_part}\\>\" /proc/mtd; then\n        echo \"[`date '+%F.%T%z'`]MSG: mount $ubi_port start ...\" | tee -a /tmp/${LOGDEFAULT} &>/dev/null\n        ubi_part_id=$(cat /proc/mtd |grep \"\\<${ubi_part}\\>\"|head -n 1 |cut -d: -f1 |cut -c4-)\n        echo \"CMD: $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id}\" &>/dev/console\n        $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id} &>/dev/null\n        mdev -s &>/dev/null\n\n            ## try to mount the ${ubi_part} to the ${ubi_port}\n            echo \"CMD: mount -t ubifs /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port}\" &>/dev/console\n            mount -t ubifs /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port} &>/dev/null\n            ubi_err=$?\n            echo \"MSG: mount /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port} with code=${ubi_err}\" &>/dev/null\n\n            ## check the mount ${ubi_port} size\n            ubi_size=$(df -k |grep \"\\<ubi${ubi_part_id}_[012]\\>\" |sed \"s/ [ \\t]*/:/g\"|cut -d: -f2)\n            echo \"MSG: ${ubi_port} size is ${ubi_size}KB\" &>/dev/console\n            if [ \"0${ubi_size}\" -lt 768 ]; then ubi_err=$((${ubi_err} + 1)); fi\n\n            ## try to touch/write the mounted folder ${ubi_port}\n            [ $ubi_err -eq 0 ] && touch ${ubi_port}/${TAGUBIFSWR}\n            ubi_err=$((${ubi_err} + $?))\n            echo \"MSG: touch ${ubi_port}/${TAGUBIFSWR} with code=${ubi_err}\" &>/dev/null\n\n            ## check whether here is any error to try to recover\n            if [ ${ubi_err} != 0 ]; then\n                ## set fail flag to check if need to recover data\n                uenv_set mount_$(echo $ubi_port | cut -d'/' -f 2)_fail 1\n                echo \"[`date '+%F.%T%z'`]MSG: Partition ${ubi_part} damaged! Try to recover ...\" |tee -a /tmp/${LOGDEFAULT} &>/dev/console\n                echo \"CMD: umount ${ubi_port}\"\n                umount -l ${ubi_port} &>/dev/null\n                echo \"CMD: $UBIDETACH $UBIDEVCTL -m ${ubi_part_id}\"\n                $UBIDETACH $UBIDEVCTL -m ${ubi_part_id} &>/dev/null\n                echo \"CMD: $UBIFORMAT /dev/mtd${ubi_part_id} -y\"\n                $UBIFORMAT /dev/mtd${ubi_part_id} -y &>/dev/null\n                echo \"CMD: $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id}\"\n                ubi_part_info=$($UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id} 2>/dev/null)\n                ubi_part_lebs=$(echo \"${ubi_part_info}\" |sed \"s/^.*\\(total\\)\\(.*\\)\\(LEBs\\).*\\(available\\).*/\\2/\" |sed \"s/[ \\t\\n]//g\")\n                ubi_part_aleb=$(echo \"${ubi_part_info}\" |sed \"s/^.*\\(available\\)\\(.*\\)\\(LEBs\\).*/\\2/\" |sed \"s/[ \\t\\n]//g\")\n                ubi_lebs_size=$(echo \"${ubi_part_info}\" |sed \"s/^.*\\(LEB size\\).*\\(bytes (\\)\\(.*\\)\\( KiB\\).*/\\3/\" |sed \"s/[ \\t\\n]//g\" |cut -d. -f1)\n                echo \"MSG: ${ubi_part_info}\"\n                echo \"MSG: ubi_part=${ubi_part} ubi_part_lebs=${ubi_part_lebs} ubi_part_aleb=${ubi_part_aleb}\"\n                ## Volume Size = Total - Total/32(Reserved for BEB) - 4(Reserved for Volume)\n                ## ubi_part_aleb=$((${ubi_part_aleb} - 4)) ## Reserved only for more tolerance\n                ubi_vols_lebs=$((${ubi_part_lebs} * 31 / 32 - 4))\n                if [ ${ubi_part_aleb} -lt ${ubi_vols_lebs} ]; then ubi_vols_lebs=${ubi_part_aleb}; fi\n                ubi_vols_size=$((${ubi_vols_lebs} * ${ubi_lebs_size}))\n                echo \"MSG: ubi_part=${ubi_part} ubi_vols_lebs=${ubi_vols_lebs} ubi_lebs_size=${ubi_lebs_size} ubi_vols_size=${ubi_vols_size}\"\n                mdev -s &>/dev/null\n\n                ## try to make volume for the ${ubi_part}\n                echo \"CMD: $UBIMKVOL /dev/ubi${ubi_part_id} -t dynamic -n 0 -N ${ubi_part} -s ${ubi_vols_size}KiB\"\n                $UBIMKVOL /dev/ubi${ubi_part_id} -t dynamic -n 0 -N ${ubi_part} -s ${ubi_vols_size}KiB &>/dev/null\n                if [ $? != 0 ]; then reboot; fi    #reboot and try again\n                mdev -s &>/dev/null\n\n                ## try to mount the ${ubi_part}\n                echo \"CMD: mount -t ubifs /dev/ubi${ubi_part_id}_0 ${ubi_port}\"\n                mount -t ubifs /dev/ubi${ubi_part_id}_0 ${ubi_port} &>/dev/null\n            fi\n            echo \"[`date '+%F.%T%z'`]MSG: mount $ubi_port completed\" | tee -a /tmp/${LOGDEFAULT} &>/dev/console\n    fi\n}\n\nmount_partition()\n{\n\techo -e \"\\n[`date '+%F.%T%z'`]MSG: load ubi parts @`uptime`\" |tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\n\tUBI_MAP_LIST=\"log:0:/logs user_data:0:/opt\"\n    if [ -z $cfg_partition ];then\n\t    echo  \"no cfg_partition paramter in uboot env, so set cfg_partition to rootfs_data$current.\" |tee -a ${SYSLOGS} &>/dev/console\n        /usr/sbin/fw_setenv cfg_partition rootfs_data$current\n        no_cfg_env=1\n    fi\n    cfg_partition=`/usr/sbin/fw_printenv -n cfg_partition`\n\tUBI_MAP_LIST=$UBI_MAP_LIST\" $cfg_partition:0:/configs\"\n    echo $UBI_MAP_LIST|tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\n\tfor ubi_map in ${UBI_MAP_LIST}; do\n        _mount_ubifs $ubi_map\n\tdone\n}\n\nenable_pstore()\n{\n\tmkdir -p /tmp/pstore\n\tmount -o nosuid,nodev -t pstore pstore /tmp/pstore && cp -rf /tmp/pstore /logs/\n\t#mount -t pstore pstore /sys/fs/pstore\n}\n\ncheck_abnormal_reboot()\n{\n\treboot_data=$(devmem 0xf4320114)\n\tlet \"panic=(reboot_data>>16) & 0x01\"\n\tlet \"kernel=(reboot_data>>18) & 0x01\"\n\tlet \"app=(reboot_data>>19) & 0x01\"\n\tlet \"watchdog=(reboot_data>>20) & 0x01\"\n\n\tsb_para=$(usr/sbin/fw_printenv -n sb_flag)\n\tlet \"sb0_data=sb_para & 0x09\"\n\tlet \"sb1_data=(sb_para>>4) & 0x09\"\n\n\techo \"check_abnormal_reboot start\" |tee -a ${SYSLOGS} &>/dev/console\n\techo \"data_panic:${panic} data_kernel:${kernel} data_app:${app} data_wdt:${watchdog} sb_flag:${sb_para} \" |tee -a ${SYSLOGS} &>/dev/console\n\n\tif [ \"X$panic\" == \"X1\" ]||[ \"X$watchdog\" == \"X1\" ]||[ \"X$kernel\" == \"X1\" ]&&[ \"X$app\" == \"X0\" ];then\n\t\techo \"ont started abnormally last time\" |tee -a ${SYSLOGS} &>/dev/console\n\t\tif [ [ \"Xsb0_data\" == \"X9\" ] || [ \"Xsb1_data\" == \"X9\" ] ];then\n\t\t\techo \"rollback to the backup partition\" |tee -a ${SYSLOGS} &>/dev/console\n\t\t\tbackupversion=\"null\"\n\t\t\t/usr/sbin/fw_setenv img_version$standby $backupversion &>/dev/null\n\n\t\t\tsb_num=$(/usr/sbin/fw_printenv -n sb_flag)\n\t\t\tif [ $current -eq 0 ]; then\n\t\t\t\tlet \"sb_data=sb_num & 0xDF\"\n\t\t\telse\n\t\t\t\tlet \"sb_data=sb_num & 0xFD\"\n\t\t\tfi\n\t\t\t/usr/sbin/fw_setenv sb_flag $sb_data &>/dev/null\n\t\tfi\n\tfi\n\n\tsb_info=$(usr/sbin/fw_printenv -n sb_flag)\n\tbackup_version=$(usr/sbin/fw_printenv -n img_version$standby)\n\techo \"after: sb_info:${sb_info} backup_ver:${backup_version}\" |tee -a ${SYSLOGS} &>/dev/console\n\techo \"check_abnormal_reboot end\" |tee -a ${SYSLOGS} &>/dev/console\n}\n\nmax_time() {\n\tlocal file newest\n\n\tfor file in $( find /logs -type f ) ; do\n\t\t[ -z \"$newest\" -o \"$newest\" -ot \"$file\" ] && newest=$file\n\tdone\n\t[ \"$newest\" ] && date -r \"$newest\" +%s\n}\n\nsync_time() {\n\tlocal maxtime=\"$(max_time)\"\n\tlocal curtime=\"$(date +%s)\"\n\n\t[ $curtime -lt $maxtime ] && date -s @$maxtime\n}\n\nkmsg_init()\n{\n\tif [ -e /logs/reboot.log ]; then\n\t\tfilesize=$(du -c /logs/reboot.log |grep total |awk '{ print $1 }')\n\t\tif [ $filesize -gt 450 ]; then\n\t\t\t[ -e /logs/reboot.log.tar.gz ] && rm /logs/reboot.log.tar.gz\n\t\t\tcd /logs; mv -f reboot.log reboot.bak ; tar zcvf reboot.log.tar.gz  reboot.bak; cd -\n\t\t\trm /logs/reboot.bak\n\t\t\t/bin/cat /etc/buildinfo |tee -a /logs/reboot.log &>/dev/console\n\t\tfi\n\tfi\n\tif [ -e /lib/modules/*/kmsg.ko ]; then\n\t\tinsmod /lib/modules/*/kmsg.ko\n\tfi\n}\n\n_remount_configs()\n{\n    if [ \"$cfg_partition\" != \"rootfs_data$current\" ];then\n        echo \"old configs: $cfg_partition, now it's rootfs_data$current\" |tee -a ${SYSLOGS} &>/dev/console\n        /usr/sbin/fw_setenv cfg_partition rootfs_data$current\n        cfg_partition=\"rootfs_data$current\"\n        umount -l /configs\n        _mount_ubifs \"$cfg_partition:0:/configs\"\n    fi\n}\n\n\n_restore_configs_overlay()\n{\n    # delete old backup directory\n    rm -rf /logs/.backup\n    # delete old persisten files\n    rm -rf $CONFIGS_OVERLAY\n\n    mv /configs/sysupgrade.tgz /tmp\n    #copy data in old cfg partition\n    mkdir /tmp/cfg_data\n    _mount_ubifs \"cfg:0:/tmp/cfg_data\"\n    cp -rf /tmp/cfg_data/* /configs/\n    umount -l /tmp/cfg_data \n    rm -rf /tmp/cfg_data\n\n    # copy persisten files from previous rootfs\n    mkdir /tmp/rootfs_data\n    tar -xzf /tmp/sysupgrade.tgz -C /tmp/rootfs_data\n    mkdir $CONFIGS_OVERLAY\n    List=$(/usr/exe/json_paser OverlayParams.OverlayPersistentFileList < /etc/HB_Config.json)\n    for file in $List\n    do\n        targetDir=$CONFIGS_OVERLAY/$(dirname $file)\n         \n        #first, copy from /rom, then overwrite from previous build (sysupgrade.tgz)\n        [ -d /rom/$file ] && mkdir -p $targetDir && cp -rf /rom/$file  $targetDir\n        [ -e /tmp/rootfs_data/$file ] && mkdir -p $targetDir && cp -rf /tmp/rootfs_data/$file  $targetDir\n        echo \"[ -e /tmp/rootfs_data/$file ] && cp -rf /tmp/rootfs_data/$file  $targetDir\" |tee -a ${SYSLOGS} &>/dev/console\n    done\n\n    rm -rf /tmp/rootfs_data\n    rm -f /tmp/sysupgrade.tgz\n }\n\nupgrade_from_less_2303()\n{\n    tmp_version=$(cat $BACKUPROOTFSINFO | grep -w IMAGEVERSION | cut -d'=' -f2)\n    release_str=${tmp_version:9:3}\n\n    IS_UPGRADE=$(is_upgrade)\n    echo \"$release_str $IS_UPGRADE\" |tee -a ${SYSLOGS} &>/dev/console\n    if [ \"$release_str\" \\< \"JKK\" -a $IS_UPGRADE -eq 1 ];then\n        echo \"upgrade from old build which is before 2303!\" |tee -a ${SYSLOGS} &>/dev/console\n        _remount_configs\n        _restore_configs_overlay\n    elif [ $no_cfg_env -eq 1 ];then\n        echo \"no cfg_partition in uboot env!\" |tee -a ${SYSLOGS} &>/dev/console\n        _restore_configs_overlay\n    fi\n}\n\ncheck_logs_partition()\n{\n        ubi_logs=\"log:0:/logs\"\n        mtd=$(echo $ubi_logs | cut -d: -f 1)\n        usage=$(df /logs | tail -1 | awk '{print $5}' | sed 's/%//g')\n        if [ \"$usage\" -ge 99 ]; then\n                echo \"MSG: logs is used over 99%, format and remount it\" &>/dev/console\n                format_partition $mtd\n                #_mount_ubifs $ubi_logs\n        fi\n}\n\nstart()\n{\n\tmount_partition\n\tmount_backup_rootfs_partition\n\tsync_time\n\tfactory_back_default\n\tupgrade_from_less_2303\n\tlink_after_overlay \n\t/bin/sh /usr/exe/upgrade_check.sh &>/dev/console\n\t#version_check\n\tdata_guardian\n\tenable_pstore\n\techo -e \"\\n[`date '+%F.%T%z'`]MSG: startup @`uptime`\" |tee -a ${SYSLOGS} &>/dev/console\n\techo \"--------------------------------------------------------------------------------\" |tee -a ${SYSLOGS} &>/dev/console\n\t/bin/cat /etc/buildinfo |tee -a ${SYSLOGS} &>/dev/console\n\t/bin/echo \"---- REBOOT REASON COLLECTED BELOW ----\" |tee -a /logs/reboot.log &>/dev/console\n\t/bin/cat /etc/buildinfo |tee -a /logs/reboot.log &>/dev/null\n\t/usr/sbin/fw_printenv |tee -a ${SYSLOGS} &>/dev/console\n\tcheck_abnormal_reboot\n\tkmsg_init\n\tcheck_logs_partition\n}\n\n"
+        },
+        "etc/init.d/firewall": {
+          "bytes": 997,
+          "sha256": "dbc6e31653ba3d7e57534386cf1a83523318ed9dbb0d793f7947520e33b0e776",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n\nSTART=19\nUSE_PROCD=1\nQUIET=\"\"\n\nvalidate_firewall_redirect()\n{\n\tuci_validate_section firewall redirect \"${1}\" \\\n\t\t'proto:or(uinteger, string)' \\\n\t\t'src:string' \\\n\t\t'src_ip:cidr' \\\n\t\t'src_dport:or(port, portrange)' \\\n\t\t'dest:string' \\\n\t\t'dest_ip:cidr' \\\n\t\t'dest_port:or(port, portrange)' \\\n\t\t'target:or(\"SNAT\", \"DNAT\")'\n}\n\nvalidate_firewall_rule()\n{\n\tuci_validate_section firewall rule \"${1}\" \\\n\t\t'proto:or(uinteger, string)' \\\n\t\t'src:string' \\\n\t\t'dest:string' \\\n\t\t'src_port:or(port, portrange)' \\\n\t\t'dest_port:or(port, portrange)' \\\n\t\t'target:string'\n}\n\nservice_triggers() {\n\tprocd_add_reload_trigger firewall\t\n\n\tprocd_open_validate\n\tvalidate_firewall_redirect\n\tvalidate_firewall_rule\n\tprocd_close_validate\n}\n\nrestart() {\n\tfw3 restart\n}\n\nstart_service() {\n\tfw3 ${QUIET} start\n}\n\nstop_service() {\n\tfw3 flush\n}\n\nreload_service() {\n\tfw3 reload\n}\n\nboot() {\n\t# Be silent on boot, firewall might be started by hotplug already,\n\t# so don't complain in syslog.\n\tQUIET=-q\n\tstart\n}\n"
+        },
+        "etc/init.d/pcd": {
+          "bytes": 636,
+          "sha256": "ab5612cd0836490564e88e3f13d6e911d2bbab99795e8cb92b907f317acbc3e3",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n# Copyright (C) 2014 OpenWrt.org\n\nSTART=98\n\nUSE_PROCD=1\n\nPCD_BIN=/usr/bin/pcd\nPCD_CONF=/tmp/all.pcd\nPCD_ROOT=/etc/pcd\nPCD_LOG=/logs/pcd.logs\n\nstart_service() {\n    if [ ! -f $PCD_CONF ];then\n\tall_pcd=`ls $PCD_ROOT`\n\ttouch $PCD_CONF\n\tfor i in $all_pcd\n\tdo\n\t    echo \"INCLUDE = ${PCD_ROOT}/${i}\" >> $PCD_CONF\n\tdone\n    fi\n    if [ -f $PCD_LOG ];then\n\tlog_size=`ls -l $PCD_LOG |awk '{print $5}'`\n\tif [ $log_size -gt 51200 ];then\n\t    mv $PCD_LOG $PCD_LOG.0\n\tfi\n    fi\n\n    procd_open_instance\n    procd_set_param command $PCD_BIN  -v -f $PCD_CONF -e $PCD_LOG\n    procd_set_param respawn\n    procd_close_instance\n}\n"
+        },
+        "etc/init.d/commit_image": {
+          "bytes": 281,
+          "sha256": "f878f3fd98d63e67823500edc770f3232a0ae4d51b748053c9e18788f6f4f9ee",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n# Copyright (C) 2006-2011 OpenWrt.org\n\nSTART=99\n\nboot()\n{\n\t# no commit in bootup script anymore\n\t# sleep 30 && /sbin/image_commit.sh && echo \"**** commit image ****\" > /dev/console 2>&1 &\n\t[ -x /configs/pre_app_boot.sh ] && sh /configs/pre_app_boot.sh &\n}\n"
+        },
+        "etc/init.d/done": {
+          "bytes": 256,
+          "sha256": "ac083737ae118a034d0d6bd8b2eab06d0638eecfdf39af70ae2dda1d5baffb17",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n# Copyright (C) 2006 OpenWrt.org\n\nSTART=95\nboot() {\n\t#mount_root done\n\trm -f /sysupgrade.tgz\n\n\t# process user commands\n\t[ -f /etc/rc.local ] && {\n\t\tsh /etc/rc.local\n\t}\n\n\t# set leds to normal state\n\t. /etc/diag.sh\n\tset_state done\n}\n"
+        },
+        "etc/config/firewall": {
+          "bytes": 4205,
+          "sha256": "303d858071dfcf1d1e8593168eb9c582a2c774211f23cef4bf7c85e4060a5e8c",
+          "decoding": "utf-8",
+          "text": "config defaults\n\toption syn_flood\t1\n\toption input\t\tACCEPT\n\toption output\t\tACCEPT\n\toption forward\t\tREJECT\n# Uncomment this line to disable ipv6 rules\n#\toption disable_ipv6\t1\n\nconfig zone\n\toption name\t\tlan\n\tlist   network\t\t'lan'\n\toption input\t\tACCEPT\n\toption output\t\tACCEPT\n\toption forward\t\tACCEPT\n\nconfig zone\n\toption name\t\twan\n\tlist   network\t\t'wan'\n\tlist   network\t\t'wan6'\n\toption input\t\tREJECT\n\toption output\t\tACCEPT\n\toption forward\t\tREJECT\n\toption masq\t\t1\n\toption mtu_fix\t\t1\n\nconfig forwarding\n\toption src\t\tlan\n\toption dest\t\twan\n\n# We need to accept udp packets on port 68,\n# see https://dev.openwrt.org/ticket/4108\nconfig rule\n\toption name\t\tAllow-DHCP-Renew\n\toption src\t\twan\n\toption proto\t\tudp\n\toption dest_port\t68\n\toption target\t\tACCEPT\n\toption family\t\tipv4\n\n# Allow IPv4 ping\nconfig rule\n\toption name\t\tAllow-Ping\n\toption src\t\twan\n\toption proto\t\ticmp\n\toption icmp_type\techo-request\n\toption family\t\tipv4\n\toption target\t\tACCEPT\n\nconfig rule\n\toption name\t\tAllow-IGMP\n\toption src\t\twan\n\toption proto\t\tigmp\n\toption family\t\tipv4\n\toption target\t\tACCEPT\n\n# Allow DHCPv6 replies\n# see https://dev.openwrt.org/ticket/10381\nconfig rule\n\toption name\t\tAllow-DHCPv6\n\toption src\t\twan\n\toption proto\t\tudp\n\toption src_ip\t\tfc00::/6\n\toption dest_ip\t\tfc00::/6\n\toption dest_port\t546\n\toption family\t\tipv6\n\toption target\t\tACCEPT\n\nconfig rule\n\toption name\t\tAllow-MLD\n\toption src\t\twan\n\toption proto\t\ticmp\n\toption src_ip\t\tfe80::/10\n\tlist icmp_type\t\t'130/0'\n\tlist icmp_type\t\t'131/0'\n\tlist icmp_type\t\t'132/0'\n\tlist icmp_type\t\t'143/0'\n\toption family\t\tipv6\n\toption target\t\tACCEPT\n\n# Allow essential incoming IPv6 ICMP traffic\nconfig rule\n\toption name\t\tAllow-ICMPv6-Input\n\toption src\t\twan\n\toption proto\ticmp\n\tlist icmp_type\t\techo-request\n\tlist icmp_type\t\techo-reply\n\tlist icmp_type\t\tdestination-unreachable\n\tlist icmp_type\t\tpacket-too-big\n\tlist icmp_type\t\ttime-exceeded\n\tlist icmp_type\t\tbad-header\n\tlist icmp_type\t\tunknown-header-type\n\tlist icmp_type\t\trouter-solicitation\n\tlist icmp_type\t\tneighbour-solicitation\n\tlist icmp_type\t\trouter-advertisement\n\tlist icmp_type\t\tneighbour-advertisement\n\toption limit\t\t1000/sec\n\toption family\t\tipv6\n\toption target\t\tACCEPT\n\n# Allow essential forwarded IPv6 ICMP traffic\nconfig rule\n\toption name\t\tAllow-ICMPv6-Forward\n\toption src\t\twan\n\toption dest\t\t*\n\toption proto\t\ticmp\n\tlist icmp_type\t\techo-request\n\tlist icmp_type\t\techo-reply\n\tlist icmp_type\t\tdestination-unreachable\n\tlist icmp_type\t\tpacket-too-big\n\tlist icmp_type\t\ttime-exceeded\n\tlist icmp_type\t\tbad-header\n\tlist icmp_type\t\tunknown-header-type\n\toption limit\t\t1000/sec\n\toption family\t\tipv6\n\toption target\t\tACCEPT\n\nconfig rule\n\toption name\t\tAllow-IPSec-ESP\n\toption src\t\twan\n\toption dest\t\tlan\n\toption proto\t\tesp\n\toption target\t\tACCEPT\n\nconfig rule\n\toption name\t\tAllow-ISAKMP\n\toption src\t\twan\n\toption dest\t\tlan\n\toption dest_port\t500\n\toption proto\t\tudp\n\toption target\t\tACCEPT\n\n# include a file with users custom iptables rules\nconfig include\n\toption path /etc/firewall.user\n\n\n### EXAMPLE CONFIG SECTIONS\n# do not allow a specific ip to access wan\n#config rule\n#\toption src\t\tlan\n#\toption src_ip\t192.168.45.2\n#\toption dest\t\twan\n#\toption proto\ttcp\n#\toption target\tREJECT\n\n# block a specific mac on wan\n#config rule\n#\toption dest\t\twan\n#\toption src_mac\t00:11:22:33:44:66\n#\toption target\tREJECT\n\n# block incoming ICMP traffic on a zone\n#config rule\n#\toption src\t\tlan\n#\toption proto\tICMP\n#\toption target\tDROP\n\n# port redirect port coming in on wan to lan\n#config redirect\n#\toption src\t\t\twan\n#\toption src_dport\t80\n#\toption dest\t\t\tlan\n#\toption dest_ip\t\t192.168.16.235\n#\toption dest_port\t80\n#\toption proto\t\ttcp\n\n# port redirect of remapped ssh port (22001) on wan\n#config redirect\n#\toption src\t\twan\n#\toption src_dport\t22001\n#\toption dest\t\tlan\n#\toption dest_port\t22\n#\toption proto\t\ttcp\n\n### FULL CONFIG SECTIONS\n#config rule\n#\toption src\t\tlan\n#\toption src_ip\t192.168.45.2\n#\toption src_mac\t00:11:22:33:44:55\n#\toption src_port\t80\n#\toption dest\t\twan\n#\toption dest_ip\t194.25.2.129\n#\toption dest_port\t120\n#\toption proto\ttcp\n#\toption target\tREJECT\n\n#config redirect\n#\toption src\t\tlan\n#\toption src_ip\t192.168.45.2\n#\toption src_mac\t00:11:22:33:44:55\n#\toption src_port\t\t1024\n#\toption src_dport\t80\n#\toption dest_ip\t194.25.2.129\n#\toption dest_port\t120\n#\toption proto\ttcp\n"
+        },
+        "usr/exe/link.sh": {
+          "bytes": 1118,
+          "sha256": "9fd63272760323be8a044b9fadded018e9ae0977339969cc28dbca1750ddf20b",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n#### deal with the link.cfg with general strategy\n#for item in $(cat /usr/cfg/link.cfg |sed \"s/[ \\t]//g\" |sed \"s/^#.*$//g\")\n#         echo MSG: will copy upgrade keep default files\n\n. /usr/exe/varset.sh\n\n\nlink_after_overlay()\n{\n    List=$(/usr/exe/json_paser OverlayParams.OverlayPersistentFileList < /etc/HB_Config.json)\n    for file in $List\n    do\n        LINK_TARGET=$file\n        LINK_SOURCE=$CONFIGS_OVERLAY/$file\n        if [ -e ${LINK_SOURCE} ]; then\n            continue\n        elif [ -e /rom/${LINK_TARGET} ]; then\n            mkdir -p $(dirname ${LINK_SOURCE})\n            cp -rf /rom/${LINK_TARGET} $(dirname ${LINK_SOURCE})\n        else\n            mkdir -p $(dirname ${LINK_SOURCE})\n            echo MSG: No ${LINK_SOURCE} &>/dev/console\n        fi\n    done\n}\n\nlink_before_overlay()\n{\n    List=$(/usr/exe/json_paser OverlayParams.OverlayPersistentFileList < /etc/HB_Config.json)\n    for file in $List\n    do\n        LINK_TARGET=/tmp/root/upper/$file\n        LINK_SOURCE=$CONFIGS_OVERLAY/$file\n        mkdir -p $(dirname ${LINK_TARGET})\n        ln -sf ${LINK_SOURCE} ${LINK_TARGET}\n    done\n}\n\n"
+        },
+        "usr/exe/image_activate.sh": {
+          "bytes": 356,
+          "sha256": "726952013b9cf700d69f1293f537adcfb5b197b623f90f0c07eba523e4a12231",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n# sb_flag definition\n#   BIT#0: active\n#   BIT#1: valid\n#   BIT#2: commit\n#   BIT#3: upgrade\n\n. /usr/exe/varset.sh\n\ncurrent=$(uenv_get active_part)\nstandby=$(( 1 - ${current} ))\n\necho \"current boot image#${current} ...\"\n\nca.sb -a 0 -v 1 -c 1 sb${current}\nca.sb -a 1 -v 1 -c 0 sb${standby}\n\necho \"switched to image#${standby} boot next time ...\"\n\n"
+        },
+        "usr/exe/image_commit.sh": {
+          "bytes": 375,
+          "sha256": "ec396dffd23c9a4c861f22fd66f23cb33751ee871221860788fb9c484325ae7e",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n# sb_flag definition\n#   BIT#0: active\n#   BIT#1: valid\n#   BIT#2: commit\n#   BIT#3: upgrade\n\n. /usr/exe/varset.sh\n\ncurrent=$(uenv_get active_part)\nstandby=$(( 1 - ${current} ))\n\necho \"current boot image#${current} ...\"\n\nca.sb -a 1 -v 1 -c 1 sb${current}\nca.sb -a 0 -v 1 -c 0 sb${standby}\n\nuenv_set bootfail${current} 0\necho \"commit the boot image#${current} ...\"\n\n"
+        },
+        "etc/HB_Config.json": {
+          "bytes": 3667,
+          "sha256": "0366e5ce9a78769ebc31cb1def9482d6bd6f7a6fb7824cd6cc5c55e578c55d53",
+          "decoding": "utf-8",
+          "text": "{\n    \"FactoryResetParams\" : {\n        \"FactoryResetDeepWhiteList\" : [\n            \"/configs/Nokia/\",\n            \"/configs/bosa/\",\n            \"/logs/messages\",\n            \"/logs/messages_kern\",\n            \"/logs/messages_component\",\n            \"/logs/pcd.logs\",\n            \"/logs/pcd.logs.0\",\n            \"/logs/reboot.log\",\n            \"/configs/fresetOriginator.txt\",\n            \"/configs/oltInfo\",\n            \"/configs/ont_lock_key\",\n            \"/logs/nbus_fatal.log\"\n            ],\n            \"FactoryResetNormalWhiteList\" : [\n                \"/configs/precfg_remote_flag\",\n                \"/configs/precfg_remote_avalible\",\n                \"/configs/precfg_remote_encryption.xml\",\n                \"/configs/precfg_remote.xml\",\n                \"/configs/cfg_update_remote_avalible\",\n                \"/configs/cfg_update_remote_encryption.kv\",\n                \"/configs/cfg_update_remote.kv\",\n                \"/configs/precfg_debug_mode_flag\",\n                \"/configs/Adminuser.json\",\n                \"/configs/Normaluser.json\",\n                \"/configs/colors.css\",\n                \"/configs/logo_login.svg\",\n                \"/configs/logo_side.svg\",\n                \"/configs/zeroman/\",\n                \"/configs/remote_rtscfg_keyparam\",\n                \"/configs/certs/\",\n                \"/configs/tr069_conf/\",\n                \"/configs/alcatel/\",\n                \"/configs/hgu_slid\",\n                \"/configs/hgu_loginid\"\n            ],\n            \"FactoryResetExtraBlackList\" : [\n                \"/opt/lxc\"\n            ]\n    },\n    \"DataGuardianParams\" : {\n        \"DynamicBackupFileList\" : [\n            \"/configs/dmdb_encryption.cfg\",\n            \"/configs/dmdb_encryption.cfg.bak\",\n            \"/configs/precfg_remote_flag\",\n            \"/configs/precfg_remote_avalible\",\n            \"/configs/precfg_remote_encryption.xml\",\n            \"/configs/precfg_remote.xml\",\n            \"/configs/cfg_update_remote_avalible\",\n            \"/configs/cfg_update_remote_encryption.kv\",\n            \"/configs/cfg_update_remote.kv\",\n            \"/configs/precfg_debug_mode_flag\",\n            \"/configs/zeroman/\",\n            \"/configs/overlay\"\n            ],\n            \"StaticBackupFileList\" : [\n                \"/configs/dmdb_encryption.cfg\",\n                \"/configs/dmdb_encryption.cfg.bak\",\n                \"/configs/Nokia/\",\n                \"/configs/bosa/\"\n            ],\n            \"LogBackupFileList\" : [\n                \"/tmp/ussawifievent.log\",\n                \"/tmp/ussawifievent.log.old\",\n                \"/tmp/ussawifievent.log.old.gz\",\n                \"/tmp/ussawifistatus.log\",\n                \"/tmp/ussawifistatus.log.old\",\n                \"/tmp/ussawifistatus.log.old.gz\",\n                \"/tmp/ussa.log\",\n                \"/tmp/ussa.log.old\",\n                \"/tmp/ussa.log.old.gz\",\n                \"/tmp/Sense\"\n            ]\n    },\n    \"SWUpgradeParams\" : {\n            \"UpgradeKeepDefaultFileList\" : [\n                \"/etc/config/syslog\",\n                \"/etc/config/qcacfg80211\",\n                \"/etc/scfg\"\n            ],\n            \"UpgradeDelCommonCfgFileList\" : []\n    },\n    \"PackImageParas\" : {\n        \"SubImageInfo\" : [\n            \"boot:gpt-nandinfo.img\",\n            \"rootfs:root.mubi\",\n            \"imginfo:image.info\"\n            ]\n    },\n    \"OverlayParams\" : {\n        \"OverlayPersistentFileList\" : [\n            \"/etc/config\",\n            \"/etc/dropbear\",\n            \"/data/vendor/wifi\",\n            \"/etc/scfg\",\n            \"/lib/wifi/wifi_nss_olcfg\",\n            \"/lib/wifi/wifi_nss_olnum\",\n            \"/lib/wifi/wifi_nss_hk_olnum\",\n\t    \"/home\",\n            \"/lib/wifi/wifi_nss_override\"\n        ]\n    }\n\n}\n"
+        },
+        "etc/pcd/swmgnt.pcd": {
+          "bytes": 3197,
+          "sha256": "6ffe09cea2cd27a177a1970ad61a3c3d971ff43740736eed2cd7cea5fed48469",
+          "decoding": "latin-1 lossless",
+          "text": "# Incl ude a rule file\n#INCLUDE = filename.pcd\n\n################### Start of a rule block #############################\n# Index of the rule\n#RULE = GROUPNAME_RULENAME\nRULE = service_swmgnt\n\n# Condition to start rule, existence of one of the following\n#\n# NONE - No start condition, application is spawn immediately\n# FILE filename - The existence of a file\n# RULE_COMPLETED id - Rule id completed successfully\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# ENV_VAR name, value - Value of a variable\n#\n#START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }\nSTART_COND = RULE_COMPLETED service_cfgmgr \n\n# Command with parameters, NONE for sync point\n#COMMAND = cmd parameters...\nCOMMAND = /usr/bin/load_app -d InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Enable=true -- /usr/bin/swmgnt\n\n# Scheduling (priority) of the process\n#SCHED = { NICE value; FIFO value }\nSCHED = NICE 0\n\n# Daemon flag \u00a8C Process must not end\n#DAEMON = { YES, NO }\nDAEMON = YES\n\n# Condition to end rule and move to next rule, wait for one of the following:\n#\n# NONE - No monitor on the result, just spawn application and continue.\n# FILE filename - The existence of a file\n# EXIT status - The application exited with status. Other statuses are considered failure\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# PROCESS_READY \u00a8C The process sent a READY event though PCD API.\n# WAIT msecs - Delay, ignore END_COND_TIMEOUT\n#\n#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }\nEND_COND = NONE\n\n# Timeout for end condition. Fail if timeout expires. -1 if not relevant.\n#END_COND_TIMEOUT = msecs\nEND_COND_TIMEOUT = -1\n\n# Action upon failure, do one of the following actions upon failure\n# NONE \u00a8C Do not take any action\n# REBOOT - Reboot the system\n# RESTART - Restart the rule\n# EXEC_RULE id - Execute a rule\n#\n#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }\nFAILURE_ACTION = RESTART\n\n# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.\n# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Interval in seconds between a failure and the next failure action.\n# FAILURE_INTERVAL = (0..4294967)\n# Time in hours before resetting the failure counter. 0: use only the first failure action.\n# FAILURE_RESET_COUNT = (0..1193)\n\n# Rule is Active or not (To be activated later by PCD API)\n#ACTIVE = { YES, NO }\nACTIVE = YES\n\n# User id for the process\n# USER = { UID | User name }\n\n# ping time out ,Fail if timeout expires.\n# ALIVE_TIMEOUT = 10000\n################### End of a rule block #############################\n"
+        },
+        "etc/buildinfo": {
+          "bytes": 378,
+          "sha256": "5d985f164888825487905f4cb89e4c187d8181bc7b98e2c5e5ef6f33ba58f53b",
+          "decoding": "utf-8",
+          "text": "UNIT_TYPE=beacon_g6\nPRODUCTCLASS=beacon_g6\nIMAGEVERSION=3FE49996IJLJ03\nSOFTWAREVERSION=IJL.J03p01\nDOTDIGITVERSION=1.2402.303\nCOPYRIGHT=NOKIA\nWHOBUILD=buildmgr\nRELEASE=0.0.0\nBUILDDATE=20240702\nBUILDSTAMP=20240702234215CST\nREPO=master\nNODE=3237f11e41d29b467b2cafbfd6093b74a709d70b\nSIGNER=NCG\nSIGN=y\nENCRYPT=n\nUBOOTVERSION=\nSDKVERSION=cortina_venus.R1.1.1.6\nHOMEOSVERSION=24.02.00\n"
+        },
+        "etc/init.d/ndk_rgwstack": {
+          "bytes": 2297,
+          "sha256": "855e0d57c3133865b82db629984f7b5d033353e59834e78fc3c90e326826b4d8",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n\nSTART=18\n\nUSE_PROCD=1\n\nsetup_dnsmasq_for_ndk() {\n  [ ! -s \"/etc/config/dhcp\" ] && cp -af /rom/etc/config/dhcp /etc/config/dhcp\n\n  if [ -f \"/etc/config/dhcp\" ]; then\n    [ -d \"/tmp/dnsmasq.ndk.d\" ] || mkdir -p /tmp/dnsmasq.ndk.d\n    [ -f \"/tmp/dnsmasq.dnsproxy.conf\" ] || touch /tmp/dnsmasq.dnsproxy.conf\n    [ -f \"/tmp/dnsmasq.dynamic.conf\" ] || touch /tmp/dnsmasq.dynamic.conf\n    [ -f \"/tmp/dnsmasq.dhcpd.conf\" ] || touch /tmp/dnsmasq.dhcpd.conf\n\n    [ -f \"/etc/dns_resolv_ipv4.conf\" ] || touch /etc/dns_resolv_ipv4.conf\n    [ -f \"/etc/dns_resolv_ipv6.conf\" ] || touch /etc/dns_resolv_ipv6.conf\n    [ -f \"/etc/dns_resolv_ipv4_hsi.conf\" ] || touch /etc/dns_resolv_ipv4_hsi.conf\n    [ -f \"/etc/dns_resolv_ipv4_iptv.conf\" ] || touch /etc/dns_resolv_ipv4_iptv.conf\n    [ -f \"/var/resolv_voip.conf\" ] || touch /var/resolv_voip.conf\n    [ -f \"/etc/configs/filter_dns_resolv_ipv4.conf\" ] || touch /etc/configs/filter_dns_resolv_ipv4.conf\n\n    # default behavior is disable dnsproxy and dhcpd function for NDK\n    uci delete dhcp.ndk.domain\n    uci set dhcp.ndk.cachesize=0\n    uci set dhcp.ndk.port=0\n    uci set dhcp.ndk_dhcp.ignore=1\n    uci commit dhcp\n  fi\n}\n\nclean_netifd_ndk_config() {\n  [ -e \"/sbin/ndk_clean_network.sh\" ] && /sbin/ndk_clean_network.sh\n}\n\nmerge_fw3_firewall_user() {\n  [ -e \"/sbin/ndk_merge_fw3_firewall_user.sh\" ] && /sbin/ndk_merge_fw3_firewall_user.sh\n}\n\nupdate_ndk_rgwstack() {\n  [ ! -s \"/etc/config/ndk_rgwstack\" ] && cp -af /rom/etc/config/ndk_rgwstack /etc/config/ndk_rgwstack\n\n  [ -e \"/sbin/update_ndk_rgwstack.sh\" ] && /sbin/update_ndk_rgwstack.sh\n}\n\nrestore_firewall_config() {\n  [ ! -s \"/etc/config/firewall\" ] && cp -af /rom/etc/config/firewall /etc/config/firewall\n}\n\nupdate_etc_resolv_conf() {\n  # /etc/init.d/boot: ln -sf /tmp/resolv.conf.auto /tmp/resolv.conf\n  # netifd may write dns servers to /tmp/resolv.conf.auto\n  # and /etc may be linked to /tmp on some boards(/etc/resolv.conf -> /tmp/resolv.conf),\n  # so may override /etc/resolv.conf which should be written by ndk_wand\n  if [ -L /etc/resolv.conf ]; then rm /etc/resolv.conf; touch /etc/resolv.conf; fi\n}\n\nstart_service() {\n  setup_dnsmasq_for_ndk\n  update_etc_resolv_conf\n  clean_netifd_ndk_config\n  restore_firewall_config\n  merge_fw3_firewall_user\n  update_ndk_rgwstack\n}\n\n"
+        },
+        "sbin/ndk_update_fw3_config.sh": {
+          "bytes": 569,
+          "sha256": "f2934f5eb416c305e84d853d1d52cba6091b8cf198a9d4cd0e14f7ba3078ae52",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n\n# Use this script to update fw3 config file is a solution;\n# Also another soltion is, directly add 'sh /etc/config/ndk_restore_rules.sh' in /etc/firewall.user file.\n\nuci -q batch <<-EOT\n        delete firewall.restore_rules\n        set firewall.restore_rules=include\n        set firewall.restore_rules.enable=1\n        set firewall.restore_rules.type=script\n        set firewall.restore_rules.path=/etc/config/ndk_restore_rules.sh\n        set firewall.restore_rules.family=any\n        set firewall.restore_rules.reload=0\n        commit firewall\nEOT\n\nexit 0\n\n"
+        },
+        "sbin/ndk_merge_fw3_firewall_user.sh": {
+          "bytes": 549,
+          "sha256": "89fb76daaae24aff30baa3e41652cf4a7a127f3b4beff2caddbb038bb8a8c5e7",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n\nif [ -e /rom/etc/firewall.user ]\nthen   \n    if [ -e /etc/firewall.user ]\n    then\n        ndk_script=$(cat /rom/etc/firewall.user | grep ndk | awk '{print $2}')\n        if [ \"$ndk_script\" !=  \"\" ]\n        then\n            for script in $ndk_script\n            do\n                if [ \"$(cat /etc/firewall.user | grep \"$script\")\" = \"\" ]\n                then\n                    echo \"sh $script\" >> /etc/firewall.user \n                fi\n            done\n        fi\n    else\n        cp /rom/etc/firewall.user /etc/firewall.user\n    fi\nfi\n"
+        },
+        "sbin/update_ndk_rgwstack.sh": {
+          "bytes": 1069,
+          "sha256": "f44f61652e60a648a4790a7f7a1033661ac6a12d61be924db264f8dc69adf9eb",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n\nboard=$(ritool dump | grep Mnemonic | grep -v grep | awk -F : '{printf $2}')\n\nif [ \"$board\" = \" XS-2426G-B\" -o \"$board\" = \" XS-2426X-A\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='pon'\n    uci set ndk_rgwstack.config.sdk='cortina'\n    uci set ndk_rgwstack.config.uplink_mode='gpon'\n    uci commit ndk_rgwstack\nfi\n\nif [ \"$board\" = \" Beacon G6\" -o \"$board\" = \" Beacon G6.2\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='ewan'\n    uci set ndk_rgwstack.config.sdk='cortina'\n    uci set ndk_rgwstack.config.uplink_mode='ethernet'\n    uci commit ndk_rgwstack\nfi\n\nif [ \"$board\" = \" G-1426G-A\" -o \"$board\" = \" G-1426G-B\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='pon'\n    uci set ndk_rgwstack.config.sdk='realtek'\n    uci set ndk_rgwstack.config.uplink_mode='gpon'\n    uci commit ndk_rgwstack\nfi\n\nif [ \"$board\" = \" Beacon 3.1\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='ewan'\n    uci set ndk_rgwstack.config.sdk='realtek'\n    uci set ndk_rgwstack.config.uplink_mode='ethernet'\n    uci commit ndk_rgwstack\nfi\n\n"
+        }
+      },
+      "rc_order": [
+        [
+          "S00gpio_init",
+          "../init.d/gpio_init"
+        ],
+        [
+          "S00startup",
+          "../init.d/startup"
+        ],
+        [
+          "S00sysfixtime",
+          "../init.d/sysfixtime"
+        ],
+        [
+          "S00urngd",
+          "../init.d/urngd"
+        ],
+        [
+          "S00wifi_fw_mount",
+          "../init.d/wifi_fw_mount"
+        ],
+        [
+          "S01opid_op",
+          "../init.d/opid_op"
+        ],
+        [
+          "S08boot-ftm",
+          "../init.d/boot-ftm"
+        ],
+        [
+          "S08qrtr",
+          "../init.d/qrtr"
+        ],
+        [
+          "S09syncscfg",
+          "../init.d/syncscfg"
+        ],
+        [
+          "S10boot",
+          "../init.d/boot"
+        ],
+        [
+          "S10system",
+          "../init.d/system"
+        ],
+        [
+          "S11platform",
+          "../init.d/platform"
+        ],
+        [
+          "S11sysctl",
+          "../init.d/sysctl"
+        ],
+        [
+          "S12log",
+          "../init.d/log"
+        ],
+        [
+          "S13openssl",
+          "../init.d/openssl"
+        ],
+        [
+          "S15qca-acfg",
+          "../init.d/qca-acfg"
+        ],
+        [
+          "S15qca-hostapd",
+          "../init.d/qca-hostapd"
+        ],
+        [
+          "S15qca-wpa-supplicant",
+          "../init.d/qca-wpa-supplicant"
+        ],
+        [
+          "S18ndk_rgwstack",
+          "../init.d/ndk_rgwstack"
+        ],
+        [
+          "S19cnss_diag",
+          "../init.d/cnss_diag"
+        ],
+        [
+          "S19dnsmasq",
+          "../init.d/dnsmasq"
+        ],
+        [
+          "S19dropbear",
+          "../init.d/dropbear"
+        ],
+        [
+          "S19ecdinterface",
+          "../init.d/ecdinterface"
+        ],
+        [
+          "S19firewall",
+          "../init.d/firewall"
+        ],
+        [
+          "S20changenetif",
+          "../init.d/changenetif"
+        ],
+        [
+          "S20network",
+          "../init.d/network"
+        ],
+        [
+          "S31secInit",
+          "../init.d/secInit"
+        ],
+        [
+          "S40fstab",
+          "../init.d/fstab"
+        ],
+        [
+          "S50cron",
+          "../init.d/cron"
+        ],
+        [
+          "S50syslog-ng",
+          "../init.d/syslog-ng"
+        ],
+        [
+          "S60dbus",
+          "../init.d/dbus"
+        ],
+        [
+          "S60quagga",
+          "../init.d/quagga"
+        ],
+        [
+          "S80mcast",
+          "../init.d/mcast"
+        ],
+        [
+          "S80trap2cpu",
+          "../init.d/trap2cpu"
+        ],
+        [
+          "S90claim",
+          "../init.d/claim"
+        ],
+        [
+          "S90sigma-dut",
+          "../init.d/sigma-dut"
+        ],
+        [
+          "S90stunnel",
+          "../init.d/stunnel"
+        ],
+        [
+          "S90sysstat",
+          "../init.d/sysstat"
+        ],
+        [
+          "S94gpio_switch",
+          "../init.d/gpio_switch"
+        ],
+        [
+          "S95done",
+          "../init.d/done"
+        ],
+        [
+          "S96led",
+          "../init.d/led"
+        ],
+        [
+          "S96wifi_fw_done",
+          "../init.d/wifi_fw_done"
+        ],
+        [
+          "S97ftm",
+          "../init.d/ftm"
+        ],
+        [
+          "S98diag_socket_app",
+          "../init.d/diag_socket_app"
+        ],
+        [
+          "S98pcd",
+          "../init.d/pcd"
+        ],
+        [
+          "S99commit_image",
+          "../init.d/commit_image"
+        ],
+        [
+          "S99robust_test",
+          "../init.d/robust_test"
+        ],
+        [
+          "S99s3txamplitudeadjust",
+          "../init.d/s3txamplitudeadjust"
+        ],
+        [
+          "S99urandom_seed",
+          "../init.d/urandom_seed"
+        ],
+        [
+          "S99vnstat",
+          "../init.d/vnstat"
+        ]
+      ],
+      "schema": {
+        "path": "/tmp/g6-old-slot-review-20261025-by5iaikl/old/usr/etc/tr181.xml",
+        "sha256": "4943646cb572b39c2ece23e2f5ea0cb5208d973c9a84d43bf14273176cf259fe",
+        "selected_lines": [
+          {
+            "line": 133,
+            "text": "  </X_ALU-COM_LAN_DEVICE_MAP.>"
+          },
+          {
+            "line": 134,
+            "text": "  <ManagementServer. n=\"ManagementServer\" t=\"staticObject\" skip=\"Y\" dmtype=\"cwmp\">"
+          },
+          {
+            "line": 135,
+            "text": "    <EnableCWMP t=\"boolean\" rw=\"RW\" dv=\"true\" v=\"true\"/>"
+          },
+          {
+            "line": 136,
+            "text": "    <URL t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 137,
+            "text": "    <Username t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 138,
+            "text": "    <Password t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\" ealgo=\"ab\"/>"
+          },
+          {
+            "line": 139,
+            "text": "    <ScheduleReboot ml=\"64\" t=\"dateTime\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 140,
+            "text": "    <DelayReboot t=\"int\" rw=\"RW\" min=\"-1\" dv=\"-1\" v=\"-1\"/>"
+          },
+          {
+            "line": 141,
+            "text": "    <PeriodicInformEnable t=\"boolean\" rw=\"RW\" dv=\"true\" v=\"true\"/>"
+          },
+          {
+            "line": 142,
+            "text": "    <PeriodicInformInterval t=\"unsignedInt\" rw=\"RW\" min=\"1\" dv=\"1\" v=\"1\"/>"
+          },
+          {
+            "line": 143,
+            "text": "    <PeriodicInformTime t=\"dateTime\" ml=\"64\" rw=\"RW\" dv=\"0001-01-01T00:00:00Z\" v=\"0001-01-01T00:00:00Z\"/>"
+          },
+          {
+            "line": 146,
+            "text": "    <ConnectionRequestUsername t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 147,
+            "text": "    <ConnectionRequestPassword t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\" ealgo=\"ab\"/>"
+          },
+          {
+            "line": 148,
+            "text": "    <UpgradesManaged t=\"boolean\" rw=\"RW\" dv=\"false\" v=\"false\"/>"
+          },
+          {
+            "line": 149,
+            "text": "    <KickURL t=\"string\" ml=\"256\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 150,
+            "text": "    <DownloadProgressURL t=\"string\" ml=\"256\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 151,
+            "text": "    <CWMPRetryMinimumWaitInterval t=\"unsignedInt\" rw=\"RW\" min=\"1\" max=\"65535\" dv=\"5\" v=\"5\"/>"
+          },
+          {
+            "line": 152,
+            "text": "    <CWMPRetryIntervalMultiplier t=\"unsignedInt\" rw=\"RW\" min=\"1000\" max=\"65535\" dv=\"2000\" v=\"2000\"/>"
+          },
+          {
+            "line": 153,
+            "text": "    <AliasBasedAddressing t=\"boolean\" rw=\"R\" dv=\"true\" v=\"true\"/>"
+          },
+          {
+            "line": 154,
+            "text": "    <InstanceMode t=\"string\" ml=\"256\" rw=\"RW\" dv=\"InstanceNumber\" v=\"InstanceNumber\" va=\"ManagementServerInstanceModeValues\"/>"
+          },
+          {
+            "line": 155,
+            "text": "    <AutoCreateInstances t=\"boolean\" rw=\"RW\" dv=\"false\" v=\"false\"/>"
+          },
+          {
+            "line": 156,
+            "text": "    <X_ALU-COM_TR111Enabled t=\"boolean\" rw=\"RW\" dv=\"false\" v=\"false\"/>"
+          },
+          {
+            "line": 157,
+            "text": "    <X_ASB_COM_TR369Agent_Enable dv=\"false\" rw=\"RW\" t=\"boolean\" v=\"false\"/>"
+          },
+          {
+            "line": 158,
+            "text": "    <SupportedConnReqMethods t=\"string\" ml=\"256\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 159,
+            "text": "    <ConnReqXMPPConnection t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 160,
+            "text": "    <ConnReqAllowedJabberIDs t=\"string\" ml=\"1027\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 161,
+            "text": "    <ConnReqJabberID t=\"string\" ml=\"256\" rw=\"R\" dv=\"\" v=\"\" noc=\"2\"/>"
+          },
+          {
+            "line": 162,
+            "text": "    <ManageableDeviceNumberOfEntries t=\"unsignedInt\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 163,
+            "text": "    <ManageableDeviceNotificationLimit t=\"unsignedInt\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 164,
+            "text": "    <EmbeddedDeviceNumberOfEntries t=\"unsignedInt\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 165,
+            "text": "    <VirtualDeviceNumberOfEntries t=\"unsignedInt\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 371,
+            "text": "      <OTA_Reset_Reason rw=\"R\" t=\"string\" ml=\"32\" v=\"NO_RESET\" dv=\"NO_RESET\" va=\"ResetReason\"/>"
+          },
+          {
+            "line": 372,
+            "text": "    </X_ASB_COM_OtaSwAgent.>"
+          },
+          {
+            "line": 373,
+            "text": "    <X_ALU-COM_SwMgnt. n=\"SwMgnt\" t=\"staticObject\" skip=\"Y\">"
+          },
+          {
+            "line": 374,
+            "text": "      <X_ALU-COM_Enable rw=\"RW\" t=\"boolean\" v=\"1\" dv=\"1\"/>"
+          },
+          {
+            "line": 375,
+            "text": "      <X_ALU-COM_Polling_URL  ml=\"1024\" rw=\"RW\" t=\"string\" v=\"https://swupd.wifi.nokia.com\" dv=\"\"/>"
+          },
+          {
+            "line": 376,
+            "text": "      <X_ALU-COM_Polling_Time  ml=\"128\" rw=\"RW\" t=\"string\" v=\"0 2 * * *\" dv=\"\"/>"
+          },
+          {
+            "line": 377,
+            "text": "      <X_ALU-COM_Client_Auth_Key ml=\"1024\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\" ealgo=\"ab\"/>"
+          },
+          {
+            "line": 378,
+            "text": "      <X_ALU-COM_PrefActivation_Time  ml=\"32\" rw=\"RW\" t=\"string\" v=\"03:00:00\" dv=\"\"/>"
+          },
+          {
+            "line": 379,
+            "text": "    </X_ALU-COM_SwMgnt.>"
+          },
+          {
+            "line": 380,
+            "text": "    <Claim. n=\"Claim\" t=\"staticObject\" >"
+          },
+          {
+            "line": 381,
+            "text": "      <Pin ml=\"256\" rw=\"R\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 382,
+            "text": "    </Claim.>"
+          },
+          {
+            "line": 383,
+            "text": "  </X_ALU-COM_Wifi.>"
+          },
+          {
+            "line": 384,
+            "text": "  <X_ALU-COM_HomeIntelligenceServer. n=\"HomeIntSer\" t=\"staticObject\" skip=\"Y\">"
+          },
+          {
+            "line": 385,
+            "text": "    <HISProfileNumberofEntries t=\"unsignedInt\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 386,
+            "text": "    <Profile.1. n=\"HISProfile\" t=\"dynamicObject\"  status=\"deleted\" maxEntries=\"6\" rw=\"RW\" counter=\"HISProfileNumberofEntries\" maxInstance=\"0\">"
+          },
+          {
+            "line": 387,
+            "text": "      <TenantID ml=\"32\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 392,
+            "text": "  </X_ALU-COM_HomeIntelligenceServer.>"
+          },
+          {
+            "line": 393,
+            "text": "  <X_ALU-COM_SaaSManagementServer. n=\"MgmtServ\" t=\"staticObject\" skip=\"Y\" dmtype=\"cwmp\">"
+          },
+          {
+            "line": 394,
+            "text": "    <EnableCWMP rw=\"RW\" t=\"boolean\" v=\"false\" dv=\"false\"/>"
+          },
+          {
+            "line": 395,
+            "text": "    <URL ml=\"256\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 396,
+            "text": "    <Username ml=\"256\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 397,
+            "text": "    <Password ml=\"256\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\" ealgo=\"ab\"/>"
+          },
+          {
+            "line": 398,
+            "text": "    <PeriodicInformEnable rw=\"RW\" t=\"boolean\" v=\"True\" dv=\"True\"/>"
+          },
+          {
+            "line": 399,
+            "text": "    <PeriodicInformInterval max=\"4294967295\" min=\"1\" rw=\"RW\" t=\"unsignedInt\" v=\"5\" dv=\"5\"/>"
+          },
+          {
+            "line": 400,
+            "text": "    <PeriodicInformTime ml=\"64\" rw=\"RW\" t=\"dateTime\" dv=\"0001-01-01T00:00:00Z\" v=\"0001-01-01T00:00:00Z\"/>"
+          },
+          {
+            "line": 401,
+            "text": "    <ParameterKey ml=\"32\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 402,
+            "text": "    <X_ASB_COM_BoundIfName ml=\"32\" rw=\"RW\" t=\"string\" v=\"Any_WAN\" dv=\"\"/>"
+          }
+        ]
+      },
+      "binaries": {
+        "sbin/fw3": {
+          "bytes": 109200,
+          "sha256": "5080e80a1f186dc390bd6128450c0bc4261449c6dc0834d1c07b96d202dd2ec0"
+        },
+        "sbin/uci": {
+          "bytes": 18264,
+          "sha256": "74ad93150eecf5cfdbef53f9ea757e9742dd43fd9138e4d3b9ce1086586867bb"
+        },
+        "usr/bin/cfgcli": {
+          "bytes": 51664,
+          "sha256": "de734e0516b2a179088b3faeb9c0a8f3f85b89bb1be87fa0233f4c193d273d87"
+        },
+        "usr/lib/libupgradeimpl.so": {
+          "bytes": 14080,
+          "sha256": "b9d735cc5e142d31c82caf967f7844de002d5acb86ea8e670221973d4a7e78c3"
+        }
+      },
+      "fw3_script_runner_0x407818_0x4078b8": [
+        "00407818: mov      x16, #0x10b0                           ",
+        "0040781c: sub      sp, sp, x16                            ",
+        "00407820: stp      x29, x30, [sp]                         ",
+        "00407824: mov      x29, sp                                ",
+        "00407828: ldr      x1, [x0]                               ",
+        "0040782c: str      x19, [sp, #0x10]                       ",
+        "00407830: mov      x19, x0                                ",
+        "00407834: adrp     x0, #0x417000                          ",
+        "00407838: add      x0, x0, #0xeaa                          ; \" * Running script '%s'\"",
+        "0040783c: bl       #0x407780                              ",
+        "00407840: ldr      x0, [x19]                              ",
+        "00407844: add      x1, x29, #0x28                         ",
+        "00407848: bl       #0x413960                              ",
+        "0040784c: cbz      w0, #0x407880                          ",
+        "00407850: bl       #0x403e10                               ; __errno_location@plt",
+        "00407854: ldr      w0, [x0]                               ",
+        "00407858: bl       #0x4039d0                               ; strerror@plt",
+        "0040785c: mov      x1, x0                                 ",
+        "00407860: adrp     x0, #0x417000                          ",
+        "00407864: add      x0, x0, #0xec1                          ; '   ! Skipping due to path error: %s'",
+        "00407868: bl       #0x407780                              ",
+        "0040786c: ldp      x29, x30, [sp]                         ",
+        "00407870: mov      x16, #0x10b0                           ",
+        "00407874: ldr      x19, [sp, #0x10]                       ",
+        "00407878: add      sp, sp, x16                            ",
+        "0040787c: ret                                             ",
+        "00407880: ldr      x3, [x19]                              ",
+        "00407884: adrp     x2, #0x417000                          ",
+        "00407888: add      x2, x2, #0xee5                          ; 'config() { echo \"You cannot use UCI in firewall includes!\" >&2; exit 1; }; . %s'",
+        "0040788c: mov      x1, #0x1008                            ",
+        "00407890: add      x0, x29, #0xa8                         ",
+        "00407894: bl       #0x4036e0                               ; snprintf@plt",
+        "00407898: add      x0, x29, #0xa8                         ",
+        "0040789c: bl       #0x403990                               ; system@plt",
+        "004078a0: cbz      w0, #0x40786c                          ",
+        "004078a4: ubfx     x1, x0, #8, #8                         ",
+        "004078a8: adrp     x0, #0x417000                          ",
+        "004078ac: add      x0, x0, #0xf35                          ; '   ! Failed with exit code %u'",
+        "004078b0: bl       #0x407780                              ",
+        "004078b4: b        #0x40786c                              "
+      ],
+      "backend_command_references": [
+        "00000f98: add      x1, x0, #0xd70                          ; '/sbin/sysupgrade %s 2>/dev/console'",
+        "000010ec: add      x0, x0, #0xe70                          ; 'sh /usr/exe/image_activate.sh'",
+        "00001310: add      x0, x0, #0xfc0                          ; 'sh /usr/exe/image_commit.sh'"
+      ],
+      "isolated_original_uci_test": {
+        "all_steps_passed": true,
+        "transcript": [
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock=include"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock.type=script"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock.path=/configs/firmware-update-lock/firewall-include.sh"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock.enabled=1"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock.reload=1"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "commit",
+              "firewall"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "get",
+              "firewall.g6_firmware_lock"
+            ],
+            "status": 0,
+            "stdout": "include\n",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "get",
+              "firewall.g6_firmware_lock.path"
+            ],
+            "status": 0,
+            "stdout": "/configs/firmware-update-lock/firewall-include.sh\n",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "get",
+              "firewall.g6_firmware_lock.reload"
+            ],
+            "status": 0,
+            "stdout": "1\n",
+            "stderr": ""
+          }
+        ],
+        "resulting_config": "config defaults\n option input ACCEPT\n"
+      }
+    },
+    "new": {
+      "source_root": "/tmp/g6-old-slot-review-20261025-by5iaikl/new",
+      "sources": {
+        "etc/init.d/startup": {
+          "bytes": 14705,
+          "sha256": "1e469b41e96b364a82313f087ccc59396bdae4292eceb5bfc3721b51ee901288",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n\nSTART=00\nSTOP=99\n\n. /usr/exe/backdefault.sh\n. /usr/exe/data_guardian.sh\n. /usr/exe/link.sh\n. /usr/exe/varset.sh\n\ncurrent=$(uenv_get active_part)\nstandby=$(( 1 - $current ))\nBACKUP_OVERLAY_MOUNT_DIR=/tmp/backup_overlay\nno_cfg_env=0\ncfg_partition=`/usr/sbin/fw_printenv|grep cfg_partition`\n\nmount_backup_overlay()\n{\n\tbackup_overlay_mtd=$(cat /proc/mtd |grep rootfs_data$standby |cut -d: -f 1 |cut -c4-)\n\n\t$UBIATTACH $UBIDEVCTL -m $backup_overlay_mtd -d $backup_overlay_mtd &>/dev/null\n\tmdev -s &>/dev/null\n\tmkdir -p $BACKUP_OVERLAY_MOUNT_DIR\n\tmount -t ubifs /dev/ubi${backup_overlay_mtd}_0 $BACKUP_OVERLAY_MOUNT_DIR &>/dev/null\n\t[ -e /configs/bosa ] || mkdir -p /configs/bosa\n\t[ -e $BACKUP_OVERLAY_MOUNT_DIR/upper/config/bosa/cfg.bob ] && mv -f $BACKUP_OVERLAY_MOUNT_DIR/upper/config/bosa/cfg.bob /configs/bosa/cfg.bob && sync\n\tumount $BACKUP_OVERLAY_MOUNT_DIR &>/dev/null\n\t$UBIDETACH $UBIDEVCTL -m $backup_overlay_mtd &>/dev/null\n\trm -rf $BACKUP_OVERLAY_MOUNT_DIR\n}\n\nrestore_configs()\n{\n\t[ -e /configs/sysupgrade.tgz ] && tar -xzf /configs/sysupgrade.tgz -C / && rm -f /configs/sysupgrade.tgz\n}\n\nupgrade_logsize()\n{\n\tSIZELIMIT=32768\n\tlog_size=$(ls -al $UPGRADELOG 2>/dev/null | awk '{print $5}')\n\t[ $log_size -ge $SIZELIMIT ] && mv $UPGRADELOG $UPGRADELOGBAK\n}\n\nversion_check()\n{\n\tthreshold=4\n\tif [ $(uenv_get bootfail${standby}) -ge ${threshold} ]; then\n\t\techo \"WARNING: bootfail${standby} is more than ${threshold}, set buildinfo null\" >> $UPGRADELOG\n\t\tsed -i \"s/=.*$/=null/g\" $BACKUPROOTFSINFO\n\tfi\n\n\tcurrentImgVersion=$(cat /etc/buildinfo | grep IMAGEVERSION | cut -d'=' -f2)\n\tstandbyImgVersion=$(cat $BACKUPROOTFSINFO | grep IMAGEVERSION | cut -d'=' -f2)\n\n\timg_current=$(uenv_get img_version$current)\n\tif [ $? != 0 -o \"X$img_current\" != \"X$currentImgVersion\" ]; then\n\t\tuenv_set img_version$current $currentImgVersion\n\tfi\n\n\timg_standby=$(uenv_get img_version$standby)\n\tif [ $? != 0 -o \"X$img_standby\" != \"X$standbyImgVersion\" ]; then\n\t\tuenv_set img_version$standby $standbyImgVersion\n\tfi\n}\n\nmount_backup_rootfs_partition()\n{\n\tbackup_mtd=$(cat /proc/mtd |grep -w rootfs$standby |cut -d: -f1 |cut -c4-)\n\n\techo \"[`date '+%F.%T%z'`]MSG: mount backup rootfs mtd: $backup_mtd start ...\" | tee -a /tmp/${LOGDEFAULT} &>/dev/null\n\t$UBIATTACH $UBIDEVCTL -m $backup_mtd -d $backup_mtd &> /dev/null\n\t[ $? != 0 ] && echo \"[`date '+%F.%T%z'`]$UBIATTACH $UBIDEVCTL -m $backup_mtd -d $backup_mtd failed \" | tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\tmdev -s &>/dev/null\n\t$UBIBLOCK --create /dev/ubi${backup_mtd}_1 &>/dev/null\n\t[ ! -e /dev/ubiblock${backup_mtd}_1 ] && echo \"[`date '+%F.%T%z'`]MSG: $UBIBLOCK --create /dev/ubiblock${backup_mtd}_1 failed\" | tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\tmdev -s &>/dev/null\n\tmkdir -p /tmp/backup_rootfs\n\tmount -t squashfs -root /dev/ubiblock${backup_mtd}_1 /tmp/backup_rootfs &>/dev/null\n\t[ $? != 0 ] && echo \"[`date '+%F.%T%z'`]MSG: mount -t squashfs -root /dev/ubiblock${backup_mtd}_1 /tmp/backup_rootfs failed\" | tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\n\tcat /tmp/backup_rootfs/etc/buildinfo > $BACKUPROOTFSINFO\n\t# if mount backup rootfs failed, reboot and try again\n\t#[ -s $BACKUPROOTFSINFO ] || echo \"MSG: mount backup rootfs failed\" >/dev/console && reboot\n\tumount -l /tmp/backup_rootfs\n\t$UBIDETACH $UBIDEVCTL -m $backup_mtd &>/dev/null\n\trm -rf /tmp/backup_rootfs\n}\n\n\n_mount_ubifs()\n{\n    ubi_map=$1\n    ubi_part=$(echo \"${ubi_map}\" |cut -d: -f1)\n    ubi_seed=$(echo \"${ubi_map}\" |cut -d: -f2)\n    ubi_port=$(echo \"${ubi_map}\" |cut -d: -f3)\n    echo \"[`date '+%F.%T%z'`]MSG: ubi_part=${ubi_part} ubi_port=${ubi_port}\" |tee -a /tmp/${LOGDEFAULT} &>/dev/console\n    if grep -q \"\\<${ubi_part}\\>\" /proc/mtd; then\n        echo \"[`date '+%F.%T%z'`]MSG: mount $ubi_port start ...\" | tee -a /tmp/${LOGDEFAULT} &>/dev/null\n        ubi_part_id=$(cat /proc/mtd |grep \"\\<${ubi_part}\\>\"|head -n 1 |cut -d: -f1 |cut -c4-)\n        echo \"CMD: $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id}\" &>/dev/console\n        $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id} &>/dev/null\n        mdev -s &>/dev/null\n\n            ## try to mount the ${ubi_part} to the ${ubi_port}\n            echo \"CMD: mount -t ubifs /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port}\" &>/dev/console\n            mount -t ubifs /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port} &>/dev/null\n            ubi_err=$?\n            echo \"MSG: mount /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port} with code=${ubi_err}\" &>/dev/null\n\n            ## check the mount ${ubi_port} size\n            ubi_size=$(df -k |grep \"\\<ubi${ubi_part_id}_[012]\\>\" |sed \"s/ [ \\t]*/:/g\"|cut -d: -f2)\n            echo \"MSG: ${ubi_port} size is ${ubi_size}KB\" &>/dev/console\n            if [ \"0${ubi_size}\" -lt 768 ]; then ubi_err=$((${ubi_err} + 1)); fi\n\n            ## try to touch/write the mounted folder ${ubi_port}\n            [ $ubi_err -eq 0 ] && touch ${ubi_port}/${TAGUBIFSWR}\n            ubi_err=$((${ubi_err} + $?))\n            echo \"MSG: touch ${ubi_port}/${TAGUBIFSWR} with code=${ubi_err}\" &>/dev/null\n\n            ## check whether here is any error to try to recover\n            if [ ${ubi_err} != 0 ]; then\n                ## set fail flag to check if need to recover data\n                uenv_set mount_$(echo $ubi_port | cut -d'/' -f 2)_fail 1\n                echo \"[`date '+%F.%T%z'`]MSG: Partition ${ubi_part} damaged! Try to recover ...\" |tee -a /tmp/${LOGDEFAULT} &>/dev/console\n                echo \"CMD: umount ${ubi_port}\"\n                umount -l ${ubi_port} &>/dev/null\n                echo \"CMD: $UBIDETACH $UBIDEVCTL -m ${ubi_part_id}\"\n                $UBIDETACH $UBIDEVCTL -m ${ubi_part_id} &>/dev/null\n                echo \"CMD: $UBIFORMAT /dev/mtd${ubi_part_id} -y\"\n                $UBIFORMAT /dev/mtd${ubi_part_id} -y &>/dev/null\n                echo \"CMD: $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id}\"\n                ubi_part_info=$($UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id} 2>/dev/null)\n                ubi_part_lebs=$(echo \"${ubi_part_info}\" |sed \"s/^.*\\(total\\)\\(.*\\)\\(LEBs\\).*\\(available\\).*/\\2/\" |sed \"s/[ \\t\\n]//g\")\n                ubi_part_aleb=$(echo \"${ubi_part_info}\" |sed \"s/^.*\\(available\\)\\(.*\\)\\(LEBs\\).*/\\2/\" |sed \"s/[ \\t\\n]//g\")\n                ubi_lebs_size=$(echo \"${ubi_part_info}\" |sed \"s/^.*\\(LEB size\\).*\\(bytes (\\)\\(.*\\)\\( KiB\\).*/\\3/\" |sed \"s/[ \\t\\n]//g\" |cut -d. -f1)\n                echo \"MSG: ${ubi_part_info}\"\n                echo \"MSG: ubi_part=${ubi_part} ubi_part_lebs=${ubi_part_lebs} ubi_part_aleb=${ubi_part_aleb}\"\n                ## Volume Size = Total - Total/32(Reserved for BEB) - 4(Reserved for Volume)\n                ## ubi_part_aleb=$((${ubi_part_aleb} - 4)) ## Reserved only for more tolerance\n                ubi_vols_lebs=$((${ubi_part_lebs} * 31 / 32 - 4))\n                if [ ${ubi_part_aleb} -lt ${ubi_vols_lebs} ]; then ubi_vols_lebs=${ubi_part_aleb}; fi\n                ubi_vols_size=$((${ubi_vols_lebs} * ${ubi_lebs_size}))\n                echo \"MSG: ubi_part=${ubi_part} ubi_vols_lebs=${ubi_vols_lebs} ubi_lebs_size=${ubi_lebs_size} ubi_vols_size=${ubi_vols_size}\"\n                mdev -s &>/dev/null\n\n                ## try to make volume for the ${ubi_part}\n                echo \"CMD: $UBIMKVOL /dev/ubi${ubi_part_id} -t dynamic -n 0 -N ${ubi_part} -s ${ubi_vols_size}KiB\"\n                $UBIMKVOL /dev/ubi${ubi_part_id} -t dynamic -n 0 -N ${ubi_part} -s ${ubi_vols_size}KiB &>/dev/null\n                if [ $? != 0 ]; then reboot; fi    #reboot and try again\n                mdev -s &>/dev/null\n\n                ## try to mount the ${ubi_part}\n                echo \"CMD: mount -t ubifs /dev/ubi${ubi_part_id}_0 ${ubi_port}\"\n                mount -t ubifs /dev/ubi${ubi_part_id}_0 ${ubi_port} &>/dev/null\n            fi\n            echo \"[`date '+%F.%T%z'`]MSG: mount $ubi_port completed\" | tee -a /tmp/${LOGDEFAULT} &>/dev/console\n    fi\n}\n\nmount_partition()\n{\n\techo -e \"\\n[`date '+%F.%T%z'`]MSG: load ubi parts @`uptime`\" |tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\n\tUBI_MAP_LIST=\"log:0:/logs user_data:0:/opt\"\n    if [ -z $cfg_partition ];then\n\t    echo  \"no cfg_partition paramter in uboot env, so set cfg_partition to rootfs_data$current.\" |tee -a ${SYSLOGS} &>/dev/console\n        /usr/sbin/fw_setenv cfg_partition rootfs_data$current\n        no_cfg_env=1\n    fi\n    cfg_partition=`/usr/sbin/fw_printenv -n cfg_partition`\n\tUBI_MAP_LIST=$UBI_MAP_LIST\" $cfg_partition:0:/configs\"\n    echo $UBI_MAP_LIST|tee -a /tmp/${LOGDEFAULT} &>/dev/console\n\n\tfor ubi_map in ${UBI_MAP_LIST}; do\n        _mount_ubifs $ubi_map\n\tdone\n\n\tif [ -x /usr/exe/post_script.sh ]; then\n\t\tsh /usr/exe/post_script.sh mount\n\tfi\n}\n\nenable_pstore()\n{\n\tmkdir -p /tmp/pstore\n\tmount -o nosuid,nodev -t pstore pstore /tmp/pstore\n\t[ ! -d /logs/pstore ] && mkdir /logs/pstore\n\t[ -e /tmp/pstore/console* ] && cp /tmp/pstore/console* /logs/pstore/\n\tdmesgs=`ls /tmp/pstore/dmesg* | cut -d '-' -f 3 | sort -n`\n\tif [ ! -z \"$dmesgs\" ] ; then\n\trm /logs/pstore/dmesg*\n\tfor dmesg in $dmesgs; do\n\t\tcp /tmp/pstore/dmesg-ramoops-$dmesg /logs/pstore/\n\t\t[ $i -ge 1 ] && break\n\t\ti=$((i+1))\n\tdone\n\tfi\n\t#mount -t pstore pstore /sys/fs/pstore\n}\n\ncheck_abnormal_reboot()\n{\n\treboot_data=$(devmem 0xf4320114)\n\tlet \"panic=(reboot_data>>16) & 0x01\"\n\tlet \"kernel=(reboot_data>>18) & 0x01\"\n\tlet \"app=(reboot_data>>19) & 0x01\"\n\tlet \"watchdog=(reboot_data>>20) & 0x01\"\n\n\tsb_para=$(usr/sbin/fw_printenv -n sb_flag)\n\tlet \"sb0_data=sb_para & 0x09\"\n\tlet \"sb1_data=(sb_para>>4) & 0x09\"\n\n\techo \"check_abnormal_reboot start\" |tee -a ${SYSLOGS} &>/dev/console\n\techo \"data_panic:${panic} data_kernel:${kernel} data_app:${app} data_wdt:${watchdog} sb_flag:${sb_para} \" |tee -a ${SYSLOGS} &>/dev/console\n\n\tif [ \"X$panic\" == \"X1\" ]||[ \"X$watchdog\" == \"X1\" ]||[ \"X$kernel\" == \"X1\" ]&&[ \"X$app\" == \"X0\" ];then\n\t\techo \"ont started abnormally last time\" |tee -a ${SYSLOGS} &>/dev/console\n\t\tif [ [ \"Xsb0_data\" == \"X9\" ] || [ \"Xsb1_data\" == \"X9\" ] ];then\n\t\t\techo \"rollback to the backup partition\" |tee -a ${SYSLOGS} &>/dev/console\n\t\t\tbackupversion=\"null\"\n\t\t\t/usr/sbin/fw_setenv img_version$standby $backupversion &>/dev/null\n\n\t\t\tsb_num=$(/usr/sbin/fw_printenv -n sb_flag)\n\t\t\tif [ $current -eq 0 ]; then\n\t\t\t\tlet \"sb_data=sb_num & 0xDF\"\n\t\t\telse\n\t\t\t\tlet \"sb_data=sb_num & 0xFD\"\n\t\t\tfi\n\t\t\t/usr/sbin/fw_setenv sb_flag $sb_data &>/dev/null\n\t\tfi\n\tfi\n\n\tsb_info=$(usr/sbin/fw_printenv -n sb_flag)\n\tbackup_version=$(usr/sbin/fw_printenv -n img_version$standby)\n\techo \"after: sb_info:${sb_info} backup_ver:${backup_version}\" |tee -a ${SYSLOGS} &>/dev/console\n\techo \"check_abnormal_reboot end\" |tee -a ${SYSLOGS} &>/dev/console\n}\n\nmax_time() {\n\tlocal file newest\n\n\tfor file in $( find /logs -type f ) ; do\n\t\t[ -z \"$newest\" -o \"$newest\" -ot \"$file\" ] && newest=$file\n\tdone\n\t[ \"$newest\" ] && date -r \"$newest\" +%s\n}\n\nsync_time() {\n\tlocal maxtime=\"$(max_time)\"\n\tlocal curtime=\"$(date +%s)\"\n\n\t[ $curtime -lt $maxtime ] && date -s @$maxtime\n}\n\nkmsg_init()\n{\n\tif [ -e /logs/reboot.log ]; then\n\t\tfilesize=$(du -c /logs/reboot.log |grep total |awk '{ print $1 }')\n\t\tif [ $filesize -gt 450 ]; then\n\t\t\t[ -e /logs/reboot.log.tar.gz ] && rm /logs/reboot.log.tar.gz\n\t\t\tcd /logs; mv -f reboot.log reboot.bak ; tar zcvf reboot.log.tar.gz  reboot.bak; cd -\n\t\t\trm /logs/reboot.bak\n\t\t\t/bin/cat /etc/buildinfo |tee -a /logs/reboot.log &>/dev/console\n\t\tfi\n\tfi\n\tif [ -e /lib/modules/*/kmsg.ko ]; then\n\t\tinsmod /lib/modules/*/kmsg.ko\n\tfi\n}\n\n_remount_configs()\n{\n    if [ \"$cfg_partition\" != \"rootfs_data$current\" ];then\n        echo \"old configs: $cfg_partition, now it's rootfs_data$current\" |tee -a ${SYSLOGS} &>/dev/console\n        /usr/sbin/fw_setenv cfg_partition rootfs_data$current\n        cfg_partition=\"rootfs_data$current\"\n        umount -l /configs\n        _mount_ubifs \"$cfg_partition:0:/configs\"\n    fi\n}\n\n\n_restore_configs_overlay()\n{\n    # delete old backup directory\n    rm -rf /logs/.backup\n    # delete old persisten files\n    rm -rf $CONFIGS_OVERLAY\n\n    mv /configs/sysupgrade.tgz /tmp\n    #copy data in old cfg partition\n    mkdir /tmp/cfg_data\n    _mount_ubifs \"cfg:0:/tmp/cfg_data\"\n    cp -rf /tmp/cfg_data/* /configs/\n    umount -l /tmp/cfg_data \n    rm -rf /tmp/cfg_data\n\n    # copy persisten files from previous rootfs\n    mkdir /tmp/rootfs_data\n    tar -xzf /tmp/sysupgrade.tgz -C /tmp/rootfs_data\n    mkdir $CONFIGS_OVERLAY\n    List=$(/usr/exe/json_paser OverlayParams.OverlayPersistentFileList < /etc/HB_Config.json)\n    for file in $List\n    do\n        targetDir=$CONFIGS_OVERLAY/$(dirname $file)\n         \n        #first, copy from /rom, then overwrite from previous build (sysupgrade.tgz)\n        [ -d /rom/$file ] && mkdir -p $targetDir && cp -rf /rom/$file  $targetDir\n        [ -e /tmp/rootfs_data/$file ] && mkdir -p $targetDir && cp -rf /tmp/rootfs_data/$file  $targetDir\n        echo \"[ -e /tmp/rootfs_data/$file ] && cp -rf /tmp/rootfs_data/$file  $targetDir\" |tee -a ${SYSLOGS} &>/dev/console\n    done\n\n    rm -rf /tmp/rootfs_data\n    rm -f /tmp/sysupgrade.tgz\n }\n\nupgrade_from_less_2303()\n{\n    tmp_version=$(cat $BACKUPROOTFSINFO | grep -w IMAGEVERSION | cut -d'=' -f2)\n    release_str=${tmp_version:9:3}\n\n    IS_UPGRADE=$(is_upgrade)\n    echo \"$release_str $IS_UPGRADE\" |tee -a ${SYSLOGS} &>/dev/console\n    if [ \"$release_str\" \\< \"JKK\" -a $IS_UPGRADE -eq 1 ];then\n        echo \"upgrade from old build which is before 2303!\" |tee -a ${SYSLOGS} &>/dev/console\n        _remount_configs\n        _restore_configs_overlay\n    elif [ $no_cfg_env -eq 1 ];then\n        echo \"no cfg_partition in uboot env!\" |tee -a ${SYSLOGS} &>/dev/console\n        _restore_configs_overlay\n    fi\n}\n\ncheck_logs_partition()\n{\n        ubi_logs=\"log:0:/logs\"\n        mtd=$(echo $ubi_logs | cut -d: -f 1)\n        usage=$(df /logs | tail -1 | awk '{print $5}' | sed 's/%//g')\n        if [ \"$usage\" -ge 99 ]; then\n                echo \"MSG: logs is used over 99%, format and remount it\" &>/dev/console\n                format_partition $mtd\n                #_mount_ubifs $ubi_logs\n        fi\n}\n\nstart()\n{\n\tmount_partition\n\tmount_backup_rootfs_partition\n\tsync_time\n\tfactory_back_default\n\tupgrade_from_less_2303\n\tlink_after_overlay \n\t/bin/sh /usr/exe/upgrade_check.sh &>/dev/console\n\t#version_check\n\tdata_guardian\n\tenable_pstore\n\techo -e \"\\n[`date '+%F.%T%z'`]MSG: startup @`uptime`\" |tee -a ${SYSLOGS} &>/dev/console\n\techo \"--------------------------------------------------------------------------------\" |tee -a ${SYSLOGS} &>/dev/console\n\t/bin/cat /etc/buildinfo |tee -a ${SYSLOGS} &>/dev/console\n\t/bin/echo \"---- REBOOT REASON COLLECTED BELOW ----\" |tee -a /logs/reboot.log &>/dev/console\n\t/bin/cat /etc/buildinfo |tee -a /logs/reboot.log &>/dev/null\n\t/usr/sbin/fw_printenv |tee -a ${SYSLOGS} &>/dev/console\n\tcheck_abnormal_reboot\n\tkmsg_init\n\tupgrade_logsize\n\tcheck_logs_partition\n}\n\n"
+        },
+        "etc/init.d/firewall": {
+          "bytes": 997,
+          "sha256": "dbc6e31653ba3d7e57534386cf1a83523318ed9dbb0d793f7947520e33b0e776",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n\nSTART=19\nUSE_PROCD=1\nQUIET=\"\"\n\nvalidate_firewall_redirect()\n{\n\tuci_validate_section firewall redirect \"${1}\" \\\n\t\t'proto:or(uinteger, string)' \\\n\t\t'src:string' \\\n\t\t'src_ip:cidr' \\\n\t\t'src_dport:or(port, portrange)' \\\n\t\t'dest:string' \\\n\t\t'dest_ip:cidr' \\\n\t\t'dest_port:or(port, portrange)' \\\n\t\t'target:or(\"SNAT\", \"DNAT\")'\n}\n\nvalidate_firewall_rule()\n{\n\tuci_validate_section firewall rule \"${1}\" \\\n\t\t'proto:or(uinteger, string)' \\\n\t\t'src:string' \\\n\t\t'dest:string' \\\n\t\t'src_port:or(port, portrange)' \\\n\t\t'dest_port:or(port, portrange)' \\\n\t\t'target:string'\n}\n\nservice_triggers() {\n\tprocd_add_reload_trigger firewall\t\n\n\tprocd_open_validate\n\tvalidate_firewall_redirect\n\tvalidate_firewall_rule\n\tprocd_close_validate\n}\n\nrestart() {\n\tfw3 restart\n}\n\nstart_service() {\n\tfw3 ${QUIET} start\n}\n\nstop_service() {\n\tfw3 flush\n}\n\nreload_service() {\n\tfw3 reload\n}\n\nboot() {\n\t# Be silent on boot, firewall might be started by hotplug already,\n\t# so don't complain in syslog.\n\tQUIET=-q\n\tstart\n}\n"
+        },
+        "etc/init.d/pcd": {
+          "bytes": 636,
+          "sha256": "ab5612cd0836490564e88e3f13d6e911d2bbab99795e8cb92b907f317acbc3e3",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n# Copyright (C) 2014 OpenWrt.org\n\nSTART=98\n\nUSE_PROCD=1\n\nPCD_BIN=/usr/bin/pcd\nPCD_CONF=/tmp/all.pcd\nPCD_ROOT=/etc/pcd\nPCD_LOG=/logs/pcd.logs\n\nstart_service() {\n    if [ ! -f $PCD_CONF ];then\n\tall_pcd=`ls $PCD_ROOT`\n\ttouch $PCD_CONF\n\tfor i in $all_pcd\n\tdo\n\t    echo \"INCLUDE = ${PCD_ROOT}/${i}\" >> $PCD_CONF\n\tdone\n    fi\n    if [ -f $PCD_LOG ];then\n\tlog_size=`ls -l $PCD_LOG |awk '{print $5}'`\n\tif [ $log_size -gt 51200 ];then\n\t    mv $PCD_LOG $PCD_LOG.0\n\tfi\n    fi\n\n    procd_open_instance\n    procd_set_param command $PCD_BIN  -v -f $PCD_CONF -e $PCD_LOG\n    procd_set_param respawn\n    procd_close_instance\n}\n"
+        },
+        "etc/init.d/commit_image": {
+          "bytes": 281,
+          "sha256": "f878f3fd98d63e67823500edc770f3232a0ae4d51b748053c9e18788f6f4f9ee",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n# Copyright (C) 2006-2011 OpenWrt.org\n\nSTART=99\n\nboot()\n{\n\t# no commit in bootup script anymore\n\t# sleep 30 && /sbin/image_commit.sh && echo \"**** commit image ****\" > /dev/console 2>&1 &\n\t[ -x /configs/pre_app_boot.sh ] && sh /configs/pre_app_boot.sh &\n}\n"
+        },
+        "etc/init.d/done": {
+          "bytes": 256,
+          "sha256": "ac083737ae118a034d0d6bd8b2eab06d0638eecfdf39af70ae2dda1d5baffb17",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n# Copyright (C) 2006 OpenWrt.org\n\nSTART=95\nboot() {\n\t#mount_root done\n\trm -f /sysupgrade.tgz\n\n\t# process user commands\n\t[ -f /etc/rc.local ] && {\n\t\tsh /etc/rc.local\n\t}\n\n\t# set leds to normal state\n\t. /etc/diag.sh\n\tset_state done\n}\n"
+        },
+        "etc/config/firewall": {
+          "bytes": 4205,
+          "sha256": "303d858071dfcf1d1e8593168eb9c582a2c774211f23cef4bf7c85e4060a5e8c",
+          "decoding": "utf-8",
+          "text": "config defaults\n\toption syn_flood\t1\n\toption input\t\tACCEPT\n\toption output\t\tACCEPT\n\toption forward\t\tREJECT\n# Uncomment this line to disable ipv6 rules\n#\toption disable_ipv6\t1\n\nconfig zone\n\toption name\t\tlan\n\tlist   network\t\t'lan'\n\toption input\t\tACCEPT\n\toption output\t\tACCEPT\n\toption forward\t\tACCEPT\n\nconfig zone\n\toption name\t\twan\n\tlist   network\t\t'wan'\n\tlist   network\t\t'wan6'\n\toption input\t\tREJECT\n\toption output\t\tACCEPT\n\toption forward\t\tREJECT\n\toption masq\t\t1\n\toption mtu_fix\t\t1\n\nconfig forwarding\n\toption src\t\tlan\n\toption dest\t\twan\n\n# We need to accept udp packets on port 68,\n# see https://dev.openwrt.org/ticket/4108\nconfig rule\n\toption name\t\tAllow-DHCP-Renew\n\toption src\t\twan\n\toption proto\t\tudp\n\toption dest_port\t68\n\toption target\t\tACCEPT\n\toption family\t\tipv4\n\n# Allow IPv4 ping\nconfig rule\n\toption name\t\tAllow-Ping\n\toption src\t\twan\n\toption proto\t\ticmp\n\toption icmp_type\techo-request\n\toption family\t\tipv4\n\toption target\t\tACCEPT\n\nconfig rule\n\toption name\t\tAllow-IGMP\n\toption src\t\twan\n\toption proto\t\tigmp\n\toption family\t\tipv4\n\toption target\t\tACCEPT\n\n# Allow DHCPv6 replies\n# see https://dev.openwrt.org/ticket/10381\nconfig rule\n\toption name\t\tAllow-DHCPv6\n\toption src\t\twan\n\toption proto\t\tudp\n\toption src_ip\t\tfc00::/6\n\toption dest_ip\t\tfc00::/6\n\toption dest_port\t546\n\toption family\t\tipv6\n\toption target\t\tACCEPT\n\nconfig rule\n\toption name\t\tAllow-MLD\n\toption src\t\twan\n\toption proto\t\ticmp\n\toption src_ip\t\tfe80::/10\n\tlist icmp_type\t\t'130/0'\n\tlist icmp_type\t\t'131/0'\n\tlist icmp_type\t\t'132/0'\n\tlist icmp_type\t\t'143/0'\n\toption family\t\tipv6\n\toption target\t\tACCEPT\n\n# Allow essential incoming IPv6 ICMP traffic\nconfig rule\n\toption name\t\tAllow-ICMPv6-Input\n\toption src\t\twan\n\toption proto\ticmp\n\tlist icmp_type\t\techo-request\n\tlist icmp_type\t\techo-reply\n\tlist icmp_type\t\tdestination-unreachable\n\tlist icmp_type\t\tpacket-too-big\n\tlist icmp_type\t\ttime-exceeded\n\tlist icmp_type\t\tbad-header\n\tlist icmp_type\t\tunknown-header-type\n\tlist icmp_type\t\trouter-solicitation\n\tlist icmp_type\t\tneighbour-solicitation\n\tlist icmp_type\t\trouter-advertisement\n\tlist icmp_type\t\tneighbour-advertisement\n\toption limit\t\t1000/sec\n\toption family\t\tipv6\n\toption target\t\tACCEPT\n\n# Allow essential forwarded IPv6 ICMP traffic\nconfig rule\n\toption name\t\tAllow-ICMPv6-Forward\n\toption src\t\twan\n\toption dest\t\t*\n\toption proto\t\ticmp\n\tlist icmp_type\t\techo-request\n\tlist icmp_type\t\techo-reply\n\tlist icmp_type\t\tdestination-unreachable\n\tlist icmp_type\t\tpacket-too-big\n\tlist icmp_type\t\ttime-exceeded\n\tlist icmp_type\t\tbad-header\n\tlist icmp_type\t\tunknown-header-type\n\toption limit\t\t1000/sec\n\toption family\t\tipv6\n\toption target\t\tACCEPT\n\nconfig rule\n\toption name\t\tAllow-IPSec-ESP\n\toption src\t\twan\n\toption dest\t\tlan\n\toption proto\t\tesp\n\toption target\t\tACCEPT\n\nconfig rule\n\toption name\t\tAllow-ISAKMP\n\toption src\t\twan\n\toption dest\t\tlan\n\toption dest_port\t500\n\toption proto\t\tudp\n\toption target\t\tACCEPT\n\n# include a file with users custom iptables rules\nconfig include\n\toption path /etc/firewall.user\n\n\n### EXAMPLE CONFIG SECTIONS\n# do not allow a specific ip to access wan\n#config rule\n#\toption src\t\tlan\n#\toption src_ip\t192.168.45.2\n#\toption dest\t\twan\n#\toption proto\ttcp\n#\toption target\tREJECT\n\n# block a specific mac on wan\n#config rule\n#\toption dest\t\twan\n#\toption src_mac\t00:11:22:33:44:66\n#\toption target\tREJECT\n\n# block incoming ICMP traffic on a zone\n#config rule\n#\toption src\t\tlan\n#\toption proto\tICMP\n#\toption target\tDROP\n\n# port redirect port coming in on wan to lan\n#config redirect\n#\toption src\t\t\twan\n#\toption src_dport\t80\n#\toption dest\t\t\tlan\n#\toption dest_ip\t\t192.168.16.235\n#\toption dest_port\t80\n#\toption proto\t\ttcp\n\n# port redirect of remapped ssh port (22001) on wan\n#config redirect\n#\toption src\t\twan\n#\toption src_dport\t22001\n#\toption dest\t\tlan\n#\toption dest_port\t22\n#\toption proto\t\ttcp\n\n### FULL CONFIG SECTIONS\n#config rule\n#\toption src\t\tlan\n#\toption src_ip\t192.168.45.2\n#\toption src_mac\t00:11:22:33:44:55\n#\toption src_port\t80\n#\toption dest\t\twan\n#\toption dest_ip\t194.25.2.129\n#\toption dest_port\t120\n#\toption proto\ttcp\n#\toption target\tREJECT\n\n#config redirect\n#\toption src\t\tlan\n#\toption src_ip\t192.168.45.2\n#\toption src_mac\t00:11:22:33:44:55\n#\toption src_port\t\t1024\n#\toption src_dport\t80\n#\toption dest_ip\t194.25.2.129\n#\toption dest_port\t120\n#\toption proto\ttcp\n"
+        },
+        "usr/exe/link.sh": {
+          "bytes": 1118,
+          "sha256": "9fd63272760323be8a044b9fadded018e9ae0977339969cc28dbca1750ddf20b",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n#### deal with the link.cfg with general strategy\n#for item in $(cat /usr/cfg/link.cfg |sed \"s/[ \\t]//g\" |sed \"s/^#.*$//g\")\n#         echo MSG: will copy upgrade keep default files\n\n. /usr/exe/varset.sh\n\n\nlink_after_overlay()\n{\n    List=$(/usr/exe/json_paser OverlayParams.OverlayPersistentFileList < /etc/HB_Config.json)\n    for file in $List\n    do\n        LINK_TARGET=$file\n        LINK_SOURCE=$CONFIGS_OVERLAY/$file\n        if [ -e ${LINK_SOURCE} ]; then\n            continue\n        elif [ -e /rom/${LINK_TARGET} ]; then\n            mkdir -p $(dirname ${LINK_SOURCE})\n            cp -rf /rom/${LINK_TARGET} $(dirname ${LINK_SOURCE})\n        else\n            mkdir -p $(dirname ${LINK_SOURCE})\n            echo MSG: No ${LINK_SOURCE} &>/dev/console\n        fi\n    done\n}\n\nlink_before_overlay()\n{\n    List=$(/usr/exe/json_paser OverlayParams.OverlayPersistentFileList < /etc/HB_Config.json)\n    for file in $List\n    do\n        LINK_TARGET=/tmp/root/upper/$file\n        LINK_SOURCE=$CONFIGS_OVERLAY/$file\n        mkdir -p $(dirname ${LINK_TARGET})\n        ln -sf ${LINK_SOURCE} ${LINK_TARGET}\n    done\n}\n\n"
+        },
+        "usr/exe/image_activate.sh": {
+          "bytes": 356,
+          "sha256": "726952013b9cf700d69f1293f537adcfb5b197b623f90f0c07eba523e4a12231",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n# sb_flag definition\n#   BIT#0: active\n#   BIT#1: valid\n#   BIT#2: commit\n#   BIT#3: upgrade\n\n. /usr/exe/varset.sh\n\ncurrent=$(uenv_get active_part)\nstandby=$(( 1 - ${current} ))\n\necho \"current boot image#${current} ...\"\n\nca.sb -a 0 -v 1 -c 1 sb${current}\nca.sb -a 1 -v 1 -c 0 sb${standby}\n\necho \"switched to image#${standby} boot next time ...\"\n\n"
+        },
+        "usr/exe/image_commit.sh": {
+          "bytes": 375,
+          "sha256": "ec396dffd23c9a4c861f22fd66f23cb33751ee871221860788fb9c484325ae7e",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n# sb_flag definition\n#   BIT#0: active\n#   BIT#1: valid\n#   BIT#2: commit\n#   BIT#3: upgrade\n\n. /usr/exe/varset.sh\n\ncurrent=$(uenv_get active_part)\nstandby=$(( 1 - ${current} ))\n\necho \"current boot image#${current} ...\"\n\nca.sb -a 1 -v 1 -c 1 sb${current}\nca.sb -a 0 -v 1 -c 0 sb${standby}\n\nuenv_set bootfail${current} 0\necho \"commit the boot image#${current} ...\"\n\n"
+        },
+        "etc/HB_Config.json": {
+          "bytes": 4042,
+          "sha256": "aeedab78cef5eb2903d10ae560036330cfaa1fc7548ada87e4949fd5c1d59bd6",
+          "decoding": "utf-8",
+          "text": "{\n    \"FactoryResetParams\" : {\n        \"FactoryResetDeepWhiteList\" : [\n            \"/configs/Nokia/\",\n            \"/configs/bosa/\",\n            \"/logs/messages\",\n            \"/logs/messages_kern\",\n            \"/logs/messages_component\",\n            \"/logs/pcd.logs\",\n            \"/logs/pcd.logs.0\",\n            \"/logs/reboot.log\",\n            \"/configs/fresetOriginator.txt\",\n            \"/configs/oltInfo\",\n            \"/configs/ont_lock_key\",\n            \"/logs/nbus_fatal.log\"\n            ],\n            \"FactoryResetNormalWhiteList\" : [\n                \"/configs/precfg_remote_flag\",\n                \"/configs/precfg_remote_avalible\",\n                \"/configs/precfg_remote_encryption.xml\",\n                \"/configs/precfg_remote.xml\",\n                \"/configs/cfg_update_remote_avalible\",\n                \"/configs/cfg_update_remote_encryption.kv\",\n                \"/configs/cfg_update_remote.kv\",\n                \"/configs/precfg_debug_mode_flag\",\n                \"/configs/Adminuser.json\",\n                \"/configs/Normaluser.json\",\n                \"/configs/colors.css\",\n                \"/configs/logo_login.svg\",\n                \"/configs/logo_side.svg\",\n                \"/configs/zeroman/\",\n                \"/configs/remote_rtscfg_keyparam\",\n                \"/configs/certs/\",\n                \"/configs/tr069_conf/\",\n                \"/configs/alcatel/\",\n                \"/configs/hgu_slid\",\n                \"/configs/swdl/\",\n                \"/configs/hgu_loginid\"\n            ],\n            \"FactoryResetExtraBlackList\" : [\n                \"/opt/lxc\",\n                \"/opt/lcm\"\n            ]\n    },\n    \"DataGuardianParams\" : {\n        \"DynamicBackupFileList\" : [\n            \"/configs/dmdb_encryption.cfg\",\n            \"/configs/dmdb_encryption.cfg.bak\",\n            \"/configs/precfg_remote_flag\",\n            \"/configs/precfg_remote_avalible\",\n            \"/configs/precfg_remote_encryption.xml\",\n            \"/configs/precfg_remote.xml\",\n            \"/configs/cfg_update_remote_avalible\",\n            \"/configs/cfg_update_remote_encryption.kv\",\n            \"/configs/cfg_update_remote.kv\",\n            \"/configs/precfg_debug_mode_flag\",\n            \"/configs/zeroman/\",\n            \"/configs/overlay\"\n            ],\n            \"StaticBackupFileList\" : [\n                \"/configs/dmdb_encryption.cfg\",\n                \"/configs/dmdb_encryption.cfg.bak\",\n                \"/configs/Nokia/\",\n                \"/configs/bosa/\"\n            ],\n            \"LogBackupFileList\" : [\n                \"/tmp/ussawifievent.log\",\n                \"/tmp/ussawifievent.log.old\",\n                \"/tmp/ussawifievent.log.old.gz\",\n                \"/tmp/ussawifistatus.log\",\n                \"/tmp/ussawifistatus.log.old\",\n                \"/tmp/ussawifistatus.log.old.gz\",\n                \"/tmp/ussa.log\",\n                \"/tmp/ussa.log.old\",\n                \"/tmp/ussa.log.old.gz\",\n                \"/tmp/Sense\"\n            ]\n    },\n    \"SWUpgradeParams\" : {\n            \"UpgradeKeepDefaultFileList\" : [\n                \"/etc/config/syslog\",\n                \"/etc/config/qcacfg80211\",\n                \"/etc/scfg\"\n            ],\n            \"UpgradeDelCommonCfgFileList\" : []\n    },\n    \"PackImageParas\" : {\n        \"SubImageInfo\" : [\n            \"boot:gpt-nandinfo.img\",\n            \"rootfs:root.mubi\",\n            \"imginfo:image.info\"\n            ]\n    },\n    \"PackImageParas-emmc\" : {\n        \"SubImageInfo\" : [\n            \"boot:uboot.bin:NULL:NULL\",\n\t    \"kernel:kernel.bin:kernel0:kernel1\",\n            \"rootfs:rootfs.bin:rootfs0:rootfs1\",\n            \"wififw:wifi_fw_squashfs.img:WIFI_FW0:WIFI_FW1\",\n            \"imginfo:image.info:NULL:NULL\"\n            ]\n    },\n    \"OverlayParams\" : {\n        \"OverlayPersistentFileList\" : [\n            \"/etc/config\",\n            \"/etc/dropbear\",\n            \"/data/vendor/wifi\",\n            \"/etc/scfg\",\n            \"/lib/wifi/wifi_nss_olcfg\",\n            \"/lib/wifi/wifi_nss_olnum\",\n            \"/lib/wifi/wifi_nss_hk_olnum\",\n\t    \"/home\",\n            \"/lib/wifi/wifi_nss_override\"\n        ]\n    }\n\n}\n"
+        },
+        "etc/pcd/swmgnt.pcd": {
+          "bytes": 3197,
+          "sha256": "6ffe09cea2cd27a177a1970ad61a3c3d971ff43740736eed2cd7cea5fed48469",
+          "decoding": "latin-1 lossless",
+          "text": "# Incl ude a rule file\n#INCLUDE = filename.pcd\n\n################### Start of a rule block #############################\n# Index of the rule\n#RULE = GROUPNAME_RULENAME\nRULE = service_swmgnt\n\n# Condition to start rule, existence of one of the following\n#\n# NONE - No start condition, application is spawn immediately\n# FILE filename - The existence of a file\n# RULE_COMPLETED id - Rule id completed successfully\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# ENV_VAR name, value - Value of a variable\n#\n#START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }\nSTART_COND = RULE_COMPLETED service_cfgmgr \n\n# Command with parameters, NONE for sync point\n#COMMAND = cmd parameters...\nCOMMAND = /usr/bin/load_app -d InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Enable=true -- /usr/bin/swmgnt\n\n# Scheduling (priority) of the process\n#SCHED = { NICE value; FIFO value }\nSCHED = NICE 0\n\n# Daemon flag \u00a8C Process must not end\n#DAEMON = { YES, NO }\nDAEMON = YES\n\n# Condition to end rule and move to next rule, wait for one of the following:\n#\n# NONE - No monitor on the result, just spawn application and continue.\n# FILE filename - The existence of a file\n# EXIT status - The application exited with status. Other statuses are considered failure\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# PROCESS_READY \u00a8C The process sent a READY event though PCD API.\n# WAIT msecs - Delay, ignore END_COND_TIMEOUT\n#\n#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }\nEND_COND = NONE\n\n# Timeout for end condition. Fail if timeout expires. -1 if not relevant.\n#END_COND_TIMEOUT = msecs\nEND_COND_TIMEOUT = -1\n\n# Action upon failure, do one of the following actions upon failure\n# NONE \u00a8C Do not take any action\n# REBOOT - Reboot the system\n# RESTART - Restart the rule\n# EXEC_RULE id - Execute a rule\n#\n#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }\nFAILURE_ACTION = RESTART\n\n# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.\n# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Interval in seconds between a failure and the next failure action.\n# FAILURE_INTERVAL = (0..4294967)\n# Time in hours before resetting the failure counter. 0: use only the first failure action.\n# FAILURE_RESET_COUNT = (0..1193)\n\n# Rule is Active or not (To be activated later by PCD API)\n#ACTIVE = { YES, NO }\nACTIVE = YES\n\n# User id for the process\n# USER = { UID | User name }\n\n# ping time out ,Fail if timeout expires.\n# ALIVE_TIMEOUT = 10000\n################### End of a rule block #############################\n"
+        },
+        "etc/buildinfo": {
+          "bytes": 378,
+          "sha256": "d7b2d02c704bfb37c456c45feb401c68e6bc8840a748927e792849f3caedb09e",
+          "decoding": "utf-8",
+          "text": "UNIT_TYPE=beacon_g6\nPRODUCTCLASS=beacon_g6\nIMAGEVERSION=3FE49996HJLL91\nSOFTWAREVERSION=HJL.L91p01\nDOTDIGITVERSION=1.2404.491\nCOPYRIGHT=NOKIA\nWHOBUILD=buildmgr\nRELEASE=0.0.0\nBUILDDATE=20241227\nBUILDSTAMP=20241227121143CST\nREPO=master\nNODE=6ecd395cc34fb4ddb25fd3ebce43d91b5126b01c\nSIGNER=NCG\nSIGN=y\nENCRYPT=n\nUBOOTVERSION=\nSDKVERSION=cortina_venus.R1.1.1.6\nHOMEOSVERSION=24.04.00\n"
+        },
+        "etc/init.d/ndk_rgwstack": {
+          "bytes": 2297,
+          "sha256": "855e0d57c3133865b82db629984f7b5d033353e59834e78fc3c90e326826b4d8",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh /etc/rc.common\n\nSTART=18\n\nUSE_PROCD=1\n\nsetup_dnsmasq_for_ndk() {\n  [ ! -s \"/etc/config/dhcp\" ] && cp -af /rom/etc/config/dhcp /etc/config/dhcp\n\n  if [ -f \"/etc/config/dhcp\" ]; then\n    [ -d \"/tmp/dnsmasq.ndk.d\" ] || mkdir -p /tmp/dnsmasq.ndk.d\n    [ -f \"/tmp/dnsmasq.dnsproxy.conf\" ] || touch /tmp/dnsmasq.dnsproxy.conf\n    [ -f \"/tmp/dnsmasq.dynamic.conf\" ] || touch /tmp/dnsmasq.dynamic.conf\n    [ -f \"/tmp/dnsmasq.dhcpd.conf\" ] || touch /tmp/dnsmasq.dhcpd.conf\n\n    [ -f \"/etc/dns_resolv_ipv4.conf\" ] || touch /etc/dns_resolv_ipv4.conf\n    [ -f \"/etc/dns_resolv_ipv6.conf\" ] || touch /etc/dns_resolv_ipv6.conf\n    [ -f \"/etc/dns_resolv_ipv4_hsi.conf\" ] || touch /etc/dns_resolv_ipv4_hsi.conf\n    [ -f \"/etc/dns_resolv_ipv4_iptv.conf\" ] || touch /etc/dns_resolv_ipv4_iptv.conf\n    [ -f \"/var/resolv_voip.conf\" ] || touch /var/resolv_voip.conf\n    [ -f \"/etc/configs/filter_dns_resolv_ipv4.conf\" ] || touch /etc/configs/filter_dns_resolv_ipv4.conf\n\n    # default behavior is disable dnsproxy and dhcpd function for NDK\n    uci delete dhcp.ndk.domain\n    uci set dhcp.ndk.cachesize=0\n    uci set dhcp.ndk.port=0\n    uci set dhcp.ndk_dhcp.ignore=1\n    uci commit dhcp\n  fi\n}\n\nclean_netifd_ndk_config() {\n  [ -e \"/sbin/ndk_clean_network.sh\" ] && /sbin/ndk_clean_network.sh\n}\n\nmerge_fw3_firewall_user() {\n  [ -e \"/sbin/ndk_merge_fw3_firewall_user.sh\" ] && /sbin/ndk_merge_fw3_firewall_user.sh\n}\n\nupdate_ndk_rgwstack() {\n  [ ! -s \"/etc/config/ndk_rgwstack\" ] && cp -af /rom/etc/config/ndk_rgwstack /etc/config/ndk_rgwstack\n\n  [ -e \"/sbin/update_ndk_rgwstack.sh\" ] && /sbin/update_ndk_rgwstack.sh\n}\n\nrestore_firewall_config() {\n  [ ! -s \"/etc/config/firewall\" ] && cp -af /rom/etc/config/firewall /etc/config/firewall\n}\n\nupdate_etc_resolv_conf() {\n  # /etc/init.d/boot: ln -sf /tmp/resolv.conf.auto /tmp/resolv.conf\n  # netifd may write dns servers to /tmp/resolv.conf.auto\n  # and /etc may be linked to /tmp on some boards(/etc/resolv.conf -> /tmp/resolv.conf),\n  # so may override /etc/resolv.conf which should be written by ndk_wand\n  if [ -L /etc/resolv.conf ]; then rm /etc/resolv.conf; touch /etc/resolv.conf; fi\n}\n\nstart_service() {\n  setup_dnsmasq_for_ndk\n  update_etc_resolv_conf\n  clean_netifd_ndk_config\n  restore_firewall_config\n  merge_fw3_firewall_user\n  update_ndk_rgwstack\n}\n\n"
+        },
+        "sbin/ndk_update_fw3_config.sh": {
+          "bytes": 569,
+          "sha256": "f2934f5eb416c305e84d853d1d52cba6091b8cf198a9d4cd0e14f7ba3078ae52",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n\n# Use this script to update fw3 config file is a solution;\n# Also another soltion is, directly add 'sh /etc/config/ndk_restore_rules.sh' in /etc/firewall.user file.\n\nuci -q batch <<-EOT\n        delete firewall.restore_rules\n        set firewall.restore_rules=include\n        set firewall.restore_rules.enable=1\n        set firewall.restore_rules.type=script\n        set firewall.restore_rules.path=/etc/config/ndk_restore_rules.sh\n        set firewall.restore_rules.family=any\n        set firewall.restore_rules.reload=0\n        commit firewall\nEOT\n\nexit 0\n\n"
+        },
+        "sbin/ndk_merge_fw3_firewall_user.sh": {
+          "bytes": 549,
+          "sha256": "89fb76daaae24aff30baa3e41652cf4a7a127f3b4beff2caddbb038bb8a8c5e7",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n\nif [ -e /rom/etc/firewall.user ]\nthen   \n    if [ -e /etc/firewall.user ]\n    then\n        ndk_script=$(cat /rom/etc/firewall.user | grep ndk | awk '{print $2}')\n        if [ \"$ndk_script\" !=  \"\" ]\n        then\n            for script in $ndk_script\n            do\n                if [ \"$(cat /etc/firewall.user | grep \"$script\")\" = \"\" ]\n                then\n                    echo \"sh $script\" >> /etc/firewall.user \n                fi\n            done\n        fi\n    else\n        cp /rom/etc/firewall.user /etc/firewall.user\n    fi\nfi\n"
+        },
+        "sbin/update_ndk_rgwstack.sh": {
+          "bytes": 1315,
+          "sha256": "c5219cf600b16ca3d38d0cc4198c6e56b6f7f87aecb1522362d685a6881b8293",
+          "decoding": "utf-8",
+          "text": "#!/bin/sh\n\nboard=$(ritool dump | grep Mnemonic | grep -v grep | awk -F : '{printf $2}')\n\nif [ \"$board\" = \" XS-2426G-B\" -o \"$board\" = \" XS-2426X-A\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='pon'\n    uci set ndk_rgwstack.config.sdk='cortina'\n    uci set ndk_rgwstack.config.uplink_mode='gpon'\n    uci commit ndk_rgwstack\nfi\n\nif [ \"$board\" = \" Beacon G6\" -o \"$board\" = \" Beacon G6.2\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='ewan'\n    uci set ndk_rgwstack.config.sdk='cortina'\n    uci set ndk_rgwstack.config.uplink_mode='ethernet'\n    uci commit ndk_rgwstack\nfi\n\nif [ \"$board\" = \" G-1426G-A\" -o \"$board\" = \" G-1426G-B\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='pon'\n    uci set ndk_rgwstack.config.sdk='realtek'\n    uci set ndk_rgwstack.config.uplink_mode='gpon'\n    uci commit ndk_rgwstack\nfi\n\nif [ \"$board\" = \" G-1426G-C\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='pon'\n    uci set ndk_rgwstack.config.sdk='mtk'\n    uci set ndk_rgwstack.config.uplink_mode='gpon'\n    uci commit ndk_rgwstack\nfi\n\nif [ \"$board\" = \" Beacon 3.1\" -o \"$board\" = \" Beacon G3.1\" ]\nthen\n    uci set ndk_rgwstack.config.wan_ifname_prefix='ewan'\n    uci set ndk_rgwstack.config.sdk='realtek'\n    uci set ndk_rgwstack.config.uplink_mode='ethernet'\n    uci commit ndk_rgwstack\nfi\n\n"
+        }
+      },
+      "rc_order": [
+        [
+          "S00gpio_init",
+          "../init.d/gpio_init"
+        ],
+        [
+          "S00startup",
+          "../init.d/startup"
+        ],
+        [
+          "S00sysfixtime",
+          "../init.d/sysfixtime"
+        ],
+        [
+          "S00urngd",
+          "../init.d/urngd"
+        ],
+        [
+          "S00wifi_fw_mount",
+          "../init.d/wifi_fw_mount"
+        ],
+        [
+          "S01opid_op",
+          "../init.d/opid_op"
+        ],
+        [
+          "S08boot-ftm",
+          "../init.d/boot-ftm"
+        ],
+        [
+          "S08qrtr",
+          "../init.d/qrtr"
+        ],
+        [
+          "S09syncscfg",
+          "../init.d/syncscfg"
+        ],
+        [
+          "S10boot",
+          "../init.d/boot"
+        ],
+        [
+          "S10system",
+          "../init.d/system"
+        ],
+        [
+          "S11platform",
+          "../init.d/platform"
+        ],
+        [
+          "S11sysctl",
+          "../init.d/sysctl"
+        ],
+        [
+          "S12log",
+          "../init.d/log"
+        ],
+        [
+          "S13openssl",
+          "../init.d/openssl"
+        ],
+        [
+          "S15qca-acfg",
+          "../init.d/qca-acfg"
+        ],
+        [
+          "S15qca-hostapd",
+          "../init.d/qca-hostapd"
+        ],
+        [
+          "S15qca-wpa-supplicant",
+          "../init.d/qca-wpa-supplicant"
+        ],
+        [
+          "S18ndk_rgwstack",
+          "../init.d/ndk_rgwstack"
+        ],
+        [
+          "S19cnss_diag",
+          "../init.d/cnss_diag"
+        ],
+        [
+          "S19dnsmasq",
+          "../init.d/dnsmasq"
+        ],
+        [
+          "S19dropbear",
+          "../init.d/dropbear"
+        ],
+        [
+          "S19ecdinterface",
+          "../init.d/ecdinterface"
+        ],
+        [
+          "S19firewall",
+          "../init.d/firewall"
+        ],
+        [
+          "S20changenetif",
+          "../init.d/changenetif"
+        ],
+        [
+          "S20network",
+          "../init.d/network"
+        ],
+        [
+          "S31secInit",
+          "../init.d/secInit"
+        ],
+        [
+          "S40fstab",
+          "../init.d/fstab"
+        ],
+        [
+          "S50cron",
+          "../init.d/cron"
+        ],
+        [
+          "S50syslog-ng",
+          "../init.d/syslog-ng"
+        ],
+        [
+          "S60dbus",
+          "../init.d/dbus"
+        ],
+        [
+          "S60quagga",
+          "../init.d/quagga"
+        ],
+        [
+          "S80mcast",
+          "../init.d/mcast"
+        ],
+        [
+          "S80trap2cpu",
+          "../init.d/trap2cpu"
+        ],
+        [
+          "S90amx-shutdown-wait",
+          "../init.d/amx-shutdown-wait"
+        ],
+        [
+          "S90claim",
+          "../init.d/claim"
+        ],
+        [
+          "S90rlyeh",
+          "../init.d/rlyeh"
+        ],
+        [
+          "S90sigma-dut",
+          "../init.d/sigma-dut"
+        ],
+        [
+          "S90stunnel",
+          "../init.d/stunnel"
+        ],
+        [
+          "S90sysstat",
+          "../init.d/sysstat"
+        ],
+        [
+          "S91timingila",
+          "../init.d/timingila"
+        ],
+        [
+          "S94gpio_switch",
+          "../init.d/gpio_switch"
+        ],
+        [
+          "S95done",
+          "../init.d/done"
+        ],
+        [
+          "S96led",
+          "../init.d/led"
+        ],
+        [
+          "S96wifi_fw_done",
+          "../init.d/wifi_fw_done"
+        ],
+        [
+          "S97ftm",
+          "../init.d/ftm"
+        ],
+        [
+          "S98diag_socket_app",
+          "../init.d/diag_socket_app"
+        ],
+        [
+          "S98pcd",
+          "../init.d/pcd"
+        ],
+        [
+          "S99commit_image",
+          "../init.d/commit_image"
+        ],
+        [
+          "S99cthulhu",
+          "../init.d/cthulhu"
+        ],
+        [
+          "S99robust_test",
+          "../init.d/robust_test"
+        ],
+        [
+          "S99s3txamplitudeadjust",
+          "../init.d/s3txamplitudeadjust"
+        ],
+        [
+          "S99urandom_seed",
+          "../init.d/urandom_seed"
+        ],
+        [
+          "S99vnstat",
+          "../init.d/vnstat"
+        ]
+      ],
+      "schema": {
+        "path": "/tmp/g6-old-slot-review-20261025-by5iaikl/new/usr/etc/tr181.xml",
+        "sha256": "7bd1b5877a57a8060727f793975eea2d326c896e529154ad99a07fcc5881bbc5",
+        "selected_lines": [
+          {
+            "line": 138,
+            "text": "  </X_ALU-COM_LAN_DEVICE_MAP.>"
+          },
+          {
+            "line": 139,
+            "text": "  <ManagementServer. n=\"ManagementServer\" t=\"staticObject\" skip=\"Y\" dmtype=\"cwmp\">"
+          },
+          {
+            "line": 140,
+            "text": "    <EnableCWMP t=\"boolean\" rw=\"RW\" dv=\"true\" v=\"true\"/>"
+          },
+          {
+            "line": 141,
+            "text": "    <URL t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 142,
+            "text": "    <Username t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 143,
+            "text": "    <Password t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\" ealgo=\"ab\"/>"
+          },
+          {
+            "line": 144,
+            "text": "    <ScheduleReboot ml=\"64\" t=\"dateTime\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 145,
+            "text": "    <DelayReboot t=\"int\" rw=\"RW\" min=\"-1\" dv=\"-1\" v=\"-1\"/>"
+          },
+          {
+            "line": 146,
+            "text": "    <PeriodicInformEnable t=\"boolean\" rw=\"RW\" dv=\"true\" v=\"true\"/>"
+          },
+          {
+            "line": 147,
+            "text": "    <PeriodicInformInterval t=\"unsignedInt\" rw=\"RW\" min=\"1\" dv=\"1\" v=\"1\"/>"
+          },
+          {
+            "line": 148,
+            "text": "    <PeriodicInformTime t=\"dateTime\" ml=\"64\" rw=\"RW\" dv=\"0001-01-01T00:00:00Z\" v=\"0001-01-01T00:00:00Z\"/>"
+          },
+          {
+            "line": 151,
+            "text": "    <ConnectionRequestUsername t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 152,
+            "text": "    <ConnectionRequestPassword t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\" ealgo=\"ab\"/>"
+          },
+          {
+            "line": 153,
+            "text": "    <UpgradesManaged t=\"boolean\" rw=\"RW\" dv=\"false\" v=\"false\"/>"
+          },
+          {
+            "line": 154,
+            "text": "    <KickURL t=\"string\" ml=\"256\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 155,
+            "text": "    <DownloadProgressURL t=\"string\" ml=\"256\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 156,
+            "text": "    <CWMPRetryMinimumWaitInterval t=\"unsignedInt\" rw=\"RW\" min=\"1\" max=\"65535\" dv=\"5\" v=\"5\"/>"
+          },
+          {
+            "line": 157,
+            "text": "    <CWMPRetryIntervalMultiplier t=\"unsignedInt\" rw=\"RW\" min=\"1000\" max=\"65535\" dv=\"2000\" v=\"2000\"/>"
+          },
+          {
+            "line": 158,
+            "text": "    <AliasBasedAddressing t=\"boolean\" rw=\"R\" dv=\"true\" v=\"true\"/>"
+          },
+          {
+            "line": 159,
+            "text": "    <InstanceMode t=\"string\" ml=\"256\" rw=\"RW\" dv=\"InstanceNumber\" v=\"InstanceNumber\" va=\"ManagementServerInstanceModeValues\"/>"
+          },
+          {
+            "line": 160,
+            "text": "    <AutoCreateInstances t=\"boolean\" rw=\"RW\" dv=\"false\" v=\"false\"/>"
+          },
+          {
+            "line": 161,
+            "text": "    <X_ALU-COM_TR111Enabled t=\"boolean\" rw=\"RW\" dv=\"false\" v=\"false\"/>"
+          },
+          {
+            "line": 162,
+            "text": "    <X_ASB_COM_TR369Agent_Enable dv=\"false\" rw=\"RW\" t=\"boolean\" v=\"false\"/>"
+          },
+          {
+            "line": 163,
+            "text": "    <SupportedConnReqMethods t=\"string\" ml=\"256\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 164,
+            "text": "    <ConnReqXMPPConnection t=\"string\" ml=\"256\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 165,
+            "text": "    <ConnReqAllowedJabberIDs t=\"string\" ml=\"1027\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 166,
+            "text": "    <ConnReqJabberID t=\"string\" ml=\"256\" rw=\"R\" dv=\"\" v=\"\" noc=\"2\"/>"
+          },
+          {
+            "line": 167,
+            "text": "    <ManageableDeviceNumberOfEntries t=\"unsignedInt\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 168,
+            "text": "    <ManageableDeviceNotificationLimit t=\"unsignedInt\" rw=\"RW\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 169,
+            "text": "    <UDPConnectionRequestAddress ml=\"256\" rw=\"RW\" t=\"string\" v=\"\"/>"
+          },
+          {
+            "line": 170,
+            "text": "    <UDPConnectionRequestAddressNotificationLimit rw=\"RW\" t=\"unsignedInt\" v=\"0\"/>"
+          },
+          {
+            "line": 412,
+            "text": "      <OTA_Reset_Reason rw=\"R\" t=\"string\" ml=\"32\" v=\"NO_RESET\" dv=\"NO_RESET\" va=\"ResetReason\"/>"
+          },
+          {
+            "line": 413,
+            "text": "    </X_ASB_COM_OtaSwAgent.>"
+          },
+          {
+            "line": 414,
+            "text": "    <X_ALU-COM_SwMgnt. n=\"SwMgnt\" t=\"staticObject\" skip=\"Y\">"
+          },
+          {
+            "line": 415,
+            "text": "      <X_ALU-COM_Enable rw=\"RW\" t=\"boolean\" v=\"1\" dv=\"1\"/>"
+          },
+          {
+            "line": 416,
+            "text": "      <X_ALU-COM_Polling_URL  ml=\"1024\" rw=\"RW\" t=\"string\" v=\"https://swupd.wifi.nokia.com\" dv=\"\"/>"
+          },
+          {
+            "line": 417,
+            "text": "      <X_ALU-COM_Polling_Time  ml=\"128\" rw=\"RW\" t=\"string\" v=\"0 2 * * *\" dv=\"\"/>"
+          },
+          {
+            "line": 418,
+            "text": "      <X_ALU-COM_Client_Auth_Key ml=\"1024\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\" ealgo=\"ab\"/>"
+          },
+          {
+            "line": 419,
+            "text": "      <X_ALU-COM_PrefActivation_Time  ml=\"32\" rw=\"RW\" t=\"string\" v=\"03:00:00\" dv=\"\"/>"
+          },
+          {
+            "line": 420,
+            "text": "    </X_ALU-COM_SwMgnt.>"
+          },
+          {
+            "line": 421,
+            "text": "    <Claim. n=\"Claim\" t=\"staticObject\" >"
+          },
+          {
+            "line": 422,
+            "text": "      <Pin ml=\"256\" rw=\"R\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 423,
+            "text": "    </Claim.>"
+          },
+          {
+            "line": 424,
+            "text": "  </X_ALU-COM_Wifi.>"
+          },
+          {
+            "line": 425,
+            "text": "  <X_ALU-COM_HomeIntelligenceServer. n=\"HomeIntSer\" t=\"staticObject\" skip=\"Y\">"
+          },
+          {
+            "line": 426,
+            "text": "    <HISProfileNumberofEntries t=\"unsignedInt\" rw=\"R\" dv=\"\" v=\"\"/>"
+          },
+          {
+            "line": 427,
+            "text": "    <Profile.1. n=\"HISProfile\" t=\"dynamicObject\"  status=\"deleted\" maxEntries=\"6\" rw=\"RW\" counter=\"HISProfileNumberofEntries\" maxInstance=\"0\">"
+          },
+          {
+            "line": 428,
+            "text": "      <TenantID ml=\"32\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 433,
+            "text": "  </X_ALU-COM_HomeIntelligenceServer.>"
+          },
+          {
+            "line": 434,
+            "text": "  <X_ALU-COM_SaaSManagementServer. n=\"MgmtServ\" t=\"staticObject\" skip=\"Y\" dmtype=\"cwmp\">"
+          },
+          {
+            "line": 435,
+            "text": "    <EnableCWMP rw=\"RW\" t=\"boolean\" v=\"false\" dv=\"false\"/>"
+          },
+          {
+            "line": 436,
+            "text": "    <URL ml=\"256\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 437,
+            "text": "    <Username ml=\"256\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 438,
+            "text": "    <Password ml=\"256\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\" ealgo=\"ab\"/>"
+          },
+          {
+            "line": 439,
+            "text": "    <PeriodicInformEnable rw=\"RW\" t=\"boolean\" v=\"True\" dv=\"True\"/>"
+          },
+          {
+            "line": 440,
+            "text": "    <PeriodicInformInterval max=\"4294967295\" min=\"1\" rw=\"RW\" t=\"unsignedInt\" v=\"5\" dv=\"5\"/>"
+          },
+          {
+            "line": 441,
+            "text": "    <PeriodicInformTime ml=\"64\" rw=\"RW\" t=\"dateTime\" dv=\"0001-01-01T00:00:00Z\" v=\"0001-01-01T00:00:00Z\"/>"
+          },
+          {
+            "line": 442,
+            "text": "    <ParameterKey ml=\"32\" rw=\"RW\" t=\"string\" v=\"\" dv=\"\"/>"
+          },
+          {
+            "line": 443,
+            "text": "    <X_ASB_COM_BoundIfName ml=\"32\" rw=\"RW\" t=\"string\" v=\"Any_WAN\" dv=\"\"/>"
+          }
+        ]
+      },
+      "binaries": {
+        "sbin/fw3": {
+          "bytes": 109200,
+          "sha256": "5080e80a1f186dc390bd6128450c0bc4261449c6dc0834d1c07b96d202dd2ec0"
+        },
+        "sbin/uci": {
+          "bytes": 18264,
+          "sha256": "74ad93150eecf5cfdbef53f9ea757e9742dd43fd9138e4d3b9ce1086586867bb"
+        },
+        "usr/bin/cfgcli": {
+          "bytes": 51632,
+          "sha256": "8f3ce2488f169d5fa3232e53ef9d5036e5e3e43769c5b7d27c0c2a9bc73caff4"
+        },
+        "usr/lib/libupgradeimpl.so": {
+          "bytes": 26384,
+          "sha256": "551be58771df590b105b104046708af77c99899d4df582435d1101f03a22ed2f"
+        }
+      },
+      "fw3_script_runner_0x407818_0x4078b8": [
+        "00407818: mov      x16, #0x10b0                           ",
+        "0040781c: sub      sp, sp, x16                            ",
+        "00407820: stp      x29, x30, [sp]                         ",
+        "00407824: mov      x29, sp                                ",
+        "00407828: ldr      x1, [x0]                               ",
+        "0040782c: str      x19, [sp, #0x10]                       ",
+        "00407830: mov      x19, x0                                ",
+        "00407834: adrp     x0, #0x417000                          ",
+        "00407838: add      x0, x0, #0xeaa                          ; \" * Running script '%s'\"",
+        "0040783c: bl       #0x407780                              ",
+        "00407840: ldr      x0, [x19]                              ",
+        "00407844: add      x1, x29, #0x28                         ",
+        "00407848: bl       #0x413960                              ",
+        "0040784c: cbz      w0, #0x407880                          ",
+        "00407850: bl       #0x403e10                               ; __errno_location@plt",
+        "00407854: ldr      w0, [x0]                               ",
+        "00407858: bl       #0x4039d0                               ; strerror@plt",
+        "0040785c: mov      x1, x0                                 ",
+        "00407860: adrp     x0, #0x417000                          ",
+        "00407864: add      x0, x0, #0xec1                          ; '   ! Skipping due to path error: %s'",
+        "00407868: bl       #0x407780                              ",
+        "0040786c: ldp      x29, x30, [sp]                         ",
+        "00407870: mov      x16, #0x10b0                           ",
+        "00407874: ldr      x19, [sp, #0x10]                       ",
+        "00407878: add      sp, sp, x16                            ",
+        "0040787c: ret                                             ",
+        "00407880: ldr      x3, [x19]                              ",
+        "00407884: adrp     x2, #0x417000                          ",
+        "00407888: add      x2, x2, #0xee5                          ; 'config() { echo \"You cannot use UCI in firewall includes!\" >&2; exit 1; }; . %s'",
+        "0040788c: mov      x1, #0x1008                            ",
+        "00407890: add      x0, x29, #0xa8                         ",
+        "00407894: bl       #0x4036e0                               ; snprintf@plt",
+        "00407898: add      x0, x29, #0xa8                         ",
+        "0040789c: bl       #0x403990                               ; system@plt",
+        "004078a0: cbz      w0, #0x40786c                          ",
+        "004078a4: ubfx     x1, x0, #8, #8                         ",
+        "004078a8: adrp     x0, #0x417000                          ",
+        "004078ac: add      x0, x0, #0xf35                          ; '   ! Failed with exit code %u'",
+        "004078b0: bl       #0x407780                              ",
+        "004078b4: b        #0x40786c                              "
+      ],
+      "backend_command_references": [
+        "00002760: add      x1, x0, #0xb28                          ; '/sbin/sysupgrade %s 2>/dev/console'",
+        "00002968: add      x0, x0, #0xc28                          ; 'sh /usr/exe/image_activate.sh'",
+        "00002cc4: add      x0, x0, #0xdb0                          ; 'sh /usr/exe/image_commit.sh'"
+      ],
+      "isolated_original_uci_test": {
+        "all_steps_passed": true,
+        "transcript": [
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock=include"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock.type=script"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock.path=/configs/firmware-update-lock/firewall-include.sh"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock.enabled=1"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "set",
+              "firewall.g6_firmware_lock.reload=1"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "commit",
+              "firewall"
+            ],
+            "status": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "get",
+              "firewall.g6_firmware_lock"
+            ],
+            "status": 0,
+            "stdout": "include\n",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "get",
+              "firewall.g6_firmware_lock.path"
+            ],
+            "status": 0,
+            "stdout": "/configs/firmware-update-lock/firewall-include.sh\n",
+            "stderr": ""
+          },
+          {
+            "args": [
+              "get",
+              "firewall.g6_firmware_lock.reload"
+            ],
+            "status": 0,
+            "stdout": "1\n",
+            "stderr": ""
+          }
+        ],
+        "resulting_config": "config defaults\n option input ACCEPT\n"
+      }
+    }
+  }
+}

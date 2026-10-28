@@ -234,3 +234,13 @@ I would keep the separately stored UART/en recovery settings, test the common la
 The [24 October recovery follow-up](../uart-recovery-from-uboot/README.md) changes the practical recovery position. After entering the existing U-Boot console, the owner loaded rootfs0's stock FIT and passed init=/bin/sh. The kernel and DTB checks passed, and the shell reported UID0/PID1 before normal Nokia init. That supplies root entry without retaining the Password2 overlay at all; it does not prove that the ordinary overlay has already been restored or that every future kernel permits this route.
 
 The [tutorial](../../tutorials/recover-uart-root-shell-from-uboot/README.md) records the exact successful partition-map assignments and manual boot. It also records the initial missing-partition failure and the U-Boot crash when listing mtdparts while that variable was unset. No explicit image-write/erase/saveenv command was used. Use the recovery shell to restore persistent files after inspecting the correct store, rather than reflashing a bank to copy a script. The rootfs0/current-kernel boot is live-verified; the optional configs mount helper and older-bank recovery remain untested.
+
+## A configured caller before PCD starts
+
+Both G6 builds also retain script includes in the persistent /etc/config/firewall.
+S19firewall runs before S98pcd, which makes this an earlier configured caller than
+the common late pre_app hook. I used it for the [firmware-update lock](../../tutorials/disable-firmware-upgrades/README.md),
+leaving existing shell payloads alone. fw3 sources the include, so its wrapper
+starts the payload in a separate shell. It still depends on retained configs
+and successful firewall startup; the isolated tests do not replace a live boot
+check. This caller is separate from the mount/app/driver saferun dispatcher.

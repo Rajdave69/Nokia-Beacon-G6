@@ -1,0 +1,547 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-24",
+  "scope": "Offline review of saved firmware captures, DTBs, local UART/PCIe/native-kernel logs, existing comparison evidence, owner-reported recovery results and manufacturer publications. No new router connection, live probe or hardware modification.",
+  "captures": {
+    "G6-A": {
+      "fit": {
+        "source": "private-source://SOURCE-068/mtd12_fit.bin",
+        "bytes": 5005934,
+        "sha256": "26be8ef67f047c6a37105ba0e1622ef3a3a1874d80558a91aac969f586d7c4c9"
+      },
+      "g6_dtb": {
+        "fit_node": "/images/fdt@beacon_g6.dtb",
+        "bytes": 38940,
+        "sha256": "965377f706a2d0b5d1f80e99e7ddb97d15aecfcf2179252b5d5a6b4ba9b03362"
+      },
+      "stored_memory_reg_hex": "0000000000000000000000000f000000"
+    },
+    "G6-B": {
+      "fit": {
+        "source": "private-source://SOURCE-066/mtd12_fit.bin",
+        "bytes": 5005934,
+        "sha256": "26be8ef67f047c6a37105ba0e1622ef3a3a1874d80558a91aac969f586d7c4c9"
+      },
+      "g6_dtb": {
+        "fit_node": "/images/fdt@beacon_g6.dtb",
+        "bytes": 38940,
+        "sha256": "965377f706a2d0b5d1f80e99e7ddb97d15aecfcf2179252b5d5a6b4ba9b03362"
+      },
+      "stored_memory_reg_hex": "0000000000000000000000000f000000"
+    }
+  },
+  "stock_fit_dtb_properties": {
+    "": {
+      "model": [
+        "Cortina Access Venus REF Board"
+      ],
+      "compatible": [
+        "cortina,venus",
+        "cortina,ca8289"
+      ]
+    },
+    "/cpus/cpu@0": {
+      "compatible": [
+        "arm,cortex-a55",
+        "arm,armv8"
+      ],
+      "device_type": [
+        "cpu"
+      ],
+      "reg": "0000000000000000",
+      "clocks": "00000002",
+      "clock-names": [
+        "cpu"
+      ],
+      "enable-method": [
+        "psci"
+      ],
+      "linux,phandle": "00000004",
+      "phandle": "00000004"
+    },
+    "/cpus/cpu@100": {
+      "compatible": [
+        "arm,cortex-a55",
+        "arm,armv8"
+      ],
+      "device_type": [
+        "cpu"
+      ],
+      "reg": "0000000000000100",
+      "clocks": "00000002",
+      "clock-names": [
+        "cpu"
+      ],
+      "enable-method": [
+        "psci"
+      ],
+      "linux,phandle": "00000005",
+      "phandle": "00000005"
+    },
+    "/cpus/cpu@200": {
+      "compatible": [
+        "arm,cortex-a55",
+        "arm,armv8"
+      ],
+      "device_type": [
+        "cpu"
+      ],
+      "reg": "0000000000000200",
+      "clocks": "00000002",
+      "clock-names": [
+        "cpu"
+      ],
+      "enable-method": [
+        "psci"
+      ],
+      "linux,phandle": "00000006",
+      "phandle": "00000006"
+    },
+    "/cpus/cpu@300": {
+      "compatible": [
+        "arm,cortex-a55",
+        "arm,armv8"
+      ],
+      "device_type": [
+        "cpu"
+      ],
+      "reg": "0000000000000300",
+      "clocks": "00000002",
+      "clock-names": [
+        "cpu"
+      ],
+      "enable-method": [
+        "psci"
+      ],
+      "linux,phandle": "00000007",
+      "phandle": "00000007"
+    },
+    "/psci": {
+      "compatible": [
+        "arm,psci-0.2"
+      ],
+      "method": [
+        "smc"
+      ]
+    },
+    "/interrupt-controller@f8000000": {
+      "compatible": [
+        "cortina,gic-v3-secured"
+      ],
+      "reg": "00000000f8000000000000000001000000000000f80400000000000000080000",
+      "interrupts": "000000010000000900000004",
+      "linux,phandle": "00000001",
+      "phandle": "00000001"
+    },
+    "/g3_apb_pclk": {
+      "compatible": [
+        "fixed-clock"
+      ],
+      "clock-frequency": "07735940",
+      "linux,phandle": "0000000f",
+      "phandle": "0000000f"
+    },
+    "/reserved-memory/ddr_cache_buffer@0x05000000": {
+      "reg": "00000000050000000000000000600000",
+      "linux,phandle": "00000027",
+      "phandle": "00000027"
+    },
+    "/reserved-memory/ddr_noncache_buffer@0x05600000": {
+      "reg": "000000000560000000000000030c0000",
+      "linux,phandle": "00000028",
+      "phandle": "00000028"
+    },
+    "/reserved-memory/tz_buffer@F000000": {
+      "reg": "000000000f0000000000000001000000"
+    },
+    "/reserved-memory/ipc_shm@0x02800000": {
+      "no-map": "",
+      "reg": "00000000028000000000000000008000",
+      "linux,phandle": "0000002c",
+      "phandle": "0000002c"
+    },
+    "/reserved-memory/pelog_shm@0x02808000": {
+      "no-map": "",
+      "reg": "00000000028080000000000000002000",
+      "linux,phandle": "0000002d",
+      "phandle": "0000002d"
+    },
+    "/reserved-memory/mem_hole_reserved@0x0280A000": {
+      "reg": "000000000280a00000000000003f6000"
+    },
+    "/reserved-memory/offload_shm@0x2c00000": {
+      "reg": "0000000002c000000000000000400000"
+    },
+    "/reserved-memory/taroko0@0x3000000": {
+      "reg": "00000000030000000000000001000000",
+      "no-map": "",
+      "linux,phandle": "00000008",
+      "phandle": "00000008"
+    },
+    "/reserved-memory/taroko1@0x4000000": {
+      "reg": "00000000040000000000000001000000",
+      "no-map": "",
+      "linux,phandle": "0000000b",
+      "phandle": "0000000b"
+    },
+    "/reserved-memory/temp_dump@01000": {
+      "no-map": "",
+      "reg": "00000000000010000000000000010000"
+    },
+    "/reserved-memory/wcnss@08700000": {
+      "no-map": "",
+      "reg": "00000000087000000000000002800000"
+    },
+    "/reserved-memory/qcn9000_pcie0@10000000": {
+      "no-map": "",
+      "reg": "00000000100000000000000002d00000"
+    },
+    "/reserved-memory/qcn9000_pcie1@12D00000": {
+      "no-map": "",
+      "reg": "0000000012d000000000000002d00000"
+    },
+    "/reserved-memory/dma_pool0@15A00000": {
+      "compatible": [
+        "shared-dma-pool"
+      ],
+      "no-map": "",
+      "reg": "0000000015a000000000000001800000",
+      "linux,phandle": "00000018",
+      "phandle": "00000018"
+    },
+    "/reserved-memory/dma_pool1@17200000": {
+      "compatible": [
+        "shared-dma-pool"
+      ],
+      "no-map": "",
+      "reg": "00000000172000000000000001800000",
+      "linux,phandle": "0000001e",
+      "phandle": "0000001e"
+    },
+    "/reserved-memory/pe_ddr_buffer@19000000": {
+      "reg": "00000000190000000000000003000000"
+    },
+    "/reserved-memory/qcn9000_link_desc_pool0@1C000000": {
+      "no-map": "",
+      "reg": "000000001c0000000000000000400000",
+      "linux,phandle": "00000038",
+      "phandle": "00000038"
+    },
+    "/reserved-memory/qcn9000_link_desc_pool1@1C400000": {
+      "no-map": "",
+      "reg": "000000001c4000000000000000400000",
+      "linux,phandle": "00000039",
+      "phandle": "00000039"
+    },
+    "/reserved-memory/ramoops@0x0AF00000": {
+      "no-map": "",
+      "compatible": [
+        "ramoops"
+      ],
+      "reg": "000000000af000000000000000200000"
+    },
+    "/reserved-memory/debug@0x000000": {
+      "no-map": "",
+      "reg": "00000000000000000000000000001000"
+    },
+    "/timer": {
+      "compatible": [
+        "arm,armv8-timer"
+      ],
+      "interrupts": "000000010000000d0000ff08000000010000000e0000ff08000000010000000b0000ff08000000010000000a0000ff08",
+      "clock-frequency": "017d7840"
+    },
+    "/uart@f4329188": {
+      "device_type": [
+        "serial"
+      ],
+      "compatible": [
+        "cortina,serial"
+      ],
+      "reg": "00000000f43291880000000000000030",
+      "clocks": "0000000f",
+      "interrupts": "000000000000000400000004"
+    },
+    "/pcie@f4325000": {
+      "compatible": [
+        "cortina,ca77xx-pcie"
+      ],
+      "reg": "00000000f4325000000000000000040000000000a0000000000000000000100000000000a0001000000000000000200000000000a0300000000000000010000000000000f43330000000000000002000",
+      "device_type": [
+        "pci"
+      ],
+      "num-lanes": "00000002",
+      "clocks": "00000011",
+      "interrupts": "000000000000002d00000004",
+      "status": [
+        "okay"
+      ]
+    },
+    "/pcie@f4326000": {
+      "compatible": [
+        "cortina,ca77xx-pcie"
+      ],
+      "reg": "00000000f4326000000000000000040000000000b0000000000000000000100000000000b0001000000000000000200000000000b0300000000000000010000000000000f43350000000000000002000",
+      "device_type": [
+        "pci"
+      ],
+      "num-lanes": "00000002",
+      "clocks": "00000019",
+      "interrupts": "000000000000002e00000004",
+      "status": [
+        "okay"
+      ]
+    },
+    "/pcie@f4327000": {
+      "compatible": [
+        "cortina,ca77xx-pcie"
+      ],
+      "reg": "00000000f4327000000000000000040000000000c0000000000000000000100000000000c0001000000000000000200000000000c0300000000000000010000000000000f43370000000000000001000",
+      "device_type": [
+        "pci"
+      ],
+      "num-lanes": "00000001",
+      "clocks": "0000001f",
+      "interrupts": "000000000000002f00000004",
+      "status": [
+        "disabled"
+      ]
+    },
+    "/wdt@f432901c": {
+      "compatible": [
+        "cortina,wdt"
+      ],
+      "reg": "00000000f432901c000000000000003000000000f43200200000000000000004",
+      "interrupts": "00000006",
+      "clocks": "0000000f"
+    },
+    "/usbphy@f432b028": {
+      "compatible": [
+        "cortina,ca77xx-usb2phy"
+      ],
+      "reg": "00000000f432b0280000000000000028",
+      "status": [
+        "okay"
+      ],
+      "linux,phandle": "00000036",
+      "phandle": "00000036"
+    },
+    "/usbphy@f432b000": {
+      "compatible": [
+        "cortina,ca77xx-usb3phy"
+      ],
+      "reg": "00000000f432b000000000000000002800000000f4337000000000000000100000000000f43380000000000000001000",
+      "status": [
+        "okay"
+      ],
+      "linux,phandle": "00000034",
+      "phandle": "00000034"
+    },
+    "/memory": {
+      "device_type": [
+        "memory"
+      ],
+      "reg": "0000000000000000000000000f000000"
+    }
+  },
+  "saved_analysis_dtb": {
+    "source": "analysis/beacon-g6-stock.dtb",
+    "bytes": 40960,
+    "sha256": "4caf76bc199013fd27d45be5381cdc65b963162f0d7b77cd5d12702070468bba",
+    "memory_reg_hex": "0000000000000000000000000f00000000000000100000000000000030000000",
+    "parsed_property_changes_from_stored_g6_dtb": [
+      {
+        "node": "/chosen",
+        "property": "bootargs"
+      },
+      {
+        "node": "/memory",
+        "property": "reg"
+      }
+    ],
+    "interpretation": "Two DRAM ranges agree with captured U-Boot bdinfo. This comparison measures the saved artifacts; it does not independently establish when or by which command the saved analysis DTB was modified."
+  },
+  "ram": {
+    "advertised_bytes": 1073741824,
+    "uboot_bdinfo_ranges": [
+      {
+        "start": "0x00000000",
+        "size_bytes": 251658240
+      },
+      {
+        "start": "0x10000000",
+        "size_bytes": 805306368
+      }
+    ],
+    "range_total_bytes": 1056964608,
+    "gap": {
+      "start": "0x0f000000",
+      "size_bytes": 16777216,
+      "stock_reserved_name": "tz_buffer"
+    },
+    "limits": "1008 MiB is the sum of firmware-visible DRAM ranges, not Linux MemTotal. Remaining reserved-memory nodes overlap those ranges; tz_buffer must not be subtracted twice."
+  },
+  "nand": {
+    "G6-A": {
+      "metadata_sha256": "4bc281ae15cea74b75c24e0de733351b493a693056edad539428129d87964866",
+      "identity_lines": [
+        {
+          "line": 315,
+          "text": "[    1.515704] nand: Micron MT29F4G08ABAFAWP"
+        },
+        {
+          "line": 316,
+          "text": "[    1.519678] nand: 512 MiB, SLC, erase size: 256 KiB, page size: 4096, OOB size: 256"
+        }
+      ],
+      "physical_bytes_total": 536870912
+    },
+    "G6-B": {
+      "metadata_sha256": "56ed9f95895fe7d7df5a2e4d10e0ca942d0af34c4059e43f251a659554c24340",
+      "identity_lines": [
+        {
+          "line": 311,
+          "text": "[    1.366896] nand: Micron MT29F4G08ABAFAWP"
+        },
+        {
+          "line": 312,
+          "text": "[    1.366912] nand: 512 MiB, SLC, erase size: 256 KiB, page size: 4096, OOB size: 256"
+        }
+      ],
+      "physical_bytes_total": 536870912
+    }
+  },
+  "local_sources": [
+    {
+      "source": "uart/uart.md",
+      "bytes": 12085,
+      "sha256": "e1e2822eef694f2f3f465e04a0ad62661c72f927a5f6dad8b9224b15f74a8ad8"
+    },
+    {
+      "source": "analysis/uboot-commands.txt",
+      "bytes": 8706,
+      "sha256": "3468634b992e5d3ddad9790217913af4178e8086ab028dbe8521cdb8e717fde6"
+    },
+    {
+      "source": "analysis/lspci.txt",
+      "bytes": 14249,
+      "sha256": "24c663eed994e834b5309e5898bf3d6996ccdd40977586816c4c1092f9e68762"
+    },
+    {
+      "source": "OpenWRT/01-basic-working-linux/beacon-g6-firstboot-kit/KNOWN-HARDWARE.md",
+      "bytes": 1986,
+      "sha256": "3dc86a1820c8bb1afc744f45a6857c31c0b4527b88b2fd4b07e2fb92159e4c3a"
+    },
+    {
+      "source": "OpenWRT/2026-10-13/2026-10-13-0300-bootlog.txt",
+      "bytes": 16651,
+      "sha256": "13287d57a727f9c2793b20fd98b33b1bba04fd6fe4db7cd1355ca9d8515cfe3e"
+    },
+    {
+      "source": "OpenWRT/2026-10-13/2026-10-13-0300-commands.txt",
+      "bytes": 42229,
+      "sha256": "fc9758fdb735f9d337d8a2cf75b6c6137e4db0eaa625e6fa26d0b1bd972ec038"
+    },
+    {
+      "source": "OpenWRT/2026-10-13/2026-10-13-1722-commands.txt",
+      "bytes": 52267,
+      "sha256": "22c120c0edf0e1e7a19db4af2e43c719de14561d5e053a52078dc0866ec25d9a"
+    },
+    {
+      "source": "OpenWRT/2026-10-13/2026-10-13-1834-commands.txt",
+      "bytes": 54863,
+      "sha256": "e7cd90951d12930d827455877fde834911b316d91c0012a13b28bfdde055985d"
+    },
+    {
+      "source": "private-source://SOURCE-069/openwrt_release",
+      "bytes": 255,
+      "sha256": "5d34ed3e78dfb5b3c5e394de9083612ea987d25d1ad516c1b6aeea9d980d34c6"
+    },
+    {
+      "source": "private-source://SOURCE-067/openwrt_release",
+      "bytes": 255,
+      "sha256": "5d34ed3e78dfb5b3c5e394de9083612ea987d25d1ad516c1b6aeea9d980d34c6"
+    },
+    {
+      "source": "knowledgebases/g6-ssb-comparison-evidence.json",
+      "bytes": 38844,
+      "sha256": "e3e88d24d032ea5483eb0d1d5de82848d4ba7b8da3391317d21d5a7448188be2"
+    },
+    {
+      "source": "knowledgebases/uart-recovery-from-uboot-evidence.json",
+      "bytes": 78039,
+      "sha256": "560cb5adf06da148ffef2b2f95660eb6c862c8f75acbd38f92e60f8d308be39d"
+    },
+    {
+      "source": "knowledgebases/storage-and-flash-evidence.json",
+      "bytes": 59624,
+      "sha256": "2ef0868a3436c06cd980375300e8d32bb58700e49ca1cdb8c3b52da8060dabec"
+    }
+  ],
+  "observations": {
+    "cpu": "Four arm,cortex-a55 DT nodes; boot ID 0x411fd050; BL1 reports 1200 MHz. Package architecture aarch64_cortex-a53 is not a hardware probe.",
+    "ddr": "Early boot says DDR3-1866: 32Bit mode; not an independently measured clock or a DVFS characterization.",
+    "pci_endpoints": [
+      {
+        "host": "/pcie@f4325000",
+        "endpoint": "0000:01:00.0",
+        "pci_id": "17cb:1104",
+        "driver": "cnss_pci",
+        "link_gt_s": 5,
+        "link_lanes": 2
+      },
+      {
+        "host": "/pcie@f4326000",
+        "endpoint": "0001:01:00.0",
+        "pci_id": "17cb:1104",
+        "driver": "cnss_pci",
+        "link_gt_s": 5,
+        "link_lanes": 2
+      }
+    ],
+    "pci_bridge_database_label": "16c3:abcd is labelled DWC_usb3 in the captured PCI database; class 0604 and DT PCIe paths establish these are the radio PCI bridges.",
+    "native_ethernet": "MDIO probes addresses 1 through 4 as 0x001cc981; experimental NI driver attaches PHY2, link negotiates 1000 Mbps full duplex. Later logs explicitly leave wire_tx unverified and RX unimplemented; descriptor consumption is not wire delivery.",
+    "watchdog": "Stock node wdt@f432901c. Owner reported a delayed recovery-shell reset and supplied wdt dev watchdog@0xf432901c; wdt stop. Cause and sustained stability after stopping are unverified; see recovery evidence.",
+    "dt_address_scope": "Stock peripherals use 0xf... DT addresses. Experimental native-kernel logs use 0x4f... for several blocks. These descriptions must not be interchanged without checking the relevant memory map."
+  },
+  "manufacturer_sources": [
+    {
+      "title": "Nokia Beacon G6 Product Guide",
+      "document": "3FE-49949-AAAA-TCZZA, June 2022, Issue 1",
+      "url": "https://device.report/m/89a7e8e644b326c7030274954d16a3452c2f5c2d0792383bb53eae670b3cae78_optim.pdf",
+      "pages": {
+        "40": "general hardware inventory",
+        "44": "port labels and controls",
+        "48": "CA8289, two DDR3 devices, QCN9024 and RTL8221B block diagram"
+      },
+      "classification": "Manufacturer-authored guide hosted by a third-party mirror; component markings were not independently inspected."
+    },
+    {
+      "title": "Nokia Beacon G6 product page",
+      "url": "https://www.nokia.com/broadband-access/in-home-connectivity/home-wi-fi/wi-fi-beacon-g6/",
+      "facts": "2.5GbE WAN/LAN, 2x1GbE LAN, 4x4 dual-band, AX6000, 160 MHz; dimensions 255x160x85 mm H/W/D."
+    },
+    {
+      "title": "Nokia Beacon G6 datasheet",
+      "url": "https://afren.co.za/wp-content/uploads/2023/05/Nokia_WiFi_Beacon_G6_datasheet_Data_Sheet_EN.pdf",
+      "page": 2,
+      "facts": "12 V DC; consumption 9 W minimum / 24 W maximum; not adapter output-current rating or measurements of these units."
+    },
+    {
+      "title": "Nokia Beacon G6 Quick Reference Guide",
+      "document": "3FE-49949-AAAA-TCZZB, Issue 1, September 2025",
+      "url": "https://www.nokia.com/asset/f/215110/",
+      "page": 2,
+      "facts": "225 mm height and 160 mm width. Height conflicts with product page; no physical revision inferred."
+    }
+  ],
+  "limits": [
+    "No independent PCB revision comparison, component-marking survey, UART voltage/pinout measurement or JTAG access test.",
+    "Matching current FIT/DTB and NAND geometry do not prove every component on both routers is identical.",
+    "Saved current G6 FITs are HJL.L91; inactive IJL.J03 software is not a separate physical hardware inventory.",
+    "U-Boot console state and compiled serial policy differ. The owner set console=1 on the first unit; an absent variable does not diagnose absent UART hardware.",
+    "USB PHY nodes and a JTAG block-diagram label do not prove accessible connectors or usable interfaces.",
+    "No complete socket-to-NI/MDIO map, independent Wi-Fi bring-up, throughput benchmark or secure-boot trust-state audit is asserted."
+  ],
+  "dt_property_encoding": "Text properties are arrays of NUL-separated strings. Other property values are hex-encoded original bytes; integer cells use the DT big-endian encoding. An empty hex string represents a zero-length boolean property."
+}

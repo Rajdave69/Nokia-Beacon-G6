@@ -1,0 +1,145 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+/tmp/g6-old-slot-review-20261025-by5iaikl/new/usr/lib/libcfg.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000ddac <cfg_saveKeyParameters@@Base>:
+    ddac:	a9b67bfd 	stp	x29, x30, [sp, #-160]!
+    ddb0:	910003fd 	mov	x29, sp
+    ddb4:	a9025bf5 	stp	x21, x22, [sp, #32]
+    ddb8:	b00000b6 	adrp	x22, 22000 <_fini@@Base+0x13340>
+    ddbc:	a90363f7 	stp	x23, x24, [sp, #48]
+    ddc0:	910103b7 	add	x23, x29, #0x40
+    ddc4:	f94776c1 	ldr	x1, [x22, #3816]  ; GOT __stack_chk_guard@GLIBC_2.17
+    ddc8:	910052f8 	add	x24, x23, #0x14
+    ddcc:	a90153f3 	stp	x19, x20, [sp, #16]
+    ddd0:	b00000b5 	adrp	x21, 22000 <_fini@@Base+0x13340>
+    ddd4:	f9400022 	ldr	x2, [x1]
+    ddd8:	f9004fa2 	str	x2, [x29, #152]
+    dddc:	d2800002 	mov	x2, #0x0                   	// #0
+    dde0:	910012e1 	add	x1, x23, #0x4
+    dde4:	b00000a2 	adrp	x2, 22000 <_fini@@Base+0x13340>
+    dde8:	b0000033 	adrp	x19, 12000 <_fini@@Base+0x3340>
+    ddec:	b00000b4 	adrp	x20, 22000 <_fini@@Base+0x13340>
+    ddf0:	f947f842 	ldr	x2, [x2, #4080]  ; GOT prctl@GLIBC_2.17
+    ddf4:	a9007c3f 	stp	xzr, xzr, [x1]
+    ddf8:	a9017c3f 	stp	xzr, xzr, [x1, #16]
+    ddfc:	a9027c3f 	stp	xzr, xzr, [x1, #32]
+    de00:	a9037c3f 	stp	xzr, xzr, [x1, #48]
+    de04:	a9047c3f 	stp	xzr, xzr, [x1, #64]
+    de08:	52800b81 	mov	w1, #0x5c                  	// #92
+    de0c:	b90056ff 	str	wzr, [x23, #84]
+    de10:	b90043a1 	str	w1, [x29, #64]
+    de14:	aa1803e1 	mov	x1, x24
+    de18:	b9004ba0 	str	w0, [x29, #72]
+    de1c:	52800200 	mov	w0, #0x10                  	// #16
+    de20:	d63f0040 	blr	x2
+    de24:	34000680 	cbz	w0, def4 <cfg_saveKeyParameters@@Base+0x148>
+    de28:	b00000a0 	adrp	x0, 22000 <_fini@@Base+0x13340>
+    de2c:	f947f000 	ldr	x0, [x0, #4064]  ; GOT __errno_location@GLIBC_2.17
+    de30:	d63f0000 	blr	x0
+    de34:	aa0003f8 	mov	x24, x0
+    de38:	f947eaa5 	ldr	x5, [x21, #4048]  ; GOT log_log
+    de3c:	91028261 	add	x1, x19, #0xa0  ; 'cfg_DumpObjectByPath'
+    de40:	52805822 	mov	w2, #0x2c1                 	// #705
+    de44:	9103e021 	add	x1, x1, #0xf8  ; 'cfg_saveKeyParameters'
+    de48:	b9400304 	ldr	w4, [x24]
+    de4c:	52800060 	mov	w0, #0x3                   	// #3
+    de50:	b0000023 	adrp	x3, 12000 <_fini@@Base+0x3340>
+    de54:	9110cc63 	add	x3, x3, #0x433  ; 'prctl fail: errno(%d)'
+    de58:	d63f00a0 	blr	x5
+    de5c:	f947e682 	ldr	x2, [x20, #4040]  ; GOT printf@GLIBC_2.17
+    de60:	b0000020 	adrp	x0, 12000 <_fini@@Base+0x3340>
+    de64:	91112400 	add	x0, x0, #0x449  ; 'prctl fail: errno(%d) B \n'
+    de68:	b9400301 	ldr	w1, [x24]
+    de6c:	d63f0040 	blr	x2
+    de70:	b00000a0 	adrp	x0, 22000 <_fini@@Base+0x13340>
+    de74:	f9471c00 	ldr	x0, [x0, #3640]  ; GOT getpid@GLIBC_2.17
+    de78:	d63f0000 	blr	x0
+    de7c:	b90053a0 	str	w0, [x29, #80]
+    de80:	b00000a0 	adrp	x0, 22000 <_fini@@Base+0x13340>
+    de84:	f946f400 	ldr	x0, [x0, #3560]  ; GOT socketCreate
+    de88:	d63f0000 	blr	x0
+    de8c:	2a0003f8 	mov	w24, w0
+    de90:	36f80500 	tbz	w0, #31, df30 <cfg_saveKeyParameters@@Base+0x184>
+    de94:	f947eab5 	ldr	x21, [x21, #4048]  ; GOT log_log
+    de98:	91028273 	add	x19, x19, #0xa0  ; 'cfg_DumpObjectByPath'
+    de9c:	9103e273 	add	x19, x19, #0xf8  ; 'cfg_saveKeyParameters'
+    dea0:	528059c2 	mov	w2, #0x2ce                 	// #718
+    dea4:	aa1303e4 	mov	x4, x19
+    dea8:	aa1303e1 	mov	x1, x19
+    deac:	52800060 	mov	w0, #0x3                   	// #3
+    deb0:	b0000023 	adrp	x3, 12000 <_fini@@Base+0x3340>
+    deb4:	91129463 	add	x3, x3, #0x4a5  ; '%s::socketCreate fail'
+    deb8:	d63f02a0 	blr	x21
+    debc:	f947e694 	ldr	x20, [x20, #4040]  ; GOT printf@GLIBC_2.17
+    dec0:	aa1303e1 	mov	x1, x19
+    dec4:	b0000020 	adrp	x0, 12000 <_fini@@Base+0x3340>
+    dec8:	9112ec00 	add	x0, x0, #0x4bb  ; '%s::socketCreate fail\n'
+    decc:	d63f0280 	blr	x20
+    ded0:	12800000 	mov	w0, #0xffffffff            	// #-1
+    ded4:	f94776d6 	ldr	x22, [x22, #3816]  ; GOT __stack_chk_guard@GLIBC_2.17
+    ded8:	f9404fa2 	ldr	x2, [x29, #152]
+    dedc:	f94002c1 	ldr	x1, [x22]
+    dee0:	ca010041 	eor	x1, x2, x1
+    dee4:	b40006c1 	cbz	x1, dfbc <cfg_saveKeyParameters@@Base+0x210>
+    dee8:	b00000a0 	adrp	x0, 22000 <_fini@@Base+0x13340>
+    deec:	f9476400 	ldr	x0, [x0, #3784]  ; GOT __stack_chk_fail@GLIBC_2.17
+    def0:	d63f0000 	blr	x0
+    def4:	f947eaa5 	ldr	x5, [x21, #4048]
+    def8:	91028261 	add	x1, x19, #0xa0  ; 'nvalid length info: %d\n'
+    defc:	aa1803e4 	mov	x4, x24
+    df00:	528058c2 	mov	w2, #0x2c6                 	// #710
+    df04:	9103e021 	add	x1, x1, #0xf8  ; 'ame: %s, distFile=%s, flag=0x%x)'
+    df08:	52800060 	mov	w0, #0x3                   	// #3
+    df0c:	b0000023 	adrp	x3, 12000 <_fini@@Base+0x3340>
+    df10:	91118c63 	add	x3, x3, #0x463  ; 'prctl success: processName(%s)'
+    df14:	d63f00a0 	blr	x5
+    df18:	f947e682 	ldr	x2, [x20, #4040]
+    df1c:	aa1803e1 	mov	x1, x24
+    df20:	b0000020 	adrp	x0, 12000 <_fini@@Base+0x3340>
+    df24:	91120800 	add	x0, x0, #0x482  ; 'prctl success: processName(%s) B \n'
+    df28:	d63f0040 	blr	x2
+    df2c:	17ffffd1 	b	de70 <cfg_saveKeyParameters@@Base+0xc4>
+    df30:	b00000a3 	adrp	x3, 22000 <_fini@@Base+0x13340>
+    df34:	52800b02 	mov	w2, #0x58                  	// #88
+    df38:	aa1703e1 	mov	x1, x23
+    df3c:	f9475c63 	ldr	x3, [x3, #3768]  ; GOT socketWrite
+    df40:	d63f0060 	blr	x3
+    df44:	34000120 	cbz	w0, df68 <cfg_saveKeyParameters@@Base+0x1bc>
+    df48:	f947eaa4 	ldr	x4, [x21, #4048]
+    df4c:	91028261 	add	x1, x19, #0xa0  ; 'nvalid length info: %d\n'
+    df50:	b0000023 	adrp	x3, 12000 <_fini@@Base+0x3340>
+    df54:	91134863 	add	x3, x3, #0x4d2  ; 'socketWrite failed.\n'
+    df58:	52805aa2 	mov	w2, #0x2d5                 	// #725
+    df5c:	9103e021 	add	x1, x1, #0xf8  ; 'ame: %s, distFile=%s, flag=0x%x)'
+    df60:	52800060 	mov	w0, #0x3                   	// #3
+    df64:	d63f0080 	blr	x4
+    df68:	b00000a3 	adrp	x3, 22000 <_fini@@Base+0x13340>
+    df6c:	52800b02 	mov	w2, #0x58                  	// #88
+    df70:	aa1703e1 	mov	x1, x23
+    df74:	2a1803e0 	mov	w0, w24
+    df78:	f9470863 	ldr	x3, [x3, #3600]  ; GOT socketRead
+    df7c:	d63f0060 	blr	x3
+    df80:	34000120 	cbz	w0, dfa4 <cfg_saveKeyParameters@@Base+0x1f8>
+    df84:	f947eaa4 	ldr	x4, [x21, #4048]
+    df88:	91028261 	add	x1, x19, #0xa0  ; 'nvalid length info: %d\n'
+    df8c:	b0000023 	adrp	x3, 12000 <_fini@@Base+0x3340>
+    df90:	91139c63 	add	x3, x3, #0x4e7  ; 'socketRead failed.\n'
+    df94:	52805b22 	mov	w2, #0x2d9                 	// #729
+    df98:	9103e021 	add	x1, x1, #0xf8  ; 'ame: %s, distFile=%s, flag=0x%x)'
+    df9c:	52800060 	mov	w0, #0x3                   	// #3
+    dfa0:	d63f0080 	blr	x4
+    dfa4:	b00000a1 	adrp	x1, 22000 <_fini@@Base+0x13340>
+    dfa8:	2a1803e0 	mov	w0, w24
+    dfac:	f946ec21 	ldr	x1, [x1, #3544]  ; GOT socketClose
+    dfb0:	d63f0020 	blr	x1
+    dfb4:	b9404fa0 	ldr	w0, [x29, #76]
+    dfb8:	17ffffc7 	b	ded4 <cfg_saveKeyParameters@@Base+0x128>
+    dfbc:	a94153f3 	ldp	x19, x20, [sp, #16]
+    dfc0:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    dfc4:	a94363f7 	ldp	x23, x24, [sp, #48]
+    dfc8:	a8ca7bfd 	ldp	x29, x30, [sp], #160
+    dfcc:	d65f03c0 	ret

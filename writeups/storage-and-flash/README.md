@@ -158,10 +158,12 @@ The scripts read ordinary MTD devices, so these files omit spare/OOB bytes. Read
 The [dump-coverage CSV](resources/dump-coverage.csv) audits the files currently present in both capture directories. Three points matter:
 
 - Both now include a nonempty SSB dump, added separately by the owner. The directory timestamps do not date those supplemental files; the current dump scripts include mtd0 too.
-- The scripts' selectors omit raw mtd8 and mtd11. These are the physical log and user_data partitions.
+- The older selectors used for those saved archives omitted raw mtd8 and mtd11, the physical log and user_data partitions. The current scripts' optional `full` scope captures both; the default `firmware` scope still omits them.
 - Both directories contain zero-byte mtd15_log.bin, mtd16_user_data.bin and mtd17_rootfs_data1.bin files. Their filenames provide no backup data.
 
 The ZIP listings show the same empty logical captures and missing raw log/user_data partitions. The first unit's ZIP also lacks mtd0 even though the supplemental file now exists beside it; the second ZIP includes it. An archive therefore needs its own membership check rather than inheriting the coverage of its surrounding directory.
+
+The current SSH and Telnet dump scripts deliberately stop at the physical-partition layer. `firmware` selects mtd0–mtd7, mtd9 and mtd10; `full` selects all twelve physical partitions, mtd0–mtd11. Neither selects mtd12–mtd17, because those are logical views into already described storage. In particular, both physical firmware banks are included, so this does not omit the alternate bank. Optional logical-volume exports can simplify analysis but do not add independent physical coverage. See the [dump tutorial](../../tutorials/dump-firmware/README.MD) for the full-scope command. These script changes do not retroactively fill gaps in old archives.
 
 The raw mtd6 capture is present, so the empty mtd17 file does not mean that the configs store was omitted entirely. For /logs and /opt, however, these directories contain neither their raw partitions nor usable logical-volume captures. They therefore are not complete raw-chip backups. The byte counts and coverage must be checked before relying on a capture for restoration.
 
@@ -206,3 +208,19 @@ done
 ```
 
 For the evidence behind this map, read the [storage knowledgebase](../../knowledgebases/storage-and-flash.md) and [measurements](../../knowledgebases/storage-and-flash-evidence.json). Startup execution and script persistence are covered separately in [persistent overlays](../persistent-overlays/README.md), while [UART recovery](../uart-recovery-from-uboot/README.md) covers accessing Linux when normal startup is unavailable.
+
+## Third-unit follow-up
+
+The [third capture](../third-g6-comparison/README.md) includes all twelve physical partitions and both raw writable regions missing from the first two archives. Its current-store and older cfg databases were recovered, while log-index extraction needed explicitly limited node carving. Earlier archive coverage tables remain specific to the first two captures.
+
+## A second product using the same NAND layout
+
+The Vodafone XS-2426X-A dump repeats the 512 MiB, twelve-partition physical
+layout and the same erase/page geometry. Its captured active bank is rootfs1,
+with rootfs_data1 selected for `/configs`; its banks contain different 24.03
+maintenance builds. Each recovered bank contains FIT, rootfs and Wi-Fi UBI
+volumes. The FIT and rootfs differ while the used Wi-Fi payload is identical.
+This supports the layout comparison, not cross-model firmware compatibility.
+The ONT data0 extraction failed UBI layout discovery; data1/cfg/log/user_data
+extracted. That failed extraction is not diagnosed as damaged flash. [Exact
+partition and volume evidence](../xs2426xa-24-03-comparison/resources/initial-inspection.json).

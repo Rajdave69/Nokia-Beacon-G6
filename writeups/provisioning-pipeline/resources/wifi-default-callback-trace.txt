@@ -1,0 +1,162 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://SOURCE-140/libdbgen.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000096c8 <preCfgPreSharedKeyForWlan@@Base>:
+    96c8:	d10ac3ff 	sub	sp, sp, #0x2b0
+    96cc:	a9007bfd 	stp	x29, x30, [sp]
+    96d0:	910003fd 	mov	x29, sp
+    96d4:	a90153f3 	stp	x19, x20, [sp, #16]
+    96d8:	d00000f4 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    96dc:	a90363f7 	stp	x23, x24, [sp, #48]
+    96e0:	d00000f7 	adrp	x23, 27000 <_fini@@Base+0x13d4c>
+    96e4:	a9025bf5 	stp	x21, x22, [sp, #32]
+    96e8:	910223b8 	add	x24, x29, #0x88
+    96ec:	f9400c16 	ldr	x22, [x0, #24]
+    96f0:	aa1803e0 	mov	x0, x24
+    96f4:	f9461e93 	ldr	x19, [x20, #3128]  ; GOT memset@GLIBC_2.17
+    96f8:	f9002bfb 	str	x27, [sp, #80]
+    96fc:	aa0103fb 	mov	x27, x1
+    9700:	f9469ae1 	ldr	x1, [x23, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    9704:	a9046bf9 	stp	x25, x26, [sp, #64]
+    9708:	f9400022 	ldr	x2, [x1]
+    970c:	f90157a2 	str	x2, [x29, #680]
+    9710:	d2800002 	mov	x2, #0x0                   	// #0
+    9714:	52800001 	mov	w1, #0x0                   	// #0
+    9718:	d2802202 	mov	x2, #0x110                 	// #272
+    971c:	d63f0260 	blr	x19
+    9720:	b4000f56 	cbz	x22, 9908 <preCfgPreSharedKeyForWlan@@Base+0x240>
+    9724:	910663b5 	add	x21, x29, #0x198
+    9728:	d2802202 	mov	x2, #0x110                 	// #272
+    972c:	52800001 	mov	w1, #0x0                   	// #0
+    9730:	aa1503e0 	mov	x0, x21
+    9734:	d63f0260 	blr	x19
+    9738:	d00000f3 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    973c:	90000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    9740:	911ca021 	add	x1, x1, #0x728  ; 'dburi'
+    9744:	f945fe7a 	ldr	x26, [x19, #3064]  ; GOT dbgen_getElementAttribute_legacy
+    9748:	52802203 	mov	w3, #0x110                 	// #272
+    974c:	aa1503e2 	mov	x2, x21
+    9750:	aa1603e0 	mov	x0, x22
+    9754:	d63f0340 	blr	x26
+    9758:	b5000140 	cbnz	x0, 9780 <preCfgPreSharedKeyForWlan@@Base+0xb8>
+    975c:	52800020 	mov	w0, #0x1                   	// #1
+    9760:	f9469af7 	ldr	x23, [x23, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    9764:	f94157a2 	ldr	x2, [x29, #680]
+    9768:	f94002e1 	ldr	x1, [x23]
+    976c:	ca010041 	eor	x1, x2, x1
+    9770:	b4000d01 	cbz	x1, 9910 <preCfgPreSharedKeyForWlan@@Base+0x248>
+    9774:	d00000e0 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    9778:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    977c:	d63f0000 	blr	x0
+    9780:	d00000e2 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    9784:	90000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    9788:	911cb821 	add	x1, x1, #0x72e  ; 'PreSharedKey'
+    978c:	f9479c42 	ldr	x2, [x2, #3896]  ; GOT strstr@GLIBC_2.17
+    9790:	d63f0040 	blr	x2
+    9794:	b4fffe40 	cbz	x0, 975c <preCfgPreSharedKeyForWlan@@Base+0x94>
+    9798:	d00000e3 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    979c:	9101a3b9 	add	x25, x29, #0x68
+    97a0:	52800402 	mov	w2, #0x20                  	// #32
+    97a4:	aa1903e1 	mov	x1, x25
+    97a8:	f9476863 	ldr	x3, [x3, #3792]  ; GOT ri_hal_get
+    97ac:	f0000040 	adrp	x0, 14000 <_fini@@Base+0xd4c>
+    97b0:	912d9000 	add	x0, x0, #0xb64  ; 'Mnemonic'
+    97b4:	a906ffbf 	stp	xzr, xzr, [x29, #104]
+    97b8:	a907ffbf 	stp	xzr, xzr, [x29, #120]
+    97bc:	d63f0060 	blr	x3
+    97c0:	90000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    97c4:	911cec21 	add	x1, x1, #0x73b  ; 'onu'
+    97c8:	52802203 	mov	w3, #0x110                 	// #272
+    97cc:	aa1803e2 	mov	x2, x24
+    97d0:	aa1603e0 	mov	x0, x22
+    97d4:	d63f0340 	blr	x26
+    97d8:	b40000e0 	cbz	x0, 97f4 <preCfgPreSharedKeyForWlan@@Base+0x12c>
+    97dc:	d00000e2 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    97e0:	aa0003e1 	mov	x1, x0
+    97e4:	aa1903e0 	mov	x0, x25
+    97e8:	f946cc42 	ldr	x2, [x2, #3480]  ; GOT strcmp@GLIBC_2.17
+    97ec:	d63f0040 	blr	x2
+    97f0:	35fffb60 	cbnz	w0, 975c <preCfgPreSharedKeyForWlan@@Base+0x94>
+    97f4:	f945fe64 	ldr	x4, [x19, #3064]  ; GOT dbgen_getElementAttribute_legacy
+    97f8:	52802203 	mov	w3, #0x110                 	// #272
+    97fc:	aa1803e2 	mov	x2, x24
+    9800:	90000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    9804:	911cfc21 	add	x1, x1, #0x73f  ; 'fri'
+    9808:	aa1603e0 	mov	x0, x22
+    980c:	d00000fa 	adrp	x26, 27000 <_fini@@Base+0x13d4c>
+    9810:	d63f0080 	blr	x4
+    9814:	aa0003f9 	mov	x25, x0
+    9818:	910803a0 	add	x0, x29, #0x200
+    981c:	d00000e3 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    9820:	d28003e2 	mov	x2, #0x1f                  	// #31
+    9824:	f947b063 	ldr	x3, [x3, #3936]  ; GOT strncpy@GLIBC_2.17
+    9828:	a939fc1f 	stp	xzr, xzr, [x0, #-104]
+    982c:	a93afc1f 	stp	xzr, xzr, [x0, #-88]
+    9830:	f9401ec0 	ldr	x0, [x22, #56]
+    9834:	f9400001 	ldr	x1, [x0]
+    9838:	aa1503e0 	mov	x0, x21
+    983c:	d63f0060 	blr	x3
+    9840:	f946175a 	ldr	x26, [x26, #3112]  ; GOT strncmp@GLIBC_2.17
+    9844:	90000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    9848:	911d0c21 	add	x1, x1, #0x743  ; 'WLAN_1.'
+    984c:	d28000e2 	mov	x2, #0x7                   	// #7
+    9850:	aa1503e0 	mov	x0, x21
+    9854:	d63f0340 	blr	x26
+    9858:	340000e0 	cbz	w0, 9874 <preCfgPreSharedKeyForWlan@@Base+0x1ac>
+    985c:	90000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    9860:	911d2c21 	add	x1, x1, #0x74b  ; 'WLANConfiguration_1.'
+    9864:	d2800282 	mov	x2, #0x14                  	// #20
+    9868:	aa1503e0 	mov	x0, x21
+    986c:	d63f0340 	blr	x26
+    9870:	35fff760 	cbnz	w0, 975c <preCfgPreSharedKeyForWlan@@Base+0x94>
+    9874:	b4000259 	cbz	x25, 98bc <preCfgPreSharedKeyForWlan@@Base+0x1f4>
+    9878:	39400320 	ldrb	w0, [x25]
+    987c:	34000200 	cbz	w0, 98bc <preCfgPreSharedKeyForWlan@@Base+0x1f4>
+    9880:	d00000e5 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    9884:	5280b442 	mov	w2, #0x5a2                 	// #1442
+    9888:	528000a0 	mov	w0, #0x5                   	// #5
+    988c:	aa1903e4 	mov	x4, x25
+    9890:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    9894:	90000063 	adrp	x3, 15000 <_fini@@Base+0x1d4c>
+    9898:	911d8063 	add	x3, x3, #0x760  ; 'fri %s\n'
+    989c:	90000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    98a0:	9113a021 	add	x1, x1, #0x4e8  ; 'preCfgPreSharedKeyForWlan'
+    98a4:	d63f00a0 	blr	x5
+    98a8:	d00000e2 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    98ac:	aa1903e1 	mov	x1, x25
+    98b0:	aa1603e0 	mov	x0, x22
+    98b4:	f9464c42 	ldr	x2, [x2, #3224]  ; GOT getFromRI
+    98b8:	d63f0040 	blr	x2
+    98bc:	f9461e94 	ldr	x20, [x20, #3128]  ; GOT memset@GLIBC_2.17
+    98c0:	d2802202 	mov	x2, #0x110                 	// #272
+    98c4:	52800001 	mov	w1, #0x0                   	// #0
+    98c8:	aa1803e0 	mov	x0, x24
+    98cc:	d63f0280 	blr	x20
+    98d0:	f945fe73 	ldr	x19, [x19, #3064]  ; GOT dbgen_getElementAttribute_legacy
+    98d4:	b0000061 	adrp	x1, 16000 <_fini@@Base+0x2d4c>
+    98d8:	9128e021 	add	x1, x1, #0xa38
+    98dc:	52802203 	mov	w3, #0x110                 	// #272
+    98e0:	aa1803e2 	mov	x2, x24
+    98e4:	aa1603e0 	mov	x0, x22
+    98e8:	d63f0260 	blr	x19
+    98ec:	b4fff380 	cbz	x0, 975c <preCfgPreSharedKeyForWlan@@Base+0x94>
+    98f0:	d00000e2 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    98f4:	aa0003e1 	mov	x1, x0
+    98f8:	aa1b03e0 	mov	x0, x27
+    98fc:	f9477442 	ldr	x2, [x2, #3816]  ; GOT strcpy@GLIBC_2.17
+    9900:	d63f0040 	blr	x2
+    9904:	17ffff96 	b	975c <preCfgPreSharedKeyForWlan@@Base+0x94>
+    9908:	52800000 	mov	w0, #0x0                   	// #0
+    990c:	17ffff95 	b	9760 <preCfgPreSharedKeyForWlan@@Base+0x98>
+    9910:	a9407bfd 	ldp	x29, x30, [sp]
+    9914:	a94153f3 	ldp	x19, x20, [sp, #16]
+    9918:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    991c:	a94363f7 	ldp	x23, x24, [sp, #48]
+    9920:	a9446bf9 	ldp	x25, x26, [sp, #64]
+    9924:	f9402bfb 	ldr	x27, [sp, #80]
+    9928:	910ac3ff 	add	sp, sp, #0x2b0
+    992c:	d65f03c0 	ret

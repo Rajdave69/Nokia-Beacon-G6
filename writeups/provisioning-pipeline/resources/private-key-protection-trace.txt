@@ -1,0 +1,93 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://SOURCE-141/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000002b6bc <SE_keyFileEncrypt@@Base>:
+   2b6bc:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   2b6c0:	f100001f 	cmp	x0, #0x0
+   2b6c4:	910003fd 	mov	x29, sp
+   2b6c8:	a90153f3 	stp	x19, x20, [sp, #16]
+   2b6cc:	f00000d4 	adrp	x20, 46000 <_fini@@Base+0x18178>
+   2b6d0:	a9025bf5 	stp	x21, x22, [sp, #32]
+   2b6d4:	aa0203f5 	mov	x21, x2
+   2b6d8:	f942be82 	ldr	x2, [x20, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   2b6dc:	aa0303f6 	mov	x22, x3
+   2b6e0:	f90023bf 	str	xzr, [x29, #64]
+   2b6e4:	fa401aa4 	ccmp	x21, #0x0, #0x4, ne	// ne = any
+   2b6e8:	f9400043 	ldr	x3, [x2]
+   2b6ec:	f90027a3 	str	x3, [x29, #72]
+   2b6f0:	d2800003 	mov	x3, #0x0                   	// #0
+   2b6f4:	f9001bf7 	str	x23, [sp, #48]
+   2b6f8:	54000040 	b.eq	2b700 <SE_keyFileEncrypt@@Base+0x44>  // b.none
+   2b6fc:	b50002d6 	cbnz	x22, 2b754 <SE_keyFileEncrypt@@Base+0x98>
+   2b700:	f00000c0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   2b704:	b0000042 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   2b708:	9121e042 	add	x2, x2, #0x878  ; 'SE_deriveKey'
+   2b70c:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   2b710:	b0000041 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   2b714:	9128d421 	add	x1, x1, #0xa35  ; 'sec:err input %s:%d\n'
+   2b718:	528042e3 	mov	w3, #0x217                 	// #535
+   2b71c:	91018042 	add	x2, x2, #0x60  ; 'SE_keyFileEncrypt'
+   2b720:	52800153 	mov	w19, #0xa                   	// #10
+   2b724:	f9400004 	ldr	x4, [x0]
+   2b728:	52800060 	mov	w0, #0x3                   	// #3
+   2b72c:	d63f0080 	blr	x4
+   2b730:	f942be94 	ldr	x20, [x20, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   2b734:	2a1303e0 	mov	w0, w19
+   2b738:	f94027a2 	ldr	x2, [x29, #72]
+   2b73c:	f9400281 	ldr	x1, [x20]
+   2b740:	ca010041 	eor	x1, x2, x1
+   2b744:	b40005c1 	cbz	x1, 2b7fc <SE_keyFileEncrypt@@Base+0x140>
+   2b748:	f00000c0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   2b74c:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   2b750:	d63f0000 	blr	x0
+   2b754:	2a0103e2 	mov	w2, w1
+   2b758:	aa0003f7 	mov	x23, x0
+   2b75c:	910103a3 	add	x3, x29, #0x40
+   2b760:	d2800001 	mov	x1, #0x0                   	// #0
+   2b764:	97ffff41 	bl	2b468 <SE_getKeyByName@@Base+0x364>
+   2b768:	2a0003f3 	mov	w19, w0
+   2b76c:	34000240 	cbz	w0, 2b7b4 <SE_keyFileEncrypt@@Base+0xf8>
+   2b770:	f00000c0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   2b774:	b0000044 	adrp	x4, 34000 <_fini@@Base+0x6178>
+   2b778:	9121e084 	add	x4, x4, #0x878  ; 'SE_deriveKey'
+   2b77c:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   2b780:	b0000041 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   2b784:	91292821 	add	x1, x1, #0xa4a  ; 'sec:load [%s] failed[%ld] %s:%d\n'
+   2b788:	91018084 	add	x4, x4, #0x60  ; 'SE_keyFileEncrypt'
+   2b78c:	2a1303e3 	mov	w3, w19
+   2b790:	aa1703e2 	mov	x2, x23
+   2b794:	528043a5 	mov	w5, #0x21d                 	// #541
+   2b798:	f9400006 	ldr	x6, [x0]
+   2b79c:	52800060 	mov	w0, #0x3                   	// #3
+   2b7a0:	d63f00c0 	blr	x6
+   2b7a4:	f00000c0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   2b7a8:	f9456400 	ldr	x0, [x0, #2760]  ; GOT SE_logOpenSSLErr
+   2b7ac:	d63f0000 	blr	x0
+   2b7b0:	17ffffe0 	b	2b730 <SE_keyFileEncrypt@@Base+0x74>
+   2b7b4:	f94023a2 	ldr	x2, [x29, #64]
+   2b7b8:	aa1603e1 	mov	x1, x22
+   2b7bc:	aa1503e0 	mov	x0, x21
+   2b7c0:	97ffff81 	bl	2b5c4 <SE_getKeyByName@@Base+0x4c0>
+   2b7c4:	2a0003f3 	mov	w19, w0
+   2b7c8:	34fffb40 	cbz	w0, 2b730 <SE_keyFileEncrypt@@Base+0x74>
+   2b7cc:	f00000c0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   2b7d0:	b0000044 	adrp	x4, 34000 <_fini@@Base+0x6178>
+   2b7d4:	9121e084 	add	x4, x4, #0x878  ; 'SE_deriveKey'
+   2b7d8:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   2b7dc:	b0000041 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   2b7e0:	9129ac21 	add	x1, x1, #0xa6b  ; 'sec:save [%s] failed[%ld] %s:%d\n'
+   2b7e4:	52804485 	mov	w5, #0x224                 	// #548
+   2b7e8:	91018084 	add	x4, x4, #0x60  ; 'SE_keyFileEncrypt'
+   2b7ec:	2a1303e3 	mov	w3, w19
+   2b7f0:	aa1503e2 	mov	x2, x21
+   2b7f4:	f9400006 	ldr	x6, [x0]
+   2b7f8:	17ffffe9 	b	2b79c <SE_keyFileEncrypt@@Base+0xe0>
+   2b7fc:	a94153f3 	ldp	x19, x20, [sp, #16]
+   2b800:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   2b804:	f9401bf7 	ldr	x23, [sp, #48]
+   2b808:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   2b80c:	d65f03c0 	ret

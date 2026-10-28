@@ -1,0 +1,14 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006-2011 OpenWrt.org
+
+. /usr/exe/varset.sh
+
+START=99
+
+boot()
+{
+	# no commit in bootup script anymore
+	uenv_set boot_fail_count 0 && echo "clear boot_fail_count success..." > /dev/console || echo "clear boot_fail_count failed..." > /dev/console
+	sleep 60 && /usr/exe/swug -c && echo "**** commit image ****" > /dev/console 2>&1 &
+	[ -x /configs/pre_app_boot.sh ] && sh /configs/pre_app_boot.sh &
+}

@@ -1,0 +1,3005 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://SOURCE-140/libdbgen.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .init:
+
+00000000000044c0 <_init@@Base>:
+    44c0:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+    44c4:	910003fd 	mov	x29, sp
+    44c8:	94000012 	bl	4510 <__gmon_start__@plt+0x10>
+    44cc:	a8c17bfd 	ldp	x29, x30, [sp], #16
+    44d0:	d65f03c0 	ret
+
+Disassembly of section .plt:
+
+00000000000044e0 <__gmon_start__@plt-0x20>:
+    44e0:	a9bf7bf0 	stp	x16, x30, [sp, #-16]!
+    44e4:	f0000110 	adrp	x16, 27000 <_fini@@Base+0x13d4c>
+    44e8:	f9452211 	ldr	x17, [x16, #2624]
+    44ec:	91290210 	add	x16, x16, #0xa40
+    44f0:	d61f0220 	br	x17
+    44f4:	d503201f 	nop
+    44f8:	d503201f 	nop
+    44fc:	d503201f 	nop
+
+0000000000004500 <__gmon_start__@plt>:
+    4500:	f0000110 	adrp	x16, 27000 <_fini@@Base+0x13d4c>
+    4504:	f9452611 	ldr	x17, [x16, #2632]  ; GOT __gmon_start__
+    4508:	91292210 	add	x16, x16, #0xa48
+    450c:	d61f0220 	br	x17
+
+Disassembly of section .text:
+
+0000000000004510 <remove_tail_space@@Base-0x16c>:
+    4510:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4514:	f9469400 	ldr	x0, [x0, #3368]  ; GOT __gmon_start__
+    4518:	b4000040 	cbz	x0, 4520 <__gmon_start__@plt+0x20>
+    451c:	17fffff9 	b	4500 <__gmon_start__@plt>
+    4520:	d65f03c0 	ret
+    4524:	90000120 	adrp	x0, 28000 <_fini@@Base+0x14d4c>
+    4528:	3946e001 	ldrb	w1, [x0, #440]
+    452c:	35000201 	cbnz	w1, 456c <__gmon_start__@plt+0x6c>
+    4530:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    4534:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    4538:	910003fd 	mov	x29, sp
+    453c:	f9458821 	ldr	x1, [x1, #2832]  ; GOT __cxa_finalize@GLIBC_2.17
+    4540:	f9000bf3 	str	x19, [sp, #16]
+    4544:	aa0003f3 	mov	x19, x0
+    4548:	b4000081 	cbz	x1, 4558 <__gmon_start__@plt+0x58>
+    454c:	90000120 	adrp	x0, 28000 <_fini@@Base+0x14d4c>
+    4550:	f9400000 	ldr	x0, [x0]
+    4554:	d63f0020 	blr	x1
+    4558:	52800020 	mov	w0, #0x1                   	// #1
+    455c:	3906e260 	strb	w0, [x19, #440]
+    4560:	f9400bf3 	ldr	x19, [sp, #16]
+    4564:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    4568:	d65f03c0 	ret
+    456c:	d65f03c0 	ret
+    4570:	d65f03c0 	ret
+    4574:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+    4578:	f0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    457c:	52800001 	mov	w1, #0x0                   	// #0
+    4580:	910003fd 	mov	x29, sp
+    4584:	f9000bf3 	str	x19, [sp, #16]
+    4588:	f0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    458c:	f946b042 	ldr	x2, [x2, #3424]  ; GOT access@GLIBC_2.17
+    4590:	f9469a73 	ldr	x19, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4594:	f9400260 	ldr	x0, [x19]
+    4598:	f90017a0 	str	x0, [x29, #40]
+    459c:	d2800000 	mov	x0, #0x0                   	// #0
+    45a0:	f0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    45a4:	9111c400 	add	x0, x0, #0x471  ; '/tmp/zeroman_active_from_tr069'
+    45a8:	d63f0040 	blr	x2
+    45ac:	f94017a2 	ldr	x2, [x29, #40]
+    45b0:	f9400261 	ldr	x1, [x19]
+    45b4:	ca010041 	eor	x1, x2, x1
+    45b8:	b4000081 	cbz	x1, 45c8 <__gmon_start__@plt+0xc8>
+    45bc:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    45c0:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    45c4:	d63f0000 	blr	x0
+    45c8:	7100001f 	cmp	w0, #0x0
+    45cc:	f9400bf3 	ldr	x19, [sp, #16]
+    45d0:	1a9f17e0 	cset	w0, eq	// eq = none
+    45d4:	a8c37bfd 	ldp	x29, x30, [sp], #48
+    45d8:	d65f03c0 	ret
+    45dc:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    45e0:	910003fd 	mov	x29, sp
+    45e4:	a90153f3 	stp	x19, x20, [sp, #16]
+    45e8:	f0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    45ec:	a9025bf5 	stp	x21, x22, [sp, #32]
+    45f0:	f0000115 	adrp	x21, 27000 <_fini@@Base+0x13d4c>
+    45f4:	f9469a61 	ldr	x1, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    45f8:	aa0003f6 	mov	x22, x0
+    45fc:	d2800014 	mov	x20, #0x0                   	// #0
+    4600:	f9400022 	ldr	x2, [x1]
+    4604:	f90027a2 	str	x2, [x29, #72]
+    4608:	d2800002 	mov	x2, #0x0                   	// #0
+    460c:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    4610:	f9001bf7 	str	x23, [sp, #48]
+    4614:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    4618:	d63f0020 	blr	x1
+    461c:	f94662b5 	ldr	x21, [x21, #3264]  ; GOT __ctype_toupper_loc@GLIBC_2.17
+    4620:	2a0003f7 	mov	w23, w0
+    4624:	6b1402ff 	cmp	w23, w20
+    4628:	5400012c 	b.gt	464c <__gmon_start__@plt+0x14c>
+    462c:	f9469a73 	ldr	x19, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4630:	f94027a1 	ldr	x1, [x29, #72]
+    4634:	f9400260 	ldr	x0, [x19]
+    4638:	ca000020 	eor	x0, x1, x0
+    463c:	b4000160 	cbz	x0, 4668 <__gmon_start__@plt+0x168>
+    4640:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4644:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    4648:	d63f0000 	blr	x0
+    464c:	d63f02a0 	blr	x21
+    4650:	f9400000 	ldr	x0, [x0]
+    4654:	38746ac1 	ldrb	w1, [x22, x20]
+    4658:	b8617800 	ldr	w0, [x0, x1, lsl #2]
+    465c:	38346ac0 	strb	w0, [x22, x20]
+    4660:	91000694 	add	x20, x20, #0x1
+    4664:	17fffff0 	b	4624 <__gmon_start__@plt+0x124>
+    4668:	a94153f3 	ldp	x19, x20, [sp, #16]
+    466c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4670:	f9401bf7 	ldr	x23, [sp, #48]
+    4674:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    4678:	d65f03c0 	ret
+
+000000000000467c <remove_tail_space@@Base>:
+    467c:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    4680:	910003fd 	mov	x29, sp
+    4684:	a90153f3 	stp	x19, x20, [sp, #16]
+    4688:	f0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    468c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    4690:	f0000116 	adrp	x22, 27000 <_fini@@Base+0x13d4c>
+    4694:	f9469a61 	ldr	x1, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4698:	aa0003f5 	mov	x21, x0
+    469c:	f9400022 	ldr	x2, [x1]
+    46a0:	f9001fa2 	str	x2, [x29, #56]
+    46a4:	d2800002 	mov	x2, #0x0                   	// #0
+    46a8:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    46ac:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    46b0:	d63f0020 	blr	x1
+    46b4:	f946d6d6 	ldr	x22, [x22, #3496]  ; GOT __ctype_b_loc@GLIBC_2.17
+    46b8:	2a0003f4 	mov	w20, w0
+    46bc:	35000154 	cbnz	w20, 46e4 <remove_tail_space@@Base+0x68>
+    46c0:	f9469a73 	ldr	x19, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    46c4:	8b3442a0 	add	x0, x21, w20, uxtw
+    46c8:	f9401fa2 	ldr	x2, [x29, #56]
+    46cc:	f9400261 	ldr	x1, [x19]
+    46d0:	ca010041 	eor	x1, x2, x1
+    46d4:	b40001a1 	cbz	x1, 4708 <remove_tail_space@@Base+0x8c>
+    46d8:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    46dc:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    46e0:	d63f0000 	blr	x0
+    46e4:	d63f02c0 	blr	x22
+    46e8:	f9400000 	ldr	x0, [x0]
+    46ec:	51000682 	sub	w2, w20, #0x1
+    46f0:	38626aa3 	ldrb	w3, [x21, x2]
+    46f4:	78637800 	ldrh	w0, [x0, x3, lsl #1]
+    46f8:	366ffe40 	tbz	w0, #13, 46c0 <remove_tail_space@@Base+0x44>
+    46fc:	38226abf 	strb	wzr, [x21, x2]
+    4700:	2a0203f4 	mov	w20, w2
+    4704:	17ffffee 	b	46bc <remove_tail_space@@Base+0x40>
+    4708:	a94153f3 	ldp	x19, x20, [sp, #16]
+    470c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4710:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    4714:	d65f03c0 	ret
+
+0000000000004718 <get_domain_from_line@@Base>:
+    4718:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    471c:	910003fd 	mov	x29, sp
+    4720:	a90153f3 	stp	x19, x20, [sp, #16]
+    4724:	f0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    4728:	a9025bf5 	stp	x21, x22, [sp, #32]
+    472c:	aa0103f5 	mov	x21, x1
+    4730:	f9469a61 	ldr	x1, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4734:	2a0203f6 	mov	w22, w2
+    4738:	f9400022 	ldr	x2, [x1]
+    473c:	f9001fa2 	str	x2, [x29, #56]
+    4740:	d2800002 	mov	x2, #0x0                   	// #0
+    4744:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    4748:	f947ec21 	ldr	x1, [x1, #4056]  ; GOT skip_head_space
+    474c:	d63f0020 	blr	x1
+    4750:	aa0003f4 	mov	x20, x0
+    4754:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    4758:	f9479021 	ldr	x1, [x1, #3872]  ; GOT remove_tail_space
+    475c:	d63f0020 	blr	x1
+    4760:	39400280 	ldrb	w0, [x20]
+    4764:	340003a0 	cbz	w0, 47d8 <get_domain_from_line@@Base+0xc0>
+    4768:	71008c1f 	cmp	w0, #0x23
+    476c:	540003a0 	b.eq	47e0 <get_domain_from_line@@Base+0xc8>  // b.none
+    4770:	71016c1f 	cmp	w0, #0x5b
+    4774:	540003a1 	b.ne	47e8 <get_domain_from_line@@Base+0xd0>  // b.any
+    4778:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    477c:	aa1403e0 	mov	x0, x20
+    4780:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    4784:	d63f0020 	blr	x1
+    4788:	d1000400 	sub	x0, x0, #0x1
+    478c:	38606a81 	ldrb	w1, [x20, x0]
+    4790:	7101743f 	cmp	w1, #0x5d
+    4794:	540002a1 	b.ne	47e8 <get_domain_from_line@@Base+0xd0>  // b.any
+    4798:	f0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    479c:	38206a9f 	strb	wzr, [x20, x0]
+    47a0:	2a1603e2 	mov	w2, w22
+    47a4:	91000681 	add	x1, x20, #0x1
+    47a8:	f947b063 	ldr	x3, [x3, #3936]  ; GOT strncpy@GLIBC_2.17
+    47ac:	aa1503e0 	mov	x0, x21
+    47b0:	d63f0060 	blr	x3
+    47b4:	52800000 	mov	w0, #0x0                   	// #0
+    47b8:	f9469a73 	ldr	x19, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    47bc:	f9401fa2 	ldr	x2, [x29, #56]
+    47c0:	f9400261 	ldr	x1, [x19]
+    47c4:	ca010041 	eor	x1, x2, x1
+    47c8:	b4000141 	cbz	x1, 47f0 <get_domain_from_line@@Base+0xd8>
+    47cc:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    47d0:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    47d4:	d63f0000 	blr	x0
+    47d8:	52800020 	mov	w0, #0x1                   	// #1
+    47dc:	17fffff7 	b	47b8 <get_domain_from_line@@Base+0xa0>
+    47e0:	52800040 	mov	w0, #0x2                   	// #2
+    47e4:	17fffff5 	b	47b8 <get_domain_from_line@@Base+0xa0>
+    47e8:	12800000 	mov	w0, #0xffffffff            	// #-1
+    47ec:	17fffff3 	b	47b8 <get_domain_from_line@@Base+0xa0>
+    47f0:	a94153f3 	ldp	x19, x20, [sp, #16]
+    47f4:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    47f8:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    47fc:	d65f03c0 	ret
+
+0000000000004800 <freeAddObjectTokenList@@Base>:
+    4800:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    4804:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    4808:	910003fd 	mov	x29, sp
+    480c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    4810:	aa0003f5 	mov	x21, x0
+    4814:	a90153f3 	stp	x19, x20, [sp, #16]
+    4818:	f0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    481c:	f9469820 	ldr	x0, [x1, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4820:	aa0103f3 	mov	x19, x1
+    4824:	f9470694 	ldr	x20, [x20, #3592]  ; GOT free@GLIBC_2.17
+    4828:	f9400002 	ldr	x2, [x0]
+    482c:	f9001fa2 	str	x2, [x29, #56]
+    4830:	d2800002 	mov	x2, #0x0                   	// #0
+    4834:	f94002a0 	ldr	x0, [x21]
+    4838:	b5000140 	cbnz	x0, 4860 <freeAddObjectTokenList@@Base+0x60>
+    483c:	f9469a61 	ldr	x1, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4840:	f90002bf 	str	xzr, [x21]
+    4844:	f9401fa2 	ldr	x2, [x29, #56]
+    4848:	f9400020 	ldr	x0, [x1]
+    484c:	ca000040 	eor	x0, x2, x0
+    4850:	b4000100 	cbz	x0, 4870 <freeAddObjectTokenList@@Base+0x70>
+    4854:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4858:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    485c:	d63f0000 	blr	x0
+    4860:	f9400416 	ldr	x22, [x0, #8]
+    4864:	d63f0280 	blr	x20
+    4868:	aa1603e0 	mov	x0, x22
+    486c:	17fffff3 	b	4838 <freeAddObjectTokenList@@Base+0x38>
+    4870:	a94153f3 	ldp	x19, x20, [sp, #16]
+    4874:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4878:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    487c:	d65f03c0 	ret
+
+0000000000004880 <process_by_line@@Base>:
+    4880:	a9ba7bfd 	stp	x29, x30, [sp, #-96]!
+    4884:	910003fd 	mov	x29, sp
+    4888:	a90153f3 	stp	x19, x20, [sp, #16]
+    488c:	f0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    4890:	a9025bf5 	stp	x21, x22, [sp, #32]
+    4894:	f0000116 	adrp	x22, 27000 <_fini@@Base+0x13d4c>
+    4898:	a90363f7 	stp	x23, x24, [sp, #48]
+    489c:	aa0103f8 	mov	x24, x1
+    48a0:	f9469a61 	ldr	x1, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    48a4:	f0000117 	adrp	x23, 27000 <_fini@@Base+0x13d4c>
+    48a8:	f947eed6 	ldr	x22, [x22, #4056]  ; GOT skip_head_space
+    48ac:	f90023f9 	str	x25, [sp, #64]
+    48b0:	aa0203f9 	mov	x25, x2
+    48b4:	f9400022 	ldr	x2, [x1]
+    48b8:	f9002fa2 	str	x2, [x29, #88]
+    48bc:	d2800002 	mov	x2, #0x0                   	// #0
+    48c0:	d63f02c0 	blr	x22
+    48c4:	f94792f7 	ldr	x23, [x23, #3872]  ; GOT remove_tail_space
+    48c8:	aa0003f4 	mov	x20, x0
+    48cc:	d63f02e0 	blr	x23
+    48d0:	39400280 	ldrb	w0, [x20]
+    48d4:	340004a0 	cbz	w0, 4968 <process_by_line@@Base+0xe8>
+    48d8:	71008c1f 	cmp	w0, #0x23
+    48dc:	540004a0 	b.eq	4970 <process_by_line@@Base+0xf0>  // b.none
+    48e0:	7100ac1f 	cmp	w0, #0x2b
+    48e4:	528005a1 	mov	w1, #0x2d                  	// #45
+    48e8:	7a411004 	ccmp	w0, w1, #0x4, ne	// ne = any
+    48ec:	54000161 	b.ne	4918 <process_by_line@@Base+0x98>  // b.any
+    48f0:	52800060 	mov	w0, #0x3                   	// #3
+    48f4:	f9000314 	str	x20, [x24]
+    48f8:	f9469a73 	ldr	x19, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    48fc:	f9402fa2 	ldr	x2, [x29, #88]
+    4900:	f9400261 	ldr	x1, [x19]
+    4904:	ca010041 	eor	x1, x2, x1
+    4908:	b4000481 	cbz	x1, 4998 <process_by_line@@Base+0x118>
+    490c:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4910:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    4914:	d63f0000 	blr	x0
+    4918:	f0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    491c:	528007a1 	mov	w1, #0x3d                  	// #61
+    4920:	aa1403e0 	mov	x0, x20
+    4924:	f9474042 	ldr	x2, [x2, #3712]  ; GOT strchr@GLIBC_2.17
+    4928:	d63f0040 	blr	x2
+    492c:	b4000260 	cbz	x0, 4978 <process_by_line@@Base+0xf8>
+    4930:	aa0003f5 	mov	x21, x0
+    4934:	aa1403e0 	mov	x0, x20
+    4938:	380016bf 	strb	wzr, [x21], #1
+    493c:	d63f02e0 	blr	x23
+    4940:	aa1503e0 	mov	x0, x21
+    4944:	d63f02c0 	blr	x22
+    4948:	39400281 	ldrb	w1, [x20]
+    494c:	340001a1 	cbz	w1, 4980 <process_by_line@@Base+0x100>
+    4950:	b40001d8 	cbz	x24, 4988 <process_by_line@@Base+0x108>
+    4954:	f9000314 	str	x20, [x24]
+    4958:	b40001d9 	cbz	x25, 4990 <process_by_line@@Base+0x110>
+    495c:	f9000320 	str	x0, [x25]
+    4960:	52800000 	mov	w0, #0x0                   	// #0
+    4964:	17ffffe5 	b	48f8 <process_by_line@@Base+0x78>
+    4968:	52800020 	mov	w0, #0x1                   	// #1
+    496c:	17ffffe3 	b	48f8 <process_by_line@@Base+0x78>
+    4970:	52800040 	mov	w0, #0x2                   	// #2
+    4974:	17ffffe1 	b	48f8 <process_by_line@@Base+0x78>
+    4978:	12800040 	mov	w0, #0xfffffffd            	// #-3
+    497c:	17ffffdf 	b	48f8 <process_by_line@@Base+0x78>
+    4980:	12800060 	mov	w0, #0xfffffffc            	// #-4
+    4984:	17ffffdd 	b	48f8 <process_by_line@@Base+0x78>
+    4988:	12800080 	mov	w0, #0xfffffffb            	// #-5
+    498c:	17ffffdb 	b	48f8 <process_by_line@@Base+0x78>
+    4990:	128000a0 	mov	w0, #0xfffffffa            	// #-6
+    4994:	17ffffd9 	b	48f8 <process_by_line@@Base+0x78>
+    4998:	a94153f3 	ldp	x19, x20, [sp, #16]
+    499c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    49a0:	a94363f7 	ldp	x23, x24, [sp, #48]
+    49a4:	f94023f9 	ldr	x25, [sp, #64]
+    49a8:	a8c67bfd 	ldp	x29, x30, [sp], #96
+    49ac:	d65f03c0 	ret
+
+00000000000049b0 <findTokenChar@@Base>:
+    49b0:	a9ba7bfd 	stp	x29, x30, [sp, #-96]!
+    49b4:	910003fd 	mov	x29, sp
+    49b8:	a90153f3 	stp	x19, x20, [sp, #16]
+    49bc:	aa0003f4 	mov	x20, x0
+    49c0:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    49c4:	a90363f7 	stp	x23, x24, [sp, #48]
+    49c8:	aa0103f8 	mov	x24, x1
+    49cc:	a9025bf5 	stp	x21, x22, [sp, #32]
+    49d0:	f9469801 	ldr	x1, [x0, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    49d4:	aa0003f3 	mov	x19, x0
+    49d8:	f9002bbf 	str	xzr, [x29, #80]
+    49dc:	f9400022 	ldr	x2, [x1]
+    49e0:	f9002fa2 	str	x2, [x29, #88]
+    49e4:	d2800002 	mov	x2, #0x0                   	// #0
+    49e8:	f90023f9 	str	x25, [sp, #64]
+    49ec:	b4000058 	cbz	x24, 49f4 <findTokenChar@@Base+0x44>
+    49f0:	3900031f 	strb	wzr, [x24]
+    49f4:	b4000294 	cbz	x20, 4a44 <findTokenChar@@Base+0x94>
+    49f8:	f0000115 	adrp	x21, 27000 <_fini@@Base+0x13d4c>
+    49fc:	910143b9 	add	x25, x29, #0x50
+    4a00:	f0000076 	adrp	x22, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4a04:	911242d6 	add	x22, x22, #0x490
+    4a08:	f945cab5 	ldr	x21, [x21, #2960]  ; GOT strtok_r@GLIBC_2.17
+    4a0c:	aa1903e2 	mov	x2, x25
+    4a10:	aa1603e1 	mov	x1, x22
+    4a14:	aa1403e0 	mov	x0, x20
+    4a18:	d63f02a0 	blr	x21
+    4a1c:	aa0003f7 	mov	x23, x0
+    4a20:	b4000120 	cbz	x0, 4a44 <findTokenChar@@Base+0x94>
+    4a24:	aa1903e2 	mov	x2, x25
+    4a28:	aa1603e1 	mov	x1, x22
+    4a2c:	d2800000 	mov	x0, #0x0                   	// #0
+    4a30:	d63f02a0 	blr	x21
+    4a34:	aa0003f4 	mov	x20, x0
+    4a38:	b4000180 	cbz	x0, 4a68 <findTokenChar@@Base+0xb8>
+    4a3c:	394002e0 	ldrb	w0, [x23]
+    4a40:	39000300 	strb	w0, [x24]
+    4a44:	f9469a73 	ldr	x19, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4a48:	aa1403e0 	mov	x0, x20
+    4a4c:	f9402fa2 	ldr	x2, [x29, #88]
+    4a50:	f9400261 	ldr	x1, [x19]
+    4a54:	ca010041 	eor	x1, x2, x1
+    4a58:	b40000c1 	cbz	x1, 4a70 <findTokenChar@@Base+0xc0>
+    4a5c:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4a60:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    4a64:	d63f0000 	blr	x0
+    4a68:	aa1703f4 	mov	x20, x23
+    4a6c:	17fffff6 	b	4a44 <findTokenChar@@Base+0x94>
+    4a70:	a94153f3 	ldp	x19, x20, [sp, #16]
+    4a74:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4a78:	a94363f7 	ldp	x23, x24, [sp, #48]
+    4a7c:	f94023f9 	ldr	x25, [sp, #64]
+    4a80:	a8c67bfd 	ldp	x29, x30, [sp], #96
+    4a84:	d65f03c0 	ret
+
+0000000000004a88 <updateUrlWithInstance@@Base>:
+    4a88:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    4a8c:	910003fd 	mov	x29, sp
+    4a90:	a9025bf5 	stp	x21, x22, [sp, #32]
+    4a94:	aa0003f6 	mov	x22, x0
+    4a98:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4a9c:	a90153f3 	stp	x19, x20, [sp, #16]
+    4aa0:	aa0103f4 	mov	x20, x1
+    4aa4:	f9469801 	ldr	x1, [x0, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4aa8:	f9400022 	ldr	x2, [x1]
+    4aac:	f9001fa2 	str	x2, [x29, #56]
+    4ab0:	d2800002 	mov	x2, #0x0                   	// #0
+    4ab4:	b40001d6 	cbz	x22, 4aec <updateUrlWithInstance@@Base+0x64>
+    4ab8:	f0000115 	adrp	x21, 27000 <_fini@@Base+0x13d4c>
+    4abc:	aa0003f3 	mov	x19, x0
+    4ac0:	f9467eb5 	ldr	x21, [x21, #3320]  ; GOT strrchr@GLIBC_2.17
+    4ac4:	b50003b4 	cbnz	x20, 4b38 <updateUrlWithInstance@@Base+0xb0>
+    4ac8:	f9469a60 	ldr	x0, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4acc:	f9401fa1 	ldr	x1, [x29, #56]
+    4ad0:	f9400000 	ldr	x0, [x0]
+    4ad4:	ca000020 	eor	x0, x1, x0
+    4ad8:	b5000120 	cbnz	x0, 4afc <updateUrlWithInstance@@Base+0x74>
+    4adc:	a94153f3 	ldp	x19, x20, [sp, #16]
+    4ae0:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4ae4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    4ae8:	d65f03c0 	ret
+    4aec:	f9401fa2 	ldr	x2, [x29, #56]
+    4af0:	f9400020 	ldr	x0, [x1]
+    4af4:	ca000040 	eor	x0, x2, x0
+    4af8:	b4000080 	cbz	x0, 4b08 <updateUrlWithInstance@@Base+0x80>
+    4afc:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4b00:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    4b04:	d63f0000 	blr	x0
+    4b08:	f0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    4b0c:	f0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4b10:	91124863 	add	x3, x3, #0x492  ; 'ERROR-url is NULL\n'
+    4b14:	a94153f3 	ldp	x19, x20, [sp, #16]
+    4b18:	52801782 	mov	w2, #0xbc                  	// #188
+    4b1c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4b20:	f0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4b24:	910b2021 	add	x1, x1, #0x2c8  ; 'updateUrlWithInstance'
+    4b28:	f947d884 	ldr	x4, [x4, #4016]  ; GOT log_log
+    4b2c:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    4b30:	52800060 	mov	w0, #0x3                   	// #3
+    4b34:	d61f0080 	br	x4
+    4b38:	39400281 	ldrb	w1, [x20]
+    4b3c:	aa1603e0 	mov	x0, x22
+    4b40:	d63f02a0 	blr	x21
+    4b44:	b4000060 	cbz	x0, 4b50 <updateUrlWithInstance@@Base+0xc8>
+    4b48:	39400681 	ldrb	w1, [x20, #1]
+    4b4c:	39000001 	strb	w1, [x0]
+    4b50:	f9400694 	ldr	x20, [x20, #8]
+    4b54:	17ffffdc 	b	4ac4 <updateUrlWithInstance@@Base+0x3c>
+
+0000000000004b58 <inStrList@@Base>:
+    4b58:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    4b5c:	910003fd 	mov	x29, sp
+    4b60:	a90153f3 	stp	x19, x20, [sp, #16]
+    4b64:	f0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    4b68:	f0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    4b6c:	a90363f7 	stp	x23, x24, [sp, #48]
+    4b70:	2a0103f7 	mov	w23, w1
+    4b74:	f9469a61 	ldr	x1, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4b78:	f9454294 	ldr	x20, [x20, #2688]  ; GOT strlen@GLIBC_2.17
+    4b7c:	aa0203f8 	mov	x24, x2
+    4b80:	f9400022 	ldr	x2, [x1]
+    4b84:	f90027a2 	str	x2, [x29, #72]
+    4b88:	d2800002 	mov	x2, #0x0                   	// #0
+    4b8c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    4b90:	aa0003f6 	mov	x22, x0
+    4b94:	d63f0280 	blr	x20
+    4b98:	aa0003f5 	mov	x21, x0
+    4b9c:	aa1803e0 	mov	x0, x24
+    4ba0:	d63f0280 	blr	x20
+    4ba4:	710002bf 	cmp	w21, #0x0
+    4ba8:	7a401804 	ccmp	w0, #0x0, #0x4, ne	// ne = any
+    4bac:	540003c0 	b.eq	4c24 <inStrList@@Base+0xcc>  // b.none
+    4bb0:	f0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    4bb4:	aa0003f4 	mov	x20, x0
+    4bb8:	aa1803e1 	mov	x1, x24
+    4bbc:	aa1603e0 	mov	x0, x22
+    4bc0:	f9479c42 	ldr	x2, [x2, #3896]  ; GOT strstr@GLIBC_2.17
+    4bc4:	d63f0040 	blr	x2
+    4bc8:	b40001e0 	cbz	x0, 4c04 <inStrList@@Base+0xac>
+    4bcc:	8b344014 	add	x20, x0, w20, uxtw
+    4bd0:	eb0002df 	cmp	x22, x0
+    4bd4:	540000a0 	b.eq	4be8 <inStrList@@Base+0x90>  // b.none
+    4bd8:	54000262 	b.cs	4c24 <inStrList@@Base+0xcc>  // b.hs, b.nlast
+    4bdc:	385ff001 	ldurb	w1, [x0, #-1]
+    4be0:	6b17003f 	cmp	w1, w23
+    4be4:	54000201 	b.ne	4c24 <inStrList@@Base+0xcc>  // b.any
+    4be8:	8b3542c1 	add	x1, x22, w21, uxtw
+    4bec:	eb14003f 	cmp	x1, x20
+    4bf0:	540000a0 	b.eq	4c04 <inStrList@@Base+0xac>  // b.none
+    4bf4:	54000189 	b.ls	4c24 <inStrList@@Base+0xcc>  // b.plast
+    4bf8:	39400281 	ldrb	w1, [x20]
+    4bfc:	6b17003f 	cmp	w1, w23
+    4c00:	9a9f0000 	csel	x0, x0, xzr, eq	// eq = none
+    4c04:	f9469a73 	ldr	x19, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4c08:	f94027a2 	ldr	x2, [x29, #72]
+    4c0c:	f9400261 	ldr	x1, [x19]
+    4c10:	ca010041 	eor	x1, x2, x1
+    4c14:	b40000c1 	cbz	x1, 4c2c <inStrList@@Base+0xd4>
+    4c18:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4c1c:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    4c20:	d63f0000 	blr	x0
+    4c24:	d2800000 	mov	x0, #0x0                   	// #0
+    4c28:	17fffff7 	b	4c04 <inStrList@@Base+0xac>
+    4c2c:	a94153f3 	ldp	x19, x20, [sp, #16]
+    4c30:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4c34:	a94363f7 	ldp	x23, x24, [sp, #48]
+    4c38:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    4c3c:	d65f03c0 	ret
+
+0000000000004c40 <insertAddobjectToken@@Base>:
+    4c40:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    4c44:	910003fd 	mov	x29, sp
+    4c48:	a90153f3 	stp	x19, x20, [sp, #16]
+    4c4c:	f0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    4c50:	a9025bf5 	stp	x21, x22, [sp, #32]
+    4c54:	aa0003f6 	mov	x22, x0
+    4c58:	f9469a60 	ldr	x0, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4c5c:	f9400003 	ldr	x3, [x0]
+    4c60:	f90027a3 	str	x3, [x29, #72]
+    4c64:	d2800003 	mov	x3, #0x0                   	// #0
+    4c68:	f9001bf7 	str	x23, [sp, #48]
+    4c6c:	72001c37 	ands	w23, w1, #0xff
+    4c70:	54000340 	b.eq	4cd8 <insertAddobjectToken@@Base+0x98>  // b.none
+    4c74:	52800140 	mov	w0, #0xa                   	// #10
+    4c78:	f94002d5 	ldr	x21, [x22]
+    4c7c:	1ac00c54 	sdiv	w20, w2, w0
+    4c80:	1b008a94 	msub	w20, w20, w0, w2
+    4c84:	aa1503e0 	mov	x0, x21
+    4c88:	1100c294 	add	w20, w20, #0x30
+    4c8c:	12001e94 	and	w20, w20, #0xff
+    4c90:	b50001c0 	cbnz	x0, 4cc8 <insertAddobjectToken@@Base+0x88>
+    4c94:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    4c98:	d2800200 	mov	x0, #0x10                  	// #16
+    4c9c:	f945d421 	ldr	x1, [x1, #2984]  ; GOT malloc@GLIBC_2.17
+    4ca0:	d63f0020 	blr	x1
+    4ca4:	b50004e0 	cbnz	x0, 4d40 <insertAddobjectToken@@Base+0x100>
+    4ca8:	f9469a73 	ldr	x19, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4cac:	f94027a1 	ldr	x1, [x29, #72]
+    4cb0:	f9400260 	ldr	x0, [x19]
+    4cb4:	ca000020 	eor	x0, x1, x0
+    4cb8:	b4000280 	cbz	x0, 4d08 <insertAddobjectToken@@Base+0xc8>
+    4cbc:	f0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    4cc0:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    4cc4:	d63f0000 	blr	x0
+    4cc8:	39400001 	ldrb	w1, [x0]
+    4ccc:	6b17003f 	cmp	w1, w23
+    4cd0:	54000181 	b.ne	4d00 <insertAddobjectToken@@Base+0xc0>  // b.any
+    4cd4:	39000414 	strb	w20, [x0, #1]
+    4cd8:	f9469a73 	ldr	x19, [x19, #3376]
+    4cdc:	f94027a1 	ldr	x1, [x29, #72]
+    4ce0:	f9400260 	ldr	x0, [x19]
+    4ce4:	ca000020 	eor	x0, x1, x0
+    4ce8:	b5fffea0 	cbnz	x0, 4cbc <insertAddobjectToken@@Base+0x7c>
+    4cec:	a94153f3 	ldp	x19, x20, [sp, #16]
+    4cf0:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4cf4:	f9401bf7 	ldr	x23, [sp, #48]
+    4cf8:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    4cfc:	d65f03c0 	ret
+    4d00:	f9400400 	ldr	x0, [x0, #8]
+    4d04:	17ffffe3 	b	4c90 <insertAddobjectToken@@Base+0x50>
+    4d08:	f0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    4d0c:	f9401bf7 	ldr	x23, [sp, #48]
+    4d10:	a94153f3 	ldp	x19, x20, [sp, #16]
+    4d14:	f0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4d18:	910b2021 	add	x1, x1, #0x2c8  ; 'updateUrlWithInstance'
+    4d1c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    4d20:	f0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4d24:	91129463 	add	x3, x3, #0x4a5  ; 'ERROR-Failed to Allocate memory\n'
+    4d28:	f947d884 	ldr	x4, [x4, #4016]  ; GOT log_log
+    4d2c:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    4d30:	528024e2 	mov	w2, #0x127                 	// #295
+    4d34:	91006021 	add	x1, x1, #0x18  ; 'insertAddobjectToken'
+    4d38:	52800060 	mov	w0, #0x3                   	// #3
+    4d3c:	d61f0080 	br	x4
+    4d40:	39000017 	strb	w23, [x0]
+    4d44:	39000414 	strb	w20, [x0, #1]
+    4d48:	f900041f 	str	xzr, [x0, #8]
+    4d4c:	b5000095 	cbnz	x21, 4d5c <insertAddobjectToken@@Base+0x11c>
+    4d50:	f90002c0 	str	x0, [x22]
+    4d54:	17ffffe1 	b	4cd8 <insertAddobjectToken@@Base+0x98>
+    4d58:	aa0103f5 	mov	x21, x1
+    4d5c:	f94006a1 	ldr	x1, [x21, #8]
+    4d60:	b5ffffc1 	cbnz	x1, 4d58 <insertAddobjectToken@@Base+0x118>
+    4d64:	f90006a0 	str	x0, [x21, #8]
+    4d68:	17ffffdc 	b	4cd8 <insertAddobjectToken@@Base+0x98>
+
+0000000000004d6c <processDeltaCfgwithOPIDChange@@Base>:
+    4d6c:	a9a57bfd 	stp	x29, x30, [sp, #-432]!
+    4d70:	910003fd 	mov	x29, sp
+    4d74:	a90573fb 	stp	x27, x28, [sp, #80]
+    4d78:	aa0003fc 	mov	x28, x0
+    4d7c:	aa0103e0 	mov	x0, x1
+    4d80:	f0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    4d84:	a90153f3 	stp	x19, x20, [sp, #16]
+    4d88:	f9469822 	ldr	x2, [x1, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4d8c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    4d90:	f9400043 	ldr	x3, [x2]
+    4d94:	f900d7a3 	str	x3, [x29, #424]
+    4d98:	d2800003 	mov	x3, #0x0                   	// #0
+    4d9c:	a90363f7 	stp	x23, x24, [sp, #48]
+    4da0:	a9046bf9 	stp	x25, x26, [sp, #64]
+    4da4:	f90037a1 	str	x1, [x29, #104]
+    4da8:	b4001c20 	cbz	x0, 512c <processDeltaCfgwithOPIDChange@@Base+0x3c0>
+    4dac:	f0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    4db0:	910223a1 	add	x1, x29, #0x88
+    4db4:	f0000074 	adrp	x20, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4db8:	910b2294 	add	x20, x20, #0x2c8  ; 'updateUrlWithInstance'
+    4dbc:	f947a484 	ldr	x4, [x4, #3912]  ; GOT __isoc99_sscanf@GLIBC_2.17
+    4dc0:	aa0103e3 	mov	x3, x1
+    4dc4:	f0000075 	adrp	x21, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4dc8:	911396b5 	add	x21, x21, #0x4e5  ; 'delete zeroman bank %d\n'
+    4dcc:	f9003fa1 	str	x1, [x29, #120]
+    4dd0:	910213a2 	add	x2, x29, #0x84
+    4dd4:	f0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4dd8:	91131821 	add	x1, x1, #0x4c6  ; '/configs/zeroman/%d/content/%s'
+    4ddc:	b90087bf 	str	wzr, [x29, #132]
+    4de0:	52800053 	mov	w19, #0x2                   	// #2
+    4de4:	a908ffbf 	stp	xzr, xzr, [x29, #136]
+    4de8:	9100c294 	add	x20, x20, #0x30  ; 'processDeltaCfgwithOPIDChange'
+    4dec:	a909ffbf 	stp	xzr, xzr, [x29, #152]
+    4df0:	d63f0080 	blr	x4
+    4df4:	b94087a0 	ldr	w0, [x29, #132]
+    4df8:	6b13001f 	cmp	w0, w19
+    4dfc:	540001c0 	b.eq	4e34 <processDeltaCfgwithOPIDChange@@Base+0xc8>  // b.none
+    4e00:	f0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    4e04:	2a1303e1 	mov	w1, w19
+    4e08:	aa1503e0 	mov	x0, x21
+    4e0c:	f947d442 	ldr	x2, [x2, #4008]  ; GOT printf@GLIBC_2.17
+    4e10:	d63f0040 	blr	x2
+    4e14:	f0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    4e18:	2a1303e4 	mov	w4, w19
+    4e1c:	aa1503e3 	mov	x3, x21
+    4e20:	52805902 	mov	w2, #0x2c8                 	// #712
+    4e24:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    4e28:	aa1403e1 	mov	x1, x20
+    4e2c:	528000a0 	mov	w0, #0x5                   	// #5
+    4e30:	d63f00a0 	blr	x5
+    4e34:	11000673 	add	w19, w19, #0x1
+    4e38:	71001a7f 	cmp	w19, #0x6
+    4e3c:	54fffdc1 	b.ne	4df4 <processDeltaCfgwithOPIDChange@@Base+0x88>  // b.any
+    4e40:	f000011a 	adrp	x26, 27000 <_fini@@Base+0x13d4c>
+    4e44:	f0000118 	adrp	x24, 27000 <_fini@@Base+0x13d4c>
+    4e48:	9102a3b3 	add	x19, x29, #0xa8
+    4e4c:	d2802002 	mov	x2, #0x100                 	// #256
+    4e50:	f9461f5a 	ldr	x26, [x26, #3128]  ; GOT memset@GLIBC_2.17
+    4e54:	52800001 	mov	w1, #0x0                   	// #0
+    4e58:	aa1303e0 	mov	x0, x19
+    4e5c:	f0000115 	adrp	x21, 27000 <_fini@@Base+0x13d4c>
+    4e60:	f0000079 	adrp	x25, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4e64:	91146739 	add	x25, x25, #0x519  ; 'rm -f %s 2>/dev/null'
+    4e68:	f0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    4e6c:	f0000077 	adrp	x23, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4e70:	912a72f7 	add	x23, x23, #0xa9c  ; '%s\n'
+    4e74:	d63f0340 	blr	x26
+    4e78:	f9455718 	ldr	x24, [x24, #2728]  ; GOT __sprintf_chk@GLIBC_2.17
+    4e7c:	aa1903e3 	mov	x3, x25
+    4e80:	d2802002 	mov	x2, #0x100                 	// #256
+    4e84:	52800001 	mov	w1, #0x0                   	// #0
+    4e88:	aa1303e0 	mov	x0, x19
+    4e8c:	f0000064 	adrp	x4, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4e90:	9113f484 	add	x4, x4, #0x4fd  ; '/configs/precfg_remote_flag'
+    4e94:	d63f0300 	blr	x24
+    4e98:	f947dab5 	ldr	x21, [x21, #4016]  ; GOT log_log
+    4e9c:	f0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4ea0:	910b2000 	add	x0, x0, #0x2c8  ; 'updateUrlWithInstance'
+    4ea4:	9101401b 	add	x27, x0, #0x50  ; 'clearRemotePreCfgFile'
+    4ea8:	aa1303e4 	mov	x4, x19
+    4eac:	aa1703e3 	mov	x3, x23
+    4eb0:	528053a2 	mov	w2, #0x29d                 	// #669
+    4eb4:	aa1b03e1 	mov	x1, x27
+    4eb8:	f9003ba0 	str	x0, [x29, #112]
+    4ebc:	528000a0 	mov	w0, #0x5                   	// #5
+    4ec0:	d63f02a0 	blr	x21
+    4ec4:	f947d294 	ldr	x20, [x20, #4000]  ; GOT _system
+    4ec8:	f0000116 	adrp	x22, 27000 <_fini@@Base+0x13d4c>
+    4ecc:	aa1303e0 	mov	x0, x19
+    4ed0:	d63f0280 	blr	x20
+    4ed4:	f946c2d6 	ldr	x22, [x22, #3456]  ; GOT puts@GLIBC_2.17
+    4ed8:	aa1303e0 	mov	x0, x19
+    4edc:	d63f02c0 	blr	x22
+    4ee0:	d2802002 	mov	x2, #0x100                 	// #256
+    4ee4:	52800001 	mov	w1, #0x0                   	// #0
+    4ee8:	aa1303e0 	mov	x0, x19
+    4eec:	d63f0340 	blr	x26
+    4ef0:	aa1903e3 	mov	x3, x25
+    4ef4:	d2802002 	mov	x2, #0x100                 	// #256
+    4ef8:	52800001 	mov	w1, #0x0                   	// #0
+    4efc:	aa1303e0 	mov	x0, x19
+    4f00:	f0000064 	adrp	x4, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4f04:	9114b884 	add	x4, x4, #0x52e  ; '/configs/precfg_remote_avalible'
+    4f08:	d63f0300 	blr	x24
+    4f0c:	aa1303e4 	mov	x4, x19
+    4f10:	aa1703e3 	mov	x3, x23
+    4f14:	aa1b03e1 	mov	x1, x27
+    4f18:	52805462 	mov	w2, #0x2a3                 	// #675
+    4f1c:	528000a0 	mov	w0, #0x5                   	// #5
+    4f20:	d63f02a0 	blr	x21
+    4f24:	aa1303e0 	mov	x0, x19
+    4f28:	d63f0280 	blr	x20
+    4f2c:	aa1303e0 	mov	x0, x19
+    4f30:	d63f02c0 	blr	x22
+    4f34:	d2802002 	mov	x2, #0x100                 	// #256
+    4f38:	52800001 	mov	w1, #0x0                   	// #0
+    4f3c:	aa1303e0 	mov	x0, x19
+    4f40:	d63f0340 	blr	x26
+    4f44:	aa1903e3 	mov	x3, x25
+    4f48:	d2802002 	mov	x2, #0x100                 	// #256
+    4f4c:	52800001 	mov	w1, #0x0                   	// #0
+    4f50:	aa1303e0 	mov	x0, x19
+    4f54:	f0000064 	adrp	x4, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4f58:	91153884 	add	x4, x4, #0x54e  ; '/configs/precfg_remote_encryption.xml'
+    4f5c:	d63f0300 	blr	x24
+    4f60:	aa1303e4 	mov	x4, x19
+    4f64:	aa1703e3 	mov	x3, x23
+    4f68:	aa1b03e1 	mov	x1, x27
+    4f6c:	52805522 	mov	w2, #0x2a9                 	// #681
+    4f70:	528000a0 	mov	w0, #0x5                   	// #5
+    4f74:	d63f02a0 	blr	x21
+    4f78:	aa1303e0 	mov	x0, x19
+    4f7c:	d63f0280 	blr	x20
+    4f80:	aa1303e0 	mov	x0, x19
+    4f84:	d63f02c0 	blr	x22
+    4f88:	d2802002 	mov	x2, #0x100                 	// #256
+    4f8c:	52800001 	mov	w1, #0x0                   	// #0
+    4f90:	aa1303e0 	mov	x0, x19
+    4f94:	d63f0340 	blr	x26
+    4f98:	aa1903e3 	mov	x3, x25
+    4f9c:	d2802002 	mov	x2, #0x100                 	// #256
+    4fa0:	52800001 	mov	w1, #0x0                   	// #0
+    4fa4:	aa1303e0 	mov	x0, x19
+    4fa8:	f0000064 	adrp	x4, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    4fac:	9115d084 	add	x4, x4, #0x574  ; '/configs/precfg_remote.xml'
+    4fb0:	d63f0300 	blr	x24
+    4fb4:	aa1303e4 	mov	x4, x19
+    4fb8:	aa1703e3 	mov	x3, x23
+    4fbc:	aa1b03e1 	mov	x1, x27
+    4fc0:	528055e2 	mov	w2, #0x2af                 	// #687
+    4fc4:	528000a0 	mov	w0, #0x5                   	// #5
+    4fc8:	d63f02a0 	blr	x21
+    4fcc:	aa1303e0 	mov	x0, x19
+    4fd0:	d63f0280 	blr	x20
+    4fd4:	aa1303e0 	mov	x0, x19
+    4fd8:	d63f02c0 	blr	x22
+    4fdc:	d2802002 	mov	x2, #0x100                 	// #256
+    4fe0:	52800001 	mov	w1, #0x0                   	// #0
+    4fe4:	aa1303e0 	mov	x0, x19
+    4fe8:	d63f0340 	blr	x26
+    4fec:	aa1903e3 	mov	x3, x25
+    4ff0:	d2802002 	mov	x2, #0x100                 	// #256
+    4ff4:	52800001 	mov	w1, #0x0                   	// #0
+    4ff8:	aa1303e0 	mov	x0, x19
+    4ffc:	f0000064 	adrp	x4, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5000:	911bdc84 	add	x4, x4, #0x6f7  ; '/configs/precfg_opid_restore_flag'
+    5004:	d63f0300 	blr	x24
+    5008:	aa1303e4 	mov	x4, x19
+    500c:	aa1703e3 	mov	x3, x23
+    5010:	aa1b03e1 	mov	x1, x27
+    5014:	528056a2 	mov	w2, #0x2b5                 	// #693
+    5018:	528000a0 	mov	w0, #0x5                   	// #5
+    501c:	d63f02a0 	blr	x21
+    5020:	aa1303e0 	mov	x0, x19
+    5024:	d0000117 	adrp	x23, 27000 <_fini@@Base+0x13d4c>
+    5028:	d63f0280 	blr	x20
+    502c:	aa1303e0 	mov	x0, x19
+    5030:	d63f02c0 	blr	x22
+    5034:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5038:	91163c00 	add	x0, x0, #0x58f  ; 'rm -f /configs/tr069_conf/pre_update_remote_file_name'
+    503c:	d63f0280 	blr	x20
+    5040:	d0000076 	adrp	x22, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5044:	9119c6d6 	add	x22, x22, #0x671  ; 'delete previous PreCfg and DeltaCfg except file %s in bank %d\n'
+    5048:	f9403ba0 	ldr	x0, [x29, #112]
+    504c:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5050:	91171463 	add	x3, x3, #0x5c5  ; 'remove /configs/tr069_conf/pre_update_remote_file_name ok\n'
+    5054:	9100c013 	add	x19, x0, #0x30
+    5058:	52805a22 	mov	w2, #0x2d1                 	// #721
+    505c:	aa1303e1 	mov	x1, x19
+    5060:	528000e0 	mov	w0, #0x7                   	// #7
+    5064:	d63f02a0 	blr	x21
+    5068:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    506c:	91180000 	add	x0, x0, #0x600  ; 'rm -f /configs/tr069_conf/cfg_update_remote_file_name'
+    5070:	d63f0280 	blr	x20
+    5074:	52805a62 	mov	w2, #0x2d3                 	// #723
+    5078:	aa1303e1 	mov	x1, x19
+    507c:	528000e0 	mov	w0, #0x7                   	// #7
+    5080:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5084:	9118d863 	add	x3, x3, #0x636  ; 'remove /configs/tr069_conf/cfg_update_remote_file_name ok\n'
+    5088:	d63f02a0 	blr	x21
+    508c:	b94087a2 	ldr	w2, [x29, #132]
+    5090:	aa1603e0 	mov	x0, x22
+    5094:	f947d6f7 	ldr	x23, [x23, #4008]  ; GOT printf@GLIBC_2.17
+    5098:	f9403fa1 	ldr	x1, [x29, #120]
+    509c:	d63f02e0 	blr	x23
+    50a0:	b94087a5 	ldr	w5, [x29, #132]
+    50a4:	aa1603e3 	mov	x3, x22
+    50a8:	f9403fa4 	ldr	x4, [x29, #120]
+    50ac:	52805aa2 	mov	w2, #0x2d5                 	// #725
+    50b0:	aa1303e1 	mov	x1, x19
+    50b4:	528000a0 	mov	w0, #0x5                   	// #5
+    50b8:	d0000076 	adrp	x22, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    50bc:	911aeed6 	add	x22, x22, #0x6bb  ; 'set OperatorID to %s by delta config,call cfgcli -r\n'
+    50c0:	d63f02a0 	blr	x21
+    50c4:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    50c8:	aa1c03e0 	mov	x0, x28
+    50cc:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    50d0:	d63f0020 	blr	x1
+    50d4:	2a0003e2 	mov	w2, w0
+    50d8:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    50dc:	aa1c03e1 	mov	x1, x28
+    50e0:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    50e4:	911ac000 	add	x0, x0, #0x6b0  ; 'OperatorID'
+    50e8:	f9465063 	ldr	x3, [x3, #3232]  ; GOT scfg_set
+    50ec:	d63f0060 	blr	x3
+    50f0:	aa1c03e1 	mov	x1, x28
+    50f4:	aa1603e0 	mov	x0, x22
+    50f8:	d63f02e0 	blr	x23
+    50fc:	aa1c03e4 	mov	x4, x28
+    5100:	aa1603e3 	mov	x3, x22
+    5104:	aa1303e1 	mov	x1, x19
+    5108:	52805b22 	mov	w2, #0x2d9                 	// #729
+    510c:	528000a0 	mov	w0, #0x5                   	// #5
+    5110:	d63f02a0 	blr	x21
+    5114:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5118:	911bc000 	add	x0, x0, #0x6f0  ; ' touch /configs/precfg_opid_restore_flag'
+    511c:	d63f0280 	blr	x20
+    5120:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5124:	911c6400 	add	x0, x0, #0x719  ; 'cfgcli -rnoReboot'
+    5128:	d63f0280 	blr	x20
+    512c:	f94037a0 	ldr	x0, [x29, #104]
+    5130:	f9469800 	ldr	x0, [x0, #3376]
+    5134:	f940d7a1 	ldr	x1, [x29, #424]
+    5138:	f9400000 	ldr	x0, [x0]
+    513c:	ca000020 	eor	x0, x1, x0
+    5140:	b4000080 	cbz	x0, 5150 <processDeltaCfgwithOPIDChange@@Base+0x3e4>
+    5144:	d0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    5148:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    514c:	d63f0000 	blr	x0
+    5150:	a94153f3 	ldp	x19, x20, [sp, #16]
+    5154:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    5158:	a94363f7 	ldp	x23, x24, [sp, #48]
+    515c:	a9446bf9 	ldp	x25, x26, [sp, #64]
+    5160:	a94573fb 	ldp	x27, x28, [sp, #80]
+    5164:	a8db7bfd 	ldp	x29, x30, [sp], #432
+    5168:	d65f03c0 	ret
+
+000000000000516c <restoreRemoteCfg@@Base>:
+    516c:	d10643ff 	sub	sp, sp, #0x190
+    5170:	d298480c 	mov	x12, #0xc240                	// #49728
+    5174:	d14047ff 	sub	sp, sp, #0x11, lsl #12
+    5178:	a9037bfd 	stp	x29, x30, [sp, #48]
+    517c:	9100c3fd 	add	x29, sp, #0x30
+    5180:	a90873fb 	stp	x27, x28, [sp, #128]
+    5184:	d000011b 	adrp	x27, 27000 <_fini@@Base+0x13d4c>
+    5188:	d000011c 	adrp	x28, 27000 <_fini@@Base+0x13d4c>
+    518c:	a90453f3 	stp	x19, x20, [sp, #64]
+    5190:	f9461f73 	ldr	x19, [x27, #3128]  ; GOT memset@GLIBC_2.17
+    5194:	f9004ba0 	str	x0, [x29, #144]
+    5198:	b900bfa1 	str	w1, [x29, #188]
+    519c:	914043a1 	add	x1, x29, #0x10, lsl #12
+    51a0:	f9469b80 	ldr	x0, [x28, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    51a4:	91028021 	add	x1, x1, #0xa0
+    51a8:	a9055bf5 	stp	x21, x22, [sp, #80]
+    51ac:	a90663f7 	stp	x23, x24, [sp, #96]
+    51b0:	d2979418 	mov	x24, #0xbca0                	// #48288
+    51b4:	a9076bf9 	stp	x25, x26, [sp, #112]
+    51b8:	d000011a 	adrp	x26, 27000 <_fini@@Base+0x13d4c>
+    51bc:	f9400002 	ldr	x2, [x0]
+    51c0:	f9085c22 	str	x2, [x1, #4280]
+    51c4:	d2800002 	mov	x2, #0x0                   	// #0
+    51c8:	8b0c03a0 	add	x0, x29, x12
+    51cc:	d2828002 	mov	x2, #0x1400                	// #5120
+    51d0:	52800001 	mov	w1, #0x0                   	// #0
+    51d4:	f9006fa0 	str	x0, [x29, #216]
+    51d8:	d63f0260 	blr	x19
+    51dc:	d29ac80d 	mov	x13, #0xd640                	// #54848
+    51e0:	d2828002 	mov	x2, #0x1400                	// #5120
+    51e4:	8b0d03a0 	add	x0, x29, x13
+    51e8:	52800001 	mov	w1, #0x0                   	// #0
+    51ec:	f9005ba0 	str	x0, [x29, #176]
+    51f0:	d63f0260 	blr	x19
+    51f4:	d297610e 	mov	x14, #0xbb08                	// #47880
+    51f8:	d2801002 	mov	x2, #0x80                  	// #128
+    51fc:	8b0e03a0 	add	x0, x29, x14
+    5200:	52800001 	mov	w1, #0x0                   	// #0
+    5204:	f9007ba0 	str	x0, [x29, #240]
+    5208:	d0000079 	adrp	x25, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    520c:	910b2334 	add	x20, x25, #0x2c8  ; 'updateUrlWithInstance'
+    5210:	a910ffbf 	stp	xzr, xzr, [x29, #264]
+    5214:	d63f0260 	blr	x19
+    5218:	f9479743 	ldr	x3, [x26, #3880]  ; GOT scfg_get
+    521c:	52801002 	mov	w2, #0x80                  	// #128
+    5220:	f9407ba1 	ldr	x1, [x29, #240]
+    5224:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5228:	911ac000 	add	x0, x0, #0x6b0  ; 'OperatorID'
+    522c:	9103a297 	add	x23, x20, #0xe8  ; 'restoreRemoteCfg'
+    5230:	d63f0060 	blr	x3
+    5234:	d297c10f 	mov	x15, #0xbe08                	// #48648
+    5238:	d2802002 	mov	x2, #0x100                 	// #256
+    523c:	8b0f03a0 	add	x0, x29, x15
+    5240:	52800001 	mov	w1, #0x0                   	// #0
+    5244:	f9006ba0 	str	x0, [x29, #208]
+    5248:	d63f0260 	blr	x19
+    524c:	d2977110 	mov	x16, #0xbb88                	// #48008
+    5250:	d2801002 	mov	x2, #0x80                  	// #128
+    5254:	8b1003a0 	add	x0, x29, x16
+    5258:	52800001 	mov	w1, #0x0                   	// #0
+    525c:	f90067a0 	str	x0, [x29, #200]
+    5260:	d63f0260 	blr	x19
+    5264:	d29d4811 	mov	x17, #0xea40                	// #59968
+    5268:	d284e222 	mov	x2, #0x2711                	// #10001
+    526c:	8b1103a0 	add	x0, x29, x17
+    5270:	52800001 	mov	w1, #0x0                   	// #0
+    5274:	d63f0260 	blr	x19
+    5278:	f8466296 	ldur	x22, [x20, #102]
+    527c:	d2901412 	mov	x18, #0x80a0                	// #32928
+    5280:	8b1203a0 	add	x0, x29, x18
+    5284:	d297827e 	mov	x30, #0xbc13                	// #48147
+    5288:	b846d295 	ldur	w21, [x20, #109]
+    528c:	d2800ea2 	mov	x2, #0x75                  	// #117
+    5290:	52800001 	mov	w1, #0x0                   	// #0
+    5294:	f91db416 	str	x22, [x0, #15208]
+    5298:	8b1803a0 	add	x0, x29, x24
+    529c:	b816f015 	stur	w21, [x0, #-145]
+    52a0:	8b1e03a0 	add	x0, x29, x30
+    52a4:	d63f0260 	blr	x19
+    52a8:	d2901400 	mov	x0, #0x80a0                	// #32928
+    52ac:	8b0003a0 	add	x0, x29, x0
+    52b0:	d2979403 	mov	x3, #0xbca0                	// #48288
+    52b4:	d2979264 	mov	x4, #0xbc93                	// #48275
+    52b8:	d2800ea2 	mov	x2, #0x75                  	// #117
+    52bc:	52800001 	mov	w1, #0x0                   	// #0
+    52c0:	f91df416 	str	x22, [x0, #15336]
+    52c4:	8b0303a0 	add	x0, x29, x3
+    52c8:	d0000076 	adrp	x22, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    52cc:	911d1ed8 	add	x24, x22, #0x747  ; '/configs/cfg_update_remote_encryption.kv'
+    52d0:	b81ef015 	stur	w21, [x0, #-17]
+    52d4:	8b0403a0 	add	x0, x29, x4
+    52d8:	d63f0260 	blr	x19
+    52dc:	f9008fbf 	str	xzr, [x29, #280]
+    52e0:	d297e105 	mov	x5, #0xbf08                	// #48904
+    52e4:	d2802202 	mov	x2, #0x110                 	// #272
+    52e8:	8b0503a0 	add	x0, x29, x5
+    52ec:	52800001 	mov	w1, #0x0                   	// #0
+    52f0:	d63f0260 	blr	x19
+    52f4:	d0000115 	adrp	x21, 27000 <_fini@@Base+0x13d4c>
+    52f8:	d2980306 	mov	x6, #0xc018                	// #49176
+    52fc:	d2802202 	mov	x2, #0x110                 	// #272
+    5300:	8b0603a0 	add	x0, x29, x6
+    5304:	52800001 	mov	w1, #0x0                   	// #0
+    5308:	d63f0260 	blr	x19
+    530c:	b90103bf 	str	wzr, [x29, #256]
+    5310:	d297a107 	mov	x7, #0xbd08                	// #48392
+    5314:	d2801002 	mov	x2, #0x80                  	// #128
+    5318:	8b0703a0 	add	x0, x29, x7
+    531c:	52800001 	mov	w1, #0x0                   	// #0
+    5320:	d63f0260 	blr	x19
+    5324:	d297b108 	mov	x8, #0xbd88                	// #48520
+    5328:	d2801002 	mov	x2, #0x80                  	// #128
+    532c:	8b0803a0 	add	x0, x29, x8
+    5330:	52800001 	mov	w1, #0x0                   	// #0
+    5334:	d63f0260 	blr	x19
+    5338:	d0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    533c:	b940bfa5 	ldr	w5, [x29, #188]
+    5340:	528060e2 	mov	w2, #0x307                 	// #775
+    5344:	f947da66 	ldr	x6, [x19, #4016]  ; GOT log_log
+    5348:	aa1703e1 	mov	x1, x23
+    534c:	f9404ba4 	ldr	x4, [x29, #144]
+    5350:	528000a0 	mov	w0, #0x5                   	// #5
+    5354:	f9007fa6 	str	x6, [x29, #248]
+    5358:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    535c:	911cac63 	add	x3, x3, #0x72b  ; 'path =%s, ifImmediated=%d \n'
+    5360:	d63f00c0 	blr	x6
+    5364:	f946b2b5 	ldr	x21, [x21, #3424]  ; GOT access@GLIBC_2.17
+    5368:	52800001 	mov	w1, #0x0                   	// #0
+    536c:	aa1803e0 	mov	x0, x24
+    5370:	d63f02a0 	blr	x21
+    5374:	a907f3ba 	stp	x26, x28, [x29, #120]
+    5378:	f90057b9 	str	x25, [x29, #168]
+    537c:	d000007a 	adrp	x26, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5380:	f90063bb 	str	x27, [x29, #192]
+    5384:	34000320 	cbz	w0, 53e8 <restoreRemoteCfg@@Base+0x27c>
+    5388:	f947da73 	ldr	x19, [x19, #4016]  ; GOT log_log
+    538c:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5390:	911e5063 	add	x3, x3, #0x794  ; '%s or %s access failed!\n'
+    5394:	f94057a0 	ldr	x0, [x29, #168]
+    5398:	911dc345 	add	x5, x26, #0x770  ; '/configs/cfg_update_remote_avalible'
+    539c:	911d1ec4 	add	x4, x22, #0x747  ; '/configs/cfg_update_remote_encryption.kv'
+    53a0:	52806162 	mov	w2, #0x30b                 	// #779
+    53a4:	910b2001 	add	x1, x0, #0x2c8
+    53a8:	52800060 	mov	w0, #0x3                   	// #3
+    53ac:	9103a021 	add	x1, x1, #0xe8  ; 'url is NULL\n'
+    53b0:	d63f0260 	blr	x19
+    53b4:	12800013 	mov	w19, #0xffffffff            	// #-1
+    53b8:	f94043a1 	ldr	x1, [x29, #128]
+    53bc:	2a1303e0 	mov	w0, w19
+    53c0:	f946983c 	ldr	x28, [x1, #3376]
+    53c4:	914043a1 	add	x1, x29, #0x10, lsl #12
+    53c8:	91028021 	add	x1, x1, #0xa0
+    53cc:	f9485c22 	ldr	x2, [x1, #4280]
+    53d0:	f9400381 	ldr	x1, [x28]
+    53d4:	ca010041 	eor	x1, x2, x1
+    53d8:	b400f6e1 	cbz	x1, 72b4 <restoreRemoteCfg@@Base+0x2148>
+    53dc:	d0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    53e0:	f9467000 	ldr	x0, [x0, #3296]  ; GOT __stack_chk_fail@GLIBC_2.17
+    53e4:	d63f0000 	blr	x0
+    53e8:	52800001 	mov	w1, #0x0                   	// #0
+    53ec:	911dc340 	add	x0, x26, #0x770  ; '/configs/cfg_update_remote_avalible'
+    53f0:	d63f02a0 	blr	x21
+    53f4:	b900eba0 	str	w0, [x29, #232]
+    53f8:	2a0003e0 	mov	w0, w0
+    53fc:	35fffc60 	cbnz	w0, 5388 <restoreRemoteCfg@@Base+0x21c>
+    5400:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    5404:	d0000081 	adrp	x1, 17000 <_fini@@Base+0x3d4c>
+    5408:	91119c21 	add	x1, x1, #0x467
+    540c:	f945cc42 	ldr	x2, [x2, #2968]  ; GOT fopen@GLIBC_2.17
+    5410:	aa1803e0 	mov	x0, x24
+    5414:	d63f0040 	blr	x2
+    5418:	f90073a0 	str	x0, [x29, #224]
+    541c:	b5000140 	cbnz	x0, 5444 <restoreRemoteCfg@@Base+0x2d8>
+    5420:	f9407fa5 	ldr	x5, [x29, #248]
+    5424:	aa1803e4 	mov	x4, x24
+    5428:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    542c:	911eb463 	add	x3, x3, #0x7ad  ; 'open %s failed!\n'
+    5430:	52806222 	mov	w2, #0x311                 	// #785
+    5434:	aa1703e1 	mov	x1, x23
+    5438:	52800060 	mov	w0, #0x3                   	// #3
+    543c:	d63f00a0 	blr	x5
+    5440:	17ffffdd 	b	53b4 <restoreRemoteCfg@@Base+0x248>
+    5444:	97fffc4c 	bl	4574 <__gmon_start__@plt+0x74>
+    5448:	f94057b8 	ldr	x24, [x29, #168]
+    544c:	2a0003f5 	mov	w21, w0
+    5450:	7100001f 	cmp	w0, #0x0
+    5454:	aa1403fc 	mov	x28, x20
+    5458:	52800100 	mov	w0, #0x8                   	// #8
+    545c:	d2800016 	mov	x22, #0x0                   	// #0
+    5460:	1a8002b5 	csel	w21, w21, w0, eq	// eq = none
+    5464:	2913ffbf 	stp	wzr, wzr, [x29, #156]
+    5468:	910443a0 	add	x0, x29, #0x110
+    546c:	f90037a0 	str	x0, [x29, #104]
+    5470:	b900a7bf 	str	wzr, [x29, #164]
+    5474:	b900bbbf 	str	wzr, [x29, #184]
+    5478:	f9007fb7 	str	x23, [x29, #248]
+    547c:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    5480:	52828001 	mov	w1, #0x1400                	// #5120
+    5484:	a94d8ba0 	ldp	x0, x2, [x29, #216]
+    5488:	f947f063 	ldr	x3, [x3, #4064]  ; GOT fgets@GLIBC_2.17
+    548c:	d63f0060 	blr	x3
+    5490:	b400d4e0 	cbz	x0, 6f2c <restoreRemoteCfg@@Base+0x1dc0>
+    5494:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    5498:	f9405ba0 	ldr	x0, [x29, #176]
+    549c:	f9406fa1 	ldr	x1, [x29, #216]
+    54a0:	d297910b 	mov	x11, #0xbc88                	// #48264
+    54a4:	f9453463 	ldr	x3, [x3, #2664]  ; GOT memcpy@GLIBC_2.17
+    54a8:	d2828002 	mov	x2, #0x1400                	// #5120
+    54ac:	8b0b03b9 	add	x25, x29, x11
+    54b0:	d0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    54b4:	d63f0060 	blr	x3
+    54b8:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    54bc:	f9405ba0 	ldr	x0, [x29, #176]
+    54c0:	52801002 	mov	w2, #0x80                  	// #128
+    54c4:	aa1903e1 	mov	x1, x25
+    54c8:	f9457463 	ldr	x3, [x3, #2792]  ; GOT get_domain_from_line
+    54cc:	d63f0060 	blr	x3
+    54d0:	35000a20 	cbnz	w0, 5614 <restoreRemoteCfg@@Base+0x4a8>
+    54d4:	f946ce82 	ldr	x2, [x20, #3480]  ; GOT strcmp@GLIBC_2.17
+    54d8:	d0000073 	adrp	x19, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    54dc:	911efa61 	add	x1, x19, #0x7be  ; 'shell'
+    54e0:	aa1903e0 	mov	x0, x25
+    54e4:	d63f0040 	blr	x2
+    54e8:	35000480 	cbnz	w0, 5578 <restoreRemoteCfg@@Base+0x40c>
+    54ec:	b40000b6 	cbz	x22, 5500 <restoreRemoteCfg@@Base+0x394>
+    54f0:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    54f4:	aa1603e0 	mov	x0, x22
+    54f8:	f945c021 	ldr	x1, [x1, #2944]  ; GOT fclose@GLIBC_2.17
+    54fc:	d63f0020 	blr	x1
+    5500:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    5504:	d0000077 	adrp	x23, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5508:	912012f7 	add	x23, x23, #0x804  ; '/tmp/cfg_update_remote.sh'
+    550c:	f945cc42 	ldr	x2, [x2, #2968]  ; GOT fopen@GLIBC_2.17
+    5510:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5514:	911f1021 	add	x1, x1, #0x7c4
+    5518:	aa1703e0 	mov	x0, x23
+    551c:	d63f0040 	blr	x2
+    5520:	aa0003f6 	mov	x22, x0
+    5524:	b50002a0 	cbnz	x0, 5578 <restoreRemoteCfg@@Base+0x40c>
+    5528:	d0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    552c:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5530:	910b2021 	add	x1, x1, #0x2c8  ; 'updateUrlWithInstance'
+    5534:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    5538:	aa1703e4 	mov	x4, x23
+    553c:	528064c2 	mov	w2, #0x326                 	// #806
+    5540:	9103a021 	add	x1, x1, #0xe8  ; 'restoreRemoteCfg'
+    5544:	52800060 	mov	w0, #0x3                   	// #3
+    5548:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    554c:	911f1863 	add	x3, x3, #0x7c6  ; 'fopen failed, file \n'
+    5550:	d63f00a0 	blr	x5
+    5554:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5558:	f94073a0 	ldr	x0, [x29, #224]
+    555c:	f945c021 	ldr	x1, [x1, #2944]  ; GOT fclose@GLIBC_2.17
+    5560:	d63f0020 	blr	x1
+    5564:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5568:	910463a0 	add	x0, x29, #0x118
+    556c:	f947cc21 	ldr	x1, [x1, #3992]  ; GOT freeAddObjectTokenList
+    5570:	d63f0020 	blr	x1
+    5574:	17ffff90 	b	53b4 <restoreRemoteCfg@@Base+0x248>
+    5578:	f946ce94 	ldr	x20, [x20, #3480]  ; GOT strcmp@GLIBC_2.17
+    557c:	d297810a 	mov	x10, #0xbc08                	// #48136
+    5580:	8b0a03b7 	add	x23, x29, x10
+    5584:	911efa61 	add	x1, x19, #0x7be  ; 'shell'
+    5588:	aa1703e0 	mov	x0, x23
+    558c:	d63f0280 	blr	x20
+    5590:	350002e0 	cbnz	w0, 55ec <restoreRemoteCfg@@Base+0x480>
+    5594:	b40000b6 	cbz	x22, 55a8 <restoreRemoteCfg@@Base+0x43c>
+    5598:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    559c:	aa1603e0 	mov	x0, x22
+    55a0:	f945c021 	ldr	x1, [x1, #2944]  ; GOT fclose@GLIBC_2.17
+    55a4:	d63f0020 	blr	x1
+    55a8:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    55ac:	d0000073 	adrp	x19, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    55b0:	911f6e73 	add	x19, x19, #0x7db  ; 'chmod a+x /tmp/cfg_update_remote.sh && . /tmp/cfg_update_remote.sh'
+    55b4:	f947d021 	ldr	x1, [x1, #4000]  ; GOT _system
+    55b8:	aa1303e0 	mov	x0, x19
+    55bc:	d2800016 	mov	x22, #0x0                   	// #0
+    55c0:	d63f0020 	blr	x1
+    55c4:	d0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    55c8:	910b2301 	add	x1, x24, #0x2c8
+    55cc:	aa1303e4 	mov	x4, x19
+    55d0:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    55d4:	91207863 	add	x3, x3, #0x81e  ; 'run : %s\n'
+    55d8:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    55dc:	528066c2 	mov	w2, #0x336                 	// #822
+    55e0:	9103a021 	add	x1, x1, #0xe8
+    55e4:	528000a0 	mov	w0, #0x5                   	// #5
+    55e8:	d63f00a0 	blr	x5
+    55ec:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    55f0:	d2800fe2 	mov	x2, #0x7f                  	// #127
+    55f4:	aa1903e1 	mov	x1, x25
+    55f8:	aa1703e0 	mov	x0, x23
+    55fc:	f947b063 	ldr	x3, [x3, #3936]  ; GOT strncpy@GLIBC_2.17
+    5600:	d63f0060 	blr	x3
+    5604:	d2961409 	mov	x9, #0xb0a0                	// #45216
+    5608:	8b0903a0 	add	x0, x29, x9
+    560c:	392f9c1f 	strb	wzr, [x0, #3047]
+    5610:	17ffff9b 	b	547c <restoreRemoteCfg@@Base+0x310>
+    5614:	f946ce9a 	ldr	x26, [x20, #3480]
+    5618:	d2978108 	mov	x8, #0xbc08                	// #48136
+    561c:	910b2317 	add	x23, x24, #0x2c8
+    5620:	8b0803b3 	add	x19, x29, x8
+    5624:	91019ae1 	add	x1, x23, #0x66  ; '$%s=%s,ifImmediated=%d\n'
+    5628:	aa1303e0 	mov	x0, x19
+    562c:	d63f0340 	blr	x26
+    5630:	3500c440 	cbnz	w0, 6eb8 <restoreRemoteCfg@@Base+0x1d4c>
+    5634:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    5638:	f94037a2 	ldr	x2, [x29, #104]
+    563c:	f9405ba0 	ldr	x0, [x29, #176]
+    5640:	910423a1 	add	x1, x29, #0x108
+    5644:	f9475863 	ldr	x3, [x3, #3760]  ; GOT process_by_line
+    5648:	d63f0060 	blr	x3
+    564c:	b900efa0 	str	w0, [x29, #236]
+    5650:	2a0003e0 	mov	w0, w0
+    5654:	3500b7c0 	cbnz	w0, 6d4c <restoreRemoteCfg@@Base+0x1be0>
+    5658:	f94087b3 	ldr	x19, [x29, #264]
+    565c:	39400260 	ldrb	w0, [x19]
+    5660:	7100901f 	cmp	w0, #0x24
+    5664:	54002ca1 	b.ne	5bf8 <restoreRemoteCfg@@Base+0xa8c>  // b.any
+    5668:	91000673 	add	x19, x19, #0x1
+    566c:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5670:	9120a021 	add	x1, x1, #0x828  ; 'version'
+    5674:	aa1303e0 	mov	x0, x19
+    5678:	f90087b3 	str	x19, [x29, #264]
+    567c:	d63f0340 	blr	x26
+    5680:	f9408bb9 	ldr	x25, [x29, #272]
+    5684:	35000180 	cbnz	w0, 56b4 <restoreRemoteCfg@@Base+0x548>
+    5688:	d0000106 	adrp	x6, 27000 <_fini@@Base+0x13d4c>
+    568c:	aa1903e5 	mov	x5, x25
+    5690:	aa1303e4 	mov	x4, x19
+    5694:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5698:	9120c063 	add	x3, x3, #0x830  ; '$%s=%s\n'
+    569c:	f947d8c6 	ldr	x6, [x6, #4016]  ; GOT log_log
+    56a0:	528068e2 	mov	w2, #0x347                 	// #839
+    56a4:	9103a2e1 	add	x1, x23, #0xe8  ; 'om_ri'
+    56a8:	528000a0 	mov	w0, #0x5                   	// #5
+    56ac:	d63f00c0 	blr	x6
+    56b0:	17ffff73 	b	547c <restoreRemoteCfg@@Base+0x310>
+    56b4:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    56b8:	9120e021 	add	x1, x1, #0x838  ; 'force_write'
+    56bc:	aa1303e0 	mov	x0, x19
+    56c0:	d63f0340 	blr	x26
+    56c4:	35000280 	cbnz	w0, 5714 <restoreRemoteCfg@@Base+0x5a8>
+    56c8:	d0000106 	adrp	x6, 27000 <_fini@@Base+0x13d4c>
+    56cc:	aa1903e5 	mov	x5, x25
+    56d0:	aa1303e4 	mov	x4, x19
+    56d4:	52806942 	mov	w2, #0x34a                 	// #842
+    56d8:	f947d8c6 	ldr	x6, [x6, #4016]  ; GOT log_log
+    56dc:	9103a2e1 	add	x1, x23, #0xe8  ; 'om_ri'
+    56e0:	528000a0 	mov	w0, #0x5                   	// #5
+    56e4:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    56e8:	9120c063 	add	x3, x3, #0x830  ; '$%s=%s\n'
+    56ec:	d63f00c0 	blr	x6
+    56f0:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    56f4:	f9408ba0 	ldr	x0, [x29, #272]
+    56f8:	f945c421 	ldr	x1, [x1, #2952]  ; GOT atoi@GLIBC_2.17
+    56fc:	d63f0020 	blr	x1
+    5700:	321c02a1 	orr	w1, w21, #0x10
+    5704:	121b7ab5 	and	w21, w21, #0xffffffef
+    5708:	7100001f 	cmp	w0, #0x0
+    570c:	1a8102b5 	csel	w21, w21, w1, eq	// eq = none
+    5710:	17ffff5b 	b	547c <restoreRemoteCfg@@Base+0x310>
+    5714:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5718:	91211021 	add	x1, x1, #0x844  ; 'no_rts_called'
+    571c:	aa1303e0 	mov	x0, x19
+    5720:	d63f0340 	blr	x26
+    5724:	35000280 	cbnz	w0, 5774 <restoreRemoteCfg@@Base+0x608>
+    5728:	d0000106 	adrp	x6, 27000 <_fini@@Base+0x13d4c>
+    572c:	52806a42 	mov	w2, #0x352                 	// #850
+    5730:	aa1903e5 	mov	x5, x25
+    5734:	aa1303e4 	mov	x4, x19
+    5738:	f947d8c6 	ldr	x6, [x6, #4016]  ; GOT log_log
+    573c:	9103a2e1 	add	x1, x23, #0xe8  ; 'om_ri'
+    5740:	528000a0 	mov	w0, #0x5                   	// #5
+    5744:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5748:	9120c063 	add	x3, x3, #0x830  ; '$%s=%s\n'
+    574c:	d63f00c0 	blr	x6
+    5750:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5754:	f9408ba0 	ldr	x0, [x29, #272]
+    5758:	f945c421 	ldr	x1, [x1, #2952]  ; GOT atoi@GLIBC_2.17
+    575c:	d63f0020 	blr	x1
+    5760:	52820021 	mov	w1, #0x1001                	// #4097
+    5764:	12820022 	mov	w2, #0xffffeffe            	// #-4098
+    5768:	2a0102a1 	orr	w1, w21, w1
+    576c:	0a0202b5 	and	w21, w21, w2
+    5770:	17ffffe6 	b	5708 <restoreRemoteCfg@@Base+0x59c>
+    5774:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5778:	91214821 	add	x1, x1, #0x852  ; 'operator_id'
+    577c:	aa1303e0 	mov	x0, x19
+    5780:	d63f0340 	blr	x26
+    5784:	35000240 	cbnz	w0, 57cc <restoreRemoteCfg@@Base+0x660>
+    5788:	d0000106 	adrp	x6, 27000 <_fini@@Base+0x13d4c>
+    578c:	52806b82 	mov	w2, #0x35c                 	// #860
+    5790:	9103a2e1 	add	x1, x23, #0xe8  ; 'om_ri'
+    5794:	528000a0 	mov	w0, #0x5                   	// #5
+    5798:	f947d8c6 	ldr	x6, [x6, #4016]  ; GOT log_log
+    579c:	aa1903e5 	mov	x5, x25
+    57a0:	aa1303e4 	mov	x4, x19
+    57a4:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    57a8:	9120c063 	add	x3, x3, #0x830  ; '$%s=%s\n'
+    57ac:	d63f00c0 	blr	x6
+    57b0:	f9406ba0 	ldr	x0, [x29, #208]
+    57b4:	d2801fe2 	mov	x2, #0xff                  	// #255
+    57b8:	f9408ba1 	ldr	x1, [x29, #272]
+    57bc:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    57c0:	f947b063 	ldr	x3, [x3, #3936]  ; GOT strncpy@GLIBC_2.17
+    57c4:	d63f0060 	blr	x3
+    57c8:	14000016 	b	5820 <restoreRemoteCfg@@Base+0x6b4>
+    57cc:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    57d0:	91217821 	add	x1, x1, #0x85e  ; 'change_opid'
+    57d4:	aa1303e0 	mov	x0, x19
+    57d8:	d63f0340 	blr	x26
+    57dc:	35000660 	cbnz	w0, 58a8 <restoreRemoteCfg@@Base+0x73c>
+    57e0:	d0000107 	adrp	x7, 27000 <_fini@@Base+0x13d4c>
+    57e4:	b940bfa6 	ldr	w6, [x29, #188]
+    57e8:	f9407fa1 	ldr	x1, [x29, #248]
+    57ec:	aa1903e5 	mov	x5, x25
+    57f0:	f947d8e7 	ldr	x7, [x7, #4016]  ; GOT log_log
+    57f4:	aa1303e4 	mov	x4, x19
+    57f8:	52806c02 	mov	w2, #0x360                 	// #864
+    57fc:	528000a0 	mov	w0, #0x5                   	// #5
+    5800:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5804:	9121a863 	add	x3, x3, #0x86a  ; '$%s=%s,ifImmediated=%d\n'
+    5808:	d63f00e0 	blr	x7
+    580c:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5810:	f9408ba0 	ldr	x0, [x29, #272]
+    5814:	f945c421 	ldr	x1, [x1, #2952]  ; GOT atoi@GLIBC_2.17
+    5818:	d63f0020 	blr	x1
+    581c:	b900bba0 	str	w0, [x29, #184]
+    5820:	b940bba0 	ldr	w0, [x29, #184]
+    5824:	7100001f 	cmp	w0, #0x0
+    5828:	b940bfa0 	ldr	w0, [x29, #188]
+    582c:	7a401804 	ccmp	w0, #0x0, #0x4, ne	// ne = any
+    5830:	54ffe260 	b.eq	547c <restoreRemoteCfg@@Base+0x310>  // b.none
+    5834:	d2961405 	mov	x5, #0xb0a0                	// #45216
+    5838:	8b0503a0 	add	x0, x29, x5
+    583c:	3975a000 	ldrb	w0, [x0, #3432]
+    5840:	34ffe1e0 	cbz	w0, 547c <restoreRemoteCfg@@Base+0x310>
+    5844:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    5848:	f9406ba0 	ldr	x0, [x29, #208]
+    584c:	f9407ba1 	ldr	x1, [x29, #240]
+    5850:	f946cc42 	ldr	x2, [x2, #3480]  ; GOT strcmp@GLIBC_2.17
+    5854:	d63f0040 	blr	x2
+    5858:	b900bba0 	str	w0, [x29, #184]
+    585c:	2a0003e0 	mov	w0, w0
+    5860:	3500b5c0 	cbnz	w0, 6f18 <restoreRemoteCfg@@Base+0x1dac>
+    5864:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    5868:	f9407ba1 	ldr	x1, [x29, #240]
+    586c:	d0000073 	adrp	x19, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5870:	91382a73 	add	x19, x19, #0xe0a  ; 'current operatorID is already %s,no need set OPID and do factory reset!\n'
+    5874:	f947d442 	ldr	x2, [x2, #4008]  ; GOT printf@GLIBC_2.17
+    5878:	aa1303e0 	mov	x0, x19
+    587c:	d63f0040 	blr	x2
+    5880:	d0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    5884:	f9407ba4 	ldr	x4, [x29, #240]
+    5888:	910b2301 	add	x1, x24, #0x2c8
+    588c:	aa1303e3 	mov	x3, x19
+    5890:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    5894:	52808622 	mov	w2, #0x431                 	// #1073
+    5898:	9103a021 	add	x1, x1, #0xe8
+    589c:	528000a0 	mov	w0, #0x5                   	// #5
+    58a0:	d63f00a0 	blr	x5
+    58a4:	17fffef6 	b	547c <restoreRemoteCfg@@Base+0x310>
+    58a8:	f946ce94 	ldr	x20, [x20, #3480]
+    58ac:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    58b0:	91220821 	add	x1, x1, #0x882  ; 'if_reboot'
+    58b4:	aa1303e0 	mov	x0, x19
+    58b8:	d63f0280 	blr	x20
+    58bc:	35000220 	cbnz	w0, 5900 <restoreRemoteCfg@@Base+0x794>
+    58c0:	d0000106 	adrp	x6, 27000 <_fini@@Base+0x13d4c>
+    58c4:	f9407fa1 	ldr	x1, [x29, #248]
+    58c8:	aa1903e5 	mov	x5, x25
+    58cc:	aa1303e4 	mov	x4, x19
+    58d0:	f947d8c6 	ldr	x6, [x6, #4016]  ; GOT log_log
+    58d4:	52806c62 	mov	w2, #0x363                 	// #867
+    58d8:	528000a0 	mov	w0, #0x5                   	// #5
+    58dc:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    58e0:	9120c063 	add	x3, x3, #0x830  ; '$%s=%s\n'
+    58e4:	d63f00c0 	blr	x6
+    58e8:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    58ec:	f9408ba0 	ldr	x0, [x29, #272]
+    58f0:	f945c421 	ldr	x1, [x1, #2952]  ; GOT atoi@GLIBC_2.17
+    58f4:	d63f0020 	blr	x1
+    58f8:	b9009fa0 	str	w0, [x29, #156]
+    58fc:	17ffffc9 	b	5820 <restoreRemoteCfg@@Base+0x6b4>
+    5900:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5904:	91223021 	add	x1, x1, #0x88c  ; 'add_object'
+    5908:	aa1303e0 	mov	x0, x19
+    590c:	d63f0280 	blr	x20
+    5910:	2a0003f7 	mov	w23, w0
+    5914:	35000ee0 	cbnz	w0, 5af0 <restoreRemoteCfg@@Base+0x984>
+    5918:	aa1303e4 	mov	x4, x19
+    591c:	d0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    5920:	f9407fa1 	ldr	x1, [x29, #248]
+    5924:	aa1903e5 	mov	x5, x25
+    5928:	f947da73 	ldr	x19, [x19, #4016]  ; GOT log_log
+    592c:	52806d02 	mov	w2, #0x368                 	// #872
+    5930:	528000a0 	mov	w0, #0x5                   	// #5
+    5934:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5938:	9120c063 	add	x3, x3, #0x830  ; '$%s=%s\n'
+    593c:	d63f0260 	blr	x19
+    5940:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    5944:	f9408ba0 	ldr	x0, [x29, #272]
+    5948:	910413a1 	add	x1, x29, #0x104
+    594c:	f9476c42 	ldr	x2, [x2, #3800]  ; GOT findTokenChar
+    5950:	d63f0040 	blr	x2
+    5954:	aa0003fa 	mov	x26, x0
+    5958:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    595c:	f9408fa1 	ldr	x1, [x29, #280]
+    5960:	f9471c42 	ldr	x2, [x2, #3640]  ; GOT updateUrlWithInstance
+    5964:	d63f0040 	blr	x2
+    5968:	b500011a 	cbnz	x26, 5988 <restoreRemoteCfg@@Base+0x81c>
+    596c:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5970:	91225c63 	add	x3, x3, #0x897  ; 'URL is NULL\n'
+    5974:	91040381 	add	x1, x28, #0x100  ; 'addObjectFromCfg'
+    5978:	52801da2 	mov	w2, #0xed                  	// #237
+    597c:	52800060 	mov	w0, #0x3                   	// #3
+    5980:	d63f0260 	blr	x19
+    5984:	17ffffa7 	b	5820 <restoreRemoteCfg@@Base+0x6b4>
+    5988:	d2961407 	mov	x7, #0xb0a0                	// #45216
+    598c:	8b0703a0 	add	x0, x29, x7
+    5990:	3975a000 	ldrb	w0, [x0, #3432]
+    5994:	35000620 	cbnz	w0, 5a58 <restoreRemoteCfg@@Base+0x8ec>
+    5998:	f94063a3 	ldr	x3, [x29, #192]
+    599c:	d2859404 	mov	x4, #0x2ca0                	// #11424
+    59a0:	8b0403a0 	add	x0, x29, x4
+    59a4:	d2982505 	mov	x5, #0xc128                	// #49448
+    59a8:	d2859706 	mov	x6, #0x2cb8                	// #11448
+    59ac:	8b0503b3 	add	x19, x29, x5
+    59b0:	8b0603b9 	add	x25, x29, x6
+    59b4:	d2802002 	mov	x2, #0x100                 	// #256
+    59b8:	f9461c63 	ldr	x3, [x3, #3128]
+    59bc:	52800001 	mov	w1, #0x0                   	// #0
+    59c0:	a901fc1f 	stp	xzr, xzr, [x0, #24]
+    59c4:	aa1303e0 	mov	x0, x19
+    59c8:	f91667bf 	str	xzr, [x29, #11464]
+    59cc:	91040394 	add	x20, x28, #0x100  ; 'addObjectFromCfg'
+    59d0:	b92cd3bf 	str	wzr, [x29, #11472]
+    59d4:	d63f0060 	blr	x3
+    59d8:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    59dc:	d2801fe2 	mov	x2, #0xff                  	// #255
+    59e0:	aa1a03e1 	mov	x1, x26
+    59e4:	aa1303e0 	mov	x0, x19
+    59e8:	f947b063 	ldr	x3, [x3, #3936]  ; GOT strncpy@GLIBC_2.17
+    59ec:	d63f0060 	blr	x3
+    59f0:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    59f4:	aa1303e0 	mov	x0, x19
+    59f8:	aa1903e1 	mov	x1, x25
+    59fc:	f9460042 	ldr	x2, [x2, #3072]  ; GOT dmUtl_changeToFormatPath
+    5a00:	d63f0040 	blr	x2
+    5a04:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5a08:	aa1303e0 	mov	x0, x19
+    5a0c:	d0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    5a10:	f9462421 	ldr	x1, [x1, #3144]  ; GOT dmUtl_getOidByFormatUri
+    5a14:	d63f0020 	blr	x1
+    5a18:	f947da73 	ldr	x19, [x19, #4016]  ; GOT log_log
+    5a1c:	2a0003f7 	mov	w23, w0
+    5a20:	2a0003e4 	mov	w4, w0
+    5a24:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5a28:	91229063 	add	x3, x3, #0x8a4  ; 'oid=%d\n'
+    5a2c:	52801fa2 	mov	w2, #0xfd                  	// #253
+    5a30:	aa1403e1 	mov	x1, x20
+    5a34:	528000e0 	mov	w0, #0x7                   	// #7
+    5a38:	d63f0260 	blr	x19
+    5a3c:	310006ff 	cmn	w23, #0x1
+    5a40:	54000281 	b.ne	5a90 <restoreRemoteCfg@@Base+0x924>  // b.any
+    5a44:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5a48:	9122b063 	add	x3, x3, #0x8ac  ; 'dmUtl_getOidByFormatUri is failed!\n'
+    5a4c:	52801fe2 	mov	w2, #0xff                  	// #255
+    5a50:	aa1403e1 	mov	x1, x20
+    5a54:	17ffffca 	b	597c <restoreRemoteCfg@@Base+0x810>
+    5a58:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    5a5c:	f9406ba0 	ldr	x0, [x29, #208]
+    5a60:	f9407ba2 	ldr	x2, [x29, #240]
+    5a64:	52800581 	mov	w1, #0x2c                  	// #44
+    5a68:	f946c463 	ldr	x3, [x3, #3464]  ; GOT inStrList
+    5a6c:	d63f0060 	blr	x3
+    5a70:	b5fff940 	cbnz	x0, 5998 <restoreRemoteCfg@@Base+0x82c>
+    5a74:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    5a78:	394413a1 	ldrb	w1, [x29, #260]
+    5a7c:	2a1703e2 	mov	w2, w23
+    5a80:	910463a0 	add	x0, x29, #0x118
+    5a84:	f9477063 	ldr	x3, [x3, #3808]  ; GOT insertAddobjectToken
+    5a88:	d63f0060 	blr	x3
+    5a8c:	17ffff65 	b	5820 <restoreRemoteCfg@@Base+0x6b4>
+    5a90:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    5a94:	aa1903e1 	mov	x1, x25
+    5a98:	aa1a03e0 	mov	x0, x26
+    5a9c:	f946f442 	ldr	x2, [x2, #3560]  ; GOT dmUtl_getInstanceIdInUri
+    5aa0:	d63f0040 	blr	x2
+    5aa4:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    5aa8:	52800002 	mov	w2, #0x0                   	// #0
+    5aac:	aa1903e1 	mov	x1, x25
+    5ab0:	2a1703e0 	mov	w0, w23
+    5ab4:	f9478063 	ldr	x3, [x3, #3840]  ; GOT dbgen_addInstance
+    5ab8:	d63f0060 	blr	x3
+    5abc:	340000a0 	cbz	w0, 5ad0 <restoreRemoteCfg@@Base+0x964>
+    5ac0:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5ac4:	91234063 	add	x3, x3, #0x8d0  ; 'dbgen_addInstance faild!\n'
+    5ac8:	528020e2 	mov	w2, #0x107                 	// #263
+    5acc:	17ffffe1 	b	5a50 <restoreRemoteCfg@@Base+0x8e4>
+    5ad0:	d2841402 	mov	x2, #0x20a0                	// #8352
+    5ad4:	8b0203a0 	add	x0, x29, x2
+    5ad8:	d2859783 	mov	x3, #0x2cbc                	// #11452
+    5adc:	8b0303a1 	add	x1, x29, x3
+    5ae0:	39706000 	ldrb	w0, [x0, #3096]
+    5ae4:	51000400 	sub	w0, w0, #0x1
+    5ae8:	b860d837 	ldr	w23, [x1, w0, sxtw #2]
+    5aec:	17ffffe2 	b	5a74 <restoreRemoteCfg@@Base+0x908>
+    5af0:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5af4:	9123a821 	add	x1, x1, #0x8ea  ; 'from_ri'
+    5af8:	aa1303e0 	mov	x0, x19
+    5afc:	d63f0280 	blr	x20
+    5b00:	350000a0 	cbnz	w0, 5b14 <restoreRemoteCfg@@Base+0x9a8>
+    5b04:	d2800fe2 	mov	x2, #0x7f                  	// #127
+    5b08:	aa1903e1 	mov	x1, x25
+    5b0c:	f94067a0 	ldr	x0, [x29, #200]
+    5b10:	17ffff2b 	b	57bc <restoreRemoteCfg@@Base+0x650>
+    5b14:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5b18:	9123c821 	add	x1, x1, #0x8f2  ; 'voice_tr104_improve'
+    5b1c:	aa1303e0 	mov	x0, x19
+    5b20:	d0000117 	adrp	x23, 27000 <_fini@@Base+0x13d4c>
+    5b24:	d63f0280 	blr	x20
+    5b28:	35000300 	cbnz	w0, 5b88 <restoreRemoteCfg@@Base+0xa1c>
+    5b2c:	f9407fa1 	ldr	x1, [x29, #248]
+    5b30:	aa1903e5 	mov	x5, x25
+    5b34:	f947daf7 	ldr	x23, [x23, #4016]  ; GOT log_log
+    5b38:	aa1303e4 	mov	x4, x19
+    5b3c:	52806e22 	mov	w2, #0x371                 	// #881
+    5b40:	528000a0 	mov	w0, #0x5                   	// #5
+    5b44:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5b48:	9120c063 	add	x3, x3, #0x830  ; '$%s=%s\n'
+    5b4c:	d63f02e0 	blr	x23
+    5b50:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5b54:	f9408ba0 	ldr	x0, [x29, #272]
+    5b58:	f945c421 	ldr	x1, [x1, #2952]  ; GOT atoi@GLIBC_2.17
+    5b5c:	d63f0020 	blr	x1
+    5b60:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5b64:	340000c0 	cbz	w0, 5b7c <restoreRemoteCfg@@Base+0xa10>
+    5b68:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5b6c:	91241800 	add	x0, x0, #0x906  ; 'touch /configs/updtate_precfg_xml'
+    5b70:	f947d021 	ldr	x1, [x1, #4000]  ; GOT _system
+    5b74:	d63f0020 	blr	x1
+    5b78:	17fffe41 	b	547c <restoreRemoteCfg@@Base+0x310>
+    5b7c:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5b80:	9124a000 	add	x0, x0, #0x928  ; 'rm -f /configs/updtate_precfg_xml'
+    5b84:	17fffffb 	b	5b70 <restoreRemoteCfg@@Base+0xa04>
+    5b88:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5b8c:	913c6821 	add	x1, x1, #0xf1a  ; 'usp'
+    5b90:	aa1303e0 	mov	x0, x19
+    5b94:	d63f0280 	blr	x20
+    5b98:	aa1903e5 	mov	x5, x25
+    5b9c:	aa1303e4 	mov	x4, x19
+    5ba0:	350001c0 	cbnz	w0, 5bd8 <restoreRemoteCfg@@Base+0xa6c>
+    5ba4:	f9407fa1 	ldr	x1, [x29, #248]
+    5ba8:	52806f22 	mov	w2, #0x379                 	// #889
+    5bac:	f947daf7 	ldr	x23, [x23, #4016]
+    5bb0:	528000a0 	mov	w0, #0x5                   	// #5
+    5bb4:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5bb8:	9120c063 	add	x3, x3, #0x830  ; '$%s=%s\n'
+    5bbc:	d63f02e0 	blr	x23
+    5bc0:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5bc4:	f9408ba0 	ldr	x0, [x29, #272]
+    5bc8:	f945c421 	ldr	x1, [x1, #2952]  ; GOT atoi@GLIBC_2.17
+    5bcc:	d63f0020 	blr	x1
+    5bd0:	b900a7a0 	str	w0, [x29, #164]
+    5bd4:	17ffff13 	b	5820 <restoreRemoteCfg@@Base+0x6b4>
+    5bd8:	f947daf7 	ldr	x23, [x23, #4016]
+    5bdc:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5be0:	91252863 	add	x3, x3, #0x94a  ; 'unkonwn paramert: %s is %s\n'
+    5be4:	f9407fa1 	ldr	x1, [x29, #248]
+    5be8:	52806f82 	mov	w2, #0x37c                 	// #892
+    5bec:	528000a0 	mov	w0, #0x5                   	// #5
+    5bf0:	d63f02e0 	blr	x23
+    5bf4:	17fffe22 	b	547c <restoreRemoteCfg@@Base+0x310>
+    5bf8:	d2961401 	mov	x1, #0xb0a0                	// #45216
+    5bfc:	8b0103a0 	add	x0, x29, x1
+    5c00:	3975a000 	ldrb	w0, [x0, #3432]
+    5c04:	350010a0 	cbnz	w0, 5e18 <restoreRemoteCfg@@Base+0xcac>
+    5c08:	d0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    5c0c:	d2982500 	mov	x0, #0xc128                	// #49448
+    5c10:	f9408fa1 	ldr	x1, [x29, #280]
+    5c14:	8b0003b3 	add	x19, x29, x0
+    5c18:	f9471c42 	ldr	x2, [x2, #3640]  ; GOT updateUrlWithInstance
+    5c1c:	f94087a0 	ldr	x0, [x29, #264]
+    5c20:	d63f0040 	blr	x2
+    5c24:	f94063a3 	ldr	x3, [x29, #192]
+    5c28:	d2802222 	mov	x2, #0x111                 	// #273
+    5c2c:	52800001 	mov	w1, #0x0                   	// #0
+    5c30:	aa1303e0 	mov	x0, x19
+    5c34:	a950e7b7 	ldp	x23, x25, [x29, #264]
+    5c38:	f9461c63 	ldr	x3, [x3, #3128]
+    5c3c:	d63f0060 	blr	x3
+    5c40:	d0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    5c44:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5c48:	91259821 	add	x1, x1, #0x966  ; 'ealgo'
+    5c4c:	f9455084 	ldr	x4, [x4, #2720]  ; GOT db_wrapper_getElementAttribute
+    5c50:	52802203 	mov	w3, #0x110                 	// #272
+    5c54:	aa1303e2 	mov	x2, x19
+    5c58:	aa1703e0 	mov	x0, x23
+    5c5c:	d63f0080 	blr	x4
+    5c60:	b5000f20 	cbnz	x0, 5e44 <restoreRemoteCfg@@Base+0xcd8>
+    5c64:	d296141a 	mov	x26, #0xb0a0                	// #45216
+    5c68:	8b1a03a0 	add	x0, x29, x26
+    5c6c:	396ba000 	ldrb	w0, [x0, #2792]
+    5c70:	34001dc0 	cbz	w0, 6028 <restoreRemoteCfg@@Base+0xebc>
+    5c74:	d0000117 	adrp	x23, 27000 <_fini@@Base+0x13d4c>
+    5c78:	f9408ba1 	ldr	x1, [x29, #272]
+    5c7c:	d29d4819 	mov	x25, #0xea40                	// #59968
+    5c80:	8b1903b9 	add	x25, x29, x25
+    5c84:	f947b2f7 	ldr	x23, [x23, #3936]  ; GOT strncpy@GLIBC_2.17
+    5c88:	d284e202 	mov	x2, #0x2710                	// #10000
+    5c8c:	aa1903e0 	mov	x0, x25
+    5c90:	d63f02e0 	blr	x23
+    5c94:	f946ce94 	ldr	x20, [x20, #3480]
+    5c98:	f94067a0 	ldr	x0, [x29, #200]
+    5c9c:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5ca0:	9125b021 	add	x1, x1, #0x96c  ; 'genssidfmt'
+    5ca4:	d63f0280 	blr	x20
+    5ca8:	340000c0 	cbz	w0, 5cc0 <restoreRemoteCfg@@Base+0xb54>
+    5cac:	f94067a0 	ldr	x0, [x29, #200]
+    5cb0:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5cb4:	9125dc21 	add	x1, x1, #0x977  ; 'genpwd_wlanpasswd'
+    5cb8:	d63f0280 	blr	x20
+    5cbc:	35004ac0 	cbnz	w0, 6614 <restoreRemoteCfg@@Base+0x14a8>
+    5cc0:	f94063a3 	ldr	x3, [x29, #192]
+    5cc4:	d2801002 	mov	x2, #0x80                  	// #128
+    5cc8:	52800001 	mov	w1, #0x0                   	// #0
+    5ccc:	aa1303e0 	mov	x0, x19
+    5cd0:	d0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    5cd4:	d2961417 	mov	x23, #0xb0a0                	// #45216
+    5cd8:	f9461c63 	ldr	x3, [x3, #3128]
+    5cdc:	d63f0060 	blr	x3
+    5ce0:	d2975410 	mov	x16, #0xbaa0                	// #47776
+    5ce4:	8b1003a0 	add	x0, x29, x16
+    5ce8:	d2961411 	mov	x17, #0xb0a0                	// #45216
+    5cec:	d2975412 	mov	x18, #0xbaa0                	// #47776
+    5cf0:	f9476a83 	ldr	x3, [x20, #3792]  ; GOT ri_hal_get
+    5cf4:	52801002 	mov	w2, #0x80                  	// #128
+    5cf8:	a935fc1f 	stp	xzr, xzr, [x0, #-168]
+    5cfc:	8b1103a0 	add	x0, x29, x17
+    5d00:	aa1303e1 	mov	x1, x19
+    5d04:	7912d01f 	strh	wzr, [x0, #2408]
+    5d08:	8b1203a0 	add	x0, x29, x18
+    5d0c:	a9377c1f 	stp	xzr, xzr, [x0, #-144]
+    5d10:	8b1703a0 	add	x0, x29, x23
+    5d14:	7913001f 	strh	wzr, [x0, #2432]
+    5d18:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5d1c:	91262400 	add	x0, x0, #0x989  ; 'G984Serial'
+    5d20:	d63f0060 	blr	x3
+    5d24:	36f80b20 	tbz	w0, #31, 5e88 <restoreRemoteCfg@@Base+0xd1c>
+    5d28:	d0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    5d2c:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5d30:	91265063 	add	x3, x3, #0x994  ; 'get G984Serial from ri failed!\n'
+    5d34:	f947d884 	ldr	x4, [x4, #4016]  ; GOT log_log
+    5d38:	52802ac2 	mov	w2, #0x156                 	// #342
+    5d3c:	91046381 	add	x1, x28, #0x118  ; 'GenSSIDFMT'
+    5d40:	528000a0 	mov	w0, #0x5                   	// #5
+    5d44:	d63f0080 	blr	x4
+    5d48:	d285940b 	mov	x11, #0x2ca0                	// #11424
+    5d4c:	8b0b03a0 	add	x0, x29, x11
+    5d50:	f9476a94 	ldr	x20, [x20, #3792]  ; GOT ri_hal_get
+    5d54:	d297540c 	mov	x12, #0xbaa0                	// #47776
+    5d58:	d297490d 	mov	x13, #0xba48                	// #47688
+    5d5c:	8b0d03b3 	add	x19, x29, x13
+    5d60:	a901fc1f 	stp	xzr, xzr, [x0, #24]
+    5d64:	52800402 	mov	w2, #0x20                  	// #32
+    5d68:	a902fc1f 	stp	xzr, xzr, [x0, #40]
+    5d6c:	8b0c03a0 	add	x0, x29, x12
+    5d70:	aa1303e1 	mov	x1, x19
+    5d74:	a93afc1f 	stp	xzr, xzr, [x0, #-88]
+    5d78:	a93bfc1f 	stp	xzr, xzr, [x0, #-72]
+    5d7c:	a93cfc1f 	stp	xzr, xzr, [x0, #-56]
+    5d80:	a93dfc1f 	stp	xzr, xzr, [x0, #-40]
+    5d84:	d0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5d88:	9126d000 	add	x0, x0, #0x9b4  ; 'MACAddress'
+    5d8c:	d63f0280 	blr	x20
+    5d90:	36f80a60 	tbz	w0, #31, 5edc <restoreRemoteCfg@@Base+0xd70>
+    5d94:	d0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    5d98:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5d9c:	9126fc63 	add	x3, x3, #0x9bf  ; 'get mac from ri failed!\n'
+    5da0:	f947d884 	ldr	x4, [x4, #4016]  ; GOT log_log
+    5da4:	52802c42 	mov	w2, #0x162                 	// #354
+    5da8:	91046381 	add	x1, x28, #0x118  ; 'GenSSIDFMT'
+    5dac:	528000a0 	mov	w0, #0x5                   	// #5
+    5db0:	d63f0080 	blr	x4
+    5db4:	d2975400 	mov	x0, #0xbaa0                	// #47776
+    5db8:	8b0003a0 	add	x0, x29, x0
+    5dbc:	d29c1401 	mov	x1, #0xe0a0                	// #57504
+    5dc0:	a93efc1f 	stp	xzr, xzr, [x0, #-24]
+    5dc4:	a93ffc1f 	stp	xzr, xzr, [x0, #-8]
+    5dc8:	a900fc1f 	stp	xzr, xzr, [x0, #8]
+    5dcc:	a901fc1f 	stp	xzr, xzr, [x0, #24]
+    5dd0:	a902fc1f 	stp	xzr, xzr, [x0, #40]
+    5dd4:	a903fc1f 	stp	xzr, xzr, [x0, #56]
+    5dd8:	a904fc1f 	stp	xzr, xzr, [x0, #72]
+    5ddc:	a905fc1f 	stp	xzr, xzr, [x0, #88]
+    5de0:	8b0103a0 	add	x0, x29, x1
+    5de4:	39668000 	ldrb	w0, [x0, #2464]
+    5de8:	35003fc0 	cbnz	w0, 65e0 <restoreRemoteCfg@@Base+0x1474>
+    5dec:	d0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    5df0:	d0000064 	adrp	x4, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5df4:	9125b084 	add	x4, x4, #0x96c  ; 'genssidfmt'
+    5df8:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    5dfc:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5e00:	91290063 	add	x3, x3, #0xa40  ; '%s:need format string\n'
+    5e04:	52803402 	mov	w2, #0x1a0                 	// #416
+    5e08:	91046381 	add	x1, x28, #0x118  ; 'GenSSIDFMT'
+    5e0c:	528000a0 	mov	w0, #0x5                   	// #5
+    5e10:	d63f00a0 	blr	x5
+    5e14:	14000082 	b	601c <restoreRemoteCfg@@Base+0xeb0>
+    5e18:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    5e1c:	f9406ba0 	ldr	x0, [x29, #208]
+    5e20:	f9407ba2 	ldr	x2, [x29, #240]
+    5e24:	52800581 	mov	w1, #0x2c                  	// #44
+    5e28:	f946c463 	ldr	x3, [x3, #3464]  ; GOT inStrList
+    5e2c:	d63f0060 	blr	x3
+    5e30:	b5ffeec0 	cbnz	x0, 5c08 <restoreRemoteCfg@@Base+0xa9c>
+    5e34:	d2961407 	mov	x7, #0xb0a0                	// #45216
+    5e38:	8b0703a0 	add	x0, x29, x7
+    5e3c:	392ba01f 	strb	wzr, [x0, #2792]
+    5e40:	17fffe78 	b	5820 <restoreRemoteCfg@@Base+0x6b4>
+    5e44:	d298141e 	mov	x30, #0xc0a0                	// #49312
+    5e48:	8b1e03a0 	add	x0, x29, x30
+    5e4c:	39422000 	ldrb	w0, [x0, #136]
+    5e50:	34fff0a0 	cbz	w0, 5c64 <restoreRemoteCfg@@Base+0xaf8>
+    5e54:	d0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    5e58:	d297e11b 	mov	x27, #0xbf08                	// #48904
+    5e5c:	8b1b03b7 	add	x23, x29, x27
+    5e60:	52802204 	mov	w4, #0x110                 	// #272
+    5e64:	f9469ca5 	ldr	x5, [x5, #3384]  ; GOT cfgEncryptString
+    5e68:	aa1703e3 	mov	x3, x23
+    5e6c:	aa1903e2 	mov	x2, x25
+    5e70:	52800001 	mov	w1, #0x0                   	// #0
+    5e74:	52800040 	mov	w0, #0x2                   	// #2
+    5e78:	d63f00a0 	blr	x5
+    5e7c:	35ffef40 	cbnz	w0, 5c64 <restoreRemoteCfg@@Base+0xaf8>
+    5e80:	f9008bb7 	str	x23, [x29, #272]
+    5e84:	17ffff78 	b	5c64 <restoreRemoteCfg@@Base+0xaf8>
+    5e88:	d0000117 	adrp	x23, 27000 <_fini@@Base+0x13d4c>
+    5e8c:	d2973f0e 	mov	x14, #0xb9f8                	// #47608
+    5e90:	b0000099 	adrp	x25, 16000 <_fini@@Base+0x2d4c>
+    5e94:	91131339 	add	x25, x25, #0x4c4
+    5e98:	f945aaf7 	ldr	x23, [x23, #2896]  ; GOT snprintf@GLIBC_2.17
+    5e9c:	aa1303e3 	mov	x3, x19
+    5ea0:	aa1903e2 	mov	x2, x25
+    5ea4:	8b0e03a0 	add	x0, x29, x14
+    5ea8:	d2800121 	mov	x1, #0x9                   	// #9
+    5eac:	d63f02e0 	blr	x23
+    5eb0:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5eb4:	aa1303e0 	mov	x0, x19
+    5eb8:	f946d021 	ldr	x1, [x1, #3488]  ; GOT strupr
+    5ebc:	d63f0020 	blr	x1
+    5ec0:	d297420f 	mov	x15, #0xba10                	// #47632
+    5ec4:	aa1303e3 	mov	x3, x19
+    5ec8:	aa1903e2 	mov	x2, x25
+    5ecc:	d2800121 	mov	x1, #0x9                   	// #9
+    5ed0:	8b0f03a0 	add	x0, x29, x15
+    5ed4:	d63f02e0 	blr	x23
+    5ed8:	17ffff9c 	b	5d48 <restoreRemoteCfg@@Base+0xbdc>
+    5edc:	d0000108 	adrp	x8, 27000 <_fini@@Base+0x13d4c>
+    5ee0:	d2859702 	mov	x2, #0x2cb8                	// #11448
+    5ee4:	8b0203a2 	add	x2, x29, x2
+    5ee8:	aa1303e0 	mov	x0, x19
+    5eec:	f947a508 	ldr	x8, [x8, #3912]  ; GOT __isoc99_sscanf@GLIBC_2.17
+    5ef0:	91005047 	add	x7, x2, #0x14  ; 'ile is %s and is_embeded: %d'
+    5ef4:	91004046 	add	x6, x2, #0x10  ; 'fg_file is %s and is_embeded: %d'
+    5ef8:	91003045 	add	x5, x2, #0xc  ; 'precfg_file is %s and is_embeded: %d'
+    5efc:	91002044 	add	x4, x2, #0x8  ; 'ved precfg_file is %s and is_embeded: %d'
+    5f00:	91001043 	add	x3, x2, #0x4  ; 'eceived precfg_file is %s and is_embeded: %d'
+    5f04:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5f08:	91276021 	add	x1, x1, #0x9d8  ; '%x:%x:%x:%x:%x:%x'
+    5f0c:	d63f0100 	blr	x8
+    5f10:	d0000108 	adrp	x8, 27000 <_fini@@Base+0x13d4c>
+    5f14:	b96ccfa0 	ldr	w0, [x29, #11468]
+    5f18:	b96cbba4 	ldr	w4, [x29, #11448]
+    5f1c:	d2974d0a 	mov	x10, #0xba68                	// #47720
+    5f20:	f9455508 	ldr	x8, [x8, #2728]  ; GOT __sprintf_chk@GLIBC_2.17
+    5f24:	d0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5f28:	9127a863 	add	x3, x3, #0x9ea  ; '%02x%02x%02x%02x%02x%02x'
+    5f2c:	b96cbfa5 	ldr	w5, [x29, #11452]
+    5f30:	d2800402 	mov	x2, #0x20                  	// #32
+    5f34:	b96cc3a6 	ldr	w6, [x29, #11456]
+    5f38:	52800001 	mov	w1, #0x0                   	// #0
+    5f3c:	b96cc7a7 	ldr	w7, [x29, #11460]
+    5f40:	b9000be0 	str	w0, [sp, #8]
+    5f44:	b96ccba0 	ldr	w0, [x29, #11464]
+    5f48:	b90003e0 	str	w0, [sp]
+    5f4c:	8b0a03a0 	add	x0, x29, x10
+    5f50:	d63f0100 	blr	x8
+    5f54:	17ffff98 	b	5db4 <restoreRemoteCfg@@Base+0xc48>
+    5f58:	cb190262 	sub	x2, x19, x25
+    5f5c:	d0000119 	adrp	x25, 27000 <_fini@@Base+0x13d4c>
+    5f60:	aa1a03e1 	mov	x1, x26
+    5f64:	d1000442 	sub	x2, x2, #0x1
+    5f68:	d2800803 	mov	x3, #0x40                  	// #64
+    5f6c:	aa1703e0 	mov	x0, x23
+    5f70:	d63f0280 	blr	x20
+    5f74:	f9461739 	ldr	x25, [x25, #3112]  ; GOT strncmp@GLIBC_2.17
+    5f78:	9100067a 	add	x26, x19, #0x1
+    5f7c:	d0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    5f80:	91280c21 	add	x1, x1, #0xa03
+    5f84:	d2800042 	mov	x2, #0x2                   	// #2
+    5f88:	aa1a03e0 	mov	x0, x26
+    5f8c:	d63f0320 	blr	x25
+    5f90:	35002120 	cbnz	w0, 63b4 <restoreRemoteCfg@@Base+0x1248>
+    5f94:	d297421e 	mov	x30, #0xba10                	// #47632
+    5f98:	8b1e03b9 	add	x25, x29, x30
+    5f9c:	d0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    5fa0:	aa1903e0 	mov	x0, x25
+    5fa4:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    5fa8:	d63f0020 	blr	x1
+    5fac:	d1001000 	sub	x0, x0, #0x4
+    5fb0:	d2800803 	mov	x3, #0x40                  	// #64
+    5fb4:	d2800082 	mov	x2, #0x4                   	// #4
+    5fb8:	8b000321 	add	x1, x25, x0
+    5fbc:	91000a73 	add	x19, x19, #0x2
+    5fc0:	aa1703e0 	mov	x0, x23
+    5fc4:	d63f0280 	blr	x20
+    5fc8:	aa1303f9 	mov	x25, x19
+    5fcc:	f94047a2 	ldr	x2, [x29, #136]
+    5fd0:	9100073a 	add	x26, x25, #0x1
+    5fd4:	528004a1 	mov	w1, #0x25                  	// #37
+    5fd8:	aa1a03e0 	mov	x0, x26
+    5fdc:	d63f0040 	blr	x2
+    5fe0:	aa0003f3 	mov	x19, x0
+    5fe4:	b5fffba0 	cbnz	x0, 5f58 <restoreRemoteCfg@@Base+0xdec>
+    5fe8:	d0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    5fec:	d2800802 	mov	x2, #0x40                  	// #64
+    5ff0:	aa1a03e1 	mov	x1, x26
+    5ff4:	aa1703e0 	mov	x0, x23
+    5ff8:	f9470c63 	ldr	x3, [x3, #3608]  ; GOT __strcat_chk@GLIBC_2.17
+    5ffc:	d63f0060 	blr	x3
+    6000:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    6004:	d29d4807 	mov	x7, #0xea40                	// #59968
+    6008:	d28007e2 	mov	x2, #0x3f                  	// #63
+    600c:	aa1703e1 	mov	x1, x23
+    6010:	f947b063 	ldr	x3, [x3, #3936]  ; GOT strncpy@GLIBC_2.17
+    6014:	8b0703a0 	add	x0, x29, x7
+    6018:	d63f0060 	blr	x3
+    601c:	d29d4805 	mov	x5, #0xea40                	// #59968
+    6020:	8b0503a0 	add	x0, x29, x5
+    6024:	f9008ba0 	str	x0, [x29, #272]
+    6028:	b940a7a0 	ldr	w0, [x29, #164]
+    602c:	34001820 	cbz	w0, 6330 <restoreRemoteCfg@@Base+0x11c4>
+    6030:	d2975404 	mov	x4, #0xbaa0                	// #47776
+    6034:	8b0403a0 	add	x0, x29, x4
+    6038:	f9408bb3 	ldr	x19, [x29, #272]
+    603c:	a93cfc1f 	stp	xzr, xzr, [x0, #-56]
+    6040:	a93dfc1f 	stp	xzr, xzr, [x0, #-40]
+    6044:	39400260 	ldrb	w0, [x19]
+    6048:	34001740 	cbz	w0, 6330 <restoreRemoteCfg@@Base+0x11c4>
+    604c:	b0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    6050:	9104c399 	add	x25, x28, #0x130  ; 'process_usp_option'
+    6054:	aa1303e5 	mov	x5, x19
+    6058:	aa1303e4 	mov	x4, x19
+    605c:	f947da94 	ldr	x20, [x20, #4016]  ; GOT log_log
+    6060:	52804502 	mov	w2, #0x228                 	// #552
+    6064:	aa1903e1 	mov	x1, x25
+    6068:	528000e0 	mov	w0, #0x7                   	// #7
+    606c:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6070:	9129b063 	add	x3, x3, #0xa6c  ; '\r\n input %s, strStart %s'
+    6074:	d63f0280 	blr	x20
+    6078:	b0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    607c:	528004a1 	mov	w1, #0x25                  	// #37
+    6080:	aa1303e0 	mov	x0, x19
+    6084:	f9474042 	ldr	x2, [x2, #3712]  ; GOT strchr@GLIBC_2.17
+    6088:	d63f0040 	blr	x2
+    608c:	aa0003f7 	mov	x23, x0
+    6090:	b4003c60 	cbz	x0, 681c <restoreRemoteCfg@@Base+0x16b0>
+    6094:	aa0003e5 	mov	x5, x0
+    6098:	aa1903e1 	mov	x1, x25
+    609c:	528000e0 	mov	w0, #0x7                   	// #7
+    60a0:	aa1303e4 	mov	x4, x19
+    60a4:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    60a8:	912a1463 	add	x3, x3, #0xa85  ; 'strStart %s, strStart2 %s\n'
+    60ac:	52804582 	mov	w2, #0x22c                 	// #556
+    60b0:	d63f0280 	blr	x20
+    60b4:	d0000101 	adrp	x1, 28000 <_fini@@Base+0x14d4c>
+    60b8:	91070020 	add	x0, x1, #0x1c0
+    60bc:	39470021 	ldrb	w1, [x1, #448]
+    60c0:	340000e1 	cbz	w1, 60dc <restoreRemoteCfg@@Base+0xf70>
+    60c4:	39408001 	ldrb	w1, [x0, #32]
+    60c8:	340000a1 	cbz	w1, 60dc <restoreRemoteCfg@@Base+0xf70>
+    60cc:	39410001 	ldrb	w1, [x0, #64]
+    60d0:	34000061 	cbz	w1, 60dc <restoreRemoteCfg@@Base+0xf70>
+    60d4:	39420000 	ldrb	w0, [x0, #128]
+    60d8:	350036e0 	cbnz	w0, 67b4 <restoreRemoteCfg@@Base+0x1648>
+    60dc:	d2859400 	mov	x0, #0x2ca0                	// #11424
+    60e0:	8b0003a0 	add	x0, x29, x0
+    60e4:	d2975903 	mov	x3, #0xbac8                	// #47816
+    60e8:	d2975401 	mov	x1, #0xbaa0                	// #47776
+    60ec:	8b0303b4 	add	x20, x29, x3
+    60f0:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    60f4:	a901fc1f 	stp	xzr, xzr, [x0, #24]
+    60f8:	d2981402 	mov	x2, #0xc0a0                	// #49312
+    60fc:	a902fc1f 	stp	xzr, xzr, [x0, #40]
+    6100:	8b0103a0 	add	x0, x29, x1
+    6104:	f9476863 	ldr	x3, [x3, #3792]  ; GOT ri_hal_get
+    6108:	aa1403e1 	mov	x1, x20
+    610c:	a93efc1f 	stp	xzr, xzr, [x0, #-24]
+    6110:	a93ffc1f 	stp	xzr, xzr, [x0, #-8]
+    6114:	a902fc1f 	stp	xzr, xzr, [x0, #40]
+    6118:	a903fc1f 	stp	xzr, xzr, [x0, #56]
+    611c:	8b0203a0 	add	x0, x29, x2
+    6120:	52800402 	mov	w2, #0x20                  	// #32
+    6124:	a908fc1f 	stp	xzr, xzr, [x0, #136]
+    6128:	a909fc1f 	stp	xzr, xzr, [x0, #152]
+    612c:	b0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6130:	9126d000 	add	x0, x0, #0x9b4  ; 'MACAddress'
+    6134:	d63f0060 	blr	x3
+    6138:	36f82ac0 	tbz	w0, #31, 6690 <restoreRemoteCfg@@Base+0x1524>
+    613c:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    6140:	91052384 	add	x4, x28, #0x148  ; 'get_mac_pass_sn'
+    6144:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6148:	912a8063 	add	x3, x3, #0xaa0  ; 'get br0 mac failed: %s\n'
+    614c:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    6150:	528039a2 	mov	w2, #0x1cd                 	// #461
+    6154:	aa0403e1 	mov	x1, x4
+    6158:	52800060 	mov	w0, #0x3                   	// #3
+    615c:	d63f00a0 	blr	x5
+    6160:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    6164:	d2982512 	mov	x18, #0xc128                	// #49448
+    6168:	8b1203b9 	add	x25, x29, x18
+    616c:	52800402 	mov	w2, #0x20                  	// #32
+    6170:	f9476863 	ldr	x3, [x3, #3792]  ; GOT ri_hal_get
+    6174:	aa1903e1 	mov	x1, x25
+    6178:	b0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    617c:	91262400 	add	x0, x0, #0x989  ; 'G984Serial'
+    6180:	d0000114 	adrp	x20, 28000 <_fini@@Base+0x14d4c>
+    6184:	d63f0060 	blr	x3
+    6188:	36f82be0 	tbz	w0, #31, 6704 <restoreRemoteCfg@@Base+0x1598>
+    618c:	b0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    6190:	910b2301 	add	x1, x24, #0x2c8
+    6194:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6198:	912b5863 	add	x3, x3, #0xad6  ; 'get SN failed\n'
+    619c:	f947d884 	ldr	x4, [x4, #4016]  ; GOT log_log
+    61a0:	52803b02 	mov	w2, #0x1d8                 	// #472
+    61a4:	91052021 	add	x1, x1, #0x148  ; 'mote_avalible'
+    61a8:	52800060 	mov	w0, #0x3                   	// #3
+    61ac:	d63f0080 	blr	x4
+    61b0:	b0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    61b4:	d2975111 	mov	x17, #0xba88                	// #47752
+    61b8:	8b1103b9 	add	x25, x29, x17
+    61bc:	528003e1 	mov	w1, #0x1f                  	// #31
+    61c0:	f9457042 	ldr	x2, [x2, #2784]  ; GOT get_default_wifi_password
+    61c4:	aa1903e0 	mov	x0, x25
+    61c8:	d63f0040 	blr	x2
+    61cc:	7100041f 	cmp	w0, #0x1
+    61d0:	54000101 	b.ne	61f0 <restoreRemoteCfg@@Base+0x1084>  // b.any
+    61d4:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    61d8:	91070280 	add	x0, x20, #0x1c0
+    61dc:	d2800402 	mov	x2, #0x20                  	// #32
+    61e0:	aa1903e1 	mov	x1, x25
+    61e4:	f945f863 	ldr	x3, [x3, #3056]  ; GOT __strcpy_chk@GLIBC_2.17
+    61e8:	8b020000 	add	x0, x0, x2
+    61ec:	d63f0060 	blr	x3
+    61f0:	39470280 	ldrb	w0, [x20, #448]
+    61f4:	91070299 	add	x25, x20, #0x1c0
+    61f8:	34000280 	cbz	w0, 6248 <restoreRemoteCfg@@Base+0x10dc>
+    61fc:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    6200:	aa1903e0 	mov	x0, x25
+    6204:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    6208:	d63f0020 	blr	x1
+    620c:	d2800001 	mov	x1, #0x0                   	// #0
+    6210:	52800064 	mov	w4, #0x3                   	// #3
+    6214:	528005a5 	mov	w5, #0x2d                  	// #45
+    6218:	6b00003f 	cmp	w1, w0
+    621c:	540028cb 	b.lt	6734 <restoreRemoteCfg@@Base+0x15c8>  // b.tstop
+    6220:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    6224:	910b2301 	add	x1, x24, #0x2c8
+    6228:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    622c:	912b9463 	add	x3, x3, #0xae5  ; '[changing mac format]converted MACAddress is:[%s]\n'
+    6230:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    6234:	91070284 	add	x4, x20, #0x1c0
+    6238:	52803f02 	mov	w2, #0x1f8                 	// #504
+    623c:	91056021 	add	x1, x1, #0x158
+    6240:	528000e0 	mov	w0, #0x7                   	// #7
+    6244:	d63f00a0 	blr	x5
+    6248:	39470281 	ldrb	w1, [x20, #448]
+    624c:	91070280 	add	x0, x20, #0x1c0
+    6250:	34000041 	cbz	w1, 6258 <restoreRemoteCfg@@Base+0x10ec>
+    6254:	97fff8e2 	bl	45dc <__gmon_start__@plt+0xdc>
+    6258:	b0000119 	adrp	x25, 27000 <_fini@@Base+0x13d4c>
+    625c:	f94057a0 	ldr	x0, [x29, #168]
+    6260:	d285970e 	mov	x14, #0x2cb8                	// #11448
+    6264:	52804042 	mov	w2, #0x202                 	// #514
+    6268:	f947db39 	ldr	x25, [x25, #4016]  ; GOT log_log
+    626c:	910b2000 	add	x0, x0, #0x2c8
+    6270:	9105c01b 	add	x27, x0, #0x170
+    6274:	8b0e03ba 	add	x26, x29, x14
+    6278:	aa1b03e1 	mov	x1, x27
+    627c:	f90047a0 	str	x0, [x29, #136]
+    6280:	a9127fbf 	stp	xzr, xzr, [x29, #288]
+    6284:	528000e0 	mov	w0, #0x7                   	// #7
+    6288:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    628c:	912c6063 	add	x3, x3, #0xb18  ; '\r\n enter'
+    6290:	f9009bbf 	str	xzr, [x29, #304]
+    6294:	b9013bbf 	str	wzr, [x29, #312]
+    6298:	d63f0320 	blr	x25
+    629c:	528008a0 	mov	w0, #0x45                  	// #69
+    62a0:	d285940f 	mov	x15, #0x2ca0                	// #11424
+    62a4:	b92cbba0 	str	w0, [x29, #11448]
+    62a8:	8b0f03a2 	add	x2, x29, x15
+    62ac:	52800020 	mov	w0, #0x1                   	// #1
+    62b0:	91007042 	add	x2, x2, #0x1c
+    62b4:	390483a0 	strb	w0, [x29, #288]
+    62b8:	52800020 	mov	w0, #0x1                   	// #1
+    62bc:	b90127a0 	str	w0, [x29, #292]
+    62c0:	d2859410 	mov	x16, #0x2ca0                	// #11424
+    62c4:	a95207a0 	ldp	x0, x1, [x29, #288]
+    62c8:	a9000440 	stp	x0, x1, [x2]
+    62cc:	8b1003a1 	add	x1, x29, x16
+    62d0:	b0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    62d4:	f9409ba0 	ldr	x0, [x29, #304]
+    62d8:	f9466842 	ldr	x2, [x2, #3280]  ; GOT db_wrapper_getObject
+    62dc:	f802c020 	stur	x0, [x1, #44]
+    62e0:	52800001 	mov	w1, #0x0                   	// #0
+    62e4:	b9413ba0 	ldr	w0, [x29, #312]
+    62e8:	b92cd7a0 	str	w0, [x29, #11476]
+    62ec:	aa1a03e0 	mov	x0, x26
+    62f0:	d63f0040 	blr	x2
+    62f4:	34002320 	cbz	w0, 6758 <restoreRemoteCfg@@Base+0x15ec>
+    62f8:	2a0003e4 	mov	w4, w0
+    62fc:	52804162 	mov	w2, #0x20b                 	// #523
+    6300:	aa1b03e1 	mov	x1, x27
+    6304:	52800060 	mov	w0, #0x3                   	// #3
+    6308:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    630c:	912c8463 	add	x3, x3, #0xb21  ; 'Failed to get IGDDeviceInfoObject, ret=%d\n'
+    6310:	d63f0320 	blr	x25
+    6314:	f94047a0 	ldr	x0, [x29, #136]
+    6318:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    631c:	912d3063 	add	x3, x3, #0xb4c  ; '\r\n get_OUI failed'
+    6320:	9104c001 	add	x1, x0, #0x130
+    6324:	52804822 	mov	w2, #0x241                 	// #577
+    6328:	52800060 	mov	w0, #0x3                   	// #3
+    632c:	d63f0320 	blr	x25
+    6330:	b0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    6334:	f94087b7 	ldr	x23, [x29, #264]
+    6338:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    633c:	91302421 	add	x1, x1, #0xc09  ; 'InternetGatewayDevice.ManagementServer.X_ASB_COM_TR369Agent_Enable'
+    6340:	f946ce94 	ldr	x20, [x20, #3480]  ; GOT strcmp@GLIBC_2.17
+    6344:	aa1703e0 	mov	x0, x23
+    6348:	d63f0280 	blr	x20
+    634c:	350037e0 	cbnz	w0, 6a48 <restoreRemoteCfg@@Base+0x18dc>
+    6350:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    6354:	910b2301 	add	x1, x24, #0x2c8
+    6358:	b0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    635c:	aa1703e4 	mov	x4, x23
+    6360:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    6364:	52807542 	mov	w2, #0x3aa                 	// #938
+    6368:	9103a021 	add	x1, x1, #0xe8  ; 'ress'
+    636c:	528000a0 	mov	w0, #0x5                   	// #5
+    6370:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6374:	91313063 	add	x3, x3, #0xc4c  ; '%s node, Doing set later \n'
+    6378:	d63f00a0 	blr	x5
+    637c:	f947b273 	ldr	x19, [x19, #3936]  ; GOT strncpy@GLIBC_2.17
+    6380:	f94087a1 	ldr	x1, [x29, #264]
+    6384:	d297a109 	mov	x9, #0xbd08                	// #48392
+    6388:	d2800fe2 	mov	x2, #0x7f                  	// #127
+    638c:	8b0903a0 	add	x0, x29, x9
+    6390:	d63f0260 	blr	x19
+    6394:	f9408ba1 	ldr	x1, [x29, #272]
+    6398:	d297b10a 	mov	x10, #0xbd88                	// #48520
+    639c:	d2800fe2 	mov	x2, #0x7f                  	// #127
+    63a0:	8b0a03a0 	add	x0, x29, x10
+    63a4:	d63f0260 	blr	x19
+    63a8:	52800020 	mov	w0, #0x1                   	// #1
+    63ac:	b900a3a0 	str	w0, [x29, #160]
+    63b0:	17fffc33 	b	547c <restoreRemoteCfg@@Base+0x310>
+    63b4:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    63b8:	91281821 	add	x1, x1, #0xa06
+    63bc:	d2800042 	mov	x2, #0x2                   	// #2
+    63c0:	aa1a03e0 	mov	x0, x26
+    63c4:	d63f0320 	blr	x25
+    63c8:	35000080 	cbnz	w0, 63d8 <restoreRemoteCfg@@Base+0x126c>
+    63cc:	d2974d1b 	mov	x27, #0xba68                	// #47720
+    63d0:	8b1b03b9 	add	x25, x29, x27
+    63d4:	17fffef2 	b	5f9c <restoreRemoteCfg@@Base+0xe30>
+    63d8:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    63dc:	91282421 	add	x1, x1, #0xa09
+    63e0:	d2800042 	mov	x2, #0x2                   	// #2
+    63e4:	aa1a03e0 	mov	x0, x26
+    63e8:	d63f0320 	blr	x25
+    63ec:	35000160 	cbnz	w0, 6418 <restoreRemoteCfg@@Base+0x12ac>
+    63f0:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    63f4:	d2974d1a 	mov	x26, #0xba68                	// #47720
+    63f8:	8b1a03b9 	add	x25, x29, x26
+    63fc:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    6400:	aa1903e0 	mov	x0, x25
+    6404:	d63f0020 	blr	x1
+    6408:	d1001800 	sub	x0, x0, #0x6
+    640c:	d2800803 	mov	x3, #0x40                  	// #64
+    6410:	d28000c2 	mov	x2, #0x6                   	// #6
+    6414:	17fffee9 	b	5fb8 <restoreRemoteCfg@@Base+0xe4c>
+    6418:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    641c:	91283021 	add	x1, x1, #0xa0c
+    6420:	d2800042 	mov	x2, #0x2                   	// #2
+    6424:	aa1a03e0 	mov	x0, x26
+    6428:	d63f0320 	blr	x25
+    642c:	35000160 	cbnz	w0, 6458 <restoreRemoteCfg@@Base+0x12ec>
+    6430:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    6434:	d2974d19 	mov	x25, #0xba68                	// #47720
+    6438:	8b1903b9 	add	x25, x29, x25
+    643c:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    6440:	aa1903e0 	mov	x0, x25
+    6444:	d63f0020 	blr	x1
+    6448:	d1002000 	sub	x0, x0, #0x8
+    644c:	d2800803 	mov	x3, #0x40                  	// #64
+    6450:	d2800102 	mov	x2, #0x8                   	// #8
+    6454:	17fffed9 	b	5fb8 <restoreRemoteCfg@@Base+0xe4c>
+    6458:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    645c:	91283c21 	add	x1, x1, #0xa0f
+    6460:	d2800042 	mov	x2, #0x2                   	// #2
+    6464:	aa1a03e0 	mov	x0, x26
+    6468:	d63f0320 	blr	x25
+    646c:	35000320 	cbnz	w0, 64d0 <restoreRemoteCfg@@Base+0x1364>
+    6470:	b000011a 	adrp	x26, 27000 <_fini@@Base+0x13d4c>
+    6474:	d2974d11 	mov	x17, #0xba68                	// #47720
+    6478:	8b1103bb 	add	x27, x29, x17
+    647c:	f945435a 	ldr	x26, [x26, #2688]  ; GOT strlen@GLIBC_2.17
+    6480:	aa1b03e0 	mov	x0, x27
+    6484:	d63f0340 	blr	x26
+    6488:	d1001000 	sub	x0, x0, #0x4
+    648c:	d2975912 	mov	x18, #0xbac8                	// #47816
+    6490:	8b1203b9 	add	x25, x29, x18
+    6494:	d2800803 	mov	x3, #0x40                  	// #64
+    6498:	d2800082 	mov	x2, #0x4                   	// #4
+    649c:	8b000361 	add	x1, x27, x0
+    64a0:	aa1903e0 	mov	x0, x25
+    64a4:	d63f0280 	blr	x20
+    64a8:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    64ac:	aa1903e0 	mov	x0, x25
+    64b0:	f946d021 	ldr	x1, [x1, #3488]  ; GOT strupr
+    64b4:	d63f0020 	blr	x1
+    64b8:	aa1903e0 	mov	x0, x25
+    64bc:	d63f0340 	blr	x26
+    64c0:	d2800803 	mov	x3, #0x40                  	// #64
+    64c4:	aa0003e2 	mov	x2, x0
+    64c8:	aa1903e1 	mov	x1, x25
+    64cc:	17fffebc 	b	5fbc <restoreRemoteCfg@@Base+0xe50>
+    64d0:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    64d4:	91284821 	add	x1, x1, #0xa12
+    64d8:	d2800042 	mov	x2, #0x2                   	// #2
+    64dc:	aa1a03e0 	mov	x0, x26
+    64e0:	d63f0320 	blr	x25
+    64e4:	350001a0 	cbnz	w0, 6518 <restoreRemoteCfg@@Base+0x13ac>
+    64e8:	b000011a 	adrp	x26, 27000 <_fini@@Base+0x13d4c>
+    64ec:	d2974d0f 	mov	x15, #0xba68                	// #47720
+    64f0:	8b0f03bb 	add	x27, x29, x15
+    64f4:	f945435a 	ldr	x26, [x26, #2688]  ; GOT strlen@GLIBC_2.17
+    64f8:	aa1b03e0 	mov	x0, x27
+    64fc:	d63f0340 	blr	x26
+    6500:	d1001400 	sub	x0, x0, #0x5
+    6504:	d2975910 	mov	x16, #0xbac8                	// #47816
+    6508:	d2800803 	mov	x3, #0x40                  	// #64
+    650c:	8b1003b9 	add	x25, x29, x16
+    6510:	d28000a2 	mov	x2, #0x5                   	// #5
+    6514:	17ffffe2 	b	649c <restoreRemoteCfg@@Base+0x1330>
+    6518:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    651c:	91285421 	add	x1, x1, #0xa15
+    6520:	d2800042 	mov	x2, #0x2                   	// #2
+    6524:	aa1a03e0 	mov	x0, x26
+    6528:	d63f0320 	blr	x25
+    652c:	350001a0 	cbnz	w0, 6560 <restoreRemoteCfg@@Base+0x13f4>
+    6530:	b000011a 	adrp	x26, 27000 <_fini@@Base+0x13d4c>
+    6534:	d2974d0d 	mov	x13, #0xba68                	// #47720
+    6538:	8b0d03bb 	add	x27, x29, x13
+    653c:	f945435a 	ldr	x26, [x26, #2688]  ; GOT strlen@GLIBC_2.17
+    6540:	aa1b03e0 	mov	x0, x27
+    6544:	d63f0340 	blr	x26
+    6548:	d1002000 	sub	x0, x0, #0x8
+    654c:	d297590e 	mov	x14, #0xbac8                	// #47816
+    6550:	d2800803 	mov	x3, #0x40                  	// #64
+    6554:	8b0e03b9 	add	x25, x29, x14
+    6558:	d2800102 	mov	x2, #0x8                   	// #8
+    655c:	17ffffd0 	b	649c <restoreRemoteCfg@@Base+0x1330>
+    6560:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6564:	91286021 	add	x1, x1, #0xa18
+    6568:	d2800042 	mov	x2, #0x2                   	// #2
+    656c:	aa1a03e0 	mov	x0, x26
+    6570:	d63f0320 	blr	x25
+    6574:	35000220 	cbnz	w0, 65b8 <restoreRemoteCfg@@Base+0x144c>
+    6578:	b0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    657c:	f9403ba3 	ldr	x3, [x29, #112]
+    6580:	d2973d0b 	mov	x11, #0xb9e8                	// #47592
+    6584:	d2973f0c 	mov	x12, #0xb9f8                	// #47608
+    6588:	f9453084 	ldr	x4, [x4, #2656]  ; GOT gen_mgntlongpw_and_wanpw
+    658c:	8b0b03b9 	add	x25, x29, x11
+    6590:	8b0c03a1 	add	x1, x29, x12
+    6594:	aa1903e2 	mov	x2, x25
+    6598:	b0000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    659c:	91286c00 	add	x0, x0, #0xa1b  ; 'D0542D'
+    65a0:	d63f0080 	blr	x4
+    65a4:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    65a8:	aa1903e0 	mov	x0, x25
+    65ac:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    65b0:	d63f0020 	blr	x1
+    65b4:	17ffffc3 	b	64c0 <restoreRemoteCfg@@Base+0x1354>
+    65b8:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    65bc:	aa1303e4 	mov	x4, x19
+    65c0:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    65c4:	91288863 	add	x3, x3, #0xa22  ; 'Can not match this format:%s\n'
+    65c8:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    65cc:	52803322 	mov	w2, #0x199                 	// #409
+    65d0:	91046381 	add	x1, x28, #0x118  ; 'GenSSIDFMT'
+    65d4:	528000a0 	mov	w0, #0x5                   	// #5
+    65d8:	d63f00a0 	blr	x5
+    65dc:	17fffe7b 	b	5fc8 <restoreRemoteCfg@@Base+0xe5c>
+    65e0:	b0000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    65e4:	b0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    65e8:	d29d47e8 	mov	x8, #0xea3f                	// #59967
+    65ec:	d2975109 	mov	x9, #0xba88                	// #47752
+    65f0:	f9474000 	ldr	x0, [x0, #3712]  ; GOT strchr@GLIBC_2.17
+    65f4:	d297450a 	mov	x10, #0xba28                	// #47656
+    65f8:	f90047a0 	str	x0, [x29, #136]
+    65fc:	8b0803b9 	add	x25, x29, x8
+    6600:	8b0a03a0 	add	x0, x29, x10
+    6604:	8b0903b7 	add	x23, x29, x9
+    6608:	f946e294 	ldr	x20, [x20, #3520]  ; GOT __strncat_chk@GLIBC_2.17
+    660c:	f9003ba0 	str	x0, [x29, #112]
+    6610:	17fffe6f 	b	5fcc <restoreRemoteCfg@@Base+0xe60>
+    6614:	f94063a3 	ldr	x3, [x29, #192]
+    6618:	d2801002 	mov	x2, #0x80                  	// #128
+    661c:	52800001 	mov	w1, #0x0                   	// #0
+    6620:	aa1303e0 	mov	x0, x19
+    6624:	f9461c63 	ldr	x3, [x3, #3128]
+    6628:	d63f0060 	blr	x3
+    662c:	f9403fa3 	ldr	x3, [x29, #120]
+    6630:	52801002 	mov	w2, #0x80                  	// #128
+    6634:	f94067a0 	ldr	x0, [x29, #200]
+    6638:	aa1303e1 	mov	x1, x19
+    663c:	f9479463 	ldr	x3, [x3, #3880]
+    6640:	d63f0060 	blr	x3
+    6644:	36f801c0 	tbz	w0, #31, 667c <restoreRemoteCfg@@Base+0x1510>
+    6648:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    664c:	f94067a4 	ldr	x4, [x29, #200]
+    6650:	52800060 	mov	w0, #0x3                   	// #3
+    6654:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6658:	91295c63 	add	x3, x3, #0xa57  ; 'get_scfg %s failed!\n'
+    665c:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    6660:	528035e2 	mov	w2, #0x1af                 	// #431
+    6664:	9104a381 	add	x1, x28, #0x128  ; 'FromRI'
+    6668:	d63f00a0 	blr	x5
+    666c:	d2961406 	mov	x6, #0xb0a0                	// #45216
+    6670:	8b0603a0 	add	x0, x29, x6
+    6674:	392ba01f 	strb	wzr, [x0, #2792]
+    6678:	17fffb81 	b	547c <restoreRemoteCfg@@Base+0x310>
+    667c:	d28007e2 	mov	x2, #0x3f                  	// #63
+    6680:	aa1303e1 	mov	x1, x19
+    6684:	aa1903e0 	mov	x0, x25
+    6688:	d63f02e0 	blr	x23
+    668c:	17fffe64 	b	601c <restoreRemoteCfg@@Base+0xeb0>
+    6690:	b0000108 	adrp	x8, 27000 <_fini@@Base+0x13d4c>
+    6694:	d2859719 	mov	x25, #0x2cb8                	// #11448
+    6698:	8b1903a2 	add	x2, x29, x25
+    669c:	aa1403e0 	mov	x0, x20
+    66a0:	f947a508 	ldr	x8, [x8, #3912]  ; GOT __isoc99_sscanf@GLIBC_2.17
+    66a4:	91005047 	add	x7, x2, #0x14
+    66a8:	91004046 	add	x6, x2, #0x10
+    66ac:	91003045 	add	x5, x2, #0xc
+    66b0:	91002044 	add	x4, x2, #0x8
+    66b4:	91001043 	add	x3, x2, #0x4
+    66b8:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    66bc:	91276021 	add	x1, x1, #0x9d8  ; '%x:%x:%x:%x:%x:%x'
+    66c0:	d63f0100 	blr	x8
+    66c4:	b0000108 	adrp	x8, 27000 <_fini@@Base+0x13d4c>
+    66c8:	b96cbba3 	ldr	w3, [x29, #11448]
+    66cc:	b96cbfa4 	ldr	w4, [x29, #11452]
+    66d0:	b0000062 	adrp	x2, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    66d4:	912ae042 	add	x2, x2, #0xab8  ; '%02x:%02x:%02x:%02x:%02x:%02x'
+    66d8:	f945a908 	ldr	x8, [x8, #2896]  ; GOT snprintf@GLIBC_2.17
+    66dc:	d28003e1 	mov	x1, #0x1f                  	// #31
+    66e0:	b96cc3a5 	ldr	w5, [x29, #11456]
+    66e4:	b96cc7a6 	ldr	w6, [x29, #11460]
+    66e8:	b96ccba7 	ldr	w7, [x29, #11464]
+    66ec:	b96ccfa0 	ldr	w0, [x29, #11468]
+    66f0:	b90003e0 	str	w0, [sp]
+    66f4:	d0000100 	adrp	x0, 28000 <_fini@@Base+0x14d4c>
+    66f8:	91070000 	add	x0, x0, #0x1c0
+    66fc:	d63f0100 	blr	x8
+    6700:	17fffe98 	b	6160 <restoreRemoteCfg@@Base+0xff4>
+    6704:	aa1903e0 	mov	x0, x25
+    6708:	97fff7b5 	bl	45dc <__gmon_start__@plt+0xdc>
+    670c:	b0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    6710:	91070280 	add	x0, x20, #0x1c0
+    6714:	aa1903e3 	mov	x3, x25
+    6718:	90000082 	adrp	x2, 16000 <_fini@@Base+0x2d4c>
+    671c:	913c7c42 	add	x2, x2, #0xf1f  ; 'ALCL%s'
+    6720:	f945a884 	ldr	x4, [x4, #2896]  ; GOT snprintf@GLIBC_2.17
+    6724:	d28007e1 	mov	x1, #0x3f                  	// #63
+    6728:	91010000 	add	x0, x0, #0x40
+    672c:	d63f0080 	blr	x4
+    6730:	17fffea0 	b	61b0 <restoreRemoteCfg@@Base+0x1044>
+    6734:	11000423 	add	w3, w1, #0x1
+    6738:	340000c1 	cbz	w1, 6750 <restoreRemoteCfg@@Base+0x15e4>
+    673c:	1ac40c62 	sdiv	w2, w3, w4
+    6740:	0b020442 	add	w2, w2, w2, lsl #1
+    6744:	6b02007f 	cmp	w3, w2
+    6748:	54000041 	b.ne	6750 <restoreRemoteCfg@@Base+0x15e4>  // b.any
+    674c:	38396825 	strb	w5, [x1, x25]
+    6750:	91000421 	add	x1, x1, #0x1  ; 'x:%x:%x:%x:%x:%x'
+    6754:	17fffeb1 	b	6218 <restoreRemoteCfg@@Base+0x10ac>
+    6758:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    675c:	d290d5cd 	mov	x13, #0x86ae                	// #34478
+    6760:	91070280 	add	x0, x20, #0x1c0
+    6764:	8b0d035a 	add	x26, x26, x13
+    6768:	f947b063 	ldr	x3, [x3, #3936]  ; GOT strncpy@GLIBC_2.17
+    676c:	d2800122 	mov	x2, #0x9                   	// #9
+    6770:	aa1a03e1 	mov	x1, x26
+    6774:	91020000 	add	x0, x0, #0x80
+    6778:	d63f0060 	blr	x3
+    677c:	aa1a03e4 	mov	x4, x26
+    6780:	52804222 	mov	w2, #0x211                 	// #529
+    6784:	aa1b03e1 	mov	x1, x27
+    6788:	528000e0 	mov	w0, #0x7                   	// #7
+    678c:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6790:	912d7863 	add	x3, x3, #0xb5e  ; 'ManufacturerOUI is available: %s \n'
+    6794:	d63f0320 	blr	x25
+    6798:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    679c:	912e0463 	add	x3, x3, #0xb81  ; 'Exit. ret = %d!\n'
+    67a0:	52800004 	mov	w4, #0x0                   	// #0
+    67a4:	52804282 	mov	w2, #0x214                 	// #532
+    67a8:	aa1b03e1 	mov	x1, x27
+    67ac:	528000e0 	mov	w0, #0x7                   	// #7
+    67b0:	d63f0320 	blr	x25
+    67b4:	394006e0 	ldrb	w0, [x23, #1]
+    67b8:	52800aa1 	mov	w1, #0x55                  	// #85
+    67bc:	390002ff 	strb	wzr, [x23]
+    67c0:	7101341f 	cmp	w0, #0x4d
+    67c4:	7a411004 	ccmp	w0, w1, #0x4, ne	// ne = any
+    67c8:	540009c1 	b.ne	6900 <restoreRemoteCfg@@Base+0x1794>  // b.any
+    67cc:	39400ae0 	ldrb	w0, [x23, #2]
+    67d0:	d0000119 	adrp	x25, 28000 <_fini@@Base+0x14d4c>
+    67d4:	b0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    67d8:	7100bc1f 	cmp	w0, #0x2f
+    67dc:	540007e1 	b.ne	68d8 <restoreRemoteCfg@@Base+0x176c>  // b.any
+    67e0:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    67e4:	d2974d0c 	mov	x12, #0xba68                	// #47720
+    67e8:	8b0c03a0 	add	x0, x29, x12
+    67ec:	91000ae1 	add	x1, x23, #0x2
+    67f0:	f945f863 	ldr	x3, [x3, #3056]  ; GOT __strcpy_chk@GLIBC_2.17
+    67f4:	d2800402 	mov	x2, #0x20                  	// #32
+    67f8:	aa0003f7 	mov	x23, x0
+    67fc:	d63f0060 	blr	x3
+    6800:	f9461a94 	ldr	x20, [x20, #3120]  ; GOT strcat@GLIBC_2.17
+    6804:	91070321 	add	x1, x25, #0x1c0
+    6808:	aa1303e0 	mov	x0, x19
+    680c:	d63f0280 	blr	x20
+    6810:	aa1703e1 	mov	x1, x23
+    6814:	aa1303e0 	mov	x0, x19
+    6818:	d63f0280 	blr	x20
+    681c:	b0000117 	adrp	x23, 27000 <_fini@@Base+0x13d4c>
+    6820:	f94057a0 	ldr	x0, [x29, #168]
+    6824:	aa1303e4 	mov	x4, x19
+    6828:	52805002 	mov	w2, #0x280                 	// #640
+    682c:	f947dae5 	ldr	x5, [x23, #4016]  ; GOT log_log
+    6830:	910b2001 	add	x1, x0, #0x2c8
+    6834:	9104c021 	add	x1, x1, #0x130
+    6838:	528000e0 	mov	w0, #0x7                   	// #7
+    683c:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6840:	912e4863 	add	x3, x3, #0xb92  ; '\r\n output %s'
+    6844:	b0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    6848:	d63f00a0 	blr	x5
+    684c:	f9408bb3 	ldr	x19, [x29, #272]
+    6850:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    6854:	aa1303e0 	mov	x0, x19
+    6858:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    685c:	d63f0020 	blr	x1
+    6860:	2a0003e2 	mov	w2, w0
+    6864:	b0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    6868:	f94087a0 	ldr	x0, [x29, #264]
+    686c:	aa1303e1 	mov	x1, x19
+    6870:	52800043 	mov	w3, #0x2                   	// #2
+    6874:	f946fc84 	ldr	x4, [x4, #3576]  ; GOT usp_setParameterValue
+    6878:	d63f0080 	blr	x4
+    687c:	f94087b9 	ldr	x25, [x29, #264]
+    6880:	f9479e82 	ldr	x2, [x20, #3896]  ; GOT strstr@GLIBC_2.17
+    6884:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6888:	912e7c21 	add	x1, x1, #0xb9f  ; 'Device.LocalAgent.Controller.1.'
+    688c:	aa1903e0 	mov	x0, x25
+    6890:	d63f0040 	blr	x2
+    6894:	b94103b3 	ldr	w19, [x29, #256]
+    6898:	b4000b40 	cbz	x0, 6a00 <restoreRemoteCfg@@Base+0x1894>
+    689c:	37000b33 	tbnz	w19, #0, 6a00 <restoreRemoteCfg@@Base+0x1894>
+    68a0:	32000273 	orr	w19, w19, #0x1
+    68a4:	b90103b3 	str	w19, [x29, #256]
+    68a8:	f947daf7 	ldr	x23, [x23, #4016]  ; GOT log_log
+    68ac:	910b2301 	add	x1, x24, #0x2c8
+    68b0:	b94103a6 	ldr	w6, [x29, #256]
+    68b4:	52807465 	mov	w5, #0x3a3                 	// #931
+    68b8:	9105e024 	add	x4, x1, #0x178  ; '-iid is [%d:[%d-%d-%d-%d-%d-%d]], ParamName:%s,flag=0x%x\n'
+    68bc:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    68c0:	912fb863 	add	x3, x3, #0xbee  ; ' %s %d usp_table_no = %d \n'
+    68c4:	2a0503e2 	mov	w2, w5
+    68c8:	9103a021 	add	x1, x1, #0xe8  ; 'iled!uri=%s\n'
+    68cc:	528000a0 	mov	w0, #0x5                   	// #5
+    68d0:	d63f02e0 	blr	x23
+    68d4:	17fffaea 	b	547c <restoreRemoteCfg@@Base+0x310>
+    68d8:	91070321 	add	x1, x25, #0x1c0
+    68dc:	aa1303e0 	mov	x0, x19
+    68e0:	f9461a94 	ldr	x20, [x20, #3120]  ; GOT strcat@GLIBC_2.17
+    68e4:	d63f0280 	blr	x20
+    68e8:	39400260 	ldrb	w0, [x19]
+    68ec:	7100881f 	cmp	w0, #0x22
+    68f0:	54fff961 	b.ne	681c <restoreRemoteCfg@@Base+0x16b0>  // b.any
+    68f4:	f0000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    68f8:	91029421 	add	x1, x1, #0xa5
+    68fc:	17ffffc6 	b	6814 <restoreRemoteCfg@@Base+0x16a8>
+    6900:	7101401f 	cmp	w0, #0x50
+    6904:	540000e1 	b.ne	6920 <restoreRemoteCfg@@Base+0x17b4>  // b.any
+    6908:	d0000101 	adrp	x1, 28000 <_fini@@Base+0x14d4c>
+    690c:	91070021 	add	x1, x1, #0x1c0
+    6910:	91008021 	add	x1, x1, #0x20
+    6914:	aa1303e0 	mov	x0, x19
+    6918:	b0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    691c:	17fffff1 	b	68e0 <restoreRemoteCfg@@Base+0x1774>
+    6920:	71014c1f 	cmp	w0, #0x53
+    6924:	540000a1 	b.ne	6938 <restoreRemoteCfg@@Base+0x17cc>  // b.any
+    6928:	d0000101 	adrp	x1, 28000 <_fini@@Base+0x14d4c>
+    692c:	91070021 	add	x1, x1, #0x1c0
+    6930:	91010021 	add	x1, x1, #0x40
+    6934:	17fffff8 	b	6914 <restoreRemoteCfg@@Base+0x17a8>
+    6938:	71013c1f 	cmp	w0, #0x4f
+    693c:	54fff701 	b.ne	681c <restoreRemoteCfg@@Base+0x16b0>  // b.any
+    6940:	39400ae0 	ldrb	w0, [x23, #2]
+    6944:	d0000114 	adrp	x20, 28000 <_fini@@Base+0x14d4c>
+    6948:	b0000119 	adrp	x25, 27000 <_fini@@Base+0x13d4c>
+    694c:	340004e0 	cbz	w0, 69e8 <restoreRemoteCfg@@Base+0x187c>
+    6950:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    6954:	d2974d0b 	mov	x11, #0xba68                	// #47720
+    6958:	8b0b03a0 	add	x0, x29, x11
+    695c:	d2800402 	mov	x2, #0x20                  	// #32
+    6960:	f945f863 	ldr	x3, [x3, #3056]  ; GOT __strcpy_chk@GLIBC_2.17
+    6964:	91000ae1 	add	x1, x23, #0x2
+    6968:	aa0003f7 	mov	x23, x0
+    696c:	91070294 	add	x20, x20, #0x1c0
+    6970:	d63f0060 	blr	x3
+    6974:	f9461b3a 	ldr	x26, [x25, #3120]  ; GOT strcat@GLIBC_2.17
+    6978:	91020281 	add	x1, x20, #0x80
+    697c:	aa1303e0 	mov	x0, x19
+    6980:	d63f0340 	blr	x26
+    6984:	aa1703e1 	mov	x1, x23
+    6988:	aa1303e0 	mov	x0, x19
+    698c:	d63f0340 	blr	x26
+    6990:	b0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    6994:	528004a1 	mov	w1, #0x25                  	// #37
+    6998:	aa1303e0 	mov	x0, x19
+    699c:	f9474042 	ldr	x2, [x2, #3712]  ; GOT strchr@GLIBC_2.17
+    69a0:	d63f0040 	blr	x2
+    69a4:	b4000100 	cbz	x0, 69c4 <restoreRemoteCfg@@Base+0x1858>
+    69a8:	3900001f 	strb	wzr, [x0]
+    69ac:	39400400 	ldrb	w0, [x0, #1]
+    69b0:	71014c1f 	cmp	w0, #0x53
+    69b4:	54000081 	b.ne	69c4 <restoreRemoteCfg@@Base+0x1858>  // b.any
+    69b8:	91010281 	add	x1, x20, #0x40
+    69bc:	aa1303e0 	mov	x0, x19
+    69c0:	d63f0340 	blr	x26
+    69c4:	39400260 	ldrb	w0, [x19]
+    69c8:	7100881f 	cmp	w0, #0x22
+    69cc:	54fff281 	b.ne	681c <restoreRemoteCfg@@Base+0x16b0>  // b.any
+    69d0:	f9461b39 	ldr	x25, [x25, #3120]  ; GOT strcat@GLIBC_2.17
+    69d4:	f0000061 	adrp	x1, 15000 <_fini@@Base+0x1d4c>
+    69d8:	91029421 	add	x1, x1, #0xa5
+    69dc:	aa1303e0 	mov	x0, x19
+    69e0:	d63f0320 	blr	x25
+    69e4:	17ffff8e 	b	681c <restoreRemoteCfg@@Base+0x16b0>
+    69e8:	f9461b22 	ldr	x2, [x25, #3120]
+    69ec:	91070281 	add	x1, x20, #0x1c0
+    69f0:	91020021 	add	x1, x1, #0x80
+    69f4:	aa1303e0 	mov	x0, x19
+    69f8:	d63f0040 	blr	x2
+    69fc:	17fffff2 	b	69c4 <restoreRemoteCfg@@Base+0x1858>
+    6a00:	f9479e82 	ldr	x2, [x20, #3896]
+    6a04:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6a08:	912efc21 	add	x1, x1, #0xbbf  ; 'Device.LocalAgent.MTP.1.'
+    6a0c:	aa1903e0 	mov	x0, x25
+    6a10:	d63f0040 	blr	x2
+    6a14:	b4000080 	cbz	x0, 6a24 <restoreRemoteCfg@@Base+0x18b8>
+    6a18:	37080073 	tbnz	w19, #1, 6a24 <restoreRemoteCfg@@Base+0x18b8>
+    6a1c:	321f0273 	orr	w19, w19, #0x2
+    6a20:	17ffffa1 	b	68a4 <restoreRemoteCfg@@Base+0x1738>
+    6a24:	f9479e94 	ldr	x20, [x20, #3896]
+    6a28:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6a2c:	912f6021 	add	x1, x1, #0xbd8  ; 'Device.MQTT.Client.1.'
+    6a30:	aa1903e0 	mov	x0, x25
+    6a34:	d63f0280 	blr	x20
+    6a38:	b4fff380 	cbz	x0, 68a8 <restoreRemoteCfg@@Base+0x173c>
+    6a3c:	3717f373 	tbnz	w19, #2, 68a8 <restoreRemoteCfg@@Base+0x173c>
+    6a40:	321e0273 	orr	w19, w19, #0x4
+    6a44:	17ffff98 	b	68a4 <restoreRemoteCfg@@Base+0x1738>
+    6a48:	b940bfa0 	ldr	w0, [x29, #188]
+    6a4c:	35000560 	cbnz	w0, 6af8 <restoreRemoteCfg@@Base+0x198c>
+    6a50:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    6a54:	d2980308 	mov	x8, #0xc018                	// #49176
+    6a58:	52802202 	mov	w2, #0x110                 	// #272
+    6a5c:	8b0803a1 	add	x1, x29, x8
+    6a60:	f9468463 	ldr	x3, [x3, #3336]  ; GOT db_wrapper_getParamValueByUri
+    6a64:	aa1703e0 	mov	x0, x23
+    6a68:	d63f0060 	blr	x3
+    6a6c:	b5000180 	cbnz	x0, 6a9c <restoreRemoteCfg@@Base+0x1930>
+    6a70:	f94087a4 	ldr	x4, [x29, #264]
+    6a74:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6a78:	91319c63 	add	x3, x3, #0xc67  ; 'db_wrapper_getParamValueByUri failed!uri=%s\n'
+    6a7c:	910b2301 	add	x1, x24, #0x2c8
+    6a80:	528076a2 	mov	w2, #0x3b5                 	// #949
+    6a84:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    6a88:	9103a021 	add	x1, x1, #0xe8
+    6a8c:	528000a0 	mov	w0, #0x5                   	// #5
+    6a90:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    6a94:	d63f00a0 	blr	x5
+    6a98:	17fffce7 	b	5e34 <restoreRemoteCfg@@Base+0xcc8>
+    6a9c:	f9408bb3 	ldr	x19, [x29, #272]
+    6aa0:	aa1303e1 	mov	x1, x19
+    6aa4:	d63f0280 	blr	x20
+    6aa8:	34ff9c60 	cbz	w0, 5e34 <restoreRemoteCfg@@Base+0xcc8>
+    6aac:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    6ab0:	f94087a0 	ldr	x0, [x29, #264]
+    6ab4:	90000081 	adrp	x1, 16000 <_fini@@Base+0x2d4c>
+    6ab8:	9128e021 	add	x1, x1, #0xa38
+    6abc:	f9474863 	ldr	x3, [x3, #3728]  ; GOT db_wrapper_setParamAttrByUri
+    6ac0:	aa1303e2 	mov	x2, x19
+    6ac4:	d63f0060 	blr	x3
+    6ac8:	340013c0 	cbz	w0, 6d40 <restoreRemoteCfg@@Base+0x1bd4>
+    6acc:	a95097a4 	ldp	x4, x5, [x29, #264]
+    6ad0:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6ad4:	91325063 	add	x3, x3, #0xc94  ; 'cfgXml_setParamAttrByUri failed!uri=%s,val=%s\n'
+    6ad8:	910b2301 	add	x1, x24, #0x2c8
+    6adc:	52807742 	mov	w2, #0x3ba                 	// #954
+    6ae0:	b0000106 	adrp	x6, 27000 <_fini@@Base+0x13d4c>
+    6ae4:	9103a021 	add	x1, x1, #0xe8  ; 'Additional'
+    6ae8:	528000a0 	mov	w0, #0x5                   	// #5
+    6aec:	f947d8c6 	ldr	x6, [x6, #4016]  ; GOT log_log
+    6af0:	d63f00c0 	blr	x6
+    6af4:	17fffcd0 	b	5e34 <restoreRemoteCfg@@Base+0xcc8>
+    6af8:	f94063a3 	ldr	x3, [x29, #192]
+    6afc:	b0000119 	adrp	x25, 27000 <_fini@@Base+0x13d4c>
+    6b00:	910503b3 	add	x19, x29, #0x140
+    6b04:	d2808002 	mov	x2, #0x400                 	// #1024
+    6b08:	52800001 	mov	w1, #0x0                   	// #0
+    6b0c:	aa1303e0 	mov	x0, x19
+    6b10:	f9461c7a 	ldr	x26, [x3, #3128]
+    6b14:	d63f0340 	blr	x26
+    6b18:	f947b339 	ldr	x25, [x25, #3936]  ; GOT strncpy@GLIBC_2.17
+    6b1c:	aa1703e1 	mov	x1, x23
+    6b20:	d2801fe2 	mov	x2, #0xff                  	// #255
+    6b24:	aa1303e0 	mov	x0, x19
+    6b28:	d63f0320 	blr	x25
+    6b2c:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    6b30:	aa1303e0 	mov	x0, x19
+    6b34:	f946ec21 	ldr	x1, [x1, #3544]  ; GOT dmUtl_PathToTr069Node
+    6b38:	d63f0020 	blr	x1
+    6b3c:	35000f60 	cbnz	w0, 6d28 <restoreRemoteCfg@@Base+0x1bbc>
+    6b40:	911503b7 	add	x23, x29, #0x540
+    6b44:	d284ee82 	mov	x2, #0x2774                	// #10100
+    6b48:	52800001 	mov	w1, #0x0                   	// #0
+    6b4c:	aa1703e0 	mov	x0, x23
+    6b50:	d63f0340 	blr	x26
+    6b54:	9104e27a 	add	x26, x19, #0x138
+    6b58:	b9425ba0 	ldr	w0, [x29, #600]
+    6b5c:	911513a2 	add	x2, x29, #0x544
+    6b60:	b90543a0 	str	w0, [x29, #1344]
+    6b64:	910973a0 	add	x0, x29, #0x25c
+    6b68:	a9400400 	ldp	x0, x1, [x0]
+    6b6c:	a9000440 	stp	x0, x1, [x2]
+    6b70:	910a83a0 	add	x0, x29, #0x2a0
+    6b74:	911283a1 	add	x1, x29, #0x4a0
+    6b78:	d28007e2 	mov	x2, #0x3f                  	// #63
+    6b7c:	f85cc000 	ldur	x0, [x0, #-52]
+    6b80:	f80b4020 	stur	x0, [x1, #180]
+    6b84:	aa1a03e1 	mov	x1, x26
+    6b88:	b94277a0 	ldr	w0, [x29, #628]
+    6b8c:	b9055fa0 	str	w0, [x29, #1372]
+    6b90:	910082e0 	add	x0, x23, #0x20
+    6b94:	d63f0320 	blr	x25
+    6b98:	b0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    6b9c:	52800001 	mov	w1, #0x0                   	// #0
+    6ba0:	aa1703e0 	mov	x0, x23
+    6ba4:	f946a842 	ldr	x2, [x2, #3408]  ; GOT db_wrapper_getParamValue
+    6ba8:	d63f0040 	blr	x2
+    6bac:	340000e0 	cbz	w0, 6bc8 <restoreRemoteCfg@@Base+0x1a5c>
+    6bb0:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6bb4:	91330c63 	add	x3, x3, #0xcc3  ; 'db_wrapper_getParamValue failed!uri=%s\n'
+    6bb8:	910b2301 	add	x1, x24, #0x2c8
+    6bbc:	52807922 	mov	w2, #0x3c9                 	// #969
+    6bc0:	f94087a4 	ldr	x4, [x29, #264]
+    6bc4:	17ffffb0 	b	6a84 <restoreRemoteCfg@@Base+0x1918>
+    6bc8:	f9408bb9 	ldr	x25, [x29, #272]
+    6bcc:	910182e0 	add	x0, x23, #0x60
+    6bd0:	aa1903e1 	mov	x1, x25
+    6bd4:	d63f0280 	blr	x20
+    6bd8:	34ff92e0 	cbz	w0, 5e34 <restoreRemoteCfg@@Base+0xcc8>
+    6bdc:	b9425bb7 	ldr	w23, [x29, #600]
+    6be0:	710472ff 	cmp	w23, #0x11c
+    6be4:	54000141 	b.ne	6c0c <restoreRemoteCfg@@Base+0x1aa0>  // b.any
+    6be8:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6bec:	9133ac21 	add	x1, x1, #0xceb  ; 'MinAddress'
+    6bf0:	aa1a03e0 	mov	x0, x26
+    6bf4:	d63f0280 	blr	x20
+    6bf8:	350000a0 	cbnz	w0, 6c0c <restoreRemoteCfg@@Base+0x1aa0>
+    6bfc:	37000635 	tbnz	w21, #0, 6cc0 <restoreRemoteCfg@@Base+0x1b54>
+    6c00:	320002b5 	orr	w21, w21, #0x1
+    6c04:	52800020 	mov	w0, #0x1                   	// #1
+    6c08:	b900efa0 	str	w0, [x29, #236]
+    6c0c:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    6c10:	9104e274 	add	x20, x19, #0x138
+    6c14:	2a1503e4 	mov	w4, w21
+    6c18:	aa1903e3 	mov	x3, x25
+    6c1c:	f94688a5 	ldr	x5, [x5, #3344]  ; GOT dbgen_setParamValue
+    6c20:	aa1403e2 	mov	x2, x20
+    6c24:	91047261 	add	x1, x19, #0x11c
+    6c28:	2a1703e0 	mov	w0, w23
+    6c2c:	d63f00a0 	blr	x5
+    6c30:	7100101f 	cmp	w0, #0x4
+    6c34:	b0000108 	adrp	x8, 27000 <_fini@@Base+0x13d4c>
+    6c38:	54000481 	b.ne	6cc8 <restoreRemoteCfg@@Base+0x1b5c>  // b.any
+    6c3c:	b94277a0 	ldr	w0, [x29, #628]
+    6c40:	910b2301 	add	x1, x24, #0x2c8
+    6c44:	b90013e0 	str	w0, [sp, #16]
+    6c48:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6c4c:	9133d863 	add	x3, x3, #0xcf6  ; 'Set Param value need recheck, oid-iid is [%d:[%d-%d-%d-%d-%d-%d]], ParamName:%s,flag=0x%x\n'
+    6c50:	b94273a0 	ldr	w0, [x29, #624]
+    6c54:	52807b42 	mov	w2, #0x3da                 	// #986
+    6c58:	f947d908 	ldr	x8, [x8, #4016]  ; GOT log_log
+    6c5c:	9103a021 	add	x1, x1, #0xe8  ; 'keyval_from_line failed!\n'
+    6c60:	b9425ba4 	ldr	w4, [x29, #600]
+    6c64:	b94263a5 	ldr	w5, [x29, #608]
+    6c68:	b94267a6 	ldr	w6, [x29, #612]
+    6c6c:	b9426ba7 	ldr	w7, [x29, #616]
+    6c70:	b9000be0 	str	w0, [sp, #8]
+    6c74:	b9426fa0 	ldr	w0, [x29, #620]
+    6c78:	b90003e0 	str	w0, [sp]
+    6c7c:	f9000ff4 	str	x20, [sp, #24]
+    6c80:	528000a0 	mov	w0, #0x5                   	// #5
+    6c84:	b90023f5 	str	w21, [sp, #32]
+    6c88:	d63f0100 	blr	x8
+    6c8c:	b0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    6c90:	f94073a0 	ldr	x0, [x29, #224]
+    6c94:	f945c273 	ldr	x19, [x19, #2944]  ; GOT fclose@GLIBC_2.17
+    6c98:	d63f0260 	blr	x19
+    6c9c:	b4000076 	cbz	x22, 6ca8 <restoreRemoteCfg@@Base+0x1b3c>
+    6ca0:	aa1603e0 	mov	x0, x22
+    6ca4:	d63f0260 	blr	x19
+    6ca8:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    6cac:	910463a0 	add	x0, x29, #0x118
+    6cb0:	52800093 	mov	w19, #0x4                   	// #4
+    6cb4:	f947cc21 	ldr	x1, [x1, #3992]  ; GOT freeAddObjectTokenList
+    6cb8:	d63f0020 	blr	x1
+    6cbc:	17fff9bf 	b	53b8 <restoreRemoteCfg@@Base+0x24c>
+    6cc0:	b900efbf 	str	wzr, [x29, #236]
+    6cc4:	17ffffd2 	b	6c0c <restoreRemoteCfg@@Base+0x1aa0>
+    6cc8:	910b2301 	add	x1, x24, #0x2c8
+    6ccc:	a95097a4 	ldp	x4, x5, [x29, #264]
+    6cd0:	34000180 	cbz	w0, 6d00 <restoreRemoteCfg@@Base+0x1b94>
+    6cd4:	f947d908 	ldr	x8, [x8, #4016]
+    6cd8:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6cdc:	91354463 	add	x3, x3, #0xd51  ; 'dbgen_setParamValue failed! %s=%s\n'
+    6ce0:	52807ce2 	mov	w2, #0x3e7                 	// #999
+    6ce4:	9103a021 	add	x1, x1, #0xe8
+    6ce8:	528000a0 	mov	w0, #0x5                   	// #5
+    6cec:	d63f0100 	blr	x8
+    6cf0:	b940efa0 	ldr	w0, [x29, #236]
+    6cf4:	34ff8a00 	cbz	w0, 5e34 <restoreRemoteCfg@@Base+0xcc8>
+    6cf8:	121f7ab5 	and	w21, w21, #0xfffffffe
+    6cfc:	17fffc4e 	b	5e34 <restoreRemoteCfg@@Base+0xcc8>
+    6d00:	f947d908 	ldr	x8, [x8, #4016]
+    6d04:	528000a0 	mov	w0, #0x5                   	// #5
+    6d08:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6d0c:	91364863 	add	x3, x3, #0xd92  ; '%s=%s\n'
+    6d10:	52807d62 	mov	w2, #0x3eb                 	// #1003
+    6d14:	9103a021 	add	x1, x1, #0xe8
+    6d18:	d63f0100 	blr	x8
+    6d1c:	52800020 	mov	w0, #0x1                   	// #1
+    6d20:	b900eba0 	str	w0, [x29, #232]
+    6d24:	17fffff3 	b	6cf0 <restoreRemoteCfg@@Base+0x1b84>
+    6d28:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6d2c:	9135d063 	add	x3, x3, #0xd74  ; 'dmUtl_PathToTr069Node failed! %s=%s\n'
+    6d30:	910b2301 	add	x1, x24, #0x2c8
+    6d34:	52807ea2 	mov	w2, #0x3f5                 	// #1013
+    6d38:	a95097a4 	ldp	x4, x5, [x29, #264]
+    6d3c:	17ffff69 	b	6ae0 <restoreRemoteCfg@@Base+0x1974>
+    6d40:	52800020 	mov	w0, #0x1                   	// #1
+    6d44:	b900eba0 	str	w0, [x29, #232]
+    6d48:	17fffc3b 	b	5e34 <restoreRemoteCfg@@Base+0xcc8>
+    6d4c:	b940efa0 	ldr	w0, [x29, #236]
+    6d50:	71000c1f 	cmp	w0, #0x3
+    6d54:	540008c1 	b.ne	6e6c <restoreRemoteCfg@@Base+0x1d00>  // b.any
+    6d58:	f94087a0 	ldr	x0, [x29, #264]
+    6d5c:	39400001 	ldrb	w1, [x0]
+    6d60:	7100ac3f 	cmp	w1, #0x2b
+    6d64:	54000461 	b.ne	6df0 <restoreRemoteCfg@@Base+0x1c84>  // b.any
+    6d68:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    6d6c:	d2859706 	mov	x6, #0x2cb8                	// #11448
+    6d70:	8b0603b3 	add	x19, x29, x6
+    6d74:	910413a1 	add	x1, x29, #0x104
+    6d78:	f9463c63 	ldr	x3, [x3, #3192]  ; GOT db_wrapper_getOidIidByUri
+    6d7c:	aa1303e2 	mov	x2, x19
+    6d80:	91000400 	add	x0, x0, #0x1
+    6d84:	d63f0060 	blr	x3
+    6d88:	350001e0 	cbnz	w0, 6dc4 <restoreRemoteCfg@@Base+0x1c58>
+    6d8c:	b0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    6d90:	b94107a0 	ldr	w0, [x29, #260]
+    6d94:	aa1303e1 	mov	x1, x19
+    6d98:	f9474442 	ldr	x2, [x2, #3720]  ; GOT db_wrapper_isObjectExistByID
+    6d9c:	d63f0040 	blr	x2
+    6da0:	72001c1f 	tst	w0, #0xff
+    6da4:	54ff53e1 	b.ne	5820 <restoreRemoteCfg@@Base+0x6b4>  // b.any
+    6da8:	b0000103 	adrp	x3, 27000 <_fini@@Base+0x13d4c>
+    6dac:	b94107a0 	ldr	w0, [x29, #260]
+    6db0:	52a00402 	mov	w2, #0x200000              	// #2097152
+    6db4:	aa1303e1 	mov	x1, x19
+    6db8:	f9478063 	ldr	x3, [x3, #3840]  ; GOT dbgen_addInstance
+    6dbc:	d63f0060 	blr	x3
+    6dc0:	34ff5300 	cbz	w0, 5820 <restoreRemoteCfg@@Base+0x6b4>
+    6dc4:	f94087a4 	ldr	x4, [x29, #264]
+    6dc8:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6dcc:	91366463 	add	x3, x3, #0xd99  ; 'Add failed: %s\n'
+    6dd0:	91000484 	add	x4, x4, #0x1
+    6dd4:	52807fc2 	mov	w2, #0x3fe                 	// #1022
+    6dd8:	f9407fa1 	ldr	x1, [x29, #248]
+    6ddc:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    6de0:	528000a0 	mov	w0, #0x5                   	// #5
+    6de4:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    6de8:	d63f00a0 	blr	x5
+    6dec:	17fffa8d 	b	5820 <restoreRemoteCfg@@Base+0x6b4>
+    6df0:	7100b43f 	cmp	w1, #0x2d
+    6df4:	54ff5161 	b.ne	5820 <restoreRemoteCfg@@Base+0x6b4>  // b.any
+    6df8:	97fff5df 	bl	4574 <__gmon_start__@plt+0x74>
+    6dfc:	7100001f 	cmp	w0, #0x0
+    6e00:	b0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    6e04:	52800101 	mov	w1, #0x8                   	// #8
+    6e08:	1a810001 	csel	w1, w0, w1, eq	// eq = none
+    6e0c:	f94087a0 	ldr	x0, [x29, #264]
+    6e10:	f9475042 	ldr	x2, [x2, #3744]  ; GOT dbgen_delInstanceByUri
+    6e14:	91000400 	add	x0, x0, #0x1
+    6e18:	d63f0040 	blr	x2
+    6e1c:	7100101f 	cmp	w0, #0x4
+    6e20:	54000181 	b.ne	6e50 <restoreRemoteCfg@@Base+0x1ce4>  // b.any
+    6e24:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    6e28:	f94087a4 	ldr	x4, [x29, #264]
+    6e2c:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6e30:	9136a463 	add	x3, x3, #0xda9  ; 'Del need recheck: %s\n'
+    6e34:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    6e38:	52808102 	mov	w2, #0x408                 	// #1032
+    6e3c:	9103a2e1 	add	x1, x23, #0xe8
+    6e40:	528000a0 	mov	w0, #0x5                   	// #5
+    6e44:	91000484 	add	x4, x4, #0x1
+    6e48:	d63f00a0 	blr	x5
+    6e4c:	17ffff90 	b	6c8c <restoreRemoteCfg@@Base+0x1b20>
+    6e50:	34ff4e80 	cbz	w0, 5820 <restoreRemoteCfg@@Base+0x6b4>
+    6e54:	f94087a4 	ldr	x4, [x29, #264]
+    6e58:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6e5c:	9136fc63 	add	x3, x3, #0xdbf  ; 'Del failed: %s\n'
+    6e60:	52808282 	mov	w2, #0x414                 	// #1044
+    6e64:	91000484 	add	x4, x4, #0x1
+    6e68:	17ffffdc 	b	6dd8 <restoreRemoteCfg@@Base+0x1c6c>
+    6e6c:	b940efa0 	ldr	w0, [x29, #236]
+    6e70:	36ff4d80 	tbz	w0, #31, 5820 <restoreRemoteCfg@@Base+0x6b4>
+    6e74:	b0000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    6e78:	9103a2f7 	add	x23, x23, #0xe8
+    6e7c:	aa1703e1 	mov	x1, x23
+    6e80:	52808322 	mov	w2, #0x419                 	// #1049
+    6e84:	f947da73 	ldr	x19, [x19, #4016]  ; GOT log_log
+    6e88:	528000a0 	mov	w0, #0x5                   	// #5
+    6e8c:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6e90:	91373c63 	add	x3, x3, #0xdcf  ; 'get_keyval_from_line failed!\n'
+    6e94:	d63f0260 	blr	x19
+    6e98:	f9406fa4 	ldr	x4, [x29, #216]
+    6e9c:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6ea0:	912a7063 	add	x3, x3, #0xa9c  ; '%s\n'
+    6ea4:	52808342 	mov	w2, #0x41a                 	// #1050
+    6ea8:	aa1703e1 	mov	x1, x23
+    6eac:	528000a0 	mov	w0, #0x5                   	// #5
+    6eb0:	d63f0260 	blr	x19
+    6eb4:	17fff972 	b	547c <restoreRemoteCfg@@Base+0x310>
+    6eb8:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6ebc:	911ef821 	add	x1, x1, #0x7be  ; 'shell'
+    6ec0:	aa1303e0 	mov	x0, x19
+    6ec4:	d63f0340 	blr	x26
+    6ec8:	350001c0 	cbnz	w0, 6f00 <restoreRemoteCfg@@Base+0x1d94>
+    6ecc:	b4ff4ab6 	cbz	x22, 5820 <restoreRemoteCfg@@Base+0x6b4>
+    6ed0:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    6ed4:	f9406fa0 	ldr	x0, [x29, #216]
+    6ed8:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+    6edc:	d63f0020 	blr	x1
+    6ee0:	aa0003e1 	mov	x1, x0
+    6ee4:	b0000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    6ee8:	f9406fa0 	ldr	x0, [x29, #216]
+    6eec:	aa1603e3 	mov	x3, x22
+    6ef0:	d2800022 	mov	x2, #0x1                   	// #1
+    6ef4:	f9475c84 	ldr	x4, [x4, #3768]  ; GOT fwrite@GLIBC_2.17
+    6ef8:	d63f0080 	blr	x4
+    6efc:	17fffa49 	b	5820 <restoreRemoteCfg@@Base+0x6b4>
+    6f00:	b0000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6f04:	9137b463 	add	x3, x3, #0xded  ; 'domain:%s is not supported!\n'
+    6f08:	aa1303e4 	mov	x4, x19
+    6f0c:	52808462 	mov	w2, #0x423                 	// #1059
+    6f10:	9103a2e1 	add	x1, x23, #0xe8
+    6f14:	17ffffb2 	b	6ddc <restoreRemoteCfg@@Base+0x1c70>
+    6f18:	b0000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    6f1c:	f9404ba1 	ldr	x1, [x29, #144]
+    6f20:	f9406ba0 	ldr	x0, [x29, #208]
+    6f24:	f946b442 	ldr	x2, [x2, #3432]  ; GOT processDeltaCfgwithOPIDChange
+    6f28:	d63f0040 	blr	x2
+    6f2c:	b940a3a0 	ldr	w0, [x29, #160]
+    6f30:	340007c0 	cbz	w0, 7028 <restoreRemoteCfg@@Base+0x1ebc>
+    6f34:	b0000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    6f38:	d297a104 	mov	x4, #0xbd08                	// #48392
+    6f3c:	910503b3 	add	x19, x29, #0x140
+    6f40:	8b0403b8 	add	x24, x29, x4
+    6f44:	f947b294 	ldr	x20, [x20, #3936]  ; GOT strncpy@GLIBC_2.17
+    6f48:	aa1803e1 	mov	x1, x24
+    6f4c:	d2801fe2 	mov	x2, #0xff                  	// #255
+    6f50:	aa1303e0 	mov	x0, x19
+    6f54:	d63f0280 	blr	x20
+    6f58:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    6f5c:	aa1303e0 	mov	x0, x19
+    6f60:	f946ec21 	ldr	x1, [x1, #3544]  ; GOT dmUtl_PathToTr069Node
+    6f64:	d63f0020 	blr	x1
+    6f68:	35000600 	cbnz	w0, 7028 <restoreRemoteCfg@@Base+0x1ebc>
+    6f6c:	f94063a3 	ldr	x3, [x29, #192]
+    6f70:	911503b7 	add	x23, x29, #0x540
+    6f74:	d284ee82 	mov	x2, #0x2774                	// #10100
+    6f78:	52800001 	mov	w1, #0x0                   	// #0
+    6f7c:	aa1703e0 	mov	x0, x23
+    6f80:	9104e27a 	add	x26, x19, #0x138
+    6f84:	f9461c7b 	ldr	x27, [x3, #3128]
+    6f88:	d63f0360 	blr	x27
+    6f8c:	b9425bb9 	ldr	w25, [x29, #600]
+    6f90:	910973a0 	add	x0, x29, #0x25c
+    6f94:	911513a2 	add	x2, x29, #0x544
+    6f98:	b90543b9 	str	w25, [x29, #1344]
+    6f9c:	a9400400 	ldp	x0, x1, [x0]
+    6fa0:	a9000440 	stp	x0, x1, [x2]
+    6fa4:	910a83a0 	add	x0, x29, #0x2a0
+    6fa8:	911283a1 	add	x1, x29, #0x4a0
+    6fac:	d28007e2 	mov	x2, #0x3f                  	// #63
+    6fb0:	f85cc000 	ldur	x0, [x0, #-52]
+    6fb4:	f80b4020 	stur	x0, [x1, #180]
+    6fb8:	aa1a03e1 	mov	x1, x26
+    6fbc:	b94277a0 	ldr	w0, [x29, #628]
+    6fc0:	b9055fa0 	str	w0, [x29, #1372]
+    6fc4:	910082e0 	add	x0, x23, #0x20
+    6fc8:	d63f0280 	blr	x20
+    6fcc:	b0000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    6fd0:	d297b103 	mov	x3, #0xbd88                	// #48520
+    6fd4:	8b0303b4 	add	x20, x29, x3
+    6fd8:	2a1503e4 	mov	w4, w21
+    6fdc:	f94688a5 	ldr	x5, [x5, #3344]  ; GOT dbgen_setParamValue
+    6fe0:	91047261 	add	x1, x19, #0x11c
+    6fe4:	aa1403e3 	mov	x3, x20
+    6fe8:	aa1a03e2 	mov	x2, x26
+    6fec:	2a1903e0 	mov	w0, w25
+    6ff0:	d63f00a0 	blr	x5
+    6ff4:	b0000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    6ff8:	b0000106 	adrp	x6, 27000 <_fini@@Base+0x13d4c>
+    6ffc:	910b2021 	add	x1, x1, #0x2c8  ; 'updateUrlWithInstance'
+    7000:	aa1403e5 	mov	x5, x20
+    7004:	aa1803e4 	mov	x4, x24
+    7008:	34000840 	cbz	w0, 7110 <restoreRemoteCfg@@Base+0x1fa4>
+    700c:	f947d8c6 	ldr	x6, [x6, #4016]  ; GOT log_log
+    7010:	90000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7014:	91354463 	add	x3, x3, #0xd51  ; 'dbgen_setParamValue failed! %s=%s\n'
+    7018:	528088a2 	mov	w2, #0x445                 	// #1093
+    701c:	9103a021 	add	x1, x1, #0xe8  ; 'restoreRemoteCfg'
+    7020:	528000a0 	mov	w0, #0x5                   	// #5
+    7024:	d63f00c0 	blr	x6
+    7028:	d2978102 	mov	x2, #0xbc08                	// #48136
+    702c:	8b0203a0 	add	x0, x29, x2
+    7030:	90000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    7034:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7038:	911ef821 	add	x1, x1, #0x7be  ; 'shell'
+    703c:	f946cc42 	ldr	x2, [x2, #3480]  ; GOT strcmp@GLIBC_2.17
+    7040:	90000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    7044:	d63f0040 	blr	x2
+    7048:	350002e0 	cbnz	w0, 70a4 <restoreRemoteCfg@@Base+0x1f38>
+    704c:	b4000096 	cbz	x22, 705c <restoreRemoteCfg@@Base+0x1ef0>
+    7050:	f945c261 	ldr	x1, [x19, #2944]  ; GOT fclose@GLIBC_2.17
+    7054:	aa1603e0 	mov	x0, x22
+    7058:	d63f0020 	blr	x1
+    705c:	90000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    7060:	90000074 	adrp	x20, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7064:	911f6e94 	add	x20, x20, #0x7db  ; 'chmod a+x /tmp/cfg_update_remote.sh && . /tmp/cfg_update_remote.sh'
+    7068:	f947d021 	ldr	x1, [x1, #4000]  ; GOT _system
+    706c:	aa1403e0 	mov	x0, x20
+    7070:	d2800016 	mov	x22, #0x0                   	// #0
+    7074:	d63f0020 	blr	x1
+    7078:	90000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    707c:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7080:	910b2021 	add	x1, x1, #0x2c8  ; 'updateUrlWithInstance'
+    7084:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    7088:	aa1403e4 	mov	x4, x20
+    708c:	90000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7090:	91207863 	add	x3, x3, #0x81e  ; 'run : %s\n'
+    7094:	52808ae2 	mov	w2, #0x457                 	// #1111
+    7098:	9103a021 	add	x1, x1, #0xe8  ; 'restoreRemoteCfg'
+    709c:	528000a0 	mov	w0, #0x5                   	// #5
+    70a0:	d63f00a0 	blr	x5
+    70a4:	f945c273 	ldr	x19, [x19, #2944]  ; GOT fclose@GLIBC_2.17
+    70a8:	f94073a0 	ldr	x0, [x29, #224]
+    70ac:	d63f0260 	blr	x19
+    70b0:	b4000076 	cbz	x22, 70bc <restoreRemoteCfg@@Base+0x1f50>
+    70b4:	aa1603e0 	mov	x0, x22
+    70b8:	d63f0260 	blr	x19
+    70bc:	90000100 	adrp	x0, 27000 <_fini@@Base+0x13d4c>
+    70c0:	910463b6 	add	x22, x29, #0x118
+    70c4:	90000114 	adrp	x20, 27000 <_fini@@Base+0x13d4c>
+    70c8:	f9465c00 	ldr	x0, [x0, #3256]  ; GOT db_wrapper_saveToFlash
+    70cc:	d63f0000 	blr	x0
+    70d0:	2a0003f3 	mov	w19, w0
+    70d4:	34000320 	cbz	w0, 7138 <restoreRemoteCfg@@Base+0x1fcc>
+    70d8:	90000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    70dc:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    70e0:	910b2021 	add	x1, x1, #0x2c8  ; 'updateUrlWithInstance'
+    70e4:	f947d884 	ldr	x4, [x4, #4016]  ; GOT log_log
+    70e8:	52808c02 	mov	w2, #0x460                 	// #1120
+    70ec:	9103a021 	add	x1, x1, #0xe8  ; 'restoreRemoteCfg'
+    70f0:	52800060 	mov	w0, #0x3                   	// #3
+    70f4:	90000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    70f8:	91399863 	add	x3, x3, #0xe66  ; 'save to flash failed!\n'
+    70fc:	d63f0080 	blr	x4
+    7100:	f947ce94 	ldr	x20, [x20, #3992]  ; GOT freeAddObjectTokenList
+    7104:	aa1603e0 	mov	x0, x22
+    7108:	d63f0280 	blr	x20
+    710c:	17fff8aa 	b	53b4 <restoreRemoteCfg@@Base+0x248>
+    7110:	f947d8c6 	ldr	x6, [x6, #4016]
+    7114:	528000a0 	mov	w0, #0x5                   	// #5
+    7118:	90000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    711c:	91394c63 	add	x3, x3, #0xe53  ; 'Set %s=%s success\n'
+    7120:	52808922 	mov	w2, #0x449                 	// #1097
+    7124:	9103a021 	add	x1, x1, #0xe8  ; 'url is NULL\n'
+    7128:	d63f00c0 	blr	x6
+    712c:	b940a3a0 	ldr	w0, [x29, #160]
+    7130:	b900eba0 	str	w0, [x29, #232]
+    7134:	17ffffbd 	b	7028 <restoreRemoteCfg@@Base+0x1ebc>
+    7138:	b940bfa0 	ldr	w0, [x29, #188]
+    713c:	7100001f 	cmp	w0, #0x0
+    7140:	b940eba0 	ldr	w0, [x29, #232]
+    7144:	12000000 	and	w0, w0, #0x1
+    7148:	1a9f1000 	csel	w0, w0, wzr, ne	// ne = any
+    714c:	34000140 	cbz	w0, 7174 <restoreRemoteCfg@@Base+0x2008>
+    7150:	b9409fa0 	ldr	w0, [x29, #156]
+    7154:	34000100 	cbz	w0, 7174 <restoreRemoteCfg@@Base+0x2008>
+    7158:	97fff507 	bl	4574 <__gmon_start__@plt+0x74>
+    715c:	350000c0 	cbnz	w0, 7174 <restoreRemoteCfg@@Base+0x2008>
+    7160:	90000101 	adrp	x1, 27000 <_fini@@Base+0x13d4c>
+    7164:	90000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7168:	9139f400 	add	x0, x0, #0xe7d  ; 'echo "System will reboot by remote config update." && reboot &'
+    716c:	f947d021 	ldr	x1, [x1, #4000]  ; GOT _system
+    7170:	d63f0020 	blr	x1
+    7174:	b940a7a0 	ldr	w0, [x29, #164]
+    7178:	34000960 	cbz	w0, 72a4 <restoreRemoteCfg@@Base+0x2138>
+    717c:	b94103a4 	ldr	w4, [x29, #256]
+    7180:	34000284 	cbz	w4, 71d0 <restoreRemoteCfg@@Base+0x2064>
+    7184:	90000105 	adrp	x5, 27000 <_fini@@Base+0x13d4c>
+    7188:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    718c:	910b2021 	add	x1, x1, #0x2c8  ; 'updateUrlWithInstance'
+    7190:	f947d8a5 	ldr	x5, [x5, #4016]  ; GOT log_log
+    7194:	52808de2 	mov	w2, #0x46f                 	// #1135
+    7198:	9103a021 	add	x1, x1, #0xe8  ; 'restoreRemoteCfg'
+    719c:	528000a0 	mov	w0, #0x5                   	// #5
+    71a0:	90000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    71a4:	913af063 	add	x3, x3, #0xebc  ; 'sending signal notifyUSPCfgUpdate to syncmgr with usp_table_no : %u\n'
+    71a8:	d63f00a0 	blr	x5
+    71ac:	90000104 	adrp	x4, 27000 <_fini@@Base+0x13d4c>
+    71b0:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    71b4:	913c0421 	add	x1, x1, #0xf01  ; 'notifyUSPCfgUpdate'
+    71b8:	f9459084 	ldr	x4, [x4, #2848]  ; GOT n_bus_signal_send
+    71bc:	90000060 	adrp	x0, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    71c0:	913c5000 	add	x0, x0, #0xf14  ; 'nokia.usp'
+    71c4:	52800083 	mov	w3, #0x4                   	// #4
+    71c8:	910403a2 	add	x2, x29, #0x100
+    71cc:	d63f0080 	blr	x4
+    71d0:	360006b5 	tbz	w21, #0, 72a4 <restoreRemoteCfg@@Base+0x2138>
+    71d4:	90000115 	adrp	x21, 27000 <_fini@@Base+0x13d4c>
+    71d8:	90000077 	adrp	x23, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    71dc:	913cd6f7 	add	x23, x23, #0xf35  ; 'rts_ManagementServerObject'
+    71e0:	f947bab5 	ldr	x21, [x21, #3952]  ; GOT dmUtl_doSystemAction
+    71e4:	aa1703e0 	mov	x0, x23
+    71e8:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    71ec:	913c7821 	add	x1, x1, #0xf1e  ; 'touch /tmp/obuspaStart'
+    71f0:	d63f02a0 	blr	x21
+    71f4:	aa1703e0 	mov	x0, x23
+    71f8:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    71fc:	913d4021 	add	x1, x1, #0xf50  ; 'rm /tmp/mqtt_nwcc_status'
+    7200:	d63f02a0 	blr	x21
+    7204:	d2859700 	mov	x0, #0x2cb8                	// #11448
+    7208:	90000117 	adrp	x23, 27000 <_fini@@Base+0x13d4c>
+    720c:	8b0003b5 	add	x21, x29, x0
+    7210:	d2859401 	mov	x1, #0x2ca0                	// #11424
+    7214:	8b0103a0 	add	x0, x29, x1
+    7218:	f94776f7 	ldr	x23, [x23, #3816]  ; GOT strcpy@GLIBC_2.17
+    721c:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7220:	913da421 	add	x1, x1, #0xf69  ; 'service'
+    7224:	a901fc1f 	stp	xzr, xzr, [x0, #24]
+    7228:	a902fc1f 	stp	xzr, xzr, [x0, #40]
+    722c:	aa1503e0 	mov	x0, x21
+    7230:	d63f02e0 	blr	x23
+    7234:	910042a0 	add	x0, x21, #0x10
+    7238:	90000061 	adrp	x1, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    723c:	913dc421 	add	x1, x1, #0xf71  ; 'obuspa'
+    7240:	d63f02e0 	blr	x23
+    7244:	90000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>
+    7248:	aa1503e0 	mov	x0, x21
+    724c:	d2800001 	mov	x1, #0x0                   	// #0
+    7250:	90000077 	adrp	x23, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7254:	f947c442 	ldr	x2, [x2, #3976]  ; GOT PCD_api_start_process
+    7258:	90000115 	adrp	x21, 27000 <_fini@@Base+0x13d4c>
+    725c:	d63f0040 	blr	x2
+    7260:	34000120 	cbz	w0, 7284 <restoreRemoteCfg@@Base+0x2118>
+    7264:	f947daa4 	ldr	x4, [x21, #4016]  ; GOT log_log
+    7268:	910b22e1 	add	x1, x23, #0x2c8  ; 'updateUrlWithInstance'
+    726c:	90000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7270:	913de063 	add	x3, x3, #0xf78  ; 'start obuspa failed\n'
+    7274:	52808f82 	mov	w2, #0x47c                 	// #1148
+    7278:	9103a021 	add	x1, x1, #0xe8  ; 'restoreRemoteCfg'
+    727c:	52800060 	mov	w0, #0x3                   	// #3
+    7280:	d63f0080 	blr	x4
+    7284:	f947dab5 	ldr	x21, [x21, #4016]  ; GOT log_log
+    7288:	910b22e1 	add	x1, x23, #0x2c8  ; 'updateUrlWithInstance'
+    728c:	90000063 	adrp	x3, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7290:	913e3463 	add	x3, x3, #0xf8d  ; 'USP agent started on RTS tr369=true'
+    7294:	52808fc2 	mov	w2, #0x47e                 	// #1150
+    7298:	9103a021 	add	x1, x1, #0xe8  ; 'restoreRemoteCfg'
+    729c:	528000e0 	mov	w0, #0x7                   	// #7
+    72a0:	d63f02a0 	blr	x21
+    72a4:	f947ce94 	ldr	x20, [x20, #3992]
+    72a8:	aa1603e0 	mov	x0, x22
+    72ac:	d63f0280 	blr	x20
+    72b0:	17fff842 	b	53b8 <restoreRemoteCfg@@Base+0x24c>
+    72b4:	a9437bfd 	ldp	x29, x30, [sp, #48]
+    72b8:	a94453f3 	ldp	x19, x20, [sp, #64]
+    72bc:	a9455bf5 	ldp	x21, x22, [sp, #80]
+    72c0:	a94663f7 	ldp	x23, x24, [sp, #96]
+    72c4:	a9476bf9 	ldp	x25, x26, [sp, #112]
+    72c8:	a94873fb 	ldp	x27, x28, [sp, #128]
+    72cc:	910643ff 	add	sp, sp, #0x190
+    72d0:	914047ff 	add	sp, sp, #0x11, lsl #12
+    72d4:	d65f03c0 	ret
+
+00000000000072d8 <rmAppSessionRelatedFiles@@Base>:
+    72d8:	a9ac7bfd 	stp	x29, x30, [sp, #-320]!
+    72dc:	d2802002 	mov	x2, #0x100                 	// #256
+    72e0:	910003fd 	mov	x29, sp
+    72e4:	a9025bf5 	stp	x21, x22, [sp, #32]
+    72e8:	90000115 	adrp	x21, 27000 <_fini@@Base+0x13d4c>
+    72ec:	a90153f3 	stp	x19, x20, [sp, #16]
+    72f0:	90000113 	adrp	x19, 27000 <_fini@@Base+0x13d4c>
+    72f4:	f9461eb5 	ldr	x21, [x21, #3128]  ; GOT memset@GLIBC_2.17
+    72f8:	9100e3b6 	add	x22, x29, #0x38
+    72fc:	f9469a60 	ldr	x0, [x19, #3376]  ; GOT __stack_chk_guard@GLIBC_2.17
+    7300:	90000074 	adrp	x20, 13000 <dbgen_setParamValueByUri@@Base+0x1c>
+    7304:	913ec694 	add	x20, x20, #0xfb1  ; '/logs/app_nor_acc_fail_login_cnt'
+    7308:	f9400001 	ldr	x1, [x0]
+    730c:	f9009fa1 	str	x1, [x29, #312]
+    7310:	d2800001 	mov	x1, #0x0                   	// #0
+    7314:	aa1603e0 	mov	x0, x22
+    7318:	d63f02a0 	blr	x21
+    731c:	90000102 	adrp	x2, 27000 <_fini@@Base+0x13d4c>

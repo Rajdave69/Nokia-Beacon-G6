@@ -1,0 +1,25 @@
+{
+  "scope": "Synthetic/mock HTTP stdlib client tests; no real network",
+  "cases": 16,
+  "all_passed": true,
+  "source": "scripts/test-ota-firmware-download.py",
+  "checks": [
+    "version header/body consistency",
+    "CRLF rejection",
+    "HTTPS host/userinfo/port allowlist",
+    "redirect refusal",
+    "no overwrite",
+    "private raw offer versus redacted summary",
+    "null offer is no latest claim",
+    "MD5/SHA256 and no API headers at CDN",
+    "wrong MD5 no false complete",
+    "length/size limits",
+    "explicit OUID fallback",
+    "missing/unexpected download URL",
+    "country override changes only country header and preserves profile/body/identity",
+    "invalid country rejected before networking/output creation",
+    "separate gateway version affects header only",
+    "gateway version header CRLF rejection"
+  ],
+  "initial_capture_cases": 12
+}

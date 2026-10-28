@@ -1,0 +1,73 @@
+#!/bin/sh
+# Copyright (C) 2006 OpenWrt.org
+# Copyright (C) 2010 Vertical Communications
+
+. /usr/exe/varset.sh
+. /lib/functions/preinit.sh
+
+clear_img_ver()
+{
+	# set current image version null
+	currentVersion="null"
+	current=$(/usr/sbin/fw_printenv -n active_part)
+
+	# set current valid 0
+	sb_num=$(/usr/sbin/fw_printenv -n sb_flag)
+	if [ $(($sb_num & 0x81 )) = 129 ]; then        # img0 active
+		let "sb_data=sb_num & 0xFD"
+		/usr/sbin/fw_setenv sb_flag $sb_data &>/dev/null
+		/usr/sbin/fw_setenv img_version$current $currentVersion &>/dev/null
+		echo "MSG: clear image version sb_flag=$sb_data"
+	elif [ $(($sb_num & 0x18 )) = 24 ]; then    # img1 active
+		let "sb_data=sb_num & 0xDF"
+		/usr/sbin/fw_setenv sb_flag $sb_data &>/dev/null
+		/usr/sbin/fw_setenv img_version$current $currentVersion &>/dev/null
+		echo "MSG: clear image version sb_flag=$sb_data"
+	fi
+}
+
+set_img_ver()
+{
+	# set current image version 
+	currentVersion=$1
+	current=$(/usr/sbin/fw_printenv -n active_part)
+	
+	# set current vailid 1
+	sb_num=$(/usr/sbin/fw_printenv -n sb_flag)
+	if [ $(($sb_num & 0x81 )) = 129 ]; then        # img0 active
+		let "sb_data=sb_num | 0x02"
+		/usr/sbin/fw_setenv sb_flag $sb_data &>/dev/null
+		/usr/sbin/fw_setenv img_version$current $currentVersion &>/dev/null
+		echo "MSG: set image version sb_flag=$sb_data version=$currentVersion"
+	elif [ $(($sb_num & 0x18 )) = 24 ]; then    # img1 active
+		let "sb_data=sb_num | 0x20"
+		/usr/sbin/fw_setenv sb_flag $sb_data &>/dev/null
+		/usr/sbin/fw_setenv img_version$current $currentVersion &>/dev/null
+		echo "MSG: set image version sb_flag=$sb_data version=$currentVersion"
+	fi
+}
+
+do_mount_root() {
+	# store current image version
+	current=$(/usr/sbin/fw_printenv -n active_part)
+	curImgVersion=$(/usr/sbin/fw_printenv -n img_version$current)
+
+	# clear sb_flag and image version
+	clear_img_ver &>/dev/null
+
+
+	#mount_root ram
+    ramoverlay
+
+	boot_run_hook preinit_mount_root
+	[ -f /sysupgrade.tgz ] && {
+		echo "- config restore -"
+		cd /
+		tar xzf /sysupgrade.tgz
+	}
+
+	# recover sb_flag and image version
+	set_img_ver $curImgVersion &>/dev/null
+}
+
+[ "$INITRAMFS" = "1" ] || boot_hook_add preinit_main do_mount_root

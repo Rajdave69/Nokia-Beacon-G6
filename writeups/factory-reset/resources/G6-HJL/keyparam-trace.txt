@@ -1,0 +1,474 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+/tmp/g6-old-slot-review-20261025-by5iaikl/new/usr/lib/libcfg.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000aff8 <remote_rtscfg_extract_keyparam@@Base>:
+    aff8:	d12f03ff 	sub	sp, sp, #0xbc0
+    affc:	d2802202 	mov	x2, #0x110                 	// #272
+    b000:	a9007bfd 	stp	x29, x30, [sp]
+    b004:	910003fd 	mov	x29, sp
+    b008:	a90363f7 	stp	x23, x24, [sp, #48]
+    b00c:	f00000b7 	adrp	x23, 22000 <_fini@@Base+0x13340>
+    b010:	a9046bf9 	stp	x25, x26, [sp, #64]
+    b014:	f00000ba 	adrp	x26, 22000 <_fini@@Base+0x13340>
+    b018:	f9474ee3 	ldr	x3, [x23, #3736]  ; GOT memset@GLIBC_2.17
+    b01c:	910ea3b8 	add	x24, x29, #0x3a8
+    b020:	f9477740 	ldr	x0, [x26, #3816]  ; GOT __stack_chk_guard@GLIBC_2.17
+    b024:	a90153f3 	stp	x19, x20, [sp, #16]
+    b028:	f00000b3 	adrp	x19, 22000 <_fini@@Base+0x13340>
+    b02c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    b030:	f9400001 	ldr	x1, [x0]
+    b034:	f905dfa1 	str	x1, [x29, #3000]
+    b038:	d2800001 	mov	x1, #0x0                   	// #0
+    b03c:	a90573fb 	stp	x27, x28, [sp, #80]
+    b040:	912aa3bb 	add	x27, x29, #0xaa8
+    b044:	aa1b03e0 	mov	x0, x27
+    b048:	d0000036 	adrp	x22, 11000 <_fini@@Base+0x2340>
+    b04c:	91290ad6 	add	x22, x22, #0xa42  ; 'remote restore config,pls wait.....\n'
+    b050:	d63f0060 	blr	x3
+    b054:	d0000034 	adrp	x20, 11000 <_fini@@Base+0x2340>
+    b058:	91036299 	add	x25, x20, #0xd8  ; 'saveLoginIdFromWeb'
+    b05c:	f947ea64 	ldr	x4, [x19, #4048]  ; GOT log_log
+    b060:	f00000b5 	adrp	x21, 22000 <_fini@@Base+0x13340>
+    b064:	aa1603e3 	mov	x3, x22
+    b068:	91058321 	add	x1, x25, #0x160  ; 'remote_rtscfg_extract_keyparam'
+    b06c:	52803582 	mov	w2, #0x1ac                 	// #428
+    b070:	528000a0 	mov	w0, #0x5                   	// #5
+    b074:	d63f0080 	blr	x4
+    b078:	f94706a0 	ldr	x0, [x21, #3592]  ; GOT stderr@GLIBC_2.17
+    b07c:	f9400001 	ldr	x1, [x0]
+    b080:	aa1603e0 	mov	x0, x22
+    b084:	f00000b6 	adrp	x22, 22000 <_fini@@Base+0x13340>
+    b088:	f946e6c2 	ldr	x2, [x22, #3528]  ; GOT fputs@GLIBC_2.17
+    b08c:	d63f0040 	blr	x2
+    b090:	f00000a1 	adrp	x1, 22000 <_fini@@Base+0x13340>
+    b094:	52800000 	mov	w0, #0x0                   	// #0
+    b098:	f947ac21 	ldr	x1, [x1, #3928]  ; GOT cfg_saveKeyParameters
+    b09c:	d63f0020 	blr	x1
+    b0a0:	f00000a3 	adrp	x3, 22000 <_fini@@Base+0x13340>
+    b0a4:	91060321 	add	x1, x25, #0x180  ; 'InternetGatewayDevice.X_ASB_COM_GPONInfo.SUBSLOCID.Password'
+    b0a8:	d280c002 	mov	x2, #0x600                 	// #1536
+    b0ac:	aa1803e0 	mov	x0, x24
+    b0b0:	f946dc63 	ldr	x3, [x3, #3512]  ; GOT memcpy@GLIBC_2.17
+    b0b4:	d2800019 	mov	x25, #0x0                   	// #0
+    b0b8:	d63f0060 	blr	x3
+    b0bc:	f90043ba 	str	x26, [x29, #128]
+    b0c0:	b00000c0 	adrp	x0, 24000 <_fini@@Base+0x15340>
+    b0c4:	911d001a 	add	x26, x0, #0x740
+    b0c8:	f90047a0 	str	x0, [x29, #136]
+    b0cc:	b00000c0 	adrp	x0, 24000 <_fini@@Base+0x15340>
+    b0d0:	911d2000 	add	x0, x0, #0x748
+    b0d4:	f9003ba0 	str	x0, [x29, #112]
+    b0d8:	f9004bb7 	str	x23, [x29, #144]
+    b0dc:	b9400357 	ldr	w23, [x26]
+    b0e0:	8b19231c 	add	x28, x24, x25, lsl #8
+    b0e4:	7100feff 	cmp	w23, #0x3f
+    b0e8:	5400044d 	b.le	b170 <remote_rtscfg_extract_keyparam@@Base+0x178>
+    b0ec:	f947ea73 	ldr	x19, [x19, #4048]  ; GOT log_log
+    b0f0:	91036294 	add	x20, x20, #0xd8  ; 'saveLoginIdFromWeb'
+    b0f4:	2a1703e4 	mov	w4, w23
+    b0f8:	aa1c03e5 	mov	x5, x28
+    b0fc:	528010e2 	mov	w2, #0x87                  	// #135
+    b100:	911e0281 	add	x1, x20, #0x780  ; 'addUriToRescfgTbl'
+    b104:	528000a0 	mov	w0, #0x5                   	// #5
+    b108:	d0000023 	adrp	x3, 11000 <_fini@@Base+0x2340>
+    b10c:	91299c63 	add	x3, x3, #0xa67  ; 'rescfg_num=%d uri=%s overflow\n'
+    b110:	d63f0260 	blr	x19
+    b114:	911e6284 	add	x4, x20, #0x798  ; 'insertSpecCfg2x'
+    b118:	aa1c03e6 	mov	x6, x28
+    b11c:	52802865 	mov	w5, #0x143                 	// #323
+    b120:	aa0403e1 	mov	x1, x4
+    b124:	2a0503e2 	mov	w2, w5
+    b128:	528000a0 	mov	w0, #0x5                   	// #5
+    b12c:	d0000023 	adrp	x3, 11000 <_fini@@Base+0x2340>
+    b130:	912a1863 	add	x3, x3, #0xa86  ; '%s-%d,addUriToRescfgTbl failed,path=%s\n'
+    b134:	d0000037 	adrp	x23, 11000 <_fini@@Base+0x2340>
+    b138:	912abaf7 	add	x23, x23, #0xaae  ; 'insertSpecCfg2x is failed!\n'
+    b13c:	d63f0260 	blr	x19
+    b140:	91058281 	add	x1, x20, #0x160  ; 'remote_rtscfg_extract_keyparam'
+    b144:	528000a0 	mov	w0, #0x5                   	// #5
+    b148:	aa1703e3 	mov	x3, x23
+    b14c:	52803642 	mov	w2, #0x1b2                 	// #434
+    b150:	d63f0260 	blr	x19
+    b154:	f94706b5 	ldr	x21, [x21, #3592]  ; GOT stderr@GLIBC_2.17
+    b158:	f946e6d6 	ldr	x22, [x22, #3528]  ; GOT fputs@GLIBC_2.17
+    b15c:	aa1703e0 	mov	x0, x23
+    b160:	f94002a1 	ldr	x1, [x21]
+    b164:	d63f02c0 	blr	x22
+    b168:	12800000 	mov	w0, #0xffffffff            	// #-1
+    b16c:	14000022 	b	b1f4 <remote_rtscfg_extract_keyparam@@Base+0x1fc>
+    b170:	f9403ba1 	ldr	x1, [x29, #112]
+    b174:	93787ee0 	sbfiz	x0, x23, #8, #32
+    b178:	d2801fe2 	mov	x2, #0xff                  	// #255
+    b17c:	91000739 	add	x25, x25, #0x1  ; 'aveLoginIdFromWeb'
+    b180:	8b010000 	add	x0, x0, x1
+    b184:	aa1c03e1 	mov	x1, x28
+    b188:	f00000bc 	adrp	x28, 22000 <_fini@@Base+0x13340>
+    b18c:	f9004fa0 	str	x0, [x29, #152]
+    b190:	f947df83 	ldr	x3, [x28, #4024]  ; GOT strncpy@GLIBC_2.17
+    b194:	d63f0060 	blr	x3
+    b198:	f9003fbc 	str	x28, [x29, #120]
+    b19c:	f9404fa0 	ldr	x0, [x29, #152]
+    b1a0:	110006e4 	add	w4, w23, #0x1
+    b1a4:	b9000344 	str	w4, [x26]
+    b1a8:	f1001b3f 	cmp	x25, #0x6
+    b1ac:	3903fc1f 	strb	wzr, [x0, #255]
+    b1b0:	54fff961 	b.ne	b0dc <remote_rtscfg_extract_keyparam@@Base+0xe4>  // b.any
+    b1b4:	35000324 	cbnz	w4, b218 <remote_rtscfg_extract_keyparam@@Base+0x220>
+    b1b8:	f947ea73 	ldr	x19, [x19, #4048]
+    b1bc:	d0000037 	adrp	x23, 11000 <_fini@@Base+0x2340>
+    b1c0:	912b2af7 	add	x23, x23, #0xaca  ; 'remote_rescfg_num=0\n'
+    b1c4:	91036281 	add	x1, x20, #0xd8
+    b1c8:	528000a0 	mov	w0, #0x5                   	// #5
+    b1cc:	91058021 	add	x1, x1, #0x160
+    b1d0:	aa1703e3 	mov	x3, x23
+    b1d4:	52803742 	mov	w2, #0x1ba                 	// #442
+    b1d8:	d63f0260 	blr	x19
+    b1dc:	f94706b5 	ldr	x21, [x21, #3592]
+    b1e0:	aa1703e0 	mov	x0, x23
+    b1e4:	f946e6d6 	ldr	x22, [x22, #3528]
+    b1e8:	f94002a1 	ldr	x1, [x21]
+    b1ec:	d63f02c0 	blr	x22
+    b1f0:	52800000 	mov	w0, #0x0                   	// #0
+    b1f4:	f94043a1 	ldr	x1, [x29, #128]
+    b1f8:	f9477421 	ldr	x1, [x1, #3816]
+    b1fc:	f945dfa2 	ldr	x2, [x29, #3000]
+    b200:	f9400021 	ldr	x1, [x1]
+    b204:	ca010041 	eor	x1, x2, x1
+    b208:	b4001c41 	cbz	x1, b590 <remote_rtscfg_extract_keyparam@@Base+0x598>
+    b20c:	f00000a0 	adrp	x0, 22000 <_fini@@Base+0x13340>
+    b210:	f9476400 	ldr	x0, [x0, #3784]  ; GOT __stack_chk_fail@GLIBC_2.17
+    b214:	d63f0000 	blr	x0
+    b218:	7101009f 	cmp	w4, #0x40
+    b21c:	54000241 	b.ne	b264 <remote_rtscfg_extract_keyparam@@Base+0x26c>  // b.any
+    b220:	f947ea73 	ldr	x19, [x19, #4048]
+    b224:	91036281 	add	x1, x20, #0xd8
+    b228:	d0000036 	adrp	x22, 11000 <_fini@@Base+0x2340>
+    b22c:	912b7ed6 	add	x22, x22, #0xadf  ; 'remote_rescfg_num=%d is error!\n'
+    b230:	aa1603e3 	mov	x3, x22
+    b234:	52803822 	mov	w2, #0x1c1                 	// #449
+    b238:	91058021 	add	x1, x1, #0x160
+    b23c:	528000a0 	mov	w0, #0x5                   	// #5
+    b240:	d63f0260 	blr	x19
+    b244:	f94706b5 	ldr	x21, [x21, #3592]
+    b248:	f00000a3 	adrp	x3, 22000 <_fini@@Base+0x13340>
+    b24c:	b9400342 	ldr	w2, [x26]
+    b250:	aa1603e1 	mov	x1, x22
+    b254:	f947fc63 	ldr	x3, [x3, #4088]  ; GOT fprintf@GLIBC_2.17
+    b258:	f94002a0 	ldr	x0, [x21]
+    b25c:	d63f0060 	blr	x3
+    b260:	17ffffc2 	b	b168 <remote_rtscfg_extract_keyparam@@Base+0x170>
+    b264:	f00000a3 	adrp	x3, 22000 <_fini@@Base+0x13340>
+    b268:	d000003c 	adrp	x28, 11000 <_fini@@Base+0x2340>
+    b26c:	912bff97 	add	x23, x28, #0xaff  ; '/tmp/remote_rtscfg_keyparam'
+    b270:	f9473063 	ldr	x3, [x3, #3680]  ; GOT open@GLIBC_2.17
+    b274:	52803482 	mov	w2, #0x1a4                 	// #420
+    b278:	52800841 	mov	w1, #0x42                  	// #66
+    b27c:	aa1703e0 	mov	x0, x23
+    b280:	d280001a 	mov	x26, #0x0                   	// #0
+    b284:	d63f0060 	blr	x3
+    b288:	f9003bbc 	str	x28, [x29, #112]
+    b28c:	2a0003f9 	mov	w25, w0
+    b290:	37f809e0 	tbnz	w0, #31, b3cc <remote_rtscfg_extract_keyparam@@Base+0x3d4>
+    b294:	f94047a0 	ldr	x0, [x29, #136]
+    b298:	9102a3bc 	add	x28, x29, #0xa8
+    b29c:	911d0000 	add	x0, x0, #0x740
+    b2a0:	f90047a0 	str	x0, [x29, #136]
+    b2a4:	f00000a0 	adrp	x0, 22000 <_fini@@Base+0x13340>
+    b2a8:	f9478400 	ldr	x0, [x0, #3848]  ; GOT cfg_pathToTr069Node
+    b2ac:	f90037a0 	str	x0, [x29, #104]
+    b2b0:	9100e380 	add	x0, x28, #0x38  ; 'tWrite message body failed for pid=%d oid=%d flag=0x%x\n'
+    b2b4:	f90033a0 	str	x0, [x29, #96]
+    b2b8:	f94047a0 	ldr	x0, [x29, #136]
+    b2bc:	b9400000 	ldr	w0, [x0]
+    b2c0:	6b1a001f 	cmp	w0, w26
+    b2c4:	54000a8c 	b.gt	b414 <remote_rtscfg_extract_keyparam@@Base+0x41c>
+    b2c8:	f00000a2 	adrp	x2, 22000 <_fini@@Base+0x13340>
+    b2cc:	f9403ba0 	ldr	x0, [x29, #112]
+    b2d0:	52800001 	mov	w1, #0x0                   	// #0
+    b2d4:	f9478842 	ldr	x2, [x2, #3856]  ; GOT access@GLIBC_2.17
+    b2d8:	912bfc1c 	add	x28, x0, #0xaff
+    b2dc:	aa1c03e0 	mov	x0, x28
+    b2e0:	d63f0040 	blr	x2
+    b2e4:	35001300 	cbnz	w0, b544 <remote_rtscfg_extract_keyparam@@Base+0x54c>
+    b2e8:	f9404ba3 	ldr	x3, [x29, #144]
+    b2ec:	f00000bb 	adrp	x27, 22000 <_fini@@Base+0x13340>
+    b2f0:	9126a3b7 	add	x23, x29, #0x9a8
+    b2f4:	d2802002 	mov	x2, #0x100                 	// #256
+    b2f8:	52800001 	mov	w1, #0x0                   	// #0
+    b2fc:	aa1703e0 	mov	x0, x23
+    b300:	f00000b8 	adrp	x24, 22000 <_fini@@Base+0x13340>
+    b304:	f9474c7a 	ldr	x26, [x3, #3736]
+    b308:	d63f0340 	blr	x26
+    b30c:	f946eb7b 	ldr	x27, [x27, #3536]  ; GOT __sprintf_chk@GLIBC_2.17
+    b310:	aa1c03e4 	mov	x4, x28
+    b314:	d2802002 	mov	x2, #0x100                 	// #256
+    b318:	52800001 	mov	w1, #0x0                   	// #0
+    b31c:	aa1703e0 	mov	x0, x23
+    b320:	d0000025 	adrp	x5, 11000 <_fini@@Base+0x2340>
+    b324:	912c6ca5 	add	x5, x5, #0xb1b  ; '/configs/remote_rtscfg_keyparam'
+    b328:	d0000023 	adrp	x3, 11000 <_fini@@Base+0x2340>
+    b32c:	912cec63 	add	x3, x3, #0xb3b  ; 'cp -f %s %s 2>/dev/null'
+    b330:	d63f0360 	blr	x27
+    b334:	f947e318 	ldr	x24, [x24, #4032]  ; GOT _system
+    b338:	aa1703e0 	mov	x0, x23
+    b33c:	d63f0300 	blr	x24
+    b340:	d2802002 	mov	x2, #0x100                 	// #256
+    b344:	52800001 	mov	w1, #0x0                   	// #0
+    b348:	aa1703e0 	mov	x0, x23
+    b34c:	d63f0340 	blr	x26
+    b350:	aa1c03e4 	mov	x4, x28
+    b354:	d0000023 	adrp	x3, 11000 <_fini@@Base+0x2340>
+    b358:	91267063 	add	x3, x3, #0x99c  ; 'rm -f %s 2>/dev/null'
+    b35c:	d2802002 	mov	x2, #0x100                 	// #256
+    b360:	52800001 	mov	w1, #0x0                   	// #0
+    b364:	aa1703e0 	mov	x0, x23
+    b368:	d63f0360 	blr	x27
+    b36c:	aa1703e0 	mov	x0, x23
+    b370:	d63f0300 	blr	x24
+    b374:	d0000020 	adrp	x0, 11000 <_fini@@Base+0x2340>
+    b378:	912d4c00 	add	x0, x0, #0xb53  ; 'touch /flash/whw/cma/config_reset.txt'
+    b37c:	d63f0300 	blr	x24
+    b380:	f947ea73 	ldr	x19, [x19, #4048]
+    b384:	91036281 	add	x1, x20, #0xd8
+    b388:	d0000037 	adrp	x23, 11000 <_fini@@Base+0x2340>
+    b38c:	912de6f7 	add	x23, x23, #0xb79  ; 'remote backup config successed.\n'
+    b390:	aa1703e3 	mov	x3, x23
+    b394:	52803f62 	mov	w2, #0x1fb                 	// #507
+    b398:	91058021 	add	x1, x1, #0x160
+    b39c:	528000a0 	mov	w0, #0x5                   	// #5
+    b3a0:	d63f0260 	blr	x19
+    b3a4:	f94706b5 	ldr	x21, [x21, #3592]
+    b3a8:	f946e6d6 	ldr	x22, [x22, #3528]
+    b3ac:	aa1703e0 	mov	x0, x23
+    b3b0:	f94002a1 	ldr	x1, [x21]
+    b3b4:	d63f02c0 	blr	x22
+    b3b8:	f00000a1 	adrp	x1, 22000 <_fini@@Base+0x13340>
+    b3bc:	2a1903e0 	mov	w0, w25
+    b3c0:	f9476821 	ldr	x1, [x1, #3792]  ; GOT close@GLIBC_2.17
+    b3c4:	d63f0020 	blr	x1
+    b3c8:	17ffff8a 	b	b1f0 <remote_rtscfg_extract_keyparam@@Base+0x1f8>
+    b3cc:	f947ea73 	ldr	x19, [x19, #4048]
+    b3d0:	91036281 	add	x1, x20, #0xd8
+    b3d4:	d0000036 	adrp	x22, 11000 <_fini@@Base+0x2340>
+    b3d8:	9126f2d6 	add	x22, x22, #0x9bc  ; '%s open failed!\n'
+    b3dc:	aa1603e3 	mov	x3, x22
+    b3e0:	aa1703e4 	mov	x4, x23
+    b3e4:	52803902 	mov	w2, #0x1c8                 	// #456
+    b3e8:	91058021 	add	x1, x1, #0x160
+    b3ec:	528000a0 	mov	w0, #0x5                   	// #5
+    b3f0:	d63f0260 	blr	x19
+    b3f4:	f94706b5 	ldr	x21, [x21, #3592]
+    b3f8:	f00000a3 	adrp	x3, 22000 <_fini@@Base+0x13340>
+    b3fc:	aa1703e2 	mov	x2, x23
+    b400:	aa1603e1 	mov	x1, x22
+    b404:	f947fc63 	ldr	x3, [x3, #4088]  ; GOT fprintf@GLIBC_2.17
+    b408:	f94002a0 	ldr	x0, [x21]
+    b40c:	d63f0060 	blr	x3
+    b410:	17ffff56 	b	b168 <remote_rtscfg_extract_keyparam@@Base+0x170>
+    b414:	f9404ba3 	ldr	x3, [x29, #144]
+    b418:	d2808682 	mov	x2, #0x434                 	// #1076
+    b41c:	52800001 	mov	w1, #0x0                   	// #0
+    b420:	aa1803e0 	mov	x0, x24
+    b424:	f9474c77 	ldr	x23, [x3, #3736]
+    b428:	d63f02e0 	blr	x23
+    b42c:	d2806002 	mov	x2, #0x300                 	// #768
+    b430:	52800001 	mov	w1, #0x0                   	// #0
+    b434:	aa1c03e0 	mov	x0, x28
+    b438:	d63f02e0 	blr	x23
+    b43c:	d2802202 	mov	x2, #0x110                 	// #272
+    b440:	52800001 	mov	w1, #0x0                   	// #0
+    b444:	aa1b03e0 	mov	x0, x27
+    b448:	d63f02e0 	blr	x23
+    b44c:	f94037a2 	ldr	x2, [x29, #104]
+    b450:	b00000c0 	adrp	x0, 24000 <_fini@@Base+0x15340>
+    b454:	911d2017 	add	x23, x0, #0x748
+    b458:	8b1a22f7 	add	x23, x23, x26, lsl #8
+    b45c:	aa1c03e1 	mov	x1, x28
+    b460:	aa1703e0 	mov	x0, x23
+    b464:	d63f0040 	blr	x2
+    b468:	340002a0 	cbz	w0, b4bc <remote_rtscfg_extract_keyparam@@Base+0x4c4>
+    b46c:	d0000020 	adrp	x0, 11000 <_fini@@Base+0x2340>
+    b470:	91278800 	add	x0, x0, #0x9e2  ; 'cfg_pathToTr069Node failed! path=%s\n'
+    b474:	91036281 	add	x1, x20, #0xd8
+    b478:	aa1703e4 	mov	x4, x23
+    b47c:	aa0003e3 	mov	x3, x0
+    b480:	52803aa2 	mov	w2, #0x1d5                 	// #469
+    b484:	f9004fa0 	str	x0, [x29, #152]
+    b488:	f947ea65 	ldr	x5, [x19, #4048]
+    b48c:	91058021 	add	x1, x1, #0x160
+    b490:	528000a0 	mov	w0, #0x5                   	// #5
+    b494:	d63f00a0 	blr	x5
+    b498:	f94706a0 	ldr	x0, [x21, #3592]
+    b49c:	f00000a3 	adrp	x3, 22000 <_fini@@Base+0x13340>
+    b4a0:	f9404fa1 	ldr	x1, [x29, #152]
+    b4a4:	aa1703e2 	mov	x2, x23
+    b4a8:	f947fc63 	ldr	x3, [x3, #4088]  ; GOT fprintf@GLIBC_2.17
+    b4ac:	f9400000 	ldr	x0, [x0]
+    b4b0:	d63f0060 	blr	x3
+    b4b4:	9100075a 	add	x26, x26, #0x1
+    b4b8:	17ffff80 	b	b2b8 <remote_rtscfg_extract_keyparam@@Base+0x2c0>
+    b4bc:	f00000a5 	adrp	x5, 22000 <_fini@@Base+0x13340>
+    b4c0:	b940c3a0 	ldr	w0, [x29, #192]
+    b4c4:	f94033a2 	ldr	x2, [x29, #96]
+    b4c8:	52800004 	mov	w4, #0x0                   	// #0
+    b4cc:	f9479ca5 	ldr	x5, [x5, #3896]  ; GOT cfg_getParam
+    b4d0:	aa1b03e3 	mov	x3, x27
+    b4d4:	91007381 	add	x1, x28, #0x1c  ; '%d flag=0x%x\n'
+    b4d8:	d63f00a0 	blr	x5
+    b4dc:	34000120 	cbz	w0, b500 <remote_rtscfg_extract_keyparam@@Base+0x508>
+    b4e0:	d0000020 	adrp	x0, 11000 <_fini@@Base+0x2340>
+    b4e4:	91281c00 	add	x0, x0, #0xa07  ; 'cfg_getParam failed! path=%s\n'
+    b4e8:	91036281 	add	x1, x20, #0xd8
+    b4ec:	aa1703e4 	mov	x4, x23
+    b4f0:	aa0003e3 	mov	x3, x0
+    b4f4:	52803b82 	mov	w2, #0x1dc                 	// #476
+    b4f8:	f9004fa0 	str	x0, [x29, #152]
+    b4fc:	17ffffe3 	b	b488 <remote_rtscfg_extract_keyparam@@Base+0x490>
+    b500:	f9403fa3 	ldr	x3, [x29, #120]
+    b504:	aa1703e1 	mov	x1, x23
+    b508:	d2801fe2 	mov	x2, #0xff                  	// #255
+    b50c:	aa1803e0 	mov	x0, x24
+    b510:	f947dc77 	ldr	x23, [x3, #4024]
+    b514:	d63f02e0 	blr	x23
+    b518:	aa1b03e1 	mov	x1, x27
+    b51c:	d28021e2 	mov	x2, #0x10f                 	// #271
+    b520:	91040300 	add	x0, x24, #0x100
+    b524:	d63f02e0 	blr	x23
+    b528:	f00000a3 	adrp	x3, 22000 <_fini@@Base+0x13340>
+    b52c:	d2808682 	mov	x2, #0x434                 	// #1076
+    b530:	aa1803e1 	mov	x1, x24
+    b534:	2a1903e0 	mov	w0, w25
+    b538:	f9477c63 	ldr	x3, [x3, #3832]  ; GOT write@GLIBC_2.17
+    b53c:	d63f0060 	blr	x3
+    b540:	17ffffdd 	b	b4b4 <remote_rtscfg_extract_keyparam@@Base+0x4bc>
+    b544:	f947ea73 	ldr	x19, [x19, #4048]
+    b548:	91036281 	add	x1, x20, #0xd8
+    b54c:	d0000037 	adrp	x23, 11000 <_fini@@Base+0x2340>
+    b550:	912e6af7 	add	x23, x23, #0xb9a  ; 'something wrong happend, remote restore config failed!\n'
+    b554:	aa1703e3 	mov	x3, x23
+    b558:	52804022 	mov	w2, #0x201                 	// #513
+    b55c:	91058021 	add	x1, x1, #0x160
+    b560:	528000a0 	mov	w0, #0x5                   	// #5
+    b564:	d63f0260 	blr	x19
+    b568:	f94706b5 	ldr	x21, [x21, #3592]
+    b56c:	f946e6d6 	ldr	x22, [x22, #3528]
+    b570:	aa1703e0 	mov	x0, x23
+    b574:	f94002a1 	ldr	x1, [x21]
+    b578:	d63f02c0 	blr	x22
+    b57c:	f00000a1 	adrp	x1, 22000 <_fini@@Base+0x13340>
+    b580:	2a1903e0 	mov	w0, w25
+    b584:	f9476821 	ldr	x1, [x1, #3792]  ; GOT close@GLIBC_2.17
+    b588:	d63f0020 	blr	x1
+    b58c:	17fffef7 	b	b168 <remote_rtscfg_extract_keyparam@@Base+0x170>
+    b590:	a9407bfd 	ldp	x29, x30, [sp]
+    b594:	a94153f3 	ldp	x19, x20, [sp, #16]
+    b598:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    b59c:	a94363f7 	ldp	x23, x24, [sp, #48]
+    b5a0:	a9446bf9 	ldp	x25, x26, [sp, #64]
+    b5a4:	a94573fb 	ldp	x27, x28, [sp, #80]
+    b5a8:	912f03ff 	add	sp, sp, #0xbc0
+    b5ac:	d65f03c0 	ret
+
+000000000000b5b0 <clearRemotePreCfgFile@@Base>:
+    b5b0:	a9a97bfd 	stp	x29, x30, [sp, #-368]!
+    b5b4:	d2802002 	mov	x2, #0x100                 	// #256
+    b5b8:	52800001 	mov	w1, #0x0                   	// #0
+    b5bc:	910003fd 	mov	x29, sp
+    b5c0:	a90573fb 	stp	x27, x28, [sp, #80]
+    b5c4:	f00000bb 	adrp	x27, 22000 <_fini@@Base+0x13340>
+    b5c8:	f00000bc 	adrp	x28, 22000 <_fini@@Base+0x13340>
+    b5cc:	a90153f3 	stp	x19, x20, [sp, #16]
+    b5d0:	f9474f7b 	ldr	x27, [x27, #3736]  ; GOT memset@GLIBC_2.17
+    b5d4:	9101a3b3 	add	x19, x29, #0x68
+    b5d8:	f947779c 	ldr	x28, [x28, #3816]  ; GOT __stack_chk_guard@GLIBC_2.17
+    b5dc:	d0000034 	adrp	x20, 11000 <_fini@@Base+0x2340>
+    b5e0:	91036294 	add	x20, x20, #0xd8  ; 'saveLoginIdFromWeb'
+    b5e4:	a9025bf5 	stp	x21, x22, [sp, #32]
+    b5e8:	f9400380 	ldr	x0, [x28]
+    b5ec:	f900b7a0 	str	x0, [x29, #360]
+    b5f0:	d2800000 	mov	x0, #0x0                   	// #0
+    b5f4:	a90363f7 	stp	x23, x24, [sp, #48]
+    b5f8:	aa1303e0 	mov	x0, x19
+    b5fc:	a9046bf9 	stp	x25, x26, [sp, #64]
+    b600:	f00000b9 	adrp	x25, 22000 <_fini@@Base+0x13340>
+    b604:	f00000b7 	adrp	x23, 22000 <_fini@@Base+0x13340>
+    b608:	d000003a 	adrp	x26, 11000 <_fini@@Base+0x2340>
+    b60c:	9126735a 	add	x26, x26, #0x99c  ; 'rm -f %s 2>/dev/null'
+    b610:	d63f0360 	blr	x27
+    b614:	f946eb39 	ldr	x25, [x25, #3536]  ; GOT __sprintf_chk@GLIBC_2.17
+    b618:	aa1a03e3 	mov	x3, x26
+    b61c:	d2802002 	mov	x2, #0x100                 	// #256
+    b620:	52800001 	mov	w1, #0x0                   	// #0
+    b624:	d0000024 	adrp	x4, 11000 <_fini@@Base+0x2340>
+    b628:	912f4884 	add	x4, x4, #0xbd2  ; '/configs/precfg_remote_flag'
+    b62c:	aa1303e0 	mov	x0, x19
+    b630:	d63f0320 	blr	x25
+    b634:	f947eaf7 	ldr	x23, [x23, #4048]  ; GOT log_log
+    b638:	f00000b6 	adrp	x22, 22000 <_fini@@Base+0x13340>
+    b63c:	911ea294 	add	x20, x20, #0x7a8  ; 'clearRemotePreCfgFile'
+    b640:	90000038 	adrp	x24, f000 <_fini@@Base+0x340>
+    b644:	910e5b18 	add	x24, x24, #0x396  ; '%s\n'
+    b648:	aa1303e4 	mov	x4, x19
+    b64c:	aa1803e3 	mov	x3, x24
+    b650:	52804282 	mov	w2, #0x214                 	// #532
+    b654:	aa1403e1 	mov	x1, x20
+    b658:	528000a0 	mov	w0, #0x5                   	// #5
+    b65c:	d63f02e0 	blr	x23
+    b660:	f947e2d6 	ldr	x22, [x22, #4032]  ; GOT _system
+    b664:	f00000b5 	adrp	x21, 22000 <_fini@@Base+0x13340>
+    b668:	aa1303e0 	mov	x0, x19
+    b66c:	d63f02c0 	blr	x22
+    b670:	f9478eb5 	ldr	x21, [x21, #3864]  ; GOT puts@GLIBC_2.17
+    b674:	aa1303e0 	mov	x0, x19
+    b678:	d63f02a0 	blr	x21
+    b67c:	d2802002 	mov	x2, #0x100                 	// #256
+    b680:	52800001 	mov	w1, #0x0                   	// #0
+    b684:	aa1303e0 	mov	x0, x19
+    b688:	d63f0360 	blr	x27
+    b68c:	aa1a03e3 	mov	x3, x26
+    b690:	d2802002 	mov	x2, #0x100                 	// #256
+    b694:	52800001 	mov	w1, #0x0                   	// #0
+    b698:	d0000024 	adrp	x4, 11000 <_fini@@Base+0x2340>
+    b69c:	912fb884 	add	x4, x4, #0xbee  ; '/configs/precfg_remote_avalible'
+    b6a0:	aa1303e0 	mov	x0, x19
+    b6a4:	d63f0320 	blr	x25
+    b6a8:	aa1303e4 	mov	x4, x19
+    b6ac:	aa1803e3 	mov	x3, x24
+    b6b0:	aa1403e1 	mov	x1, x20
+    b6b4:	52804342 	mov	w2, #0x21a                 	// #538
+    b6b8:	528000a0 	mov	w0, #0x5                   	// #5
+    b6bc:	d63f02e0 	blr	x23
+    b6c0:	aa1303e0 	mov	x0, x19
+    b6c4:	d63f02c0 	blr	x22
+    b6c8:	aa1303e0 	mov	x0, x19
+    b6cc:	d63f02a0 	blr	x21
+    b6d0:	d2802002 	mov	x2, #0x100                 	// #256
+    b6d4:	52800001 	mov	w1, #0x0                   	// #0
+    b6d8:	aa1303e0 	mov	x0, x19
+    b6dc:	d63f0360 	blr	x27
+    b6e0:	aa1a03e3 	mov	x3, x26
+    b6e4:	d2802002 	mov	x2, #0x100                 	// #256
+    b6e8:	52800001 	mov	w1, #0x0                   	// #0
+    b6ec:	d0000024 	adrp	x4, 11000 <_fini@@Base+0x2340>
+    b6f0:	91303884 	add	x4, x4, #0xc0e  ; '/configs/precfg_remote_encryption.xml'
+    b6f4:	aa1303e0 	mov	x0, x19
+    b6f8:	d63f0320 	blr	x25
+    b6fc:	aa1303e4 	mov	x4, x19
+    b700:	aa1803e3 	mov	x3, x24
+    b704:	aa1403e1 	mov	x1, x20
+    b708:	52804402 	mov	w2, #0x220                 	// #544
+    b70c:	528000a0 	mov	w0, #0x5                   	// #5
+    b710:	d63f02e0 	blr	x23
+    b714:	aa1303e0 	mov	x0, x19
+    b718:	d63f02c0 	blr	x22
+    b71c:	aa1303e0 	mov	x0, x19
+    b720:	d63f02a0 	blr	x21
+    b724:	d2802002 	mov	x2, #0x100                 	// #256
+    b728:	52800001 	mov	w1, #0x0                   	// #0
+    b72c:	aa1303e0 	mov	x0, x19
+    b730:	d63f0360 	blr	x27
+    b734:	aa1a03e3 	mov	x3, x26

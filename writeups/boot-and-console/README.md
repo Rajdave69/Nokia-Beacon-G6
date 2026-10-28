@@ -106,14 +106,35 @@ The central lesson of this investigation is that the cable, the prompt, and the 
 
 ## Checking a second G6
 
-The [two-G6 follow-up](../two-g6-key-comparison/README.md) confirms the same Password2 public key and ordinary keysrc1 verifier in IJL.J03/HJL.L91, with different normal per-device messages. The second live ECC public key and secmulti hashes match stock HJL.L91. Both factory boot verifiers differ.
+The [two-G6 follow-up](../two-g6-key-comparison/README.md) confirms the same Password2 public key and ordinary keysrc1 verifier in IJL.J03/HJL.L91, with different normal per-device messages. The second live ECC public key and secmulti hashes match stock HJL.L91. The captured boot verifiers differ, but the first is the owner's `OpenWrt2026!` override; this is not a comparison of two original factory boot values.
 
 The owner has now supplemented both dump directories with MTD0. Their BL2 and BL31 payloads are identical, while BL33/U-Boot and its certificate contents differ. The corresponding certificate public keys are unchanged. The two actual `en` verifiers retain the same factory-hash and serial-fallback paths;36 offline native cases pass with synthetic factory records and intercepted storage/SHA calls. This extends the first-unit trace to the supplied second bootloader, without a live gate login.
 
 The first router's `console=1` is my manual change following the UART tutorial. It lives in MTD1, not MTD0. Both first-unit environment copies have console1; both second-unit copies omit it; all four have valid CRCs and secboot2. The first U-Boot implements the console/serial_is_dis switch described above. Both compiled default environments omit console; that is separate from the code that may consume it. The second kernel-argument builder uses a plain earlycon/console string without the same serial_is_dis selection. That measured code difference does not prove console is unsupported elsewhere or predict the second router's complete UART behavior. The [SSB evidence](../../knowledgebases/g6-ssb-comparison-evidence.json) records the code addresses, component hashes and scope. No second live UART trace was collected. Both dump scripts now include MTD0 for future captures.
+
+## Comparing the boot verifier with Beacon 9
+
+The normal password rule is the same in both G6 bootloaders and the examined Beacon 9 APPSBL: SHA-256 of the typed candidate, standard Base64, and the first twelve characters compared to stored `EXT_BOOT_PWD`. Both gates require a twelve-byte candidate and an eight-byte identity.
+
+The serial fallback also uses the same embedded 32-byte constant and post-processing in all three: lowercase identity plus the XOR-decoded constant, SHA-256, Base64 filtering, character-class adjustment and padding. This is a shared fallback calculation, not a shared factory password. A populated stored verifier takes precedence.
+
+One lookup differs: Beacon 9 tries an RI `EXT_BOOT_PWD` value after an unsuccessful or empty EXTFS result; neither G6 verifier has that intervening lookup. The machine code also differs: the G6 routines are AArch64, while Beacon 9's are Thumb/Thumb-2. This comparison establishes matching behavior in the identified paths, not byte-identical bootloaders.
+
+The owner-selected `OpenWrt2026!` matches the first G6 dump's stored field, and does not match the second G6 or Beacon 9 fields. None of the reconstructed serial fallback results matches it. The earlier G6 original-code tests remain valid because they use synthetic stored verifiers; this Beacon 9 comparison is based on disassembly and constant/input comparisons, without a new live login.
+
+The original stored values are also different. The legacy first-unit `old/mtd_9.bin` contains two matching copies of the pre-change ASCII `EXT_BOOT_PWD`, agreeing with both its archived copy and the original value in the tutorial. It differs from the second G6 and Beacon 9 values, which differ from each other. The later first-unit clean dump remains a separate, owner-modified snapshot. This comparison concerns the original stored values, and does not recover the original plaintexts or establish a factory generation formula.
 
 ## A fourth route: select the initial Linux process
 
 On 24 October 2026, the owner tested the [U-Boot recovery procedure](../../tutorials/recover-uart-root-shell-from-uboot/README.md): initialize the partition map in RAM, load the existing stock FIT from rootfs0, and boot it with init=/bin/sh. The supplied shell reported UID0/PID1. U-Boot reported successful RSA/SHA checks on the stock images. This reaches a shell before normal init/Quagga/Password2 rather than changing that verifier. It does not establish acceptance of a modified bootloader or an unsigned kernel.
 
 The [writeup](../uart-recovery-from-uboot/README.md) separates the live root result from untested older-bank and file-restore steps. The manual sequence must set mtdparts before using named UBI partitions; the unset-state listing command itself crashed during diagnosis. A new rootfs can still change the kernel policy or layout, so the successful known-image recovery is not a promise about arbitrary future firmware.
+
+## The ONT extends the original-value comparison
+
+The unchanged-owner Vodafone ONT factory record adds a sixth distinct original
+`EXT_BOOT_PWD` verifier alongside four G6s and Beacon 9. This compares provisioned
+values; it does not newly trace the ONT bootloader verifier or recover its
+plaintext. Both ONT images share the public Password2 verification key and
+firmware trust certificate with the Beacons. No ONT UART unlock, recovery boot,
+watchdog command or live Password2 test has been performed. [Provenance](../xs2426xa-24-03-comparison/resources/writable-findings.json).

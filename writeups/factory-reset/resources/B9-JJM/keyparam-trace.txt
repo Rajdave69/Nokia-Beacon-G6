@@ -1,0 +1,457 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+/tmp/beacon9-stock-root/usr/lib/libcfg.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000b2bc <remote_rtscfg_extract_keyparam@@Base>:
+    b2bc:	d13703ff 	sub	sp, sp, #0xdc0
+    b2c0:	d2802202 	mov	x2, #0x110                 	// #272
+    b2c4:	a9007bfd 	stp	x29, x30, [sp]
+    b2c8:	910003fd 	mov	x29, sp
+    b2cc:	a9046bf9 	stp	x25, x26, [sp, #64]
+    b2d0:	900000da 	adrp	x26, 23000 <_fini@@Base+0x13d50>
+    b2d4:	a90573fb 	stp	x27, x28, [sp, #80]
+    b2d8:	900000dc 	adrp	x28, 23000 <_fini@@Base+0x13d50>
+    b2dc:	f9479343 	ldr	x3, [x26, #3872]  ; GOT memset
+    b2e0:	9132a3bb 	add	x27, x29, #0xca8
+    b2e4:	a90153f3 	stp	x19, x20, [sp, #16]
+    b2e8:	900000d3 	adrp	x19, 23000 <_fini@@Base+0x13d50>
+    b2ec:	a9025bf5 	stp	x21, x22, [sp, #32]
+    b2f0:	900000d6 	adrp	x22, 23000 <_fini@@Base+0x13d50>
+    b2f4:	a90363f7 	stp	x23, x24, [sp, #48]
+    b2f8:	f0000035 	adrp	x21, 12000 <_fini@@Base+0x2d50>
+    b2fc:	910b9ab5 	add	x21, x21, #0x2e6  ; 'remote restore config,pls wait.....\n'
+    b300:	f946fb80 	ldr	x0, [x28, #3568]  ; GOT __stack_chk_guard
+    b304:	d0000034 	adrp	x20, 11000 <_fini@@Base+0x1d50>
+    b308:	911b2298 	add	x24, x20, #0x6c8  ; 'saveLoginIdFromWeb'
+    b30c:	f9400001 	ldr	x1, [x0]
+    b310:	f906dfa1 	str	x1, [x29, #3512]
+    b314:	d2800001 	mov	x1, #0x0                   	// #0
+    b318:	aa1b03e0 	mov	x0, x27
+    b31c:	d63f0060 	blr	x3
+    b320:	910ea3b7 	add	x23, x29, #0x3a8
+    b324:	f9476e64 	ldr	x4, [x19, #3800]  ; GOT log_log
+    b328:	aa1503e3 	mov	x3, x21
+    b32c:	91060301 	add	x1, x24, #0x180  ; 'remote_rtscfg_extract_keyparam'
+    b330:	52803902 	mov	w2, #0x1c8                 	// #456
+    b334:	528000a0 	mov	w0, #0x5                   	// #5
+    b338:	d63f0080 	blr	x4
+    b33c:	f947b2c0 	ldr	x0, [x22, #3936]  ; GOT stderr
+    b340:	f9400019 	ldr	x25, [x0]
+    b344:	aa1503e0 	mov	x0, x21
+    b348:	900000d5 	adrp	x21, 23000 <_fini@@Base+0x13d50>
+    b34c:	aa1903e1 	mov	x1, x25
+    b350:	f947eaa2 	ldr	x2, [x21, #4048]  ; GOT fputs
+    b354:	d63f0040 	blr	x2
+    b358:	900000c1 	adrp	x1, 23000 <_fini@@Base+0x13d50>
+    b35c:	52800000 	mov	w0, #0x0                   	// #0
+    b360:	f947b421 	ldr	x1, [x1, #3944]  ; GOT cfg_saveKeyParameters
+    b364:	d63f0020 	blr	x1
+    b368:	900000c0 	adrp	x0, 23000 <_fini@@Base+0x13d50>
+    b36c:	f947d000 	ldr	x0, [x0, #4000]  ; GOT SNC_restore_back_RG_Mode
+    b370:	d63f0000 	blr	x0
+    b374:	900000c3 	adrp	x3, 23000 <_fini@@Base+0x13d50>
+    b378:	91068301 	add	x1, x24, #0x1a0  ; 'InternetGatewayDevice.X_ASB_COM_GPONInfo.SUBSLOCID.Password'
+    b37c:	d2810002 	mov	x2, #0x800                 	// #2048
+    b380:	aa1703e0 	mov	x0, x23
+    b384:	f9471463 	ldr	x3, [x3, #3624]  ; GOT memcpy
+    b388:	d2800018 	mov	x24, #0x0                   	// #0
+    b38c:	d63f0060 	blr	x3
+    b390:	f9004bba 	str	x26, [x29, #144]
+    b394:	d00000c0 	adrp	x0, 25000 <_fini@@Base+0x15d50>
+    b398:	911fa01a 	add	x26, x0, #0x7e8
+    b39c:	f9003fa0 	str	x0, [x29, #120]
+    b3a0:	d00000c0 	adrp	x0, 25000 <_fini@@Base+0x15d50>
+    b3a4:	911fc000 	add	x0, x0, #0x7f0
+    b3a8:	f90037a0 	str	x0, [x29, #104]
+    b3ac:	a90873b6 	stp	x22, x28, [x29, #128]
+    b3b0:	b9400356 	ldr	w22, [x26]
+    b3b4:	8b1822fc 	add	x28, x23, x24, lsl #8
+    b3b8:	7100fedf 	cmp	w22, #0x3f
+    b3bc:	5400042d 	b.le	b440 <remote_rtscfg_extract_keyparam@@Base+0x184>
+    b3c0:	f9476e73 	ldr	x19, [x19, #3800]  ; GOT log_log
+    b3c4:	911b2294 	add	x20, x20, #0x6c8  ; 'saveLoginIdFromWeb'
+    b3c8:	2a1603e4 	mov	w4, w22
+    b3cc:	aa1c03e5 	mov	x5, x28
+    b3d0:	52801162 	mov	w2, #0x8b                  	// #139
+    b3d4:	91268281 	add	x1, x20, #0x9a0  ; 'addUriToRescfgTbl'
+    b3d8:	528000a0 	mov	w0, #0x5                   	// #5
+    b3dc:	f0000023 	adrp	x3, 12000 <_fini@@Base+0x2d50>
+    b3e0:	910c2c63 	add	x3, x3, #0x30b  ; 'rescfg_num=%d uri=%s overflow\n'
+    b3e4:	d63f0260 	blr	x19
+    b3e8:	9126e284 	add	x4, x20, #0x9b8  ; 'insertSpecCfg2x'
+    b3ec:	aa1c03e6 	mov	x6, x28
+    b3f0:	52802925 	mov	w5, #0x149                 	// #329
+    b3f4:	aa0403e1 	mov	x1, x4
+    b3f8:	2a0503e2 	mov	w2, w5
+    b3fc:	528000a0 	mov	w0, #0x5                   	// #5
+    b400:	f0000023 	adrp	x3, 12000 <_fini@@Base+0x2d50>
+    b404:	910ca863 	add	x3, x3, #0x32a  ; '%s-%d,addUriToRescfgTbl failed,path=%s\n'
+    b408:	f0000036 	adrp	x22, 12000 <_fini@@Base+0x2d50>
+    b40c:	910d4ad6 	add	x22, x22, #0x352  ; 'insertSpecCfg2x is failed!\n'
+    b410:	d63f0260 	blr	x19
+    b414:	91060281 	add	x1, x20, #0x180  ; 'remote_rtscfg_extract_keyparam'
+    b418:	528000a0 	mov	w0, #0x5                   	// #5
+    b41c:	aa1603e3 	mov	x3, x22
+    b420:	52803a02 	mov	w2, #0x1d0                 	// #464
+    b424:	d63f0260 	blr	x19
+    b428:	f947eab5 	ldr	x21, [x21, #4048]  ; GOT fputs
+    b42c:	aa1903e1 	mov	x1, x25
+    b430:	aa1603e0 	mov	x0, x22
+    b434:	d63f02a0 	blr	x21
+    b438:	12800000 	mov	w0, #0xffffffff            	// #-1
+    b43c:	14000021 	b	b4c0 <remote_rtscfg_extract_keyparam@@Base+0x204>
+    b440:	f94037a1 	ldr	x1, [x29, #104]
+    b444:	93787ec0 	sbfiz	x0, x22, #8, #32
+    b448:	d2801fe2 	mov	x2, #0xff                  	// #255
+    b44c:	91000718 	add	x24, x24, #0x1  ; 'aveLoginIdFromWeb'
+    b450:	8b010000 	add	x0, x0, x1
+    b454:	aa1c03e1 	mov	x1, x28
+    b458:	900000dc 	adrp	x28, 23000 <_fini@@Base+0x13d50>
+    b45c:	f9004fa0 	str	x0, [x29, #152]
+    b460:	f9478783 	ldr	x3, [x28, #3848]  ; GOT strncpy
+    b464:	d63f0060 	blr	x3
+    b468:	f9003bbc 	str	x28, [x29, #112]
+    b46c:	f9404fa0 	ldr	x0, [x29, #152]
+    b470:	110006c4 	add	w4, w22, #0x1
+    b474:	b9000344 	str	w4, [x26]
+    b478:	f100231f 	cmp	x24, #0x8
+    b47c:	3903fc1f 	strb	wzr, [x0, #255]
+    b480:	54fff981 	b.ne	b3b0 <remote_rtscfg_extract_keyparam@@Base+0xf4>  // b.any
+    b484:	35000304 	cbnz	w4, b4e4 <remote_rtscfg_extract_keyparam@@Base+0x228>
+    b488:	f9476e73 	ldr	x19, [x19, #3800]
+    b48c:	f0000036 	adrp	x22, 12000 <_fini@@Base+0x2d50>
+    b490:	910dbad6 	add	x22, x22, #0x36e  ; 'remote_rescfg_num=0\n'
+    b494:	911b2281 	add	x1, x20, #0x6c8  ; 'ityCheck.DeltaConfigurationFileCheckResult'
+    b498:	528000a0 	mov	w0, #0x5                   	// #5
+    b49c:	91060021 	add	x1, x1, #0x180
+    b4a0:	aa1603e3 	mov	x3, x22
+    b4a4:	52803b02 	mov	w2, #0x1d8                 	// #472
+    b4a8:	d63f0260 	blr	x19
+    b4ac:	f947eab5 	ldr	x21, [x21, #4048]
+    b4b0:	aa1903e1 	mov	x1, x25
+    b4b4:	aa1603e0 	mov	x0, x22
+    b4b8:	d63f02a0 	blr	x21
+    b4bc:	52800000 	mov	w0, #0x0                   	// #0
+    b4c0:	f94047a1 	ldr	x1, [x29, #136]
+    b4c4:	f946f821 	ldr	x1, [x1, #3568]
+    b4c8:	f946dfa2 	ldr	x2, [x29, #3512]
+    b4cc:	f9400021 	ldr	x1, [x1]
+    b4d0:	ca010041 	eor	x1, x2, x1
+    b4d4:	b4001b21 	cbz	x1, b838 <remote_rtscfg_extract_keyparam@@Base+0x57c>
+    b4d8:	900000c0 	adrp	x0, 23000 <_fini@@Base+0x13d50>
+    b4dc:	f9475c00 	ldr	x0, [x0, #3768]  ; GOT __stack_chk_fail
+    b4e0:	d63f0000 	blr	x0
+    b4e4:	7101009f 	cmp	w4, #0x40
+    b4e8:	54000221 	b.ne	b52c <remote_rtscfg_extract_keyparam@@Base+0x270>  // b.any
+    b4ec:	f9476e73 	ldr	x19, [x19, #3800]
+    b4f0:	911b2281 	add	x1, x20, #0x6c8  ; 'ityCheck.DeltaConfigurationFileCheckResult'
+    b4f4:	f0000035 	adrp	x21, 12000 <_fini@@Base+0x2d50>
+    b4f8:	910e0eb5 	add	x21, x21, #0x383  ; 'remote_rescfg_num=%d is error!\n'
+    b4fc:	aa1503e3 	mov	x3, x21
+    b500:	52803be2 	mov	w2, #0x1df                 	// #479
+    b504:	91060021 	add	x1, x1, #0x180
+    b508:	528000a0 	mov	w0, #0x5                   	// #5
+    b50c:	d63f0260 	blr	x19
+    b510:	900000c3 	adrp	x3, 23000 <_fini@@Base+0x13d50>
+    b514:	b9400342 	ldr	w2, [x26]
+    b518:	aa1503e1 	mov	x1, x21
+    b51c:	aa1903e0 	mov	x0, x25
+    b520:	f9477063 	ldr	x3, [x3, #3808]  ; GOT fprintf
+    b524:	d63f0060 	blr	x3
+    b528:	17ffffc4 	b	b438 <remote_rtscfg_extract_keyparam@@Base+0x17c>
+    b52c:	900000c3 	adrp	x3, 23000 <_fini@@Base+0x13d50>
+    b530:	f000003c 	adrp	x28, 12000 <_fini@@Base+0x2d50>
+    b534:	910e8f96 	add	x22, x28, #0x3a3  ; '/tmp/remote_rtscfg_keyparam'
+    b538:	f947e463 	ldr	x3, [x3, #4040]  ; GOT open
+    b53c:	52803482 	mov	w2, #0x1a4                 	// #420
+    b540:	52800841 	mov	w1, #0x42                  	// #66
+    b544:	aa1603e0 	mov	x0, x22
+    b548:	d280001a 	mov	x26, #0x0                   	// #0
+    b54c:	d63f0060 	blr	x3
+    b550:	f90037bc 	str	x28, [x29, #104]
+    b554:	2a0003f8 	mov	w24, w0
+    b558:	37f80940 	tbnz	w0, #31, b680 <remote_rtscfg_extract_keyparam@@Base+0x3c4>
+    b55c:	f94043a0 	ldr	x0, [x29, #128]
+    b560:	9102a3bc 	add	x28, x29, #0xa8
+    b564:	f947b000 	ldr	x0, [x0, #3936]
+    b568:	f9400019 	ldr	x25, [x0]
+    b56c:	900000c0 	adrp	x0, 23000 <_fini@@Base+0x13d50>
+    b570:	f9479800 	ldr	x0, [x0, #3888]  ; GOT cfg_pathToTr069Node
+    b574:	f90043a0 	str	x0, [x29, #128]
+    b578:	9100e380 	add	x0, x28, #0x38
+    b57c:	f90033a0 	str	x0, [x29, #96]
+    b580:	f9403fa0 	ldr	x0, [x29, #120]
+    b584:	b947e800 	ldr	w0, [x0, #2024]
+    b588:	6b1a001f 	cmp	w0, w26
+    b58c:	540009cc 	b.gt	b6c4 <remote_rtscfg_extract_keyparam@@Base+0x408>
+    b590:	900000c2 	adrp	x2, 23000 <_fini@@Base+0x13d50>
+    b594:	f94037a0 	ldr	x0, [x29, #104]
+    b598:	52800001 	mov	w1, #0x0                   	// #0
+    b59c:	f947c842 	ldr	x2, [x2, #3984]  ; GOT access
+    b5a0:	910e8c1c 	add	x28, x0, #0x3a3
+    b5a4:	aa1c03e0 	mov	x0, x28
+    b5a8:	d63f0040 	blr	x2
+    b5ac:	35001220 	cbnz	w0, b7f0 <remote_rtscfg_extract_keyparam@@Base+0x534>
+    b5b0:	f9404ba3 	ldr	x3, [x29, #144]
+    b5b4:	900000db 	adrp	x27, 23000 <_fini@@Base+0x13d50>
+    b5b8:	912ea3b6 	add	x22, x29, #0xba8
+    b5bc:	d2802002 	mov	x2, #0x100                 	// #256
+    b5c0:	52800001 	mov	w1, #0x0                   	// #0
+    b5c4:	aa1603e0 	mov	x0, x22
+    b5c8:	900000d7 	adrp	x23, 23000 <_fini@@Base+0x13d50>
+    b5cc:	f947907a 	ldr	x26, [x3, #3872]
+    b5d0:	d63f0340 	blr	x26
+    b5d4:	f947af7b 	ldr	x27, [x27, #3928]  ; GOT sprintf
+    b5d8:	aa1c03e2 	mov	x2, x28
+    b5dc:	aa1603e0 	mov	x0, x22
+    b5e0:	f0000023 	adrp	x3, 12000 <_fini@@Base+0x2d50>
+    b5e4:	910efc63 	add	x3, x3, #0x3bf  ; '/configs/remote_rtscfg_keyparam'
+    b5e8:	f0000021 	adrp	x1, 12000 <_fini@@Base+0x2d50>
+    b5ec:	910f7c21 	add	x1, x1, #0x3df  ; 'cp -f %s %s 2>/dev/null'
+    b5f0:	d63f0360 	blr	x27
+    b5f4:	f947f6f7 	ldr	x23, [x23, #4072]  ; GOT _system
+    b5f8:	aa1603e0 	mov	x0, x22
+    b5fc:	d63f02e0 	blr	x23
+    b600:	d2802002 	mov	x2, #0x100                 	// #256
+    b604:	52800001 	mov	w1, #0x0                   	// #0
+    b608:	aa1603e0 	mov	x0, x22
+    b60c:	d63f0340 	blr	x26
+    b610:	aa1c03e2 	mov	x2, x28
+    b614:	f0000021 	adrp	x1, 12000 <_fini@@Base+0x2d50>
+    b618:	9106b021 	add	x1, x1, #0x1ac  ; 'rm -f %s 2>/dev/null'
+    b61c:	aa1603e0 	mov	x0, x22
+    b620:	d63f0360 	blr	x27
+    b624:	aa1603e0 	mov	x0, x22
+    b628:	f0000036 	adrp	x22, 12000 <_fini@@Base+0x2d50>
+    b62c:	911076d6 	add	x22, x22, #0x41d  ; 'remote backup config successed.\n'
+    b630:	d63f02e0 	blr	x23
+    b634:	f0000020 	adrp	x0, 12000 <_fini@@Base+0x2d50>
+    b638:	910fdc00 	add	x0, x0, #0x3f7  ; 'touch /flash/whw/cma/config_reset.txt'
+    b63c:	d63f02e0 	blr	x23
+    b640:	f9476e73 	ldr	x19, [x19, #3800]
+    b644:	911b2281 	add	x1, x20, #0x6c8  ; 'ityCheck.DeltaConfigurationFileCheckResult'
+    b648:	aa1603e3 	mov	x3, x22
+    b64c:	52804322 	mov	w2, #0x219                 	// #537
+    b650:	91060021 	add	x1, x1, #0x180
+    b654:	528000a0 	mov	w0, #0x5                   	// #5
+    b658:	d63f0260 	blr	x19
+    b65c:	f947eab5 	ldr	x21, [x21, #4048]
+    b660:	aa1903e1 	mov	x1, x25
+    b664:	aa1603e0 	mov	x0, x22
+    b668:	d63f02a0 	blr	x21
+    b66c:	900000c1 	adrp	x1, 23000 <_fini@@Base+0x13d50>
+    b670:	2a1803e0 	mov	w0, w24
+    b674:	f947f021 	ldr	x1, [x1, #4064]  ; GOT close
+    b678:	d63f0020 	blr	x1
+    b67c:	17ffff90 	b	b4bc <remote_rtscfg_extract_keyparam@@Base+0x200>
+    b680:	f9476e73 	ldr	x19, [x19, #3800]
+    b684:	911b2281 	add	x1, x20, #0x6c8  ; 'ityCheck.DeltaConfigurationFileCheckResult'
+    b688:	f0000035 	adrp	x21, 12000 <_fini@@Base+0x2d50>
+    b68c:	910732b5 	add	x21, x21, #0x1cc  ; '%s open failed!\n'
+    b690:	aa1503e3 	mov	x3, x21
+    b694:	aa1603e4 	mov	x4, x22
+    b698:	52803cc2 	mov	w2, #0x1e6                 	// #486
+    b69c:	91060021 	add	x1, x1, #0x180
+    b6a0:	528000a0 	mov	w0, #0x5                   	// #5
+    b6a4:	d63f0260 	blr	x19
+    b6a8:	900000c3 	adrp	x3, 23000 <_fini@@Base+0x13d50>
+    b6ac:	aa1603e2 	mov	x2, x22
+    b6b0:	aa1503e1 	mov	x1, x21
+    b6b4:	aa1903e0 	mov	x0, x25
+    b6b8:	f9477063 	ldr	x3, [x3, #3808]  ; GOT fprintf
+    b6bc:	d63f0060 	blr	x3
+    b6c0:	17ffff5e 	b	b438 <remote_rtscfg_extract_keyparam@@Base+0x17c>
+    b6c4:	f9404ba3 	ldr	x3, [x29, #144]
+    b6c8:	d2808682 	mov	x2, #0x434                 	// #1076
+    b6cc:	52800001 	mov	w1, #0x0                   	// #0
+    b6d0:	aa1703e0 	mov	x0, x23
+    b6d4:	f9479076 	ldr	x22, [x3, #3872]
+    b6d8:	d63f02c0 	blr	x22
+    b6dc:	d2806002 	mov	x2, #0x300                 	// #768
+    b6e0:	52800001 	mov	w1, #0x0                   	// #0
+    b6e4:	aa1c03e0 	mov	x0, x28
+    b6e8:	d63f02c0 	blr	x22
+    b6ec:	d2802202 	mov	x2, #0x110                 	// #272
+    b6f0:	52800001 	mov	w1, #0x0                   	// #0
+    b6f4:	aa1b03e0 	mov	x0, x27
+    b6f8:	d63f02c0 	blr	x22
+    b6fc:	f94043a2 	ldr	x2, [x29, #128]
+    b700:	d00000c0 	adrp	x0, 25000 <_fini@@Base+0x15d50>
+    b704:	911fc016 	add	x22, x0, #0x7f0
+    b708:	8b1a22d6 	add	x22, x22, x26, lsl #8
+    b70c:	aa1c03e1 	mov	x1, x28
+    b710:	aa1603e0 	mov	x0, x22
+    b714:	d63f0040 	blr	x2
+    b718:	34000280 	cbz	w0, b768 <remote_rtscfg_extract_keyparam@@Base+0x4ac>
+    b71c:	f0000020 	adrp	x0, 12000 <_fini@@Base+0x2d50>
+    b720:	9107c800 	add	x0, x0, #0x1f2  ; 'cfg_pathToTr069Node failed! path=%s\n'
+    b724:	911b2281 	add	x1, x20, #0x6c8  ; 'ityCheck.DeltaConfigurationFileCheckResult'
+    b728:	aa1603e4 	mov	x4, x22
+    b72c:	aa0003e3 	mov	x3, x0
+    b730:	52803e62 	mov	w2, #0x1f3                 	// #499
+    b734:	f9004fa0 	str	x0, [x29, #152]
+    b738:	f9476e65 	ldr	x5, [x19, #3800]
+    b73c:	91060021 	add	x1, x1, #0x180
+    b740:	528000a0 	mov	w0, #0x5                   	// #5
+    b744:	d63f00a0 	blr	x5
+    b748:	900000c3 	adrp	x3, 23000 <_fini@@Base+0x13d50>
+    b74c:	f9404fa1 	ldr	x1, [x29, #152]
+    b750:	aa1603e2 	mov	x2, x22
+    b754:	aa1903e0 	mov	x0, x25
+    b758:	f9477063 	ldr	x3, [x3, #3808]  ; GOT fprintf
+    b75c:	d63f0060 	blr	x3
+    b760:	9100075a 	add	x26, x26, #0x1
+    b764:	17ffff87 	b	b580 <remote_rtscfg_extract_keyparam@@Base+0x2c4>
+    b768:	900000c5 	adrp	x5, 23000 <_fini@@Base+0x13d50>
+    b76c:	b940c3a0 	ldr	w0, [x29, #192]
+    b770:	f94033a2 	ldr	x2, [x29, #96]
+    b774:	52800004 	mov	w4, #0x0                   	// #0
+    b778:	f94738a5 	ldr	x5, [x5, #3696]  ; GOT cfg_getParam
+    b77c:	aa1b03e3 	mov	x3, x27
+    b780:	91007381 	add	x1, x28, #0x1c
+    b784:	d63f00a0 	blr	x5
+    b788:	34000120 	cbz	w0, b7ac <remote_rtscfg_extract_keyparam@@Base+0x4f0>
+    b78c:	f0000020 	adrp	x0, 12000 <_fini@@Base+0x2d50>
+    b790:	91085c00 	add	x0, x0, #0x217  ; 'cfg_getParam failed! path=%s\n'
+    b794:	911b2281 	add	x1, x20, #0x6c8  ; 'ityCheck.DeltaConfigurationFileCheckResult'
+    b798:	aa1603e4 	mov	x4, x22
+    b79c:	aa0003e3 	mov	x3, x0
+    b7a0:	52803f42 	mov	w2, #0x1fa                 	// #506
+    b7a4:	f9004fa0 	str	x0, [x29, #152]
+    b7a8:	17ffffe4 	b	b738 <remote_rtscfg_extract_keyparam@@Base+0x47c>
+    b7ac:	f9403ba3 	ldr	x3, [x29, #112]
+    b7b0:	aa1603e1 	mov	x1, x22
+    b7b4:	d2801fe2 	mov	x2, #0xff                  	// #255
+    b7b8:	aa1703e0 	mov	x0, x23
+    b7bc:	f9478476 	ldr	x22, [x3, #3848]
+    b7c0:	d63f02c0 	blr	x22
+    b7c4:	aa1b03e1 	mov	x1, x27
+    b7c8:	d28021e2 	mov	x2, #0x10f                 	// #271
+    b7cc:	910402e0 	add	x0, x23, #0x100
+    b7d0:	d63f02c0 	blr	x22
+    b7d4:	900000c3 	adrp	x3, 23000 <_fini@@Base+0x13d50>
+    b7d8:	d2808682 	mov	x2, #0x434                 	// #1076
+    b7dc:	aa1703e1 	mov	x1, x23
+    b7e0:	2a1803e0 	mov	w0, w24
+    b7e4:	f9476863 	ldr	x3, [x3, #3792]  ; GOT write
+    b7e8:	d63f0060 	blr	x3
+    b7ec:	17ffffdd 	b	b760 <remote_rtscfg_extract_keyparam@@Base+0x4a4>
+    b7f0:	f9476e73 	ldr	x19, [x19, #3800]
+    b7f4:	911b2281 	add	x1, x20, #0x6c8  ; 'ityCheck.DeltaConfigurationFileCheckResult'
+    b7f8:	f0000036 	adrp	x22, 12000 <_fini@@Base+0x2d50>
+    b7fc:	9110fad6 	add	x22, x22, #0x43e  ; 'something wrong happend, remote restore config failed!\n'
+    b800:	aa1603e3 	mov	x3, x22
+    b804:	528043e2 	mov	w2, #0x21f                 	// #543
+    b808:	91060021 	add	x1, x1, #0x180
+    b80c:	528000a0 	mov	w0, #0x5                   	// #5
+    b810:	d63f0260 	blr	x19
+    b814:	f947eab5 	ldr	x21, [x21, #4048]
+    b818:	aa1903e1 	mov	x1, x25
+    b81c:	aa1603e0 	mov	x0, x22
+    b820:	d63f02a0 	blr	x21
+    b824:	900000c1 	adrp	x1, 23000 <_fini@@Base+0x13d50>
+    b828:	2a1803e0 	mov	w0, w24
+    b82c:	f947f021 	ldr	x1, [x1, #4064]  ; GOT close
+    b830:	d63f0020 	blr	x1
+    b834:	17ffff01 	b	b438 <remote_rtscfg_extract_keyparam@@Base+0x17c>
+    b838:	a9407bfd 	ldp	x29, x30, [sp]
+    b83c:	a94153f3 	ldp	x19, x20, [sp, #16]
+    b840:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    b844:	a94363f7 	ldp	x23, x24, [sp, #48]
+    b848:	a9446bf9 	ldp	x25, x26, [sp, #64]
+    b84c:	a94573fb 	ldp	x27, x28, [sp, #80]
+    b850:	913703ff 	add	sp, sp, #0xdc0
+    b854:	d65f03c0 	ret
+
+000000000000b858 <clearRemotePreCfgFile@@Base>:
+    b858:	a9a97bfd 	stp	x29, x30, [sp, #-368]!
+    b85c:	d2802002 	mov	x2, #0x100                 	// #256
+    b860:	52800001 	mov	w1, #0x0                   	// #0
+    b864:	910003fd 	mov	x29, sp
+    b868:	a90573fb 	stp	x27, x28, [sp, #80]
+    b86c:	900000db 	adrp	x27, 23000 <_fini@@Base+0x13d50>
+    b870:	900000dc 	adrp	x28, 23000 <_fini@@Base+0x13d50>
+    b874:	a90153f3 	stp	x19, x20, [sp, #16]
+    b878:	f947937b 	ldr	x27, [x27, #3872]  ; GOT memset
+    b87c:	9101a3b3 	add	x19, x29, #0x68
+    b880:	f946fb9c 	ldr	x28, [x28, #3568]  ; GOT __stack_chk_guard
+    b884:	d0000034 	adrp	x20, 11000 <_fini@@Base+0x1d50>
+    b888:	911b2294 	add	x20, x20, #0x6c8  ; 'saveLoginIdFromWeb'
+    b88c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    b890:	f9400380 	ldr	x0, [x28]
+    b894:	f900b7a0 	str	x0, [x29, #360]
+    b898:	d2800000 	mov	x0, #0x0                   	// #0
+    b89c:	a90363f7 	stp	x23, x24, [sp, #48]
+    b8a0:	aa1303e0 	mov	x0, x19
+    b8a4:	a9046bf9 	stp	x25, x26, [sp, #64]
+    b8a8:	900000d9 	adrp	x25, 23000 <_fini@@Base+0x13d50>
+    b8ac:	900000d7 	adrp	x23, 23000 <_fini@@Base+0x13d50>
+    b8b0:	f000003a 	adrp	x26, 12000 <_fini@@Base+0x2d50>
+    b8b4:	9106b35a 	add	x26, x26, #0x1ac  ; 'rm -f %s 2>/dev/null'
+    b8b8:	d63f0360 	blr	x27
+    b8bc:	f947af39 	ldr	x25, [x25, #3928]  ; GOT sprintf
+    b8c0:	aa1a03e1 	mov	x1, x26
+    b8c4:	f0000022 	adrp	x2, 12000 <_fini@@Base+0x2d50>
+    b8c8:	9111d842 	add	x2, x2, #0x476  ; '/configs/precfg_remote_flag'
+    b8cc:	aa1303e0 	mov	x0, x19
+    b8d0:	900000d6 	adrp	x22, 23000 <_fini@@Base+0x13d50>
+    b8d4:	d63f0320 	blr	x25
+    b8d8:	f9476ef7 	ldr	x23, [x23, #3800]  ; GOT log_log
+    b8dc:	91272294 	add	x20, x20, #0x9c8  ; 'clearRemotePreCfgFile'
+    b8e0:	90000038 	adrp	x24, f000 <cfg_SetVoipPingResult@@Base+0x10>
+    b8e4:	91261b18 	add	x24, x24, #0x986  ; '%s\n'
+    b8e8:	aa1303e4 	mov	x4, x19
+    b8ec:	aa1803e3 	mov	x3, x24
+    b8f0:	52804642 	mov	w2, #0x232                 	// #562
+    b8f4:	aa1403e1 	mov	x1, x20
+    b8f8:	528000a0 	mov	w0, #0x5                   	// #5
+    b8fc:	d63f02e0 	blr	x23
+    b900:	f947f6d6 	ldr	x22, [x22, #4072]  ; GOT _system
+    b904:	900000d5 	adrp	x21, 23000 <_fini@@Base+0x13d50>
+    b908:	aa1303e0 	mov	x0, x19
+    b90c:	d63f02c0 	blr	x22
+    b910:	f9471ab5 	ldr	x21, [x21, #3632]  ; GOT puts
+    b914:	aa1303e0 	mov	x0, x19
+    b918:	d63f02a0 	blr	x21
+    b91c:	d2802002 	mov	x2, #0x100                 	// #256
+    b920:	52800001 	mov	w1, #0x0                   	// #0
+    b924:	aa1303e0 	mov	x0, x19
+    b928:	d63f0360 	blr	x27
+    b92c:	aa1a03e1 	mov	x1, x26
+    b930:	f0000022 	adrp	x2, 12000 <_fini@@Base+0x2d50>
+    b934:	91124842 	add	x2, x2, #0x492  ; '/configs/precfg_remote_avalible'
+    b938:	aa1303e0 	mov	x0, x19
+    b93c:	d63f0320 	blr	x25
+    b940:	aa1303e4 	mov	x4, x19
+    b944:	aa1803e3 	mov	x3, x24
+    b948:	aa1403e1 	mov	x1, x20
+    b94c:	52804702 	mov	w2, #0x238                 	// #568
+    b950:	528000a0 	mov	w0, #0x5                   	// #5
+    b954:	d63f02e0 	blr	x23
+    b958:	aa1303e0 	mov	x0, x19
+    b95c:	d63f02c0 	blr	x22
+    b960:	aa1303e0 	mov	x0, x19
+    b964:	d63f02a0 	blr	x21
+    b968:	d2802002 	mov	x2, #0x100                 	// #256
+    b96c:	52800001 	mov	w1, #0x0                   	// #0
+    b970:	aa1303e0 	mov	x0, x19
+    b974:	d63f0360 	blr	x27
+    b978:	aa1a03e1 	mov	x1, x26
+    b97c:	f0000022 	adrp	x2, 12000 <_fini@@Base+0x2d50>
+    b980:	9112c842 	add	x2, x2, #0x4b2  ; '/configs/precfg_remote_encryption.xml'
+    b984:	aa1303e0 	mov	x0, x19
+    b988:	d63f0320 	blr	x25
+    b98c:	aa1303e4 	mov	x4, x19
+    b990:	aa1803e3 	mov	x3, x24
+    b994:	aa1403e1 	mov	x1, x20
+    b998:	528047c2 	mov	w2, #0x23e                 	// #574
+    b99c:	528000a0 	mov	w0, #0x5                   	// #5
+    b9a0:	d63f02e0 	blr	x23
+    b9a4:	aa1303e0 	mov	x0, x19
+    b9a8:	d63f02c0 	blr	x22
+    b9ac:	aa1303e0 	mov	x0, x19
+    b9b0:	d63f02a0 	blr	x21
+    b9b4:	d2802002 	mov	x2, #0x100                 	// #256

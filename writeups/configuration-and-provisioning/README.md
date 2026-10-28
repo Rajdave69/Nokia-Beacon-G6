@@ -104,3 +104,16 @@ For the physical location of these records see [storage and flash](../storage-an
 ## What the second factory record established
 
 The [second-G6 comparison](../two-g6-key-comparison/README.md) verifies both factory admin hashes against their own label codes and finds different salted factory superadmin hashes. It also confirms the shared root template and shared key7_2/key14/key17 across the two current devices and older IJL.J03 firmware. The new sample supports the same source distinctions; it does not recover a factory superadmin plaintext generator.
+
+## Setter input and stored password format
+
+The WebAccount password is stored as a crypt verifier, but the normal HJL setter accepts the new plaintext password. Its runtime callback applies the configured password rules before hashing. With the captured BOQA policy enabled, a 63-character `$5$` hash fails the illegal-character and length rules. `-f` does not skip that callback. The [corrected shell tutorial](../../tutorials/set-webui-superadmin-password/README.md) uses plaintext and requests immediate database saving; the owner has not yet reported the corrected command succeeding live.
+
+## How the operator recipes fit these stores
+
+The [provisioning reconstruction](../provisioning-pipeline/README.md) now decodes
+the captured CFGBOQA112/114 files. All six 114 copies contain a common Ooredoo
+USP/MQTT recipe, protected locally using each unit's key10. Its `%P` credential
+comes through the default Wi-Fi preconfiguration accessor; it is not the factory
+Linux management password. The follow-up connects these recipes to remote KV
+files, agent state and backup/reset policy, while retaining their distinct roles.

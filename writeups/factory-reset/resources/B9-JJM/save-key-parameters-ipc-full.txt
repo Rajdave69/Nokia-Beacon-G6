@@ -1,0 +1,145 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+/tmp/beacon9-stock-root/usr/lib/libcfg.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000e148 <cfg_saveKeyParameters@@Base>:
+    e148:	a9b67bfd 	stp	x29, x30, [sp, #-160]!
+    e14c:	910003fd 	mov	x29, sp
+    e150:	a9025bf5 	stp	x21, x22, [sp, #32]
+    e154:	b00000b6 	adrp	x22, 23000 <_fini@@Base+0x13d50>
+    e158:	a90363f7 	stp	x23, x24, [sp, #48]
+    e15c:	910103b7 	add	x23, x29, #0x40
+    e160:	f946fac1 	ldr	x1, [x22, #3568]  ; GOT __stack_chk_guard
+    e164:	910052f8 	add	x24, x23, #0x14
+    e168:	a90153f3 	stp	x19, x20, [sp, #16]
+    e16c:	b00000b5 	adrp	x21, 23000 <_fini@@Base+0x13d50>
+    e170:	f9400022 	ldr	x2, [x1]
+    e174:	f9004fa2 	str	x2, [x29, #152]
+    e178:	d2800002 	mov	x2, #0x0                   	// #0
+    e17c:	910012e1 	add	x1, x23, #0x4
+    e180:	b00000a2 	adrp	x2, 23000 <_fini@@Base+0x13d50>
+    e184:	90000033 	adrp	x19, 12000 <_fini@@Base+0x2d50>
+    e188:	b00000b4 	adrp	x20, 23000 <_fini@@Base+0x13d50>
+    e18c:	f9471042 	ldr	x2, [x2, #3616]  ; GOT prctl
+    e190:	a9007c3f 	stp	xzr, xzr, [x1]
+    e194:	a9017c3f 	stp	xzr, xzr, [x1, #16]
+    e198:	a9027c3f 	stp	xzr, xzr, [x1, #32]
+    e19c:	a9037c3f 	stp	xzr, xzr, [x1, #48]
+    e1a0:	a9047c3f 	stp	xzr, xzr, [x1, #64]
+    e1a4:	52800b81 	mov	w1, #0x5c                  	// #92
+    e1a8:	b90056ff 	str	wzr, [x23, #84]
+    e1ac:	b90043a1 	str	w1, [x29, #64]
+    e1b0:	aa1803e1 	mov	x1, x24
+    e1b4:	b9004ba0 	str	w0, [x29, #72]
+    e1b8:	52800200 	mov	w0, #0x10                  	// #16
+    e1bc:	d63f0040 	blr	x2
+    e1c0:	34000680 	cbz	w0, e290 <cfg_saveKeyParameters@@Base+0x148>
+    e1c4:	b00000a0 	adrp	x0, 23000 <_fini@@Base+0x13d50>
+    e1c8:	f947cc00 	ldr	x0, [x0, #3992]  ; GOT __errno_location
+    e1cc:	d63f0000 	blr	x0
+    e1d0:	aa0003f8 	mov	x24, x0
+    e1d4:	f9476ea5 	ldr	x5, [x21, #3800]  ; GOT log_log
+    e1d8:	91282261 	add	x1, x19, #0xa08  ; 'cfg_DumpObjectByPath'
+    e1dc:	52805822 	mov	w2, #0x2c1                 	// #705
+    e1e0:	9103e021 	add	x1, x1, #0xf8  ; 'cfg_saveKeyParameters'
+    e1e4:	b9400304 	ldr	w4, [x24]
+    e1e8:	52800060 	mov	w0, #0x3                   	// #3
+    e1ec:	90000023 	adrp	x3, 12000 <_fini@@Base+0x2d50>
+    e1f0:	9136d063 	add	x3, x3, #0xdb4  ; 'prctl fail: errno(%d)'
+    e1f4:	d63f00a0 	blr	x5
+    e1f8:	f946de82 	ldr	x2, [x20, #3512]  ; GOT printf
+    e1fc:	90000020 	adrp	x0, 12000 <_fini@@Base+0x2d50>
+    e200:	91372800 	add	x0, x0, #0xdca  ; 'prctl fail: errno(%d) B \n'
+    e204:	b9400301 	ldr	w1, [x24]
+    e208:	d63f0040 	blr	x2
+    e20c:	b00000a0 	adrp	x0, 23000 <_fini@@Base+0x13d50>
+    e210:	f9470c00 	ldr	x0, [x0, #3608]  ; GOT getpid
+    e214:	d63f0000 	blr	x0
+    e218:	b90053a0 	str	w0, [x29, #80]
+    e21c:	b00000a0 	adrp	x0, 23000 <_fini@@Base+0x13d50>
+    e220:	f9478800 	ldr	x0, [x0, #3856]  ; GOT socketCreate
+    e224:	d63f0000 	blr	x0
+    e228:	2a0003f8 	mov	w24, w0
+    e22c:	36f80500 	tbz	w0, #31, e2cc <cfg_saveKeyParameters@@Base+0x184>
+    e230:	f9476eb5 	ldr	x21, [x21, #3800]  ; GOT log_log
+    e234:	91282273 	add	x19, x19, #0xa08  ; 'cfg_DumpObjectByPath'
+    e238:	9103e273 	add	x19, x19, #0xf8  ; 'cfg_saveKeyParameters'
+    e23c:	528059c2 	mov	w2, #0x2ce                 	// #718
+    e240:	aa1303e4 	mov	x4, x19
+    e244:	aa1303e1 	mov	x1, x19
+    e248:	52800060 	mov	w0, #0x3                   	// #3
+    e24c:	90000023 	adrp	x3, 12000 <_fini@@Base+0x2d50>
+    e250:	91389863 	add	x3, x3, #0xe26  ; '%s::socketCreate fail'
+    e254:	d63f02a0 	blr	x21
+    e258:	f946de94 	ldr	x20, [x20, #3512]  ; GOT printf
+    e25c:	aa1303e1 	mov	x1, x19
+    e260:	90000020 	adrp	x0, 12000 <_fini@@Base+0x2d50>
+    e264:	9138f000 	add	x0, x0, #0xe3c  ; '%s::socketCreate fail\n'
+    e268:	d63f0280 	blr	x20
+    e26c:	12800000 	mov	w0, #0xffffffff            	// #-1
+    e270:	f946fad6 	ldr	x22, [x22, #3568]  ; GOT __stack_chk_guard
+    e274:	f9404fa2 	ldr	x2, [x29, #152]
+    e278:	f94002c1 	ldr	x1, [x22]
+    e27c:	ca010041 	eor	x1, x2, x1
+    e280:	b40006c1 	cbz	x1, e358 <cfg_saveKeyParameters@@Base+0x210>
+    e284:	b00000a0 	adrp	x0, 23000 <_fini@@Base+0x13d50>
+    e288:	f9475c00 	ldr	x0, [x0, #3768]  ; GOT __stack_chk_fail
+    e28c:	d63f0000 	blr	x0
+    e290:	f9476ea5 	ldr	x5, [x21, #3800]
+    e294:	91282261 	add	x1, x19, #0xa08
+    e298:	aa1803e4 	mov	x4, x24
+    e29c:	528058c2 	mov	w2, #0x2c6                 	// #710
+    e2a0:	9103e021 	add	x1, x1, #0xf8
+    e2a4:	52800060 	mov	w0, #0x3                   	// #3
+    e2a8:	90000023 	adrp	x3, 12000 <_fini@@Base+0x2d50>
+    e2ac:	91379063 	add	x3, x3, #0xde4  ; 'prctl success: processName(%s)'
+    e2b0:	d63f00a0 	blr	x5
+    e2b4:	f946de82 	ldr	x2, [x20, #3512]
+    e2b8:	aa1803e1 	mov	x1, x24
+    e2bc:	90000020 	adrp	x0, 12000 <_fini@@Base+0x2d50>
+    e2c0:	91380c00 	add	x0, x0, #0xe03  ; 'prctl success: processName(%s) B \n'
+    e2c4:	d63f0040 	blr	x2
+    e2c8:	17ffffd1 	b	e20c <cfg_saveKeyParameters@@Base+0xc4>
+    e2cc:	b00000a3 	adrp	x3, 23000 <_fini@@Base+0x13d50>
+    e2d0:	52800b02 	mov	w2, #0x58                  	// #88
+    e2d4:	aa1703e1 	mov	x1, x23
+    e2d8:	f947bc63 	ldr	x3, [x3, #3960]  ; GOT socketWrite
+    e2dc:	d63f0060 	blr	x3
+    e2e0:	34000120 	cbz	w0, e304 <cfg_saveKeyParameters@@Base+0x1bc>
+    e2e4:	f9476ea4 	ldr	x4, [x21, #3800]
+    e2e8:	91282261 	add	x1, x19, #0xa08
+    e2ec:	90000023 	adrp	x3, 12000 <_fini@@Base+0x2d50>
+    e2f0:	91394c63 	add	x3, x3, #0xe53  ; 'socketWrite failed.\n'
+    e2f4:	52805aa2 	mov	w2, #0x2d5                 	// #725
+    e2f8:	9103e021 	add	x1, x1, #0xf8
+    e2fc:	52800060 	mov	w0, #0x3                   	// #3
+    e300:	d63f0080 	blr	x4
+    e304:	b00000a3 	adrp	x3, 23000 <_fini@@Base+0x13d50>
+    e308:	52800b02 	mov	w2, #0x58                  	// #88
+    e30c:	aa1703e1 	mov	x1, x23
+    e310:	2a1803e0 	mov	w0, w24
+    e314:	f947dc63 	ldr	x3, [x3, #4024]  ; GOT socketRead
+    e318:	d63f0060 	blr	x3
+    e31c:	34000120 	cbz	w0, e340 <cfg_saveKeyParameters@@Base+0x1f8>
+    e320:	f9476ea4 	ldr	x4, [x21, #3800]
+    e324:	91282261 	add	x1, x19, #0xa08
+    e328:	90000023 	adrp	x3, 12000 <_fini@@Base+0x2d50>
+    e32c:	9139a063 	add	x3, x3, #0xe68  ; 'socketRead failed.\n'
+    e330:	52805b22 	mov	w2, #0x2d9                 	// #729
+    e334:	9103e021 	add	x1, x1, #0xf8
+    e338:	52800060 	mov	w0, #0x3                   	// #3
+    e33c:	d63f0080 	blr	x4
+    e340:	b00000a1 	adrp	x1, 23000 <_fini@@Base+0x13d50>
+    e344:	2a1803e0 	mov	w0, w24
+    e348:	f9475821 	ldr	x1, [x1, #3760]  ; GOT socketClose
+    e34c:	d63f0020 	blr	x1
+    e350:	b9404fa0 	ldr	w0, [x29, #76]
+    e354:	17ffffc7 	b	e270 <cfg_saveKeyParameters@@Base+0x128>
+    e358:	a94153f3 	ldp	x19, x20, [sp, #16]
+    e35c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    e360:	a94363f7 	ldp	x23, x24, [sp, #48]
+    e364:	a8ca7bfd 	ldp	x29, x30, [sp], #160
+    e368:	d65f03c0 	ret

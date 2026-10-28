@@ -1,0 +1,353 @@
+#!/bin/sh /etc/rc.common
+
+START=00
+STOP=99
+
+. /usr/exe/backdefault.sh
+. /usr/exe/data_guardian.sh
+. /usr/exe/link.sh
+. /usr/exe/varset.sh
+
+current=$(uenv_get active_part)
+standby=$(( 1 - $current ))
+BACKUP_OVERLAY_MOUNT_DIR=/tmp/backup_overlay
+no_cfg_env=0
+cfg_partition=`/usr/sbin/fw_printenv|grep cfg_partition`
+
+mount_backup_overlay()
+{
+	backup_overlay_mtd=$(cat /proc/mtd |grep rootfs_data$standby |cut -d: -f 1 |cut -c4-)
+
+	$UBIATTACH $UBIDEVCTL -m $backup_overlay_mtd -d $backup_overlay_mtd &>/dev/null
+	mdev -s &>/dev/null
+	mkdir -p $BACKUP_OVERLAY_MOUNT_DIR
+	mount -t ubifs /dev/ubi${backup_overlay_mtd}_0 $BACKUP_OVERLAY_MOUNT_DIR &>/dev/null
+	[ -e /configs/bosa ] || mkdir -p /configs/bosa
+	[ -e $BACKUP_OVERLAY_MOUNT_DIR/upper/config/bosa/cfg.bob ] && mv -f $BACKUP_OVERLAY_MOUNT_DIR/upper/config/bosa/cfg.bob /configs/bosa/cfg.bob && sync
+	umount $BACKUP_OVERLAY_MOUNT_DIR &>/dev/null
+	$UBIDETACH $UBIDEVCTL -m $backup_overlay_mtd &>/dev/null
+	rm -rf $BACKUP_OVERLAY_MOUNT_DIR
+}
+
+restore_configs()
+{
+	[ -e /configs/sysupgrade.tgz ] && tar -xzf /configs/sysupgrade.tgz -C / && rm -f /configs/sysupgrade.tgz
+}
+
+upgrade_logsize()
+{
+	SIZELIMIT=32768
+	log_size=$(ls -al $UPGRADELOG 2>/dev/null | awk '{print $5}')
+	[ $log_size -ge $SIZELIMIT ] && mv $UPGRADELOG $UPGRADELOGBAK
+}
+
+version_check()
+{
+	threshold=4
+	if [ $(uenv_get bootfail${standby}) -ge ${threshold} ]; then
+		echo "WARNING: bootfail${standby} is more than ${threshold}, set buildinfo null" >> $UPGRADELOG
+		sed -i "s/=.*$/=null/g" $BACKUPROOTFSINFO
+	fi
+
+	currentImgVersion=$(cat /etc/buildinfo | grep IMAGEVERSION | cut -d'=' -f2)
+	standbyImgVersion=$(cat $BACKUPROOTFSINFO | grep IMAGEVERSION | cut -d'=' -f2)
+
+	img_current=$(uenv_get img_version$current)
+	if [ $? != 0 -o "X$img_current" != "X$currentImgVersion" ]; then
+		uenv_set img_version$current $currentImgVersion
+	fi
+
+	img_standby=$(uenv_get img_version$standby)
+	if [ $? != 0 -o "X$img_standby" != "X$standbyImgVersion" ]; then
+		uenv_set img_version$standby $standbyImgVersion
+	fi
+}
+
+mount_backup_rootfs_partition()
+{
+	backup_mtd=$(cat /proc/mtd |grep -w rootfs$standby |cut -d: -f1 |cut -c4-)
+
+	echo "[`date '+%F.%T%z'`]MSG: mount backup rootfs mtd: $backup_mtd start ..." | tee -a /tmp/${LOGDEFAULT} &>/dev/null
+	$UBIATTACH $UBIDEVCTL -m $backup_mtd -d $backup_mtd &> /dev/null
+	[ $? != 0 ] && echo "[`date '+%F.%T%z'`]$UBIATTACH $UBIDEVCTL -m $backup_mtd -d $backup_mtd failed " | tee -a /tmp/${LOGDEFAULT} &>/dev/console
+	mdev -s &>/dev/null
+	$UBIBLOCK --create /dev/ubi${backup_mtd}_1 &>/dev/null
+	[ ! -e /dev/ubiblock${backup_mtd}_1 ] && echo "[`date '+%F.%T%z'`]MSG: $UBIBLOCK --create /dev/ubiblock${backup_mtd}_1 failed" | tee -a /tmp/${LOGDEFAULT} &>/dev/console
+	mdev -s &>/dev/null
+	mkdir -p /tmp/backup_rootfs
+	mount -t squashfs -root /dev/ubiblock${backup_mtd}_1 /tmp/backup_rootfs &>/dev/null
+	[ $? != 0 ] && echo "[`date '+%F.%T%z'`]MSG: mount -t squashfs -root /dev/ubiblock${backup_mtd}_1 /tmp/backup_rootfs failed" | tee -a /tmp/${LOGDEFAULT} &>/dev/console
+
+	cat /tmp/backup_rootfs/etc/buildinfo > $BACKUPROOTFSINFO
+	# if mount backup rootfs failed, reboot and try again
+	#[ -s $BACKUPROOTFSINFO ] || echo "MSG: mount backup rootfs failed" >/dev/console && reboot
+	umount -l /tmp/backup_rootfs
+	$UBIDETACH $UBIDEVCTL -m $backup_mtd &>/dev/null
+	rm -rf /tmp/backup_rootfs
+}
+
+
+_mount_ubifs()
+{
+    ubi_map=$1
+    ubi_part=$(echo "${ubi_map}" |cut -d: -f1)
+    ubi_seed=$(echo "${ubi_map}" |cut -d: -f2)
+    ubi_port=$(echo "${ubi_map}" |cut -d: -f3)
+    echo "[`date '+%F.%T%z'`]MSG: ubi_part=${ubi_part} ubi_port=${ubi_port}" |tee -a /tmp/${LOGDEFAULT} &>/dev/console
+    if grep -q "\<${ubi_part}\>" /proc/mtd; then
+        echo "[`date '+%F.%T%z'`]MSG: mount $ubi_port start ..." | tee -a /tmp/${LOGDEFAULT} &>/dev/null
+        ubi_part_id=$(cat /proc/mtd |grep "\<${ubi_part}\>"|head -n 1 |cut -d: -f1 |cut -c4-)
+        echo "CMD: $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id}" &>/dev/console
+        $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id} &>/dev/null
+        mdev -s &>/dev/null
+
+            ## try to mount the ${ubi_part} to the ${ubi_port}
+            echo "CMD: mount -t ubifs /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port}" &>/dev/console
+            mount -t ubifs /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port} &>/dev/null
+            ubi_err=$?
+            echo "MSG: mount /dev/ubi${ubi_part_id}_${ubi_seed} ${ubi_port} with code=${ubi_err}" &>/dev/null
+
+            ## check the mount ${ubi_port} size
+            ubi_size=$(df -k |grep "\<ubi${ubi_part_id}_[012]\>" |sed "s/ [ \t]*/:/g"|cut -d: -f2)
+            echo "MSG: ${ubi_port} size is ${ubi_size}KB" &>/dev/console
+            if [ "0${ubi_size}" -lt 768 ]; then ubi_err=$((${ubi_err} + 1)); fi
+
+            ## try to touch/write the mounted folder ${ubi_port}
+            [ $ubi_err -eq 0 ] && touch ${ubi_port}/${TAGUBIFSWR}
+            ubi_err=$((${ubi_err} + $?))
+            echo "MSG: touch ${ubi_port}/${TAGUBIFSWR} with code=${ubi_err}" &>/dev/null
+
+            ## check whether here is any error to try to recover
+            if [ ${ubi_err} != 0 ]; then
+                ## set fail flag to check if need to recover data
+                uenv_set mount_$(echo $ubi_port | cut -d'/' -f 2)_fail 1
+                echo "[`date '+%F.%T%z'`]MSG: Partition ${ubi_part} damaged! Try to recover ..." |tee -a /tmp/${LOGDEFAULT} &>/dev/console
+                echo "CMD: umount ${ubi_port}"
+                umount -l ${ubi_port} &>/dev/null
+                echo "CMD: $UBIDETACH $UBIDEVCTL -m ${ubi_part_id}"
+                $UBIDETACH $UBIDEVCTL -m ${ubi_part_id} &>/dev/null
+                echo "CMD: $UBIFORMAT /dev/mtd${ubi_part_id} -y"
+                $UBIFORMAT /dev/mtd${ubi_part_id} -y &>/dev/null
+                echo "CMD: $UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id}"
+                ubi_part_info=$($UBIATTACH $UBIDEVCTL -m ${ubi_part_id} -d ${ubi_part_id} 2>/dev/null)
+                ubi_part_lebs=$(echo "${ubi_part_info}" |sed "s/^.*\(total\)\(.*\)\(LEBs\).*\(available\).*/\2/" |sed "s/[ \t\n]//g")
+                ubi_part_aleb=$(echo "${ubi_part_info}" |sed "s/^.*\(available\)\(.*\)\(LEBs\).*/\2/" |sed "s/[ \t\n]//g")
+                ubi_lebs_size=$(echo "${ubi_part_info}" |sed "s/^.*\(LEB size\).*\(bytes (\)\(.*\)\( KiB\).*/\3/" |sed "s/[ \t\n]//g" |cut -d. -f1)
+                echo "MSG: ${ubi_part_info}"
+                echo "MSG: ubi_part=${ubi_part} ubi_part_lebs=${ubi_part_lebs} ubi_part_aleb=${ubi_part_aleb}"
+                ## Volume Size = Total - Total/32(Reserved for BEB) - 4(Reserved for Volume)
+                ## ubi_part_aleb=$((${ubi_part_aleb} - 4)) ## Reserved only for more tolerance
+                ubi_vols_lebs=$((${ubi_part_lebs} * 31 / 32 - 4))
+                if [ ${ubi_part_aleb} -lt ${ubi_vols_lebs} ]; then ubi_vols_lebs=${ubi_part_aleb}; fi
+                ubi_vols_size=$((${ubi_vols_lebs} * ${ubi_lebs_size}))
+                echo "MSG: ubi_part=${ubi_part} ubi_vols_lebs=${ubi_vols_lebs} ubi_lebs_size=${ubi_lebs_size} ubi_vols_size=${ubi_vols_size}"
+                mdev -s &>/dev/null
+
+                ## try to make volume for the ${ubi_part}
+                echo "CMD: $UBIMKVOL /dev/ubi${ubi_part_id} -t dynamic -n 0 -N ${ubi_part} -s ${ubi_vols_size}KiB"
+                $UBIMKVOL /dev/ubi${ubi_part_id} -t dynamic -n 0 -N ${ubi_part} -s ${ubi_vols_size}KiB &>/dev/null
+                if [ $? != 0 ]; then reboot; fi    #reboot and try again
+                mdev -s &>/dev/null
+
+                ## try to mount the ${ubi_part}
+                echo "CMD: mount -t ubifs /dev/ubi${ubi_part_id}_0 ${ubi_port}"
+                mount -t ubifs /dev/ubi${ubi_part_id}_0 ${ubi_port} &>/dev/null
+            fi
+            echo "[`date '+%F.%T%z'`]MSG: mount $ubi_port completed" | tee -a /tmp/${LOGDEFAULT} &>/dev/console
+    fi
+}
+
+mount_partition()
+{
+	echo -e "\n[`date '+%F.%T%z'`]MSG: load ubi parts @`uptime`" |tee -a /tmp/${LOGDEFAULT} &>/dev/console
+
+	UBI_MAP_LIST="log:0:/logs user_data:0:/opt"
+    if [ -z $cfg_partition ];then
+	    echo  "no cfg_partition paramter in uboot env, so set cfg_partition to rootfs_data$current." |tee -a ${SYSLOGS} &>/dev/console
+        /usr/sbin/fw_setenv cfg_partition rootfs_data$current
+        no_cfg_env=1
+    fi
+    cfg_partition=`/usr/sbin/fw_printenv -n cfg_partition`
+	UBI_MAP_LIST=$UBI_MAP_LIST" $cfg_partition:0:/configs"
+    echo $UBI_MAP_LIST|tee -a /tmp/${LOGDEFAULT} &>/dev/console
+
+	for ubi_map in ${UBI_MAP_LIST}; do
+        _mount_ubifs $ubi_map
+	done
+}
+
+enable_pstore()
+{
+	mkdir -p /tmp/pstore
+	mount -o nosuid,nodev -t pstore pstore /tmp/pstore && cp -rf /tmp/pstore /logs/
+	#mount -t pstore pstore /sys/fs/pstore
+}
+
+check_abnormal_reboot()
+{
+	reboot_data=$(devmem 0xf4320114)
+	let "panic=(reboot_data>>16) & 0x01"
+	let "kernel=(reboot_data>>18) & 0x01"
+	let "app=(reboot_data>>19) & 0x01"
+	let "watchdog=(reboot_data>>20) & 0x01"
+
+	sb_para=$(usr/sbin/fw_printenv -n sb_flag)
+	let "sb0_data=sb_para & 0x09"
+	let "sb1_data=(sb_para>>4) & 0x09"
+
+	echo "check_abnormal_reboot start" |tee -a ${SYSLOGS} &>/dev/console
+	echo "data_panic:${panic} data_kernel:${kernel} data_app:${app} data_wdt:${watchdog} sb_flag:${sb_para} " |tee -a ${SYSLOGS} &>/dev/console
+
+	if [ "X$panic" == "X1" ]||[ "X$watchdog" == "X1" ]||[ "X$kernel" == "X1" ]&&[ "X$app" == "X0" ];then
+		echo "ont started abnormally last time" |tee -a ${SYSLOGS} &>/dev/console
+		if [ [ "Xsb0_data" == "X9" ] || [ "Xsb1_data" == "X9" ] ];then
+			echo "rollback to the backup partition" |tee -a ${SYSLOGS} &>/dev/console
+			backupversion="null"
+			/usr/sbin/fw_setenv img_version$standby $backupversion &>/dev/null
+
+			sb_num=$(/usr/sbin/fw_printenv -n sb_flag)
+			if [ $current -eq 0 ]; then
+				let "sb_data=sb_num & 0xDF"
+			else
+				let "sb_data=sb_num & 0xFD"
+			fi
+			/usr/sbin/fw_setenv sb_flag $sb_data &>/dev/null
+		fi
+	fi
+
+	sb_info=$(usr/sbin/fw_printenv -n sb_flag)
+	backup_version=$(usr/sbin/fw_printenv -n img_version$standby)
+	echo "after: sb_info:${sb_info} backup_ver:${backup_version}" |tee -a ${SYSLOGS} &>/dev/console
+	echo "check_abnormal_reboot end" |tee -a ${SYSLOGS} &>/dev/console
+}
+
+max_time() {
+	local file newest
+
+	for file in $( find /logs -type f ) ; do
+		[ -z "$newest" -o "$newest" -ot "$file" ] && newest=$file
+	done
+	[ "$newest" ] && date -r "$newest" +%s
+}
+
+sync_time() {
+	local maxtime="$(max_time)"
+	local curtime="$(date +%s)"
+
+	[ $curtime -lt $maxtime ] && date -s @$maxtime
+}
+
+kmsg_init()
+{
+	if [ -e /logs/reboot.log ]; then
+		filesize=$(du -c /logs/reboot.log |grep total |awk '{ print $1 }')
+		if [ $filesize -gt 450 ]; then
+			[ -e /logs/reboot.log.tar.gz ] && rm /logs/reboot.log.tar.gz
+			cd /logs; mv -f reboot.log reboot.bak ; tar zcvf reboot.log.tar.gz  reboot.bak; cd -
+			rm /logs/reboot.bak
+			/bin/cat /etc/buildinfo |tee -a /logs/reboot.log &>/dev/console
+		fi
+	fi
+	if [ -e /lib/modules/*/kmsg.ko ]; then
+		insmod /lib/modules/*/kmsg.ko
+	fi
+}
+
+_remount_configs()
+{
+    if [ "$cfg_partition" != "rootfs_data$current" ];then
+        echo "old configs: $cfg_partition, now it's rootfs_data$current" |tee -a ${SYSLOGS} &>/dev/console
+        /usr/sbin/fw_setenv cfg_partition rootfs_data$current
+        cfg_partition="rootfs_data$current"
+        umount -l /configs
+        _mount_ubifs "$cfg_partition:0:/configs"
+    fi
+}
+
+
+_restore_configs_overlay()
+{
+    # delete old backup directory
+    rm -rf /logs/.backup
+    # delete old persisten files
+    rm -rf $CONFIGS_OVERLAY
+
+    mv /configs/sysupgrade.tgz /tmp
+    #copy data in old cfg partition
+    mkdir /tmp/cfg_data
+    _mount_ubifs "cfg:0:/tmp/cfg_data"
+    cp -rf /tmp/cfg_data/* /configs/
+    umount -l /tmp/cfg_data 
+    rm -rf /tmp/cfg_data
+
+    # copy persisten files from previous rootfs
+    mkdir /tmp/rootfs_data
+    tar -xzf /tmp/sysupgrade.tgz -C /tmp/rootfs_data
+    mkdir $CONFIGS_OVERLAY
+    List=$(/usr/exe/json_paser OverlayParams.OverlayPersistentFileList < /etc/HB_Config.json)
+    for file in $List
+    do
+        targetDir=$CONFIGS_OVERLAY/$(dirname $file)
+         
+        #first, copy from /rom, then overwrite from previous build (sysupgrade.tgz)
+        [ -d /rom/$file ] && mkdir -p $targetDir && cp -rf /rom/$file  $targetDir
+        [ -e /tmp/rootfs_data/$file ] && mkdir -p $targetDir && cp -rf /tmp/rootfs_data/$file  $targetDir
+        echo "[ -e /tmp/rootfs_data/$file ] && cp -rf /tmp/rootfs_data/$file  $targetDir" |tee -a ${SYSLOGS} &>/dev/console
+    done
+
+    rm -rf /tmp/rootfs_data
+    rm -f /tmp/sysupgrade.tgz
+ }
+
+upgrade_from_less_2303()
+{
+    tmp_version=$(cat $BACKUPROOTFSINFO | grep -w IMAGEVERSION | cut -d'=' -f2)
+    release_str=${tmp_version:9:3}
+
+    IS_UPGRADE=$(is_upgrade)
+    echo "$release_str $IS_UPGRADE" |tee -a ${SYSLOGS} &>/dev/console
+    if [ "$release_str" \< "JKK" -a $IS_UPGRADE -eq 1 ];then
+        echo "upgrade from old build which is before 2303!" |tee -a ${SYSLOGS} &>/dev/console
+        _remount_configs
+        _restore_configs_overlay
+    elif [ $no_cfg_env -eq 1 ];then
+        echo "no cfg_partition in uboot env!" |tee -a ${SYSLOGS} &>/dev/console
+        _restore_configs_overlay
+    fi
+}
+
+check_logs_partition()
+{
+        ubi_logs="log:0:/logs"
+        mtd=$(echo $ubi_logs | cut -d: -f 1)
+        usage=$(df /logs | tail -1 | awk '{print $5}' | sed 's/%//g')
+        if [ "$usage" -ge 99 ]; then
+                echo "MSG: logs is used over 99%, format and remount it" &>/dev/console
+                format_partition $mtd
+                #_mount_ubifs $ubi_logs
+        fi
+}
+
+start()
+{
+	mount_partition
+	mount_backup_rootfs_partition
+	sync_time
+	factory_back_default
+	upgrade_from_less_2303
+	link_after_overlay 
+	/bin/sh /usr/exe/upgrade_check.sh &>/dev/console
+	#version_check
+	data_guardian
+	enable_pstore
+	echo -e "\n[`date '+%F.%T%z'`]MSG: startup @`uptime`" |tee -a ${SYSLOGS} &>/dev/console
+	echo "--------------------------------------------------------------------------------" |tee -a ${SYSLOGS} &>/dev/console
+	/bin/cat /etc/buildinfo |tee -a ${SYSLOGS} &>/dev/console
+	/bin/echo "---- REBOOT REASON COLLECTED BELOW ----" |tee -a /logs/reboot.log &>/dev/console
+	/bin/cat /etc/buildinfo |tee -a /logs/reboot.log &>/dev/null
+	/usr/sbin/fw_printenv |tee -a ${SYSLOGS} &>/dev/console
+	check_abnormal_reboot
+	kmsg_init
+	check_logs_partition
+}
+

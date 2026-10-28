@@ -1,0 +1,66 @@
+# Incl ude a rule file
+#INCLUDE = filename.pcd
+################### Start of a rule block #############################
+# Index of the rule
+#RULE = GROUPNAME_RULENAME
+RULE = service_system_init
+# Condition to start rule, existence of one of the following
+#
+# NONE - No start condition, application is spawn immediately
+# FILE filename - The existence of a file
+# RULE_COMPLETED id - Rule id completed successfully
+# NETDEVICE netdev - The existence of a networking device
+# IPC_OWNER owner - The existence of an IPC destination point
+# ENV_VAR name, value - Value of a variable
+#
+#START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }
+START_COND = NONE
+# Command with parameters, NONE for sync point
+#COMMAND = cmd parameters...
+COMMAND = /bin/sh /usr/bin/system_init.sh
+# Scheduling (priority) of the process
+#SCHED = { NICE value; FIFO value }
+SCHED = NICE 0
+# Daemon flag Process must not end
+#DAEMON = { YES, NO }
+DAEMON = NO
+# Condition to end rule and move to next rule, wait for one of the following:
+#
+# NONE - No monitor on the result, just spawn application and continue.
+# FILE filename - The existence of a file
+# EXIT status - The application exited with status. Other statuses are considered failure
+# NETDEVICE netdev - The existence of a networking device
+# IPC_OWNER owner - The existence of an IPC destination point
+# PROCESS_READY The process sent a READY event though PCD API.
+# WAIT msecs - Delay, ignore END_COND_TIMEOUT
+#
+#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }
+END_COND = FILE /tmp/system_inited
+# Timeout for end condition. Fail if timeout expires. -1 if not relevant.
+#END_COND_TIMEOUT = msecs
+END_COND_TIMEOUT = -1
+# Action upon failure, do one of the following actions upon failure
+# NONE Do not take any action
+# REBOOT - Reboot the system
+# RESTART - Restart the rule
+# EXEC_RULE id - Execute a rule
+#
+#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }
+FAILURE_ACTION = NONE
+# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.
+# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure 
+# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE} 
+# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure 
+# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE} 
+# Interval in seconds between a failure and the next failure action.
+# FAILURE_INTERVAL = (0..4294967)
+# Time in hours before resetting the failure counter. 0: use only the first failure action.
+# FAILURE_RESET_COUNT = (0..1193)
+# Rule is Active or not (To be activated later by PCD API)
+#ACTIVE = { YES, NO }
+ACTIVE = YES
+# User id for the process
+# USER = { UID | User name }
+# ping time out ,Fail if timeout expires.
+# ALIVE_TIMEOUT = 10000
+################### End of a rule block #############################

@@ -1,0 +1,104 @@
+G6 HJL libcfgdb.so stored-header selector
+00002dc0: sub      x0, x23, #0x124, lsl #12               
+00002dc4: sub      x0, x0, #0x125                         
+00002dc8: cmp      x0, #1                                 
+00002dcc: b.hi     #0x2e8c                                
+00002dd0: adrp     x2, #0x18000                           
+00002dd4: mov      x1, #0x4126                            
+00002dd8: movk     x1, #0x12, lsl #16                     
+00002ddc: cmp      x23, x1                                
+00002de0: ldr      x2, [x2, #0xf90]                        ; GOT SE_getKeyByName
+00002de4: adrp     x0, #0x7000                            
+00002de8: adrp     x24, #0x7000                           
+00002dec: add      x0, x0, #0x3e                           ; 'key10'
+00002df0: add      x24, x24, #0x39                         ; 'key9'
+00002df4: add      x1, x29, #0xc0                         
+00002df8: csel     x24, x24, x0, ne                       
+00002dfc: mov      x0, x24                                
+00002e00: blr      x2                                     
+00002e04: cbz      w0, #0x2e30                            
+00002e08: add      x2, x21, #0xda0                        
+00002e0c: adrp     x3, #0x7000                            
+00002e10: add      x3, x3, #0x27f                          ; 'get key [%s] failed\n'
+00002e14: mov      x4, x24                                
+00002e18: add      x2, x2, #0x50                          
+00002e1c: mov      w1, #0xc1                              
+00002e20: ldr      x5, [x20, #0xfe8]                      
+00002e24: mov      w0, #2                                 
+00002e28: blr      x5                                     
+00002e2c: b        #0x2c64                                
+00002e30: adrp     x1, #0x18000                           
+00002e34: ldr      x24, [x29, #0xc0]                      
+00002e38: ldr      x1, [x1, #0xcd8]                        ; GOT strlen
+00002e3c: mov      x0, x24                                
+00002e40: blr      x1                                     
+00002e44: mov      w4, w0                                 
+00002e48: adrp     x7, #0x18000                           
+00002e4c: ldr      w2, [x29, #0x98]                       
+00002e50: add      x6, x29, #0xb4                         
+00002e54: add      x5, x29, #0xb8                         
+00002e58: ldr      x7, [x7, #0xe70]                        ; GOT SE_encBin2BinEx
+00002e5c: mov      x3, x24                                
+00002e60: mov      x1, x22                                
+00002e64: mov      w0, #0                                 
+00002e68: blr      x7                                     
+00002e6c: cbz      w0, #0x2d08                            
+00002e70: add      x2, x21, #0xda0                        
+00002e74: adrp     x3, #0x7000                            
+00002e78: add      x3, x3, #0x294                          ; 'encrypt bin failed[%d]\r\n'
+00002e7c: mov      w4, #1                                 
+00002e80: add      x2, x2, #0x50                          
+00002e84: mov      w1, #0xc7                              
+00002e88: b        #0x2bd8                                
+
+Beacon9 JJM libcfgdb.so (ELF has no section headers; range identified from executable PT_LOAD)
+00002e48: sub      x0, x24, #0x124, lsl #12               
+00002e4c: sub      x0, x0, #0x125                         
+00002e50: cmp      x0, #1                                 
+00002e54: b.hi     #0x2f14                                
+00002e58: adrp     x2, #0x18000                           
+00002e5c: mov      x1, #0x4126                            
+00002e60: movk     x1, #0x12, lsl #16                     
+00002e64: cmp      x24, x1                                
+00002e68: ldr      x2, [x2, #0xce0]                       
+00002e6c: adrp     x0, #0x7000                            
+00002e70: adrp     x23, #0x7000                           
+00002e74: add      x0, x0, #0x1f6                          ; 'key10'
+00002e78: add      x23, x23, #0x1f1                        ; 'key9'
+00002e7c: add      x1, x29, #0xc0                         
+00002e80: csel     x23, x23, x0, ne                       
+00002e84: mov      x0, x23                                
+00002e88: blr      x2                                     
+00002e8c: cbz      w0, #0x2eb8                            
+00002e90: add      x2, x21, #0xf18                        
+00002e94: adrp     x3, #0x7000                            
+00002e98: add      x3, x3, #0x437                          ; 'get key [%s] failed\n'
+00002e9c: mov      x4, x23                                
+00002ea0: add      x2, x2, #0x50                          
+00002ea4: mov      w1, #0xc4                              
+00002ea8: ldr      x5, [x20, #0xf20]                      
+00002eac: mov      w0, #2                                 
+00002eb0: blr      x5                                     
+00002eb4: b        #0x2cdc                                
+00002eb8: adrp     x1, #0x18000                           
+00002ebc: ldr      x23, [x29, #0xc0]                      
+00002ec0: ldr      x1, [x1, #0xfb8]                       
+00002ec4: mov      x0, x23                                
+00002ec8: blr      x1                                     
+00002ecc: mov      w4, w0                                 
+00002ed0: adrp     x7, #0x18000                           
+00002ed4: ldr      w2, [x29, #0x98]                       
+00002ed8: add      x6, x29, #0xb4                         
+00002edc: add      x5, x29, #0xb8                         
+00002ee0: ldr      x7, [x7, #0xf40]                       
+00002ee4: mov      x3, x23                                
+00002ee8: mov      x1, x22                                
+00002eec: mov      w0, #0                                 
+00002ef0: blr      x7                                     
+00002ef4: cbz      w0, #0x2d80                            
+00002ef8: add      x2, x21, #0xf18                        
+00002efc: adrp     x3, #0x7000                            
+00002f00: add      x3, x3, #0x44c                          ; 'encrypt bin failed[%d]\r\n'
+00002f04: mov      w4, w0                                 
+00002f08: add      x2, x2, #0x50                          
+00002f0c: mov      w1, #0xca                              

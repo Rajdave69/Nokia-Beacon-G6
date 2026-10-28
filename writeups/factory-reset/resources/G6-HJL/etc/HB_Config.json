@@ -1,0 +1,117 @@
+{
+    "FactoryResetParams" : {
+        "FactoryResetDeepWhiteList" : [
+            "/configs/Nokia/",
+            "/configs/bosa/",
+            "/logs/messages",
+            "/logs/messages_kern",
+            "/logs/messages_component",
+            "/logs/pcd.logs",
+            "/logs/pcd.logs.0",
+            "/logs/reboot.log",
+            "/configs/fresetOriginator.txt",
+            "/configs/oltInfo",
+            "/configs/ont_lock_key",
+            "/logs/nbus_fatal.log"
+            ],
+            "FactoryResetNormalWhiteList" : [
+                "/configs/precfg_remote_flag",
+                "/configs/precfg_remote_avalible",
+                "/configs/precfg_remote_encryption.xml",
+                "/configs/precfg_remote.xml",
+                "/configs/cfg_update_remote_avalible",
+                "/configs/cfg_update_remote_encryption.kv",
+                "/configs/cfg_update_remote.kv",
+                "/configs/precfg_debug_mode_flag",
+                "/configs/Adminuser.json",
+                "/configs/Normaluser.json",
+                "/configs/colors.css",
+                "/configs/logo_login.svg",
+                "/configs/logo_side.svg",
+                "/configs/zeroman/",
+                "/configs/remote_rtscfg_keyparam",
+                "/configs/certs/",
+                "/configs/tr069_conf/",
+                "/configs/alcatel/",
+                "/configs/hgu_slid",
+                "/configs/swdl/",
+                "/configs/hgu_loginid"
+            ],
+            "FactoryResetExtraBlackList" : [
+                "/opt/lxc",
+                "/opt/lcm"
+            ]
+    },
+    "DataGuardianParams" : {
+        "DynamicBackupFileList" : [
+            "/configs/dmdb_encryption.cfg",
+            "/configs/dmdb_encryption.cfg.bak",
+            "/configs/precfg_remote_flag",
+            "/configs/precfg_remote_avalible",
+            "/configs/precfg_remote_encryption.xml",
+            "/configs/precfg_remote.xml",
+            "/configs/cfg_update_remote_avalible",
+            "/configs/cfg_update_remote_encryption.kv",
+            "/configs/cfg_update_remote.kv",
+            "/configs/precfg_debug_mode_flag",
+            "/configs/zeroman/",
+            "/configs/overlay"
+            ],
+            "StaticBackupFileList" : [
+                "/configs/dmdb_encryption.cfg",
+                "/configs/dmdb_encryption.cfg.bak",
+                "/configs/Nokia/",
+                "/configs/bosa/"
+            ],
+            "LogBackupFileList" : [
+                "/tmp/ussawifievent.log",
+                "/tmp/ussawifievent.log.old",
+                "/tmp/ussawifievent.log.old.gz",
+                "/tmp/ussawifistatus.log",
+                "/tmp/ussawifistatus.log.old",
+                "/tmp/ussawifistatus.log.old.gz",
+                "/tmp/ussa.log",
+                "/tmp/ussa.log.old",
+                "/tmp/ussa.log.old.gz",
+                "/tmp/Sense"
+            ]
+    },
+    "SWUpgradeParams" : {
+            "UpgradeKeepDefaultFileList" : [
+                "/etc/config/syslog",
+                "/etc/config/qcacfg80211",
+                "/etc/scfg"
+            ],
+            "UpgradeDelCommonCfgFileList" : []
+    },
+    "PackImageParas" : {
+        "SubImageInfo" : [
+            "boot:gpt-nandinfo.img",
+            "rootfs:root.mubi",
+            "imginfo:image.info"
+            ]
+    },
+    "PackImageParas-emmc" : {
+        "SubImageInfo" : [
+            "boot:uboot.bin:NULL:NULL",
+	    "kernel:kernel.bin:kernel0:kernel1",
+            "rootfs:rootfs.bin:rootfs0:rootfs1",
+            "wififw:wifi_fw_squashfs.img:WIFI_FW0:WIFI_FW1",
+            "imginfo:image.info:NULL:NULL"
+            ]
+    },
+    "OverlayParams" : {
+        "OverlayPersistentFileList" : [
+            "/etc/config",
+            "/etc/dropbear",
+            "/data/vendor/wifi",
+            "/etc/scfg",
+            "/lib/wifi/wifi_nss_olcfg",
+            "/lib/wifi/wifi_nss_olnum",
+            "/lib/wifi/wifi_nss_hk_olnum",
+	    "/home",
+            "/lib/wifi/wifi_nss_override"
+        ]
+    }
+
+}

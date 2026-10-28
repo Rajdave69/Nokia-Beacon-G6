@@ -1,0 +1,782 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+/tmp/g6-old-slot-review-20261025-by5iaikl/new/usr/bin/cfgmgr:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000059b00 <init_shared_memory@@Base+0x1da44>:
+   59b00:	f945fc00 	ldr	x0, [x0, #3064]
+   59b04:	f9400001 	ldr	x1, [x0]
+   59b08:	f9000fa1 	str	x1, [x29, #24]
+   59b0c:	d2800001 	mov	x1, #0x0                   	// #0
+   59b10:	f9400fa1 	ldr	x1, [x29, #24]
+   59b14:	f9400000 	ldr	x0, [x0]
+   59b18:	ca000020 	eor	x0, x1, x0
+   59b1c:	b4000080 	cbz	x0, 59b2c <init_shared_memory@@Base+0x1da70>
+   59b20:	d0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   59b24:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   59b28:	d63f0000 	blr	x0
+   59b2c:	f0001340 	adrp	x0, 2c4000 <_fini@@Base+0xaab48>
+   59b30:	f9411000 	ldr	x0, [x0, #544]
+   59b34:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   59b38:	d61f0000 	br	x0
+   59b3c:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   59b40:	910003fd 	mov	x29, sp
+   59b44:	a90153f3 	stp	x19, x20, [sp, #16]
+   59b48:	b0001373 	adrp	x19, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59b4c:	f945fe60 	ldr	x0, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   59b50:	f9400001 	ldr	x1, [x0]
+   59b54:	f90017a1 	str	x1, [x29, #40]
+   59b58:	d2800001 	mov	x1, #0x0                   	// #0
+   59b5c:	d0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   59b60:	f9471800 	ldr	x0, [x0, #3632]
+   59b64:	d63f0000 	blr	x0
+   59b68:	f0001634 	adrp	x20, 320000 <_fini@@Base+0x106b48>
+   59b6c:	b9409281 	ldr	w1, [x20, #144]
+   59b70:	6b00003f 	cmp	w1, w0
+   59b74:	540001ea 	b.ge	59bb0 <init_shared_memory@@Base+0x1daf4>  // b.tcont
+   59b78:	2a0103e0 	mov	w0, w1
+   59b7c:	b0001341 	adrp	x1, 2c2000 <_fini@@Base+0xa8b48>
+   59b80:	f9434421 	ldr	x1, [x1, #1672]
+   59b84:	d63f0020 	blr	x1
+   59b88:	b9009280 	str	w0, [x20, #144]
+   59b8c:	52803e80 	mov	w0, #0x1f4                 	// #500
+   59b90:	f945fe73 	ldr	x19, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   59b94:	f94017a2 	ldr	x2, [x29, #40]
+   59b98:	f9400261 	ldr	x1, [x19]
+   59b9c:	ca010041 	eor	x1, x2, x1
+   59ba0:	b40000c1 	cbz	x1, 59bb8 <init_shared_memory@@Base+0x1dafc>
+   59ba4:	d0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   59ba8:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   59bac:	d63f0000 	blr	x0
+   59bb0:	5284e200 	mov	w0, #0x2710                	// #10000
+   59bb4:	17fffff7 	b	59b90 <init_shared_memory@@Base+0x1dad4>
+   59bb8:	d0001344 	adrp	x4, 2c3000 <_fini@@Base+0xa9b48>
+   59bbc:	d2800003 	mov	x3, #0x0                   	// #0
+   59bc0:	a94153f3 	ldp	x19, x20, [sp, #16]
+   59bc4:	d2800002 	mov	x2, #0x0                   	// #0
+   59bc8:	f9448484 	ldr	x4, [x4, #2312]  ; GOT n_bus_loop_add_timer
+   59bcc:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   59bd0:	90000001 	adrp	x1, 59000 <init_shared_memory@@Base+0x1cf44>
+   59bd4:	912cf021 	add	x1, x1, #0xb3c
+   59bd8:	d61f0080 	br	x4
+   59bdc:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   59be0:	b0001342 	adrp	x2, 2c2000 <_fini@@Base+0xa8b48>
+   59be4:	910003fd 	mov	x29, sp
+   59be8:	a90153f3 	stp	x19, x20, [sp, #16]
+   59bec:	b0001373 	adrp	x19, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59bf0:	f9438442 	ldr	x2, [x2, #1800]  ; GOT clock_gettime@GLIBC_2.17
+   59bf4:	aa0103f4 	mov	x20, x1
+   59bf8:	f945fe73 	ldr	x19, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   59bfc:	9100e3a1 	add	x1, x29, #0x38
+   59c00:	f90013f5 	str	x21, [sp, #32]
+   59c04:	aa0003f5 	mov	x21, x0
+   59c08:	f9400260 	ldr	x0, [x19]
+   59c0c:	f90027a0 	str	x0, [x29, #72]
+   59c10:	d2800000 	mov	x0, #0x0                   	// #0
+   59c14:	a903ffbf 	stp	xzr, xzr, [x29, #56]
+   59c18:	52800020 	mov	w0, #0x1                   	// #1
+   59c1c:	d63f0040 	blr	x2
+   59c20:	f9401fa0 	ldr	x0, [x29, #56]
+   59c24:	d2807d01 	mov	x1, #0x3e8                 	// #1000
+   59c28:	f90002a0 	str	x0, [x21]
+   59c2c:	f94023a0 	ldr	x0, [x29, #64]
+   59c30:	9ac10c00 	sdiv	x0, x0, x1
+   59c34:	f9000280 	str	x0, [x20]
+   59c38:	f94027a1 	ldr	x1, [x29, #72]
+   59c3c:	f9400260 	ldr	x0, [x19]
+   59c40:	ca000020 	eor	x0, x1, x0
+   59c44:	b4000080 	cbz	x0, 59c54 <init_shared_memory@@Base+0x1db98>
+   59c48:	d0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   59c4c:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   59c50:	d63f0000 	blr	x0
+   59c54:	a94153f3 	ldp	x19, x20, [sp, #16]
+   59c58:	f94013f5 	ldr	x21, [sp, #32]
+   59c5c:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   59c60:	d65f03c0 	ret
+   59c64:	d2821610 	mov	x16, #0x10b0                	// #4272
+   59c68:	cb3063ff 	sub	sp, sp, x16
+   59c6c:	b0001343 	adrp	x3, 2c2000 <_fini@@Base+0xa8b48>
+   59c70:	52800002 	mov	w2, #0x0                   	// #0
+   59c74:	a9007bfd 	stp	x29, x30, [sp]
+   59c78:	910003fd 	mov	x29, sp
+   59c7c:	f942d063 	ldr	x3, [x3, #1440]  ; GOT recvmsg@GLIBC_2.17
+   59c80:	a9025bf5 	stp	x21, x22, [sp, #32]
+   59c84:	b0001375 	adrp	x21, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59c88:	a90153f3 	stp	x19, x20, [sp, #16]
+   59c8c:	9102a3b3 	add	x19, x29, #0xa8
+   59c90:	f945fea0 	ldr	x0, [x21, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   59c94:	a90363f7 	stp	x23, x24, [sp, #48]
+   59c98:	f9400001 	ldr	x1, [x0]
+   59c9c:	f90857a1 	str	x1, [x29, #4264]
+   59ca0:	d2800001 	mov	x1, #0x0                   	// #0
+   59ca4:	d2820000 	mov	x0, #0x1000                	// #4096
+   59ca8:	9101c3a1 	add	x1, x29, #0x70
+   59cac:	a90603b3 	stp	x19, x0, [x29, #96]
+   59cb0:	91003020 	add	x0, x1, #0xc
+   59cb4:	f90023f9 	str	x25, [sp, #64]
+   59cb8:	a9007c1f 	stp	xzr, xzr, [x0]
+   59cbc:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+   59cc0:	910143a0 	add	x0, x29, #0x50
+   59cc4:	f9003ba0 	str	x0, [x29, #112]
+   59cc8:	52800180 	mov	w0, #0xc                   	// #12
+   59ccc:	b9007ba0 	str	w0, [x29, #120]
+   59cd0:	910183a0 	add	x0, x29, #0x60
+   59cd4:	f90043a0 	str	x0, [x29, #128]
+   59cd8:	d2800020 	mov	x0, #0x1                   	// #1
+   59cdc:	f90047a0 	str	x0, [x29, #136]
+   59ce0:	b0001340 	adrp	x0, 2c2000 <_fini@@Base+0xa8b48>
+   59ce4:	f802c03f 	stur	xzr, [x1, #44]
+   59ce8:	f941b800 	ldr	x0, [x0, #880]
+   59cec:	b900343f 	str	wzr, [x1, #52]
+   59cf0:	b9400000 	ldr	w0, [x0]
+   59cf4:	d63f0060 	blr	x3
+   59cf8:	aa0003f6 	mov	x22, x0
+   59cfc:	f100001f 	cmp	x0, #0x0
+   59d00:	540003ca 	b.ge	59d78 <init_shared_memory@@Base+0x1dcbc>  // b.tcont
+   59d04:	d0001340 	adrp	x0, 2c3000 <_fini@@Base+0xa9b48>
+   59d08:	f9416000 	ldr	x0, [x0, #704]  ; GOT __errno_location@GLIBC_2.17
+   59d0c:	d63f0000 	blr	x0
+   59d10:	b9400000 	ldr	w0, [x0]
+   59d14:	71002c1f 	cmp	w0, #0xb
+   59d18:	54000200 	b.eq	59d58 <init_shared_memory@@Base+0x1dc9c>  // b.none
+   59d1c:	b0001365 	adrp	x5, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59d20:	52800060 	mov	w0, #0x3                   	// #3
+   59d24:	aa1603e4 	mov	x4, x22
+   59d28:	d0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   59d2c:	9110fc63 	add	x3, x3, #0x43f  ; 'read_netlink: Error recvmsg: %d\n'
+   59d30:	f946c8a5 	ldr	x5, [x5, #3472]  ; GOT log_log
+   59d34:	5280b9c2 	mov	w2, #0x5ce                 	// #1486
+   59d38:	b0000ea1 	adrp	x1, 22e000 <_fini@@Base+0x14b48>
+   59d3c:	91274021 	add	x1, x1, #0x9d0  ; 'processNLMsg'
+   59d40:	d63f00a0 	blr	x5
+   59d44:	b0001341 	adrp	x1, 2c2000 <_fini@@Base+0xa8b48>
+   59d48:	d0000ea0 	adrp	x0, 22f000 <_fini@@Base+0x15b48>
+   59d4c:	91118000 	add	x0, x0, #0x460  ; 'read_netlink: Error: '
+   59d50:	f9432821 	ldr	x1, [x1, #1616]  ; GOT perror@GLIBC_2.17
+   59d54:	d63f0020 	blr	x1
+   59d58:	f945feb5 	ldr	x21, [x21, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   59d5c:	f94857a1 	ldr	x1, [x29, #4264]
+   59d60:	f94002a0 	ldr	x0, [x21]
+   59d64:	ca000020 	eor	x0, x1, x0
+   59d68:	b40009c0 	cbz	x0, 59ea0 <init_shared_memory@@Base+0x1dde4>
+   59d6c:	d0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   59d70:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   59d74:	d63f0000 	blr	x0
+   59d78:	54000881 	b.ne	59e88 <init_shared_memory@@Base+0x1ddcc>  // b.any
+   59d7c:	b0001364 	adrp	x4, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59d80:	d0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   59d84:	9111d863 	add	x3, x3, #0x476  ; 'read_netlink: EOF\n'
+   59d88:	f946c884 	ldr	x4, [x4, #3472]  ; GOT log_log
+   59d8c:	5280baa2 	mov	w2, #0x5d5                 	// #1493
+   59d90:	b0000ea1 	adrp	x1, 22e000 <_fini@@Base+0x14b48>
+   59d94:	91274021 	add	x1, x1, #0x9d0  ; 'processNLMsg'
+   59d98:	52800060 	mov	w0, #0x3                   	// #3
+   59d9c:	d63f0080 	blr	x4
+   59da0:	17ffffee 	b	59d58 <init_shared_memory@@Base+0x1dc9c>
+   59da4:	b9400e64 	ldr	w4, [x19, #12]
+   59da8:	34000124 	cbz	w4, 59dcc <init_shared_memory@@Base+0x1dd10>
+   59dac:	f946ca94 	ldr	x20, [x20, #3472]
+   59db0:	d0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   59db4:	9112b463 	add	x3, x3, #0x4ad  ; 'netlink message source(%d)is not kernel'
+   59db8:	5280bda2 	mov	w2, #0x5ed                 	// #1517
+   59dbc:	912742e1 	add	x1, x23, #0x9d0
+   59dc0:	52800060 	mov	w0, #0x3                   	// #3
+   59dc4:	d63f0280 	blr	x20
+   59dc8:	17ffffe4 	b	59d58 <init_shared_memory@@Base+0x1dc9c>
+   59dcc:	528a0021 	mov	w1, #0x5001                	// #20481
+   59dd0:	6b01001f 	cmp	w0, w1
+   59dd4:	540004a1 	b.ne	59e68 <init_shared_memory@@Base+0x1ddac>  // b.any
+   59dd8:	f946ca84 	ldr	x4, [x20, #3472]
+   59ddc:	aa1903e1 	mov	x1, x25
+   59de0:	528000e0 	mov	w0, #0x7                   	// #7
+   59de4:	d0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   59de8:	91135463 	add	x3, x3, #0x4d5  ; 'received MSG_NETLINK_PORTID_OP60STR message'
+   59dec:	5280bea2 	mov	w2, #0x5f5                 	// #1525
+   59df0:	d63f0080 	blr	x4
+   59df4:	d0001341 	adrp	x1, 2c3000 <_fini@@Base+0xa9b48>
+   59df8:	91004260 	add	x0, x19, #0x10
+   59dfc:	f9471021 	ldr	x1, [x1, #3616]
+   59e00:	d63f0020 	blr	x1
+   59e04:	b9400260 	ldr	w0, [x19]
+   59e08:	11000c00 	add	w0, w0, #0x3
+   59e0c:	927e7400 	and	x0, x0, #0xfffffffc
+   59e10:	cb0002d6 	sub	x22, x22, x0
+   59e14:	8b000273 	add	x19, x19, x0
+   59e18:	71003edf 	cmp	w22, #0xf
+   59e1c:	54fff9e9 	b.ls	59d58 <init_shared_memory@@Base+0x1dc9c>  // b.plast
+   59e20:	b9400260 	ldr	w0, [x19]
+   59e24:	71003c1f 	cmp	w0, #0xf
+   59e28:	54fff989 	b.ls	59d58 <init_shared_memory@@Base+0x1dc9c>  // b.plast
+   59e2c:	6b0002df 	cmp	w22, w0
+   59e30:	54fff943 	b.cc	59d58 <init_shared_memory@@Base+0x1dc9c>  // b.lo, b.ul, b.last
+   59e34:	79400a60 	ldrh	w0, [x19, #4]
+   59e38:	71000c1f 	cmp	w0, #0x3
+   59e3c:	54fff8e0 	b.eq	59d58 <init_shared_memory@@Base+0x1dc9c>  // b.none
+   59e40:	7100081f 	cmp	w0, #0x2
+   59e44:	54fffb01 	b.ne	59da4 <init_shared_memory@@Base+0x1dce8>  // b.any
+   59e48:	f946ca94 	ldr	x20, [x20, #3472]
+   59e4c:	d0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   59e50:	91122463 	add	x3, x3, #0x489  ; 'read_netlink: Message is an error \n'
+   59e54:	5280bc82 	mov	w2, #0x5e4                 	// #1508
+   59e58:	912742e1 	add	x1, x23, #0x9d0
+   59e5c:	52800060 	mov	w0, #0x3                   	// #3
+   59e60:	d63f0280 	blr	x20
+   59e64:	17ffffbd 	b	59d58 <init_shared_memory@@Base+0x1dc9c>
+   59e68:	f946ca85 	ldr	x5, [x20, #3472]
+   59e6c:	2a0003e4 	mov	w4, w0
+   59e70:	aa1803e3 	mov	x3, x24
+   59e74:	5280bf42 	mov	w2, #0x5fa                 	// #1530
+   59e78:	aa1903e1 	mov	x1, x25
+   59e7c:	528000e0 	mov	w0, #0x7                   	// #7
+   59e80:	d63f00a0 	blr	x5
+   59e84:	17ffffe0 	b	59e04 <init_shared_memory@@Base+0x1dd48>
+   59e88:	b0000eb7 	adrp	x23, 22e000 <_fini@@Base+0x14b48>
+   59e8c:	d0000eb8 	adrp	x24, 22f000 <_fini@@Base+0x15b48>
+   59e90:	91140718 	add	x24, x24, #0x501  ; ' Unknown netlink nlmsg_type %d\n'
+   59e94:	b0001374 	adrp	x20, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59e98:	912742f9 	add	x25, x23, #0x9d0  ; 'processNLMsg'
+   59e9c:	17ffffdf 	b	59e18 <init_shared_memory@@Base+0x1dd5c>
+   59ea0:	a9407bfd 	ldp	x29, x30, [sp]
+   59ea4:	d2821610 	mov	x16, #0x10b0                	// #4272
+   59ea8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   59eac:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   59eb0:	a94363f7 	ldp	x23, x24, [sp, #48]
+   59eb4:	f94023f9 	ldr	x25, [sp, #64]
+   59eb8:	8b3063ff 	add	sp, sp, x16
+   59ebc:	d65f03c0 	ret
+   59ec0:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   59ec4:	b0001360 	adrp	x0, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59ec8:	910003fd 	mov	x29, sp
+   59ecc:	f945fc00 	ldr	x0, [x0, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   59ed0:	f9400001 	ldr	x1, [x0]
+   59ed4:	f9000fa1 	str	x1, [x29, #24]
+   59ed8:	d2800001 	mov	x1, #0x0                   	// #0
+   59edc:	f9400fa1 	ldr	x1, [x29, #24]
+   59ee0:	f9400000 	ldr	x0, [x0]
+   59ee4:	ca000020 	eor	x0, x1, x0
+   59ee8:	b4000080 	cbz	x0, 59ef8 <init_shared_memory@@Base+0x1de3c>
+   59eec:	d0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   59ef0:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   59ef4:	d63f0000 	blr	x0
+   59ef8:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   59efc:	17ffff5a 	b	59c64 <init_shared_memory@@Base+0x1dba8>
+   59f00:	d2863e10 	mov	x16, #0x31f0                	// #12784
+   59f04:	cb3063ff 	sub	sp, sp, x16
+   59f08:	d0001362 	adrp	x2, 2c7000 <_fini@@Base+0xadb48>
+   59f0c:	a9007bfd 	stp	x29, x30, [sp]
+   59f10:	910003fd 	mov	x29, sp
+   59f14:	f9423c42 	ldr	x2, [x2, #1144]  ; GOT fputs@GLIBC_2.17
+   59f18:	a90153f3 	stp	x19, x20, [sp, #16]
+   59f1c:	b0001373 	adrp	x19, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59f20:	a9025bf5 	stp	x21, x22, [sp, #32]
+   59f24:	b0000eb4 	adrp	x20, 22e000 <_fini@@Base+0x14b48>
+   59f28:	91274294 	add	x20, x20, #0x9d0  ; 'processNLMsg'
+   59f2c:	f945fe60 	ldr	x0, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   59f30:	a90363f7 	stp	x23, x24, [sp, #48]
+   59f34:	f9400001 	ldr	x1, [x0]
+   59f38:	f918f7a1 	str	x1, [x29, #12776]
+   59f3c:	d2800001 	mov	x1, #0x0                   	// #0
+   59f40:	b0001360 	adrp	x0, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59f44:	a9046bf9 	stp	x25, x26, [sp, #64]
+   59f48:	f942e000 	ldr	x0, [x0, #1472]  ; GOT stdout@GLIBC_2.17
+   59f4c:	f9400001 	ldr	x1, [x0]
+   59f50:	d0000ea0 	adrp	x0, 22f000 <_fini@@Base+0x15b48>
+   59f54:	91148400 	add	x0, x0, #0x521  ; 'Saving key parameters for PHGL customer...\n'
+   59f58:	f9002bfb 	str	x27, [sp, #80]
+   59f5c:	910203bb 	add	x27, x29, #0x80
+   59f60:	d63f0040 	blr	x2
+   59f64:	b0001364 	adrp	x4, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   59f68:	528146e2 	mov	w2, #0xa37                 	// #2615
+   59f6c:	91004281 	add	x1, x20, #0x10  ; 'cfgRpc_saveKeyParameters'
+   59f70:	52800060 	mov	w0, #0x3                   	// #3
+   59f74:	f946c884 	ldr	x4, [x4, #3472]  ; GOT log_log
+   59f78:	d0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   59f7c:	91153463 	add	x3, x3, #0x54d  ; 'Saving key parameters for PHGL customer...'
+   59f80:	d63f0080 	blr	x4
+   59f84:	d0001343 	adrp	x3, 2c3000 <_fini@@Base+0xa9b48>
+   59f88:	d280e002 	mov	x2, #0x700                 	// #1792
+   59f8c:	9100c281 	add	x1, x20, #0x30  ; 'InternetGatewayDevice.ManagementServer.URL'
+   59f90:	aa1b03e0 	mov	x0, x27
+   59f94:	f9423063 	ldr	x3, [x3, #1120]  ; GOT memcpy@GLIBC_2.17
+   59f98:	d63f0060 	blr	x3
+   59f9c:	f0001322 	adrp	x2, 2c0000 <_fini@@Base+0xa6b48>
+   59fa0:	900011c1 	adrp	x1, 291000 <_fini@@Base+0x77b48>
+   59fa4:	91323021 	add	x1, x1, #0xc8c
+   59fa8:	f946c842 	ldr	x2, [x2, #3472]  ; GOT fopen@GLIBC_2.17
+   59fac:	d0000ea0 	adrp	x0, 22f000 <_fini@@Base+0x15b48>
+   59fb0:	9115e000 	add	x0, x0, #0x578  ; '/configs/keyparam'
+   59fb4:	d63f0040 	blr	x2
+   59fb8:	b4000740 	cbz	x0, 5a0a0 <init_shared_memory@@Base+0x1dfe4>
+   59fbc:	b0001357 	adrp	x23, 2c2000 <_fini@@Base+0xa8b48>
+   59fc0:	9000137a 	adrp	x26, 2c5000 <_fini@@Base+0xabb48>
+   59fc4:	aa0003f4 	mov	x20, x0
+   59fc8:	90000e18 	adrp	x24, 219000 <changeASCIIToHex@@Base+0x179fa0>
+   59fcc:	91395b18 	add	x24, x24, #0xe56  ; '%s=%s\n'
+   59fd0:	f942f2f7 	ldr	x23, [x23, #1504]  ; GOT memset@GLIBC_2.17
+   59fd4:	d2843d00 	mov	x0, #0x21e8                	// #8680
+   59fd8:	f945675a 	ldr	x26, [x26, #2760]
+   59fdc:	8b0003b9 	add	x25, x29, x0
+   59fe0:	d2800015 	mov	x21, #0x0                   	// #0
+   59fe4:	8b152376 	add	x22, x27, x21, lsl #8
+   59fe8:	d2820002 	mov	x2, #0x1000                	// #4096
+   59fec:	52800001 	mov	w1, #0x0                   	// #0
+   59ff0:	aa1903e0 	mov	x0, x25
+   59ff4:	d63f02e0 	blr	x23
+   59ff8:	910006b5 	add	x21, x21, #0x1
+   59ffc:	52820002 	mov	w2, #0x1000                	// #4096
+   5a000:	aa1903e1 	mov	x1, x25
+   5a004:	aa1603e0 	mov	x0, x22
+   5a008:	d63f0340 	blr	x26
+   5a00c:	aa1603e2 	mov	x2, x22
+   5a010:	90001376 	adrp	x22, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a014:	aa1903e3 	mov	x3, x25
+   5a018:	aa1803e1 	mov	x1, x24
+   5a01c:	f94146c4 	ldr	x4, [x22, #648]  ; GOT fprintf@GLIBC_2.17
+   5a020:	aa1403e0 	mov	x0, x20
+   5a024:	d63f0080 	blr	x4
+   5a028:	f1001ebf 	cmp	x21, #0x7
+   5a02c:	54fffdc1 	b.ne	59fe4 <init_shared_memory@@Base+0x1df28>  // b.any
+   5a030:	911e03b5 	add	x21, x29, #0x780
+   5a034:	d2834c22 	mov	x2, #0x1a61                	// #6753
+   5a038:	52800001 	mov	w1, #0x0                   	// #0
+   5a03c:	aa1503e0 	mov	x0, x21
+   5a040:	d63f02e0 	blr	x23
+   5a044:	b0001357 	adrp	x23, 2c3000 <_fini@@Base+0xa9b48>
+   5a048:	52803280 	mov	w0, #0x194                 	// #404
+   5a04c:	b90783a0 	str	w0, [x29, #1920]
+   5a050:	910012a0 	add	x0, x21, #0x4
+   5a054:	f946a2f7 	ldr	x23, [x23, #3392]
+   5a058:	b0000eb8 	adrp	x24, 22f000 <_fini@@Base+0x15b48>
+   5a05c:	91162b18 	add	x24, x24, #0x58a  ; 'InternetGatewayDevice.WANDevice.%d.WANConnectionDevice.%d.WANPPPConnection.%d.Username=%s\n'
+   5a060:	910183ba 	add	x26, x29, #0x60
+   5a064:	a9067fbf 	stp	xzr, xzr, [x29, #96]
+   5a068:	a9007c1f 	stp	xzr, xzr, [x0]
+   5a06c:	f9003bbf 	str	xzr, [x29, #112]
+   5a070:	b9007bbf 	str	wzr, [x29, #120]
+   5a074:	f80142bf 	stur	xzr, [x21, #20]
+   5a078:	b9001ebf 	str	wzr, [x21, #28]
+   5a07c:	52820002 	mov	w2, #0x1000                	// #4096
+   5a080:	aa1a03e1 	mov	x1, x26
+   5a084:	aa1503e0 	mov	x0, x21
+   5a088:	d63f02e0 	blr	x23
+   5a08c:	340001a0 	cbz	w0, 5a0c0 <init_shared_memory@@Base+0x1e004>
+   5a090:	90001361 	adrp	x1, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a094:	aa1403e0 	mov	x0, x20
+   5a098:	f940fc21 	ldr	x1, [x1, #504]  ; GOT fclose@GLIBC_2.17
+   5a09c:	d63f0020 	blr	x1
+   5a0a0:	f945fe73 	ldr	x19, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a0a4:	f958f7a1 	ldr	x1, [x29, #12776]
+   5a0a8:	f9400260 	ldr	x0, [x19]
+   5a0ac:	ca000020 	eor	x0, x1, x0
+   5a0b0:	b40002a0 	cbz	x0, 5a104 <init_shared_memory@@Base+0x1e048>
+   5a0b4:	b0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   5a0b8:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   5a0bc:	d63f0000 	blr	x0
+   5a0c0:	b9478ba2 	ldr	w2, [x29, #1928]
+   5a0c4:	911616a5 	add	x5, x21, #0x585
+   5a0c8:	b9478fa3 	ldr	w3, [x29, #1932]
+   5a0cc:	aa1803e1 	mov	x1, x24
+   5a0d0:	b94793a4 	ldr	w4, [x29, #1936]
+   5a0d4:	aa1403e0 	mov	x0, x20
+   5a0d8:	f94146d9 	ldr	x25, [x22, #648]  ; GOT fprintf@GLIBC_2.17
+   5a0dc:	d63f0320 	blr	x25
+   5a0e0:	b9478ba2 	ldr	w2, [x29, #1928]
+   5a0e4:	9112baa5 	add	x5, x21, #0x4ae
+   5a0e8:	b9478fa3 	ldr	w3, [x29, #1932]
+   5a0ec:	b0000ea1 	adrp	x1, 22f000 <_fini@@Base+0x15b48>
+   5a0f0:	91179421 	add	x1, x1, #0x5e5  ; 'InternetGatewayDevice.WANDevice.%d.WANConnectionDevice.%d.WANPPPConnection.%d.Password=%s\n'
+   5a0f4:	b94793a4 	ldr	w4, [x29, #1936]
+   5a0f8:	aa1403e0 	mov	x0, x20
+   5a0fc:	d63f0320 	blr	x25
+   5a100:	17ffffdf 	b	5a07c <init_shared_memory@@Base+0x1dfc0>
+   5a104:	a9407bfd 	ldp	x29, x30, [sp]
+   5a108:	d2863e10 	mov	x16, #0x31f0                	// #12784
+   5a10c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5a110:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   5a114:	a94363f7 	ldp	x23, x24, [sp, #48]
+   5a118:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   5a11c:	f9402bfb 	ldr	x27, [sp, #80]
+   5a120:	8b3063ff 	add	sp, sp, x16
+   5a124:	d65f03c0 	ret
+
+000000000005a128 <cfgRpc_socketWrite@@Base>:
+   5a128:	a9ba7bfd 	stp	x29, x30, [sp, #-96]!
+   5a12c:	910003fd 	mov	x29, sp
+   5a130:	a90153f3 	stp	x19, x20, [sp, #16]
+   5a134:	90001373 	adrp	x19, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a138:	a9025bf5 	stp	x21, x22, [sp, #32]
+   5a13c:	d0001356 	adrp	x22, 2c4000 <_fini@@Base+0xaab48>
+   5a140:	a90363f7 	stp	x23, x24, [sp, #48]
+   5a144:	b0001357 	adrp	x23, 2c3000 <_fini@@Base+0xa9b48>
+   5a148:	f90023f9 	str	x25, [sp, #64]
+   5a14c:	2a0003f9 	mov	w25, w0
+   5a150:	f945fe60 	ldr	x0, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a154:	aa0103f5 	mov	x21, x1
+   5a158:	f9456ad6 	ldr	x22, [x22, #2768]  ; GOT write@GLIBC_2.17
+   5a15c:	2a0203f4 	mov	w20, w2
+   5a160:	f94162f7 	ldr	x23, [x23, #704]  ; GOT __errno_location@GLIBC_2.17
+   5a164:	f9400001 	ldr	x1, [x0]
+   5a168:	f9002fa1 	str	x1, [x29, #88]
+   5a16c:	d2800001 	mov	x1, #0x0                   	// #0
+   5a170:	7100029f 	cmp	w20, #0x0
+   5a174:	5400006c 	b.gt	5a180 <cfgRpc_socketWrite@@Base+0x58>
+   5a178:	52800000 	mov	w0, #0x0                   	// #0
+   5a17c:	1400001c 	b	5a1ec <cfgRpc_socketWrite@@Base+0xc4>
+   5a180:	aa1503e1 	mov	x1, x21
+   5a184:	93407e82 	sxtw	x2, w20
+   5a188:	2a1903e0 	mov	w0, w25
+   5a18c:	d63f02c0 	blr	x22
+   5a190:	2a0003e1 	mov	w1, w0
+   5a194:	36f803e0 	tbz	w0, #31, 5a210 <cfgRpc_socketWrite@@Base+0xe8>
+   5a198:	d63f02e0 	blr	x23
+   5a19c:	b9400018 	ldr	w24, [x0]
+   5a1a0:	7100131f 	cmp	w24, #0x4
+   5a1a4:	54000340 	b.eq	5a20c <cfgRpc_socketWrite@@Base+0xe4>  // b.none
+   5a1a8:	d0001321 	adrp	x1, 2c0000 <_fini@@Base+0xa6b48>
+   5a1ac:	2a1803e0 	mov	w0, w24
+   5a1b0:	f9479021 	ldr	x1, [x1, #3872]  ; GOT strerror@GLIBC_2.17
+   5a1b4:	d63f0020 	blr	x1
+   5a1b8:	aa0003e5 	mov	x5, x0
+   5a1bc:	90001366 	adrp	x6, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a1c0:	90000ea1 	adrp	x1, 22e000 <_fini@@Base+0x14b48>
+   5a1c4:	91274021 	add	x1, x1, #0x9d0  ; 'processNLMsg'
+   5a1c8:	f946c8c6 	ldr	x6, [x6, #3472]  ; GOT log_log
+   5a1cc:	52800060 	mov	w0, #0x3                   	// #3
+   5a1d0:	2a1803e4 	mov	w4, w24
+   5a1d4:	b0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   5a1d8:	91190063 	add	x3, x3, #0x640  ; 'write socket erro errno=%d(%s)\n'
+   5a1dc:	52801342 	mov	w2, #0x9a                  	// #154
+   5a1e0:	911cc021 	add	x1, x1, #0x730  ; 'cfgRpc_socketWrite'
+   5a1e4:	d63f00c0 	blr	x6
+   5a1e8:	12800000 	mov	w0, #0xffffffff            	// #-1
+   5a1ec:	f945fe73 	ldr	x19, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a1f0:	f9402fa2 	ldr	x2, [x29, #88]
+   5a1f4:	f9400261 	ldr	x1, [x19]
+   5a1f8:	ca010041 	eor	x1, x2, x1
+   5a1fc:	b4000101 	cbz	x1, 5a21c <cfgRpc_socketWrite@@Base+0xf4>
+   5a200:	b0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   5a204:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   5a208:	d63f0000 	blr	x0
+   5a20c:	52800001 	mov	w1, #0x0                   	// #0
+   5a210:	4b010294 	sub	w20, w20, w1
+   5a214:	8b21c2b5 	add	x21, x21, w1, sxtw
+   5a218:	17ffffd6 	b	5a170 <cfgRpc_socketWrite@@Base+0x48>
+   5a21c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5a220:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   5a224:	a94363f7 	ldp	x23, x24, [sp, #48]
+   5a228:	f94023f9 	ldr	x25, [sp, #64]
+   5a22c:	a8c67bfd 	ldp	x29, x30, [sp], #96
+   5a230:	d65f03c0 	ret
+
+000000000005a234 <cfgRpc_socketRead_timeout@@Base>:
+   5a234:	a9af7bfd 	stp	x29, x30, [sp, #-272]!
+   5a238:	910003fd 	mov	x29, sp
+   5a23c:	a90153f3 	stp	x19, x20, [sp, #16]
+   5a240:	2a0003f3 	mov	w19, w0
+   5a244:	90001360 	adrp	x0, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a248:	a90363f7 	stp	x23, x24, [sp, #48]
+   5a24c:	aa0103f8 	mov	x24, x1
+   5a250:	a9025bf5 	stp	x21, x22, [sp, #32]
+   5a254:	f945fc01 	ldr	x1, [x0, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a258:	2a0203f5 	mov	w21, w2
+   5a25c:	a9046bf9 	stp	x25, x26, [sp, #64]
+   5a260:	72001c74 	ands	w20, w3, #0xff
+   5a264:	f9400022 	ldr	x2, [x1]
+   5a268:	f90087a2 	str	x2, [x29, #264]
+   5a26c:	d2800002 	mov	x2, #0x0                   	// #0
+   5a270:	a90573fb 	stp	x27, x28, [sp, #80]
+   5a274:	f90037a0 	str	x0, [x29, #104]
+   5a278:	54000161 	b.ne	5a2a4 <cfgRpc_socketRead_timeout@@Base+0x70>  // b.any
+   5a27c:	90001364 	adrp	x4, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a280:	90000ea1 	adrp	x1, 22e000 <_fini@@Base+0x14b48>
+   5a284:	91274021 	add	x1, x1, #0x9d0  ; 'processNLMsg'
+   5a288:	f946c884 	ldr	x4, [x4, #3472]  ; GOT log_log
+   5a28c:	b0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   5a290:	91198063 	add	x3, x3, #0x660  ; 'timeout is 0 \n'
+   5a294:	528016a2 	mov	w2, #0xb5                  	// #181
+   5a298:	911d2021 	add	x1, x1, #0x748  ; 'cfgRpc_socketRead_timeout'
+   5a29c:	52800060 	mov	w0, #0x3                   	// #3
+   5a2a0:	d63f0080 	blr	x4
+   5a2a4:	6b1303e1 	negs	w1, w19
+   5a2a8:	d0001357 	adrp	x23, 2c4000 <_fini@@Base+0xaab48>
+   5a2ac:	9000137a 	adrp	x26, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a2b0:	12001676 	and	w22, w19, #0x3f
+   5a2b4:	12001421 	and	w1, w1, #0x3f
+   5a2b8:	92401e94 	and	x20, x20, #0xff
+   5a2bc:	5a8146c0 	csneg	w0, w22, w1, mi	// mi = first
+   5a2c0:	f9419ef7 	ldr	x23, [x23, #824]  ; GOT __fdelt_chk@GLIBC_2.17
+   5a2c4:	f945835a 	ldr	x26, [x26, #2816]  ; GOT select@GLIBC_2.17
+   5a2c8:	d2800036 	mov	x22, #0x1                   	// #1
+   5a2cc:	a907ffb4 	stp	x20, xzr, [x29, #120]
+   5a2d0:	93407e7b 	sxtw	x27, w19
+   5a2d4:	9101e3bc 	add	x28, x29, #0x78
+   5a2d8:	910223b4 	add	x20, x29, #0x88
+   5a2dc:	9ac022d6 	lsl	x22, x22, x0
+   5a2e0:	d2800000 	mov	x0, #0x0                   	// #0
+   5a2e4:	f8207a9f 	str	xzr, [x20, x0, lsl #3]
+   5a2e8:	91000400 	add	x0, x0, #0x1
+   5a2ec:	f100401f 	cmp	x0, #0x10
+   5a2f0:	54ffffa1 	b.ne	5a2e4 <cfgRpc_socketRead_timeout@@Base+0xb0>  // b.any
+   5a2f4:	aa1b03e0 	mov	x0, x27
+   5a2f8:	d63f02e0 	blr	x23
+   5a2fc:	d37df000 	lsl	x0, x0, #3
+   5a300:	aa1c03e4 	mov	x4, x28
+   5a304:	d2800003 	mov	x3, #0x0                   	// #0
+   5a308:	d2800002 	mov	x2, #0x0                   	// #0
+   5a30c:	f8606a81 	ldr	x1, [x20, x0]
+   5a310:	aa160021 	orr	x1, x1, x22
+   5a314:	f8206a81 	str	x1, [x20, x0]
+   5a318:	aa1403e1 	mov	x1, x20
+   5a31c:	11000660 	add	w0, w19, #0x1
+   5a320:	d63f0340 	blr	x26
+   5a324:	7100001f 	cmp	w0, #0x0
+   5a328:	5400030a 	b.ge	5a388 <cfgRpc_socketRead_timeout@@Base+0x154>  // b.tcont
+   5a32c:	b0001340 	adrp	x0, 2c3000 <_fini@@Base+0xa9b48>
+   5a330:	f9416000 	ldr	x0, [x0, #704]  ; GOT __errno_location@GLIBC_2.17
+   5a334:	d63f0000 	blr	x0
+   5a338:	b9400019 	ldr	w25, [x0]
+   5a33c:	7100133f 	cmp	w25, #0x4
+   5a340:	54fffd00 	b.eq	5a2e0 <cfgRpc_socketRead_timeout@@Base+0xac>  // b.none
+   5a344:	d0001321 	adrp	x1, 2c0000 <_fini@@Base+0xa6b48>
+   5a348:	2a1903e0 	mov	w0, w25
+   5a34c:	f9479021 	ldr	x1, [x1, #3872]  ; GOT strerror@GLIBC_2.17
+   5a350:	d63f0020 	blr	x1
+   5a354:	aa0003e5 	mov	x5, x0
+   5a358:	b0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   5a35c:	9119bc63 	add	x3, x3, #0x66f  ; 'error while select errno=%d(%s)\n'
+   5a360:	2a1903e4 	mov	w4, w25
+   5a364:	52801902 	mov	w2, #0xc8                  	// #200
+   5a368:	90001366 	adrp	x6, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a36c:	90000ea1 	adrp	x1, 22e000 <_fini@@Base+0x14b48>
+   5a370:	91274021 	add	x1, x1, #0x9d0  ; 'processNLMsg'
+   5a374:	f946c8c6 	ldr	x6, [x6, #3472]  ; GOT log_log
+   5a378:	911d2021 	add	x1, x1, #0x748  ; 'cfgRpc_socketRead_timeout'
+   5a37c:	52800060 	mov	w0, #0x3                   	// #3
+   5a380:	d63f00c0 	blr	x6
+   5a384:	14000020 	b	5a404 <cfgRpc_socketRead_timeout@@Base+0x1d0>
+   5a388:	540000e1 	b.ne	5a3a4 <cfgRpc_socketRead_timeout@@Base+0x170>  // b.any
+   5a38c:	b0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   5a390:	911a4063 	add	x3, x3, #0x690  ; 'select timeout, client_fd is %d, timeout is %d \n'
+   5a394:	2a1303e4 	mov	w4, w19
+   5a398:	528019c2 	mov	w2, #0xce                  	// #206
+   5a39c:	f9403fa5 	ldr	x5, [x29, #120]
+   5a3a0:	17fffff2 	b	5a368 <cfgRpc_socketRead_timeout@@Base+0x134>
+   5a3a4:	aa1b03e0 	mov	x0, x27
+   5a3a8:	d63f02e0 	blr	x23
+   5a3ac:	f8607a80 	ldr	x0, [x20, x0, lsl #3]
+   5a3b0:	52800014 	mov	w20, #0x0                   	// #0
+   5a3b4:	ea0002df 	tst	x22, x0
+   5a3b8:	54000120 	b.eq	5a3dc <cfgRpc_socketRead_timeout@@Base+0x1a8>  // b.none
+   5a3bc:	b0001356 	adrp	x22, 2c3000 <_fini@@Base+0xa9b48>
+   5a3c0:	b0001357 	adrp	x23, 2c3000 <_fini@@Base+0xa9b48>
+   5a3c4:	f942fad6 	ldr	x22, [x22, #1520]  ; GOT read@GLIBC_2.17
+   5a3c8:	f94162f7 	ldr	x23, [x23, #704]  ; GOT __errno_location@GLIBC_2.17
+   5a3cc:	710002bf 	cmp	w21, #0x0
+   5a3d0:	540002ec 	b.gt	5a42c <cfgRpc_socketRead_timeout@@Base+0x1f8>
+   5a3d4:	52800000 	mov	w0, #0x0                   	// #0
+   5a3d8:	1400000c 	b	5a408 <cfgRpc_socketRead_timeout@@Base+0x1d4>
+   5a3dc:	90001364 	adrp	x4, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a3e0:	90000ea1 	adrp	x1, 22e000 <_fini@@Base+0x14b48>
+   5a3e4:	91274021 	add	x1, x1, #0x9d0  ; 'processNLMsg'
+   5a3e8:	f946c884 	ldr	x4, [x4, #3472]  ; GOT log_log
+   5a3ec:	b0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   5a3f0:	911b0463 	add	x3, x3, #0x6c1  ; 'something wrong while waiting for socket\n'
+   5a3f4:	52801ae2 	mov	w2, #0xd7                  	// #215
+   5a3f8:	911d2021 	add	x1, x1, #0x748  ; 'cfgRpc_socketRead_timeout'
+   5a3fc:	52800060 	mov	w0, #0x3                   	// #3
+   5a400:	d63f0080 	blr	x4
+   5a404:	12800000 	mov	w0, #0xffffffff            	// #-1
+   5a408:	f94037a1 	ldr	x1, [x29, #104]
+   5a40c:	f945fc21 	ldr	x1, [x1, #3064]
+   5a410:	f94087a2 	ldr	x2, [x29, #264]
+   5a414:	f9400021 	ldr	x1, [x1]
+   5a418:	ca010041 	eor	x1, x2, x1
+   5a41c:	b4000641 	cbz	x1, 5a4e4 <cfgRpc_socketRead_timeout@@Base+0x2b0>
+   5a420:	b0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   5a424:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   5a428:	d63f0000 	blr	x0
+   5a42c:	93407ea2 	sxtw	x2, w21
+   5a430:	aa1803e1 	mov	x1, x24
+   5a434:	2a1303e0 	mov	w0, w19
+   5a438:	d63f02c0 	blr	x22
+   5a43c:	7100001f 	cmp	w0, #0x0
+   5a440:	5400028a 	b.ge	5a490 <cfgRpc_socketRead_timeout@@Base+0x25c>  // b.tcont
+   5a444:	d63f02e0 	blr	x23
+   5a448:	b9400019 	ldr	w25, [x0]
+   5a44c:	7100133f 	cmp	w25, #0x4
+   5a450:	540000c1 	b.ne	5a468 <cfgRpc_socketRead_timeout@@Base+0x234>  // b.any
+   5a454:	b0001361 	adrp	x1, 2c7000 <_fini@@Base+0xadb48>
+   5a458:	52807d00 	mov	w0, #0x3e8                 	// #1000
+   5a45c:	f9456c21 	ldr	x1, [x1, #2776]  ; GOT usleep@GLIBC_2.17
+   5a460:	d63f0020 	blr	x1
+   5a464:	17ffffda 	b	5a3cc <cfgRpc_socketRead_timeout@@Base+0x198>
+   5a468:	d0001321 	adrp	x1, 2c0000 <_fini@@Base+0xa6b48>
+   5a46c:	2a1903e0 	mov	w0, w25
+   5a470:	f9479021 	ldr	x1, [x1, #3872]  ; GOT strerror@GLIBC_2.17
+   5a474:	d63f0020 	blr	x1
+   5a478:	aa0003e5 	mov	x5, x0
+   5a47c:	b0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   5a480:	911bac63 	add	x3, x3, #0x6eb  ; 'read socket error errno=%d(%s)\n'
+   5a484:	2a1903e4 	mov	w4, w25
+   5a488:	52801c62 	mov	w2, #0xe3                  	// #227
+   5a48c:	17ffffb7 	b	5a368 <cfgRpc_socketRead_timeout@@Base+0x134>
+   5a490:	54000241 	b.ne	5a4d8 <cfgRpc_socketRead_timeout@@Base+0x2a4>  // b.any
+   5a494:	71000a9f 	cmp	w20, #0x2
+   5a498:	540001ed 	b.le	5a4d4 <cfgRpc_socketRead_timeout@@Base+0x2a0>
+   5a49c:	b0001340 	adrp	x0, 2c3000 <_fini@@Base+0xa9b48>
+   5a4a0:	f9416000 	ldr	x0, [x0, #704]  ; GOT __errno_location@GLIBC_2.17
+   5a4a4:	d63f0000 	blr	x0
+   5a4a8:	b9400013 	ldr	w19, [x0]
+   5a4ac:	d0001321 	adrp	x1, 2c0000 <_fini@@Base+0xa6b48>
+   5a4b0:	2a1303e0 	mov	w0, w19
+   5a4b4:	f9479021 	ldr	x1, [x1, #3872]  ; GOT strerror@GLIBC_2.17
+   5a4b8:	d63f0020 	blr	x1
+   5a4bc:	aa0003e5 	mov	x5, x0
+   5a4c0:	b0000ea3 	adrp	x3, 22f000 <_fini@@Base+0x15b48>
+   5a4c4:	911bac63 	add	x3, x3, #0x6eb  ; 'read socket error errno=%d(%s)\n'
+   5a4c8:	2a1303e4 	mov	w4, w19
+   5a4cc:	52801d42 	mov	w2, #0xea                  	// #234
+   5a4d0:	17ffffa6 	b	5a368 <cfgRpc_socketRead_timeout@@Base+0x134>
+   5a4d4:	11000694 	add	w20, w20, #0x1
+   5a4d8:	4b0002b5 	sub	w21, w21, w0
+   5a4dc:	8b20c318 	add	x24, x24, w0, sxtw
+   5a4e0:	17ffffbb 	b	5a3cc <cfgRpc_socketRead_timeout@@Base+0x198>
+   5a4e4:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5a4e8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   5a4ec:	a94363f7 	ldp	x23, x24, [sp, #48]
+   5a4f0:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   5a4f4:	a94573fb 	ldp	x27, x28, [sp, #80]
+   5a4f8:	a8d17bfd 	ldp	x29, x30, [sp], #272
+   5a4fc:	d65f03c0 	ret
+
+000000000005a500 <cfgRpc_socketRead@@Base>:
+   5a500:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   5a504:	90001363 	adrp	x3, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a508:	910003fd 	mov	x29, sp
+   5a50c:	f945fc63 	ldr	x3, [x3, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a510:	f9400064 	ldr	x4, [x3]
+   5a514:	f9000fa4 	str	x4, [x29, #24]
+   5a518:	d2800004 	mov	x4, #0x0                   	// #0
+   5a51c:	f9400fa4 	ldr	x4, [x29, #24]
+   5a520:	f9400063 	ldr	x3, [x3]
+   5a524:	ca030083 	eor	x3, x4, x3
+   5a528:	b4000083 	cbz	x3, 5a538 <cfgRpc_socketRead@@Base+0x38>
+   5a52c:	b0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   5a530:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   5a534:	d63f0000 	blr	x0
+   5a538:	90001344 	adrp	x4, 2c2000 <_fini@@Base+0xa8b48>
+   5a53c:	52800283 	mov	w3, #0x14                  	// #20
+   5a540:	f9450884 	ldr	x4, [x4, #2576]
+   5a544:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a548:	d61f0080 	br	x4
+   5a54c:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   5a550:	90001361 	adrp	x1, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a554:	910003fd 	mov	x29, sp
+   5a558:	f945fc21 	ldr	x1, [x1, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a55c:	f9400022 	ldr	x2, [x1]
+   5a560:	f9000fa2 	str	x2, [x29, #24]
+   5a564:	d2800002 	mov	x2, #0x0                   	// #0
+   5a568:	b40001e0 	cbz	x0, 5a5a4 <cfgRpc_socketRead@@Base+0xa4>
+   5a56c:	f9400fa2 	ldr	x2, [x29, #24]
+   5a570:	f9400021 	ldr	x1, [x1]
+   5a574:	ca010041 	eor	x1, x2, x1
+   5a578:	b4000081 	cbz	x1, 5a588 <cfgRpc_socketRead@@Base+0x88>
+   5a57c:	b0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   5a580:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   5a584:	d63f0000 	blr	x0
+   5a588:	b0001363 	adrp	x3, 2c7000 <_fini@@Base+0xadb48>
+   5a58c:	b9402c02 	ldr	w2, [x0, #44]
+   5a590:	9100c001 	add	x1, x0, #0x30
+   5a594:	b9402800 	ldr	w0, [x0, #40]
+   5a598:	f9442463 	ldr	x3, [x3, #2120]
+   5a59c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a5a0:	d61f0060 	br	x3
+   5a5a4:	12800000 	mov	w0, #0xffffffff            	// #-1
+   5a5a8:	f9400fa2 	ldr	x2, [x29, #24]
+   5a5ac:	f9400021 	ldr	x1, [x1]
+   5a5b0:	ca010041 	eor	x1, x2, x1
+   5a5b4:	b5fffe41 	cbnz	x1, 5a57c <cfgRpc_socketRead@@Base+0x7c>
+   5a5b8:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a5bc:	d65f03c0 	ret
+   5a5c0:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   5a5c4:	90001361 	adrp	x1, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a5c8:	910003fd 	mov	x29, sp
+   5a5cc:	f945fc21 	ldr	x1, [x1, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a5d0:	f9400022 	ldr	x2, [x1]
+   5a5d4:	f9000fa2 	str	x2, [x29, #24]
+   5a5d8:	d2800002 	mov	x2, #0x0                   	// #0
+   5a5dc:	b40001c0 	cbz	x0, 5a614 <cfgRpc_socketRead@@Base+0x114>
+   5a5e0:	f9400fa2 	ldr	x2, [x29, #24]
+   5a5e4:	f9400021 	ldr	x1, [x1]
+   5a5e8:	ca010041 	eor	x1, x2, x1
+   5a5ec:	b4000081 	cbz	x1, 5a5fc <cfgRpc_socketRead@@Base+0xfc>
+   5a5f0:	b0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   5a5f4:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   5a5f8:	d63f0000 	blr	x0
+   5a5fc:	b0001342 	adrp	x2, 2c3000 <_fini@@Base+0xa9b48>
+   5a600:	9100c001 	add	x1, x0, #0x30
+   5a604:	b9402800 	ldr	w0, [x0, #40]
+   5a608:	f9403442 	ldr	x2, [x2, #104]
+   5a60c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a610:	d61f0040 	br	x2
+   5a614:	12800000 	mov	w0, #0xffffffff            	// #-1
+   5a618:	f9400fa2 	ldr	x2, [x29, #24]
+   5a61c:	f9400021 	ldr	x1, [x1]
+   5a620:	ca010041 	eor	x1, x2, x1
+   5a624:	b5fffe61 	cbnz	x1, 5a5f0 <cfgRpc_socketRead@@Base+0xf0>
+   5a628:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a62c:	d65f03c0 	ret
+   5a630:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   5a634:	90001364 	adrp	x4, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a638:	90000ea1 	adrp	x1, 22e000 <_fini@@Base+0x14b48>
+   5a63c:	91274021 	add	x1, x1, #0x9d0  ; 'processNLMsg'
+   5a640:	910003fd 	mov	x29, sp
+   5a644:	a90153f3 	stp	x19, x20, [sp, #16]
+   5a648:	90001373 	adrp	x19, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a64c:	f946c884 	ldr	x4, [x4, #3472]  ; GOT log_log
+   5a650:	aa0003f4 	mov	x20, x0
+   5a654:	f945fe73 	ldr	x19, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a658:	911da021 	add	x1, x1, #0x768  ; 'processReceviedOptionReadyInfo'
+   5a65c:	90001143 	adrp	x3, 282000 <_fini@@Base+0x68b48>
+   5a660:	9104b863 	add	x3, x3, #0x12e  ; 'Enter'
+   5a664:	f9400260 	ldr	x0, [x19]
+   5a668:	f90017a0 	str	x0, [x29, #40]
+   5a66c:	d2800000 	mov	x0, #0x0                   	// #0
+   5a670:	528022a2 	mov	w2, #0x115                 	// #277
+   5a674:	528000e0 	mov	w0, #0x7                   	// #7
+   5a678:	d63f0080 	blr	x4
+   5a67c:	f94017a1 	ldr	x1, [x29, #40]
+   5a680:	f9400260 	ldr	x0, [x19]
+   5a684:	ca000020 	eor	x0, x1, x0
+   5a688:	b4000080 	cbz	x0, 5a698 <cfgRpc_socketRead@@Base+0x198>
+   5a68c:	b0001360 	adrp	x0, 2c7000 <_fini@@Base+0xadb48>
+   5a690:	f9426400 	ldr	x0, [x0, #1224]  ; GOT __stack_chk_fail@GLIBC_2.17
+   5a694:	d63f0000 	blr	x0
+   5a698:	b0001342 	adrp	x2, 2c3000 <_fini@@Base+0xa9b48>
+   5a69c:	9100a280 	add	x0, x20, #0x28
+   5a6a0:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5a6a4:	52800001 	mov	w1, #0x0                   	// #0
+   5a6a8:	f942e042 	ldr	x2, [x2, #1472]
+   5a6ac:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   5a6b0:	d61f0040 	br	x2
+   5a6b4:	a9b77bfd 	stp	x29, x30, [sp, #-144]!
+   5a6b8:	90001342 	adrp	x2, 2c2000 <_fini@@Base+0xa8b48>
+   5a6bc:	910003fd 	mov	x29, sp
+   5a6c0:	f9000bf3 	str	x19, [sp, #16]
+   5a6c4:	90001373 	adrp	x19, 2c6000 <sal_ndk_deletePcUrlAddressInfo>
+   5a6c8:	f9463842 	ldr	x2, [x2, #3184]
+   5a6cc:	f945fe60 	ldr	x0, [x19, #3064]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5a6d0:	a9027fbf 	stp	xzr, xzr, [x29, #32]
+   5a6d4:	f9400001 	ldr	x1, [x0]
+   5a6d8:	f90047a1 	str	x1, [x29, #136]
+   5a6dc:	d2800001 	mov	x1, #0x0                   	// #0
+   5a6e0:	a9037fbf 	stp	xzr, xzr, [x29, #48]
+   5a6e4:	52800401 	mov	w1, #0x20                  	// #32
+   5a6e8:	a9047fbf 	stp	xzr, xzr, [x29, #64]
+   5a6ec:	a9057fbf 	stp	xzr, xzr, [x29, #80]
+   5a6f0:	910083a0 	add	x0, x29, #0x20
+   5a6f4:	a9067fbf 	stp	xzr, xzr, [x29, #96]
+   5a6f8:	a9077fbf 	stp	xzr, xzr, [x29, #112]
+   5a6fc:	f90043bf 	str	xzr, [x29, #128]

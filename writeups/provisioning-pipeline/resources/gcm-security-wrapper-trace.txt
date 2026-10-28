@@ -1,0 +1,687 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://SOURCE-141/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000267e0 <SE_aesGcmEn@@Base>:
+   267e0:	a9b67bfd 	stp	x29, x30, [sp, #-160]!
+   267e4:	910003fd 	mov	x29, sp
+   267e8:	a90573fb 	stp	x27, x28, [sp, #80]
+   267ec:	aa0003fc 	mov	x28, x0
+   267f0:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   267f4:	a90153f3 	stp	x19, x20, [sp, #16]
+   267f8:	2a0103f4 	mov	w20, w1
+   267fc:	a9025bf5 	stp	x21, x22, [sp, #32]
+   26800:	f942bc01 	ldr	x1, [x0, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   26804:	aa0203f6 	mov	x22, x2
+   26808:	a90363f7 	stp	x23, x24, [sp, #48]
+   2680c:	f100039f 	cmp	x28, #0x0
+   26810:	f9400022 	ldr	x2, [x1]
+   26814:	f9004fa2 	str	x2, [x29, #152]
+   26818:	d2800002 	mov	x2, #0x0                   	// #0
+   2681c:	a9046bf9 	stp	x25, x26, [sp, #64]
+   26820:	f90037a0 	str	x0, [x29, #104]
+   26824:	7a401a84 	ccmp	w20, #0x0, #0x4, ne	// ne = any
+   26828:	f9003fa5 	str	x5, [x29, #120]
+   2682c:	2911ffbf 	stp	wzr, wzr, [x29, #140]
+   26830:	54000e60 	b.eq	269fc <SE_aesGcmEn@@Base+0x21c>  // b.none
+   26834:	f10002df 	cmp	x22, #0x0
+   26838:	2a0303f7 	mov	w23, w3
+   2683c:	7a401864 	ccmp	w3, #0x0, #0x4, ne	// ne = any
+   26840:	54000de0 	b.eq	269fc <SE_aesGcmEn@@Base+0x21c>  // b.none
+   26844:	f100009f 	cmp	x4, #0x0
+   26848:	aa0403fa 	mov	x26, x4
+   2684c:	fa4018a4 	ccmp	x5, #0x0, #0x4, ne	// ne = any
+   26850:	54000d60 	b.eq	269fc <SE_aesGcmEn@@Base+0x21c>  // b.none
+   26854:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26858:	11005280 	add	w0, w20, #0x14
+   2685c:	f9445421 	ldr	x1, [x1, #2216]  ; GOT SE_bufMalloc
+   26860:	d63f0020 	blr	x1
+   26864:	aa0003f5 	mov	x21, x0
+   26868:	b4000ce0 	cbz	x0, 26a04 <SE_aesGcmEn@@Base+0x224>
+   2686c:	90000102 	adrp	x2, 46000 <_fini@@Base+0x18178>
+   26870:	910243b3 	add	x19, x29, #0x90
+   26874:	52800081 	mov	w1, #0x4                   	// #4
+   26878:	aa1303e0 	mov	x0, x19
+   2687c:	f945ec42 	ldr	x2, [x2, #3032]
+   26880:	d63f0040 	blr	x2
+   26884:	90000105 	adrp	x5, 46000 <_fini@@Base+0x18178>
+   26888:	93407ee4 	sxtw	x4, w23
+   2688c:	aa1603e3 	mov	x3, x22
+   26890:	d2800082 	mov	x2, #0x4                   	// #4
+   26894:	f94384a5 	ldr	x5, [x5, #1800]  ; GOT SE_aes256GcmCtxNew
+   26898:	aa1303e1 	mov	x1, x19
+   2689c:	52800020 	mov	w0, #0x1                   	// #1
+   268a0:	d63f00a0 	blr	x5
+   268a4:	aa0003f7 	mov	x23, x0
+   268a8:	b4000a60 	cbz	x0, 269f4 <SE_aesGcmEn@@Base+0x214>
+   268ac:	b94093a0 	ldr	w0, [x29, #144]
+   268b0:	910233bb 	add	x27, x29, #0x8c
+   268b4:	b90002a0 	str	w0, [x21]
+   268b8:	52800018 	mov	w24, #0x0                   	// #0
+   268bc:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   268c0:	52800296 	mov	w22, #0x14                  	// #20
+   268c4:	f946e000 	ldr	x0, [x0, #3520]  ; GOT SE_aes256GcmUpdate
+   268c8:	f9003ba0 	str	x0, [x29, #112]
+   268cc:	7104029f 	cmp	w20, #0x100
+   268d0:	5400038d 	b.le	26940 <SE_aesGcmEn@@Base+0x160>
+   268d4:	51040294 	sub	w20, w20, #0x100
+   268d8:	52802019 	mov	w25, #0x100                 	// #256
+   268dc:	f9403ba5 	ldr	x5, [x29, #112]
+   268e0:	2a1903e4 	mov	w4, w25
+   268e4:	8b38c383 	add	x3, x28, w24, sxtw
+   268e8:	aa1b03e2 	mov	x2, x27
+   268ec:	8b36c2a1 	add	x1, x21, w22, sxtw
+   268f0:	aa1703e0 	mov	x0, x23
+   268f4:	d63f00a0 	blr	x5
+   268f8:	2a0003f3 	mov	w19, w0
+   268fc:	34000280 	cbz	w0, 2694c <SE_aesGcmEn@@Base+0x16c>
+   26900:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26904:	d0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   26908:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   2690c:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   26910:	d0000061 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   26914:	910cc821 	add	x1, x1, #0x332  ; 'sec:en update failed %s:%d\n'
+   26918:	91016042 	add	x2, x2, #0x58  ; 'SE_aesGcmEn'
+   2691c:	52801e03 	mov	w3, #0xf0                  	// #240
+   26920:	f9400004 	ldr	x4, [x0]
+   26924:	52800060 	mov	w0, #0x3                   	// #3
+   26928:	d63f0080 	blr	x4
+   2692c:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26930:	aa1503e0 	mov	x0, x21
+   26934:	f9466421 	ldr	x1, [x1, #3272]  ; GOT SE_bufFree
+   26938:	d63f0020 	blr	x1
+   2693c:	14000020 	b	269bc <SE_aesGcmEn@@Base+0x1dc>
+   26940:	2a1403f9 	mov	w25, w20
+   26944:	52800014 	mov	w20, #0x0                   	// #0
+   26948:	17ffffe5 	b	268dc <SE_aesGcmEn@@Base+0xfc>
+   2694c:	b9408fa0 	ldr	w0, [x29, #140]
+   26950:	0b190318 	add	w24, w24, w25
+   26954:	0b0002d6 	add	w22, w22, w0
+   26958:	35fffbb4 	cbnz	w20, 268cc <SE_aesGcmEn@@Base+0xec>
+   2695c:	90000104 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   26960:	910012a3 	add	x3, x21, #0x4
+   26964:	aa1b03e2 	mov	x2, x27
+   26968:	8b36c2a1 	add	x1, x21, w22, sxtw
+   2696c:	f9443c84 	ldr	x4, [x4, #2168]  ; GOT SE_aes256GcmEnFinal
+   26970:	aa1703e0 	mov	x0, x23
+   26974:	d63f0080 	blr	x4
+   26978:	2a0003f3 	mov	w19, w0
+   2697c:	34000160 	cbz	w0, 269a8 <SE_aesGcmEn@@Base+0x1c8>
+   26980:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26984:	d0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   26988:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   2698c:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   26990:	d0000061 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   26994:	910b7c21 	add	x1, x1, #0x2df  ; 'sec:en final failed %s:%d\n'
+   26998:	52801f43 	mov	w3, #0xfa                  	// #250
+   2699c:	91016042 	add	x2, x2, #0x58  ; 'SE_aesGcmEn'
+   269a0:	f9400004 	ldr	x4, [x0]
+   269a4:	17ffffe0 	b	26924 <SE_aesGcmEn@@Base+0x144>
+   269a8:	b9408fa0 	ldr	w0, [x29, #140]
+   269ac:	f9000355 	str	x21, [x26]
+   269b0:	0b0002d6 	add	w22, w22, w0
+   269b4:	f9403fa0 	ldr	x0, [x29, #120]
+   269b8:	b9000016 	str	w22, [x0]
+   269bc:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   269c0:	aa1703e0 	mov	x0, x23
+   269c4:	f942c821 	ldr	x1, [x1, #1424]  ; GOT SE_aes256GcmCtxFree
+   269c8:	d63f0020 	blr	x1
+   269cc:	f94037a1 	ldr	x1, [x29, #104]
+   269d0:	2a1303e0 	mov	w0, w19
+   269d4:	f942bc21 	ldr	x1, [x1, #1400]
+   269d8:	f9404fa2 	ldr	x2, [x29, #152]
+   269dc:	f9400021 	ldr	x1, [x1]
+   269e0:	ca010041 	eor	x1, x2, x1
+   269e4:	b4000141 	cbz	x1, 26a0c <SE_aesGcmEn@@Base+0x22c>
+   269e8:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   269ec:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   269f0:	d63f0000 	blr	x0
+   269f4:	5280bcb3 	mov	w19, #0x5e5                 	// #1509
+   269f8:	17ffffcd 	b	2692c <SE_aesGcmEn@@Base+0x14c>
+   269fc:	52800153 	mov	w19, #0xa                   	// #10
+   26a00:	17fffff3 	b	269cc <SE_aesGcmEn@@Base+0x1ec>
+   26a04:	52800113 	mov	w19, #0x8                   	// #8
+   26a08:	17fffff1 	b	269cc <SE_aesGcmEn@@Base+0x1ec>
+   26a0c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   26a10:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   26a14:	a94363f7 	ldp	x23, x24, [sp, #48]
+   26a18:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   26a1c:	a94573fb 	ldp	x27, x28, [sp, #80]
+   26a20:	a8ca7bfd 	ldp	x29, x30, [sp], #160
+   26a24:	d65f03c0 	ret
+
+0000000000026a28 <SE_aesGcmDe@@Base>:
+   26a28:	a9b77bfd 	stp	x29, x30, [sp, #-144]!
+   26a2c:	910003fd 	mov	x29, sp
+   26a30:	a90363f7 	stp	x23, x24, [sp, #48]
+   26a34:	aa0003f8 	mov	x24, x0
+   26a38:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26a3c:	a90153f3 	stp	x19, x20, [sp, #16]
+   26a40:	2a0103f3 	mov	w19, w1
+   26a44:	aa0203f4 	mov	x20, x2
+   26a48:	f942bc01 	ldr	x1, [x0, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   26a4c:	f100031f 	cmp	x24, #0x0
+   26a50:	a9025bf5 	stp	x21, x22, [sp, #32]
+   26a54:	7a541a64 	ccmp	w19, #0x14, #0x4, ne	// ne = any
+   26a58:	f9400022 	ldr	x2, [x1]
+   26a5c:	f90047a2 	str	x2, [x29, #136]
+   26a60:	d2800002 	mov	x2, #0x0                   	// #0
+   26a64:	a9046bf9 	stp	x25, x26, [sp, #64]
+   26a68:	a90573fb 	stp	x27, x28, [sp, #80]
+   26a6c:	f90037a0 	str	x0, [x29, #104]
+   26a70:	f9003fa5 	str	x5, [x29, #120]
+   26a74:	b90087bf 	str	wzr, [x29, #132]
+   26a78:	54000dad 	b.le	26c2c <SE_aesGcmDe@@Base+0x204>
+   26a7c:	f100029f 	cmp	x20, #0x0
+   26a80:	2a0303f5 	mov	w21, w3
+   26a84:	7a401864 	ccmp	w3, #0x0, #0x4, ne	// ne = any
+   26a88:	54000d20 	b.eq	26c2c <SE_aesGcmDe@@Base+0x204>  // b.none
+   26a8c:	f100009f 	cmp	x4, #0x0
+   26a90:	aa0403fb 	mov	x27, x4
+   26a94:	fa4018a4 	ccmp	x5, #0x0, #0x4, ne	// ne = any
+   26a98:	54000ca0 	b.eq	26c2c <SE_aesGcmDe@@Base+0x204>  // b.none
+   26a9c:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26aa0:	2a1303e0 	mov	w0, w19
+   26aa4:	f9445421 	ldr	x1, [x1, #2216]  ; GOT SE_bufMalloc
+   26aa8:	d63f0020 	blr	x1
+   26aac:	aa0003f6 	mov	x22, x0
+   26ab0:	b4000c20 	cbz	x0, 26c34 <SE_aesGcmDe@@Base+0x20c>
+   26ab4:	90000105 	adrp	x5, 46000 <_fini@@Base+0x18178>
+   26ab8:	93407ea4 	sxtw	x4, w21
+   26abc:	aa1403e3 	mov	x3, x20
+   26ac0:	d2800082 	mov	x2, #0x4                   	// #4
+   26ac4:	f94384a5 	ldr	x5, [x5, #1800]  ; GOT SE_aes256GcmCtxNew
+   26ac8:	aa1803e1 	mov	x1, x24
+   26acc:	52800000 	mov	w0, #0x0                   	// #0
+   26ad0:	51005273 	sub	w19, w19, #0x14
+   26ad4:	d63f00a0 	blr	x5
+   26ad8:	aa0003f7 	mov	x23, x0
+   26adc:	b4000a40 	cbz	x0, 26c24 <SE_aesGcmDe@@Base+0x1fc>
+   26ae0:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26ae4:	910213bc 	add	x28, x29, #0x84
+   26ae8:	52800299 	mov	w25, #0x14                  	// #20
+   26aec:	52800015 	mov	w21, #0x0                   	// #0
+   26af0:	f946e000 	ldr	x0, [x0, #3520]  ; GOT SE_aes256GcmUpdate
+   26af4:	f9003ba0 	str	x0, [x29, #112]
+   26af8:	7104027f 	cmp	w19, #0x100
+   26afc:	5400038d 	b.le	26b6c <SE_aesGcmDe@@Base+0x144>
+   26b00:	51040273 	sub	w19, w19, #0x100
+   26b04:	5280201a 	mov	w26, #0x100                 	// #256
+   26b08:	f9403ba5 	ldr	x5, [x29, #112]
+   26b0c:	2a1a03e4 	mov	w4, w26
+   26b10:	8b39c303 	add	x3, x24, w25, sxtw
+   26b14:	aa1c03e2 	mov	x2, x28
+   26b18:	8b35c2c1 	add	x1, x22, w21, sxtw
+   26b1c:	aa1703e0 	mov	x0, x23
+   26b20:	d63f00a0 	blr	x5
+   26b24:	2a0003f4 	mov	w20, w0
+   26b28:	34000280 	cbz	w0, 26b78 <SE_aesGcmDe@@Base+0x150>
+   26b2c:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26b30:	d0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   26b34:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   26b38:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   26b3c:	d0000061 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   26b40:	910cc821 	add	x1, x1, #0x332  ; 'sec:en update failed %s:%d\n'
+   26b44:	9101a042 	add	x2, x2, #0x68  ; 'SE_aesGcmDe'
+   26b48:	528028a3 	mov	w3, #0x145                 	// #325
+   26b4c:	f9400004 	ldr	x4, [x0]
+   26b50:	52800060 	mov	w0, #0x3                   	// #3
+   26b54:	d63f0080 	blr	x4
+   26b58:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26b5c:	aa1603e0 	mov	x0, x22
+   26b60:	f9466421 	ldr	x1, [x1, #3272]  ; GOT SE_bufFree
+   26b64:	d63f0020 	blr	x1
+   26b68:	14000021 	b	26bec <SE_aesGcmDe@@Base+0x1c4>
+   26b6c:	2a1303fa 	mov	w26, w19
+   26b70:	52800013 	mov	w19, #0x0                   	// #0
+   26b74:	17ffffe5 	b	26b08 <SE_aesGcmDe@@Base+0xe0>
+   26b78:	b94087a0 	ldr	w0, [x29, #132]
+   26b7c:	0b1a0339 	add	w25, w25, w26
+   26b80:	0b0002b5 	add	w21, w21, w0
+   26b84:	35fffbb3 	cbnz	w19, 26af8 <SE_aesGcmDe@@Base+0xd0>
+   26b88:	90000105 	adrp	x5, 46000 <_fini@@Base+0x18178>
+   26b8c:	52800204 	mov	w4, #0x10                  	// #16
+   26b90:	91001303 	add	x3, x24, #0x4
+   26b94:	aa1c03e2 	mov	x2, x28
+   26b98:	f94740a5 	ldr	x5, [x5, #3712]  ; GOT SE_aes256GcmDeFinal
+   26b9c:	8b35c2c1 	add	x1, x22, w21, sxtw
+   26ba0:	aa1703e0 	mov	x0, x23
+   26ba4:	d63f00a0 	blr	x5
+   26ba8:	2a0003f4 	mov	w20, w0
+   26bac:	34000160 	cbz	w0, 26bd8 <SE_aesGcmDe@@Base+0x1b0>
+   26bb0:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26bb4:	d0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   26bb8:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   26bbc:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   26bc0:	d0000061 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   26bc4:	910d3821 	add	x1, x1, #0x34e  ; 'sec:de final failed %s:%d\n'
+   26bc8:	528029e3 	mov	w3, #0x14f                 	// #335
+   26bcc:	9101a042 	add	x2, x2, #0x68  ; 'SE_aesGcmDe'
+   26bd0:	f9400004 	ldr	x4, [x0]
+   26bd4:	17ffffdf 	b	26b50 <SE_aesGcmDe@@Base+0x128>
+   26bd8:	b94087a0 	ldr	w0, [x29, #132]
+   26bdc:	f9000376 	str	x22, [x27]
+   26be0:	0b0002b5 	add	w21, w21, w0
+   26be4:	f9403fa0 	ldr	x0, [x29, #120]
+   26be8:	b9000015 	str	w21, [x0]
+   26bec:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26bf0:	aa1703e0 	mov	x0, x23
+   26bf4:	f942c821 	ldr	x1, [x1, #1424]  ; GOT SE_aes256GcmCtxFree
+   26bf8:	d63f0020 	blr	x1
+   26bfc:	f94037a1 	ldr	x1, [x29, #104]
+   26c00:	2a1403e0 	mov	w0, w20
+   26c04:	f942bc21 	ldr	x1, [x1, #1400]
+   26c08:	f94047a2 	ldr	x2, [x29, #136]
+   26c0c:	f9400021 	ldr	x1, [x1]
+   26c10:	ca010041 	eor	x1, x2, x1
+   26c14:	b4000141 	cbz	x1, 26c3c <SE_aesGcmDe@@Base+0x214>
+   26c18:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26c1c:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   26c20:	d63f0000 	blr	x0
+   26c24:	5280bcb4 	mov	w20, #0x5e5                 	// #1509
+   26c28:	17ffffcc 	b	26b58 <SE_aesGcmDe@@Base+0x130>
+   26c2c:	52800154 	mov	w20, #0xa                   	// #10
+   26c30:	17fffff3 	b	26bfc <SE_aesGcmDe@@Base+0x1d4>
+   26c34:	52800114 	mov	w20, #0x8                   	// #8
+   26c38:	17fffff1 	b	26bfc <SE_aesGcmDe@@Base+0x1d4>
+   26c3c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   26c40:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   26c44:	a94363f7 	ldp	x23, x24, [sp, #48]
+   26c48:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   26c4c:	a94573fb 	ldp	x27, x28, [sp, #80]
+   26c50:	a8c97bfd 	ldp	x29, x30, [sp], #144
+   26c54:	d65f03c0 	ret
+   26c58:	a9b67bfd 	stp	x29, x30, [sp, #-160]!
+   26c5c:	910003fd 	mov	x29, sp
+   26c60:	a9046bf9 	stp	x25, x26, [sp, #64]
+   26c64:	2a0003f9 	mov	w25, w0
+   26c68:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26c6c:	a90153f3 	stp	x19, x20, [sp, #16]
+   26c70:	aa0103f4 	mov	x20, x1
+   26c74:	a9025bf5 	stp	x21, x22, [sp, #32]
+   26c78:	f942bc01 	ldr	x1, [x0, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   26c7c:	aa0203f6 	mov	x22, x2
+   26c80:	a90363f7 	stp	x23, x24, [sp, #48]
+   26c84:	f100029f 	cmp	x20, #0x0
+   26c88:	f9400022 	ldr	x2, [x1]
+   26c8c:	f9004fa2 	str	x2, [x29, #152]
+   26c90:	d2800002 	mov	x2, #0x0                   	// #0
+   26c94:	a90573fb 	stp	x27, x28, [sp, #80]
+   26c98:	f90033a0 	str	x0, [x29, #96]
+   26c9c:	fa401ac4 	ccmp	x22, #0x0, #0x4, ne	// ne = any
+   26ca0:	b9007fbf 	str	wzr, [x29, #124]
+   26ca4:	a9087fbf 	stp	xzr, xzr, [x29, #128]
+   26ca8:	b90093bf 	str	wzr, [x29, #144]
+   26cac:	54002560 	b.eq	27158 <SE_aesGcmDe@@Base+0x730>  // b.none
+   26cb0:	aa0303f5 	mov	x21, x3
+   26cb4:	b4002523 	cbz	x3, 27158 <SE_aesGcmDe@@Base+0x730>
+   26cb8:	90000113 	adrp	x19, 46000 <_fini@@Base+0x18178>
+   26cbc:	52802000 	mov	w0, #0x100                 	// #256
+   26cc0:	f9445673 	ldr	x19, [x19, #2216]  ; GOT SE_bufMalloc
+   26cc4:	d63f0260 	blr	x19
+   26cc8:	aa0003f7 	mov	x23, x0
+   26ccc:	b4002520 	cbz	x0, 27170 <SE_aesGcmDe@@Base+0x748>
+   26cd0:	90000103 	adrp	x3, 46000 <_fini@@Base+0x18178>
+   26cd4:	aa1503e1 	mov	x1, x21
+   26cd8:	d2802002 	mov	x2, #0x100                 	// #256
+   26cdc:	f944b863 	ldr	x3, [x3, #2416]  ; GOT strncpy@GLIBC_2.17
+   26ce0:	d63f0060 	blr	x3
+   26ce4:	3903feff 	strb	wzr, [x23, #255]
+   26ce8:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26cec:	aa1703e0 	mov	x0, x23
+   26cf0:	f9424021 	ldr	x1, [x1, #1152]  ; GOT strlen@GLIBC_2.17
+   26cf4:	d63f0020 	blr	x1
+   26cf8:	aa0003f5 	mov	x21, x0
+   26cfc:	b4002440 	cbz	x0, 27184 <SE_aesGcmDe@@Base+0x75c>
+   26d00:	aa1403e0 	mov	x0, x20
+   26d04:	90000114 	adrp	x20, 46000 <_fini@@Base+0x18178>
+   26d08:	d0000041 	adrp	x1, 30000 <_fini@@Base+0x2178>
+   26d0c:	912dbc21 	add	x1, x1, #0xb6f
+   26d10:	f9461694 	ldr	x20, [x20, #3112]  ; GOT fopen@GLIBC_2.17
+   26d14:	d63f0280 	blr	x20
+   26d18:	aa0003f8 	mov	x24, x0
+   26d1c:	b40023e0 	cbz	x0, 27198 <SE_aesGcmDe@@Base+0x770>
+   26d20:	aa1603e0 	mov	x0, x22
+   26d24:	d0000041 	adrp	x1, 30000 <_fini@@Base+0x2178>
+   26d28:	912e7021 	add	x1, x1, #0xb9c
+   26d2c:	d63f0280 	blr	x20
+   26d30:	aa0003f6 	mov	x22, x0
+   26d34:	b4002340 	cbz	x0, 2719c <SE_aesGcmDe@@Base+0x774>
+   26d38:	52802000 	mov	w0, #0x100                 	// #256
+   26d3c:	d63f0260 	blr	x19
+   26d40:	aa0003f4 	mov	x20, x0
+   26d44:	b40021c0 	cbz	x0, 2717c <SE_aesGcmDe@@Base+0x754>
+   26d48:	910203ba 	add	x26, x29, #0x80
+   26d4c:	34000419 	cbz	w25, 26dcc <SE_aesGcmDe@@Base+0x3a4>
+   26d50:	90000102 	adrp	x2, 46000 <_fini@@Base+0x18178>
+   26d54:	52800081 	mov	w1, #0x4                   	// #4
+   26d58:	aa1a03e0 	mov	x0, x26
+   26d5c:	f945ec42 	ldr	x2, [x2, #3032]
+   26d60:	d63f0040 	blr	x2
+   26d64:	90000105 	adrp	x5, 46000 <_fini@@Base+0x18178>
+   26d68:	aa1503e4 	mov	x4, x21
+   26d6c:	aa1703e3 	mov	x3, x23
+   26d70:	d2800082 	mov	x2, #0x4                   	// #4
+   26d74:	f94384a5 	ldr	x5, [x5, #1800]  ; GOT SE_aes256GcmCtxNew
+   26d78:	aa1a03e1 	mov	x1, x26
+   26d7c:	2a1903e0 	mov	w0, w25
+   26d80:	d63f00a0 	blr	x5
+   26d84:	aa0003f5 	mov	x21, x0
+   26d88:	b5000660 	cbnz	x0, 26e54 <SE_aesGcmDe@@Base+0x42c>
+   26d8c:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26d90:	5280bcb3 	mov	w19, #0x5e5                 	// #1509
+   26d94:	f9456400 	ldr	x0, [x0, #2760]  ; GOT SE_logOpenSSLErr
+   26d98:	d63f0000 	blr	x0
+   26d9c:	90000104 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   26da0:	d0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   26da4:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   26da8:	f9428484 	ldr	x4, [x4, #1288]  ; GOT selog
+   26dac:	f0000040 	adrp	x0, 31000 <_fini@@Base+0x3178>
+   26db0:	91079c00 	add	x0, x0, #0x1e7  ; 'err code [%d] %s:%d\n'
+   26db4:	528041e3 	mov	w3, #0x20f                 	// #527
+   26db8:	9101e042 	add	x2, x2, #0x78  ; 'aesGcmFile'
+   26dbc:	2a1303e1 	mov	w1, w19
+   26dc0:	d63f0080 	blr	x4
+   26dc4:	b5001878 	cbnz	x24, 270d0 <SE_aesGcmDe@@Base+0x6a8>
+   26dc8:	140000c6 	b	270e0 <SE_aesGcmDe@@Base+0x6b8>
+   26dcc:	90000104 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   26dd0:	aa1803e3 	mov	x3, x24
+   26dd4:	d2800282 	mov	x2, #0x14                  	// #20
+   26dd8:	d2800021 	mov	x1, #0x1                   	// #1
+   26ddc:	f941c884 	ldr	x4, [x4, #912]  ; GOT fread@GLIBC_2.17
+   26de0:	aa1a03e0 	mov	x0, x26
+   26de4:	d63f0080 	blr	x4
+   26de8:	f100501f 	cmp	x0, #0x14
+   26dec:	54fffbc0 	b.eq	26d64 <SE_aesGcmDe@@Base+0x33c>  // b.none
+   26df0:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26df4:	aa1803e0 	mov	x0, x24
+   26df8:	f9475421 	ldr	x1, [x1, #3752]  ; GOT ferror@GLIBC_2.17
+   26dfc:	d63f0020 	blr	x1
+   26e00:	34fffb20 	cbz	w0, 26d64 <SE_aesGcmDe@@Base+0x33c>
+   26e04:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26e08:	528001f3 	mov	w19, #0xf                   	// #15
+   26e0c:	f945b800 	ldr	x0, [x0, #2928]  ; GOT __errno_location@GLIBC_2.17
+   26e10:	d63f0000 	blr	x0
+   26e14:	b9400000 	ldr	w0, [x0]
+   26e18:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26e1c:	f943c421 	ldr	x1, [x1, #1928]  ; GOT strerror@GLIBC_2.17
+   26e20:	d63f0020 	blr	x1
+   26e24:	aa0003e1 	mov	x1, x0
+   26e28:	90000104 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   26e2c:	d0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   26e30:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   26e34:	f9428484 	ldr	x4, [x4, #1288]  ; GOT selog
+   26e38:	d0000060 	adrp	x0, 34000 <_fini@@Base+0x6178>
+   26e3c:	910da400 	add	x0, x0, #0x369  ; 'Err read:%s  %s:%d\n'
+   26e40:	52803523 	mov	w3, #0x1a9                 	// #425
+   26e44:	9101e042 	add	x2, x2, #0x78  ; 'aesGcmFile'
+   26e48:	d63f0080 	blr	x4
+   26e4c:	d2800015 	mov	x21, #0x0                   	// #0
+   26e50:	17ffffd3 	b	26d9c <SE_aesGcmDe@@Base+0x374>
+   26e54:	34000ab9 	cbz	w25, 26fa8 <SE_aesGcmDe@@Base+0x580>
+   26e58:	90000104 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   26e5c:	aa1603e3 	mov	x3, x22
+   26e60:	d2800282 	mov	x2, #0x14                  	// #20
+   26e64:	d2800021 	mov	x1, #0x1                   	// #1
+   26e68:	f9471484 	ldr	x4, [x4, #3624]  ; GOT fwrite@GLIBC_2.17
+   26e6c:	aa1a03e0 	mov	x0, x26
+   26e70:	d63f0080 	blr	x4
+   26e74:	f100501f 	cmp	x0, #0x14
+   26e78:	54000980 	b.eq	26fa8 <SE_aesGcmDe@@Base+0x580>  // b.none
+   26e7c:	52800233 	mov	w19, #0x11                  	// #17
+   26e80:	17ffffc7 	b	26d9c <SE_aesGcmDe@@Base+0x374>
+   26e84:	d63f0360 	blr	x27
+   26e88:	34000280 	cbz	w0, 26ed8 <SE_aesGcmDe@@Base+0x4b0>
+   26e8c:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26e90:	f945b800 	ldr	x0, [x0, #2928]  ; GOT __errno_location@GLIBC_2.17
+   26e94:	d63f0000 	blr	x0
+   26e98:	b9400000 	ldr	w0, [x0]
+   26e9c:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26ea0:	f943c421 	ldr	x1, [x1, #1928]  ; GOT strerror@GLIBC_2.17
+   26ea4:	d63f0020 	blr	x1
+   26ea8:	aa0003e1 	mov	x1, x0
+   26eac:	d0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   26eb0:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   26eb4:	d0000060 	adrp	x0, 34000 <_fini@@Base+0x6178>
+   26eb8:	910da400 	add	x0, x0, #0x369  ; 'Err read:%s  %s:%d\n'
+   26ebc:	9101e042 	add	x2, x2, #0x78  ; 'aesGcmFile'
+   26ec0:	528038e3 	mov	w3, #0x1c7                 	// #455
+   26ec4:	90000104 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   26ec8:	528001f3 	mov	w19, #0xf                   	// #15
+   26ecc:	f9428484 	ldr	x4, [x4, #1288]  ; GOT selog
+   26ed0:	d63f0080 	blr	x4
+   26ed4:	17ffffb2 	b	26d9c <SE_aesGcmDe@@Base+0x374>
+   26ed8:	90000105 	adrp	x5, 46000 <_fini@@Base+0x18178>
+   26edc:	2a1303e4 	mov	w4, w19
+   26ee0:	aa1703e3 	mov	x3, x23
+   26ee4:	aa1c03e2 	mov	x2, x28
+   26ee8:	f946e0a5 	ldr	x5, [x5, #3520]  ; GOT SE_aes256GcmUpdate
+   26eec:	aa1403e1 	mov	x1, x20
+   26ef0:	aa1503e0 	mov	x0, x21
+   26ef4:	d63f00a0 	blr	x5
+   26ef8:	2a0003f3 	mov	w19, w0
+   26efc:	340000a0 	cbz	w0, 26f10 <SE_aesGcmDe@@Base+0x4e8>
+   26f00:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26f04:	f9456400 	ldr	x0, [x0, #2760]  ; GOT SE_logOpenSSLErr
+   26f08:	d63f0000 	blr	x0
+   26f0c:	17ffffa4 	b	26d9c <SE_aesGcmDe@@Base+0x374>
+   26f10:	90000104 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   26f14:	b9807fa2 	ldrsw	x2, [x29, #124]
+   26f18:	d2800021 	mov	x1, #0x1                   	// #1
+   26f1c:	aa1603e3 	mov	x3, x22
+   26f20:	f9471484 	ldr	x4, [x4, #3624]  ; GOT fwrite@GLIBC_2.17
+   26f24:	aa1403e0 	mov	x0, x20
+   26f28:	d63f0080 	blr	x4
+   26f2c:	b9807fa1 	ldrsw	x1, [x29, #124]
+   26f30:	eb00003f 	cmp	x1, x0
+   26f34:	54fffa41 	b.ne	26e7c <SE_aesGcmDe@@Base+0x454>  // b.any
+   26f38:	f94037a4 	ldr	x4, [x29, #104]
+   26f3c:	aa1803e3 	mov	x3, x24
+   26f40:	d2802002 	mov	x2, #0x100                 	// #256
+   26f44:	d2800021 	mov	x1, #0x1                   	// #1
+   26f48:	aa1703e0 	mov	x0, x23
+   26f4c:	d63f0080 	blr	x4
+   26f50:	aa0003f3 	mov	x19, x0
+   26f54:	aa1803e0 	mov	x0, x24
+   26f58:	b5fff973 	cbnz	x19, 26e84 <SE_aesGcmDe@@Base+0x45c>
+   26f5c:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26f60:	f947e821 	ldr	x1, [x1, #4048]  ; GOT feof@GLIBC_2.17
+   26f64:	d63f0020 	blr	x1
+   26f68:	350002e0 	cbnz	w0, 26fc4 <SE_aesGcmDe@@Base+0x59c>
+   26f6c:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26f70:	f945b800 	ldr	x0, [x0, #2928]  ; GOT __errno_location@GLIBC_2.17
+   26f74:	d63f0000 	blr	x0
+   26f78:	b9400000 	ldr	w0, [x0]
+   26f7c:	90000101 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   26f80:	f943c421 	ldr	x1, [x1, #1928]  ; GOT strerror@GLIBC_2.17
+   26f84:	d63f0020 	blr	x1
+   26f88:	aa0003e1 	mov	x1, x0
+   26f8c:	d0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   26f90:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   26f94:	d0000060 	adrp	x0, 34000 <_fini@@Base+0x6178>
+   26f98:	910df400 	add	x0, x0, #0x37d  ; 'Err before end:%s  %s:%d\n'
+   26f9c:	52803b83 	mov	w3, #0x1dc                 	// #476
+   26fa0:	9101e042 	add	x2, x2, #0x78  ; 'aesGcmFile'
+   26fa4:	17ffffc8 	b	26ec4 <SE_aesGcmDe@@Base+0x49c>
+   26fa8:	90000100 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   26fac:	9000011b 	adrp	x27, 46000 <_fini@@Base+0x18178>
+   26fb0:	9101f3bc 	add	x28, x29, #0x7c
+   26fb4:	f941c800 	ldr	x0, [x0, #912]  ; GOT fread@GLIBC_2.17
+   26fb8:	f947577b 	ldr	x27, [x27, #3752]  ; GOT ferror@GLIBC_2.17
+   26fbc:	f90037a0 	str	x0, [x29, #104]
+   26fc0:	17ffffde 	b	26f38 <SE_aesGcmDe@@Base+0x510>
+   26fc4:	9101f3a2 	add	x2, x29, #0x7c
+   26fc8:	340004d9 	cbz	w25, 27060 <SE_aesGcmDe@@Base+0x638>
+   26fcc:	90000104 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   26fd0:	aa1703e3 	mov	x3, x23
+   26fd4:	aa1403e1 	mov	x1, x20
+   26fd8:	aa1503e0 	mov	x0, x21
+   26fdc:	f9443c84 	ldr	x4, [x4, #2168]  ; GOT SE_aes256GcmEnFinal
+   26fe0:	d63f0080 	blr	x4
+   26fe4:	2a0003f3 	mov	w19, w0
+   26fe8:	35fff8c0 	cbnz	w0, 26f00 <SE_aesGcmDe@@Base+0x4d8>
+   26fec:	b9407fa2 	ldr	w2, [x29, #124]
+   26ff0:	35000482 	cbnz	w2, 27080 <SE_aesGcmDe@@Base+0x658>
+   26ff4:	340006f9 	cbz	w25, 270d0 <SE_aesGcmDe@@Base+0x6a8>
+   26ff8:	90000103 	adrp	x3, 46000 <_fini@@Base+0x18178>
+   26ffc:	52800002 	mov	w2, #0x0                   	// #0
+   27000:	d2800081 	mov	x1, #0x4                   	// #4
+   27004:	aa1603e0 	mov	x0, x22
+   27008:	f947d463 	ldr	x3, [x3, #4008]  ; GOT fseek@GLIBC_2.17
+   2700c:	d63f0060 	blr	x3
+   27010:	340004e0 	cbz	w0, 270ac <SE_aesGcmDe@@Base+0x684>
+   27014:	f00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   27018:	52800193 	mov	w19, #0xc                   	// #12
+   2701c:	f945b800 	ldr	x0, [x0, #2928]  ; GOT __errno_location@GLIBC_2.17
+   27020:	d63f0000 	blr	x0
+   27024:	b9400000 	ldr	w0, [x0]
+   27028:	f00000e1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   2702c:	f943c421 	ldr	x1, [x1, #1928]  ; GOT strerror@GLIBC_2.17
+   27030:	d63f0020 	blr	x1
+   27034:	aa0003e1 	mov	x1, x0
+   27038:	f00000e4 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   2703c:	b0000062 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   27040:	91082042 	add	x2, x2, #0x208  ; 'aes256GcmCtxNew'
+   27044:	f9428484 	ldr	x4, [x4, #1288]  ; GOT selog
+   27048:	52803fa3 	mov	w3, #0x1fd                 	// #509
+   2704c:	9101e042 	add	x2, x2, #0x78  ; 'aesGcmFile'
+   27050:	b0000060 	adrp	x0, 34000 <_fini@@Base+0x6178>
+   27054:	910e5c00 	add	x0, x0, #0x397  ; 'Err fseek:%s  %s:%d\n'
+   27058:	d63f0080 	blr	x4
+   2705c:	17ffff50 	b	26d9c <SE_aesGcmDe@@Base+0x374>
+   27060:	f00000e5 	adrp	x5, 46000 <_fini@@Base+0x18178>
+   27064:	52800204 	mov	w4, #0x10                  	// #16
+   27068:	91001343 	add	x3, x26, #0x4
+   2706c:	aa1403e1 	mov	x1, x20
+   27070:	f94740a5 	ldr	x5, [x5, #3712]  ; GOT SE_aes256GcmDeFinal
+   27074:	aa1503e0 	mov	x0, x21
+   27078:	d63f00a0 	blr	x5
+   2707c:	17ffffda 	b	26fe4 <SE_aesGcmDe@@Base+0x5bc>
+   27080:	f00000e4 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   27084:	d2800021 	mov	x1, #0x1                   	// #1
+   27088:	aa1603e3 	mov	x3, x22
+   2708c:	93407c42 	sxtw	x2, w2
+   27090:	f9471484 	ldr	x4, [x4, #3624]  ; GOT fwrite@GLIBC_2.17
+   27094:	aa1403e0 	mov	x0, x20
+   27098:	d63f0080 	blr	x4
+   2709c:	b9807fa1 	ldrsw	x1, [x29, #124]
+   270a0:	eb00003f 	cmp	x1, x0
+   270a4:	54fffa80 	b.eq	26ff4 <SE_aesGcmDe@@Base+0x5cc>  // b.none
+   270a8:	17ffff75 	b	26e7c <SE_aesGcmDe@@Base+0x454>
+   270ac:	f00000e4 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   270b0:	aa1603e3 	mov	x3, x22
+   270b4:	d2800202 	mov	x2, #0x10                  	// #16
+   270b8:	d2800021 	mov	x1, #0x1                   	// #1
+   270bc:	f9471484 	ldr	x4, [x4, #3624]  ; GOT fwrite@GLIBC_2.17
+   270c0:	aa1703e0 	mov	x0, x23
+   270c4:	d63f0080 	blr	x4
+   270c8:	f100401f 	cmp	x0, #0x10
+   270cc:	54ffed81 	b.ne	26e7c <SE_aesGcmDe@@Base+0x454>  // b.any
+   270d0:	f00000e1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   270d4:	aa1803e0 	mov	x0, x24
+   270d8:	f942d821 	ldr	x1, [x1, #1456]  ; GOT fclose@GLIBC_2.17
+   270dc:	d63f0020 	blr	x1
+   270e0:	b40000b6 	cbz	x22, 270f4 <SE_aesGcmDe@@Base+0x6cc>
+   270e4:	f00000e1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   270e8:	aa1603e0 	mov	x0, x22
+   270ec:	f942d821 	ldr	x1, [x1, #1456]  ; GOT fclose@GLIBC_2.17
+   270f0:	d63f0020 	blr	x1
+   270f4:	b40000b7 	cbz	x23, 27108 <SE_aesGcmDe@@Base+0x6e0>
+   270f8:	f00000e1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   270fc:	aa1703e0 	mov	x0, x23
+   27100:	f9466421 	ldr	x1, [x1, #3272]  ; GOT SE_bufFree
+   27104:	d63f0020 	blr	x1
+   27108:	b40000b4 	cbz	x20, 2711c <SE_aesGcmDe@@Base+0x6f4>
+   2710c:	f00000e1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   27110:	aa1403e0 	mov	x0, x20
+   27114:	f9466421 	ldr	x1, [x1, #3272]  ; GOT SE_bufFree
+   27118:	d63f0020 	blr	x1
+   2711c:	b40000b5 	cbz	x21, 27130 <SE_aesGcmDe@@Base+0x708>
+   27120:	f00000e1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   27124:	aa1503e0 	mov	x0, x21
+   27128:	f942c821 	ldr	x1, [x1, #1424]  ; GOT SE_aes256GcmCtxFree
+   2712c:	d63f0020 	blr	x1
+   27130:	f94033a1 	ldr	x1, [x29, #96]
+   27134:	2a1303e0 	mov	w0, w19
+   27138:	f942bc21 	ldr	x1, [x1, #1400]
+   2713c:	f9404fa2 	ldr	x2, [x29, #152]
+   27140:	f9400021 	ldr	x1, [x1]
+   27144:	ca010041 	eor	x1, x2, x1
+   27148:	b4000301 	cbz	x1, 271a8 <SE_aesGcmDe@@Base+0x780>
+   2714c:	f00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   27150:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   27154:	d63f0000 	blr	x0
+   27158:	d2800014 	mov	x20, #0x0                   	// #0
+   2715c:	d2800017 	mov	x23, #0x0                   	// #0
+   27160:	d2800016 	mov	x22, #0x0                   	// #0
+   27164:	d2800018 	mov	x24, #0x0                   	// #0
+   27168:	52800153 	mov	w19, #0xa                   	// #10
+   2716c:	17ffff38 	b	26e4c <SE_aesGcmDe@@Base+0x424>
+   27170:	d2800014 	mov	x20, #0x0                   	// #0
+   27174:	d2800016 	mov	x22, #0x0                   	// #0
+   27178:	d2800018 	mov	x24, #0x0                   	// #0
+   2717c:	52800113 	mov	w19, #0x8                   	// #8
+   27180:	17ffff33 	b	26e4c <SE_aesGcmDe@@Base+0x424>
+   27184:	d2800014 	mov	x20, #0x0                   	// #0
+   27188:	d2800016 	mov	x22, #0x0                   	// #0
+   2718c:	d2800018 	mov	x24, #0x0                   	// #0
+   27190:	528002b3 	mov	w19, #0x15                  	// #21
+   27194:	17ffff2e 	b	26e4c <SE_aesGcmDe@@Base+0x424>
+   27198:	d2800016 	mov	x22, #0x0                   	// #0
+   2719c:	d2800014 	mov	x20, #0x0                   	// #0
+   271a0:	52800173 	mov	w19, #0xb                   	// #11
+   271a4:	17ffff2a 	b	26e4c <SE_aesGcmDe@@Base+0x424>
+   271a8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   271ac:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   271b0:	a94363f7 	ldp	x23, x24, [sp, #48]
+   271b4:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   271b8:	a94573fb 	ldp	x27, x28, [sp, #80]
+   271bc:	a8ca7bfd 	ldp	x29, x30, [sp], #160
+   271c0:	d65f03c0 	ret
+
+00000000000271c4 <SE_aesGcmEnFile@@Base>:
+   271c4:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   271c8:	f00000e4 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   271cc:	910003fd 	mov	x29, sp
+   271d0:	f942bc84 	ldr	x4, [x4, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   271d4:	f9400083 	ldr	x3, [x4]
+   271d8:	f9000fa3 	str	x3, [x29, #24]
+   271dc:	d2800003 	mov	x3, #0x0                   	// #0
+   271e0:	f9400fa5 	ldr	x5, [x29, #24]
+   271e4:	f9400083 	ldr	x3, [x4]
+   271e8:	ca0300a3 	eor	x3, x5, x3
+   271ec:	b4000083 	cbz	x3, 271fc <SE_aesGcmEnFile@@Base+0x38>
+   271f0:	f00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   271f4:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   271f8:	d63f0000 	blr	x0
+   271fc:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   27200:	aa0203e3 	mov	x3, x2
+   27204:	aa0103e2 	mov	x2, x1
+   27208:	aa0003e1 	mov	x1, x0
+   2720c:	52800020 	mov	w0, #0x1                   	// #1
+   27210:	17fffe92 	b	26c58 <SE_aesGcmDe@@Base+0x230>
+
+0000000000027214 <SE_aesGcmDeFile@@Base>:
+   27214:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   27218:	f00000e4 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   2721c:	910003fd 	mov	x29, sp
+   27220:	f942bc84 	ldr	x4, [x4, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   27224:	f9400083 	ldr	x3, [x4]
+   27228:	f9000fa3 	str	x3, [x29, #24]
+   2722c:	d2800003 	mov	x3, #0x0                   	// #0
+   27230:	f9400fa5 	ldr	x5, [x29, #24]
+   27234:	f9400083 	ldr	x3, [x4]
+   27238:	ca0300a3 	eor	x3, x5, x3
+   2723c:	b4000083 	cbz	x3, 2724c <SE_aesGcmDeFile@@Base+0x38>
+   27240:	f00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   27244:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   27248:	d63f0000 	blr	x0
+   2724c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   27250:	aa0203e3 	mov	x3, x2
+   27254:	aa0103e2 	mov	x2, x1
+   27258:	aa0003e1 	mov	x1, x0
+   2725c:	52800000 	mov	w0, #0x0                   	// #0
+   27260:	17fffe7e 	b	26c58 <SE_aesGcmDe@@Base+0x230>

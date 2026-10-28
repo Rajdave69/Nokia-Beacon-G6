@@ -1,0 +1,44 @@
+#!/bin/sh
+
+. /usr/exe/varset.sh
+
+###############################################
+## this script used to factory default reset ##
+###############################################
+
+flag=1
+nReboot=0
+RESET_FILE=/configs/fresetOriginator.txt
+usage()
+{
+	echo -e "Command Error!\n\tfactory-default-reset [all] [nReboot]\n" &>/dev/console
+	exit 1
+}
+
+if [ ! -f "$RESET_FILE" ]; then
+        touch $RESET_FILE
+        echo "LocalFactoryReset" > $RESET_FILE
+fi
+
+if [ -z "$1" ]; then
+	flag=1
+elif [ "$1" = "nReboot" ]; then
+	flag=1
+	nReboot=1
+elif [ "$1" = "all" ]; then
+	flag=2
+	if [ "$2" = "nReboot" ]; then nReboot=1; fi
+else
+	usage
+fi
+
+echo "[`date '+%F.%T%z'`]MSG: set to factory-default, flag: $flag $([ $nReboot -eq 0 ] && echo "and reboot" || echo "without reboot") ..." |tee -a /logs/$LOGDEFAULT &>/dev/console
+loop=0; while [ $loop -lt 9 ]
+do
+	/usr/sbin/fw_setenv factory_reset_flag $flag
+        flash_type=$(get_board_flash_type)
+	/sbin/jffs2reset -y; sync; sleep 1; loop=$(( $loop + 1 ))
+	if [ "X"`/usr/sbin/fw_printenv -n factory_reset_flag` = "X$flag" ]; then break; fi
+	echo "[`date '+%F.%T%z'`]ERR: factory-default set flag to $flag but failed $loop times ..." |tee -a /logs/$LOGDEFAULT &>/dev/console
+done
+[ $nReboot -eq 0 ] && /sbin/reboot

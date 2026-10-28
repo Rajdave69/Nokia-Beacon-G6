@@ -1,0 +1,157 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://SOURCE-141/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000002b468 <SE_getKeyByName@@Base+0x364>:
+   2b468:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   2b46c:	910003fd 	mov	x29, sp
+   2b470:	a90153f3 	stp	x19, x20, [sp, #16]
+   2b474:	f00000d4 	adrp	x20, 46000 <_fini@@Base+0x18178>
+   2b478:	a9025bf5 	stp	x21, x22, [sp, #32]
+   2b47c:	aa0003f5 	mov	x21, x0
+   2b480:	f942be80 	ldr	x0, [x20, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   2b484:	aa0103f3 	mov	x19, x1
+   2b488:	aa0303f6 	mov	x22, x3
+   2b48c:	f90023bf 	str	xzr, [x29, #64]
+   2b490:	f9400001 	ldr	x1, [x0]
+   2b494:	f90027a1 	str	x1, [x29, #72]
+   2b498:	d2800001 	mov	x1, #0x0                   	// #0
+   2b49c:	f9001bf7 	str	x23, [sp, #48]
+   2b4a0:	2a0203e0 	mov	w0, w2
+   2b4a4:	2a0203f7 	mov	w23, w2
+   2b4a8:	97ffff97 	bl	2b304 <SE_getKeyByName@@Base+0x200>
+   2b4ac:	b40007a0 	cbz	x0, 2b5a0 <SE_getKeyByName@@Base+0x49c>
+   2b4b0:	f00000c2 	adrp	x2, 46000 <_fini@@Base+0x18178>
+   2b4b4:	aa0003e1 	mov	x1, x0
+   2b4b8:	aa1503e0 	mov	x0, x21
+   2b4bc:	f943b442 	ldr	x2, [x2, #1896]  ; GOT BIO_new_file@OPENSSL_3.0.0
+   2b4c0:	d63f0040 	blr	x2
+   2b4c4:	aa0003f5 	mov	x21, x0
+   2b4c8:	b4000700 	cbz	x0, 2b5a8 <SE_getKeyByName@@Base+0x4a4>
+   2b4cc:	710006ff 	cmp	w23, #0x1
+   2b4d0:	54000301 	b.ne	2b530 <SE_getKeyByName@@Base+0x42c>  // b.any
+   2b4d4:	f00000c2 	adrp	x2, 46000 <_fini@@Base+0x18178>
+   2b4d8:	d2800001 	mov	x1, #0x0                   	// #0
+   2b4dc:	f947e042 	ldr	x2, [x2, #4032]  ; GOT d2i_PrivateKey_bio@OPENSSL_3.0.0
+   2b4e0:	d63f0040 	blr	x2
+   2b4e4:	f90023a0 	str	x0, [x29, #64]
+   2b4e8:	b4000540 	cbz	x0, 2b590 <SE_getKeyByName@@Base+0x48c>
+   2b4ec:	52800013 	mov	w19, #0x0                   	// #0
+   2b4f0:	f00000c1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   2b4f4:	aa1503e0 	mov	x0, x21
+   2b4f8:	f944c421 	ldr	x1, [x1, #2440]  ; GOT BIO_free@OPENSSL_3.0.0
+   2b4fc:	d63f0020 	blr	x1
+   2b500:	35000073 	cbnz	w19, 2b50c <SE_getKeyByName@@Base+0x408>
+   2b504:	f94023a0 	ldr	x0, [x29, #64]
+   2b508:	f90002c0 	str	x0, [x22]
+   2b50c:	f942be94 	ldr	x20, [x20, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   2b510:	2a1303e0 	mov	w0, w19
+   2b514:	f94027a2 	ldr	x2, [x29, #72]
+   2b518:	f9400281 	ldr	x1, [x20]
+   2b51c:	ca010041 	eor	x1, x2, x1
+   2b520:	b4000481 	cbz	x1, 2b5b0 <SE_getKeyByName@@Base+0x4ac>
+   2b524:	f00000c0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   2b528:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   2b52c:	d63f0000 	blr	x0
+   2b530:	350001f7 	cbnz	w23, 2b56c <SE_getKeyByName@@Base+0x468>
+   2b534:	b5000073 	cbnz	x19, 2b540 <SE_getKeyByName@@Base+0x43c>
+   2b538:	b0000033 	adrp	x19, 30000 <_fini@@Base+0x2178>
+   2b53c:	91358273 	add	x19, x19, #0xd60
+   2b540:	f00000c4 	adrp	x4, 46000 <_fini@@Base+0x18178>
+   2b544:	aa1303e3 	mov	x3, x19
+   2b548:	d2800002 	mov	x2, #0x0                   	// #0
+   2b54c:	d2800001 	mov	x1, #0x0                   	// #0
+   2b550:	f9439c84 	ldr	x4, [x4, #1848]  ; GOT PEM_read_bio_PrivateKey@OPENSSL_3.0.0
+   2b554:	aa1503e0 	mov	x0, x21
+   2b558:	d63f0080 	blr	x4
+   2b55c:	f90023a0 	str	x0, [x29, #64]
+   2b560:	b5fffc60 	cbnz	x0, 2b4ec <SE_getKeyByName@@Base+0x3e8>
+   2b564:	52804d33 	mov	w19, #0x269                 	// #617
+   2b568:	17ffffe2 	b	2b4f0 <SE_getKeyByName@@Base+0x3ec>
+   2b56c:	71000aff 	cmp	w23, #0x2
+   2b570:	54000141 	b.ne	2b598 <SE_getKeyByName@@Base+0x494>  // b.any
+   2b574:	aa1303e1 	mov	x1, x19
+   2b578:	d2800004 	mov	x4, #0x0                   	// #0
+   2b57c:	d2800003 	mov	x3, #0x0                   	// #0
+   2b580:	910103a2 	add	x2, x29, #0x40
+   2b584:	97ffff71 	bl	2b348 <SE_getKeyByName@@Base+0x244>
+   2b588:	2a0003f3 	mov	w19, w0
+   2b58c:	17ffffd9 	b	2b4f0 <SE_getKeyByName@@Base+0x3ec>
+   2b590:	52804d13 	mov	w19, #0x268                 	// #616
+   2b594:	17ffffd7 	b	2b4f0 <SE_getKeyByName@@Base+0x3ec>
+   2b598:	52804cf3 	mov	w19, #0x267                 	// #615
+   2b59c:	17ffffd5 	b	2b4f0 <SE_getKeyByName@@Base+0x3ec>
+   2b5a0:	52800153 	mov	w19, #0xa                   	// #10
+   2b5a4:	17ffffda 	b	2b50c <SE_getKeyByName@@Base+0x408>
+   2b5a8:	52800653 	mov	w19, #0x32                  	// #50
+   2b5ac:	17ffffd8 	b	2b50c <SE_getKeyByName@@Base+0x408>
+   2b5b0:	a94153f3 	ldp	x19, x20, [sp, #16]
+   2b5b4:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   2b5b8:	f9401bf7 	ldr	x23, [sp, #48]
+   2b5bc:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   2b5c0:	d65f03c0 	ret
+   2b5c4:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   2b5c8:	910003fd 	mov	x29, sp
+   2b5cc:	a90153f3 	stp	x19, x20, [sp, #16]
+   2b5d0:	f00000d3 	adrp	x19, 46000 <_fini@@Base+0x18178>
+   2b5d4:	aa0003f4 	mov	x20, x0
+   2b5d8:	f9001bf7 	str	x23, [sp, #48]
+   2b5dc:	f942be60 	ldr	x0, [x19, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   2b5e0:	aa0103f7 	mov	x23, x1
+   2b5e4:	a9025bf5 	stp	x21, x22, [sp, #32]
+   2b5e8:	aa0203f6 	mov	x22, x2
+   2b5ec:	f9400001 	ldr	x1, [x0]
+   2b5f0:	f90027a1 	str	x1, [x29, #72]
+   2b5f4:	d2800001 	mov	x1, #0x0                   	// #0
+   2b5f8:	b0000040 	adrp	x0, 34000 <_fini@@Base+0x6178>
+   2b5fc:	9128b800 	add	x0, x0, #0xa2e  ; 'aes256'
+   2b600:	f00000c1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   2b604:	f9418c21 	ldr	x1, [x1, #792]  ; GOT EVP_get_cipherbyname@OPENSSL_3.0.0
+   2b608:	d63f0020 	blr	x1
+   2b60c:	b4000460 	cbz	x0, 2b698 <SE_getKeyByName@@Base+0x594>
+   2b610:	f00000c2 	adrp	x2, 46000 <_fini@@Base+0x18178>
+   2b614:	aa0003f5 	mov	x21, x0
+   2b618:	b0000021 	adrp	x1, 30000 <_fini@@Base+0x2178>
+   2b61c:	910e0421 	add	x1, x1, #0x381
+   2b620:	f943b442 	ldr	x2, [x2, #1896]  ; GOT BIO_new_file@OPENSSL_3.0.0
+   2b624:	aa1403e0 	mov	x0, x20
+   2b628:	d63f0040 	blr	x2
+   2b62c:	aa0003f4 	mov	x20, x0
+   2b630:	b4000380 	cbz	x0, 2b6a0 <SE_getKeyByName@@Base+0x59c>
+   2b634:	f00000c7 	adrp	x7, 46000 <_fini@@Base+0x18178>
+   2b638:	aa1503e2 	mov	x2, x21
+   2b63c:	aa1703e6 	mov	x6, x23
+   2b640:	d2800005 	mov	x5, #0x0                   	// #0
+   2b644:	f94488e7 	ldr	x7, [x7, #2320]  ; GOT PEM_write_bio_PrivateKey@OPENSSL_3.0.0
+   2b648:	52800004 	mov	w4, #0x0                   	// #0
+   2b64c:	d2800003 	mov	x3, #0x0                   	// #0
+   2b650:	aa1603e1 	mov	x1, x22
+   2b654:	d63f00e0 	blr	x7
+   2b658:	2a0003f5 	mov	w21, w0
+   2b65c:	f00000c1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   2b660:	aa1403e0 	mov	x0, x20
+   2b664:	f944c421 	ldr	x1, [x1, #2440]  ; GOT BIO_free@OPENSSL_3.0.0
+   2b668:	d63f0020 	blr	x1
+   2b66c:	710002bf 	cmp	w21, #0x0
+   2b670:	52804d40 	mov	w0, #0x26a                 	// #618
+   2b674:	1a9f0000 	csel	w0, w0, wzr, eq	// eq = none
+   2b678:	f942be73 	ldr	x19, [x19, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   2b67c:	f94027a2 	ldr	x2, [x29, #72]
+   2b680:	f9400261 	ldr	x1, [x19]
+   2b684:	ca010041 	eor	x1, x2, x1
+   2b688:	b4000101 	cbz	x1, 2b6a8 <SE_getKeyByName@@Base+0x5a4>
+   2b68c:	f00000c0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   2b690:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   2b694:	d63f0000 	blr	x0
+   2b698:	52805780 	mov	w0, #0x2bc                 	// #700
+   2b69c:	17fffff7 	b	2b678 <SE_getKeyByName@@Base+0x574>
+   2b6a0:	52800640 	mov	w0, #0x32                  	// #50
+   2b6a4:	17fffff5 	b	2b678 <SE_getKeyByName@@Base+0x574>
+   2b6a8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   2b6ac:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   2b6b0:	f9401bf7 	ldr	x23, [sp, #48]
+   2b6b4:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   2b6b8:	d65f03c0 	ret

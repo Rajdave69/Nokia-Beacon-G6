@@ -1,0 +1,782 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+/tmp/beacon9-stock-root/usr/bin/cfgmgr:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000059b00 <init_shared_memory@@Base+0x1dc6c>:
+   59b00:	ca000020 	eor	x0, x1, x0
+   59b04:	b4000080 	cbz	x0, 59b14 <init_shared_memory@@Base+0x1dc80>
+   59b08:	d0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   59b0c:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   59b10:	d63f0000 	blr	x0
+   59b14:	b0001320 	adrp	x0, 2be000 <_fini@@Base+0xa8020>
+   59b18:	f9479800 	ldr	x0, [x0, #3888]
+   59b1c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   59b20:	d61f0000 	br	x0
+   59b24:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   59b28:	910003fd 	mov	x29, sp
+   59b2c:	a90153f3 	stp	x19, x20, [sp, #16]
+   59b30:	b0001353 	adrp	x19, 2c2000 <db_wrapper_getStructSize>
+   59b34:	f9474660 	ldr	x0, [x19, #3720]  ; GOT __stack_chk_guard
+   59b38:	f9400001 	ldr	x1, [x0]
+   59b3c:	f90017a1 	str	x1, [x29, #40]
+   59b40:	d2800001 	mov	x1, #0x0                   	// #0
+   59b44:	90001320 	adrp	x0, 2bd000 <_fini@@Base+0xa7020>
+   59b48:	f941f400 	ldr	x0, [x0, #1000]
+   59b4c:	d63f0000 	blr	x0
+   59b50:	f0001614 	adrp	x20, 31c000 <_fini@@Base+0x106020>
+   59b54:	b9487281 	ldr	w1, [x20, #2160]
+   59b58:	6b00003f 	cmp	w1, w0
+   59b5c:	540001ea 	b.ge	59b98 <init_shared_memory@@Base+0x1dd04>  // b.tcont
+   59b60:	2a0103e0 	mov	w0, w1
+   59b64:	90001341 	adrp	x1, 2c1000 <_fini@@Base+0xab020>
+   59b68:	f9470421 	ldr	x1, [x1, #3592]
+   59b6c:	d63f0020 	blr	x1
+   59b70:	b9087280 	str	w0, [x20, #2160]
+   59b74:	52800320 	mov	w0, #0x19                  	// #25
+   59b78:	f9474673 	ldr	x19, [x19, #3720]  ; GOT __stack_chk_guard
+   59b7c:	f94017a2 	ldr	x2, [x29, #40]
+   59b80:	f9400261 	ldr	x1, [x19]
+   59b84:	ca010041 	eor	x1, x2, x1
+   59b88:	b40000c1 	cbz	x1, 59ba0 <init_shared_memory@@Base+0x1dd0c>
+   59b8c:	d0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   59b90:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   59b94:	d63f0000 	blr	x0
+   59b98:	5284e200 	mov	w0, #0x2710                	// #10000
+   59b9c:	17fffff7 	b	59b78 <init_shared_memory@@Base+0x1dce4>
+   59ba0:	b0001344 	adrp	x4, 2c2000 <db_wrapper_getStructSize>
+   59ba4:	d2800003 	mov	x3, #0x0                   	// #0
+   59ba8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   59bac:	d2800002 	mov	x2, #0x0                   	// #0
+   59bb0:	f9418c84 	ldr	x4, [x4, #792]  ; GOT n_bus_loop_add_timer
+   59bb4:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   59bb8:	90000001 	adrp	x1, 59000 <init_shared_memory@@Base+0x1d16c>
+   59bbc:	912c9021 	add	x1, x1, #0xb24
+   59bc0:	d61f0080 	br	x4
+   59bc4:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   59bc8:	90001342 	adrp	x2, 2c1000 <_fini@@Base+0xab020>
+   59bcc:	910003fd 	mov	x29, sp
+   59bd0:	a90153f3 	stp	x19, x20, [sp, #16]
+   59bd4:	b0001353 	adrp	x19, 2c2000 <db_wrapper_getStructSize>
+   59bd8:	f9470c42 	ldr	x2, [x2, #3608]  ; GOT clock_gettime
+   59bdc:	aa0103f4 	mov	x20, x1
+   59be0:	f9474673 	ldr	x19, [x19, #3720]  ; GOT __stack_chk_guard
+   59be4:	9100e3a1 	add	x1, x29, #0x38
+   59be8:	f90013f5 	str	x21, [sp, #32]
+   59bec:	aa0003f5 	mov	x21, x0
+   59bf0:	f9400260 	ldr	x0, [x19]
+   59bf4:	f90027a0 	str	x0, [x29, #72]
+   59bf8:	d2800000 	mov	x0, #0x0                   	// #0
+   59bfc:	a903ffbf 	stp	xzr, xzr, [x29, #56]
+   59c00:	52800020 	mov	w0, #0x1                   	// #1
+   59c04:	d63f0040 	blr	x2
+   59c08:	f9401fa0 	ldr	x0, [x29, #56]
+   59c0c:	d2807d01 	mov	x1, #0x3e8                 	// #1000
+   59c10:	f90002a0 	str	x0, [x21]
+   59c14:	f94023a0 	ldr	x0, [x29, #64]
+   59c18:	9ac10c00 	sdiv	x0, x0, x1
+   59c1c:	f9000280 	str	x0, [x20]
+   59c20:	f94027a1 	ldr	x1, [x29, #72]
+   59c24:	f9400260 	ldr	x0, [x19]
+   59c28:	ca000020 	eor	x0, x1, x0
+   59c2c:	b4000080 	cbz	x0, 59c3c <init_shared_memory@@Base+0x1dda8>
+   59c30:	d0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   59c34:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   59c38:	d63f0000 	blr	x0
+   59c3c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   59c40:	f94013f5 	ldr	x21, [sp, #32]
+   59c44:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   59c48:	d65f03c0 	ret
+   59c4c:	d2821610 	mov	x16, #0x10b0                	// #4272
+   59c50:	cb3063ff 	sub	sp, sp, x16
+   59c54:	90001343 	adrp	x3, 2c1000 <_fini@@Base+0xab020>
+   59c58:	52800002 	mov	w2, #0x0                   	// #0
+   59c5c:	a9007bfd 	stp	x29, x30, [sp]
+   59c60:	910003fd 	mov	x29, sp
+   59c64:	f942cc63 	ldr	x3, [x3, #1432]  ; GOT recvmsg
+   59c68:	a9025bf5 	stp	x21, x22, [sp, #32]
+   59c6c:	b0001355 	adrp	x21, 2c2000 <db_wrapper_getStructSize>
+   59c70:	a90153f3 	stp	x19, x20, [sp, #16]
+   59c74:	9102a3b3 	add	x19, x29, #0xa8
+   59c78:	f94746a0 	ldr	x0, [x21, #3720]  ; GOT __stack_chk_guard
+   59c7c:	a90363f7 	stp	x23, x24, [sp, #48]
+   59c80:	f9400001 	ldr	x1, [x0]
+   59c84:	f90857a1 	str	x1, [x29, #4264]
+   59c88:	d2800001 	mov	x1, #0x0                   	// #0
+   59c8c:	d2820000 	mov	x0, #0x1000                	// #4096
+   59c90:	9101c3a1 	add	x1, x29, #0x70
+   59c94:	a90603b3 	stp	x19, x0, [x29, #96]
+   59c98:	91003020 	add	x0, x1, #0xc
+   59c9c:	f90023f9 	str	x25, [sp, #64]
+   59ca0:	a9007c1f 	stp	xzr, xzr, [x0]
+   59ca4:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+   59ca8:	910143a0 	add	x0, x29, #0x50
+   59cac:	f9003ba0 	str	x0, [x29, #112]
+   59cb0:	52800180 	mov	w0, #0xc                   	// #12
+   59cb4:	b9007ba0 	str	w0, [x29, #120]
+   59cb8:	910183a0 	add	x0, x29, #0x60
+   59cbc:	f90043a0 	str	x0, [x29, #128]
+   59cc0:	52800020 	mov	w0, #0x1                   	// #1
+   59cc4:	b9008ba0 	str	w0, [x29, #136]
+   59cc8:	90001320 	adrp	x0, 2bd000 <_fini@@Base+0xa7020>
+   59ccc:	f802c03f 	stur	xzr, [x1, #44]
+   59cd0:	f9438800 	ldr	x0, [x0, #1808]
+   59cd4:	b900343f 	str	wzr, [x1, #52]
+   59cd8:	b9400000 	ldr	w0, [x0]
+   59cdc:	d63f0060 	blr	x3
+   59ce0:	aa0003f6 	mov	x22, x0
+   59ce4:	f100001f 	cmp	x0, #0x0
+   59ce8:	540003ca 	b.ge	59d60 <init_shared_memory@@Base+0x1decc>  // b.tcont
+   59cec:	f0001320 	adrp	x0, 2c0000 <_fini@@Base+0xaa020>
+   59cf0:	f9413800 	ldr	x0, [x0, #624]  ; GOT __errno_location
+   59cf4:	d63f0000 	blr	x0
+   59cf8:	b9400000 	ldr	w0, [x0]
+   59cfc:	71002c1f 	cmp	w0, #0xb
+   59d00:	54000200 	b.eq	59d40 <init_shared_memory@@Base+0x1deac>  // b.none
+   59d04:	90001325 	adrp	x5, 2bd000 <_fini@@Base+0xa7020>
+   59d08:	52800060 	mov	w0, #0x3                   	// #3
+   59d0c:	aa1603e4 	mov	x4, x22
+   59d10:	f0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   59d14:	911fdc63 	add	x3, x3, #0x7f7  ; 'read_netlink: Error recvmsg: %d\n'
+   59d18:	f9417ca5 	ldr	x5, [x5, #760]  ; GOT log_log
+   59d1c:	5280db62 	mov	w2, #0x6db                 	// #1755
+   59d20:	d0000e81 	adrp	x1, 22b000 <_fini@@Base+0x15020>
+   59d24:	91354021 	add	x1, x1, #0xd50  ; 'processNLMsg'
+   59d28:	d63f00a0 	blr	x5
+   59d2c:	d0001321 	adrp	x1, 2bf000 <_fini@@Base+0xa9020>
+   59d30:	f0000e80 	adrp	x0, 22c000 <_fini@@Base+0x16020>
+   59d34:	91206000 	add	x0, x0, #0x818  ; 'read_netlink: Error: '
+   59d38:	f947b021 	ldr	x1, [x1, #3936]  ; GOT perror
+   59d3c:	d63f0020 	blr	x1
+   59d40:	f94746b5 	ldr	x21, [x21, #3720]  ; GOT __stack_chk_guard
+   59d44:	f94857a1 	ldr	x1, [x29, #4264]
+   59d48:	f94002a0 	ldr	x0, [x21]
+   59d4c:	ca000020 	eor	x0, x1, x0
+   59d50:	b40009c0 	cbz	x0, 59e88 <init_shared_memory@@Base+0x1dff4>
+   59d54:	d0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   59d58:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   59d5c:	d63f0000 	blr	x0
+   59d60:	54000881 	b.ne	59e70 <init_shared_memory@@Base+0x1dfdc>  // b.any
+   59d64:	90001324 	adrp	x4, 2bd000 <_fini@@Base+0xa7020>
+   59d68:	f0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   59d6c:	9120b863 	add	x3, x3, #0x82e  ; 'read_netlink: EOF\n'
+   59d70:	f9417c84 	ldr	x4, [x4, #760]  ; GOT log_log
+   59d74:	5280dc42 	mov	w2, #0x6e2                 	// #1762
+   59d78:	d0000e81 	adrp	x1, 22b000 <_fini@@Base+0x15020>
+   59d7c:	91354021 	add	x1, x1, #0xd50  ; 'processNLMsg'
+   59d80:	52800060 	mov	w0, #0x3                   	// #3
+   59d84:	d63f0080 	blr	x4
+   59d88:	17ffffee 	b	59d40 <init_shared_memory@@Base+0x1deac>
+   59d8c:	b9400e64 	ldr	w4, [x19, #12]
+   59d90:	34000124 	cbz	w4, 59db4 <init_shared_memory@@Base+0x1df20>
+   59d94:	f9417e94 	ldr	x20, [x20, #760]
+   59d98:	f0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   59d9c:	91219463 	add	x3, x3, #0x865  ; 'netlink message source(%d)is not kernel'
+   59da0:	5280df42 	mov	w2, #0x6fa                 	// #1786
+   59da4:	913542e1 	add	x1, x23, #0xd50
+   59da8:	52800060 	mov	w0, #0x3                   	// #3
+   59dac:	d63f0280 	blr	x20
+   59db0:	17ffffe4 	b	59d40 <init_shared_memory@@Base+0x1deac>
+   59db4:	528a0021 	mov	w1, #0x5001                	// #20481
+   59db8:	6b01001f 	cmp	w0, w1
+   59dbc:	540004a1 	b.ne	59e50 <init_shared_memory@@Base+0x1dfbc>  // b.any
+   59dc0:	f9417e84 	ldr	x4, [x20, #760]
+   59dc4:	aa1903e1 	mov	x1, x25
+   59dc8:	528000e0 	mov	w0, #0x7                   	// #7
+   59dcc:	f0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   59dd0:	91223463 	add	x3, x3, #0x88d  ; 'received MSG_NETLINK_PORTID_OP60STR message'
+   59dd4:	5280e042 	mov	w2, #0x702                 	// #1794
+   59dd8:	d63f0080 	blr	x4
+   59ddc:	90001321 	adrp	x1, 2bd000 <_fini@@Base+0xa7020>
+   59de0:	91004260 	add	x0, x19, #0x10
+   59de4:	f9462021 	ldr	x1, [x1, #3136]
+   59de8:	d63f0020 	blr	x1
+   59dec:	b9400260 	ldr	w0, [x19]
+   59df0:	11000c00 	add	w0, w0, #0x3
+   59df4:	927e7400 	and	x0, x0, #0xfffffffc
+   59df8:	cb0002d6 	sub	x22, x22, x0
+   59dfc:	8b000273 	add	x19, x19, x0
+   59e00:	71003edf 	cmp	w22, #0xf
+   59e04:	54fff9e9 	b.ls	59d40 <init_shared_memory@@Base+0x1deac>  // b.plast
+   59e08:	b9400260 	ldr	w0, [x19]
+   59e0c:	71003c1f 	cmp	w0, #0xf
+   59e10:	54fff989 	b.ls	59d40 <init_shared_memory@@Base+0x1deac>  // b.plast
+   59e14:	6b0002df 	cmp	w22, w0
+   59e18:	54fff943 	b.cc	59d40 <init_shared_memory@@Base+0x1deac>  // b.lo, b.ul, b.last
+   59e1c:	79400a60 	ldrh	w0, [x19, #4]
+   59e20:	71000c1f 	cmp	w0, #0x3
+   59e24:	54fff8e0 	b.eq	59d40 <init_shared_memory@@Base+0x1deac>  // b.none
+   59e28:	7100081f 	cmp	w0, #0x2
+   59e2c:	54fffb01 	b.ne	59d8c <init_shared_memory@@Base+0x1def8>  // b.any
+   59e30:	f9417e94 	ldr	x20, [x20, #760]
+   59e34:	f0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   59e38:	91210463 	add	x3, x3, #0x841  ; 'read_netlink: Message is an error \n'
+   59e3c:	5280de22 	mov	w2, #0x6f1                 	// #1777
+   59e40:	913542e1 	add	x1, x23, #0xd50
+   59e44:	52800060 	mov	w0, #0x3                   	// #3
+   59e48:	d63f0280 	blr	x20
+   59e4c:	17ffffbd 	b	59d40 <init_shared_memory@@Base+0x1deac>
+   59e50:	f9417e85 	ldr	x5, [x20, #760]
+   59e54:	2a0003e4 	mov	w4, w0
+   59e58:	aa1803e3 	mov	x3, x24
+   59e5c:	5280e0e2 	mov	w2, #0x707                 	// #1799
+   59e60:	aa1903e1 	mov	x1, x25
+   59e64:	528000e0 	mov	w0, #0x7                   	// #7
+   59e68:	d63f00a0 	blr	x5
+   59e6c:	17ffffe0 	b	59dec <init_shared_memory@@Base+0x1df58>
+   59e70:	d0000e97 	adrp	x23, 22b000 <_fini@@Base+0x15020>
+   59e74:	f0000e98 	adrp	x24, 22c000 <_fini@@Base+0x16020>
+   59e78:	9122e718 	add	x24, x24, #0x8b9  ; ' Unknown netlink nlmsg_type %d\n'
+   59e7c:	90001334 	adrp	x20, 2bd000 <_fini@@Base+0xa7020>
+   59e80:	913542f9 	add	x25, x23, #0xd50  ; 'processNLMsg'
+   59e84:	17ffffdf 	b	59e00 <init_shared_memory@@Base+0x1df6c>
+   59e88:	a9407bfd 	ldp	x29, x30, [sp]
+   59e8c:	d2821610 	mov	x16, #0x10b0                	// #4272
+   59e90:	a94153f3 	ldp	x19, x20, [sp, #16]
+   59e94:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   59e98:	a94363f7 	ldp	x23, x24, [sp, #48]
+   59e9c:	f94023f9 	ldr	x25, [sp, #64]
+   59ea0:	8b3063ff 	add	sp, sp, x16
+   59ea4:	d65f03c0 	ret
+   59ea8:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   59eac:	b0001340 	adrp	x0, 2c2000 <db_wrapper_getStructSize>
+   59eb0:	910003fd 	mov	x29, sp
+   59eb4:	f9474400 	ldr	x0, [x0, #3720]  ; GOT __stack_chk_guard
+   59eb8:	f9400001 	ldr	x1, [x0]
+   59ebc:	f9000fa1 	str	x1, [x29, #24]
+   59ec0:	d2800001 	mov	x1, #0x0                   	// #0
+   59ec4:	f9400fa1 	ldr	x1, [x29, #24]
+   59ec8:	f9400000 	ldr	x0, [x0]
+   59ecc:	ca000020 	eor	x0, x1, x0
+   59ed0:	b4000080 	cbz	x0, 59ee0 <init_shared_memory@@Base+0x1e04c>
+   59ed4:	d0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   59ed8:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   59edc:	d63f0000 	blr	x0
+   59ee0:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   59ee4:	17ffff5a 	b	59c4c <init_shared_memory@@Base+0x1ddb8>
+   59ee8:	d2863e10 	mov	x16, #0x31f0                	// #12784
+   59eec:	cb3063ff 	sub	sp, sp, x16
+   59ef0:	d0001342 	adrp	x2, 2c3000 <dmUtl_isMatchPasswdRule>
+   59ef4:	a9007bfd 	stp	x29, x30, [sp]
+   59ef8:	910003fd 	mov	x29, sp
+   59efc:	f940a442 	ldr	x2, [x2, #328]  ; GOT fputs
+   59f00:	a90153f3 	stp	x19, x20, [sp, #16]
+   59f04:	b0001353 	adrp	x19, 2c2000 <db_wrapper_getStructSize>
+   59f08:	a9025bf5 	stp	x21, x22, [sp, #32]
+   59f0c:	d0000e94 	adrp	x20, 22b000 <_fini@@Base+0x15020>
+   59f10:	91354294 	add	x20, x20, #0xd50  ; 'processNLMsg'
+   59f14:	f9474660 	ldr	x0, [x19, #3720]  ; GOT __stack_chk_guard
+   59f18:	a90363f7 	stp	x23, x24, [sp, #48]
+   59f1c:	f9400001 	ldr	x1, [x0]
+   59f20:	f918f7a1 	str	x1, [x29, #12776]
+   59f24:	d2800001 	mov	x1, #0x0                   	// #0
+   59f28:	90001340 	adrp	x0, 2c1000 <_fini@@Base+0xab020>
+   59f2c:	a9046bf9 	stp	x25, x26, [sp, #64]
+   59f30:	f9438000 	ldr	x0, [x0, #1792]  ; GOT stdout
+   59f34:	f9002bfb 	str	x27, [sp, #80]
+   59f38:	910203bb 	add	x27, x29, #0x80
+   59f3c:	f9400001 	ldr	x1, [x0]
+   59f40:	f0000e80 	adrp	x0, 22c000 <_fini@@Base+0x16020>
+   59f44:	91236400 	add	x0, x0, #0x8d9  ; 'Saving key parameters for PHGL customer...\n'
+   59f48:	d63f0040 	blr	x2
+   59f4c:	90001324 	adrp	x4, 2bd000 <_fini@@Base+0xa7020>
+   59f50:	52816b42 	mov	w2, #0xb5a                 	// #2906
+   59f54:	91004281 	add	x1, x20, #0x10  ; 'cfgRpc_saveKeyParameters'
+   59f58:	52800060 	mov	w0, #0x3                   	// #3
+   59f5c:	f9417c84 	ldr	x4, [x4, #760]  ; GOT log_log
+   59f60:	f0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   59f64:	91241463 	add	x3, x3, #0x905  ; 'Saving key parameters for PHGL customer...'
+   59f68:	d63f0080 	blr	x4
+   59f6c:	90001343 	adrp	x3, 2c1000 <_fini@@Base+0xab020>
+   59f70:	d280e002 	mov	x2, #0x700                 	// #1792
+   59f74:	9100c281 	add	x1, x20, #0x30  ; 'InternetGatewayDevice.ManagementServer.URL'
+   59f78:	aa1b03e0 	mov	x0, x27
+   59f7c:	f9432c63 	ldr	x3, [x3, #1624]  ; GOT memcpy
+   59f80:	d63f0060 	blr	x3
+   59f84:	f0001322 	adrp	x2, 2c0000 <_fini@@Base+0xaa020>
+   59f88:	f00011a1 	adrp	x1, 290000 <_fini@@Base+0x7a020>
+   59f8c:	9130ac21 	add	x1, x1, #0xc2b
+   59f90:	f940dc42 	ldr	x2, [x2, #440]  ; GOT fopen
+   59f94:	f0000e80 	adrp	x0, 22c000 <_fini@@Base+0x16020>
+   59f98:	9124c000 	add	x0, x0, #0x930  ; '/configs/keyparam'
+   59f9c:	d63f0040 	blr	x2
+   59fa0:	b4000740 	cbz	x0, 5a088 <init_shared_memory@@Base+0x1e1f4>
+   59fa4:	d0001337 	adrp	x23, 2bf000 <_fini@@Base+0xa9020>
+   59fa8:	9000133a 	adrp	x26, 2bd000 <_fini@@Base+0xa7020>
+   59fac:	aa0003f4 	mov	x20, x0
+   59fb0:	b0000df8 	adrp	x24, 216000 <_fini@@Base+0x20>
+   59fb4:	91240718 	add	x24, x24, #0x901  ; '%s=%s\n'
+   59fb8:	f9462ef7 	ldr	x23, [x23, #3160]  ; GOT memset
+   59fbc:	d2843d00 	mov	x0, #0x21e8                	// #8680
+   59fc0:	f940cf5a 	ldr	x26, [x26, #408]
+   59fc4:	8b0003b9 	add	x25, x29, x0
+   59fc8:	d2800015 	mov	x21, #0x0                   	// #0
+   59fcc:	8b152376 	add	x22, x27, x21, lsl #8
+   59fd0:	d2820002 	mov	x2, #0x1000                	// #4096
+   59fd4:	52800001 	mov	w1, #0x0                   	// #0
+   59fd8:	aa1903e0 	mov	x0, x25
+   59fdc:	d63f02e0 	blr	x23
+   59fe0:	910006b5 	add	x21, x21, #0x1
+   59fe4:	52820002 	mov	w2, #0x1000                	// #4096
+   59fe8:	aa1903e1 	mov	x1, x25
+   59fec:	aa1603e0 	mov	x0, x22
+   59ff0:	d63f0340 	blr	x26
+   59ff4:	aa1603e2 	mov	x2, x22
+   59ff8:	90001336 	adrp	x22, 2bd000 <_fini@@Base+0xa7020>
+   59ffc:	aa1903e3 	mov	x3, x25
+   5a000:	aa1803e1 	mov	x1, x24
+   5a004:	f9476ec4 	ldr	x4, [x22, #3800]  ; GOT fprintf
+   5a008:	aa1403e0 	mov	x0, x20
+   5a00c:	d63f0080 	blr	x4
+   5a010:	f1001ebf 	cmp	x21, #0x7
+   5a014:	54fffdc1 	b.ne	59fcc <init_shared_memory@@Base+0x1e138>  // b.any
+   5a018:	911e03b5 	add	x21, x29, #0x780
+   5a01c:	d2834c22 	mov	x2, #0x1a61                	// #6753
+   5a020:	52800001 	mov	w1, #0x0                   	// #0
+   5a024:	aa1503e0 	mov	x0, x21
+   5a028:	d63f02e0 	blr	x23
+   5a02c:	90001337 	adrp	x23, 2be000 <_fini@@Base+0xa8020>
+   5a030:	52803380 	mov	w0, #0x19c                 	// #412
+   5a034:	b90783a0 	str	w0, [x29, #1920]
+   5a038:	910012a0 	add	x0, x21, #0x4
+   5a03c:	f9458af7 	ldr	x23, [x23, #2832]
+   5a040:	d0000e98 	adrp	x24, 22c000 <_fini@@Base+0x16020>
+   5a044:	91250b18 	add	x24, x24, #0x942  ; 'InternetGatewayDevice.WANDevice.%d.WANConnectionDevice.%d.WANPPPConnection.%d.Username=%s\n'
+   5a048:	910183ba 	add	x26, x29, #0x60
+   5a04c:	a9067fbf 	stp	xzr, xzr, [x29, #96]
+   5a050:	a9007c1f 	stp	xzr, xzr, [x0]
+   5a054:	f9003bbf 	str	xzr, [x29, #112]
+   5a058:	b9007bbf 	str	wzr, [x29, #120]
+   5a05c:	f80142bf 	stur	xzr, [x21, #20]
+   5a060:	b9001ebf 	str	wzr, [x21, #28]
+   5a064:	52820002 	mov	w2, #0x1000                	// #4096
+   5a068:	aa1a03e1 	mov	x1, x26
+   5a06c:	aa1503e0 	mov	x0, x21
+   5a070:	d63f02e0 	blr	x23
+   5a074:	340001a0 	cbz	w0, 5a0a8 <init_shared_memory@@Base+0x1e214>
+   5a078:	90001341 	adrp	x1, 2c2000 <db_wrapper_getStructSize>
+   5a07c:	aa1403e0 	mov	x0, x20
+   5a080:	f945d821 	ldr	x1, [x1, #2992]  ; GOT fclose
+   5a084:	d63f0020 	blr	x1
+   5a088:	f9474673 	ldr	x19, [x19, #3720]  ; GOT __stack_chk_guard
+   5a08c:	f958f7a1 	ldr	x1, [x29, #12776]
+   5a090:	f9400260 	ldr	x0, [x19]
+   5a094:	ca000020 	eor	x0, x1, x0
+   5a098:	b40002a0 	cbz	x0, 5a0ec <init_shared_memory@@Base+0x1e258>
+   5a09c:	b0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   5a0a0:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   5a0a4:	d63f0000 	blr	x0
+   5a0a8:	b9478ba2 	ldr	w2, [x29, #1928]
+   5a0ac:	911616a5 	add	x5, x21, #0x585
+   5a0b0:	b9478fa3 	ldr	w3, [x29, #1932]
+   5a0b4:	aa1803e1 	mov	x1, x24
+   5a0b8:	b94793a4 	ldr	w4, [x29, #1936]
+   5a0bc:	aa1403e0 	mov	x0, x20
+   5a0c0:	f9476ed9 	ldr	x25, [x22, #3800]  ; GOT fprintf
+   5a0c4:	d63f0320 	blr	x25
+   5a0c8:	b9478ba2 	ldr	w2, [x29, #1928]
+   5a0cc:	9112baa5 	add	x5, x21, #0x4ae
+   5a0d0:	b9478fa3 	ldr	w3, [x29, #1932]
+   5a0d4:	d0000e81 	adrp	x1, 22c000 <_fini@@Base+0x16020>
+   5a0d8:	91267421 	add	x1, x1, #0x99d  ; 'InternetGatewayDevice.WANDevice.%d.WANConnectionDevice.%d.WANPPPConnection.%d.Password=%s\n'
+   5a0dc:	b94793a4 	ldr	w4, [x29, #1936]
+   5a0e0:	aa1403e0 	mov	x0, x20
+   5a0e4:	d63f0320 	blr	x25
+   5a0e8:	17ffffdf 	b	5a064 <init_shared_memory@@Base+0x1e1d0>
+   5a0ec:	a9407bfd 	ldp	x29, x30, [sp]
+   5a0f0:	d2863e10 	mov	x16, #0x31f0                	// #12784
+   5a0f4:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5a0f8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   5a0fc:	a94363f7 	ldp	x23, x24, [sp, #48]
+   5a100:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   5a104:	f9402bfb 	ldr	x27, [sp, #80]
+   5a108:	8b3063ff 	add	sp, sp, x16
+   5a10c:	d65f03c0 	ret
+
+000000000005a110 <cfgRpc_socketWrite@@Base>:
+   5a110:	a9ba7bfd 	stp	x29, x30, [sp, #-96]!
+   5a114:	910003fd 	mov	x29, sp
+   5a118:	a90153f3 	stp	x19, x20, [sp, #16]
+   5a11c:	90001353 	adrp	x19, 2c2000 <db_wrapper_getStructSize>
+   5a120:	a9025bf5 	stp	x21, x22, [sp, #32]
+   5a124:	d0001336 	adrp	x22, 2c0000 <_fini@@Base+0xaa020>
+   5a128:	a90363f7 	stp	x23, x24, [sp, #48]
+   5a12c:	d0001337 	adrp	x23, 2c0000 <_fini@@Base+0xaa020>
+   5a130:	f90023f9 	str	x25, [sp, #64]
+   5a134:	2a0003f9 	mov	w25, w0
+   5a138:	f9474660 	ldr	x0, [x19, #3720]  ; GOT __stack_chk_guard
+   5a13c:	aa0103f5 	mov	x21, x1
+   5a140:	f941eed6 	ldr	x22, [x22, #984]  ; GOT write
+   5a144:	2a0203f4 	mov	w20, w2
+   5a148:	f9413af7 	ldr	x23, [x23, #624]  ; GOT __errno_location
+   5a14c:	f9400001 	ldr	x1, [x0]
+   5a150:	f9002fa1 	str	x1, [x29, #88]
+   5a154:	d2800001 	mov	x1, #0x0                   	// #0
+   5a158:	7100029f 	cmp	w20, #0x0
+   5a15c:	5400006c 	b.gt	5a168 <cfgRpc_socketWrite@@Base+0x58>
+   5a160:	52800000 	mov	w0, #0x0                   	// #0
+   5a164:	1400001c 	b	5a1d4 <cfgRpc_socketWrite@@Base+0xc4>
+   5a168:	aa1503e1 	mov	x1, x21
+   5a16c:	93407e82 	sxtw	x2, w20
+   5a170:	2a1903e0 	mov	w0, w25
+   5a174:	d63f02c0 	blr	x22
+   5a178:	2a0003e1 	mov	w1, w0
+   5a17c:	36f803e0 	tbz	w0, #31, 5a1f8 <cfgRpc_socketWrite@@Base+0xe8>
+   5a180:	d63f02e0 	blr	x23
+   5a184:	b9400018 	ldr	w24, [x0]
+   5a188:	7100131f 	cmp	w24, #0x4
+   5a18c:	54000340 	b.eq	5a1f4 <cfgRpc_socketWrite@@Base+0xe4>  // b.none
+   5a190:	b0001341 	adrp	x1, 2c3000 <dmUtl_isMatchPasswdRule>
+   5a194:	2a1803e0 	mov	w0, w24
+   5a198:	f9440421 	ldr	x1, [x1, #2056]  ; GOT strerror
+   5a19c:	d63f0020 	blr	x1
+   5a1a0:	aa0003e5 	mov	x5, x0
+   5a1a4:	f0001306 	adrp	x6, 2bd000 <_fini@@Base+0xa7020>
+   5a1a8:	b0000e81 	adrp	x1, 22b000 <_fini@@Base+0x15020>
+   5a1ac:	91354021 	add	x1, x1, #0xd50  ; 'processNLMsg'
+   5a1b0:	f9417cc6 	ldr	x6, [x6, #760]  ; GOT log_log
+   5a1b4:	52800060 	mov	w0, #0x3                   	// #3
+   5a1b8:	2a1803e4 	mov	w4, w24
+   5a1bc:	d0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   5a1c0:	9127e063 	add	x3, x3, #0x9f8  ; 'write socket erro errno=%d(%s)\n'
+   5a1c4:	528013a2 	mov	w2, #0x9d                  	// #157
+   5a1c8:	911cc021 	add	x1, x1, #0x730  ; 'cfgRpc_socketWrite'
+   5a1cc:	d63f00c0 	blr	x6
+   5a1d0:	12800000 	mov	w0, #0xffffffff            	// #-1
+   5a1d4:	f9474673 	ldr	x19, [x19, #3720]  ; GOT __stack_chk_guard
+   5a1d8:	f9402fa2 	ldr	x2, [x29, #88]
+   5a1dc:	f9400261 	ldr	x1, [x19]
+   5a1e0:	ca010041 	eor	x1, x2, x1
+   5a1e4:	b4000101 	cbz	x1, 5a204 <cfgRpc_socketWrite@@Base+0xf4>
+   5a1e8:	b0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   5a1ec:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   5a1f0:	d63f0000 	blr	x0
+   5a1f4:	52800001 	mov	w1, #0x0                   	// #0
+   5a1f8:	4b010294 	sub	w20, w20, w1
+   5a1fc:	8b21c2b5 	add	x21, x21, w1, sxtw
+   5a200:	17ffffd6 	b	5a158 <cfgRpc_socketWrite@@Base+0x48>
+   5a204:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5a208:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   5a20c:	a94363f7 	ldp	x23, x24, [sp, #48]
+   5a210:	f94023f9 	ldr	x25, [sp, #64]
+   5a214:	a8c67bfd 	ldp	x29, x30, [sp], #96
+   5a218:	d65f03c0 	ret
+
+000000000005a21c <cfgRpc_socketRead_timeout@@Base>:
+   5a21c:	a9af7bfd 	stp	x29, x30, [sp, #-272]!
+   5a220:	910003fd 	mov	x29, sp
+   5a224:	a90153f3 	stp	x19, x20, [sp, #16]
+   5a228:	2a0003f3 	mov	w19, w0
+   5a22c:	90001340 	adrp	x0, 2c2000 <db_wrapper_getStructSize>
+   5a230:	a9025bf5 	stp	x21, x22, [sp, #32]
+   5a234:	aa0103f6 	mov	x22, x1
+   5a238:	2a0203f5 	mov	w21, w2
+   5a23c:	f9474401 	ldr	x1, [x0, #3720]  ; GOT __stack_chk_guard
+   5a240:	72001c74 	ands	w20, w3, #0xff
+   5a244:	a90363f7 	stp	x23, x24, [sp, #48]
+   5a248:	f9400022 	ldr	x2, [x1]
+   5a24c:	f90087a2 	str	x2, [x29, #264]
+   5a250:	d2800002 	mov	x2, #0x0                   	// #0
+   5a254:	a9046bf9 	stp	x25, x26, [sp, #64]
+   5a258:	a90573fb 	stp	x27, x28, [sp, #80]
+   5a25c:	f90037a0 	str	x0, [x29, #104]
+   5a260:	54000161 	b.ne	5a28c <cfgRpc_socketRead_timeout@@Base+0x70>  // b.any
+   5a264:	f0001304 	adrp	x4, 2bd000 <_fini@@Base+0xa7020>
+   5a268:	b0000e81 	adrp	x1, 22b000 <_fini@@Base+0x15020>
+   5a26c:	91354021 	add	x1, x1, #0xd50  ; 'processNLMsg'
+   5a270:	f9417c84 	ldr	x4, [x4, #760]  ; GOT log_log
+   5a274:	d0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   5a278:	91286063 	add	x3, x3, #0xa18  ; 'timeout is 0 \n'
+   5a27c:	52801702 	mov	w2, #0xb8                  	// #184
+   5a280:	911d2021 	add	x1, x1, #0x748  ; 'cfgRpc_socketRead_timeout'
+   5a284:	52800060 	mov	w0, #0x3                   	// #3
+   5a288:	d63f0080 	blr	x4
+   5a28c:	f000131a 	adrp	x26, 2bd000 <_fini@@Base+0xa7020>
+   5a290:	d0001320 	adrp	x0, 2c0000 <_fini@@Base+0xaa020>
+   5a294:	92401e94 	and	x20, x20, #0xff
+   5a298:	93407e79 	sxtw	x25, w19
+   5a29c:	1200167b 	and	w27, w19, #0x3f
+   5a2a0:	f9413b5a 	ldr	x26, [x26, #624]  ; GOT select
+   5a2a4:	d2800038 	mov	x24, #0x1                   	// #1
+   5a2a8:	f9413800 	ldr	x0, [x0, #624]  ; GOT __errno_location
+   5a2ac:	a907ffb4 	stp	x20, xzr, [x29, #120]
+   5a2b0:	d346ff39 	lsr	x25, x25, #6
+   5a2b4:	9101e3bc 	add	x28, x29, #0x78
+   5a2b8:	910223b4 	add	x20, x29, #0x88
+   5a2bc:	9adb2318 	lsl	x24, x24, x27
+   5a2c0:	f90033a0 	str	x0, [x29, #96]
+   5a2c4:	d2800000 	mov	x0, #0x0                   	// #0
+   5a2c8:	f834681f 	str	xzr, [x0, x20]
+   5a2cc:	91002000 	add	x0, x0, #0x8
+   5a2d0:	f102001f 	cmp	x0, #0x80
+   5a2d4:	54ffffa1 	b.ne	5a2c8 <cfgRpc_socketRead_timeout@@Base+0xac>  // b.any
+   5a2d8:	d37df337 	lsl	x23, x25, #3
+   5a2dc:	aa1c03e4 	mov	x4, x28
+   5a2e0:	d2800003 	mov	x3, #0x0                   	// #0
+   5a2e4:	d2800002 	mov	x2, #0x0                   	// #0
+   5a2e8:	aa1403e1 	mov	x1, x20
+   5a2ec:	f8776a80 	ldr	x0, [x20, x23]
+   5a2f0:	aa180000 	orr	x0, x0, x24
+   5a2f4:	f8376a80 	str	x0, [x20, x23]
+   5a2f8:	11000660 	add	w0, w19, #0x1
+   5a2fc:	d63f0340 	blr	x26
+   5a300:	7100001f 	cmp	w0, #0x0
+   5a304:	540002ea 	b.ge	5a360 <cfgRpc_socketRead_timeout@@Base+0x144>  // b.tcont
+   5a308:	f94033a0 	ldr	x0, [x29, #96]
+   5a30c:	d63f0000 	blr	x0
+   5a310:	b9400017 	ldr	w23, [x0]
+   5a314:	710012ff 	cmp	w23, #0x4
+   5a318:	54fffd60 	b.eq	5a2c4 <cfgRpc_socketRead_timeout@@Base+0xa8>  // b.none
+   5a31c:	b0001341 	adrp	x1, 2c3000 <dmUtl_isMatchPasswdRule>
+   5a320:	2a1703e0 	mov	w0, w23
+   5a324:	f9440421 	ldr	x1, [x1, #2056]  ; GOT strerror
+   5a328:	d63f0020 	blr	x1
+   5a32c:	aa0003e5 	mov	x5, x0
+   5a330:	d0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   5a334:	91289c63 	add	x3, x3, #0xa27  ; 'error while select errno=%d(%s)\n'
+   5a338:	2a1703e4 	mov	w4, w23
+   5a33c:	52801962 	mov	w2, #0xcb                  	// #203
+   5a340:	f0001306 	adrp	x6, 2bd000 <_fini@@Base+0xa7020>
+   5a344:	b0000e81 	adrp	x1, 22b000 <_fini@@Base+0x15020>
+   5a348:	91354021 	add	x1, x1, #0xd50  ; 'processNLMsg'
+   5a34c:	f9417cc6 	ldr	x6, [x6, #760]  ; GOT log_log
+   5a350:	911d2021 	add	x1, x1, #0x748  ; 'cfgRpc_socketRead_timeout'
+   5a354:	52800060 	mov	w0, #0x3                   	// #3
+   5a358:	d63f00c0 	blr	x6
+   5a35c:	1400001e 	b	5a3d4 <cfgRpc_socketRead_timeout@@Base+0x1b8>
+   5a360:	540000e1 	b.ne	5a37c <cfgRpc_socketRead_timeout@@Base+0x160>  // b.any
+   5a364:	d0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   5a368:	91292063 	add	x3, x3, #0xa48  ; 'select timeout, client_fd is %d, timeout is %d \n'
+   5a36c:	2a1303e4 	mov	w4, w19
+   5a370:	52801a22 	mov	w2, #0xd1                  	// #209
+   5a374:	f9403fa5 	ldr	x5, [x29, #120]
+   5a378:	17fffff2 	b	5a340 <cfgRpc_socketRead_timeout@@Base+0x124>
+   5a37c:	f8776a80 	ldr	x0, [x20, x23]
+   5a380:	52800014 	mov	w20, #0x0                   	// #0
+   5a384:	9adb241b 	lsr	x27, x0, x27
+   5a388:	3600013b 	tbz	w27, #0, 5a3ac <cfgRpc_socketRead_timeout@@Base+0x190>
+   5a38c:	b0001337 	adrp	x23, 2bf000 <_fini@@Base+0xa9020>
+   5a390:	d0001338 	adrp	x24, 2c0000 <_fini@@Base+0xaa020>
+   5a394:	f946def7 	ldr	x23, [x23, #3512]  ; GOT read
+   5a398:	f9413b18 	ldr	x24, [x24, #624]  ; GOT __errno_location
+   5a39c:	710002bf 	cmp	w21, #0x0
+   5a3a0:	540002ec 	b.gt	5a3fc <cfgRpc_socketRead_timeout@@Base+0x1e0>
+   5a3a4:	52800000 	mov	w0, #0x0                   	// #0
+   5a3a8:	1400000c 	b	5a3d8 <cfgRpc_socketRead_timeout@@Base+0x1bc>
+   5a3ac:	f0001304 	adrp	x4, 2bd000 <_fini@@Base+0xa7020>
+   5a3b0:	b0000e81 	adrp	x1, 22b000 <_fini@@Base+0x15020>
+   5a3b4:	91354021 	add	x1, x1, #0xd50  ; 'processNLMsg'
+   5a3b8:	f9417c84 	ldr	x4, [x4, #760]  ; GOT log_log
+   5a3bc:	d0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   5a3c0:	9129e463 	add	x3, x3, #0xa79  ; 'something wrong while waiting for socket\n'
+   5a3c4:	52801b42 	mov	w2, #0xda                  	// #218
+   5a3c8:	911d2021 	add	x1, x1, #0x748  ; 'cfgRpc_socketRead_timeout'
+   5a3cc:	52800060 	mov	w0, #0x3                   	// #3
+   5a3d0:	d63f0080 	blr	x4
+   5a3d4:	12800000 	mov	w0, #0xffffffff            	// #-1
+   5a3d8:	f94037a1 	ldr	x1, [x29, #104]
+   5a3dc:	f9474421 	ldr	x1, [x1, #3720]
+   5a3e0:	f94087a2 	ldr	x2, [x29, #264]
+   5a3e4:	f9400021 	ldr	x1, [x1]
+   5a3e8:	ca010041 	eor	x1, x2, x1
+   5a3ec:	b4000641 	cbz	x1, 5a4b4 <cfgRpc_socketRead_timeout@@Base+0x298>
+   5a3f0:	b0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   5a3f4:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   5a3f8:	d63f0000 	blr	x0
+   5a3fc:	93407ea2 	sxtw	x2, w21
+   5a400:	aa1603e1 	mov	x1, x22
+   5a404:	2a1303e0 	mov	w0, w19
+   5a408:	d63f02e0 	blr	x23
+   5a40c:	7100001f 	cmp	w0, #0x0
+   5a410:	5400028a 	b.ge	5a460 <cfgRpc_socketRead_timeout@@Base+0x244>  // b.tcont
+   5a414:	d63f0300 	blr	x24
+   5a418:	b9400019 	ldr	w25, [x0]
+   5a41c:	7100133f 	cmp	w25, #0x4
+   5a420:	540000c1 	b.ne	5a438 <cfgRpc_socketRead_timeout@@Base+0x21c>  // b.any
+   5a424:	f0001321 	adrp	x1, 2c1000 <_fini@@Base+0xab020>
+   5a428:	52807d00 	mov	w0, #0x3e8                 	// #1000
+   5a42c:	f9436c21 	ldr	x1, [x1, #1752]  ; GOT usleep
+   5a430:	d63f0020 	blr	x1
+   5a434:	17ffffda 	b	5a39c <cfgRpc_socketRead_timeout@@Base+0x180>
+   5a438:	b0001341 	adrp	x1, 2c3000 <dmUtl_isMatchPasswdRule>
+   5a43c:	2a1903e0 	mov	w0, w25
+   5a440:	f9440421 	ldr	x1, [x1, #2056]  ; GOT strerror
+   5a444:	d63f0020 	blr	x1
+   5a448:	aa0003e5 	mov	x5, x0
+   5a44c:	d0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   5a450:	912a8c63 	add	x3, x3, #0xaa3  ; 'read socket error errno=%d(%s)\n'
+   5a454:	2a1903e4 	mov	w4, w25
+   5a458:	52801cc2 	mov	w2, #0xe6                  	// #230
+   5a45c:	17ffffb9 	b	5a340 <cfgRpc_socketRead_timeout@@Base+0x124>
+   5a460:	54000241 	b.ne	5a4a8 <cfgRpc_socketRead_timeout@@Base+0x28c>  // b.any
+   5a464:	71000a9f 	cmp	w20, #0x2
+   5a468:	540001ed 	b.le	5a4a4 <cfgRpc_socketRead_timeout@@Base+0x288>
+   5a46c:	d0001320 	adrp	x0, 2c0000 <_fini@@Base+0xaa020>
+   5a470:	f9413800 	ldr	x0, [x0, #624]  ; GOT __errno_location
+   5a474:	d63f0000 	blr	x0
+   5a478:	b9400013 	ldr	w19, [x0]
+   5a47c:	b0001341 	adrp	x1, 2c3000 <dmUtl_isMatchPasswdRule>
+   5a480:	2a1303e0 	mov	w0, w19
+   5a484:	f9440421 	ldr	x1, [x1, #2056]  ; GOT strerror
+   5a488:	d63f0020 	blr	x1
+   5a48c:	aa0003e5 	mov	x5, x0
+   5a490:	d0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   5a494:	912a8c63 	add	x3, x3, #0xaa3  ; 'read socket error errno=%d(%s)\n'
+   5a498:	2a1303e4 	mov	w4, w19
+   5a49c:	52801da2 	mov	w2, #0xed                  	// #237
+   5a4a0:	17ffffa8 	b	5a340 <cfgRpc_socketRead_timeout@@Base+0x124>
+   5a4a4:	11000694 	add	w20, w20, #0x1
+   5a4a8:	4b0002b5 	sub	w21, w21, w0
+   5a4ac:	8b20c2d6 	add	x22, x22, w0, sxtw
+   5a4b0:	17ffffbb 	b	5a39c <cfgRpc_socketRead_timeout@@Base+0x180>
+   5a4b4:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5a4b8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   5a4bc:	a94363f7 	ldp	x23, x24, [sp, #48]
+   5a4c0:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   5a4c4:	a94573fb 	ldp	x27, x28, [sp, #80]
+   5a4c8:	a8d17bfd 	ldp	x29, x30, [sp], #272
+   5a4cc:	d65f03c0 	ret
+
+000000000005a4d0 <cfgRpc_socketRead@@Base>:
+   5a4d0:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   5a4d4:	90001343 	adrp	x3, 2c2000 <db_wrapper_getStructSize>
+   5a4d8:	910003fd 	mov	x29, sp
+   5a4dc:	f9474463 	ldr	x3, [x3, #3720]  ; GOT __stack_chk_guard
+   5a4e0:	f9400064 	ldr	x4, [x3]
+   5a4e4:	f9000fa4 	str	x4, [x29, #24]
+   5a4e8:	d2800004 	mov	x4, #0x0                   	// #0
+   5a4ec:	f9400fa4 	ldr	x4, [x29, #24]
+   5a4f0:	f9400063 	ldr	x3, [x3]
+   5a4f4:	ca030083 	eor	x3, x4, x3
+   5a4f8:	b4000083 	cbz	x3, 5a508 <cfgRpc_socketRead@@Base+0x38>
+   5a4fc:	b0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   5a500:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   5a504:	d63f0000 	blr	x0
+   5a508:	b0001324 	adrp	x4, 2bf000 <_fini@@Base+0xa9020>
+   5a50c:	52800283 	mov	w3, #0x14                  	// #20
+   5a510:	f940a484 	ldr	x4, [x4, #328]
+   5a514:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a518:	d61f0080 	br	x4
+   5a51c:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   5a520:	90001341 	adrp	x1, 2c2000 <db_wrapper_getStructSize>
+   5a524:	910003fd 	mov	x29, sp
+   5a528:	f9474421 	ldr	x1, [x1, #3720]  ; GOT __stack_chk_guard
+   5a52c:	f9400022 	ldr	x2, [x1]
+   5a530:	f9000fa2 	str	x2, [x29, #24]
+   5a534:	d2800002 	mov	x2, #0x0                   	// #0
+   5a538:	b40001e0 	cbz	x0, 5a574 <cfgRpc_socketRead@@Base+0xa4>
+   5a53c:	f9400fa2 	ldr	x2, [x29, #24]
+   5a540:	f9400021 	ldr	x1, [x1]
+   5a544:	ca010041 	eor	x1, x2, x1
+   5a548:	b4000081 	cbz	x1, 5a558 <cfgRpc_socketRead@@Base+0x88>
+   5a54c:	b0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   5a550:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   5a554:	d63f0000 	blr	x0
+   5a558:	b0001343 	adrp	x3, 2c3000 <dmUtl_isMatchPasswdRule>
+   5a55c:	b9402c02 	ldr	w2, [x0, #44]
+   5a560:	9100c001 	add	x1, x0, #0x30
+   5a564:	b9402800 	ldr	w0, [x0, #40]
+   5a568:	f944d063 	ldr	x3, [x3, #2464]
+   5a56c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a570:	d61f0060 	br	x3
+   5a574:	12800000 	mov	w0, #0xffffffff            	// #-1
+   5a578:	f9400fa2 	ldr	x2, [x29, #24]
+   5a57c:	f9400021 	ldr	x1, [x1]
+   5a580:	ca010041 	eor	x1, x2, x1
+   5a584:	b5fffe41 	cbnz	x1, 5a54c <cfgRpc_socketRead@@Base+0x7c>
+   5a588:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a58c:	d65f03c0 	ret
+   5a590:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   5a594:	90001341 	adrp	x1, 2c2000 <db_wrapper_getStructSize>
+   5a598:	910003fd 	mov	x29, sp
+   5a59c:	f9474421 	ldr	x1, [x1, #3720]  ; GOT __stack_chk_guard
+   5a5a0:	f9400022 	ldr	x2, [x1]
+   5a5a4:	f9000fa2 	str	x2, [x29, #24]
+   5a5a8:	d2800002 	mov	x2, #0x0                   	// #0
+   5a5ac:	b40001c0 	cbz	x0, 5a5e4 <cfgRpc_socketRead@@Base+0x114>
+   5a5b0:	f9400fa2 	ldr	x2, [x29, #24]
+   5a5b4:	f9400021 	ldr	x1, [x1]
+   5a5b8:	ca010041 	eor	x1, x2, x1
+   5a5bc:	b4000081 	cbz	x1, 5a5cc <cfgRpc_socketRead@@Base+0xfc>
+   5a5c0:	b0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   5a5c4:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   5a5c8:	d63f0000 	blr	x0
+   5a5cc:	f0001302 	adrp	x2, 2bd000 <_fini@@Base+0xa7020>
+   5a5d0:	9100c001 	add	x1, x0, #0x30
+   5a5d4:	b9402800 	ldr	w0, [x0, #40]
+   5a5d8:	f9419042 	ldr	x2, [x2, #800]
+   5a5dc:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a5e0:	d61f0040 	br	x2
+   5a5e4:	12800000 	mov	w0, #0xffffffff            	// #-1
+   5a5e8:	f9400fa2 	ldr	x2, [x29, #24]
+   5a5ec:	f9400021 	ldr	x1, [x1]
+   5a5f0:	ca010041 	eor	x1, x2, x1
+   5a5f4:	b5fffe61 	cbnz	x1, 5a5c0 <cfgRpc_socketRead@@Base+0xf0>
+   5a5f8:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   5a5fc:	d65f03c0 	ret
+   5a600:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   5a604:	f0001304 	adrp	x4, 2bd000 <_fini@@Base+0xa7020>
+   5a608:	b0000e81 	adrp	x1, 22b000 <_fini@@Base+0x15020>
+   5a60c:	91354021 	add	x1, x1, #0xd50  ; 'processNLMsg'
+   5a610:	910003fd 	mov	x29, sp
+   5a614:	a90153f3 	stp	x19, x20, [sp, #16]
+   5a618:	90001353 	adrp	x19, 2c2000 <db_wrapper_getStructSize>
+   5a61c:	f9417c84 	ldr	x4, [x4, #760]  ; GOT log_log
+   5a620:	aa0003f4 	mov	x20, x0
+   5a624:	f9474673 	ldr	x19, [x19, #3720]  ; GOT __stack_chk_guard
+   5a628:	911da021 	add	x1, x1, #0x768  ; 'processReceviedOptionReadyInfo'
+   5a62c:	d0001123 	adrp	x3, 280000 <_fini@@Base+0x6a020>
+   5a630:	912fd463 	add	x3, x3, #0xbf5  ; 'Enter'
+   5a634:	f9400260 	ldr	x0, [x19]
+   5a638:	f90017a0 	str	x0, [x29, #40]
+   5a63c:	d2800000 	mov	x0, #0x0                   	// #0
+   5a640:	52802302 	mov	w2, #0x118                 	// #280
+   5a644:	528000e0 	mov	w0, #0x7                   	// #7
+   5a648:	d63f0080 	blr	x4
+   5a64c:	f94017a1 	ldr	x1, [x29, #40]
+   5a650:	f9400260 	ldr	x0, [x19]
+   5a654:	ca000020 	eor	x0, x1, x0
+   5a658:	b4000080 	cbz	x0, 5a668 <cfgRpc_socketRead@@Base+0x198>
+   5a65c:	b0001320 	adrp	x0, 2bf000 <_fini@@Base+0xa9020>
+   5a660:	f9417400 	ldr	x0, [x0, #744]  ; GOT __stack_chk_fail
+   5a664:	d63f0000 	blr	x0
+   5a668:	90001322 	adrp	x2, 2be000 <_fini@@Base+0xa8020>
+   5a66c:	9100a280 	add	x0, x20, #0x28
+   5a670:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5a674:	52800001 	mov	w1, #0x0                   	// #0
+   5a678:	f940cc42 	ldr	x2, [x2, #408]
+   5a67c:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   5a680:	d61f0040 	br	x2
+   5a684:	a9a47bfd 	stp	x29, x30, [sp, #-448]!
+   5a688:	b0001323 	adrp	x3, 2bf000 <_fini@@Base+0xa9020>
+   5a68c:	d28024c2 	mov	x2, #0x126                 	// #294
+   5a690:	910003fd 	mov	x29, sp
+   5a694:	a90153f3 	stp	x19, x20, [sp, #16]
+   5a698:	90001353 	adrp	x19, 2c2000 <db_wrapper_getStructSize>
+   5a69c:	f9462c63 	ldr	x3, [x3, #3160]  ; GOT memset
+   5a6a0:	9100a3b4 	add	x20, x29, #0x28
+   5a6a4:	f9474660 	ldr	x0, [x19, #3720]  ; GOT __stack_chk_guard
+   5a6a8:	a9157fbf 	stp	xzr, xzr, [x29, #336]
+   5a6ac:	f9400001 	ldr	x1, [x0]
+   5a6b0:	f900dfa1 	str	x1, [x29, #440]
+   5a6b4:	d2800001 	mov	x1, #0x0                   	// #0
+   5a6b8:	a9167fbf 	stp	xzr, xzr, [x29, #352]
+   5a6bc:	a9177fbf 	stp	xzr, xzr, [x29, #368]
+   5a6c0:	aa1403e0 	mov	x0, x20
+   5a6c4:	a9187fbf 	stp	xzr, xzr, [x29, #384]
+   5a6c8:	a9197fbf 	stp	xzr, xzr, [x29, #400]
+   5a6cc:	a91a7fbf 	stp	xzr, xzr, [x29, #416]
+   5a6d0:	f900dbbf 	str	xzr, [x29, #432]
+   5a6d4:	d63f0060 	blr	x3
+   5a6d8:	90001342 	adrp	x2, 2c2000 <db_wrapper_getStructSize>
+   5a6dc:	52800c40 	mov	w0, #0x62                  	// #98
+   5a6e0:	52820001 	mov	w1, #0x1000                	// #4096
+   5a6e4:	b9002ba0 	str	w0, [x29, #40]
+   5a6e8:	f947e442 	ldr	x2, [x2, #4040]
+   5a6ec:	aa1403e0 	mov	x0, x20
+   5a6f0:	d63f0040 	blr	x2
+   5a6f4:	34000260 	cbz	w0, 5a740 <cfgRpc_socketRead@@Base+0x270>
+   5a6f8:	d0000e83 	adrp	x3, 22c000 <_fini@@Base+0x16020>
+   5a6fc:	912b0c63 	add	x3, x3, #0xac3  ; 'get dy password from obj fail\n'

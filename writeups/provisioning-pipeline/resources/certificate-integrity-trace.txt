@@ -1,0 +1,143 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://SOURCE-141/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000294b4 <SE_certSign@@Base>:
+   294b4:	a9b87bfd 	stp	x29, x30, [sp, #-128]!
+   294b8:	910003fd 	mov	x29, sp
+   294bc:	a90153f3 	stp	x19, x20, [sp, #16]
+   294c0:	b00000f4 	adrp	x20, 46000 <_fini@@Base+0x18178>
+   294c4:	a9025bf5 	stp	x21, x22, [sp, #32]
+   294c8:	aa0003f5 	mov	x21, x0
+   294cc:	f942be80 	ldr	x0, [x20, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   294d0:	f10002bf 	cmp	x21, #0x0
+   294d4:	a90363f7 	stp	x23, x24, [sp, #48]
+   294d8:	aa0103f8 	mov	x24, x1
+   294dc:	f9400001 	ldr	x1, [x0]
+   294e0:	f9003fa1 	str	x1, [x29, #120]
+   294e4:	d2800001 	mov	x1, #0x0                   	// #0
+   294e8:	a905ffbf 	stp	xzr, xzr, [x29, #88]
+   294ec:	a906ffbf 	stp	xzr, xzr, [x29, #104]
+   294f0:	fa401b04 	ccmp	x24, #0x0, #0x4, ne	// ne = any
+   294f4:	f90023f9 	str	x25, [sp, #64]
+   294f8:	540002c1 	b.ne	29550 <SE_certSign@@Base+0x9c>  // b.any
+   294fc:	b00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   29500:	f0000042 	adrp	x2, 34000 <_fini@@Base+0x6178>
+   29504:	9119e042 	add	x2, x2, #0x678  ; 'seDigestNew'
+   29508:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   2950c:	f0000041 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   29510:	9104c821 	add	x1, x1, #0x132  ; 'sec:invalid input %s:%d\n'
+   29514:	52801ca3 	mov	w3, #0xe5                  	// #229
+   29518:	9100c042 	add	x2, x2, #0x30  ; 'SE_certSign'
+   2951c:	52800053 	mov	w19, #0x2                   	// #2
+   29520:	f9400004 	ldr	x4, [x0]
+   29524:	52800060 	mov	w0, #0x3                   	// #3
+   29528:	d63f0080 	blr	x4
+   2952c:	f942be94 	ldr	x20, [x20, #1400]  ; GOT __stack_chk_guard@GLIBC_2.17
+   29530:	2a1303e0 	mov	w0, w19
+   29534:	f9403fa2 	ldr	x2, [x29, #120]
+   29538:	f9400281 	ldr	x1, [x20]
+   2953c:	ca010041 	eor	x1, x2, x1
+   29540:	b4000bc1 	cbz	x1, 296b8 <SE_certSign@@Base+0x204>
+   29544:	b00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   29548:	f9425400 	ldr	x0, [x0, #1192]  ; GOT __stack_chk_fail@GLIBC_2.17
+   2954c:	d63f0000 	blr	x0
+   29550:	aa0203f7 	mov	x23, x2
+   29554:	b4000502 	cbz	x2, 295f4 <SE_certSign@@Base+0x140>
+   29558:	b00000e1 	adrp	x1, 46000 <_fini@@Base+0x18178>
+   2955c:	aa0203e0 	mov	x0, x2
+   29560:	f9424021 	ldr	x1, [x1, #1152]  ; GOT strlen@GLIBC_2.17
+   29564:	d63f0020 	blr	x1
+   29568:	aa0003f9 	mov	x25, x0
+   2956c:	b00000f3 	adrp	x19, 46000 <_fini@@Base+0x18178>
+   29570:	b0000021 	adrp	x1, 2e000 <_fini@@Base+0x178>
+   29574:	91209421 	add	x1, x1, #0x825
+   29578:	f943b673 	ldr	x19, [x19, #1896]  ; GOT BIO_new_file@OPENSSL_3.0.0
+   2957c:	aa1503e0 	mov	x0, x21
+   29580:	d63f0260 	blr	x19
+   29584:	aa0003f6 	mov	x22, x0
+   29588:	b50003a0 	cbnz	x0, 295fc <SE_certSign@@Base+0x148>
+   2958c:	b00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   29590:	f0000043 	adrp	x3, 34000 <_fini@@Base+0x6178>
+   29594:	9119e063 	add	x3, x3, #0x678  ; 'seDigestNew'
+   29598:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   2959c:	f0000041 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   295a0:	911cb421 	add	x1, x1, #0x72d  ; 'sec:open file[%s] failed %s:%d\n'
+   295a4:	52801e04 	mov	w4, #0xf0                  	// #240
+   295a8:	9100c063 	add	x3, x3, #0x30  ; 'SE_certSign'
+   295ac:	aa1503e2 	mov	x2, x21
+   295b0:	52800653 	mov	w19, #0x32                  	// #50
+   295b4:	f9400005 	ldr	x5, [x0]
+   295b8:	52800060 	mov	w0, #0x3                   	// #3
+   295bc:	d63f00a0 	blr	x5
+   295c0:	b00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   295c4:	f0000043 	adrp	x3, 34000 <_fini@@Base+0x6178>
+   295c8:	9119e063 	add	x3, x3, #0x678  ; 'seDigestNew'
+   295cc:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   295d0:	52802264 	mov	w4, #0x113                 	// #275
+   295d4:	9100c063 	add	x3, x3, #0x30  ; 'SE_certSign'
+   295d8:	2a1303e2 	mov	w2, w19
+   295dc:	f0000041 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   295e0:	911c6421 	add	x1, x1, #0x719  ; 'sec:err[%ld] %s:%d\n'
+   295e4:	f9400005 	ldr	x5, [x0]
+   295e8:	52800060 	mov	w0, #0x3                   	// #3
+   295ec:	d63f00a0 	blr	x5
+   295f0:	17ffffcf 	b	2952c <SE_certSign@@Base+0x78>
+   295f4:	d2800019 	mov	x25, #0x0                   	// #0
+   295f8:	17ffffdd 	b	2956c <SE_certSign@@Base+0xb8>
+   295fc:	f0000021 	adrp	x1, 30000 <_fini@@Base+0x2178>
+   29600:	912e7021 	add	x1, x1, #0xb9c
+   29604:	aa1803e0 	mov	x0, x24
+   29608:	d63f0260 	blr	x19
+   2960c:	aa0003f5 	mov	x21, x0
+   29610:	b50002e0 	cbnz	x0, 2966c <SE_certSign@@Base+0x1b8>
+   29614:	b00000e0 	adrp	x0, 46000 <_fini@@Base+0x18178>
+   29618:	f0000043 	adrp	x3, 34000 <_fini@@Base+0x6178>
+   2961c:	9119e063 	add	x3, x3, #0x678  ; 'seDigestNew'
+   29620:	f9419400 	ldr	x0, [x0, #808]  ; GOT SE_syslog
+   29624:	f0000041 	adrp	x1, 34000 <_fini@@Base+0x6178>
+   29628:	911cb421 	add	x1, x1, #0x72d  ; 'sec:open file[%s] failed %s:%d\n'
+   2962c:	52801ee4 	mov	w4, #0xf7                  	// #247
+   29630:	9100c063 	add	x3, x3, #0x30  ; 'SE_certSign'
+   29634:	aa1803e2 	mov	x2, x24
+   29638:	52800653 	mov	w19, #0x32                  	// #50
+   2963c:	f9400005 	ldr	x5, [x0]
+   29640:	52800060 	mov	w0, #0x3                   	// #3
+   29644:	d63f00a0 	blr	x5
+   29648:	aa1603e0 	mov	x0, x22
+   2964c:	b00000f6 	adrp	x22, 46000 <_fini@@Base+0x18178>
+   29650:	f944c6d6 	ldr	x22, [x22, #2440]  ; GOT BIO_free@OPENSSL_3.0.0
+   29654:	d63f02c0 	blr	x22
+   29658:	b4000075 	cbz	x21, 29664 <SE_certSign@@Base+0x1b0>
+   2965c:	aa1503e0 	mov	x0, x21
+   29660:	d63f02c0 	blr	x22
+   29664:	34fff653 	cbz	w19, 2952c <SE_certSign@@Base+0x78>
+   29668:	17ffffd6 	b	295c0 <SE_certSign@@Base+0x10c>
+   2966c:	910163b8 	add	x24, x29, #0x58
+   29670:	52800404 	mov	w4, #0x20                  	// #32
+   29674:	aa1803e3 	mov	x3, x24
+   29678:	2a1903e2 	mov	w2, w25
+   2967c:	aa1703e1 	mov	x1, x23
+   29680:	aa1603e0 	mov	x0, x22
+   29684:	97fffdc1 	bl	28d88 <SE_freeConf@@Base+0x64>
+   29688:	2a0003f3 	mov	w19, w0
+   2968c:	35fffde0 	cbnz	w0, 29648 <SE_certSign@@Base+0x194>
+   29690:	b00000e3 	adrp	x3, 46000 <_fini@@Base+0x18178>
+   29694:	52800402 	mov	w2, #0x20                  	// #32
+   29698:	aa1803e1 	mov	x1, x24
+   2969c:	aa1503e0 	mov	x0, x21
+   296a0:	f944ec63 	ldr	x3, [x3, #2520]  ; GOT BIO_write@OPENSSL_3.0.0
+   296a4:	52800233 	mov	w19, #0x11                  	// #17
+   296a8:	d63f0060 	blr	x3
+   296ac:	7100001f 	cmp	w0, #0x0
+   296b0:	1a93c3f3 	csel	w19, wzr, w19, gt
+   296b4:	17ffffe5 	b	29648 <SE_certSign@@Base+0x194>
+   296b8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   296bc:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   296c0:	a94363f7 	ldp	x23, x24, [sp, #48]
+   296c4:	f94023f9 	ldr	x25, [sp, #64]
+   296c8:	a8c87bfd 	ldp	x29, x30, [sp], #128
+   296cc:	d65f03c0 	ret

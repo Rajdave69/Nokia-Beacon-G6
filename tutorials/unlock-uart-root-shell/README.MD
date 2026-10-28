@@ -453,8 +453,7 @@ On the router:
 ```shell
 mkdir -p /configs/debug
 
-printf '%s\n' 'MyDevelopmentPassword' \
-    > /configs/debug/password2.txt
+printf '%s\n' 'MyDevelopmentPassword' > /configs/debug/password2.txt
 
 chmod 600 /configs/debug/password2.txt
 sync
