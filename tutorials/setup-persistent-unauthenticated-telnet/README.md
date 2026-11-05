@@ -112,32 +112,29 @@ If `/configs/debug/replace_with_test.sh` already contains Password2 or another d
 
 Before rebooting, read it with `cat /configs/debug/replace_with_test.sh`.
 
-The script does not immediately block the early init service while waiting for the rest of networking. It starts its Telnet setup from a background subshell and waits roughly 20 seconds before launching the listener.
+The hook starts a detached shell watchdog through `start-stop-daemon -c 0:0` and returns to the boot scripts. The watchdog immediately starts the listener if needed, then checks it every five seconds. It runs separately from `telnetd`: the examined ONT's stock Telnet stop routine uses `killall telnetd`, which can terminate the custom listener as well as port 23. The watchdog can recreate port 2323 afterward.
 
-The actual daemon is started through `start-stop-daemon` with credentials `0:0`. The important launch is equivalent to:
+The daemon launch inside that supervisor is:
 
 ```sh
-/sbin/start-stop-daemon \
-    -S -b -m -p "$PIDFILE" \
-    -c 0:0 \
-    -x "$TELNETD" \
-    -- \
-    -F \
-    -p "$PORT" \
-    -l /bin/sh
+/usr/sbin/telnetd -F -p 2323 -l /bin/sh
 ```
 
-`telnetd -l /bin/sh` tells Telnet to execute the shell directly rather than handing the connection to a login program. That is why there is no authentication prompt.
+`-F` keeps the daemon in the foreground relative to its supervisor, and `-l /bin/sh` opens the shell directly. Both inherit the watchdog's root UID/GID. A killed daemon loses its existing connections; recovery makes new connections possible again, rather than preserving an interrupted session.
 
-The script also inserts an INPUT rule for TCP/2323 if an equivalent rule is not already present. It checks with `iptables -C` before using `iptables -I`, so manually re-running the script should not intentionally add the same rule over and over.
+The watchdog checks PID identity through `/proc`, prevents duplicate supervisors with a lock, retries failed launches, and checks the actual TCP listener instead of treating a launcher's return code as readiness. It respects an existing port-2323 listener rather than killing an unknown owner. It checks the INPUT accept rule with `iptables -C` and restores it after firewall reloads. A surviving managed process that no longer listens is asked to terminate before a replacement is attempted.
+
+Hook invocation and background-launch status go to `/configs/debug/telnet-root.log`. Ongoing checks, listener changes and restarts go to `/tmp/root-telnet-watchdog.log`; daemon errors go to `/tmp/root-telnetd.log`. These runtime logs are size-limited and disappear at reboot. Healthy polls do not continually write to flash.
+
+The watchdog covers daemon termination and firewall-rule loss while the watchdog itself remains alive. It cannot guarantee access after the watchdog is killed, the hook is deleted, the router reboots without executing it, or some other firewall policy blocks traffic earlier.
 
 ## 6. Reboot and let the normal boot hook start the service
 
 Run `sync` and `reboot`.
 
-Allow the router to complete Linux startup. The supplied hook waits before launching Telnet, so do not expect port 2323 to be open the instant the kernel starts.
+Allow the router to complete Linux startup. The watchdog starts without a fixed 60-second delay, but a restart or firewall reload during boot may cause a brief interruption before its next check.
 
-If you still have another shell path available, inspect `/configs/debug/telnet-root.log`. The log should show the hook starting, the launcher's credentials, the selected `telnetd` path and port, and the return code from `start-stop-daemon`.
+If you still have another shell path available, inspect `/configs/debug/telnet-root.log` and `/tmp/root-telnet-watchdog.log`. The latter should report the watchdog identity and `listening pid=...`. The launcher return code alone is not a readiness check.
 
 You can also confirm the firewall rule with:
 
@@ -171,11 +168,11 @@ At this point you have confirmed all three parts of the mechanism: the persisten
 
 ## Starting the hook manually without rebooting
 
-For quick testing, you can execute `/configs/debug/replace_with_test.sh` yourself. The background setup still waits for the delay configured in the script.
+For quick testing, run `sh /configs/debug/replace_with_test.sh`. This also works when the common late-hook migration has deliberately made the payload non-executable. A normal invocation clears a previous temporary stop flag and starts the watchdog if it is not already running.
 
 A reboot remains the cleaner final test because it proves that the stock `wifi_fw_mount` hook, not your current interactive shell, is what starts the listener.
 
-Be aware that repeatedly launching the script manually can create confusing process state if a previous `telnetd` instance or PID file is still present.
+Repeated invocations check the supervisor identity and converge on one watchdog. A stale PID file that points at an unrelated process is not treated as a healthy daemon.
 
 ---
 
@@ -203,27 +200,13 @@ Do not create a WAN port-forward to this service. There is no authentication and
 
 ## Stopping the listener
 
-If the supplied PID file exists, you can stop that instance with:
+Stop the watchdog before stopping its daemon, otherwise it will restart the listener. With this version, use:
 
-```shell
-PID="$(cat /tmp/root-telnetd.pid 2>/dev/null)"
-
-if [ -n "$PID" ]; then
-    kill "$PID"
-fi
+```sh
+sh /configs/debug/replace_with_test.sh --stop
 ```
 
-If necessary, `killall telnetd 2>/dev/null` stops all Telnet daemons.
-
-Remove the firewall rule with:
-
-```shell
-iptables -D INPUT \
-    -p tcp \
-    --dport 2323 \
-    -j ACCEPT \
-    2>/dev/null || true
-```
+This creates `/tmp/root-telnet.disabled`, signals the matching watchdog and managed daemon, and removes the matching TCP/2323 INPUT rule. It does not run `killall telnetd` or stop the stock port-23 service. The stop flag lasts until reboot or until you run the hook normally again. The watchdog may take a few seconds to finish stopping.
 
 To disable persistence completely, either remove the Telnet section from `/configs/debug/replace_with_test.sh` or make/remove the entire hook if nothing else uses it.
 

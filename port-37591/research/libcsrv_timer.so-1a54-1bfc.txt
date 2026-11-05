@@ -1,0 +1,115 @@
+
+private-source://PROFILE-G6-HJL/usr/lib/libcsrv_timer.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000001a54 <csrv_start_timer@@Base>:
+    1a54:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    1a58:	910003fd 	mov	x29, sp
+    1a5c:	b9002fa0 	str	w0, [x29, #44]
+    1a60:	f90013a1 	str	x1, [x29, #32]
+    1a64:	f9000fa2 	str	x2, [x29, #24]
+    1a68:	f9000ba3 	str	x3, [x29, #16]
+    1a6c:	b0000080 	adrp	x0, 12000 <_fini@@Base+0x10110>
+    1a70:	f947fc00 	ldr	x0, [x0, #4088]
+    1a74:	f9400001 	ldr	x1, [x0]
+    1a78:	f9001fa1 	str	x1, [x29, #56]
+    1a7c:	d2800001 	mov	x1, #0x0                   	// #0
+    1a80:	52800004 	mov	w4, #0x0                   	// #0
+    1a84:	f9400ba3 	ldr	x3, [x29, #16]
+    1a88:	f9400fa2 	ldr	x2, [x29, #24]
+    1a8c:	f94013a1 	ldr	x1, [x29, #32]
+    1a90:	b9402fa0 	ldr	w0, [x29, #44]
+    1a94:	97ffffae 	bl	194c <csrv_timer_get_expected_interval@@Base+0x6c>
+    1a98:	b0000081 	adrp	x1, 12000 <_fini@@Base+0x10110>
+    1a9c:	f947fc21 	ldr	x1, [x1, #4088]
+    1aa0:	f9401fa2 	ldr	x2, [x29, #56]
+    1aa4:	f9400021 	ldr	x1, [x1]
+    1aa8:	ca010041 	eor	x1, x2, x1
+    1aac:	f100003f 	cmp	x1, #0x0
+    1ab0:	54000040 	b.eq	1ab8 <csrv_start_timer@@Base+0x64>  // b.none
+    1ab4:	97fffc37 	bl	b90 <__stack_chk_fail@plt>
+    1ab8:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    1abc:	d65f03c0 	ret
+
+0000000000001ac0 <csrv_start_periodic_timer@@Base>:
+    1ac0:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    1ac4:	910003fd 	mov	x29, sp
+    1ac8:	b9002fa0 	str	w0, [x29, #44]
+    1acc:	f90013a1 	str	x1, [x29, #32]
+    1ad0:	f9000fa2 	str	x2, [x29, #24]
+    1ad4:	f9000ba3 	str	x3, [x29, #16]
+    1ad8:	b0000080 	adrp	x0, 12000 <_fini@@Base+0x10110>
+    1adc:	f947fc00 	ldr	x0, [x0, #4088]
+    1ae0:	f9400001 	ldr	x1, [x0]
+    1ae4:	f9001fa1 	str	x1, [x29, #56]
+    1ae8:	d2800001 	mov	x1, #0x0                   	// #0
+    1aec:	52800024 	mov	w4, #0x1                   	// #1
+    1af0:	f9400ba3 	ldr	x3, [x29, #16]
+    1af4:	f9400fa2 	ldr	x2, [x29, #24]
+    1af8:	f94013a1 	ldr	x1, [x29, #32]
+    1afc:	b9402fa0 	ldr	w0, [x29, #44]
+    1b00:	97ffff93 	bl	194c <csrv_timer_get_expected_interval@@Base+0x6c>
+    1b04:	b0000081 	adrp	x1, 12000 <_fini@@Base+0x10110>
+    1b08:	f947fc21 	ldr	x1, [x1, #4088]
+    1b0c:	f9401fa2 	ldr	x2, [x29, #56]
+    1b10:	f9400021 	ldr	x1, [x1]
+    1b14:	ca010041 	eor	x1, x2, x1
+    1b18:	f100003f 	cmp	x1, #0x0
+    1b1c:	54000040 	b.eq	1b24 <csrv_start_periodic_timer@@Base+0x64>  // b.none
+    1b20:	97fffc1c 	bl	b90 <__stack_chk_fail@plt>
+    1b24:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    1b28:	d65f03c0 	ret
+    1b2c:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    1b30:	910003fd 	mov	x29, sp
+    1b34:	f9000fa0 	str	x0, [x29, #24]
+    1b38:	b90017a1 	str	w1, [x29, #20]
+    1b3c:	b0000080 	adrp	x0, 12000 <_fini@@Base+0x10110>
+    1b40:	f947fc00 	ldr	x0, [x0, #4088]
+    1b44:	f9400001 	ldr	x1, [x0]
+    1b48:	f9001fa1 	str	x1, [x29, #56]
+    1b4c:	d2800001 	mov	x1, #0x0                   	// #0
+    1b50:	f90013bf 	str	xzr, [x29, #32]
+    1b54:	f9400fa0 	ldr	x0, [x29, #24]
+    1b58:	f9400000 	ldr	x0, [x0]
+    1b5c:	f90017a0 	str	x0, [x29, #40]
+    1b60:	f94017a0 	ldr	x0, [x29, #40]
+    1b64:	f90013a0 	str	x0, [x29, #32]
+    1b68:	14000016 	b	1bc0 <csrv_start_periodic_timer@@Base+0x100>
+    1b6c:	f94013a0 	ldr	x0, [x29, #32]
+    1b70:	f100001f 	cmp	x0, #0x0
+    1b74:	540000a1 	b.ne	1b88 <csrv_start_periodic_timer@@Base+0xc8>  // b.any
+    1b78:	90000000 	adrp	x0, 1000 <fprintf@plt+0x390>
+    1b7c:	913e8000 	add	x0, x0, #0xfa0
+    1b80:	97fffc0c 	bl	bb0 <puts@plt>
+    1b84:	14000013 	b	1bd0 <csrv_start_periodic_timer@@Base+0x110>
+    1b88:	f94013a0 	ldr	x0, [x29, #32]
+    1b8c:	b9401000 	ldr	w0, [x0, #16]
+    1b90:	b94017a1 	ldr	w1, [x29, #20]
+    1b94:	6b00003f 	cmp	w1, w0
+    1b98:	540000a1 	b.ne	1bac <csrv_start_periodic_timer@@Base+0xec>  // b.any
+    1b9c:	f94013a0 	ldr	x0, [x29, #32]
+    1ba0:	97fffc92 	bl	de8 <fprintf@plt+0x178>
+    1ba4:	f94013a0 	ldr	x0, [x29, #32]
+    1ba8:	1400000b 	b	1bd4 <csrv_start_periodic_timer@@Base+0x114>
+    1bac:	f94013a0 	ldr	x0, [x29, #32]
+    1bb0:	f9400000 	ldr	x0, [x0]
+    1bb4:	f9001ba0 	str	x0, [x29, #48]
+    1bb8:	f9401ba0 	ldr	x0, [x29, #48]
+    1bbc:	f90013a0 	str	x0, [x29, #32]
+    1bc0:	f94013a0 	ldr	x0, [x29, #32]
+    1bc4:	f9400fa1 	ldr	x1, [x29, #24]
+    1bc8:	eb00003f 	cmp	x1, x0
+    1bcc:	54fffd01 	b.ne	1b6c <csrv_start_periodic_timer@@Base+0xac>  // b.any
+    1bd0:	d2800000 	mov	x0, #0x0                   	// #0
+    1bd4:	b0000081 	adrp	x1, 12000 <_fini@@Base+0x10110>
+    1bd8:	f947fc21 	ldr	x1, [x1, #4088]
+    1bdc:	f9401fa2 	ldr	x2, [x29, #56]
+    1be0:	f9400021 	ldr	x1, [x1]
+    1be4:	ca010041 	eor	x1, x2, x1
+    1be8:	f100003f 	cmp	x1, #0x0
+    1bec:	54000040 	b.eq	1bf4 <csrv_start_periodic_timer@@Base+0x134>  // b.none
+    1bf0:	97fffbe8 	bl	b90 <__stack_chk_fail@plt>
+    1bf4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    1bf8:	d65f03c0 	ret

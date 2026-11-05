@@ -44,4 +44,4 @@ Response:
 }
 ```
 
-Plaintext: `ipversion=ipv4&iface=ipaddr={ip_addr}&checkall=ping&pingcount=4&packetlength=64&tracehops=30&csrf_token={CSRF_TOKEN}`
+Plaintext: `ipversion=ipv4&iface=&ipaddr={ip_addr}&checkall=ping&pingcount=4&packetlength=64&tracehops=30&csrf_token={CSRF_TOKEN}`

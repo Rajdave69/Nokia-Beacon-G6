@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beacon-mesh37591"
+version = "0.1.1"
+description = "Firmware-derived Nokia Beacon G6 mesh messaging codecs and TCP peers"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+mesh37591 = "beacon_mesh37591.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+beacon_mesh37591 = ["py.typed"]

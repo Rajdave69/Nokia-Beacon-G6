@@ -254,13 +254,4 @@ boundaries. Bank rollback alone does not revert a shared SSB bootloader update.
 No signing keys, bootloader passwords, password hashes or firmware partitions
 are changed by these scripts.
 
-The [knowledgebase](../../knowledgebases/firmware-upgrade-disable.md) retains the
-full source reasoning, default values, startup ordering, tests and limitations.
-[Stock evidence](resources/stock-control-evidence.json) includes both builds'
-scripts, hashes and isolated original-UCI transcripts.
-[HJL](resources/test-results-hjl.json) and [IJL](resources/test-results-ijl.json)
-results cover installation, sourced include, repeated apply, simulated reboot,
-rollback, active-write markers, unknown builds, pending firewall edits, failed
-binds, symlink targets and foreign overlays. Mount/UCI/process operations were
-mocked in those integration tests. A live reboot and real bind-mount behavior
-have not been validated by the owner yet.
+For implementation details and limitations, see the [firmware upgrade writeup](../../writeups/firmware-upgrade-path/README.md).

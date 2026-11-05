@@ -1,0 +1,109 @@
+
+private-source://PROFILE-G6-HJL/usr/lib/libcsrv_timer.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000001090 <clean_all_timer@@Base-0x570>:
+    1090:	910003fd 	mov	x29, sp
+    1094:	f9000fa0 	str	x0, [x29, #24]
+    1098:	b0000080 	adrp	x0, 12000 <_fini@@Base+0x10110>
+    109c:	f947fc00 	ldr	x0, [x0, #4088]
+    10a0:	f9400001 	ldr	x1, [x0]
+    10a4:	f9001fa1 	str	x1, [x29, #56]
+    10a8:	d2800001 	mov	x1, #0x0                   	// #0
+    10ac:	f9400fa0 	ldr	x0, [x29, #24]
+    10b0:	f100001f 	cmp	x0, #0x0
+    10b4:	54000061 	b.ne	10c0 <fprintf@plt+0x450>  // b.any
+    10b8:	12800000 	mov	w0, #0xffffffff            	// #-1
+    10bc:	1400001a 	b	1124 <fprintf@plt+0x4b4>
+    10c0:	a902ffbf 	stp	xzr, xzr, [x29, #40]
+    10c4:	9100a3a0 	add	x0, x29, #0x28
+    10c8:	aa0003e1 	mov	x1, x0
+    10cc:	52800020 	mov	w0, #0x1                   	// #1
+    10d0:	97fffea0 	bl	b50 <clock_gettime@plt>
+    10d4:	7100001f 	cmp	w0, #0x0
+    10d8:	54000060 	b.eq	10e4 <fprintf@plt+0x474>  // b.none
+    10dc:	12800000 	mov	w0, #0xffffffff            	// #-1
+    10e0:	14000011 	b	1124 <fprintf@plt+0x4b4>
+    10e4:	f94017a1 	ldr	x1, [x29, #40]
+    10e8:	f9400fa0 	ldr	x0, [x29, #24]
+    10ec:	f9000001 	str	x1, [x0]
+    10f0:	f9401ba0 	ldr	x0, [x29, #48]
+    10f4:	d2869b61 	mov	x1, #0x34db                	// #13531
+    10f8:	f2baf6c1 	movk	x1, #0xd7b6, lsl #16
+    10fc:	f2dbd041 	movk	x1, #0xde82, lsl #32
+    1100:	f2e86361 	movk	x1, #0x431b, lsl #48
+    1104:	9b417c01 	smulh	x1, x0, x1
+    1108:	9352fc21 	asr	x1, x1, #18
+    110c:	937ffc00 	asr	x0, x0, #63
+    1110:	cb000020 	sub	x0, x1, x0
+    1114:	12003c01 	and	w1, w0, #0xffff
+    1118:	f9400fa0 	ldr	x0, [x29, #24]
+    111c:	79001001 	strh	w1, [x0, #8]
+    1120:	52800000 	mov	w0, #0x0                   	// #0
+    1124:	b0000081 	adrp	x1, 12000 <_fini@@Base+0x10110>
+    1128:	f947fc21 	ldr	x1, [x1, #4088]
+    112c:	f9401fa2 	ldr	x2, [x29, #56]
+    1130:	f9400021 	ldr	x1, [x1]
+    1134:	ca010041 	eor	x1, x2, x1
+    1138:	f100003f 	cmp	x1, #0x0
+    113c:	54000040 	b.eq	1144 <fprintf@plt+0x4d4>  // b.none
+    1140:	97fffe94 	bl	b90 <__stack_chk_fail@plt>
+    1144:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    1148:	d65f03c0 	ret
+    114c:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+    1150:	910003fd 	mov	x29, sp
+    1154:	f9000fa0 	str	x0, [x29, #24]
+    1158:	b90017a1 	str	w1, [x29, #20]
+    115c:	b0000080 	adrp	x0, 12000 <_fini@@Base+0x10110>
+    1160:	f947fc00 	ldr	x0, [x0, #4088]
+    1164:	f9400001 	ldr	x1, [x0]
+    1168:	f90017a1 	str	x1, [x29, #40]
+    116c:	d2800001 	mov	x1, #0x0                   	// #0
+    1170:	f9400fa0 	ldr	x0, [x29, #24]
+    1174:	f100001f 	cmp	x0, #0x0
+    1178:	54000500 	b.eq	1218 <fprintf@plt+0x5a8>  // b.none
+    117c:	b94017a0 	ldr	w0, [x29, #20]
+    1180:	7100001f 	cmp	w0, #0x0
+    1184:	540004ad 	b.le	1218 <fprintf@plt+0x5a8>
+    1188:	f9400fa0 	ldr	x0, [x29, #24]
+    118c:	79401000 	ldrh	w0, [x0, #8]
+    1190:	b90027a0 	str	w0, [x29, #36]
+    1194:	b94027a1 	ldr	w1, [x29, #36]
+    1198:	b94017a0 	ldr	w0, [x29, #20]
+    119c:	0b000020 	add	w0, w1, w0
+    11a0:	b90027a0 	str	w0, [x29, #36]
+    11a4:	f9400fa0 	ldr	x0, [x29, #24]
+    11a8:	f9400001 	ldr	x1, [x0]
+    11ac:	b94027a0 	ldr	w0, [x29, #36]
+    11b0:	5289ba62 	mov	w2, #0x4dd3                	// #19923
+    11b4:	72a20c42 	movk	w2, #0x1062, lsl #16
+    11b8:	9b227c02 	smull	x2, w0, w2
+    11bc:	d360fc42 	lsr	x2, x2, #32
+    11c0:	13067c42 	asr	w2, w2, #6
+    11c4:	131f7c00 	asr	w0, w0, #31
+    11c8:	4b000040 	sub	w0, w2, w0
+    11cc:	93407c00 	sxtw	x0, w0
+    11d0:	8b000021 	add	x1, x1, x0
+    11d4:	f9400fa0 	ldr	x0, [x29, #24]
+    11d8:	f9000001 	str	x1, [x0]
+    11dc:	b94027a0 	ldr	w0, [x29, #36]
+    11e0:	5289ba61 	mov	w1, #0x4dd3                	// #19923
+    11e4:	72a20c41 	movk	w1, #0x1062, lsl #16
+    11e8:	9b217c01 	smull	x1, w0, w1
+    11ec:	d360fc21 	lsr	x1, x1, #32
+    11f0:	13067c22 	asr	w2, w1, #6
+    11f4:	131f7c01 	asr	w1, w0, #31
+    11f8:	4b010041 	sub	w1, w2, w1
+    11fc:	52807d02 	mov	w2, #0x3e8                 	// #1000
+    1200:	1b027c21 	mul	w1, w1, w2
+    1204:	4b010001 	sub	w1, w0, w1
+    1208:	12003c21 	and	w1, w1, #0xffff
+    120c:	f9400fa0 	ldr	x0, [x29, #24]
+    1210:	79001001 	strh	w1, [x0, #8]
+    1214:	14000002 	b	121c <fprintf@plt+0x5ac>
+    1218:	d503201f 	nop
+    121c:	b0000080 	adrp	x0, 12000 <_fini@@Base+0x10110>
+    1220:	f947fc00 	ldr	x0, [x0, #4088]
+    1224:	f94017a1 	ldr	x1, [x29, #40]

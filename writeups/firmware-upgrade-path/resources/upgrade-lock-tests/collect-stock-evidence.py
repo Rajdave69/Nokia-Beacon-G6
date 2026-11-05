@@ -6,7 +6,7 @@ fw3 startup, kernel mount, real firewall or upgrade operation is performed.
 import argparse,hashlib,json,shutil,subprocess,sys,tempfile
 from pathlib import Path
 sys.dont_write_bytecode=True
-PROJECT=Path(__file__).resolve().parents[3]
+PROJECT=Path(__file__).resolve().parents[4]
 sys.path.insert(0,str(PROJECT/'writeups/firmware-upgrade-path/resources/upgrade-entrypoints'))
 from elf_reader import Elf
 SOURCES=['etc/init.d/startup','etc/init.d/firewall','etc/init.d/pcd','etc/init.d/commit_image','etc/init.d/done','etc/config/firewall','usr/exe/link.sh','usr/exe/image_activate.sh','usr/exe/image_commit.sh','etc/HB_Config.json','etc/pcd/swmgnt.pcd','etc/buildinfo','etc/init.d/ndk_rgwstack','sbin/ndk_update_fw3_config.sh','sbin/ndk_merge_fw3_firewall_user.sh','sbin/update_ndk_rgwstack.sh']

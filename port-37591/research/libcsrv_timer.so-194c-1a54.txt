@@ -1,0 +1,73 @@
+
+private-source://PROFILE-G6-HJL/usr/lib/libcsrv_timer.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000194c <csrv_timer_get_expected_interval@@Base+0x6c>:
+    194c:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    1950:	910003fd 	mov	x29, sp
+    1954:	b9002fa0 	str	w0, [x29, #44]
+    1958:	f90013a1 	str	x1, [x29, #32]
+    195c:	f9000fa2 	str	x2, [x29, #24]
+    1960:	f9000ba3 	str	x3, [x29, #16]
+    1964:	3900afa4 	strb	w4, [x29, #43]
+    1968:	b0000080 	adrp	x0, 12000 <_fini@@Base+0x10110>
+    196c:	f947fc00 	ldr	x0, [x0, #4088]
+    1970:	f9400001 	ldr	x1, [x0]
+    1974:	f90027a1 	str	x1, [x29, #72]
+    1978:	d2800001 	mov	x1, #0x0                   	// #0
+    197c:	d2800900 	mov	x0, #0x48                  	// #72
+    1980:	97fffc78 	bl	b60 <malloc@plt>
+    1984:	f9001fa0 	str	x0, [x29, #56]
+    1988:	f9401fa0 	ldr	x0, [x29, #56]
+    198c:	f100001f 	cmp	x0, #0x0
+    1990:	540000c1 	b.ne	19a8 <csrv_timer_get_expected_interval@@Base+0xc8>  // b.any
+    1994:	90000000 	adrp	x0, 1000 <fprintf@plt+0x390>
+    1998:	913dc000 	add	x0, x0, #0xf70
+    199c:	97fffc85 	bl	bb0 <puts@plt>
+    19a0:	12800000 	mov	w0, #0xffffffff            	// #-1
+    19a4:	14000022 	b	1a2c <csrv_timer_get_expected_interval@@Base+0x14c>
+    19a8:	97fffeac 	bl	1458 <fprintf@plt+0x7e8>
+    19ac:	2a0003e1 	mov	w1, w0
+    19b0:	f9401fa0 	ldr	x0, [x29, #56]
+    19b4:	b9001001 	str	w1, [x0, #16]
+    19b8:	f9401fa0 	ldr	x0, [x29, #56]
+    19bc:	9100c000 	add	x0, x0, #0x30
+    19c0:	b9402fa1 	ldr	w1, [x29, #44]
+    19c4:	97fffe52 	bl	130c <fprintf@plt+0x69c>
+    19c8:	f9401fa0 	ldr	x0, [x29, #56]
+    19cc:	f94013a1 	ldr	x1, [x29, #32]
+    19d0:	f9000c01 	str	x1, [x0, #24]
+    19d4:	f9401fa0 	ldr	x0, [x29, #56]
+    19d8:	f9400fa1 	ldr	x1, [x29, #24]
+    19dc:	f9001001 	str	x1, [x0, #32]
+    19e0:	f9401fa0 	ldr	x0, [x29, #56]
+    19e4:	f9400ba1 	ldr	x1, [x29, #16]
+    19e8:	f9001401 	str	x1, [x0, #40]
+    19ec:	3940afa0 	ldrb	w0, [x29, #43]
+    19f0:	7100001f 	cmp	w0, #0x0
+    19f4:	540000a0 	b.eq	1a08 <csrv_timer_get_expected_interval@@Base+0x128>  // b.none
+    19f8:	f9401fa0 	ldr	x0, [x29, #56]
+    19fc:	b9402fa1 	ldr	w1, [x29, #44]
+    1a00:	b9004001 	str	w1, [x0, #64]
+    1a04:	14000003 	b	1a10 <csrv_timer_get_expected_interval@@Base+0x130>
+    1a08:	f9401fa0 	ldr	x0, [x29, #56]
+    1a0c:	b900401f 	str	wzr, [x0, #64]
+    1a10:	97fffd73 	bl	fdc <fprintf@plt+0x36c>
+    1a14:	f90023a0 	str	x0, [x29, #64]
+    1a18:	f9401fa1 	ldr	x1, [x29, #56]
+    1a1c:	f94023a0 	ldr	x0, [x29, #64]
+    1a20:	97fffeb7 	bl	14fc <fprintf@plt+0x88c>
+    1a24:	f9401fa0 	ldr	x0, [x29, #56]
+    1a28:	b9401000 	ldr	w0, [x0, #16]
+    1a2c:	b0000081 	adrp	x1, 12000 <_fini@@Base+0x10110>
+    1a30:	f947fc21 	ldr	x1, [x1, #4088]
+    1a34:	f94027a2 	ldr	x2, [x29, #72]
+    1a38:	f9400021 	ldr	x1, [x1]
+    1a3c:	ca010041 	eor	x1, x2, x1
+    1a40:	f100003f 	cmp	x1, #0x0
+    1a44:	54000040 	b.eq	1a4c <csrv_timer_get_expected_interval@@Base+0x16c>  // b.none
+    1a48:	97fffc52 	bl	b90 <__stack_chk_fail@plt>
+    1a4c:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    1a50:	d65f03c0 	ret

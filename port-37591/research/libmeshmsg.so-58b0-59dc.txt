@@ -1,0 +1,84 @@
+
+private-source://PROFILE-G6-HJL/usr/lib/libmeshmsg.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000058b0 <enable_heartbeat@@Base>:
+    58b0:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    58b4:	910003fd 	mov	x29, sp
+    58b8:	a901d7f4 	stp	x20, x21, [sp, #24]
+    58bc:	b00000f4 	adrp	x20, 22000 <_fini@@Base+0x11cc8>
+    58c0:	aa0003f5 	mov	x21, x0
+    58c4:	f947f680 	ldr	x0, [x20, #4072]
+    58c8:	f9400001 	ldr	x1, [x0]
+    58cc:	f90027a1 	str	x1, [x29, #72]
+    58d0:	d2800001 	mov	x1, #0x0                   	// #0
+    58d4:	b4000675 	cbz	x21, 59a0 <enable_heartbeat@@Base+0xf0>
+    58d8:	f9000bb3 	str	x19, [x29, #16]
+    58dc:	914082b3 	add	x19, x21, #0x20, lsl #12
+    58e0:	f90017b6 	str	x22, [x29, #40]
+    58e4:	b941b676 	ldr	w22, [x19, #436]
+    58e8:	710002df 	cmp	w22, #0x0
+    58ec:	5400052d 	b.le	5990 <enable_heartbeat@@Base+0xe0>
+    58f0:	f940e660 	ldr	x0, [x19, #456]
+    58f4:	b4000420 	cbz	x0, 5978 <enable_heartbeat@@Base+0xc8>
+    58f8:	b941be60 	ldr	w0, [x19, #444]
+    58fc:	f9001bb7 	str	x23, [x29, #48]
+    5900:	3100041f 	cmn	w0, #0x1
+    5904:	b941ba77 	ldr	w23, [x19, #440]
+    5908:	54000080 	b.eq	5918 <enable_heartbeat@@Base+0x68>  // b.none
+    590c:	97fff635 	bl	31e0 <csrv_stop_timer@plt>
+    5910:	12800000 	mov	w0, #0xffffffff            	// #-1
+    5914:	b901be60 	str	w0, [x19, #444]
+    5918:	f900e27f 	str	xzr, [x19, #448]
+    591c:	2a1603e0 	mov	w0, w22
+    5920:	b901b676 	str	w22, [x19, #436]
+    5924:	90000001 	adrp	x1, 5000 <heartbeat_ack_received@@Base+0xd0>
+    5928:	b94002a2 	ldr	w2, [x21]
+    592c:	9109a021 	add	x1, x1, #0x268
+    5930:	b901ba77 	str	w23, [x19, #440]
+    5934:	52800003 	mov	w3, #0x0                   	// #0
+    5938:	b901b27f 	str	wzr, [x19, #432]
+    593c:	97fff6bd 	bl	3430 <csrv_start_periodic_timer@plt>
+    5940:	a942dfb6 	ldp	x22, x23, [x29, #40]
+    5944:	b901be60 	str	w0, [x19, #444]
+    5948:	f9400bb3 	ldr	x19, [x29, #16]
+    594c:	52800001 	mov	w1, #0x0                   	// #0
+    5950:	f947f694 	ldr	x20, [x20, #4072]
+    5954:	2a0103e0 	mov	w0, w1
+    5958:	f94027a2 	ldr	x2, [x29, #72]
+    595c:	f9400281 	ldr	x1, [x20]
+    5960:	ca010041 	eor	x1, x2, x1
+    5964:	b5000221 	cbnz	x1, 59a8 <enable_heartbeat@@Base+0xf8>
+    5968:	a941d7f4 	ldp	x20, x21, [sp, #24]
+    596c:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    5970:	d65f03c0 	ret
+    5974:	d503201f 	nop
+    5978:	f940ee60 	ldr	x0, [x19, #472]
+    597c:	b5fffbe0 	cbnz	x0, 58f8 <enable_heartbeat@@Base+0x48>
+    5980:	f9400bb3 	ldr	x19, [x29, #16]
+    5984:	f94017b6 	ldr	x22, [x29, #40]
+    5988:	17fffff2 	b	5950 <enable_heartbeat@@Base+0xa0>
+    598c:	d503201f 	nop
+    5990:	12800001 	mov	w1, #0xffffffff            	// #-1
+    5994:	f9400bb3 	ldr	x19, [x29, #16]
+    5998:	f94017b6 	ldr	x22, [x29, #40]
+    599c:	17ffffed 	b	5950 <enable_heartbeat@@Base+0xa0>
+    59a0:	12800001 	mov	w1, #0xffffffff            	// #-1
+    59a4:	17ffffeb 	b	5950 <enable_heartbeat@@Base+0xa0>
+    59a8:	a902dfb6 	stp	x22, x23, [x29, #40]
+    59ac:	f9000bb3 	str	x19, [x29, #16]
+    59b0:	97fff6c8 	bl	34d0 <__stack_chk_fail@plt>
+    59b4:	d503201f 	nop
+
+00000000000059b8 <mm_msg_received@@Base>:
+    59b8:	d10343ff 	sub	sp, sp, #0xd0
+    59bc:	a9017bfd 	stp	x29, x30, [sp, #16]
+    59c0:	910043fd 	add	x29, sp, #0x10
+    59c4:	f90013f3 	str	x19, [sp, #32]
+    59c8:	b00000f3 	adrp	x19, 22000 <_fini@@Base+0x11cc8>
+    59cc:	f9001bf5 	str	x21, [sp, #48]
+    59d0:	2a0103f5 	mov	w21, w1
+    59d4:	f947f661 	ldr	x1, [x19, #4072]
+    59d8:	f9400023 	ldr	x3, [x1]

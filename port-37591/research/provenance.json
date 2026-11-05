@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "distribution": "beacon-mesh37591",
+  "version": "0.1.1",
+  "source_scope": "Canonical transport and original codecs verified for both builds; detailed application handler map is HJL only. Not a complete nested RF report schema.",
+  "native_oracles": [
+    {
+      "profile": "HJL",
+      "image_version": "3FE49996HJLL91",
+      "library_sha256": "71cd97fbbe8c89e2c8f3a957753ffb2ab5dd76ecb1de3bc5ccac450dc3e9c8ed",
+      "oracle_source_sha256": "22bcd89a9cceef6b17ff397be4bd2f74350bf5564204471df6146df248276062",
+      "native_record_capacity": 131072,
+      "source": "Original libmeshmsg.so codec routines under QEMU, synthetic inputs, AF_UNIX framing only",
+      "padding_policy": "Original bytes15..31 zeroed before publication; watermark terminator and length untouched",
+      "vector_count": 7
+    },
+    {
+      "profile": "IJL",
+      "image_version": "3FE49996IJLJ03",
+      "library_sha256": "7fea4fcba98358e62ac47123715901954d461f9afcca6b47631712f9dd8f21f4",
+      "oracle_source_sha256": "22bcd89a9cceef6b17ff397be4bd2f74350bf5564204471df6146df248276062",
+      "native_record_capacity": 65536,
+      "source": "Original libmeshmsg.so codec routines under QEMU, synthetic inputs, AF_UNIX framing only",
+      "padding_policy": "Original bytes15..31 zeroed before publication; watermark terminator and length untouched",
+      "vector_count": 7
+    }
+  ],
+  "timer_library": {
+    "source": "private-source://PROFILE-G6-HJL/usr/lib/libcsrv_timer.so",
+    "sha256": "218716623ec660a6689f3c7a1c74018f787ae0c1fca55e453a29aad563694127"
+  },
+  "tests": {
+    "unittest_count": 30,
+    "wsl_python": "3.14",
+    "wsl_result": "passed",
+    "windows_installed_wheel_python": "3.14",
+    "windows_result": "passed",
+    "isolated_wheel_build_and_install": "passed, no dependency download",
+    "installed_module_and_console_launcher_help": "passed with final 0.1.1 isolated installation",
+    "installed_loopback_example": "passed with final 0.1.1 isolated installation"
+  },
+  "wheel": {
+    "filename": "beacon_mesh37591-0.1.1-py3-none-any.whl",
+    "sha256": "792ecce2c8b146fed9299682a54f98295b2551dc1b2aee4bb8a795c265c0ba20",
+    "published_binary": false,
+    "note": "Final 0.1.1 wheel privately built/installed offline; all 30 tests passed on isolated installed package."
+  },
+  "execution_scope": {
+    "router_contact": true,
+    "router_configuration_changed": false,
+    "internet_protocol_request": false,
+    "python_local_TCP_sessions": true,
+    "python_socketpairs": true,
+    "original_codecs_under_QEMU": true,
+    "native_AF_UNIX_framing": true,
+    "native_mesh_daemon_started": false,
+    "native_radio_API_called": false,
+    "live_python_to_router_session_verified": true,
+    "live_scope": "login, normal incoming action0/12, bidirectional heartbeat/ack, local logout send only",
+    "application_reports_sent_to_router": false,
+    "application_actions_sent_to_router": false,
+    "incoming_actions_applied": false,
+    "router_settings_changed_by_test": false
+  },
+  "corrections_and_failed_attempts": [
+    "Original heartbeat builders have no useful return length; use strlen(output)+1, not their return register.",
+    "IJL channel outgoing buffer is 0x10000, HJL 0x20000; counter and heartbeat fields move with it. Initial shared-layout attempt produced a wrong IJL sequence.",
+    "New host glibc initially introduced unavailable symbol versions; harness pins GLIBC_2.17 startup/dlopen symbols and uses original guest libdl/loader with --allow-shlib-undefined.",
+    "Host strtoul redirected to GLIBC_2.38; fixed by accepting only the two explicit capacity strings.",
+    "Native unused header padding can contain memory bytes; publish zero padding only, original decoder accepted canonical frames.",
+    "CLI originally treated HeartbeatTimeout as normal EOF; corrected and regression-tested for error exit 2.",
+    "Required scan numeric fields originally skipped None in the builder; corrected to reject null and regression-tested before network use.",
+    "A new regression test initially imported validate_action from the top-level module; corrected to its documented application submodule.",
+    "Isolated pip --target used bin/mesh37591.exe on this host, rather than Scripts/mesh37591.exe; actual generated launcher was located and tested.",
+    "Live ordinary controller request used an empty record URL. Version0.1.0 rejected it;0.1.1 preserves empty raw record metadata while connection/login identities remain strict. Attempt1 lacked raw bytes; attempt3 captured the empty field; attempt4 sustained45seconds."
+  ],
+  "unresolved": [
+    "Full RF nested schemas and units/enums",
+    "All later topology/membership validation",
+    "IJL detailed application dispatcher equivalence",
+    "Python 3.10 runtime test",
+    "Live report ingestion/radio actions",
+    "Action13 live behavior",
+    "Physical alias/live build of tested router"
+  ],
+  "initial_package_validation": {
+    "version": "0.1.0",
+    "tests": {
+      "unittest_count": 29,
+      "wsl_python": "3.14",
+      "wsl_result": "passed",
+      "windows_installed_wheel_python": "3.14",
+      "windows_result": "passed",
+      "isolated_wheel_build_and_install": "passed, no dependency download",
+      "installed_module_and_console_launcher_help": "passed",
+      "installed_loopback_example": "passed"
+    },
+    "wheel": {
+      "filename": "beacon_mesh37591-0.1.0-py3-none-any.whl",
+      "sha256": "4bfad07297e00259beae63add9cc59d59a44be689f8cce54bf9565fa87ea2610",
+      "published_binary": false,
+      "note": "Private build for installation verification; rebuild from source for use."
+    },
+    "execution_scope": {
+      "router_contact": false,
+      "router_configuration_changed": false,
+      "internet_protocol_request": false,
+      "python_local_TCP_sessions": true,
+      "python_socketpairs": true,
+      "original_codecs_under_QEMU": true,
+      "native_AF_UNIX_framing": true,
+      "native_mesh_daemon_started": false,
+      "native_radio_API_called": false,
+      "live_python_to_router_session_verified": false
+    },
+    "note": "Historical offline/local-only package phase; superseded for live control behavior by 0.1.1 evidence."
+  },
+  "live_validation": {
+    "source": "project://Nokia-Beacon-G6/port-37591/research/live-validation.json",
+    "bytes": 6644,
+    "sha256": "f4728f9a2effca251b198d3390a320e87b96f1821cf386213e4fa1b025b83d5e"
+  },
+  "source_files": [
+    {
+      "path": ".gitignore",
+      "bytes": 70,
+      "sha256": "d28269f01250e172ad0781c3a18880a66cd479561a60eaac384e0c92cd442948"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7892,
+      "sha256": "efb48b645b6d2f935cb3afa116a9cfdb1d32d04a563fcec53b9306dbc8ebe5e8"
+    },
+    {
+      "path": "docs/api.md",
+      "bytes": 8952,
+      "sha256": "3392f3980c3f4c15b474dc21ab993219e9d16efbe9ace494b4e820a2d63d51a1"
+    },
+    {
+      "path": "docs/application-data.md",
+      "bytes": 8768,
+      "sha256": "ed4ef39fd51bcb60277bdd5cda7ba4234708e5a96174e7a1918aecfb245ee388"
+    },
+    {
+      "path": "docs/validation.md",
+      "bytes": 6804,
+      "sha256": "811cd2ffea750a5f05c3d9edd92e01f1669af05b2a154f2505ed95c5d680c023"
+    },
+    {
+      "path": "docs/wire-protocol.md",
+      "bytes": 8756,
+      "sha256": "9bff8a6dbe885997bfcfaf59dabd85365732a71567a115921969cc99635845f8"
+    },
+    {
+      "path": "examples/debug-report.json",
+      "bytes": 72,
+      "sha256": "5443c127a3cffa0eab584e889c9d018200cc87c3c91f3327fe87aea7f37b0d30"
+    },
+    {
+      "path": "examples/loopback.py",
+      "bytes": 653,
+      "sha256": "6e0c35518c15867988e2a9db734a261aa91c9c70e0b2e75ef25e93b86867bbfb"
+    },
+    {
+      "path": "examples/receive.py",
+      "bytes": 589,
+      "sha256": "78d1dc1c8c81f8df185c4951117c5b9dde57ca916b956281221665ba3aa13f78"
+    },
+    {
+      "path": "examples/scan-disabled.json",
+      "bytes": 39,
+      "sha256": "e1ca2e481653764506db75592a1c4e6bbbb72e9ade8703e066ec42fd34b2ef9b"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 463,
+      "sha256": "d063795698d26422157a698f294a7312a1d435dba1fd8562a4704828d77ec177"
+    },
+    {
+      "path": "research/README.md",
+      "bytes": 4487,
+      "sha256": "f4fa0da85fbfc53c346e810d1d2e3a4fbce58ef9e58b0c9bde9b5a502a19955f"
+    },
+    {
+      "path": "research/generate_native_vectors.py",
+      "bytes": 3203,
+      "sha256": "53daf4280237b1470c8d2560505d4b1131c47d24ede678caea1d45a6814199e2"
+    },
+    {
+      "path": "research/libcsrv_timer.so-1090-1228.txt",
+      "bytes": 4441,
+      "sha256": "9d7ada4a326588f229f5eaffcf82edee65737b65357843fa19c068e7d6f773fc"
+    },
+    {
+      "path": "research/libcsrv_timer.so-130c-13dc.txt",
+      "bytes": 2372,
+      "sha256": "144ebbd2845a58a6065e62da9fa4d8334c600589f2dd00783ac75079dae732b9"
+    },
+    {
+      "path": "research/libcsrv_timer.so-194c-1a54.txt",
+      "bytes": 3082,
+      "sha256": "56d53f3dad630d4a31d3c20c0762e1785e7f2555d7451f7efb814cc957441de7"
+    },
+    {
+      "path": "research/libcsrv_timer.so-1a54-1bfc.txt",
+      "bytes": 4900,
+      "sha256": "d7cbf82705d23efb4bbca22b77cab0bac41822cf65b4b6c733c0f6d81720804e"
+    },
+    {
+      "path": "research/libmeshmsg.so-58b0-59dc.txt",
+      "bytes": 3520,
+      "sha256": "b61163ef2cc0fe4e45d23af3657fa97e60efb676e72c402a3c2e73bba7900fc8"
+    },
+    {
+      "path": "research/live-validation.json",
+      "bytes": 6644,
+      "sha256": "f4728f9a2effca251b198d3390a320e87b96f1821cf386213e4fa1b025b83d5e"
+    },
+    {
+      "path": "research/live_smoke.py",
+      "bytes": 4041,
+      "sha256": "b06f2391ad8da4cbcf0b1c0834ccd2302f9f053d672e9a3c6af198936d716968"
+    },
+    {
+      "path": "research/native_vectors.c",
+      "bytes": 6105,
+      "sha256": "22bcd89a9cceef6b17ff397be4bd2f74350bf5564204471df6146df248276062"
+    },
+    {
+      "path": "src/beacon_mesh37591/__init__.py",
+      "bytes": 878,
+      "sha256": "5ab95b64471a5335fb62e4ecf4e4830839c94f7e6194922fdd9989745dff0d78"
+    },
+    {
+      "path": "src/beacon_mesh37591/__main__.py",
+      "bytes": 47,
+      "sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4"
+    },
+    {
+      "path": "src/beacon_mesh37591/application.py",
+      "bytes": 8331,
+      "sha256": "00e7306069d4ff3dc1c7b920587287a697f1007d2bb96e26f1f9314966a50356"
+    },
+    {
+      "path": "src/beacon_mesh37591/cli.py",
+      "bytes": 9504,
+      "sha256": "42ce9d1bd0aa30b0a584341ecef8aedcfee1b9cf7f8c2c3b7b1680a13bff5570"
+    },
+    {
+      "path": "src/beacon_mesh37591/codec.py",
+      "bytes": 6724,
+      "sha256": "cd2a429d24014fcb55689f70b01f0ce4a4f2ecd094e8adde6b1a29c52c3733fc"
+    },
+    {
+      "path": "src/beacon_mesh37591/connection.py",
+      "bytes": 16253,
+      "sha256": "1390ed5a15989123ab15d1cbcf11940ce0017430423514c8d201367f15d6dfb1"
+    },
+    {
+      "path": "src/beacon_mesh37591/errors.py",
+      "bytes": 705,
+      "sha256": "a19e4aa5c127989f6f353595fb3ca9c99342c38c96528b0a8900930b9def793f"
+    },
+    {
+      "path": "src/beacon_mesh37591/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/fixtures/hjl-native-vectors.json",
+      "bytes": 6471,
+      "sha256": "0cefb96a590d32dcec74c584b8eac7620f2c2eecc7572f062ba5edf1bfe044e5"
+    },
+    {
+      "path": "tests/fixtures/ijl-native-vectors.json",
+      "bytes": 6470,
+      "sha256": "b4e3796ec698e058cbc64e09266d8ca1dc6e741f0435f3296dc22b5d8cc477a7"
+    },
+    {
+      "path": "tests/test_application.py",
+      "bytes": 3738,
+      "sha256": "0222b189157890e07cf1f70f6f00ef5fbd9f3ddccf144c153e9e7abc4bbc5ac5"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "bytes": 4438,
+      "sha256": "a8a0748d4af82a92ae2fe24b36584bce9888f1ab452bd60d5ea668172c670d5d"
+    },
+    {
+      "path": "tests/test_codec.py",
+      "bytes": 6465,
+      "sha256": "109a0cc58432b78849ed009257d54e2336036b05bbdf9517b2337249464fc82c"
+    },
+    {
+      "path": "tests/test_connection.py",
+      "bytes": 6833,
+      "sha256": "387060cc7d8e26bde15c7e20752e6e25d1a434808ddb66ed73d6a740570391d4"
+    }
+  ]
+}

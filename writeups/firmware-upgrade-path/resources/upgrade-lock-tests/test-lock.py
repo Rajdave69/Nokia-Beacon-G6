@@ -5,6 +5,8 @@ Production scripts have no test-root bypass; fixture copies remap paths and PATH
 import argparse,json,os,re,shutil,subprocess,tempfile
 from pathlib import Path
 HERE=Path(__file__).resolve().parent
+PROJECT=Path(__file__).resolve().parents[4]
+SCRIPTS=PROJECT/'tutorials/disable-firmware-upgrades/resources'
 TARGETS=['/usr/exe/image_activate.sh','/sbin/sysupgrade','/usr/sbin/imageTool','/sbin/upgraded','/usr/bin/ca.upgrade','/webs/upgrade_web_app.cgi','/webs/otasw_upgrade_app.cgi','/usr/bin/swmgnt','/usr/sbin/batch_upgrade']
 MOCK=r"""#!/usr/bin/python3
 import os,sys,json,shutil
@@ -53,7 +55,7 @@ def fixture(firmware):
  prefixes=['/proc/mounts','/proc/[0-9]*/comm','/configs','/rom','/etc/config','/etc/pcd','/tmp/g6-fw-lock','/tmp/.upgrade.burning','/tmp/sysupgrade','/tmp/upgrade_pid','/usr/exe','/usr/sbin','/usr/bin','/sbin','/webs']
  match=re.compile(r'(?<![A-Za-z0-9_/.])(?:'+'|'.join(re.escape(x) for x in sorted(prefixes,key=len,reverse=True))+')')
  for n in ['guard.sh','blocked.sh','firewall-include.sh','install.sh','remove.sh']:
-  s=(HERE/n).read_text();s=match.sub(lambda m:str(root)+m.group(),s)
+  s=(SCRIPTS/n).read_text();s=match.sub(lambda m:str(root)+m.group(),s)
   s=re.sub(r'^PATH=.*$', 'PATH='+str(root/'fakebin')+':/usr/bin:/bin',s,flags=re.M)
   p=root/'src'/n;p.write_text(s);p.chmod(0o755)
  return root

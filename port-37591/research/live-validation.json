@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "package_version": "0.1.1",
+  "authorization": "Owner explicitly authorized commands against the selected router",
+  "device": "Beacon G6, owner-selected target; physical G6 alias and live build not supplied",
+  "target_address_alias": "MESH-37591-LIVE-LAN-IP",
+  "tcp_port": 37591,
+  "scope": "Ordinary control-plane compatibility only: login, receive normal controller requests, bidirectional heartbeat/ack, logout. No application reports/actions sent, incoming actions never applied.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "completed": false,
+      "result": "TCP/login send succeeded; record parser failed. Inbound bytes were not captured, so exact rejected field is not established.",
+      "capture": {
+        "source": "private-source://MESH-37591-LIVE-SESSION/smoke-1.json",
+        "bytes": 741,
+        "sha256_alias": "DIGEST-060"
+      }
+    },
+    {
+      "attempt": 2,
+      "completed": false,
+      "result": "Short diagnostic connection decoded the first normal request; no sustained-session check.",
+      "captures": [
+        {
+          "source": "private-source://MESH-37591-LIVE-SESSION/smoke-2.json",
+          "bytes": 632,
+          "sha256_alias": "DIGEST-061"
+        },
+        {
+          "source": "private-source://MESH-37591-LIVE-SESSION/smoke-2-rx.bin",
+          "bytes": 226,
+          "sha256_alias": "DIGEST-062"
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "completed": false,
+      "result": "Captured normal request with empty URL metadata. The original strict Message validator rejected that empty field.",
+      "captures": [
+        {
+          "source": "private-source://MESH-37591-LIVE-SESSION/smoke-3.json",
+          "bytes": 1108,
+          "sha256_alias": "DIGEST-063"
+        },
+        {
+          "source": "private-source://MESH-37591-LIVE-SESSION/smoke-3-rx.bin",
+          "bytes": 202,
+          "sha256_alias": "DIGEST-064"
+        }
+      ]
+    },
+    {
+      "attempt": 4,
+      "completed": true,
+      "result": "Corrected decoder sustained the requested 45-second session and sent logout.",
+      "captures": [
+        {
+          "source": "private-source://MESH-37591-LIVE-SESSION/smoke-4/session.json",
+          "bytes": 7321,
+          "sha256_alias": "DIGEST-065"
+        },
+        {
+          "source": "private-source://MESH-37591-LIVE-SESSION/smoke-4/rx.bin",
+          "bytes": 1384,
+          "sha256_alias": "DIGEST-066"
+        }
+      ]
+    }
+  ],
+  "successful_session": {
+    "duration_seconds": 45.038621,
+    "counts": {
+      "tx": {
+        "login": 1,
+        "heartbeatack": 3,
+        "heartbeat": 3,
+        "logout": 1
+      },
+      "rx": {
+        "request": 2,
+        "heartbeat": 3,
+        "heartbeatack": 3
+      }
+    },
+    "tcp_frames_received": 8,
+    "frames_with_nonzero_unused_header_padding": 8,
+    "actions_received": [
+      {
+        "seconds": 0.076213,
+        "transport_sequence": 0,
+        "record_url_empty": true,
+        "data": {
+          "action_type": 12,
+          "enable": 1
+        }
+      },
+      {
+        "seconds": 18.12784,
+        "transport_sequence": 3,
+        "record_url_empty": false,
+        "data": {
+          "action_type": 0,
+          "neighbor_scan_24": 0,
+          "channel_survey_24": 0,
+          "neighbor_scan_5": 0,
+          "channel_survey_5": 0,
+          "buddies_discover": 0,
+          "ssids": {
+            "opaque_string_bytes": 2,
+            "value_retained_privately": true
+          },
+          "channels": {
+            "opaque_string_bytes": 2,
+            "value_retained_privately": true
+          }
+        }
+      }
+    ],
+    "heartbeats": [
+      {
+        "seconds": 12.087359,
+        "direction": "rx",
+        "transport_sequence": 1,
+        "heartbeat_sequence": 1,
+        "interval": 12000,
+        "count": 4
+      },
+      {
+        "seconds": 14.039016,
+        "direction": "tx",
+        "transport_sequence": 2,
+        "heartbeat_sequence": 1,
+        "interval": 14000,
+        "count": 4
+      },
+      {
+        "seconds": 26.091882,
+        "direction": "rx",
+        "transport_sequence": 4,
+        "heartbeat_sequence": 1,
+        "interval": 12000,
+        "count": 4
+      },
+      {
+        "seconds": 28.043568,
+        "direction": "tx",
+        "transport_sequence": 4,
+        "heartbeat_sequence": 2,
+        "interval": 14000,
+        "count": 4
+      },
+      {
+        "seconds": 40.098399,
+        "direction": "rx",
+        "transport_sequence": 6,
+        "heartbeat_sequence": 1,
+        "interval": 12000,
+        "count": 4
+      },
+      {
+        "seconds": 42.048007,
+        "direction": "tx",
+        "transport_sequence": 6,
+        "heartbeat_sequence": 3,
+        "interval": 14000,
+        "count": 4
+      }
+    ],
+    "acknowledgements": [
+      {
+        "seconds": 12.087311,
+        "direction": "tx",
+        "transport_sequence": 1,
+        "acknowledged_heartbeat_sequence": 1
+      },
+      {
+        "seconds": 14.086625,
+        "direction": "rx",
+        "transport_sequence": 2,
+        "acknowledged_heartbeat_sequence": 0
+      },
+      {
+        "seconds": 26.091831,
+        "direction": "tx",
+        "transport_sequence": 3,
+        "acknowledged_heartbeat_sequence": 1
+      },
+      {
+        "seconds": 28.091056,
+        "direction": "rx",
+        "transport_sequence": 5,
+        "acknowledged_heartbeat_sequence": 0
+      },
+      {
+        "seconds": 40.098332,
+        "direction": "tx",
+        "transport_sequence": 5,
+        "acknowledged_heartbeat_sequence": 1
+      },
+      {
+        "seconds": 42.095104,
+        "direction": "rx",
+        "transport_sequence": 7,
+        "acknowledged_heartbeat_sequence": 0
+      }
+    ],
+    "logout_send_completed": true,
+    "logout_processing_on_router_confirmed": false
+  },
+  "compatibility_fix": "Raw Message permits empty record URL metadata; connection/local and login identities still require a nonempty tcp:// identity. Nonempty URLs observed after the first request matched the advertised client identity, not a separately authenticated source.",
+  "limits": [
+    "No detailed build/hash or physical-device alias obtained",
+    "No RF measurements sent or report-ingestion validation",
+    "Action 13 not received or tested",
+    "No router radio action executed",
+    "Native heartbeat interval field was 12000 throughout; observed arrival times also depend on vendor timer rescheduling, not a fixed-period guarantee",
+    "Only one live router tested; no universal firmware claim",
+    "Logout was locally sent; no logout acknowledgement was established"
+  ]
+}
