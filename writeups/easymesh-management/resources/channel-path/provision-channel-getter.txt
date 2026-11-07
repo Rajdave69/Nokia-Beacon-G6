@@ -1,0 +1,30 @@
+
+ics_provision_get_channel:
+0001d0c8: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0001d0cc: fd030091  mov x29, sp
+0001d0d0: f30b00f9  str x19, [sp, #0x10]
+0001d0d4: 930200b0  adrp x19, #0x6e000
+0001d0d8: 619647f9  ldr x1, [x19, #0xf28]
+0001d0dc: 220040f9  ldr x2, [x1]
+0001d0e0: a21700f9  str x2, [x29, #0x28]
+0001d0e4: 020080d2  mov x2, #0
+0001d0e8: 0adfff97  bl #0x14d10 ; heuristic ics_map_m2_bss_freq_band_to_index@plt {"x1": "@__stack_chk_guard", "x2": 0}
+0001d0ec: 01008052  mov w1, #0
+0001d0f0: 0001f837  tbnz w0, #0x1f, #0x1d110
+0001d0f4: 810200b0  adrp x1, #0x6e000
+0001d0f8: 007c7b93  sbfiz x0, x0, #5, #0x20
+0001d0fc: 212c47f9  ldr x1, [x1, #0xe58]
+0001d100: 2200008b  add x2, x1, x0
+0001d104: 21686038  ldrb w1, [x1, x0]
+0001d108: 41000034  cbz w1, #0x1d110
+0001d10c: 41144039  ldrb w1, [x2, #5]
+0001d110: 739647f9  ldr x19, [x19, #0xf28]
+0001d114: e003012a  mov w0, w1
+0001d118: a21740f9  ldr x2, [x29, #0x28]
+0001d11c: 610240f9  ldr x1, [x19]
+0001d120: 410001ca  eor x1, x2, x1
+0001d124: 810000b5  cbnz x1, #0x1d134
+0001d128: f30b40f9  ldr x19, [sp, #0x10]
+0001d12c: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0001d130: c0035fd6  ret 
+0001d134: a3dcff97  bl #0x143c0 ; heuristic __stack_chk_fail@plt {}

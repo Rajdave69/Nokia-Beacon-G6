@@ -1,0 +1,62 @@
+
+ca_sdk_ioctl:
+00024538: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+0002453c: fd030091  mov x29, sp
+00024540: a03f0079  strh w0, [x29, #0x1e]
+00024544: a10b00f9  str x1, [x29, #0x10]
+00024548: 00008012  mov w0, #-1
+0002454c: a04f00b9  str w0, [x29, #0x4c]
+00024550: bfff02a9  stp xzr, xzr, [x29, #0x28]
+00024554: bfff03a9  stp xzr, xzr, [x29, #0x38]
+00024558: a00b40f9  ldr x0, [x29, #0x10]
+0002455c: 1f0000f1  cmp x0, #0
+00024560: 61000054  b.ne #0x2456c
+00024564: e0018052  mov w0, #0xf
+00024568: 2e000014  b #0x24620
+0002456c: a00b40f9  ldr x0, [x29, #0x10]
+00024570: 00044079  ldrh w0, [x0, #2]
+00024574: 003c4092  and x0, x0, #0xffff
+00024578: 00100091  add x0, x0, #4
+0002457c: 1f0840f1  cmp x0, #2, lsl #12
+00024580: c9000054  b.ls #0x24598
+00024584: c0000090  adrp x0, #0x3c000
+00024588: 00a02a91  add x0, x0, #0xaa8
+0002458c: d1a2ff97  bl #0xd0d0 ; heuristic puts@plt {"x0": "The length of input param is too long."}
+00024590: e0018052  mov w0, #0xf
+00024594: 23000014  b #0x24620
+00024598: a0a30091  add x0, x29, #0x28
+0002459c: 020480d2  mov x2, #0x20
+000245a0: 01008052  mov w1, #0
+000245a4: 17a3ff97  bl #0xd200 ; heuristic memset@plt {"x1": 0, "x2": 32}
+000245a8: c0000090  adrp x0, #0x3c000
+000245ac: 02402b91  add x2, x0, #0xad0
+000245b0: c0000090  adrp x0, #0x3c000
+000245b4: 01802b91  add x1, x0, #0xae0
+000245b8: a0a30091  add x0, x29, #0x28
+000245bc: 19a3ff97  bl #0xd220 ; heuristic sprintf@plt {"x1": "/dev/%s", "x2": "ca-sdk-dev"}
+000245c0: a0a30091  add x0, x29, #0x28
+000245c4: 41008052  mov w1, #2
+000245c8: 2aa3ff97  bl #0xd270 ; heuristic open@plt {"x1": 2}
+000245cc: a04b00b9  str w0, [x29, #0x48]
+000245d0: a04b40b9  ldr w0, [x29, #0x48]
+000245d4: 1f040031  cmn w0, #1
+000245d8: 40010054  b.eq #0x24600
+000245dc: a20b40f9  ldr x2, [x29, #0x10]
+000245e0: 010080d2  mov x1, #0
+000245e4: a04b40b9  ldr w0, [x29, #0x48]
+000245e8: 92a2ff97  bl #0xd030 ; heuristic ioctl@plt {"x1": 0}
+000245ec: a04f00b9  str w0, [x29, #0x4c]
+000245f0: a04b40b9  ldr w0, [x29, #0x48]
+000245f4: 23a3ff97  bl #0xd280 ; heuristic close@plt {}
+000245f8: a04f40b9  ldr w0, [x29, #0x4c]
+000245fc: 09000014  b #0x24620
+00024600: 0ca3ff97  bl #0xd230 ; heuristic __errno_location@plt {}
+00024604: 000040b9  ldr w0, [x0]
+00024608: 9aa2ff97  bl #0xd070 ; heuristic strerror@plt {}
+0002460c: e10300aa  mov x1, x0
+00024610: c0000090  adrp x0, #0x3c000
+00024614: 00a02b91  add x0, x0, #0xae8
+00024618: 8aa2ff97  bl #0xd040 ; heuristic printf@plt {"x0": "Device open failure(%s) /dev/ca-sdk-dev\n"}
+0002461c: e0018052  mov w0, #0xf
+00024620: fd7bc5a8  ldp x29, x30, [sp], #0x50
+00024624: c0035fd6  ret 

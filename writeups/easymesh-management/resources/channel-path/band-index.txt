@@ -1,0 +1,28 @@
+
+ics_map_m2_bss_freq_band_to_index:
+0001c790: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0001c794: 820200d0  adrp x2, #0x6e000
+0001c798: 003c0012  and w0, w0, #0xffff
+0001c79c: fd030091  mov x29, sp
+0001c7a0: 419447f9  ldr x1, [x2, #0xf28]
+0001c7a4: 1f3c0071  cmp w0, #0xf
+0001c7a8: 230040f9  ldr x3, [x1]
+0001c7ac: a30f00f9  str x3, [x29, #0x18]
+0001c7b0: 030080d2  mov x3, #0
+0001c7b4: c9010054  b.ls #0x1c7ec
+0001c7b8: 017c0453  lsr w1, w0, #4
+0001c7bc: 00008052  mov w0, #0
+0001c7c0: 81000037  tbnz w1, #0, #0x1c7d0
+0001c7c4: 217c0153  lsr w1, w1, #1
+0001c7c8: 00040011  add w0, w0, #1
+0001c7cc: c1ff0736  tbz w1, #0, #0x1c7c4
+0001c7d0: 429447f9  ldr x2, [x2, #0xf28]
+0001c7d4: a30f40f9  ldr x3, [x29, #0x18]
+0001c7d8: 410040f9  ldr x1, [x2]
+0001c7dc: 610001ca  eor x1, x3, x1
+0001c7e0: a10000b5  cbnz x1, #0x1c7f4
+0001c7e4: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0001c7e8: c0035fd6  ret 
+0001c7ec: 00008012  mov w0, #-1
+0001c7f0: f8ffff17  b #0x1c7d0
+0001c7f4: f3deff97  bl #0x143c0 ; heuristic __stack_chk_fail@plt {"x0": -1}

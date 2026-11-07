@@ -1,0 +1,11 @@
+006f8c20: ff4300d1  sub sp, sp, #0x10
+006f8c24: e00700f9  str x0, [sp, #8]
+006f8c28: e00740f9  ldr x0, [sp, #8]
+006f8c2c: 1f0000f1  cmp x0, #0
+006f8c30: 61000054  b.ne #0x6f8c3c
+006f8c34: 00008052  mov w0, #0
+006f8c38: 03000014  b #0x6f8c44
+006f8c3c: e00740f9  ldr x0, [sp, #8]
+006f8c40: 002040b9  ldr w0, [x0, #0x20]
+006f8c44: ff430091  add sp, sp, #0x10
+006f8c48: c0035fd6  ret 

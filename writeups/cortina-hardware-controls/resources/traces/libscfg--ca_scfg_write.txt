@@ -1,0 +1,46 @@
+ca_scfg_write: .text+0x170, 180 bytes; sha256 8a91299829ea3f51671f1f7807ee3d51f700f1e2f787065473128d39ea6aace0
+00000170: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+00000174: fd030091  mov x29, sp
+00000178: f35301a9  stp x19, x20, [sp, #0x10]
+0000017c: f51300f9  str x21, [sp, #0x20]
+00000180: f30301aa  mov x19, x1
+00000184: f503022a  mov w21, w2
+00000188: f40303aa  mov x20, x3
+0000018c: e0031eaa  mov x0, x30
+00000190: 00000094  bl #0x190 ; reloc _mcount+0x0 type=283
+00000194: bf020071  cmp w21, #0
+00000198: 841a40fa  ccmp x20, #0, #4, ne
+0000019c: 641a40fa  ccmp x19, #0, #4, ne
+000001a0: 41010054  b.ne #0x1c8
+000001a4: 00000090  adrp x0, #0 ; reloc .rodata.str1.8+0x38 type=275
+000001a8: e303152a  mov w3, w21
+000001ac: e20314aa  mov x2, x20
+000001b0: e10313aa  mov x1, x19
+000001b4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x38 type=277
+000001b8: 00000094  bl #0x1b8 ; reloc printk+0x0 type=283
+000001bc: 40008052  mov w0, #2
+000001c0: 15000014  b #0x214
+000001c4: 1f2003d5  nop 
+000001c8: e00313aa  mov x0, x19
+000001cc: 9bffff97  bl #0x38
+000001d0: f30300aa  mov x19, x0
+000001d4: 40008052  mov w0, #2
+000001d8: f30100b4  cbz x19, #0x214
+000001dc: 621a40b9  ldr w2, [x19, #0x18]
+000001e0: 15000090  adrp x21, #0 ; reloc .bss+0x0 type=275
+000001e4: 600640f9  ldr x0, [x19, #8]
+000001e8: e10314aa  mov x1, x20
+000001ec: 00000094  bl #0x1ec ; reloc memcpy+0x0 type=283
+000001f0: a00240f9  ldr x0, [x21] ; reloc .bss+0x0 type=286
+000001f4: 00000094  bl #0x1f4 ; reloc ca_mutex_lock+0x0 type=283
+000001f8: 00000090  adrp x0, #0 ; reloc .data+0x0 type=275
+000001fc: e10313aa  mov x1, x19
+00000200: 000040f9  ldr x0, [x0] ; reloc .data+0x0 type=286
+00000204: 00000094  bl #0x204 ; reloc write_scfg_file+0x0 type=283
+00000208: a00240f9  ldr x0, [x21] ; reloc .bss+0x0 type=286
+0000020c: 00000094  bl #0x20c ; reloc ca_mutex_unlock+0x0 type=283
+00000210: 00008052  mov w0, #0
+00000214: f35341a9  ldp x19, x20, [sp, #0x10]
+00000218: f51340f9  ldr x21, [sp, #0x20]
+0000021c: fd7bc3a8  ldp x29, x30, [sp], #0x30
+00000220: c0035fd6  ret 

@@ -1,0 +1,388 @@
+00404b04: e10300aa  mov x1, x0
+00404b08: 390700d1  sub x25, x25, #1
+00404b0c: e20319aa  mov x2, x25
+00404b10: e0031aaa  mov x0, x26
+00404b14: 77faff97  bl #0x4034f0 ; heuristic strncpy@plt {}
+00404b18: 5f6b3938  strb wzr, [x26, x25]
+00404b1c: eaffff17  b #0x404ac4
+00404b20: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+00404b24: fd030091  mov x29, sp
+00404b28: f35301a9  stp x19, x20, [sp, #0x10]
+00404b2c: f51300f9  str x21, [sp, #0x20]
+00404b30: f50301aa  mov x21, x1
+00404b34: 610000b0  adrp x1, #0x411000
+00404b38: 212c3791  add x1, x1, #0xdcb
+00404b3c: c9faff97  bl #0x403660 ; heuristic fopen@plt {"x1": "r"}
+00404b40: e00100b5  cbnz x0, #0x404b7c
+00404b44: 630000d0  adrp x3, #0x412000
+00404b48: 63200191  add x3, x3, #0x48
+00404b4c: 620000d0  adrp x2, #0x412000
+00404b50: 42bc0991  add x2, x2, #0x26f
+00404b54: 63e00591  add x3, x3, #0x178
+00404b58: 01008052  mov w1, #0
+00404b5c: 60008052  mov w0, #3
+00404b60: 44faff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Error: Unable to open file", "x3": "_read_file"}
+00404b64: 600000f0  adrp x0, #0x413000
+00404b68: 00004db9  ldr w0, [x0, #0xd00]
+00404b6c: f35341a9  ldp x19, x20, [sp, #0x10]
+00404b70: f51340f9  ldr x21, [sp, #0x20]
+00404b74: fd7bc3a8  ldp x29, x30, [sp], #0x30
+00404b78: c0035fd6  ret 
+00404b7c: 42008052  mov w2, #2
+00404b80: 010080d2  mov x1, #0
+00404b84: f30300aa  mov x19, x0
+00404b88: 66fbff97  bl #0x403920 ; heuristic fseek@plt {"x1": 0, "x2": 2}
+00404b8c: e00313aa  mov x0, x19
+00404b90: 74f9ff97  bl #0x403160 ; heuristic ftell@plt {}
+00404b94: f40300aa  mov x20, x0
+00404b98: 1f0000f1  cmp x0, #0
+00404b9c: 0c010054  b.gt #0x404bbc
+00404ba0: 630000d0  adrp x3, #0x412000
+00404ba4: 63200191  add x3, x3, #0x48
+00404ba8: 620000d0  adrp x2, #0x412000
+00404bac: 423c0a91  add x2, x2, #0x28f
+00404bb0: 63e00591  add x3, x3, #0x178
+00404bb4: 01008052  mov w1, #0
+00404bb8: 0e000014  b #0x404bf0
+00404bbc: e00313aa  mov x0, x19
+00404bc0: 80faff97  bl #0x4035c0 ; heuristic rewind@plt {"x1": 0, "x2": "[%s] Error: Unable to determine file size", "x3": "_read_file"}
+00404bc4: 210080d2  mov x1, #1
+00404bc8: 8002018b  add x0, x20, x1
+00404bcc: 45f9ff97  bl #0x4030e0 ; heuristic calloc@plt {"x1": 1}
+00404bd0: a00200f9  str x0, [x21]
+00404bd4: e10300aa  mov x1, x0
+00404bd8: 600100b5  cbnz x0, #0x404c04
+00404bdc: 630000d0  adrp x3, #0x412000
+00404be0: 63200191  add x3, x3, #0x48
+00404be4: 620000d0  adrp x2, #0x412000
+00404be8: 42e40a91  add x2, x2, #0x2b9
+00404bec: 63e00591  add x3, x3, #0x178
+00404bf0: 60008052  mov w0, #3
+00404bf4: 1ffaff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x2": "[%s] Error: Unable to allocate memory for file data", "x3": "_read_file"}
+00404bf8: e00313aa  mov x0, x19
+00404bfc: 7df9ff97  bl #0x4031f0 ; heuristic fclose@plt {}
+00404c00: d9ffff17  b #0x404b64
+00404c04: e30313aa  mov x3, x19
+00404c08: e20314aa  mov x2, x20
+00404c0c: 210080d2  mov x1, #1
+00404c10: 1cf9ff97  bl #0x403080 ; heuristic fread@plt {"x1": 1}
+00404c14: 9f0200eb  cmp x20, x0
+00404c18: e0000054  b.eq #0x404c34
+00404c1c: 630000d0  adrp x3, #0x412000
+00404c20: 63200191  add x3, x3, #0x48
+00404c24: 620000d0  adrp x2, #0x412000
+00404c28: 42b40b91  add x2, x2, #0x2ed
+00404c2c: 63e00591  add x3, x3, #0x178
+00404c30: e1ffff17  b #0x404bb4
+00404c34: e00313aa  mov x0, x19
+00404c38: 6ef9ff97  bl #0x4031f0 ; heuristic fclose@plt {"x2": "[%s] Error: Couldn't read the whole file", "x3": "_read_file"}
+00404c3c: 600000f0  adrp x0, #0x413000
+00404c40: 00044db9  ldr w0, [x0, #0xd04]
+00404c44: caffff17  b #0x404b6c
+00404c48: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+00404c4c: fd030091  mov x29, sp
+00404c50: f35301a9  stp x19, x20, [sp, #0x10]
+00404c54: f30303aa  mov x19, x3
+00404c58: f55b02a9  stp x21, x22, [sp, #0x20]
+00404c5c: f50302aa  mov x21, x2
+00404c60: f71b00f9  str x23, [sp, #0x30]
+00404c64: f60301aa  mov x22, x1
+00404c68: 0afbff97  bl #0x403890 ; heuristic json_tokener_parse@plt {}
+00404c6c: 610000d0  adrp x1, #0x412000
+00404c70: 21580c91  add x1, x1, #0x316
+00404c74: f3f9ff97  bl #0x403440 ; heuristic json_object_object_get@plt {"x1": "ProductParameters"}
+00404c78: 610000d0  adrp x1, #0x412000
+00404c7c: 21a00c91  add x1, x1, #0x328
+00404c80: f0f9ff97  bl #0x403440 ; heuristic json_object_object_get@plt {"x1": "ContainerResources"}
+00404c84: f40300aa  mov x20, x0
+00404c88: 610000d0  adrp x1, #0x412000
+00404c8c: 21ec0c91  add x1, x1, #0x33b
+00404c90: ecf9ff97  bl #0x403440 ; heuristic json_object_object_get@plt {"x1": "AllocatedDiskSpace"}
+00404c94: f70300aa  mov x23, x0
+00404c98: 610000d0  adrp x1, #0x412000
+00404c9c: 21380d91  add x1, x1, #0x34e
+00404ca0: e00314aa  mov x0, x20
+00404ca4: e7f9ff97  bl #0x403440 ; heuristic json_object_object_get@plt {"x1": "AllocatedMemory"}
+00404ca8: f40300aa  mov x20, x0
+00404cac: e00317aa  mov x0, x23
+00404cb0: 84f9ff97  bl #0x4032c0 ; heuristic json_object_get_int64@plt {}
+00404cb4: 41010090  adrp x1, #0x42c000
+00404cb8: 20b002f9  str x0, [x1, #0x560]
+00404cbc: 20010090  adrp x0, #0x428000
+00404cc0: 0020ce39  ldrsb w0, [x0, #0x388]
+00404cc4: c0020039  strb w0, [x22]
+00404cc8: 00008092  mov x0, #-1
+00404ccc: a00200f9  str x0, [x21]
+00404cd0: e00314aa  mov x0, x20
+00404cd4: 7bf9ff97  bl #0x4032c0 ; heuristic json_object_get_int64@plt {"x1": 4374528}
+00404cd8: f71b40f9  ldr x23, [sp, #0x30]
+00404cdc: f55b42a9  ldp x21, x22, [sp, #0x20]
+00404ce0: 600200f9  str x0, [x19]
+00404ce4: f35341a9  ldp x19, x20, [sp, #0x10]
+00404ce8: 600000f0  adrp x0, #0x413000
+00404cec: 00044db9  ldr w0, [x0, #0xd04]
+00404cf0: fd7bc4a8  ldp x29, x30, [sp], #0x40
+00404cf4: c0035fd6  ret 
+00404cf8: fd7bb8a9  stp x29, x30, [sp, #-0x80]!
+00404cfc: fd030091  mov x29, sp
+00404d00: f55b02a9  stp x21, x22, [sp, #0x20]
+00404d04: a1230191  add x1, x29, #0x48
+00404d08: f71b00f9  str x23, [sp, #0x30]
+00404d0c: f70300aa  mov x23, x0
+00404d10: 600000f0  adrp x0, #0x413000
+00404d14: 16004db9  ldr w22, [x0, #0xd00]
+00404d18: 00008012  mov w0, #-1
+00404d1c: a0070139  strb w0, [x29, #0x41]
+00404d20: 00008092  mov x0, #-1
+00404d24: f35301a9  stp x19, x20, [sp, #0x10]
+00404d28: a00305a9  stp x0, x0, [x29, #0x50]
+00404d2c: 34010090  adrp x20, #0x428000
+00404d30: 80020e91  add x0, x20, #0x380
+00404d34: bf2700f9  str xzr, [x29, #0x48]
+00404d38: 730000d0  adrp x19, #0x412000
+00404d3c: bf7f06a9  stp xzr, xzr, [x29, #0x60]
+00404d40: 000840f9  ldr x0, [x0, #0x10]
+00404d44: bf7f07a9  stp xzr, xzr, [x29, #0x70]
+00404d48: 76ffff97  bl #0x404b20 ; heuristic 0x404b20 {"x0": "/usr/etc/nwf-product-cfg.json"}
+00404d4c: c0010034  cbz w0, #0x404d84
+00404d50: 63220191  add x3, x19, #0x48
+00404d54: 620000d0  adrp x2, #0x412000
+00404d58: 42780d91  add x2, x2, #0x35e
+00404d5c: 63200691  add x3, x3, #0x188
+00404d60: 01008052  mov w1, #0
+00404d64: 60008052  mov w0, #3
+00404d68: c2f9ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Error: Unable to read global limits file", "x3": "set_lcm_global_limits"}
+00404d6c: e003162a  mov w0, w22
+00404d70: f71b40f9  ldr x23, [sp, #0x30]
+00404d74: f35341a9  ldp x19, x20, [sp, #0x10]
+00404d78: f55b42a9  ldp x21, x22, [sp, #0x20]
+00404d7c: fd7bc8a8  ldp x29, x30, [sp], #0x80
+00404d80: c0035fd6  ret 
+00404d84: a02740f9  ldr x0, [x29, #0x48]
+00404d88: a3630191  add x3, x29, #0x58
+00404d8c: a2430191  add x2, x29, #0x50
+00404d90: a1070191  add x1, x29, #0x41
+00404d94: adffff97  bl #0x404c48 ; heuristic 0x404c48 {}
+00404d98: 60010034  cbz w0, #0x404dc4
+00404d9c: 63220191  add x3, x19, #0x48
+00404da0: 01008052  mov w1, #0
+00404da4: 63200691  add x3, x3, #0x188
+00404da8: 60008052  mov w0, #3
+00404dac: 620000d0  adrp x2, #0x412000
+00404db0: 42300e91  add x2, x2, #0x38c
+00404db4: aff9ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Error: Unable to parse global limits file"}
+00404db8: a02740f9  ldr x0, [x29, #0x48]
+00404dbc: 29f9ff97  bl #0x403260 ; heuristic free@plt {}
+00404dc0: ebffff17  b #0x404d6c
+00404dc4: a02740f9  ldr x0, [x29, #0x48]
+00404dc8: 26f9ff97  bl #0x403260 ; heuristic free@plt {}
+00404dcc: bf2700f9  str xzr, [x29, #0x48]
+00404dd0: 01008052  mov w1, #0
+00404dd4: a0830191  add x0, x29, #0x60
+00404dd8: 96f8ff97  bl #0x403030 ; heuristic blob_buf_init@plt {"x1": 0}
+00404ddc: a0074139  ldrb w0, [x29, #0x41]
+00404de0: 01040051  sub w1, w0, #1
+00404de4: 211c0012  and w1, w1, #0xff
+00404de8: 3f8c0171  cmp w1, #0x63
+00404dec: 48010054  b.hi #0x404e14
+00404df0: a3030291  add x3, x29, #0x80
+00404df4: 005c1853  lsl w0, w0, #8
+00404df8: 620000d0  adrp x2, #0x412000
+00404dfc: 42ec0e91  add x2, x2, #0x3bb
+00404e00: 44008052  mov w4, #2
+00404e04: c1008052  mov w1, #6
+00404e08: 602c1c78  strh w0, [x3, #-0x3e]!
+00404e0c: a0830191  add x0, x29, #0x60
+00404e10: 10faff97  bl #0x403650 ; heuristic blobmsg_add_field@plt {"x1": 6, "x2": "AllocatedCPUPercent", "x4": 2}
+00404e14: a22b40f9  ldr x2, [x29, #0x50]
+00404e18: 5f0000f1  cmp x2, #0
+00404e1c: ad000054  b.le #0x404e30
+00404e20: 610000d0  adrp x1, #0x412000
+00404e24: 21ec0c91  add x1, x1, #0x33b
+00404e28: a0830191  add x0, x29, #0x60
+00404e2c: 50feff97  bl #0x40476c ; heuristic 0x40476c {"x1": "AllocatedDiskSpace"}
+00404e30: a22f40f9  ldr x2, [x29, #0x58]
+00404e34: 5f0000f1  cmp x2, #0
+00404e38: ad000054  b.le #0x404e4c
+00404e3c: 610000d0  adrp x1, #0x412000
+00404e40: 21380d91  add x1, x1, #0x34e
+00404e44: a0830191  add x0, x29, #0x60
+00404e48: 49feff97  bl #0x40476c ; heuristic 0x40476c {"x1": "AllocatedMemory"}
+00404e4c: a03340f9  ldr x0, [x29, #0x60]
+00404e50: 04008012  mov w4, #-1
+00404e54: 030080d2  mov x3, #0
+00404e58: 020080d2  mov x2, #0
+00404e5c: 21008052  mov w1, #1
+00404e60: e8f8ff97  bl #0x403200 ; heuristic blobmsg_format_json_with_cb@plt {"x1": 1, "x2": 0, "x3": 0, "x4": -1}
+00404e64: f50300aa  mov x21, x0
+00404e68: 600100b5  cbnz x0, #0x404e94
+00404e6c: 63220191  add x3, x19, #0x48
+00404e70: 620000d0  adrp x2, #0x412000
+00404e74: 423c0f91  add x2, x2, #0x3cf
+00404e78: 63200691  add x3, x3, #0x188
+00404e7c: 01008052  mov w1, #0
+00404e80: 60008052  mov w0, #3
+00404e84: 7bf9ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Error: ModifyConstraints blob message failed to be constructed"}
+00404e88: a0830191  add x0, x29, #0x60
+00404e8c: cdf8ff97  bl #0x4031c0 ; heuristic blob_buf_free@plt {}
+00404e90: b7ffff17  b #0x404d6c
+00404e94: 73220191  add x19, x19, #0x48
+00404e98: e40300aa  mov x4, x0
+00404e9c: 73220691  add x19, x19, #0x188
+00404ea0: 620000d0  adrp x2, #0x412000
+00404ea4: 424c1091  add x2, x2, #0x413
+00404ea8: e30313aa  mov x3, x19
+00404eac: 01008052  mov w1, #0
+00404eb0: 94020e91  add x20, x20, #0x380
+00404eb4: c0008052  mov w0, #6
+00404eb8: 6ef9ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "[%s] Global limits: %s"}
+00404ebc: e00315aa  mov x0, x21
+00404ec0: e8f8ff97  bl #0x403260 ; heuristic free@plt {}
+00404ec4: 810e40f9  ldr x1, [x20, #0x18]
+00404ec8: a2130191  add x2, x29, #0x44
+00404ecc: e00317aa  mov x0, x23
+00404ed0: ecf9ff97  bl #0x403680 ; heuristic ubus_lookup_id@plt {}
+00404ed4: 40010034  cbz w0, #0x404efc
+00404ed8: 840e40f9  ldr x4, [x20, #0x18]
+00404edc: e503002a  mov w5, w0
+00404ee0: e30313aa  mov x3, x19
+00404ee4: 620000d0  adrp x2, #0x412000
+00404ee8: 42a81091  add x2, x2, #0x42a
+00404eec: 01008052  mov w1, #0
+00404ef0: 60008052  mov w0, #3
+00404ef4: 5ff9ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Error: No ubus object found %s (%d)"}
+00404ef8: 9dffff17  b #0x404d6c
+00404efc: a14740b9  ldr w1, [x29, #0x44]
+00404f00: 620000d0  adrp x2, #0x412000
+00404f04: 424c1191  add x2, x2, #0x453
+00404f08: a33340f9  ldr x3, [x29, #0x60]
+00404f0c: 07008012  mov w7, #-1
+00404f10: 06008052  mov w6, #0
+00404f14: 050080d2  mov x5, #0
+00404f18: 040080d2  mov x4, #0
+00404f1c: e00317aa  mov x0, x23
+00404f20: 18faff97  bl #0x403780 ; heuristic ubus_invoke_fd@plt {"x2": "ModifyConstraints", "x4": 0, "x5": 0, "x6": 0, "x7": -1}
+00404f24: 20010034  cbz w0, #0x404f48
+00404f28: e403002a  mov w4, w0
+00404f2c: e30313aa  mov x3, x19
+00404f30: 620000d0  adrp x2, #0x412000
+00404f34: 42941191  add x2, x2, #0x465
+00404f38: 01008052  mov w1, #0
+00404f3c: 60008052  mov w0, #3
+00404f40: 4cf9ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Error: ubus invoke returned error: %d"}
+00404f44: d1ffff17  b #0x404e88
+00404f48: 840e40f9  ldr x4, [x20, #0x18]
+00404f4c: e30313aa  mov x3, x19
+00404f50: 620000d0  adrp x2, #0x412000
+00404f54: 42401291  add x2, x2, #0x490
+00404f58: 01008052  mov w1, #0
+00404f5c: c0008052  mov w0, #6
+00404f60: 44f9ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "[%s] Global limits successfully set for: %s"}
+00404f64: a0830191  add x0, x29, #0x60
+00404f68: 96f8ff97  bl #0x4031c0 ; heuristic blob_buf_free@plt {}
+00404f6c: 600000f0  adrp x0, #0x413000
+00404f70: 16044db9  ldr w22, [x0, #0xd04]
+00404f74: 7effff17  b #0x404d6c
+00404f78: ffc32cd1  sub sp, sp, #0xb30
+00404f7c: 225a81d2  mov x2, #0xad1
+00404f80: 01008052  mov w1, #0
+00404f84: fd7b00a9  stp x29, x30, [sp]
+00404f88: fd030091  mov x29, sp
+00404f8c: a0630191  add x0, x29, #0x58
+00404f90: f35301a9  stp x19, x20, [sp, #0x10]
+00404f94: f55b02a9  stp x21, x22, [sp, #0x20]
+00404f98: f76303a9  stp x23, x24, [sp, #0x30]
+00404f9c: f92300f9  str x25, [sp, #0x40]
+00404fa0: b4f8ff97  bl #0x403270 ; heuristic memset@plt {}
+00404fa4: 80528052  mov w0, #0x294
+00404fa8: a05b00b9  str w0, [x29, #0x58]
+00404fac: a0630191  add x0, x29, #0x58
+00404fb0: fafdff97  bl #0x404798 ; heuristic 0x404798 {}
+00404fb4: 1f040031  cmn w0, #1
+00404fb8: 21010054  b.ne #0x404fdc
+00404fbc: 20008052  mov w0, #1
+00404fc0: fd7b40a9  ldp x29, x30, [sp]
+00404fc4: f35341a9  ldp x19, x20, [sp, #0x10]
+00404fc8: f55b42a9  ldp x21, x22, [sp, #0x20]
+00404fcc: f76343a9  ldp x23, x24, [sp, #0x30]
+00404fd0: f92340f9  ldr x25, [sp, #0x40]
+00404fd4: ffc32c91  add sp, sp, #0xb30
+00404fd8: c0035fd6  ret 
+00404fdc: 02008252  mov w2, #0x1000
+00404fe0: 215a8152  mov w1, #0xad1
+00404fe4: a0630191  add x0, x29, #0x58
+00404fe8: 4ef8ff97  bl #0x403120 ; heuristic cfg_getObj@plt {"x1": 2769, "x2": 4096}
+00404fec: 4df9ff97  bl #0x403520 ; heuristic get_nprocs@plt {}
+00404ff0: f603002a  mov w22, w0
+00404ff4: c0050035  cbnz w0, #0x4050ac
+00404ff8: 630000d0  adrp x3, #0x412000
+00404ffc: 63200191  add x3, x3, #0x48
+00405000: 04008052  mov w4, #0
+00405004: 63800691  add x3, x3, #0x1a0
+00405008: 620000b0  adrp x2, #0x412000
+0040500c: 42f01291  add x2, x2, #0x4bc
+00405010: 01008052  mov w1, #0
+00405014: c0008052  mov w0, #6
+00405018: 16f9ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "[%s] Did not found any cpus : %d", "x3": "update_processorRefList", "x4": 0}
+0040501c: e8ffff17  b #0x404fbc
+00405020: 94060011  add w20, w20, #1
+00405024: e31240f9  ldr x3, [x23, #0x20]
+00405028: 80060051  sub w0, w20, #1
+0040502c: 667e4093  sxtw x6, w19
+00405030: 3f03006b  cmp w25, w0
+00405034: 358080d2  mov x21, #0x401
+00405038: 85000090  adrp x5, #0x415000
+0040503c: b50206cb  sub x21, x21, x6
+00405040: a5f80491  add x5, x5, #0x13e
+00405044: a06f1491  add x0, x29, #0x51b
+00405048: a500989a  csel x5, x5, x24, eq
+0040504c: 620000b0  adrp x2, #0x412000
+00405050: 42741391  add x2, x2, #0x4dd
+00405054: e403142a  mov w4, w20
+00405058: e10315aa  mov x1, x21
+0040505c: 0000068b  add x0, x0, x6
+00405060: 40f9ff97  bl #0x403560 ; heuristic snprintf@plt {"x2": "%s.%d.%s"}
+00405064: c0faff37  tbnz w0, #0x1f, #0x404fbc
+00405068: bfc220eb  cmp x21, w0, sxtw
+0040506c: 89faff54  b.ls #0x404fbc
+00405070: 7302000b  add w19, w19, w0
+00405074: 7f021071  cmp w19, #0x400
+00405078: 8092567a  ccmp w20, w22, #0, ls
+0040507c: 2bfdff54  b.lt #0x405020
+00405080: 7f021071  cmp w19, #0x400
+00405084: 68000054  b.hi #0x405090
+00405088: a06f1491  add x0, x29, #0x51b
+0040508c: 1fc83338  strb wzr, [x0, w19, sxtw]
+00405090: bf6f2439  strb wzr, [x29, #0x91b]
+00405094: 22028052  mov w2, #0x11
+00405098: 215a8152  mov w1, #0xad1
+0040509c: a0630191  add x0, x29, #0x58
+004050a0: a4f8ff97  bl #0x403330 ; heuristic cfg_setObj@plt {"x1": 2769, "x2": 17}
+004050a4: 00008052  mov w0, #0
+004050a8: c6ffff17  b #0x404fc0
+004050ac: 170100f0  adrp x23, #0x428000
+004050b0: f7020e91  add x23, x23, #0x380
+004050b4: 78000090  adrp x24, #0x411000
+004050b8: 182f3691  add x24, x24, #0xd8b
+004050bc: 14008052  mov w20, #0
+004050c0: 13008052  mov w19, #0
+004050c4: 19040051  sub w25, w0, #1
+004050c8: ebffff17  b #0x405074
+004050cc: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+004050d0: fd030091  mov x29, sp
+004050d4: f55b02a9  stp x21, x22, [sp, #0x20]
+004050d8: 360100f0  adrp x22, #0x42c000
+004050dc: c0aa42f9  ldr x0, [x22, #0x550]
+004050e0: f35301a9  stp x19, x20, [sp, #0x10]
+004050e4: 200100b5  cbnz x0, #0x405108
+004050e8: 630000b0  adrp x3, #0x412000
+004050ec: 63200191  add x3, x3, #0x48
+004050f0: 620000b0  adrp x2, #0x412000
+004050f4: 42981391  add x2, x2, #0x4e6
+004050f8: 63e00691  add x3, x3, #0x1b8
+004050fc: 01008052  mov w1, #0
+00405100: c0008052  mov w0, #6
+00405104: dbf8ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "%s: no ctx", "x3": "invoke_lcm_execEnv"}
+00405108: 150100f0  adrp x21, #0x428000
+0040510c: b5020e91  add x21, x21, #0x380
+00405110: c0aa42f9  ldr x0, [x22, #0x550]

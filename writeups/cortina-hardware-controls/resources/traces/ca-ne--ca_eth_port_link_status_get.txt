@@ -1,0 +1,117 @@
+ca_eth_port_link_status_get: .text+0x125e38, 464 bytes; sha256 a76d265e33981cbfdb709e39c884d65367376d7cd0d60a25878e252805a9043c
+00125e38: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+00125e3c: fd030091  mov x29, sp
+00125e40: f35301a9  stp x19, x20, [sp, #0x10]
+00125e44: f55b02a9  stp x21, x22, [sp, #0x20]
+00125e48: f71b00f9  str x23, [sp, #0x30]
+00125e4c: f303012a  mov w19, w1
+00125e50: 173c0012  and w23, w0, #0xffff
+00125e54: f60302aa  mov x22, x2
+00125e58: e0031eaa  mov x0, x30
+00125e5c: 00000094  bl #0x125e5c ; reloc _mcount+0x0 type=283
+00125e60: 15000090  adrp x21, #0x125000 ; reloc .bss+0x445d0 type=275
+00125e64: a1020091  add x1, x21, #0 ; reloc .bss+0x445d0 type=277
+00125e68: 743e0012  and w20, w19, #0xffff
+00125e6c: 20804939  ldrb w0, [x1, #0x260]
+00125e70: c0000035  cbnz w0, #0x125e88
+00125e74: 00000090  adrp x0, #0x125000 ; reloc .rodata.str1.8+0x2da60 'ETH Port API is NOT initialized ready\r\n' type=275
+00125e78: 74028052  mov w20, #0x13
+00125e7c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x2da60 'ETH Port API is NOT initialized ready\r\n' type=277
+00125e80: 00000094  bl #0x125e80 ; reloc ca_printf+0x0 type=283
+00125e84: 5b000014  b #0x125ff0
+00125e88: 607e1053  lsr w0, w19, #0x10
+00125e8c: 1f0c0071  cmp w0, #3
+00125e90: 41010054  b.ne #0x125eb8
+00125e94: 9f1e0071  cmp w20, #7
+00125e98: 8c020054  b.gt #0x125ee8
+00125e9c: 212c40b9  ldr w1, [x1, #0x2c]
+00125ea0: 20008052  mov w0, #1
+00125ea4: 0020d41a  lsl w0, w0, w20
+00125ea8: 1f00016a  tst w0, w1
+00125eac: e0010054  b.eq #0x125ee8
+00125eb0: 20000014  b #0x125f30
+00125eb4: 1f2003d5  nop 
+00125eb8: 01040051  sub w1, w0, #1
+00125ebc: 3f040071  cmp w1, #1
+00125ec0: 88000054  b.hi #0x125ed0
+00125ec4: 9f1e0071  cmp w20, #7
+00125ec8: 01010054  b.ne #0x125ee8
+00125ecc: 03000014  b #0x125ed8
+00125ed0: 1f140071  cmp w0, #5
+00125ed4: a1000054  b.ne #0x125ee8
+00125ed8: 00000090  adrp x0, #0x125000 ; reloc wan_port_id+0x0 type=275
+00125edc: 00004039  ldrb w0, [x0] ; reloc wan_port_id+0x0 type=278
+00125ee0: 1f00146b  cmp w0, w20
+00125ee4: 60020054  b.eq #0x125f30
+00125ee8: 00000090  adrp x0, #0x125000 ; reloc ca_api_debug+0x0 type=275
+00125eec: 54008052  mov w20, #2
+00125ef0: 000040b9  ldr w0, [x0] ; reloc ca_api_debug+0x0 type=285
+00125ef4: e0074836  tbz w0, #9, #0x125ff0
+00125ef8: 00000090  adrp x0, #0x125000 ; reloc ca_eth_port_log_lvl+0x0 type=275
+00125efc: 000040b9  ldr w0, [x0] ; reloc ca_eth_port_log_lvl+0x0 type=285
+00125f00: 1f0c0071  cmp w0, #3
+00125f04: 69070054  b.ls #0x125ff0
+00125f08: 03000090  adrp x3, #0x125000 ; reloc .rodata+0x7678 'ca_eth_port_eee_enable_get' type=275
+00125f0c: 63000091  add x3, x3, #0 ; reloc .rodata+0x7678 'ca_eth_port_eee_enable_get' type=277
+00125f10: 63002c91  add x3, x3, #0xb00
+00125f14: 00000090  adrp x0, #0x125000 ; reloc .rodata.str1.8+0x2da88 '%s(): L%u, %s(): invalid port %#x\r\n' type=275
+00125f18: e403132a  mov w4, w19
+00125f1c: 82768152  mov w2, #0xbb4
+00125f20: e10303aa  mov x1, x3
+00125f24: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x2da88 '%s(): L%u, %s(): invalid port %#x\r\n' type=277
+00125f28: 00000094  bl #0x125f28 ; reloc ca_printf+0x0 type=283
+00125f2c: 31000014  b #0x125ff0
+00125f30: 960100b5  cbnz x22, #0x125f60
+00125f34: 01000090  adrp x1, #0x125000 ; reloc .rodata+0x7678 'ca_eth_port_eee_enable_get' type=275
+00125f38: 21000091  add x1, x1, #0 ; reloc .rodata+0x7678 'ca_eth_port_eee_enable_get' type=277
+00125f3c: 00000090  adrp x0, #0x125000 ; reloc .rodata.str1.8+0x2dab0 '%s:[%d] ptr is %u!!\n' type=275
+00125f40: 030080d2  mov x3, #0
+00125f44: a2768152  mov w2, #0xbb5
+00125f48: 21802c91  add x1, x1, #0xb20
+00125f4c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x2dab0 '%s:[%d] ptr is %u!!\n' type=277
+00125f50: 54008052  mov w20, #2
+00125f54: 00000094  bl #0x125f54 ; reloc ca_printf+0x0 type=283
+00125f58: 26000014  b #0x125ff0
+00125f5c: 1f2003d5  nop 
+00125f60: 9f1e0071  cmp w20, #7
+00125f64: 69020054  b.ls #0x125fb0
+00125f68: 00000090  adrp x0, #0x125000 ; reloc ca_api_debug+0x0 type=275
+00125f6c: 54008052  mov w20, #2
+00125f70: 000040b9  ldr w0, [x0] ; reloc ca_api_debug+0x0 type=285
+00125f74: e0034836  tbz w0, #9, #0x125ff0
+00125f78: 00000090  adrp x0, #0x125000 ; reloc ca_eth_port_log_lvl+0x0 type=275
+00125f7c: 000040b9  ldr w0, [x0] ; reloc ca_eth_port_log_lvl+0x0 type=285
+00125f80: 1f0c0071  cmp w0, #3
+00125f84: 69030054  b.ls #0x125ff0
+00125f88: 01000090  adrp x1, #0x125000 ; reloc .rodata+0x7678 'ca_eth_port_eee_enable_get' type=275
+00125f8c: 21000091  add x1, x1, #0 ; reloc .rodata+0x7678 'ca_eth_port_eee_enable_get' type=277
+00125f90: 00000090  adrp x0, #0x125000 ; reloc .rodata.str1.8+0x2dbb8 '%s(): L%u, the port %#x is invalid\n' type=275
+00125f94: e303132a  mov w3, w19
+00125f98: 02778152  mov w2, #0xbb8
+00125f9c: 21002c91  add x1, x1, #0xb00
+00125fa0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x2dbb8 '%s(): L%u, the port %#x is invalid\n' type=277
+00125fa4: 00000094  bl #0x125fa4 ; reloc ca_printf+0x0 type=283
+00125fa8: 12000014  b #0x125ff0
+00125fac: 1f2003d5  nop 
+00125fb0: a00240f9  ldr x0, [x21] ; reloc .bss+0x445d0 type=286
+00125fb4: bf2300f9  str xzr, [x29, #0x40]
+00125fb8: bf4b00b9  str wzr, [x29, #0x48]
+00125fbc: 00000094  bl #0x125fbc ; reloc ca_mutex_lock+0x0 type=283
+00125fc0: e103142a  mov w1, w20
+00125fc4: a2030191  add x2, x29, #0x40
+00125fc8: e003172a  mov w0, w23
+00125fcc: 97feff97  bl #0x125a28
+00125fd0: f403002a  mov w20, w0
+00125fd4: a00240f9  ldr x0, [x21] ; reloc .bss+0x445d0 type=286
+00125fd8: 00000094  bl #0x125fd8 ; reloc ca_mutex_unlock+0x0 type=283
+00125fdc: b4000035  cbnz w20, #0x125ff0
+00125fe0: a04340b9  ldr w0, [x29, #0x40]
+00125fe4: 1f000071  cmp w0, #0
+00125fe8: e0079f1a  cset w0, ne
+00125fec: c00200b9  str w0, [x22]
+00125ff0: e003142a  mov w0, w20
+00125ff4: f71b40f9  ldr x23, [sp, #0x30]
+00125ff8: f35341a9  ldp x19, x20, [sp, #0x10]
+00125ffc: f55b42a9  ldp x21, x22, [sp, #0x20]
+00126000: fd7bc5a8  ldp x29, x30, [sp], #0x50
+00126004: c0035fd6  ret 

@@ -1,0 +1,179 @@
+
+rlyeh_read_policy:
+00006884: fd7bb6a9  stp x29, x30, [sp, #-0xa0]!
+00006888: fd030091  mov x29, sp
+0000688c: f76303a9  stp x23, x24, [sp, #0x30]
+00006890: f70301aa  mov x23, x1
+00006894: c10000f0  adrp x1, #0x21000
+00006898: f35301a9  stp x19, x20, [sp, #0x10]
+0000689c: f55b02a9  stp x21, x22, [sp, #0x20]
+000068a0: f60302aa  mov x22, x2
+000068a4: 21e846f9  ldr x1, [x1, #0xdd0]
+000068a8: d40000f0  adrp x20, #0x21000
+000068ac: f96b04a9  stp x25, x26, [sp, #0x40]
+000068b0: fb7305a9  stp x27, x28, [sp, #0x50]
+000068b4: bf3b00f9  str xzr, [x29, #0x70]
+000068b8: 20003fd6  blr x1 ; heuristic @read_config {"x1": "@read_config"}
+000068bc: a03b00f9  str x0, [x29, #0x70]
+000068c0: 001400b4  cbz x0, #0x6b40
+000068c4: d50000f0  adrp x21, #0x21000
+000068c8: 02008052  mov w2, #0
+000068cc: 410000b0  adrp x1, #0xf000
+000068d0: 213c0191  add x1, x1, #0x4f
+000068d4: b3c645f9  ldr x19, [x21, #0xb88]
+000068d8: 60023fd6  blr x19 ; heuristic @amxc_var_get_key {"x1": "transports", "x2": 0}
+000068dc: b53700f9  str x21, [x29, #0x68]
+000068e0: a03f00f9  str x0, [x29, #0x78]
+000068e4: a00f00b4  cbz x0, #0x6ad8
+000068e8: 02008052  mov w2, #0
+000068ec: e10317aa  mov x1, x23
+000068f0: 60023fd6  blr x19 ; heuristic @amxc_var_get_key {"x2": 0}
+000068f4: a04300f9  str x0, [x29, #0x80]
+000068f8: c00e00b4  cbz x0, #0x6ad0
+000068fc: 02008052  mov w2, #0
+00006900: e10316aa  mov x1, x22
+00006904: 60023fd6  blr x19 ; heuristic @amxc_var_get_key {"x2": 0}
+00006908: a04700f9  str x0, [x29, #0x88]
+0000690c: e00d00b4  cbz x0, #0x6ac8
+00006910: c10000f0  adrp x1, #0x21000
+00006914: d60000f0  adrp x22, #0x21000
+00006918: d70000f0  adrp x23, #0x21000
+0000691c: 590000b0  adrp x25, #0xf000
+00006920: 396b0191  add x25, x25, #0x5a
+00006924: 218847f9  ldr x1, [x1, #0xf10]
+00006928: bb630291  add x27, x29, #0x98
+0000692c: 13008052  mov w19, #0
+00006930: 20003fd6  blr x1 ; heuristic @amxc_var_get_first {"x1": "@amxc_var_get_first"}
+00006934: f50300aa  mov x21, x0
+00006938: c18e46f9  ldr x1, [x22, #0xd18]
+0000693c: 20003fd6  blr x1 ; heuristic @amxc_var_get_next {"x1": "@amxc_var_get_next"}
+00006940: f7c245f9  ldr x23, [x23, #0xb80]
+00006944: f80300aa  mov x24, x0
+00006948: f50500b5  cbnz x21, #0x6a04
+0000694c: 81b645f9  ldr x1, [x20, #0xb68]
+00006950: a0230291  add x0, x29, #0x88
+00006954: 20003fd6  blr x1 ; heuristic @amxc_var_delete {"x1": "@amxc_var_delete"}
+00006958: 81b645f9  ldr x1, [x20, #0xb68]
+0000695c: a0030291  add x0, x29, #0x80
+00006960: 20003fd6  blr x1 ; heuristic @amxc_var_delete {"x1": "@amxc_var_delete"}
+00006964: 81b645f9  ldr x1, [x20, #0xb68]
+00006968: a0e30191  add x0, x29, #0x78
+0000696c: 20003fd6  blr x1 ; heuristic @amxc_var_delete {"x1": "@amxc_var_delete"}
+00006970: 53030035  cbnz w19, #0x69d8
+00006974: a38346a9  ldp x3, x0, [x29, #0x68]
+00006978: 02008052  mov w2, #0
+0000697c: 410000b0  adrp x1, #0xf000
+00006980: 213c0291  add x1, x1, #0x8f
+00006984: 63c445f9  ldr x3, [x3, #0xb88]
+00006988: 60003fd6  blr x3 ; heuristic unknown {"x1": "default", "x2": 0}
+0000698c: a04b00f9  str x0, [x29, #0x90]
+00006990: e00100b4  cbz x0, #0x69cc
+00006994: c10000f0  adrp x1, #0x21000
+00006998: d50000f0  adrp x21, #0x21000
+0000699c: d90000f0  adrp x25, #0x21000
+000069a0: 580000b0  adrp x24, #0xf000
+000069a4: 186b0191  add x24, x24, #0x5a
+000069a8: 218847f9  ldr x1, [x1, #0xf10]
+000069ac: ba630291  add x26, x29, #0x98
+000069b0: 20003fd6  blr x1 ; heuristic @amxc_var_get_first {"x1": "@amxc_var_get_first"}
+000069b4: f60300aa  mov x22, x0
+000069b8: a18e46f9  ldr x1, [x21, #0xd18]
+000069bc: 20003fd6  blr x1 ; heuristic @amxc_var_get_next {"x1": "@amxc_var_get_next"}
+000069c0: 39c345f9  ldr x25, [x25, #0xb80]
+000069c4: f70300aa  mov x23, x0
+000069c8: d60800b5  cbnz x22, #0x6ae0
+000069cc: 81b645f9  ldr x1, [x20, #0xb68]
+000069d0: a0430291  add x0, x29, #0x90
+000069d4: 20003fd6  blr x1 ; heuristic @amxc_var_delete {"x1": "@amxc_var_delete"}
+000069d8: 94b645f9  ldr x20, [x20, #0xb68]
+000069dc: a0c30191  add x0, x29, #0x70
+000069e0: 80023fd6  blr x20 ; heuristic @amxc_var_delete {}
+000069e4: e003132a  mov w0, w19
+000069e8: f35341a9  ldp x19, x20, [sp, #0x10]
+000069ec: f55b42a9  ldp x21, x22, [sp, #0x20]
+000069f0: f76343a9  ldp x23, x24, [sp, #0x30]
+000069f4: f96b44a9  ldp x25, x26, [sp, #0x40]
+000069f8: fb7345a9  ldp x27, x28, [sp, #0x50]
+000069fc: fd7bcaa8  ldp x29, x30, [sp], #0xa0
+00006a00: c0035fd6  ret 
+00006a04: dc0000f0  adrp x28, #0x21000
+00006a08: 02008052  mov w2, #0
+00006a0c: e10319aa  mov x1, x25
+00006a10: e00315aa  mov x0, x21
+00006a14: e0023fd6  blr x23 ; heuristic unknown {"x2": 0}
+00006a18: 9cd345f9  ldr x28, [x28, #0xba0]
+00006a1c: a04b00f9  str x0, [x29, #0x90]
+00006a20: 80033fd6  blr x28 ; heuristic @amxc_var_get_const_cstring_t {}
+00006a24: fa0300aa  mov x26, x0
+00006a28: 410000b0  adrp x1, #0xf000
+00006a2c: 217c0191  add x1, x1, #0x5f
+00006a30: 02008052  mov w2, #0
+00006a34: e00315aa  mov x0, x21
+00006a38: d50000f0  adrp x21, #0x21000
+00006a3c: e0023fd6  blr x23 ; heuristic unknown {"x1": "keyType", "x2": 0}
+00006a40: a04f00f9  str x0, [x29, #0x98]
+00006a44: 80033fd6  blr x28 ; heuristic @amxc_var_get_const_cstring_t {}
+00006a48: b53e47f9  ldr x21, [x21, #0xe78]
+00006a4c: fc0300aa  mov x28, x0
+00006a50: 410000b0  adrp x1, #0xf000
+00006a54: 219c0191  add x1, x1, #0x67
+00006a58: e0031aaa  mov x0, x26
+00006a5c: a0023fd6  blr x21 ; heuristic @strcmp {"x1": "signedBy"}
+00006a60: 60020035  cbnz w0, #0x6aac
+00006a64: 410000b0  adrp x1, #0xf000
+00006a68: 21c00191  add x1, x1, #0x70
+00006a6c: e0031caa  mov x0, x28
+00006a70: a0023fd6  blr x21 ; heuristic @strcmp {"x1": "GPGKeys"}
+00006a74: 1f000071  cmp w0, #0
+00006a78: 40008052  mov w0, #2
+00006a7c: 7312801a  csel w19, w19, w0, ne
+00006a80: 95b645f9  ldr x21, [x20, #0xb68]
+00006a84: e0031baa  mov x0, x27
+00006a88: a0023fd6  blr x21 ; heuristic unknown {}
+00006a8c: a0430291  add x0, x29, #0x90
+00006a90: a0023fd6  blr x21 ; heuristic unknown {}
+00006a94: c18e46f9  ldr x1, [x22, #0xd18]
+00006a98: e00318aa  mov x0, x24
+00006a9c: f50318aa  mov x21, x24
+00006aa0: 20003fd6  blr x1 ; heuristic unknown {}
+00006aa4: f80300aa  mov x24, x0
+00006aa8: a8ffff17  b #0x6948
+00006aac: 410000b0  adrp x1, #0xf000
+00006ab0: 21e00191  add x1, x1, #0x78
+00006ab4: e0031aaa  mov x0, x26
+00006ab8: a0023fd6  blr x21 ; heuristic unknown {"x1": "insecureAcceptAnything"}
+00006abc: 1f000071  cmp w0, #0
+00006ac0: 73169f1a  csinc w19, w19, wzr, ne
+00006ac4: efffff17  b #0x6a80
+00006ac8: 13008052  mov w19, #0
+00006acc: a0ffff17  b #0x694c
+00006ad0: 13008052  mov w19, #0
+00006ad4: a1ffff17  b #0x6958
+00006ad8: 13008052  mov w19, #0
+00006adc: a2ffff17  b #0x6964
+00006ae0: 02008052  mov w2, #0
+00006ae4: e10318aa  mov x1, x24
+00006ae8: e00316aa  mov x0, x22
+00006aec: 20033fd6  blr x25 ; heuristic unknown {"x2": 0}
+00006af0: c10000f0  adrp x1, #0x21000
+00006af4: a04f00f9  str x0, [x29, #0x98]
+00006af8: f60317aa  mov x22, x23
+00006afc: 21d045f9  ldr x1, [x1, #0xba0]
+00006b00: 20003fd6  blr x1 ; heuristic @amxc_var_get_const_cstring_t {"x1": "@amxc_var_get_const_cstring_t"}
+00006b04: c20000f0  adrp x2, #0x21000
+00006b08: 410000b0  adrp x1, #0xf000
+00006b0c: 21e00191  add x1, x1, #0x78
+00006b10: 423c47f9  ldr x2, [x2, #0xe78]
+00006b14: 40003fd6  blr x2 ; heuristic @strcmp {"x1": "insecureAcceptAnything", "x2": "@strcmp"}
+00006b18: 1f000071  cmp w0, #0
+00006b1c: 81b645f9  ldr x1, [x20, #0xb68]
+00006b20: 73169f1a  csinc w19, w19, wzr, ne
+00006b24: e0031aaa  mov x0, x26
+00006b28: 20003fd6  blr x1 ; heuristic unknown {}
+00006b2c: a18e46f9  ldr x1, [x21, #0xd18]
+00006b30: e00317aa  mov x0, x23
+00006b34: 20003fd6  blr x1 ; heuristic unknown {}
+00006b38: f70300aa  mov x23, x0
+00006b3c: a3ffff17  b #0x69c8
+00006b40: 13008052  mov w19, #0
+00006b44: a5ffff17  b #0x69d8

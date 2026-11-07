@@ -1,0 +1,36 @@
+cli_k_cmd_reg: .text+0xa88, 140 bytes; sha256 607b5d1eb3518de5ea1590ec716e7d2a8ea19305f82a1c3a0920fd059473983f
+00000a88: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+00000a8c: fd030091  mov x29, sp
+00000a90: f35301a9  stp x19, x20, [sp, #0x10]
+00000a94: f55b02a9  stp x21, x22, [sp, #0x20]
+00000a98: 14000090  adrp x20, #0 ; reloc .bss+0x0 type=275
+00000a9c: f60300aa  mov x22, x0
+00000aa0: f50301aa  mov x21, x1
+00000aa4: e0031eaa  mov x0, x30
+00000aa8: 00000094  bl #0xaa8 ; reloc _mcount+0x0 type=283
+00000aac: 930240b9  ldr w19, [x20] ; reloc .bss+0x0 type=285
+00000ab0: e0e78352  mov w0, #0x1f3f
+00000ab4: 7f02006b  cmp w19, w0
+00000ab8: c9000054  b.ls #0xad0
+00000abc: 00000090  adrp x0, #0 ; reloc .rodata.str1.8+0x58 'cmd reach max num \n' type=275
+00000ac0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x58 'cmd reach max num \n' type=277
+00000ac4: 00000094  bl #0xac4 ; reloc ca_printf+0x0 type=283
+00000ac8: 0f000014  b #0xb04
+00000acc: 1f2003d5  nop 
+00000ad0: 03000090  adrp x3, #0 ; reloc .bss+0x4108 type=275
+00000ad4: 63000091  add x3, x3, #0 ; reloc .bss+0x4108 type=277
+00000ad8: e103132a  mov w1, w19
+00000adc: 00118052  mov w0, #0x88
+00000ae0: 2110018b  add x1, x1, x1, lsl #4
+00000ae4: e20f80d2  mov x2, #0x7f
+00000ae8: 600ea09b  umaddl x0, w19, w0, x3
+00000aec: 630c018b  add x3, x3, x1, lsl #3
+00000af0: 73060011  add w19, w19, #1
+00000af4: e10316aa  mov x1, x22
+00000af8: 754000f9  str x21, [x3, #0x80]
+00000afc: 00000094  bl #0xafc ; reloc strncpy+0x0 type=283
+00000b00: 930200b9  str w19, [x20] ; reloc .bss+0x0 type=285
+00000b04: f35341a9  ldp x19, x20, [sp, #0x10]
+00000b08: f55b42a9  ldp x21, x22, [sp, #0x20]
+00000b0c: fd7bc3a8  ldp x29, x30, [sp], #0x30
+00000b10: c0035fd6  ret 

@@ -1,0 +1,32 @@
+ca_l2fp_proc_init: .text+0x21778, 124 bytes; sha256 59dd9b06bf5567b11d71da8c8c79f9b7d7cd557190454af015f9658ef7aa2914
+00021778: fd7bbfa9  stp x29, x30, [sp, #-0x10]!
+0002177c: fd030091  mov x29, sp
+00021780: e0031eaa  mov x0, x30
+00021784: 00000094  bl #0x21784 ; reloc _mcount+0x0 type=283
+00021788: 01000090  adrp x1, #0x21000 ; reloc proc_adapt_dir+0x0 type=275
+0002178c: 00000090  adrp x0, #0x21000 ; reloc .rodata.str1.8+0xb6e0 'l2fp' type=275
+00021790: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xb6e0 'l2fp' type=277
+00021794: 210040f9  ldr x1, [x1] ; reloc proc_adapt_dir+0x0 type=286
+00021798: 00000094  bl #0x21798 ; reloc proc_mkdir+0x0 type=283
+0002179c: e20300aa  mov x2, x0
+000217a0: 01000090  adrp x1, #0x21000 ; reloc .bss+0xbb00 type=275
+000217a4: 03000090  adrp x3, #0x21000 ; reloc .data..read_mostly+0xc30 type=275
+000217a8: 00000090  adrp x0, #0x21000 ; reloc .rodata.str1.8+0xb6e8 'l2fp_debug' type=275
+000217ac: 63000091  add x3, x3, #0 ; reloc .data..read_mostly+0xc30 type=277
+000217b0: 220000f9  str x2, [x1] ; reloc .bss+0xbb00 type=286
+000217b4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xb6e8 'l2fp_debug' type=277
+000217b8: c1368052  mov w1, #0x1b6
+000217bc: 00000094  bl #0x217bc ; reloc proc_create+0x0 type=283
+000217c0: 01008052  mov w1, #0
+000217c4: 200100b5  cbnz x0, #0x217e8
+000217c8: 01000090  adrp x1, #0x21000 ; reloc .rodata+0x2578 'ca_l2fp_device_dump' type=275
+000217cc: 21000091  add x1, x1, #0 ; reloc .rodata+0x2578 'ca_l2fp_device_dump' type=277
+000217d0: 21000291  add x1, x1, #0x80
+000217d4: 00000090  adrp x0, #0x21000 ; reloc .rodata.str1.8+0xb6f8 type=275
+000217d8: a2458052  mov w2, #0x22d
+000217dc: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xb6f8 type=277
+000217e0: 00000094  bl #0x217e0 ; reloc printk+0x0 type=283
+000217e4: 61018012  mov w1, #-0xc
+000217e8: e003012a  mov w0, w1
+000217ec: fd7bc1a8  ldp x29, x30, [sp], #0x10
+000217f0: c0035fd6  ret 

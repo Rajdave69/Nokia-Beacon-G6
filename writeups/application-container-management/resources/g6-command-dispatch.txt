@@ -1,0 +1,478 @@
+00409ed8: 80220e91  add x0, x20, #0x388
+00409edc: 8de5ff97  bl #0x403510 ; heuristic blobmsg_parse@plt {}
+00409ee0: a01b40f9  ldr x0, [x29, #0x30]
+00409ee4: 400300b4  cbz x0, #0x409f4c
+00409ee8: bcf9ff97  bl #0x4085d8 ; heuristic 0x4085d8 {}
+00409eec: f40300aa  mov x20, x0
+00409ef0: 000100f0  adrp x0, #0x42c000
+00409ef4: 147003f9  str x20, [x0, #0x6e0]
+00409ef8: a01f40f9  ldr x0, [x29, #0x38]
+00409efc: c00200b4  cbz x0, #0x409f54
+00409f00: b6f9ff97  bl #0x4085d8 ; heuristic 0x4085d8 {}
+00409f04: 010100f0  adrp x1, #0x42c000
+00409f08: 207403f9  str x0, [x1, #0x6e8]
+00409f0c: 940200b5  cbnz x20, #0x409f5c
+00409f10: 63423591  add x3, x19, #0xd50
+00409f14: 01008052  mov w1, #0
+00409f18: 60008052  mov w0, #3
+00409f1c: 63800d91  add x3, x3, #0x360
+00409f20: 420000f0  adrp x2, #0x414000
+00409f24: 42042591  add x2, x2, #0x941
+00409f28: 52e5ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Requested Operation is NULL"}
+00409f2c: 400000d0  adrp x0, #0x413000
+00409f30: 02ec4cb9  ldr w2, [x0, #0xcec]
+00409f34: 410000f0  adrp x1, #0x414000
+00409f38: 21182591  add x1, x1, #0x946
+00409f3c: 60000090  adrp x0, #0x415000
+00409f40: 00f80491  add x0, x0, #0x13e
+00409f44: 37fbff97  bl #0x408c20 ; heuristic 0x408c20 {"x0": 4280638, "x1": "Requested Operation is NULL", "x2": 9003}
+00409f48: 13000014  b #0x409f94
+00409f4c: 140080d2  mov x20, #0
+00409f50: e8ffff17  b #0x409ef0
+00409f54: 000080d2  mov x0, #0
+00409f58: ebffff17  b #0x409f04
+00409f5c: 400000f0  adrp x0, #0x414000
+00409f60: 00f02591  add x0, x0, #0x97c
+00409f64: e10314aa  mov x1, x20
+00409f68: dae5ff97  bl #0x4036d0 ; heuristic strcmp@plt {"x0": "AddExecEnv", "x1": 0}
+00409f6c: c0010035  cbnz w0, #0x409fa4
+00409f70: 63423591  add x3, x19, #0xd50
+00409f74: 420000f0  adrp x2, #0x414000
+00409f78: 42882591  add x2, x2, #0x962
+00409f7c: 63800d91  add x3, x3, #0x360
+00409f80: 01008052  mov w1, #0
+00409f84: a0008052  mov w0, #5
+00409f88: 3ae5ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "[%s] Requested Operation: AddExecEnv"}
+00409f8c: e00315aa  mov x0, x21
+00409f90: affbff97  bl #0x408e4c ; heuristic 0x408e4c {}
+00409f94: f35341a9  ldp x19, x20, [sp, #0x10]
+00409f98: f55b42a9  ldp x21, x22, [sp, #0x20]
+00409f9c: fd7bc4a8  ldp x29, x30, [sp], #0x40
+00409fa0: c0035fd6  ret 
+00409fa4: 400000f0  adrp x0, #0x414000
+00409fa8: 00842691  add x0, x0, #0x9a1
+00409fac: e10314aa  mov x1, x20
+00409fb0: c8e5ff97  bl #0x4036d0 ; heuristic strcmp@plt {"x0": "InstallDU"}
+00409fb4: 60010035  cbnz w0, #0x409fe0
+00409fb8: 63423591  add x3, x19, #0xd50
+00409fbc: 420000f0  adrp x2, #0x414000
+00409fc0: 421c2691  add x2, x2, #0x987
+00409fc4: 63800d91  add x3, x3, #0x360
+00409fc8: 01008052  mov w1, #0
+00409fcc: a0008052  mov w0, #5
+00409fd0: 28e5ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "[%s] Requested Operation: InstallDU"}
+00409fd4: e00315aa  mov x0, x21
+00409fd8: 19fcff97  bl #0x40903c ; heuristic 0x40903c {}
+00409fdc: eeffff17  b #0x409f94
+00409fe0: 400000f0  adrp x0, #0x414000
+00409fe4: 00142791  add x0, x0, #0x9c5
+00409fe8: e10314aa  mov x1, x20
+00409fec: b9e5ff97  bl #0x4036d0 ; heuristic strcmp@plt {"x0": "Update"}
+00409ff0: 60010035  cbnz w0, #0x40a01c
+00409ff4: 63423591  add x3, x19, #0xd50
+00409ff8: 420000f0  adrp x2, #0x414000
+00409ffc: 42ac2691  add x2, x2, #0x9ab
+0040a000: 63800d91  add x3, x3, #0x360
+0040a004: 01008052  mov w1, #0
+0040a008: a0008052  mov w0, #5
+0040a00c: 19e5ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "[%s] Requested Operation: Update"}
+0040a010: e00315aa  mov x0, x21
+0040a014: 8afdff97  bl #0x40963c ; heuristic 0x40963c {}
+0040a018: dfffff17  b #0x409f94
+0040a01c: 400000d0  adrp x0, #0x414000
+0040a020: 00982791  add x0, x0, #0x9e6
+0040a024: e10314aa  mov x1, x20
+0040a028: aae5ff97  bl #0x4036d0 ; heuristic strcmp@plt {"x0": "Uninstall"}
+0040a02c: 60010035  cbnz w0, #0x40a058
+0040a030: 63423591  add x3, x19, #0xd50
+0040a034: 420000d0  adrp x2, #0x414000
+0040a038: 42302791  add x2, x2, #0x9cc
+0040a03c: 63800d91  add x3, x3, #0x360
+0040a040: 01008052  mov w1, #0
+0040a044: a0008052  mov w0, #5
+0040a048: 0ae5ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "[%s] Requested Operation: Uninstall"}
+0040a04c: e00315aa  mov x0, x21
+0040a050: 3ffeff97  bl #0x40994c ; heuristic 0x40994c {}
+0040a054: d0ffff17  b #0x409f94
+0040a058: 400000d0  adrp x0, #0x414000
+0040a05c: 00282891  add x0, x0, #0xa0a
+0040a060: e10314aa  mov x1, x20
+0040a064: 9be5ff97  bl #0x4036d0 ; heuristic strcmp@plt {"x0": "SetRunLevel"}
+0040a068: 60010035  cbnz w0, #0x40a094
+0040a06c: 63423591  add x3, x19, #0xd50
+0040a070: 420000d0  adrp x2, #0x414000
+0040a074: 42c02791  add x2, x2, #0x9f0
+0040a078: 63800d91  add x3, x3, #0x360
+0040a07c: 01008052  mov w1, #0
+0040a080: a0008052  mov w0, #5
+0040a084: fbe4ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "[%s] Requested Operation: SetRunLevel"}
+0040a088: e00315aa  mov x0, x21
+0040a08c: 84feff97  bl #0x409a9c ; heuristic 0x409a9c {}
+0040a090: c1ffff17  b #0x409f94
+0040a094: 400000d0  adrp x0, #0x414000
+0040a098: 00c02891  add x0, x0, #0xa30
+0040a09c: e10314aa  mov x1, x20
+0040a0a0: 8ce5ff97  bl #0x4036d0 ; heuristic strcmp@plt {"x0": "Restart"}
+0040a0a4: 60010035  cbnz w0, #0x40a0d0
+0040a0a8: 63423591  add x3, x19, #0xd50
+0040a0ac: 420000d0  adrp x2, #0x414000
+0040a0b0: 42582891  add x2, x2, #0xa16
+0040a0b4: 63800d91  add x3, x3, #0x360
+0040a0b8: 01008052  mov w1, #0
+0040a0bc: a0008052  mov w0, #5
+0040a0c0: ece4ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "[%s] Requested Operation: Restart"}
+0040a0c4: e00315aa  mov x0, x21
+0040a0c8: d2feff97  bl #0x409c10 ; heuristic 0x409c10 {}
+0040a0cc: b2ffff17  b #0x409f94
+0040a0d0: e10314aa  mov x1, x20
+0040a0d4: 400000d0  adrp x0, #0x414000
+0040a0d8: 00482991  add x0, x0, #0xa52
+0040a0dc: 7de5ff97  bl #0x4036d0 ; heuristic strcmp@plt {"x0": "SetRequestedState"}
+0040a0e0: 63423591  add x3, x19, #0xd50
+0040a0e4: 63800d91  add x3, x3, #0x360
+0040a0e8: 20010035  cbnz w0, #0x40a10c
+0040a0ec: 420000d0  adrp x2, #0x414000
+0040a0f0: 42e02891  add x2, x2, #0xa38
+0040a0f4: 01008052  mov w1, #0
+0040a0f8: a0008052  mov w0, #5
+0040a0fc: dde4ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "[%s] Requested Operation: SetRequestedState"}
+0040a100: e00315aa  mov x0, x21
+0040a104: 1fffff97  bl #0x409d80 ; heuristic 0x409d80 {}
+0040a108: a3ffff17  b #0x409f94
+0040a10c: 01008052  mov w1, #0
+0040a110: 60008052  mov w0, #3
+0040a114: 420000d0  adrp x2, #0x414000
+0040a118: 42902991  add x2, x2, #0xa64
+0040a11c: d5e4ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Requested Operation is not supported"}
+0040a120: 400000b0  adrp x0, #0x413000
+0040a124: 02f44cb9  ldr w2, [x0, #0xcf4]
+0040a128: 410000d0  adrp x1, #0x414000
+0040a12c: 21a42991  add x1, x1, #0xa69
+0040a130: 83ffff17  b #0x409f3c
+0040a134: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0040a138: 4208c05a  rev w2, w2
+0040a13c: 84008052  mov w4, #4
+0040a140: fd030091  mov x29, sp
+0040a144: a3830091  add x3, x29, #0x20
+0040a148: 62cc1fb8  str w2, [x3, #-4]!
+0040a14c: e20301aa  mov x2, x1
+0040a150: a1008052  mov w1, #5
+0040a154: 3fe5ff97  bl #0x403650 ; heuristic blobmsg_add_field@plt {"x1": 5, "x4": 4}
+0040a158: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0040a15c: c0035fd6  ret 
+0040a160: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0040a164: fd030091  mov x29, sp
+0040a168: f35301a9  stp x19, x20, [sp, #0x10]
+0040a16c: f30302aa  mov x19, x2
+0040a170: f51300f9  str x21, [sp, #0x20]
+0040a174: f40300aa  mov x20, x0
+0040a178: f50301aa  mov x21, x1
+0040a17c: e00302aa  mov x0, x2
+0040a180: ece3ff97  bl #0x403130 ; heuristic strlen@plt {}
+0040a184: 04040011  add w4, w0, #1
+0040a188: e30313aa  mov x3, x19
+0040a18c: e20315aa  mov x2, x21
+0040a190: e00314aa  mov x0, x20
+0040a194: f51340f9  ldr x21, [sp, #0x20]
+0040a198: f35341a9  ldp x19, x20, [sp, #0x10]
+0040a19c: 61008052  mov w1, #3
+0040a1a0: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0040a1a4: 2be5ff17  b #0x403650
+0040a1a8: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0040a1ac: e00302aa  mov x0, x2
+0040a1b0: 04008012  mov w4, #-1
+0040a1b4: 030080d2  mov x3, #0
+0040a1b8: fd030091  mov x29, sp
+0040a1bc: f30b00f9  str x19, [sp, #0x10]
+0040a1c0: 020080d2  mov x2, #0
+0040a1c4: 21008052  mov w1, #1
+0040a1c8: 0ee4ff97  bl #0x403200 ; heuristic blobmsg_format_json_with_cb@plt {"x1": 1, "x2": 0, "x3": 0, "x4": -1}
+0040a1cc: 01008052  mov w1, #0
+0040a1d0: f30300aa  mov x19, x0
+0040a1d4: e40300aa  mov x4, x0
+0040a1d8: 430000d0  adrp x3, #0x414000
+0040a1dc: 63202e91  add x3, x3, #0xb88
+0040a1e0: c0008052  mov w0, #6
+0040a1e4: 420000d0  adrp x2, #0x414000
+0040a1e8: 42883191  add x2, x2, #0xc62
+0040a1ec: a1e4ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "[%s] Received data:%s", "x3": "prpllcm_response_callback"}
+0040a1f0: e00313aa  mov x0, x19
+0040a1f4: f30b40f9  ldr x19, [sp, #0x10]
+0040a1f8: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0040a1fc: 19e4ff17  b #0x403260
+0040a200: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0040a204: 04008012  mov w4, #-1
+0040a208: 030080d2  mov x3, #0
+0040a20c: 020080d2  mov x2, #0
+0040a210: fd030091  mov x29, sp
+0040a214: f35301a9  stp x19, x20, [sp, #0x10]
+0040a218: f40300aa  mov x20, x0
+0040a21c: e00301aa  mov x0, x1
+0040a220: 21008052  mov w1, #1
+0040a224: 000040f9  ldr x0, [x0]
+0040a228: f6e3ff97  bl #0x403200 ; heuristic blobmsg_format_json_with_cb@plt {"x1": 1, "x2": 0, "x3": 0, "x4": -1}
+0040a22c: 000200b4  cbz x0, #0x40a26c
+0040a230: 430000d0  adrp x3, #0x414000
+0040a234: 63202e91  add x3, x3, #0xb88
+0040a238: f30300aa  mov x19, x0
+0040a23c: e50300aa  mov x5, x0
+0040a240: e40314aa  mov x4, x20
+0040a244: 63800091  add x3, x3, #0x20
+0040a248: 01008052  mov w1, #0
+0040a24c: a0008052  mov w0, #5
+0040a250: 420000b0  adrp x2, #0x413000
+0040a254: 42600a91  add x2, x2, #0x298
+0040a258: 86e4ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "[%s] %s %s", "x3": "_print_ubus_command"}
+0040a25c: e00313aa  mov x0, x19
+0040a260: f35341a9  ldp x19, x20, [sp, #0x10]
+0040a264: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0040a268: fee3ff17  b #0x403260
+0040a26c: f35341a9  ldp x19, x20, [sp, #0x10]
+0040a270: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0040a274: c0035fd6  ret 
+0040a278: fd7bbaa9  stp x29, x30, [sp, #-0x60]!
+0040a27c: fd030091  mov x29, sp
+0040a280: f35301a9  stp x19, x20, [sp, #0x10]
+0040a284: f40301aa  mov x20, x1
+0040a288: f55b02a9  stp x21, x22, [sp, #0x20]
+0040a28c: f30300aa  mov x19, x0
+0040a290: f76303a9  stp x23, x24, [sp, #0x30]
+0040a294: 01008052  mov w1, #0
+0040a298: f92300f9  str x25, [sp, #0x40]
+0040a29c: 65e3ff97  bl #0x403030 ; heuristic blob_buf_init@plt {"x1": 0}
+0040a2a0: 820240f9  ldr x2, [x20]
+0040a2a4: a20000b4  cbz x2, #0x40a2b8
+0040a2a8: 410000d0  adrp x1, #0x414000
+0040a2ac: 21742d91  add x1, x1, #0xb5d
+0040a2b0: e00313aa  mov x0, x19
+0040a2b4: abffff97  bl #0x40a160 ; heuristic 0x40a160 {"x1": "URL"}
+0040a2b8: 820640f9  ldr x2, [x20, #8]
+0040a2bc: a20000b4  cbz x2, #0x40a2d0
+0040a2c0: 61000090  adrp x1, #0x416000
+0040a2c4: 21b00891  add x1, x1, #0x22c
+0040a2c8: e00313aa  mov x0, x19
+0040a2cc: a5ffff97  bl #0x40a160 ; heuristic 0x40a160 {"x1": "UUID"}
+0040a2d0: 822240f9  ldr x2, [x20, #0x40]
+0040a2d4: a20000b4  cbz x2, #0x40a2e8
+0040a2d8: 410000d0  adrp x1, #0x414000
+0040a2dc: 21d42d91  add x1, x1, #0xb75
+0040a2e0: e00313aa  mov x0, x19
+0040a2e4: 9fffff97  bl #0x40a160 ; heuristic 0x40a160 {"x1": "ExecutionEnvRef"}
+0040a2e8: 820a40f9  ldr x2, [x20, #0x10]
+0040a2ec: a20000b4  cbz x2, #0x40a300
+0040a2f0: 410000d0  adrp x1, #0x414000
+0040a2f4: 21842d91  add x1, x1, #0xb61
+0040a2f8: e00313aa  mov x0, x19
+0040a2fc: 99ffff97  bl #0x40a160 ; heuristic 0x40a160 {"x1": "Username"}
+0040a300: 820e40f9  ldr x2, [x20, #0x18]
+0040a304: a20000b4  cbz x2, #0x40a318
+0040a308: 410000d0  adrp x1, #0x414000
+0040a30c: 21282d91  add x1, x1, #0xb4a
+0040a310: e00313aa  mov x0, x19
+0040a314: 93ffff97  bl #0x40a160 ; heuristic 0x40a160 {"x1": "Password"}
+0040a318: 822a40b9  ldr w2, [x20, #0x28]
+0040a31c: 41000090  adrp x1, #0x412000
+0040a320: 21380d91  add x1, x1, #0x34e
+0040a324: e00313aa  mov x0, x19
+0040a328: 83ffff97  bl #0x40a134 ; heuristic 0x40a134 {"x1": "AllocatedMemory"}
+0040a32c: 822e40b9  ldr w2, [x20, #0x2c]
+0040a330: 41000090  adrp x1, #0x412000
+0040a334: 21ec0c91  add x1, x1, #0x33b
+0040a338: e00313aa  mov x0, x19
+0040a33c: 7effff97  bl #0x40a134 ; heuristic 0x40a134 {"x1": "AllocatedDiskSpace"}
+0040a340: 823240b9  ldr w2, [x20, #0x30]
+0040a344: 41000090  adrp x1, #0x412000
+0040a348: 21ec0e91  add x1, x1, #0x3bb
+0040a34c: e00313aa  mov x0, x19
+0040a350: 79ffff97  bl #0x40a134 ; heuristic 0x40a134 {"x1": "AllocatedCPUPercent"}
+0040a354: 802640f9  ldr x0, [x20, #0x48]
+0040a358: 400100b4  cbz x0, #0x40a380
+0040a35c: a3830191  add x3, x29, #0x60
+0040a360: 00004039  ldrb w0, [x0]
+0040a364: 42000090  adrp x2, #0x412000
+0040a368: 42d02c91  add x2, x2, #0xb34
+0040a36c: 24008052  mov w4, #1
+0040a370: e1008052  mov w1, #7
+0040a374: 60fc1f38  strb w0, [x3, #-1]!
+0040a378: e00313aa  mov x0, x19
+0040a37c: b5e4ff97  bl #0x403650 ; heuristic blobmsg_add_field@plt {"x1": 7, "x2": "AutoStart", "x4": 1}
+0040a380: 801e40f9  ldr x0, [x20, #0x38]
+0040a384: 200200b4  cbz x0, #0x40a3c8
+0040a388: 22008052  mov w2, #1
+0040a38c: 410000d0  adrp x1, #0x414000
+0040a390: 21e03191  add x1, x1, #0xc78
+0040a394: e00313aa  mov x0, x19
+0040a398: 02e5ff97  bl #0x4037a0 ; heuristic blobmsg_open_nested@plt {"x1": "HostObject", "x2": 1}
+0040a39c: 941e40f9  ldr x20, [x20, #0x38]
+0040a3a0: 550000f0  adrp x21, #0x415000
+0040a3a4: b5fa0491  add x21, x21, #0x13e
+0040a3a8: 560000d0  adrp x22, #0x414000
+0040a3ac: d60e3291  add x22, x22, #0xc83
+0040a3b0: f70300aa  mov x23, x0
+0040a3b4: 580000d0  adrp x24, #0x414000
+0040a3b8: 540100b5  cbnz x20, #0x40a3e0
+0040a3bc: e10317aa  mov x1, x23
+0040a3c0: e00313aa  mov x0, x19
+0040a3c4: a3e3ff97  bl #0x403250 ; heuristic blob_nest_end@plt {}
+0040a3c8: f35341a9  ldp x19, x20, [sp, #0x10]
+0040a3cc: f55b42a9  ldp x21, x22, [sp, #0x20]
+0040a3d0: f76343a9  ldp x23, x24, [sp, #0x30]
+0040a3d4: f92340f9  ldr x25, [sp, #0x40]
+0040a3d8: fd7bc6a8  ldp x29, x30, [sp], #0x60
+0040a3dc: c0035fd6  ret 
+0040a3e0: 02008052  mov w2, #0
+0040a3e4: e10315aa  mov x1, x21
+0040a3e8: e00313aa  mov x0, x19
+0040a3ec: ede4ff97  bl #0x4037a0 ; heuristic blobmsg_open_nested@plt {"x2": 0}
+0040a3f0: 82420191  add x2, x20, #0x50
+0040a3f4: f90300aa  mov x25, x0
+0040a3f8: e10316aa  mov x1, x22
+0040a3fc: e00313aa  mov x0, x19
+0040a400: 58ffff97  bl #0x40a160 ; heuristic 0x40a160 {}
+0040a404: e20314aa  mov x2, x20
+0040a408: 013f3291  add x1, x24, #0xc8f
+0040a40c: e00313aa  mov x0, x19
+0040a410: 54ffff97  bl #0x40a160 ; heuristic 0x40a160 {}
+0040a414: 825240f9  ldr x2, [x20, #0xa0]
+0040a418: 410000d0  adrp x1, #0x414000
+0040a41c: 21583291  add x1, x1, #0xc96
+0040a420: e00313aa  mov x0, x19
+0040a424: 4fffff97  bl #0x40a160 ; heuristic 0x40a160 {"x1": "Options"}
+0040a428: e10319aa  mov x1, x25
+0040a42c: e00313aa  mov x0, x19
+0040a430: 88e3ff97  bl #0x403250 ; heuristic blob_nest_end@plt {}
+0040a434: 945640f9  ldr x20, [x20, #0xa8]
+0040a438: e0ffff17  b #0x40a3b8
+0040a43c: 01008052  mov w1, #0
+0040a440: fce2ff17  b #0x403030
+0040a444: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0040a448: fd030091  mov x29, sp
+0040a44c: f35301a9  stp x19, x20, [sp, #0x10]
+0040a450: f40301aa  mov x20, x1
+0040a454: f30300aa  mov x19, x0
+0040a458: 01008052  mov w1, #0
+0040a45c: f5e2ff97  bl #0x403030 ; heuristic blob_buf_init@plt {"x1": 0}
+0040a460: 800640f9  ldr x0, [x20, #8]
+0040a464: 400100b4  cbz x0, #0x40a48c
+0040a468: a3c30091  add x3, x29, #0x30
+0040a46c: 00004039  ldrb w0, [x0]
+0040a470: 420000d0  adrp x2, #0x414000
+0040a474: 42a82d91  add x2, x2, #0xb6a
+0040a478: 24008052  mov w4, #1
+0040a47c: e1008052  mov w1, #7
+0040a480: 60fc1f38  strb w0, [x3, #-1]!
+0040a484: e00313aa  mov x0, x19
+0040a488: 72e4ff97  bl #0x403650 ; heuristic blobmsg_add_field@plt {"x1": 7, "x2": "RetainData", "x4": 1}
+0040a48c: f35341a9  ldp x19, x20, [sp, #0x10]
+0040a490: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0040a494: c0035fd6  ret 
+0040a498: 010040f9  ldr x1, [x0]
+0040a49c: 210100b4  cbz x1, #0x40a4c0
+0040a4a0: 21004039  ldrb w1, [x1]
+0040a4a4: e1000034  cbz w1, #0x40a4c0
+0040a4a8: 010440f9  ldr x1, [x0, #8]
+0040a4ac: a10000b4  cbz x1, #0x40a4c0
+0040a4b0: 002040f9  ldr x0, [x0, #0x40]
+0040a4b4: 1f0000f1  cmp x0, #0
+0040a4b8: e0079f1a  cset w0, ne
+0040a4bc: c0035fd6  ret 
+0040a4c0: 00008052  mov w0, #0
+0040a4c4: feffff17  b #0x40a4bc
+0040a4c8: fd7bb9a9  stp x29, x30, [sp, #-0x70]!
+0040a4cc: fd030091  mov x29, sp
+0040a4d0: f35301a9  stp x19, x20, [sp, #0x10]
+0040a4d4: f55b02a9  stp x21, x22, [sp, #0x20]
+0040a4d8: f76303a9  stp x23, x24, [sp, #0x30]
+0040a4dc: f80300aa  mov x24, x0
+0040a4e0: eeffff97  bl #0x40a498 ; heuristic 0x40a498 {}
+0040a4e4: 430000d0  adrp x3, #0x414000
+0040a4e8: 63202e91  add x3, x3, #0xb88
+0040a4ec: c0010035  cbnz w0, #0x40a524
+0040a4f0: 420000d0  adrp x2, #0x414000
+0040a4f4: 42481191  add x2, x2, #0x452
+0040a4f8: 63e00091  add x3, x3, #0x38
+0040a4fc: 34008052  mov w20, #1
+0040a500: 01008052  mov w1, #0
+0040a504: 60008052  mov w0, #3
+0040a508: dae3ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Missing parameters", "x3": "prpl_install_du"}
+0040a50c: e003142a  mov w0, w20
+0040a510: f35341a9  ldp x19, x20, [sp, #0x10]
+0040a514: f55b42a9  ldp x21, x22, [sp, #0x20]
+0040a518: f76343a9  ldp x23, x24, [sp, #0x30]
+0040a51c: fd7bc7a8  ldp x29, x30, [sp], #0x70
+0040a520: c0035fd6  ret 
+0040a524: 73e00091  add x19, x3, #0x38
+0040a528: a0008052  mov w0, #5
+0040a52c: e30313aa  mov x3, x19
+0040a530: 420000d0  adrp x2, #0x414000
+0040a534: 42783291  add x2, x2, #0xc9e
+0040a538: 01008052  mov w1, #0
+0040a53c: cde3ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 5, "x1": 0, "x2": "Sending %s command"}
+0040a540: 170100d0  adrp x23, #0x42c000
+0040a544: e0aa42f9  ldr x0, [x23, #0x550]
+0040a548: a00000b5  cbnz x0, #0x40a55c
+0040a54c: 420000d0  adrp x2, #0x414000
+0040a550: 42c43291  add x2, x2, #0xcb1
+0040a554: e30313aa  mov x3, x19
+0040a558: e9ffff17  b #0x40a4fc
+0040a55c: 550000b0  adrp x21, #0x413000
+0040a560: b5121991  add x21, x21, #0x644
+0040a564: a2b30191  add x2, x29, #0x6c
+0040a568: e10315aa  mov x1, x21
+0040a56c: 45e4ff97  bl #0x403680 ; heuristic ubus_lookup_id@plt {"x1": "SoftwareModules"}
+0040a570: f403002a  mov w20, w0
+0040a574: 40010034  cbz w0, #0x40a59c
+0040a578: e503002a  mov w5, w0
+0040a57c: e40315aa  mov x4, x21
+0040a580: e30313aa  mov x3, x19
+0040a584: 42000090  adrp x2, #0x412000
+0040a588: 42c41391  add x2, x2, #0x4f1
+0040a58c: 01008052  mov w1, #0
+0040a590: 60008052  mov w0, #3
+0040a594: b7e3ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s]: Could not find ubus object %s (%d)", "x4": "SoftwareModules"}
+0040a598: ddffff17  b #0x40a50c
+0040a59c: 160100d0  adrp x22, #0x42c000
+0040a5a0: d4821691  add x20, x22, #0x5a0
+0040a5a4: e00314aa  mov x0, x20
+0040a5a8: e10318aa  mov x1, x24
+0040a5ac: 33ffff97  bl #0x40a278 ; heuristic 0x40a278 {"x0": 4375968}
+0040a5b0: 800640a9  ldp x0, x1, [x20]
+0040a5b4: a00704a9  stp x0, x1, [x29, #0x40]
+0040a5b8: 800641a9  ldp x0, x1, [x20, #0x10]
+0040a5bc: a00705a9  stp x0, x1, [x29, #0x50]
+0040a5c0: a1030191  add x1, x29, #0x40
+0040a5c4: e00315aa  mov x0, x21
+0040a5c8: 0effff97  bl #0x40a200 ; heuristic 0x40a200 {"x0": "SoftwareModules"}
+0040a5cc: c3d242f9  ldr x3, [x22, #0x5a0]
+0040a5d0: 07008012  mov w7, #-1
+0040a5d4: e0aa42f9  ldr x0, [x23, #0x550]
+0040a5d8: 06008052  mov w6, #0
+0040a5dc: a16f40b9  ldr w1, [x29, #0x6c]
+0040a5e0: 050080d2  mov x5, #0
+0040a5e4: 04000090  adrp x4, #0x40a000
+0040a5e8: 84a00691  add x4, x4, #0x1a8
+0040a5ec: 420000d0  adrp x2, #0x414000
+0040a5f0: 42842691  add x2, x2, #0x9a1
+0040a5f4: 63e4ff97  bl #0x403780 ; heuristic ubus_invoke_fd@plt {"x2": "InstallDU", "x4": 4235688, "x5": 0, "x6": 0, "x7": -1}
+0040a5f8: f403002a  mov w20, w0
+0040a5fc: 20010034  cbz w0, #0x40a620
+0040a600: e503002a  mov w5, w0
+0040a604: 42000090  adrp x2, #0x412000
+0040a608: 427c1491  add x2, x2, #0x51f
+0040a60c: e40315aa  mov x4, x21
+0040a610: e30313aa  mov x3, x19
+0040a614: 01008052  mov w1, #0
+0040a618: 60008052  mov w0, #3
+0040a61c: 95e3ff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s]: Could not invoke command for %s (%d)", "x4": "SoftwareModules"}
+0040a620: c0821691  add x0, x22, #0x5a0
+0040a624: e7e2ff97  bl #0x4031c0 ; heuristic blob_buf_free@plt {"x0": 4375968}
+0040a628: b9ffff17  b #0x40a50c
+0040a62c: fd7bb9a9  stp x29, x30, [sp, #-0x70]!
+0040a630: e40300aa  mov x4, x0
+0040a634: 420000d0  adrp x2, #0x414000
+0040a638: 42203391  add x2, x2, #0xcc8
+0040a63c: fd030091  mov x29, sp
+0040a640: f35301a9  stp x19, x20, [sp, #0x10]
+0040a644: 530000d0  adrp x19, #0x414000
+0040a648: 63222e91  add x3, x19, #0xb88
+0040a64c: f55b02a9  stp x21, x22, [sp, #0x20]

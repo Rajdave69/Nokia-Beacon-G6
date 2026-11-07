@@ -1,0 +1,53 @@
+ca_pb_proc_init: .text+0x24310, 208 bytes; sha256 f715ef454663d44e23071877062cb718a5e6f356322f1dcbc9a486d3c1b39db2
+00024310: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00024314: fd030091  mov x29, sp
+00024318: f35301a9  stp x19, x20, [sp, #0x10]
+0002431c: e0031eaa  mov x0, x30
+00024320: 00000094  bl #0x24320 ; reloc _mcount+0x0 type=283
+00024324: 01000090  adrp x1, #0x24000 ; reloc proc_adapt_dir+0x0 type=275
+00024328: 14000090  adrp x20, #0x24000 ; reloc .bss+0xbb08 type=275
+0002432c: 94020091  add x20, x20, #0 ; reloc .bss+0xbb08 type=277
+00024330: 00000090  adrp x0, #0x24000 ; reloc .rodata.str1.8+0xd458 'pppoe_bridge' type=275
+00024334: 210040f9  ldr x1, [x1] ; reloc proc_adapt_dir+0x0 type=286
+00024338: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xd458 'pppoe_bridge' type=277
+0002433c: 13000090  adrp x19, #0x24000 ; reloc .data..read_mostly+0xd20 type=275
+00024340: 73020091  add x19, x19, #0 ; reloc .data..read_mostly+0xd20 type=277
+00024344: 00000094  bl #0x24344 ; reloc proc_mkdir+0x0 type=283
+00024348: e20300aa  mov x2, x0
+0002434c: e30313aa  mov x3, x19
+00024350: 00000090  adrp x0, #0x24000 ; reloc .rodata.str1.8+0xd468 'debug' type=275
+00024354: c1368052  mov w1, #0x1b6
+00024358: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xd468 'debug' type=277
+0002435c: 823600f9  str x2, [x20, #0x68]
+00024360: 00000094  bl #0x24360 ; reloc proc_create+0x0 type=283
+00024364: 600100b5  cbnz x0, #0x24390
+00024368: 01000090  adrp x1, #0x24000 ; reloc .rodata+0x2630 'ca_pb_session_add' type=275
+0002436c: 21000091  add x1, x1, #0 ; reloc .rodata+0x2630 'ca_pb_session_add' type=277
+00024370: 21400291  add x1, x1, #0x90
+00024374: 00000090  adrp x0, #0x24000 ; reloc .rodata.str1.8+0xd470 type=275
+00024378: a2b88052  mov w2, #0x5c5
+0002437c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xd470 type=277
+00024380: 00000094  bl #0x24380 ; reloc printk+0x0 type=283
+00024384: 01008012  mov w1, #-1
+00024388: 12000014  b #0x243d0
+0002438c: 1f2003d5  nop 
+00024390: 823640f9  ldr x2, [x20, #0x68]
+00024394: c1368052  mov w1, #0x1b6
+00024398: 00000090  adrp x0, #0x24000 ; reloc .rodata.str1.8+0xd4a8 'cmd' type=275
+0002439c: 63c20391  add x3, x19, #0xf0
+000243a0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xd4a8 'cmd' type=277
+000243a4: 00000094  bl #0x243a4 ; reloc proc_create+0x0 type=283
+000243a8: 01008052  mov w1, #0
+000243ac: 200100b5  cbnz x0, #0x243d0
+000243b0: 01000090  adrp x1, #0x24000 ; reloc .rodata+0x2630 'ca_pb_session_add' type=275
+000243b4: 21000091  add x1, x1, #0 ; reloc .rodata+0x2630 'ca_pb_session_add' type=277
+000243b8: 21400291  add x1, x1, #0x90
+000243bc: 00000090  adrp x0, #0x24000 ; reloc .rodata.str1.8+0xd4b0 type=275
+000243c0: 42b98052  mov w2, #0x5ca
+000243c4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xd4b0 type=277
+000243c8: 00000094  bl #0x243c8 ; reloc printk+0x0 type=283
+000243cc: 01008012  mov w1, #-1
+000243d0: e003012a  mov w0, w1
+000243d4: f35341a9  ldp x19, x20, [sp, #0x10]
+000243d8: fd7bc2a8  ldp x29, x30, [sp], #0x20
+000243dc: c0035fd6  ret 

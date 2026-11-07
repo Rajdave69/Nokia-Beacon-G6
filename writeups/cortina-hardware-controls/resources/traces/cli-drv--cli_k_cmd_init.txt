@@ -1,0 +1,25 @@
+cli_k_cmd_init: .text+0xa28, 96 bytes; sha256 edbac38197880e8fb59ecd87d8baeef98ace47fcb484067ff93da1b93b8b5d07
+00000a28: fd7bbfa9  stp x29, x30, [sp, #-0x10]!
+00000a2c: fd030091  mov x29, sp
+00000a30: e0031eaa  mov x0, x30
+00000a34: 00000094  bl #0xa34 ; reloc _mcount+0x0 type=283
+00000a38: 00000090  adrp x0, #0 ; reloc .bss+0x4108 type=275
+00000a3c: 00000091  add x0, x0, #0 ; reloc .bss+0x4108 type=277
+00000a40: 01244491  add x1, x0, #0x109, lsl #12
+00000a44: 21002891  add x1, x1, #0xa00
+00000a48: 1f7c00a9  stp xzr, xzr, [x0]
+00000a4c: 00200291  add x0, x0, #0x88
+00000a50: 1ffc38a9  stp xzr, xzr, [x0, #-0x78]
+00000a54: 1ffc39a9  stp xzr, xzr, [x0, #-0x68]
+00000a58: 1ffc3aa9  stp xzr, xzr, [x0, #-0x58]
+00000a5c: 1ffc3ba9  stp xzr, xzr, [x0, #-0x48]
+00000a60: 1ffc3ca9  stp xzr, xzr, [x0, #-0x38]
+00000a64: 1ffc3da9  stp xzr, xzr, [x0, #-0x28]
+00000a68: 1ffc3ea9  stp xzr, xzr, [x0, #-0x18]
+00000a6c: 1f801ff8  stur xzr, [x0, #-8]
+00000a70: 1f0001eb  cmp x0, x1
+00000a74: a1feff54  b.ne #0xa48
+00000a78: 00000090  adrp x0, #0 ; reloc .bss+0x0 type=275
+00000a7c: fd7bc1a8  ldp x29, x30, [sp], #0x10
+00000a80: 1f0000b9  str wzr, [x0] ; reloc .bss+0x0 type=285
+00000a84: c0035fd6  ret 

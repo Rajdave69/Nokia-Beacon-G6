@@ -1,0 +1,28 @@
+ca_pal_init: .text+0x9b30, 108 bytes; sha256 960af5f3d533d5a4b88c39ef5a6573accc70aa6a76e3559bd7ab7e0db0875b09
+00009b30: fd7bbfa9  stp x29, x30, [sp, #-0x10]!
+00009b34: fd030091  mov x29, sp
+00009b38: e0031eaa  mov x0, x30
+00009b3c: 00000094  bl #0x9b3c ; reloc _mcount+0x0 type=283
+00009b40: 00000094  bl #0x9b40 ; reloc ca_pal_kioctl_init+0x0 type=283
+00009b44: 61028052  mov w1, #0x13
+00009b48: 03000090  adrp x3, #0x9000 ; reloc .data+0x10 type=275
+00009b4c: 02000090  adrp x2, #0x9000 ; reloc __this_module+0x0 type=275
+00009b50: 00000090  adrp x0, #0x9000 ; reloc init_net+0x0 type=275
+00009b54: 42000091  add x2, x2, #0 ; reloc __this_module+0x0 type=277
+00009b58: 63000091  add x3, x3, #0 ; reloc .data+0x10 type=277
+00009b5c: 00000091  add x0, x0, #0 ; reloc init_net+0x0 type=277
+00009b60: 00000094  bl #0x9b60 ; reloc __netlink_kernel_create+0x0 type=283
+00009b64: 02000090  adrp x2, #0x9000 ; reloc .bss+0x320 type=275
+00009b68: 01008052  mov w1, #0
+00009b6c: 400000f9  str x0, [x2] ; reloc .bss+0x320 type=286
+00009b70: 000100b5  cbnz x0, #0x9b90
+00009b74: 01000090  adrp x1, #0x9000 ; reloc .rodata+0x3f0 'ca_plat_recv' type=275
+00009b78: 21000091  add x1, x1, #0 ; reloc .rodata+0x3f0 'ca_plat_recv' type=277
+00009b7c: 21400091  add x1, x1, #0x10
+00009b80: 00000090  adrp x0, #0x9000 ; reloc .rodata.str1.8+0xe40 '%s: Create plat netlink failed!!\n' type=275
+00009b84: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xe40 '%s: Create plat netlink failed!!\n' type=277
+00009b88: 00000094  bl #0x9b88 ; reloc printk+0x0 type=283
+00009b8c: 01008012  mov w1, #-1
+00009b90: e003012a  mov w0, w1
+00009b94: fd7bc1a8  ldp x29, x30, [sp], #0x10
+00009b98: c0035fd6  ret 

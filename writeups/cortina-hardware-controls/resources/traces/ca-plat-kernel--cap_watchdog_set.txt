@@ -1,0 +1,19 @@
+cap_watchdog_set: .text+0xb800, 72 bytes; sha256 f5b3fb328d4c29853e3a47ec23d49258b965da29885dc4ebace7d45bf3a2391b
+0000b800: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0000b804: fd030091  mov x29, sp
+0000b808: f35301a9  stp x19, x20, [sp, #0x10]
+0000b80c: f30301aa  mov x19, x1
+0000b810: 143c0012  and w20, w0, #0xffff
+0000b814: e0031eaa  mov x0, x30
+0000b818: 00000094  bl #0xb818 ; reloc _mcount+0x0 type=283
+0000b81c: a1830091  add x1, x29, #0x20
+0000b820: e003142a  mov w0, w20
+0000b824: 640a4029  ldp w4, w2, [x19]
+0000b828: a40b0429  stp w4, w2, [x29, #0x20]
+0000b82c: 630a40b9  ldr w3, [x19, #8]
+0000b830: a32b00b9  str w3, [x29, #0x28]
+0000b834: 00000094  bl #0xb834 ; reloc aal_set_wdt_config+0x0 type=283
+0000b838: 00008052  mov w0, #0
+0000b83c: f35341a9  ldp x19, x20, [sp, #0x10]
+0000b840: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0000b844: c0035fd6  ret 

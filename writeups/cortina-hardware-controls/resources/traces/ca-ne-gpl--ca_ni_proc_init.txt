@@ -1,0 +1,165 @@
+ca_ni_proc_init: .text+0x18c58, 656 bytes; sha256 65f278b39bb32ef1a1ac042d9fa538d96ff0281998281ac6210fbcbe80cf3f03
+00018c58: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00018c5c: fd030091  mov x29, sp
+00018c60: f35301a9  stp x19, x20, [sp, #0x10]
+00018c64: e0031eaa  mov x0, x30
+00018c68: 00000094  bl #0x18c68 ; reloc _mcount+0x0 type=283
+00018c6c: 01000090  adrp x1, #0x18000 ; reloc ca_proc_dir+0x0 type=275
+00018c70: 14000090  adrp x20, #0x18000 ; reloc .bss+0xb890 type=275
+00018c74: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7dd0 'ni' type=275
+00018c78: 13000090  adrp x19, #0x18000 ; reloc .data..read_mostly+0x0 type=275
+00018c7c: 210040f9  ldr x1, [x1] ; reloc ca_proc_dir+0x0 type=286
+00018c80: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7dd0 'ni' type=277
+00018c84: 73020091  add x19, x19, #0 ; reloc .data..read_mostly+0x0 type=277
+00018c88: 00000094  bl #0x18c88 ; reloc proc_mkdir+0x0 type=283
+00018c8c: e20300aa  mov x2, x0
+00018c90: e30313aa  mov x3, x19
+00018c94: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7dd8 'ni_debug' type=275
+00018c98: 820200f9  str x2, [x20] ; reloc .bss+0xb890 type=286
+00018c9c: c1368052  mov w1, #0x1b6
+00018ca0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7dd8 'ni_debug' type=277
+00018ca4: 00000094  bl #0x18ca4 ; reloc proc_create+0x0 type=283
+00018ca8: 400100b5  cbnz x0, #0x18cd0
+00018cac: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018cb0: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018cb4: 21000391  add x1, x1, #0xc0
+00018cb8: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7de8 type=275
+00018cbc: 22768052  mov w2, #0x3b1
+00018cc0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7de8 type=277
+00018cc4: 00000094  bl #0x18cc4 ; reloc printk+0x0 type=283
+00018cc8: 61018012  mov w1, #-0xc
+00018ccc: 83000014  b #0x18ed8
+00018cd0: 820240f9  ldr x2, [x20] ; reloc .bss+0xb890 type=286
+00018cd4: 03000090  adrp x3, #0x18000 ; reloc fops_ne_memtrace+0x0 type=275
+00018cd8: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7e20 'ne_memtrace' type=275
+00018cdc: 63000091  add x3, x3, #0 ; reloc fops_ne_memtrace+0x0 type=277
+00018ce0: c1368052  mov w1, #0x1b6
+00018ce4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7e20 'ne_memtrace' type=277
+00018ce8: 00000094  bl #0x18ce8 ; reloc proc_create+0x0 type=283
+00018cec: 600100b5  cbnz x0, #0x18d18
+00018cf0: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018cf4: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018cf8: 21000391  add x1, x1, #0xc0
+00018cfc: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7e30 type=275
+00018d00: c2768052  mov w2, #0x3b6
+00018d04: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7e30 type=277
+00018d08: 00000094  bl #0x18d08 ; reloc printk+0x0 type=283
+00018d0c: 61018012  mov w1, #-0xc
+00018d10: 72000014  b #0x18ed8
+00018d14: 1f2003d5  nop 
+00018d18: 820240f9  ldr x2, [x20] ; reloc .bss+0xb890 type=286
+00018d1c: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7e70 'tx_ldpid' type=275
+00018d20: 63c20391  add x3, x19, #0xf0
+00018d24: c1368052  mov w1, #0x1b6
+00018d28: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7e70 'tx_ldpid' type=277
+00018d2c: 00000094  bl #0x18d2c ; reloc proc_create+0x0 type=283
+00018d30: 400100b5  cbnz x0, #0x18d58
+00018d34: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018d38: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018d3c: 21000391  add x1, x1, #0xc0
+00018d40: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7e80 type=275
+00018d44: 62778052  mov w2, #0x3bb
+00018d48: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7e80 type=277
+00018d4c: 00000094  bl #0x18d4c ; reloc printk+0x0 type=283
+00018d50: 61018012  mov w1, #-0xc
+00018d54: 61000014  b #0x18ed8
+00018d58: 820240f9  ldr x2, [x20] ; reloc .bss+0xb890 type=286
+00018d5c: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7eb8 'mt2_enabled' type=275
+00018d60: 63820791  add x3, x19, #0x1e0
+00018d64: c1368052  mov w1, #0x1b6
+00018d68: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7eb8 'mt2_enabled' type=277
+00018d6c: 00000094  bl #0x18d6c ; reloc proc_create+0x0 type=283
+00018d70: 400100b5  cbnz x0, #0x18d98
+00018d74: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018d78: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018d7c: 21000391  add x1, x1, #0xc0
+00018d80: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7ec8 type=275
+00018d84: 22788052  mov w2, #0x3c1
+00018d88: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7ec8 type=277
+00018d8c: 00000094  bl #0x18d8c ; reloc printk+0x0 type=283
+00018d90: 61018012  mov w1, #-0xc
+00018d94: 51000014  b #0x18ed8
+00018d98: 820240f9  ldr x2, [x20] ; reloc .bss+0xb890 type=286
+00018d9c: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7f08 'dispatch_cpu' type=275
+00018da0: 63420b91  add x3, x19, #0x2d0
+00018da4: c1368052  mov w1, #0x1b6
+00018da8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7f08 'dispatch_cpu' type=277
+00018dac: 00000094  bl #0x18dac ; reloc proc_create+0x0 type=283
+00018db0: 400100b5  cbnz x0, #0x18dd8
+00018db4: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018db8: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018dbc: 21000391  add x1, x1, #0xc0
+00018dc0: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7f18 type=275
+00018dc4: 02798052  mov w2, #0x3c8
+00018dc8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7f18 type=277
+00018dcc: 00000094  bl #0x18dcc ; reloc printk+0x0 type=283
+00018dd0: 61018012  mov w1, #-0xc
+00018dd4: 41000014  b #0x18ed8
+00018dd8: 820240f9  ldr x2, [x20] ; reloc .bss+0xb890 type=286
+00018ddc: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7f58 'dma_lso_intr' type=275
+00018de0: 63020f91  add x3, x19, #0x3c0
+00018de4: c1368052  mov w1, #0x1b6
+00018de8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7f58 'dma_lso_intr' type=277
+00018dec: 00000094  bl #0x18dec ; reloc proc_create+0x0 type=283
+00018df0: 400100b5  cbnz x0, #0x18e18
+00018df4: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018df8: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018dfc: 21000391  add x1, x1, #0xc0
+00018e00: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7f18 type=275
+00018e04: 027a8052  mov w2, #0x3d0
+00018e08: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7f18 type=277
+00018e0c: 00000094  bl #0x18e0c ; reloc printk+0x0 type=283
+00018e10: 61018012  mov w1, #-0xc
+00018e14: 31000014  b #0x18ed8
+00018e18: 820240f9  ldr x2, [x20] ; reloc .bss+0xb890 type=286
+00018e1c: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7f68 'min_rsve_mem' type=275
+00018e20: 63c21291  add x3, x19, #0x4b0
+00018e24: c1368052  mov w1, #0x1b6
+00018e28: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7f68 'min_rsve_mem' type=277
+00018e2c: 00000094  bl #0x18e2c ; reloc proc_create+0x0 type=283
+00018e30: 400100b5  cbnz x0, #0x18e58
+00018e34: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018e38: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018e3c: 21000391  add x1, x1, #0xc0
+00018e40: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7f78 type=275
+00018e44: e27a8052  mov w2, #0x3d7
+00018e48: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7f78 type=277
+00018e4c: 00000094  bl #0x18e4c ; reloc printk+0x0 type=283
+00018e50: 61018012  mov w1, #-0xc
+00018e54: 21000014  b #0x18ed8
+00018e58: 820240f9  ldr x2, [x20] ; reloc .bss+0xb890 type=286
+00018e5c: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7fb8 'ni_debug_filter' type=275
+00018e60: 63821691  add x3, x19, #0x5a0
+00018e64: c1368052  mov w1, #0x1b6
+00018e68: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7fb8 'ni_debug_filter' type=277
+00018e6c: 00000094  bl #0x18e6c ; reloc proc_create+0x0 type=283
+00018e70: 400100b5  cbnz x0, #0x18e98
+00018e74: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018e78: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018e7c: 21000391  add x1, x1, #0xc0
+00018e80: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7de8 type=275
+00018e84: 827c8052  mov w2, #0x3e4
+00018e88: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7de8 type=277
+00018e8c: 00000094  bl #0x18e8c ; reloc printk+0x0 type=283
+00018e90: 61018012  mov w1, #-0xc
+00018e94: 11000014  b #0x18ed8
+00018e98: 820240f9  ldr x2, [x20] ; reloc .bss+0xb890 type=286
+00018e9c: c1368052  mov w1, #0x1b6
+00018ea0: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7fc8 'tqm_reset' type=275
+00018ea4: 63421a91  add x3, x19, #0x690
+00018ea8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7fc8 'tqm_reset' type=277
+00018eac: 00000094  bl #0x18eac ; reloc proc_create+0x0 type=283
+00018eb0: 01008052  mov w1, #0
+00018eb4: 200100b5  cbnz x0, #0x18ed8
+00018eb8: 01000090  adrp x1, #0x18000 ; reloc .rodata+0x1a70 type=275
+00018ebc: 21000091  add x1, x1, #0 ; reloc .rodata+0x1a70 type=277
+00018ec0: 21000391  add x1, x1, #0xc0
+00018ec4: 00000090  adrp x0, #0x18000 ; reloc .rodata.str1.8+0x7fd8 type=275
+00018ec8: 427d8052  mov w2, #0x3ea
+00018ecc: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x7fd8 type=277
+00018ed0: 00000094  bl #0x18ed0 ; reloc printk+0x0 type=283
+00018ed4: 61018012  mov w1, #-0xc
+00018ed8: e003012a  mov w0, w1
+00018edc: f35341a9  ldp x19, x20, [sp, #0x10]
+00018ee0: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00018ee4: c0035fd6  ret 

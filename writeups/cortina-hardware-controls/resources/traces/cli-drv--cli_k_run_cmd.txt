@@ -1,0 +1,36 @@
+cli_k_run_cmd: .text+0xb18, 140 bytes; sha256 db79b89914bef0c9213b3b1d65e4fd599cd0488746d331165e9b4db7c1788611
+00000b18: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+00000b1c: fd030091  mov x29, sp
+00000b20: f35301a9  stp x19, x20, [sp, #0x10]
+00000b24: f55b02a9  stp x21, x22, [sp, #0x20]
+00000b28: f76303a9  stp x23, x24, [sp, #0x30]
+00000b2c: 13000090  adrp x19, #0 ; reloc .bss+0x4108 type=275
+00000b30: 73020091  add x19, x19, #0 ; reloc .bss+0x4108 type=277
+00000b34: 75264491  add x21, x19, #0x109, lsl #12
+00000b38: f40300aa  mov x20, x0
+00000b3c: b5022891  add x21, x21, #0xa00
+00000b40: f60301aa  mov x22, x1
+00000b44: f703022a  mov w23, w2
+00000b48: f80303aa  mov x24, x3
+00000b4c: e0031eaa  mov x0, x30
+00000b50: 00000094  bl #0xb50 ; reloc _mcount+0x0 type=283
+00000b54: e00313aa  mov x0, x19
+00000b58: e10314aa  mov x1, x20
+00000b5c: 00000094  bl #0xb5c ; reloc strcmp+0x0 type=283
+00000b60: 00010035  cbnz w0, #0xb80
+00000b64: 634240f9  ldr x3, [x19, #0x80]
+00000b68: c30000b4  cbz x3, #0xb80
+00000b6c: e20318aa  mov x2, x24
+00000b70: e103172a  mov w1, w23
+00000b74: e00316aa  mov x0, x22
+00000b78: 60003fd6  blr x3
+00000b7c: 05000014  b #0xb90
+00000b80: 73220291  add x19, x19, #0x88
+00000b84: 7f0215eb  cmp x19, x21
+00000b88: 61feff54  b.ne #0xb54
+00000b8c: 00018052  mov w0, #8
+00000b90: f35341a9  ldp x19, x20, [sp, #0x10]
+00000b94: f55b42a9  ldp x21, x22, [sp, #0x20]
+00000b98: f76343a9  ldp x23, x24, [sp, #0x30]
+00000b9c: fd7bc4a8  ldp x29, x30, [sp], #0x40
+00000ba0: c0035fd6  ret 

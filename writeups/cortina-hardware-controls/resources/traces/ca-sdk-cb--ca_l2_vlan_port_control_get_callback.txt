@@ -1,0 +1,14 @@
+ca_l2_vlan_port_control_get_callback: .text+0x2048, 52 bytes; sha256 c35932e2e662b15b6c529b2fa7f3a7261311900c31397bff3c2f36f3434b3b4c
+00002048: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0000204c: fd030091  mov x29, sp
+00002050: f30b00f9  str x19, [sp, #0x10]
+00002054: f30300aa  mov x19, x0
+00002058: e0031eaa  mov x0, x30
+0000205c: 00000094  bl #0x205c ; reloc _mcount+0x0 type=283
+00002060: 62220091  add x2, x19, #8
+00002064: 610640b9  ldr w1, [x19, #4]
+00002068: 60024079  ldrh w0, [x19]
+0000206c: 00000094  bl #0x206c ; reloc ca_l2_vlan_port_control_get+0x0 type=283
+00002070: f30b40f9  ldr x19, [sp, #0x10]
+00002074: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00002078: c0035fd6  ret 

@@ -1,0 +1,65 @@
+005667c4: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+005667c8: fd030091  mov x29, sp
+005667cc: a01700f9  str x0, [x29, #0x28]
+005667d0: a11300f9  str x1, [x29, #0x20]
+005667d4: a21f00b9  str w2, [x29, #0x1c]
+005667d8: a30b00f9  str x3, [x29, #0x10]
+005667dc: bf2700f9  str xzr, [x29, #0x48]
+005667e0: bf1f00f9  str xzr, [x29, #0x38]
+005667e4: bf4700b9  str wzr, [x29, #0x44]
+005667e8: 601300d0  adrp x0, #0x7d4000
+005667ec: 00601991  add x0, x0, #0x658
+005667f0: 040080d2  mov x4, #0
+005667f4: e30300aa  mov x3, x0
+005667f8: a20b40f9  ldr x2, [x29, #0x10]
+005667fc: a11f40b9  ldr w1, [x29, #0x1c]
+00566800: a01340f9  ldr x0, [x29, #0x20]
+00566804: 08e6fb97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_vlan_port_control_get_dot1p_use_inner_dot1p_if_pop cfg ", "x4": 0}
+00566808: 1f040071  cmp w0, #1
+0056680c: 60050054  b.eq #0x5668b8
+00566810: a00b40f9  ldr x0, [x29, #0x10]
+00566814: 00200091  add x0, x0, #8
+00566818: 010040f9  ldr x1, [x0]
+0056681c: 801f0090  adrp x0, #0x956000
+00566820: 00e00291  add x0, x0, #0xb8
+00566824: 02b443f9  ldr x2, [x0, #0x768]
+00566828: a0e30091  add x0, x29, #0x38
+0056682c: 04008052  mov w4, #0
+00566830: e30302aa  mov x3, x2
+00566834: e20300aa  mov x2, x0
+00566838: a01340f9  ldr x0, [x29, #0x20]
+0056683c: 21e1fb97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+00566840: a04700b9  str w0, [x29, #0x44]
+00566844: a04740b9  ldr w0, [x29, #0x44]
+00566848: 1f000071  cmp w0, #0
+0056684c: ea010054  b.ge #0x566888
+00566850: a04740b9  ldr w0, [x29, #0x44]
+00566854: 1f040031  cmn w0, #1
+00566858: 60000054  b.eq #0x566864
+0056685c: a04740b9  ldr w0, [x29, #0x44]
+00566860: 02000014  b #0x566868
+00566864: 80008012  mov w0, #-5
+00566868: 84dffb97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+0056686c: e10300aa  mov x1, x0
+00566870: 601300d0  adrp x0, #0x7d4000
+00566874: 00601a91  add x0, x0, #0x698
+00566878: e20300aa  mov x2, x0
+0056687c: a01340f9  ldr x0, [x29, #0x20]
+00566880: e8dffb97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_vlan_port_control_get_dot1p_use_inner_dot1p_if_pop', argument 1 of type 'ca_vlan_port_control_t *'"}
+00566884: 0e000014  b #0x5668bc
+00566888: a01f40f9  ldr x0, [x29, #0x38]
+0056688c: a02700f9  str x0, [x29, #0x48]
+00566890: a02740f9  ldr x0, [x29, #0x48]
+00566894: fb480694  bl #0x6f8c80 ; heuristic 0x6f8c80 {}
+00566898: a04300b9  str w0, [x29, #0x40]
+0056689c: a04340b9  ldr w0, [x29, #0x40]
+005668a0: 44e8fb97  bl #0x4609b0 ; heuristic 0x4609b0 {}
+005668a4: e10300aa  mov x1, x0
+005668a8: a01340f9  ldr x0, [x29, #0x20]
+005668ac: 65aafa97  bl #0x411240 ; heuristic Tcl_SetObjResult@plt {}
+005668b0: 00008052  mov w0, #0
+005668b4: 03000014  b #0x5668c0
+005668b8: 1f2003d5  nop 
+005668bc: 20008052  mov w0, #1
+005668c0: fd7bc5a8  ldp x29, x30, [sp], #0x50
+005668c4: c0035fd6  ret 

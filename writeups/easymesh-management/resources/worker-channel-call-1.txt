@@ -1,0 +1,32 @@
+0008d4f4: 4315fe97  bl #0x12a00 ; heuristic _ZdlPv@plt {}
+0008d4f8: d3ffff17  b #0x8d444
+0008d4fc: 1f2003d5  nop 
+0008d500: a05f40f9  ldr x0, [x29, #0xb8]
+0008d504: 61008052  mov w1, #3
+0008d508: a4c6ff97  bl #0x7ef98 ; heuristic 0x7ef98 {"x1": 3}
+0008d50c: 001c0012  and w0, w0, #0xff
+0008d510: ccffff17  b #0x8d440
+0008d514: 1f2003d5  nop 
+0008d518: 01c4f837  tbnz w1, #0x1f, #0x8ed98
+0008d51c: 3f100071  cmp w1, #4
+0008d520: e0d79f1a  cset w0, gt
+0008d524: b6430191  add x22, x29, #0x50
+0008d528: 20a40035  cbnz w0, #0x8e9ac
+0008d52c: e10316aa  mov x1, x22
+0008d530: e00315aa  mov x0, x21
+0008d534: e7d3ff97  bl #0x824d0 ; heuristic 0x824d0 {}
+0008d538: e00315aa  mov x0, x21
+0008d53c: 3115fe97  bl #0x12a00 ; heuristic _ZdlPv@plt {}
+0008d540: c1ffff17  b #0x8d444
+0008d544: 1f2003d5  nop 
+0008d548: 61c1f837  tbnz w1, #0x1f, #0x8ed74
+0008d54c: 3f180071  cmp w1, #6
+0008d550: e0d79f1a  cset w0, gt
+0008d554: 60a70035  cbnz w0, #0x8ea40
+0008d558: e00315aa  mov x0, x21
+0008d55c: 31cbff97  bl #0x80220 ; heuristic 0x80220 {}
+0008d560: e00315aa  mov x0, x21
+0008d564: 2715fe97  bl #0x12a00 ; heuristic _ZdlPv@plt {}
+0008d568: b7ffff17  b #0x8d444
+0008d56c: 1f2003d5  nop 
+0008d570: 01bff837  tbnz w1, #0x1f, #0x8ed50

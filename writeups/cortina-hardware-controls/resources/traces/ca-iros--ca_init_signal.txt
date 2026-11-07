@@ -1,0 +1,22 @@
+00460ee4: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+00460ee8: fd030091  mov x29, sp
+00460eec: a01700f9  str x0, [x29, #0x28]
+00460ef0: a11300f9  str x1, [x29, #0x20]
+00460ef4: a21f00b9  str w2, [x29, #0x1c]
+00460ef8: a30b00f9  str x3, [x29, #0x10]
+00460efc: 801600d0  adrp x0, #0x732000
+00460f00: 00201d91  add x0, x0, #0x748
+00460f04: e30300aa  mov x3, x0
+00460f08: a20b40f9  ldr x2, [x29, #0x10]
+00460f0c: a11f40b9  ldr w1, [x29, #0x1c]
+00460f10: a01340f9  ldr x0, [x29, #0x20]
+00460f14: 44fcff97  bl #0x460024 ; heuristic 0x460024 {"x3": ":ca_init_signal "}
+00460f18: 1f040071  cmp w0, #1
+00460f1c: 80000054  b.eq #0x460f2c
+00460f20: db52ff97  bl #0x435a8c ; heuristic 0x435a8c {}
+00460f24: 00008052  mov w0, #0
+00460f28: 03000014  b #0x460f34
+00460f2c: 1f2003d5  nop 
+00460f30: 20008052  mov w0, #1
+00460f34: fd7bc3a8  ldp x29, x30, [sp], #0x30
+00460f38: c0035fd6  ret 

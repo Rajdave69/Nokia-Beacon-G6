@@ -1,0 +1,65 @@
+0056593c: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+00565940: fd030091  mov x29, sp
+00565944: a01700f9  str x0, [x29, #0x28]
+00565948: a11300f9  str x1, [x29, #0x20]
+0056594c: a21f00b9  str w2, [x29, #0x1c]
+00565950: a30b00f9  str x3, [x29, #0x10]
+00565954: bf2700f9  str xzr, [x29, #0x48]
+00565958: bf1f00f9  str xzr, [x29, #0x38]
+0056595c: bf4700b9  str wzr, [x29, #0x44]
+00565960: 601300d0  adrp x0, #0x7d3000
+00565964: 00803191  add x0, x0, #0xc60
+00565968: 040080d2  mov x4, #0
+0056596c: e30300aa  mov x3, x0
+00565970: a20b40f9  ldr x2, [x29, #0x10]
+00565974: a11f40b9  ldr w1, [x29, #0x1c]
+00565978: a01340f9  ldr x0, [x29, #0x20]
+0056597c: aae9fb97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_vlan_port_control_get_ingress_vlan_action_enable cfg ", "x4": 0}
+00565980: 1f040071  cmp w0, #1
+00565984: 60050054  b.eq #0x565a30
+00565988: a00b40f9  ldr x0, [x29, #0x10]
+0056598c: 00200091  add x0, x0, #8
+00565990: 010040f9  ldr x1, [x0]
+00565994: 801f00b0  adrp x0, #0x956000
+00565998: 00e00291  add x0, x0, #0xb8
+0056599c: 02b443f9  ldr x2, [x0, #0x768]
+005659a0: a0e30091  add x0, x29, #0x38
+005659a4: 04008052  mov w4, #0
+005659a8: e30302aa  mov x3, x2
+005659ac: e20300aa  mov x2, x0
+005659b0: a01340f9  ldr x0, [x29, #0x20]
+005659b4: c3e4fb97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+005659b8: a04700b9  str w0, [x29, #0x44]
+005659bc: a04740b9  ldr w0, [x29, #0x44]
+005659c0: 1f000071  cmp w0, #0
+005659c4: ea010054  b.ge #0x565a00
+005659c8: a04740b9  ldr w0, [x29, #0x44]
+005659cc: 1f040031  cmn w0, #1
+005659d0: 60000054  b.eq #0x5659dc
+005659d4: a04740b9  ldr w0, [x29, #0x44]
+005659d8: 02000014  b #0x5659e0
+005659dc: 80008012  mov w0, #-5
+005659e0: 26e3fb97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+005659e4: e10300aa  mov x1, x0
+005659e8: 601300d0  adrp x0, #0x7d3000
+005659ec: 00803291  add x0, x0, #0xca0
+005659f0: e20300aa  mov x2, x0
+005659f4: a01340f9  ldr x0, [x29, #0x20]
+005659f8: 8ae3fb97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_vlan_port_control_get_ingress_vlan_action_enable', argument 1 of type 'ca_vlan_port_control_t *'"}
+005659fc: 0e000014  b #0x565a34
+00565a00: a01f40f9  ldr x0, [x29, #0x38]
+00565a04: a02700f9  str x0, [x29, #0x48]
+00565a08: a02740f9  ldr x0, [x29, #0x48]
+00565a0c: 0d4c0694  bl #0x6f8a40 ; heuristic 0x6f8a40 {}
+00565a10: a04300b9  str w0, [x29, #0x40]
+00565a14: a04340b9  ldr w0, [x29, #0x40]
+00565a18: e6ebfb97  bl #0x4609b0 ; heuristic 0x4609b0 {}
+00565a1c: e10300aa  mov x1, x0
+00565a20: a01340f9  ldr x0, [x29, #0x20]
+00565a24: 07aefa97  bl #0x411240 ; heuristic Tcl_SetObjResult@plt {}
+00565a28: 00008052  mov w0, #0
+00565a2c: 03000014  b #0x565a38
+00565a30: 1f2003d5  nop 
+00565a34: 20008052  mov w0, #1
+00565a38: fd7bc5a8  ldp x29, x30, [sp], #0x50
+00565a3c: c0035fd6  ret 

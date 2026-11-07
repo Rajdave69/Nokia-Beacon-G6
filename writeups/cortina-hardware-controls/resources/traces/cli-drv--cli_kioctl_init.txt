@@ -1,0 +1,66 @@
+cli_kioctl_init: .text+0xd50, 260 bytes; sha256 7283ca49d57cf93c1cf4ea18a44534d9cfc38c306e62411f8c8c26eebcc5bd80
+00000d50: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+00000d54: fd030091  mov x29, sp
+00000d58: f35301a9  stp x19, x20, [sp, #0x10]
+00000d5c: f51300f9  str x21, [sp, #0x20]
+00000d60: 13000090  adrp x19, #0 ; reloc .bss+0x0 type=275
+00000d64: 73020091  add x19, x19, #0 ; reloc .bss+0x0 type=277
+00000d68: e0031eaa  mov x0, x30
+00000d6c: 75220091  add x21, x19, #8
+00000d70: 00000094  bl #0xd70 ; reloc _mcount+0x0 type=283
+00000d74: 14000090  adrp x20, #0 ; reloc .rodata.str1.8+0x88 'cortina-cli-dev' type=275
+00000d78: 021e80d2  mov x2, #0xf0
+00000d7c: 01008052  mov w1, #0
+00000d80: e00315aa  mov x0, x21
+00000d84: 00000094  bl #0xd84 ; reloc memset+0x0 type=283
+00000d88: 94020091  add x20, x20, #0 ; reloc .rodata.str1.8+0x88 'cortina-cli-dev' type=277
+00000d8c: 00000090  adrp x0, #0 ; reloc .text+0xba8 type=275
+00000d90: 00000091  add x0, x0, #0 ; reloc .text+0xba8 type=277
+00000d94: e40315aa  mov x4, x21
+00000d98: 602a00f9  str x0, [x19, #0x50]
+00000d9c: e30314aa  mov x3, x20
+00000da0: 02208052  mov w2, #0x100
+00000da4: 01008052  mov w1, #0
+00000da8: 00008052  mov w0, #0
+00000dac: 00000094  bl #0xdac ; reloc __register_chrdev+0x0 type=283
+00000db0: 60fa00b9  str w0, [x19, #0xf8]
+00000db4: e000f836  tbz w0, #0x1f, #0xdd0
+00000db8: 00000090  adrp x0, #0 ; reloc .rodata.str1.8+0x98 'kioctl init failure\n' type=275
+00000dbc: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x98 'kioctl init failure\n' type=277
+00000dc0: 00000094  bl #0xdc0 ; reloc ca_printf+0x0 type=283
+00000dc4: 00008012  mov w0, #-1
+00000dc8: 1f000014  b #0xe44
+00000dcc: 1f2003d5  nop 
+00000dd0: 00000090  adrp x0, #0 ; reloc .rodata.str1.8+0xb0 'kioctl init success\n' type=275
+00000dd4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xb0 'kioctl init success\n' type=277
+00000dd8: 00000094  bl #0xdd8 ; reloc ca_printf+0x0 type=283
+00000ddc: 00000090  adrp x0, #0 ; reloc __this_module+0x0 type=275
+00000de0: 62020491  add x2, x19, #0x100
+00000de4: e10314aa  mov x1, x20
+00000de8: 00000091  add x0, x0, #0 ; reloc __this_module+0x0 type=277
+00000dec: 00000094  bl #0xdec ; reloc __class_create+0x0 type=283
+00000df0: 608200f9  str x0, [x19, #0x100]
+00000df4: 1f0440b1  cmn x0, #1, lsl #12
+00000df8: 09010054  b.ls #0xe18
+00000dfc: 00000090  adrp x0, #0 ; reloc .rodata.str1.8+0xc8 '%s create class faild!\n' type=275
+00000e00: e10314aa  mov x1, x20
+00000e04: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xc8 '%s create class faild!\n' type=277
+00000e08: 00000094  bl #0xe08 ; reloc ca_printf+0x0 type=283
+00000e0c: 00008012  mov w0, #-1
+00000e10: 0d000014  b #0xe44
+00000e14: 1f2003d5  nop 
+00000e18: 62fa40b9  ldr w2, [x19, #0xf8]
+00000e1c: e40314aa  mov x4, x20
+00000e20: 030080d2  mov x3, #0
+00000e24: 010080d2  mov x1, #0
+00000e28: 422c0c53  lsl w2, w2, #0x14
+00000e2c: 00000094  bl #0xe2c ; reloc device_create+0x0 type=283
+00000e30: 800000b4  cbz x0, #0xe40
+00000e34: 00000094  bl #0xe34 ; reloc cli_k_cmd_init+0x0 type=283
+00000e38: 00008052  mov w0, #0
+00000e3c: 02000014  b #0xe44
+00000e40: 00008012  mov w0, #-1
+00000e44: f35341a9  ldp x19, x20, [sp, #0x10]
+00000e48: f51340f9  ldr x21, [sp, #0x20]
+00000e4c: fd7bc3a8  ldp x29, x30, [sp], #0x30
+00000e50: c0035fd6  ret 

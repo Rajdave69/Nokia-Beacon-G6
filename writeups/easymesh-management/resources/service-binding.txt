@@ -1,0 +1,92 @@
+0019c0e0: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0019c0e4: 200000f0  adrp x0, #0x1a3000
+0019c0e8: 00001a91  add x0, x0, #0x680
+0019c0ec: fd030091  mov x29, sp
+0019c0f0: f35301a9  stp x19, x20, [sp, #0x10]
+0019c0f4: d4010090  adrp x20, #0x1d4000
+0019c0f8: 932247f9  ldr x19, [x20, #0xe40]
+0019c0fc: 610240f9  ldr x1, [x19]
+0019c100: a11700f9  str x1, [x29, #0x28]
+0019c104: 010080d2  mov x1, #0
+0019c108: badaf997  bl #0x12bf0 ; heuristic ndbusOwnName@plt {"x0": "nokia.ecdd", "x1": 0}
+0019c10c: 20060035  cbnz w0, #0x19c1d0
+0019c110: 000e80d2  mov x0, #0x70
+0019c114: 1bdcf997  bl #0x13180 ; heuristic malloc@plt {"x0": 112}
+0019c118: 000800b4  cbz x0, #0x19c218
+0019c11c: c3010090  adrp x3, #0x1d4000
+0019c120: c2010090  adrp x2, #0x1d4000
+0019c124: cd010090  adrp x13, #0x1d4000
+0019c128: cc010090  adrp x12, #0x1d4000
+0019c12c: cb010090  adrp x11, #0x1d4000
+0019c130: ca010090  adrp x10, #0x1d4000
+0019c134: c9010090  adrp x9, #0x1d4000
+0019c138: c8010090  adrp x8, #0x1d4000
+0019c13c: c7010090  adrp x7, #0x1d4000
+0019c140: c6010090  adrp x6, #0x1d4000
+0019c144: c5010090  adrp x5, #0x1d4000
+0019c148: c4010090  adrp x4, #0x1d4000
+0019c14c: 63cc47f9  ldr x3, [x3, #0xf98]
+0019c150: 425c47f9  ldr x2, [x2, #0xeb8]
+0019c154: ad4547f9  ldr x13, [x13, #0xe88]
+0019c158: 8ca147f9  ldr x12, [x12, #0xf40]
+0019c15c: 6bdd47f9  ldr x11, [x11, #0xfb8]
+0019c160: 4a9947f9  ldr x10, [x10, #0xf30]
+0019c164: 290547f9  ldr x9, [x9, #0xe08]
+0019c168: 081147f9  ldr x8, [x8, #0xe20]
+0019c16c: e7c047f9  ldr x7, [x7, #0xf80]
+0019c170: c67c47f9  ldr x6, [x6, #0xef8]
+0019c174: a5a447f9  ldr x5, [x5, #0xf48]
+0019c178: 84c447f9  ldr x4, [x4, #0xf88]
+0019c17c: 030806a9  stp x3, x2, [x0, #0x60]
+0019c180: 23010090  adrp x3, #0x1c0000
+0019c184: e2fffff0  adrp x2, #0x19b000
+0019c188: 63402791  add x3, x3, #0x9d0
+0019c18c: 42803891  add x2, x2, #0xe20
+0019c190: 0d3001a9  stp x13, x12, [x0, #0x10]
+0019c194: 0b2802a9  stp x11, x10, [x0, #0x20]
+0019c198: 092003a9  stp x9, x8, [x0, #0x30]
+0019c19c: 071804a9  stp x7, x6, [x0, #0x40]
+0019c1a0: 051005a9  stp x5, x4, [x0, #0x50]
+0019c1a4: 030800a9  stp x3, x2, [x0]
+0019c1a8: 26daf997  bl #0x12a40 ; heuristic ndbusRegisterService@plt {"x2": 1687072, "x3": "nokia.ecd.application", "x4": 600272, "x5": 599000, "x6": 605544, "x7": 604272}
+0019c1ac: a0040035  cbnz w0, #0x19c240
+0019c1b0: a21740f9  ldr x2, [x29, #0x28]
+0019c1b4: 610240f9  ldr x1, [x19]
+0019c1b8: 410001ca  eor x1, x2, x1
+0019c1bc: 610400b5  cbnz x1, #0x19c248
+0019c1c0: f35341a9  ldp x19, x20, [sp, #0x10]
+0019c1c4: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0019c1c8: 7edbf917  b #0x12fc0
+0019c1cc: 1f2003d5  nop 
+0019c1d0: e303002a  mov w3, w0
+0019c1d4: 21010090  adrp x1, #0x1c0000
+0019c1d8: 21a01091  add x1, x1, #0x428
+0019c1dc: 22010090  adrp x2, #0x1c0000
+0019c1e0: 21800091  add x1, x1, #0x20
+0019c1e4: 42802691  add x2, x2, #0x9a0
+0019c1e8: e0228052  mov w0, #0x117
+0019c1ec: f303032a  mov w19, w3
+0019c1f0: c8d8f997  bl #0x12510 ; heuristic ndbusLogFatalReal@plt {"x0": 279, "x1": "register_ecdd_service", "x2": "failed to request bus name for ecdd service\n"}
+0019c1f4: 942247f9  ldr x20, [x20, #0xe40]
+0019c1f8: e003132a  mov w0, w19
+0019c1fc: a21740f9  ldr x2, [x29, #0x28]
+0019c200: 810240f9  ldr x1, [x20]
+0019c204: 410001ca  eor x1, x2, x1
+0019c208: 010200b5  cbnz x1, #0x19c248
+0019c20c: f35341a9  ldp x19, x20, [sp, #0x10]
+0019c210: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0019c214: c0035fd6  ret 
+0019c218: 93008052  mov w19, #4
+0019c21c: 21010090  adrp x1, #0x1c0000
+0019c220: 21a01091  add x1, x1, #0x428
+0019c224: 22010090  adrp x2, #0x1c0000
+0019c228: 21800091  add x1, x1, #0x20
+0019c22c: 42a02791  add x2, x2, #0x9e8
+0019c230: a0238052  mov w0, #0x11d
+0019c234: b7d8f997  bl #0x12510 ; heuristic ndbusLogFatalReal@plt {"x0": 285, "x1": "register_ecdd_service", "x2": "failed to register NokiaEcdApplication interface\n"}
+0019c238: efffff17  b #0x19c1f4
+0019c23c: 1f2003d5  nop 
+0019c240: f303002a  mov w19, w0
+0019c244: f6ffff17  b #0x19c21c
+0019c248: 06d8f997  bl #0x12260 ; heuristic __stack_chk_fail@plt {}
+0019c24c: 1f2003d5  nop 

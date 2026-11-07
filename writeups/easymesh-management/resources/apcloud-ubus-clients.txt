@@ -1,0 +1,314 @@
+0000e298: fd7bbaa9  stp x29, x30, [sp, #-0x60]!
+0000e29c: 230200f0  adrp x3, #0x55000
+0000e2a0: 410100f0  adrp x1, #0x39000
+0000e2a4: 212c1691  add x1, x1, #0x58b
+0000e2a8: fd030091  mov x29, sp
+0000e2ac: 638844f9  ldr x3, [x3, #0x910]
+0000e2b0: a2d30091  add x2, x29, #0x34
+0000e2b4: f35301a9  stp x19, x20, [sp, #0x10]
+0000e2b8: 53020090  adrp x19, #0x56000
+0000e2bc: 73e20891  add x19, x19, #0x238
+0000e2c0: f51300f9  str x21, [sp, #0x20]
+0000e2c4: f40300aa  mov x20, x0
+0000e2c8: bf7f04a9  stp xzr, xzr, [x29, #0x40]
+0000e2cc: e00313aa  mov x0, x19
+0000e2d0: bf7f05a9  stp xzr, xzr, [x29, #0x50]
+0000e2d4: bf1f00f9  str xzr, [x29, #0x38]
+0000e2d8: 60003fd6  blr x3 ; heuristic @ubus_lookup_id {"x0": 352824, "x1": "mesh", "x3": "@ubus_lookup_id"}
+0000e2dc: e0030035  cbnz w0, #0xe358
+0000e2e0: 220200d0  adrp x2, #0x54000
+0000e2e4: b5030191  add x21, x29, #0x40
+0000e2e8: 01008052  mov w1, #0
+0000e2ec: e00315aa  mov x0, x21
+0000e2f0: 425045f9  ldr x2, [x2, #0xaa0]
+0000e2f4: 40003fd6  blr x2 ; heuristic @blob_buf_init {"x1": 0, "x2": "@blob_buf_init"}
+0000e2f8: 280200f0  adrp x8, #0x55000
+0000e2fc: a13740b9  ldr w1, [x29, #0x34]
+0000e300: a32340f9  ldr x3, [x29, #0x40]
+0000e304: 07008012  mov w7, #-1
+0000e308: 086d45f9  ldr x8, [x8, #0xad8]
+0000e30c: 06718252  mov w6, #0x1388
+0000e310: a5e30091  add x5, x29, #0x38
+0000e314: e4fffff0  adrp x4, #0xd000
+0000e318: 84d01291  add x4, x4, #0x4b4
+0000e31c: 420100f0  adrp x2, #0x39000
+0000e320: 42901c91  add x2, x2, #0x724
+0000e324: e00313aa  mov x0, x19
+0000e328: 00013fd6  blr x8 ; heuristic @ubus_invoke_fd {"x0": 352824, "x2": "get_topology", "x4": 54452, "x6": 5000, "x7": -1}
+0000e32c: 210200d0  adrp x1, #0x54000
+0000e330: e00315aa  mov x0, x21
+0000e334: 213c47f9  ldr x1, [x1, #0xe78]
+0000e338: 20003fd6  blr x1 ; heuristic @blob_buf_free {"x1": "@blob_buf_free"}
+0000e33c: a01f40f9  ldr x0, [x29, #0x38]
+0000e340: 400000b4  cbz x0, #0xe348
+0000e344: 800200f9  str x0, [x20]
+0000e348: f35341a9  ldp x19, x20, [sp, #0x10]
+0000e34c: f51340f9  ldr x21, [sp, #0x20]
+0000e350: fd7bc6a8  ldp x29, x30, [sp], #0x60
+0000e354: c0035fd6  ret 
+0000e358: 210200f0  adrp x1, #0x55000
+0000e35c: 21d443f9  ldr x1, [x1, #0x7a8]
+0000e360: 330040f9  ldr x19, [x1]
+0000e364: 210200f0  adrp x1, #0x55000
+0000e368: 21e847f9  ldr x1, [x1, #0xfd0]
+0000e36c: 20003fd6  blr x1 ; heuristic @ubus_strerror {"x1": "@ubus_strerror"}
+0000e370: e30300aa  mov x3, x0
+0000e374: 240200d0  adrp x4, #0x54000
+0000e378: 420100f0  adrp x2, #0x39000
+0000e37c: 42001191  add x2, x2, #0x440
+0000e380: 846446f9  ldr x4, [x4, #0xcc8]
+0000e384: 42000191  add x2, x2, #0x40
+0000e388: 410100f0  adrp x1, #0x39000
+0000e38c: 21c41c91  add x1, x1, #0x731
+0000e390: e00313aa  mov x0, x19
+0000e394: 80003fd6  blr x4 ; heuristic @fprintf {"x1": "%s: ubus error %s calling mesh:get_topology\n", "x2": "apcloud_get_mesh_topology", "x4": "@fprintf"}
+0000e398: ecffff17  b #0xe348
+0000e39c: a00a00b4  cbz x0, #0xe4f0
+0000e3a0: fd7bbaa9  stp x29, x30, [sp, #-0x60]!
+0000e3a4: 230200f0  adrp x3, #0x55000
+0000e3a8: 410100f0  adrp x1, #0x39000
+0000e3ac: 212c1691  add x1, x1, #0x58b
+0000e3b0: fd030091  mov x29, sp
+0000e3b4: 638844f9  ldr x3, [x3, #0x910]
+0000e3b8: a2d30091  add x2, x29, #0x34
+0000e3bc: f35301a9  stp x19, x20, [sp, #0x10]
+0000e3c0: 53020090  adrp x19, #0x56000
+0000e3c4: 73e20891  add x19, x19, #0x238
+0000e3c8: f51300f9  str x21, [sp, #0x20]
+0000e3cc: f40300aa  mov x20, x0
+0000e3d0: bf7f04a9  stp xzr, xzr, [x29, #0x40]
+0000e3d4: e00313aa  mov x0, x19
+0000e3d8: bf7f05a9  stp xzr, xzr, [x29, #0x50]
+0000e3dc: b5030191  add x21, x29, #0x40
+0000e3e0: bf1f00f9  str xzr, [x29, #0x38]
+0000e3e4: 60003fd6  blr x3 ; heuristic @ubus_lookup_id {"x0": 352824, "x1": "mesh", "x3": "@ubus_lookup_id"}
+0000e3e8: 20060035  cbnz w0, #0xe4ac
+0000e3ec: 220200d0  adrp x2, #0x54000
+0000e3f0: 01008052  mov w1, #0
+0000e3f4: e00315aa  mov x0, x21
+0000e3f8: 425045f9  ldr x2, [x2, #0xaa0]
+0000e3fc: 40003fd6  blr x2 ; heuristic @blob_buf_init {"x1": 0, "x2": "@blob_buf_init"}
+0000e400: 220200f0  adrp x2, #0x55000
+0000e404: e10314aa  mov x1, x20
+0000e408: e00315aa  mov x0, x21
+0000e40c: 426045f9  ldr x2, [x2, #0xac0]
+0000e410: 40003fd6  blr x2 ; heuristic @blobmsg_add_json_from_string {"x2": "@blobmsg_add_json_from_string"}
+0000e414: 280200f0  adrp x8, #0x55000
+0000e418: a32340f9  ldr x3, [x29, #0x40]
+0000e41c: a13740b9  ldr w1, [x29, #0x34]
+0000e420: 07008012  mov w7, #-1
+0000e424: 086d45f9  ldr x8, [x8, #0xad8]
+0000e428: 06e28452  mov w6, #0x2710
+0000e42c: a5e30091  add x5, x29, #0x38
+0000e430: e4fffff0  adrp x4, #0xd000
+0000e434: 84e01391  add x4, x4, #0x4f8
+0000e438: 420100f0  adrp x2, #0x39000
+0000e43c: 42781d91  add x2, x2, #0x75e
+0000e440: e00313aa  mov x0, x19
+0000e444: 00013fd6  blr x8 ; heuristic @ubus_invoke_fd {"x0": 352824, "x2": "send_ecd_config", "x4": 54520, "x6": 10000, "x7": -1}
+0000e448: a31f40f9  ldr x3, [x29, #0x38]
+0000e44c: 030200b4  cbz x3, #0xe48c
+0000e450: 200200f0  adrp x0, #0x55000
+0000e454: 240200d0  adrp x4, #0x54000
+0000e458: 420100f0  adrp x2, #0x39000
+0000e45c: 42001191  add x2, x2, #0x440
+0000e460: 00d443f9  ldr x0, [x0, #0x7a8]
+0000e464: 42800191  add x2, x2, #0x60
+0000e468: 846446f9  ldr x4, [x4, #0xcc8]
+0000e46c: 410100f0  adrp x1, #0x39000
+0000e470: 21b81d91  add x1, x1, #0x76e
+0000e474: 000040f9  ldr x0, [x0]
+0000e478: 80003fd6  blr x4 ; heuristic @fprintf {"x1": "%s: ubus status for  mesh:send_ecd_config %s", "x2": "apcloud_send_ecd_config", "x4": "@fprintf"}
+0000e47c: 210200d0  adrp x1, #0x54000
+0000e480: a01f40f9  ldr x0, [x29, #0x38]
+0000e484: 21b447f9  ldr x1, [x1, #0xf68]
+0000e488: 20003fd6  blr x1 ; heuristic @free {"x1": "@free"}
+0000e48c: 210200d0  adrp x1, #0x54000
+0000e490: e00315aa  mov x0, x21
+0000e494: 213c47f9  ldr x1, [x1, #0xe78]
+0000e498: 20003fd6  blr x1 ; heuristic @blob_buf_free {"x1": "@blob_buf_free"}
+0000e49c: f35341a9  ldp x19, x20, [sp, #0x10]
+0000e4a0: f51340f9  ldr x21, [sp, #0x20]
+0000e4a4: fd7bc6a8  ldp x29, x30, [sp], #0x60
+0000e4a8: c0035fd6  ret 
+0000e4ac: 210200f0  adrp x1, #0x55000
+0000e4b0: 21d443f9  ldr x1, [x1, #0x7a8]
+0000e4b4: 330040f9  ldr x19, [x1]
+0000e4b8: 210200f0  adrp x1, #0x55000
+0000e4bc: 21e847f9  ldr x1, [x1, #0xfd0]
+0000e4c0: 20003fd6  blr x1 ; heuristic @ubus_strerror {"x1": "@ubus_strerror"}
+0000e4c4: e30300aa  mov x3, x0
+0000e4c8: 240200d0  adrp x4, #0x54000
+0000e4cc: 420100f0  adrp x2, #0x39000
+0000e4d0: 42001191  add x2, x2, #0x440
+0000e4d4: 846446f9  ldr x4, [x4, #0xcc8]
+0000e4d8: 42800191  add x2, x2, #0x60
+0000e4dc: 410100f0  adrp x1, #0x39000
+0000e4e0: 216c1e91  add x1, x1, #0x79b
+0000e4e4: e00313aa  mov x0, x19
+0000e4e8: 80003fd6  blr x4 ; heuristic @fprintf {"x1": "%s: ubus error %s calling mesh:send_ecd_config\n", "x2": "apcloud_send_ecd_config", "x4": "@fprintf"}
+0000e4ec: ecffff17  b #0xe49c
+0000e4f0: c0035fd6  ret 
+0000e4f4: fd7bb8a9  stp x29, x30, [sp, #-0x80]!
+0000e4f8: 3f040071  cmp w1, #1
+0000e4fc: fd030091  mov x29, sp
+0000e500: f35301a9  stp x19, x20, [sp, #0x10]
+0000e504: f55b02a9  stp x21, x22, [sp, #0x20]
+0000e508: f76303a9  stp x23, x24, [sp, #0x30]
+0000e50c: f96b04a9  stp x25, x26, [sp, #0x40]
+0000e510: bf2f00f9  str xzr, [x29, #0x58]
+0000e514: bf7f06a9  stp xzr, xzr, [x29, #0x60]
+0000e518: bf7f07a9  stp xzr, xzr, [x29, #0x70]
+0000e51c: 000b0054  b.eq #0xe67c
+0000e520: 3f080071  cmp w1, #2
+0000e524: 200b0054  b.eq #0xe688
+0000e528: 3f0c0071  cmp w1, #3
+0000e52c: 400b0054  b.eq #0xe694
+0000e530: 3f100071  cmp w1, #4
+0000e534: 610b0054  b.ne #0xe6a0
+0000e538: 530100f0  adrp x19, #0x39000
+0000e53c: 733e1f91  add x19, x19, #0x7cf
+0000e540: f80300aa  mov x24, x0
+0000e544: 200200d0  adrp x0, #0x54000
+0000e548: 4000621e  scvtf d0, w2
+0000e54c: 350200f0  adrp x21, #0x55000
+0000e550: 008847f9  ldr x0, [x0, #0xf10]
+0000e554: f703032a  mov w23, w3
+0000e558: f903042a  mov w25, w4
+0000e55c: 340200d0  adrp x20, #0x54000
+0000e560: 56020090  adrp x22, #0x56000
+0000e564: d6e20891  add x22, x22, #0x238
+0000e568: 00003fd6  blr x0 ; heuristic 0x190d0 {"x0": 102608}
+0000e56c: b5d643f9  ldr x21, [x21, #0x7a8]
+0000e570: e403002a  mov w4, w0
+0000e574: fa03002a  mov w26, w0
+0000e578: 946646f9  ldr x20, [x20, #0xcc8]
+0000e57c: e30313aa  mov x3, x19
+0000e580: e20318aa  mov x2, x24
+0000e584: e503172a  mov w5, w23
+0000e588: a00240f9  ldr x0, [x21]
+0000e58c: 410100f0  adrp x1, #0x39000
+0000e590: 214c1f91  add x1, x1, #0x7d3
+0000e594: 80023fd6  blr x20 ; heuristic @fprintf {"x1": "apcloud update_mesh_channel device_id : %s, band : %s, channel : %d, bandwidth : %d\n", "x3": "5GU"}
+0000e598: 230200f0  adrp x3, #0x55000
+0000e59c: 410100f0  adrp x1, #0x39000
+0000e5a0: 212c1691  add x1, x1, #0x58b
+0000e5a4: 638844f9  ldr x3, [x3, #0x910]
+0000e5a8: a2530191  add x2, x29, #0x54
+0000e5ac: e00316aa  mov x0, x22
+0000e5b0: 60003fd6  blr x3 ; heuristic @ubus_lookup_id {"x0": 352824, "x1": "mesh", "x3": "@ubus_lookup_id"}
+0000e5b4: 40080035  cbnz w0, #0xe6bc
+0000e5b8: 220200d0  adrp x2, #0x54000
+0000e5bc: b4830191  add x20, x29, #0x60
+0000e5c0: 01008052  mov w1, #0
+0000e5c4: e00314aa  mov x0, x20
+0000e5c8: 425045f9  ldr x2, [x2, #0xaa0]
+0000e5cc: 40003fd6  blr x2 ; heuristic @blob_buf_init {"x1": 0, "x2": "@blob_buf_init"}
+0000e5d0: e20318aa  mov x2, x24
+0000e5d4: e00314aa  mov x0, x20
+0000e5d8: a1010090  adrp x1, #0x42000
+0000e5dc: 21e82791  add x1, x1, #0x9fa
+0000e5e0: f5f9ff97  bl #0xcdb4 ; heuristic 0xcdb4 {"x1": "mac"}
+0000e5e4: e20313aa  mov x2, x19
+0000e5e8: e00314aa  mov x0, x20
+0000e5ec: a1010090  adrp x1, #0x42000
+0000e5f0: 21cc1b91  add x1, x1, #0x6f3
+0000e5f4: f0f9ff97  bl #0xcdb4 ; heuristic 0xcdb4 {"x1": "radio", "x2": "5GU"}
+0000e5f8: e2031a2a  mov w2, w26
+0000e5fc: e00314aa  mov x0, x20
+0000e600: 410100f0  adrp x1, #0x39000
+0000e604: 21e01891  add x1, x1, #0x638
+0000e608: 01faff97  bl #0xce0c ; heuristic 0xce0c {"x1": "channel"}
+0000e60c: e203172a  mov w2, w23
+0000e610: e00314aa  mov x0, x20
+0000e614: 410100f0  adrp x1, #0x39000
+0000e618: 21401991  add x1, x1, #0x650
+0000e61c: fcf9ff97  bl #0xce0c ; heuristic 0xce0c {"x1": "bw"}
+0000e620: e203192a  mov w2, w25
+0000e624: e00314aa  mov x0, x20
+0000e628: 410100f0  adrp x1, #0x39000
+0000e62c: 21781991  add x1, x1, #0x65e
+0000e630: f7f9ff97  bl #0xce0c ; heuristic 0xce0c {"x1": "txpwr"}
+0000e634: 280200f0  adrp x8, #0x55000
+0000e638: a15740b9  ldr w1, [x29, #0x54]
+0000e63c: a33340f9  ldr x3, [x29, #0x60]
+0000e640: 07008012  mov w7, #-1
+0000e644: 086d45f9  ldr x8, [x8, #0xad8]
+0000e648: 06718252  mov w6, #0x1388
+0000e64c: a5630191  add x5, x29, #0x58
+0000e650: e00316aa  mov x0, x22
+0000e654: e4ffffd0  adrp x4, #0xc000
+0000e658: 84c03691  add x4, x4, #0xdb0
+0000e65c: 420100f0  adrp x2, #0x39000
+0000e660: 42a02091  add x2, x2, #0x828
+0000e664: 00013fd6  blr x8 ; heuristic @ubus_invoke_fd {"x0": 352824, "x2": "update_mesh_channel", "x4": 52656, "x6": 5000, "x7": -1}
+0000e668: 210200d0  adrp x1, #0x54000
+0000e66c: e00314aa  mov x0, x20
+0000e670: 213c47f9  ldr x1, [x1, #0xe78]
+0000e674: 20003fd6  blr x1 ; heuristic @blob_buf_free {"x1": "@blob_buf_free"}
+0000e678: 0b000014  b #0xe6a4
+0000e67c: 93010090  adrp x19, #0x3e000
+0000e680: 73ae2491  add x19, x19, #0x92b
+0000e684: afffff17  b #0xe540
+0000e688: 93010090  adrp x19, #0x3e000
+0000e68c: 73f62491  add x19, x19, #0x93d
+0000e690: acffff17  b #0xe540
+0000e694: 530100f0  adrp x19, #0x39000
+0000e698: 732e1f91  add x19, x19, #0x7cb
+0000e69c: a9ffff17  b #0xe540
+0000e6a0: 00008012  mov w0, #-1
+0000e6a4: f35341a9  ldp x19, x20, [sp, #0x10]
+0000e6a8: f55b42a9  ldp x21, x22, [sp, #0x20]
+0000e6ac: f76343a9  ldp x23, x24, [sp, #0x30]
+0000e6b0: f96b44a9  ldp x25, x26, [sp, #0x40]
+0000e6b4: fd7bc8a8  ldp x29, x30, [sp], #0x80
+0000e6b8: c0035fd6  ret 
+0000e6bc: 210200f0  adrp x1, #0x55000
+0000e6c0: b30240f9  ldr x19, [x21]
+0000e6c4: 21e847f9  ldr x1, [x1, #0xfd0]
+0000e6c8: 20003fd6  blr x1 ; heuristic @ubus_strerror {"x1": "@ubus_strerror"}
+0000e6cc: e30300aa  mov x3, x0
+0000e6d0: 420100f0  adrp x2, #0x39000
+0000e6d4: 42001191  add x2, x2, #0x440
+0000e6d8: 42e00191  add x2, x2, #0x78
+0000e6dc: 410100f0  adrp x1, #0x39000
+0000e6e0: 21f02091  add x1, x1, #0x83c
+0000e6e4: e00313aa  mov x0, x19
+0000e6e8: 80023fd6  blr x20 ; heuristic unknown {"x1": "%s: ubus error %s calling mesh:update_mesh_channel\n", "x2": "apcloud_update_mesh_radio"}
+0000e6ec: eeffff17  b #0xe6a4
+0000e6f0: fd7bb9a9  stp x29, x30, [sp, #-0x70]!
+0000e6f4: fd030091  mov x29, sp
+0000e6f8: f55b02a9  stp x21, x22, [sp, #0x20]
+0000e6fc: f60300aa  mov x22, x0
+0000e700: 200200f0  adrp x0, #0x55000
+0000e704: f35301a9  stp x19, x20, [sp, #0x10]
+0000e708: f71b00f9  str x23, [sp, #0x30]
+0000e70c: f40301aa  mov x20, x1
+0000e710: 005c45f9  ldr x0, [x0, #0xab8]
+0000e714: f503022a  mov w21, w2
+0000e718: 00003fd6  blr x0 ; heuristic 0xe28c {"x0": 57996}
+0000e71c: bf7f05a9  stp xzr, xzr, [x29, #0x50]
+0000e720: 230200f0  adrp x3, #0x55000
+0000e724: bf7f06a9  stp xzr, xzr, [x29, #0x60]
+0000e728: 410100f0  adrp x1, #0x39000
+0000e72c: 21b02291  add x1, x1, #0x8ac
+0000e730: 638844f9  ldr x3, [x3, #0x910]
+0000e734: f70300aa  mov x23, x0
+0000e738: a2330191  add x2, x29, #0x4c
+0000e73c: 60003fd6  blr x3 ; heuristic @ubus_lookup_id {"x1": "capin", "x3": "@ubus_lookup_id"}
+0000e740: 40050035  cbnz w0, #0xe7e8
+0000e744: 220200d0  adrp x2, #0x54000
+0000e748: b3430191  add x19, x29, #0x50
+0000e74c: 01008052  mov w1, #0
+0000e750: e00313aa  mov x0, x19
+0000e754: 425045f9  ldr x2, [x2, #0xaa0]
+0000e758: 40003fd6  blr x2 ; heuristic @blob_buf_init {"x1": 0, "x2": "@blob_buf_init"}
+0000e75c: e20316aa  mov x2, x22
+0000e760: 410100f0  adrp x1, #0x39000
+0000e764: 21c02191  add x1, x1, #0x870
+0000e768: e00313aa  mov x0, x19
+0000e76c: 92f9ff97  bl #0xcdb4 ; heuristic 0xcdb4 {"x1": "input"}
+0000e770: e203152a  mov w2, w21
+0000e774: 410100f0  adrp x1, #0x39000
+0000e778: 21d82191  add x1, x1, #0x876
+0000e77c: e00313aa  mov x0, x19

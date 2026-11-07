@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "experiment_date": "2026-10-28",
+  "documentation_date": "2026-10-29",
+  "scope": "Direct owner-authorized G6 experiment followed by offline documentation/validation. No new router operations on documentation date. Beacon 9 package path untested.",
+  "source_root": "private-source://LCM-SMOKE-TEST",
+  "capture_inventory": "retained-evidence.json",
+  "complete_normalized_captures": "normalized-captures.json",
+  "fixture_history": "fixtures.json",
+  "offline_validation": "offline-validation.json",
+  "model": "Beacon G6",
+  "physical_device_alias": "not supplied; do not assign G6-A/B/C/D",
+  "build": {
+    "IMAGEVERSION": "3FE49996HJLL91",
+    "SOFTWAREVERSION": "HJL.L91p01",
+    "HOMEOSVERSION": "24.04.00",
+    "BUILDDATE": "20241227"
+  },
+  "transport": {
+    "router_endpoint_alias": "MESH-37591-LIVE-LAN-IP",
+    "registry_endpoint_alias": "<MESH-37591-LIVE-CLIENT-IP>",
+    "control": "Existing owner-configured root shell on TCP2323; no login guesses or new access method",
+    "registry": "Temporary owner-controlled HTTPS single-image registry, port443, self-signed RSA2048; stopped at wrap-up",
+    "flags_before_after": {
+      "CertificateVerification": false,
+      "SignatureVerification": false
+    },
+    "settings_changed": false,
+    "clock_note": "Router clock September21 did not match client experiment date October28; TIME-LCM aliases are captured values, not trustworthy test dates."
+  },
+  "fresh_live_hashes_match_saved_HJL": {
+    "/usr/bin/lcm": "bb7b15ce9ca2aa2134f963ecf5eca8bc36d5e117efc6cb6ff6cf7cebb036fe7c",
+    "/usr/bin/lcm-adapter": "c9f0ec53747b9621c28641b5c38d3dbb14b46a21fcfef03fff38aa6550cfca57",
+    "/usr/lib/amx/cthulhu/cthulhu.so": "582d3d9937b99beefee666f0cd621a4c81d6cf0c479722af0bd67881396d10db",
+    "/usr/lib/librlyeh.so": "f2f00c8b3da08b469a52cca50e5255551d39ffe40eab6d038d5373b307537cbd"
+  },
+  "application": {
+    "name": "beacon-lcm-smoke",
+    "version": "0.0.1",
+    "tag": "0.0.1",
+    "UUID": "e5d244c9-af3e-5224-96c0-76ca4ae7290a",
+    "observed_DUID_EUID_ContainerId": "717afa32-49ae-5e01-bccd-1426268a18ff",
+    "historical_indices": {
+      "DU": 3,
+      "EU": 2,
+      "CthulhuContainer": 3
+    },
+    "identifiers_note": "Generated app IDs, not router identity; discover current indices/EUID instead of reusing historical IDs",
+    "AutoStart": false,
+    "final_manifest_digest": "sha256:f5710845f96ad5069fcf3498fef8d0272ba9892bf9bbb9584f483c99c4dcaca9",
+    "ELF_sha256": "653f602952460e3f401445544f42c502f034d780da3b7f293111ae6d51bfa660",
+    "ELF_bytes": 597912,
+    "behavior": "No sockets, system commands or lifecycle hooks. Writes container-local /tmp marker files, handles TERM/INT/PWR and sleeps."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "registry_tag": "smoke-v1",
+      "declared_version": "0.0.1",
+      "result": "Downloaded unsigned image; Cthulhu manifest lookup failed; DU Installing/noEU",
+      "uninstall": "Normal uninstall removed cfgmgr mirror but real DU remained; direct Uninstall7004 Container does not exist",
+      "service_failure": "Rlyeh exited/disappeared during cleanup; no exit/core evidence establishes precise mechanism",
+      "recovery": "Only own UUID-checked orphan DU deleted; own single-manifest index/layout captured and removed after UUID/digest-count checks; stock rlyeh -D started once",
+      "source_receipts": [
+        "install-result.json",
+        "status-1-result.json",
+        "direct-uninstall-v1-result.json",
+        "remove-orphan-v1-result.json",
+        "rlyeh-failure-state-result.json",
+        "restore-rlyeh-result.json"
+      ]
+    },
+    {
+      "attempt": 2,
+      "registry_tag": "0.0.1",
+      "result": "After restoring Rlyeh, Installed/Idle/Stopped; launch stopped before marker appeared",
+      "root_layout": "Too bare; explicit /tmp tmpfs duplicated stock default",
+      "uninstall": "Normal matching-version cleanup succeeded and Rlyeh stayed alive",
+      "denial_correction": "One pre-recovery install got RequestDenied7002 while Rlyeh unavailable; not evidence of entitlement rejection",
+      "source_receipts": [
+        "install-v2-result.json",
+        "install-v2-after-restore-result.json",
+        "status-v2-after-restore-result.json",
+        "diagnose-lxc-result.json",
+        "post-uninstall-v2-result.json"
+      ]
+    },
+    {
+      "attempt": 3,
+      "registry_tag": "0.0.1",
+      "result": "Installed -> Idle/Stopped -> Starting -> Active/Running -> Idle/Stopped -> removed",
+      "changes": "Added mount-target directories and removed explicit tmp mount together; individual contribution not isolated",
+      "source_receipts": [
+        "install-v3-result.json",
+        "start-v3-result.json",
+        "verify-running-v3-result.json",
+        "active-details-timeout-output.bin",
+        "stop-result.json",
+        "remove-final-result.json",
+        "verify-cleanup-result.json",
+        "cleanup-empty-data-result.json",
+        "inspect-sandboxes-result.json"
+      ]
+    }
+  ],
+  "runtime_observations": {
+    "model_status": "EU Active / Cthulhu Running; Starting was briefly stale while LXC already RUNNING",
+    "historical_host_PID": 19289,
+    "NSpid": [
+      19289,
+      1
+    ],
+    "UID": 0,
+    "GID": 0,
+    "CapEff": "0000003fffffffff",
+    "NoNewPrivs": 0,
+    "same_host_network_namespace": true,
+    "historical_net_namespace_inode": 4026531945,
+    "requested_isolation": "Empty capability sets/noNewPrivileges true/network namespace in runtime; not all honored by this backend path",
+    "memory": {
+      "runtime_limit_bytes": 16777216,
+      "EU_allocated_kilobytes": 16384,
+      "actual_cgroup_limit_bytes": 16777216,
+      "EU_MemoryInUse_kilobytes": 1248,
+      "LXC_Memory_use_KiB": 536,
+      "counter_caveat": "Different counters/sampling, not evidence of a leak"
+    },
+    "cpu": {
+      "runtime_quota": 10000,
+      "runtime_period": 100000,
+      "EU_AllocatedCPUPercent": 10,
+      "host_CPUs": 4,
+      "actual_cgroup_quota": 40000,
+      "actual_cgroup_period": 100000,
+      "interpretation": "Percentage scaled to total host CPU capacity"
+    },
+    "injected_mounts": [
+      {
+        "host": "/opt/lcm/persistent-data/<APP_UUID>",
+        "container": "/persistent-data"
+      },
+      {
+        "host": "/tmp",
+        "container": "/temporary-data"
+      }
+    ],
+    "container_tmp_run": "Stock tmpfs defaults, separate from injected host-tmp mapping",
+    "rootfs": "Read-only",
+    "app_did_not_use_injected_host_paths": true,
+    "self_test": "lxc-attach printed success; console transport consumed queued receipt and timed out, so native attach exit status not captured. Offline QEMU self-tests exit0.",
+    "readlink_correction": "First BusyBox readlink invocation accepted one FILE only; separate commands subsequently proved namespace equality."
+  },
+  "cleanup": {
+    "real_DU_EU_container_removed": true,
+    "lxc_ls_empty": true,
+    "only_actual_generic_sandbox_remained_Up": true,
+    "stale_list_paths": "list briefly showed sandbox2/3; final _get contained only generic1; no forced deletion",
+    "image_layout_removed": true,
+    "four_test_prepared_layers_absent": true,
+    "persistent_data": "Empty directory retained by normal RetainData=false uninstall, then inspected and removed with rmdir only",
+    "host_tmp_marker_absent": true,
+    "registry_stopped": true,
+    "Rlyeh_restored_once": true,
+    "other_core_services_restarted": false,
+    "generic_available_disk_KiB_before": 986,
+    "generic_available_disk_KiB_after": 985,
+    "byte_for_byte_rollback": false,
+    "residuals": "Normal manager/log/history state remains",
+    "DNS_WiFi_firmware_boot_settings_changed": false,
+    "rebooted": false
+  },
+  "untested": [
+    "Beacon 9 package install/start",
+    "TLS trusted-versus-untrusted rejection matrix",
+    "SignatureVerification=true enforcement",
+    "Update",
+    "Nonempty data retention/PreserveData",
+    "AutoStart/reboot",
+    "Firmware upgrade/bank switch persistence",
+    "AdGuard DNS/listen/mount plan",
+    "WebUI-only installer or public remote container HTTP API"
+  ],
+  "transport_corrections": [
+    "Initial long base64 command exceeded shell editor line length; switched to <=400byte here-document lines",
+    "Normalized receipt CR/CRLF handling",
+    "CLI exit0/Message sent proves submission only, not asynchronous success",
+    "Missing syslog-ng socket warning did not prevent final launch; logger was not restarted",
+    "Use stdin </dev/null for any future lxc-attach, or noninteractive transport; do not repeat merely to recover historical exit status"
+  ],
+  "documentation_validation": "documentation-validation.json",
+  "documentation_tool_corrections": [
+    "Private-source roots use privately mapped absolute paths: joining project:// through pathlib on Windows lost the URI slashes. The companion validator falls back to the G6 alias helper, where the shared private captures live.",
+    "An initial key-header-only privacy assertion matched its own source literal. It was replaced by a PEM header plus base64-body check. Neither local validation issue involved router execution."
+  ]
+}

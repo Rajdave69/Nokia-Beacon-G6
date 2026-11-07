@@ -1,0 +1,92 @@
+ca_ni_rx_fill_pkt: .text+0xa708, 364 bytes; sha256 69d633e315b51ac47486f789344bf70dd720d37f6fbc9511e7699bd422527edb
+0000a708: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0000a70c: fd030091  mov x29, sp
+0000a710: f35301a9  stp x19, x20, [sp, #0x10]
+0000a714: f55b02a9  stp x21, x22, [sp, #0x20]
+0000a718: f40303aa  mov x20, x3
+0000a71c: f30301aa  mov x19, x1
+0000a720: f603002a  mov w22, w0
+0000a724: f50302aa  mov x21, x2
+0000a728: e0031eaa  mov x0, x30
+0000a72c: 00000094  bl #0xa72c ; reloc _mcount+0x0 type=283
+0000a730: 810240f9  ldr x1, [x20]
+0000a734: 00008052  mov w0, #0
+0000a738: 61d20079  strh w1, [x19, #0x68]
+0000a73c: 810240f9  ldr x1, [x20]
+0000a740: 21fc48d3  lsr x1, x1, #8
+0000a744: 61d60079  strh w1, [x19, #0x6a]
+0000a748: 810240f9  ldr x1, [x20]
+0000a74c: 21fc50d3  lsr x1, x1, #0x10
+0000a750: 61da0079  strh w1, [x19, #0x6c]
+0000a754: 810240f9  ldr x1, [x20]
+0000a758: 21fc58d3  lsr x1, x1, #0x18
+0000a75c: 61de0079  strh w1, [x19, #0x6e]
+0000a760: 00000094  bl #0xa760 ; reloc aal_pon_mac_mode_get+0x0 type=283
+0000a764: b6040035  cbnz w22, #0xa7f8
+0000a768: 1f080071  cmp w0, #2
+0000a76c: 0488487a  ccmp w0, #8, #4, hi
+0000a770: 81020054  b.ne #0xa7c0
+0000a774: 00000090  adrp x0, #0xa000 ; reloc epon_16b_hdr+0x0 type=275
+0000a778: 00004039  ldrb w0, [x0] ; reloc epon_16b_hdr+0x0 type=278
+0000a77c: 1f040071  cmp w0, #1
+0000a780: c1000054  b.ne #0xa798
+0000a784: 600240f9  ldr x0, [x19]
+0000a788: 000440f9  ldr x0, [x0, #8]
+0000a78c: 002c4039  ldrb w0, [x0, #0xb]
+0000a790: 00140012  and w0, w0, #0x3f
+0000a794: 04000014  b #0xa7a4
+0000a798: a0164039  ldrb w0, [x21, #5]
+0000a79c: 001841d3  ubfx x0, x0, #1, #6
+0000a7a0: 00800051  sub w0, w0, #0x20
+0000a7a4: 003c0012  and w0, w0, #0xffff
+0000a7a8: a200a052  mov w2, #0x50000
+0000a7ac: 4100a052  mov w1, #0x20000
+0000a7b0: 0000022a  orr w0, w0, w2
+0000a7b4: 601600b9  str w0, [x19, #0x14]
+0000a7b8: 0c000014  b #0xa7e8
+0000a7bc: 1f2003d5  nop 
+0000a7c0: 000c0051  sub w0, w0, #3
+0000a7c4: 6100a052  mov w1, #0x30000
+0000a7c8: 1f0c0071  cmp w0, #3
+0000a7cc: e8000054  b.hi #0xa7e8
+0000a7d0: a0064079  ldrh w0, [x21, #2]
+0000a7d4: a200a052  mov w2, #0x50000
+0000a7d8: 2100a052  mov w1, #0x10000
+0000a7dc: 002842d3  ubfx x0, x0, #2, #9
+0000a7e0: 0000022a  orr w0, w0, w2
+0000a7e4: 601600b9  str w0, [x19, #0x14]
+0000a7e8: 00000090  adrp x0, #0xa000 ; reloc cfg_wan_port_id+0x0 type=275
+0000a7ec: 00004039  ldrb w0, [x0] ; reloc cfg_wan_port_id+0x0 type=278
+0000a7f0: 0000012a  orr w0, w0, w1
+0000a7f4: 04000014  b #0xa804
+0000a7f8: a0164039  ldrb w0, [x21, #5]
+0000a7fc: 001841d3  ubfx x0, x0, #1, #6
+0000a800: 00041032  orr w0, w0, #0x30000
+0000a804: 601200b9  str w0, [x19, #0x10]
+0000a808: a00a4079  ldrh w0, [x21, #4]
+0000a80c: 002043d3  ubfx x0, x0, #3, #6
+0000a810: 00000e32  orr w0, w0, #0x40000
+0000a814: 601a00b9  str w0, [x19, #0x18]
+0000a818: 604e40b9  ldr w0, [x19, #0x4c]
+0000a81c: 1f140071  cmp w0, #5
+0000a820: c0000054  b.eq #0xa838
+0000a824: 1f100071  cmp w0, #4
+0000a828: e1010054  b.ne #0xa864
+0000a82c: 00000090  adrp x0, #0xa000 ; reloc epon_16b_hdr+0x0 type=275
+0000a830: 00004039  ldrb w0, [x0] ; reloc epon_16b_hdr+0x0 type=278
+0000a834: 80010034  cbz w0, #0xa864
+0000a838: 610240f9  ldr x1, [x19]
+0000a83c: 200440f9  ldr x0, [x1, #8]
+0000a840: 00400091  add x0, x0, #0x10
+0000a844: 200400f9  str x0, [x1, #8]
+0000a848: 610240f9  ldr x1, [x19]
+0000a84c: 201040b9  ldr w0, [x1, #0x10]
+0000a850: 00400051  sub w0, w0, #0x10
+0000a854: 201000b9  str w0, [x1, #0x10]
+0000a858: 60424079  ldrh w0, [x19, #0x20]
+0000a85c: 00400051  sub w0, w0, #0x10
+0000a860: 60420079  strh w0, [x19, #0x20]
+0000a864: f35341a9  ldp x19, x20, [sp, #0x10]
+0000a868: f55b42a9  ldp x21, x22, [sp, #0x20]
+0000a86c: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0000a870: c0035fd6  ret 

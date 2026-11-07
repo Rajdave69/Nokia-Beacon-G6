@@ -1,0 +1,65 @@
+004c83a4: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+004c83a8: fd030091  mov x29, sp
+004c83ac: a01700f9  str x0, [x29, #0x28]
+004c83b0: a11300f9  str x1, [x29, #0x20]
+004c83b4: a21f00b9  str w2, [x29, #0x1c]
+004c83b8: a30b00f9  str x3, [x29, #0x10]
+004c83bc: bf2700f9  str xzr, [x29, #0x48]
+004c83c0: bf1f00f9  str xzr, [x29, #0x38]
+004c83c4: bf4700b9  str wzr, [x29, #0x44]
+004c83c8: 40150090  adrp x0, #0x770000
+004c83cc: 00a03f91  add x0, x0, #0xfe8
+004c83d0: 040080d2  mov x4, #0
+004c83d4: e30300aa  mov x3, x0
+004c83d8: a20b40f9  ldr x2, [x29, #0x10]
+004c83dc: a11f40b9  ldr w1, [x29, #0x1c]
+004c83e0: a01340f9  ldr x0, [x29, #0x20]
+004c83e4: 105ffe97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_shaper_get_pps cfg ", "x4": 0}
+004c83e8: 1f040071  cmp w0, #1
+004c83ec: 60050054  b.eq #0x4c8498
+004c83f0: a00b40f9  ldr x0, [x29, #0x10]
+004c83f4: 00200091  add x0, x0, #8
+004c83f8: 010040f9  ldr x1, [x0]
+004c83fc: 602400d0  adrp x0, #0x956000
+004c8400: 00e00291  add x0, x0, #0xb8
+004c8404: 025843f9  ldr x2, [x0, #0x6b0]
+004c8408: a0e30091  add x0, x29, #0x38
+004c840c: 04008052  mov w4, #0
+004c8410: e30302aa  mov x3, x2
+004c8414: e20300aa  mov x2, x0
+004c8418: a01340f9  ldr x0, [x29, #0x20]
+004c841c: 295afe97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+004c8420: a04700b9  str w0, [x29, #0x44]
+004c8424: a04740b9  ldr w0, [x29, #0x44]
+004c8428: 1f000071  cmp w0, #0
+004c842c: ea010054  b.ge #0x4c8468
+004c8430: a04740b9  ldr w0, [x29, #0x44]
+004c8434: 1f040031  cmn w0, #1
+004c8438: 60000054  b.eq #0x4c8444
+004c843c: a04740b9  ldr w0, [x29, #0x44]
+004c8440: 02000014  b #0x4c8448
+004c8444: 80008012  mov w0, #-5
+004c8448: 8c58fe97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+004c844c: e10300aa  mov x1, x0
+004c8450: 401500b0  adrp x0, #0x771000
+004c8454: 00200091  add x0, x0, #8
+004c8458: e20300aa  mov x2, x0
+004c845c: a01340f9  ldr x0, [x29, #0x20]
+004c8460: f058fe97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_shaper_get_pps', argument 1 of type 'ca_shaper_t *'"}
+004c8464: 0e000014  b #0x4c849c
+004c8468: a01f40f9  ldr x0, [x29, #0x38]
+004c846c: a02700f9  str x0, [x29, #0x48]
+004c8470: a02740f9  ldr x0, [x29, #0x48]
+004c8474: 9834fd97  bl #0x4156d4 ; heuristic 0x4156d4 {}
+004c8478: a04300b9  str w0, [x29, #0x40]
+004c847c: a04340b9  ldr w0, [x29, #0x40]
+004c8480: 4c61fe97  bl #0x4609b0 ; heuristic 0x4609b0 {}
+004c8484: e10300aa  mov x1, x0
+004c8488: a01340f9  ldr x0, [x29, #0x20]
+004c848c: 6d23fd97  bl #0x411240 ; heuristic Tcl_SetObjResult@plt {}
+004c8490: 00008052  mov w0, #0
+004c8494: 03000014  b #0x4c84a0
+004c8498: 1f2003d5  nop 
+004c849c: 20008052  mov w0, #1
+004c84a0: fd7bc5a8  ldp x29, x30, [sp], #0x50
+004c84a4: c0035fd6  ret 

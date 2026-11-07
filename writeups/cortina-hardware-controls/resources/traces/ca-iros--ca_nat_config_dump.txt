@@ -1,0 +1,59 @@
+004d4a00: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+004d4a04: fd030091  mov x29, sp
+004d4a08: a01700f9  str x0, [x29, #0x28]
+004d4a0c: a11300f9  str x1, [x29, #0x20]
+004d4a10: a21f00b9  str w2, [x29, #0x1c]
+004d4a14: a30b00f9  str x3, [x29, #0x10]
+004d4a18: bf2700f9  str xzr, [x29, #0x48]
+004d4a1c: bf1f00f9  str xzr, [x29, #0x38]
+004d4a20: bf4700b9  str wzr, [x29, #0x44]
+004d4a24: 001500f0  adrp x0, #0x777000
+004d4a28: 00203d91  add x0, x0, #0xf48
+004d4a2c: 040080d2  mov x4, #0
+004d4a30: e30300aa  mov x3, x0
+004d4a34: a20b40f9  ldr x2, [x29, #0x10]
+004d4a38: a11f40b9  ldr w1, [x29, #0x1c]
+004d4a3c: a01340f9  ldr x0, [x29, #0x20]
+004d4a40: 792dfe97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_nat_config_dump cfg ", "x4": 0}
+004d4a44: 1f040071  cmp w0, #1
+004d4a48: a0040054  b.eq #0x4d4adc
+004d4a4c: a00b40f9  ldr x0, [x29, #0x10]
+004d4a50: 00200091  add x0, x0, #8
+004d4a54: 010040f9  ldr x1, [x0]
+004d4a58: 002400d0  adrp x0, #0x956000
+004d4a5c: 00e00291  add x0, x0, #0xb8
+004d4a60: 025042f9  ldr x2, [x0, #0x4a0]
+004d4a64: a0e30091  add x0, x29, #0x38
+004d4a68: 04008052  mov w4, #0
+004d4a6c: e30302aa  mov x3, x2
+004d4a70: e20300aa  mov x2, x0
+004d4a74: a01340f9  ldr x0, [x29, #0x20]
+004d4a78: 9228fe97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+004d4a7c: a04700b9  str w0, [x29, #0x44]
+004d4a80: a04740b9  ldr w0, [x29, #0x44]
+004d4a84: 1f000071  cmp w0, #0
+004d4a88: ea010054  b.ge #0x4d4ac4
+004d4a8c: a04740b9  ldr w0, [x29, #0x44]
+004d4a90: 1f040031  cmn w0, #1
+004d4a94: 60000054  b.eq #0x4d4aa0
+004d4a98: a04740b9  ldr w0, [x29, #0x44]
+004d4a9c: 02000014  b #0x4d4aa4
+004d4aa0: 80008012  mov w0, #-5
+004d4aa4: f526fe97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+004d4aa8: e10300aa  mov x1, x0
+004d4aac: 001500f0  adrp x0, #0x777000
+004d4ab0: 00a03d91  add x0, x0, #0xf68
+004d4ab4: e20300aa  mov x2, x0
+004d4ab8: a01340f9  ldr x0, [x29, #0x20]
+004d4abc: 5927fe97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_nat_config_dump', argument 1 of type 'ca_nat_config_t *'"}
+004d4ac0: 08000014  b #0x4d4ae0
+004d4ac4: a01f40f9  ldr x0, [x29, #0x38]
+004d4ac8: a02700f9  str x0, [x29, #0x48]
+004d4acc: a02740f9  ldr x0, [x29, #0x48]
+004d4ad0: e320fe97  bl #0x45ce5c ; heuristic 0x45ce5c {}
+004d4ad4: 00008052  mov w0, #0
+004d4ad8: 03000014  b #0x4d4ae4
+004d4adc: 1f2003d5  nop 
+004d4ae0: 20008052  mov w0, #1
+004d4ae4: fd7bc5a8  ldp x29, x30, [sp], #0x50
+004d4ae8: c0035fd6  ret 

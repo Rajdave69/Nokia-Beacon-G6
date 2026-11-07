@@ -1,0 +1,53 @@
+ca_mdio_init: .text+0x7a78, 208 bytes; sha256 579585c3a34b72635b08da33f9a73e2845593dff3815bfcad59ef0655b308e92
+00007a78: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00007a7c: fd030091  mov x29, sp
+00007a80: f35301a9  stp x19, x20, [sp, #0x10]
+00007a84: f30300aa  mov x19, x0
+00007a88: e0031eaa  mov x0, x30
+00007a8c: 00000094  bl #0x7a8c ; reloc _mcount+0x0 type=283
+00007a90: 000080d2  mov x0, #0
+00007a94: 00000094  bl #0x7a94 ; reloc mdiobus_alloc_size+0x0 type=283
+00007a98: 600a00f9  str x0, [x19, #0x10]
+00007a9c: c00400b4  cbz x0, #0x7b34
+00007aa0: 01000090  adrp x1, #0x7000 ; reloc .rodata.str1.8+0x2b40 'ca-mdio' type=275
+00007aa4: 21000091  add x1, x1, #0 ; reloc .rodata.str1.8+0x2b40 'ca-mdio' type=277
+00007aa8: 010400f9  str x1, [x0, #8]
+00007aac: 04000090  adrp x4, #0x7000 ; reloc .text+0x7568 type=275
+00007ab0: 84000091  add x4, x4, #0 ; reloc .text+0x7568 type=277
+00007ab4: 03000090  adrp x3, #0x7000 ; reloc .text+0x7588 type=275
+00007ab8: 660a40f9  ldr x6, [x19, #0x10]
+00007abc: 63000091  add x3, x3, #0 ; reloc .text+0x7588 type=277
+00007ac0: 01000090  adrp x1, #0x7000 ; reloc .text+0x75a8 type=275
+00007ac4: 21000091  add x1, x1, #0 ; reloc .text+0x75a8 type=277
+00007ac8: 05008012  mov w5, #-1
+00007acc: e203052a  mov w2, w5
+00007ad0: 00008052  mov w0, #0
+00007ad4: d32800f9  str x19, [x6, #0x50]
+00007ad8: 660a40f9  ldr x6, [x19, #0x10]
+00007adc: c42c00f9  str x4, [x6, #0x58]
+00007ae0: 640a40f9  ldr x4, [x19, #0x10]
+00007ae4: 833000f9  str x3, [x4, #0x60]
+00007ae8: 630a40f9  ldr x3, [x19, #0x10]
+00007aec: 613400f9  str x1, [x3, #0x68]
+00007af0: 610a40f9  ldr x1, [x19, #0x10]
+00007af4: 258804b9  str w5, [x1, #0x488]
+00007af8: 610a40f9  ldr x1, [x19, #0x10]
+00007afc: 21c8208b  add x1, x1, w0, sxtw #2
+00007b00: 00040011  add w0, w0, #1
+00007b04: 1f800071  cmp w0, #0x20
+00007b08: 229004b9  str w2, [x1, #0x490]
+00007b0c: 61ffff54  b.ne #0x7af8
+00007b10: 600a40f9  ldr x0, [x19, #0x10]
+00007b14: 01000090  adrp x1, #0x7000 ; reloc __this_module+0x0 type=275
+00007b18: 21000091  add x1, x1, #0 ; reloc __this_module+0x0 type=277
+00007b1c: 00000094  bl #0x7b1c ; reloc __mdiobus_register+0x0 type=283
+00007b20: f403002a  mov w20, w0
+00007b24: a0000034  cbz w0, #0x7b38
+00007b28: 600a40f9  ldr x0, [x19, #0x10]
+00007b2c: 00000094  bl #0x7b2c ; reloc mdiobus_free+0x0 type=283
+00007b30: 02000014  b #0x7b38
+00007b34: 74018012  mov w20, #-0xc
+00007b38: e003142a  mov w0, w20
+00007b3c: f35341a9  ldp x19, x20, [sp, #0x10]
+00007b40: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00007b44: c0035fd6  ret 

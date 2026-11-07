@@ -1,0 +1,143 @@
+{
+  "date_received": "2026-10-28",
+  "provenance": "Manual structured transcription of owner-pasted read-only terminal outputs; interleaved terminal echo removed. Physical G6 alias not supplied, lifecycle ELF hashes not freshly supplied in this phase.",
+  "model": "Beacon G6",
+  "session_bus": {
+    "socket": "/var/run/ubus-session/ubus.sock",
+    "patterns": [
+      "SoftwareModules*",
+      "Cthulhu*",
+      "Rlyeh*"
+    ],
+    "result": "Command failed: Not found for each pattern"
+  },
+  "lcm_list": [
+    {
+      "DU": 1,
+      "Status": "-",
+      "AutoStart": -1,
+      "UUID": "",
+      "EUID": ""
+    }
+  ],
+  "default_bus": {
+    "SoftwareModules": [
+      "SoftwareModules",
+      "SoftwareModules.DeploymentUnit",
+      "SoftwareModules.ExecEnv",
+      "SoftwareModules.ExecEnv.1",
+      "SoftwareModules.ExecEnv.1.Plugins",
+      "SoftwareModules.ExecutionUnit",
+      "SoftwareModules.NetworkConfig",
+      "SoftwareModules.NetworkConfig.Interfaces",
+      "SoftwareModules.Plugins"
+    ],
+    "Cthulhu": [
+      "Cthulhu",
+      "Cthulhu.Config",
+      "Cthulhu.Container",
+      "Cthulhu.Container.Instances",
+      "Cthulhu.Information",
+      "Cthulhu.Plugins",
+      "Cthulhu.PluginsPrivate",
+      "Cthulhu.Sandbox",
+      "Cthulhu.Sandbox.Instances",
+      "Cthulhu.Sandbox.Instances.1",
+      "Cthulhu.Sandbox.Instances.1.Devices",
+      "Cthulhu.Sandbox.Instances.1.Devices.1",
+      "Cthulhu.Sandbox.Instances.1.Devices.2",
+      "Cthulhu.Sandbox.Instances.1.Devices.3",
+      "Cthulhu.Sandbox.Instances.1.Devices.4",
+      "Cthulhu.Sandbox.Instances.1.Devices.5",
+      "Cthulhu.Sandbox.Instances.1.Devices.6",
+      "Cthulhu.Sandbox.Instances.1.Devices.7",
+      "Cthulhu.Sandbox.Instances.1.Devices.8",
+      "Cthulhu.Sandbox.Instances.1.Devices.9",
+      "Cthulhu.Sandbox.Instances.1.Devices.10",
+      "Cthulhu.Sandbox.Instances.1.Devices.11",
+      "Cthulhu.Sandbox.Instances.1.Devices.12",
+      "Cthulhu.Sandbox.Instances.1.Devices.13",
+      "Cthulhu.Sandbox.Instances.1.NetworkNS",
+      "Cthulhu.Sandbox.Instances.1.NetworkNS.Interfaces",
+      "Cthulhu.Sandbox.Instances.1.Plugins",
+      "Cthulhu.Sandbox.Instances.1.PluginsPrivate",
+      "Cthulhu.Sandbox.Instances.1.Stats",
+      "Cthulhu.Sandbox.Instances.1.Stats.DiskSpace",
+      "Cthulhu.Sandbox.Instances.1.Stats.Memory",
+      "Cthulhu.Sandbox.Instances.1.UtsNS"
+    ],
+    "Rlyeh": [
+      "Rlyeh",
+      "Rlyeh.Images"
+    ]
+  },
+  "processes": [
+    {
+      "pid": 19374,
+      "owner": "root",
+      "command": "/usr/bin/timingila -D"
+    },
+    {
+      "pid": 19381,
+      "owner": "root",
+      "command": "/usr/bin/rlyeh -D"
+    },
+    {
+      "pid": 19382,
+      "owner": "root",
+      "command": "/usr/bin/lcm-adapter"
+    },
+    {
+      "pid": 19413,
+      "owner": "root",
+      "command": "/usr/bin/cthulhu -D"
+    },
+    {
+      "pid": 19507,
+      "owner": "root",
+      "command": "/usr/bin/cthulhu -D"
+    }
+  ],
+  "getters": {
+    "SoftwareModules.ExecEnv.1.": {
+      "AvailableMemory": -1,
+      "Status": "Up",
+      "AllocatedDiskSpace": 1024,
+      "RestartReason": "",
+      "Enable": true,
+      "Name": "generic",
+      "ActiveExecutionUnits": "",
+      "InitialRunLevel": -1,
+      "Type": "lxc:5.0.1",
+      "InitialExecutionUnitRunLevel": -1,
+      "CurrentRunLevel": -1,
+      "AvailableDiskSpace": 986,
+      "ProcessorRefList": "",
+      "Description": "",
+      "Vendor": "Cthulhu",
+      "AllocatedMemory": -1,
+      "ParentExecEnv": "",
+      "AllocatedCPUPercent": 100,
+      "Alias": "cpe-generic",
+      "Version": "3.7.5"
+    },
+    "Timingila.": {
+      "RmAfterUninstall": true,
+      "ContainerPluginPath": "/usr/lib/timingila-cthulhu/timingila-cthulhu.so",
+      "PackagerPluginPath": "/usr/lib/timingila-rlyeh/timingila-rlyeh.so",
+      "version": "alpha"
+    },
+    "Rlyeh.": {
+      "ImageLocation": "/opt/lcm/usr/share/rlyeh/images",
+      "ROImageLocation": "/usr/rlyeh/images",
+      "ROStorageLocation": "/usr/rlyeh/blobs",
+      "CertificateVerification": false,
+      "SignatureVerification": false,
+      "RemainingDiskSpaceBytes": 1000001,
+      "StorageLocation": "/opt/lcm/usr/share/rlyeh/blobs",
+      "OnboardingFile": "/opt/lcm/usr/share/rlyeh_onboarded"
+    }
+  },
+  "getter_reply_shape": "Each getter produced data object, empty object, then amxd-error-code 0 as successive JSON values.",
+  "publication_note": "Owner creation timestamp retained privately; no manufacturing/build-date inference. PIDs are transient process observations, not physical device aliases."
+}

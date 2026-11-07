@@ -1,0 +1,93 @@
+ca_l2_vlan_init: .text+0x151870, 368 bytes; sha256 054a314107edfa8e5f8ae4fcb3a0dda6f0816cfa10e3bedaf6b302bc1ea018eb
+00151870: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+00151874: fd030091  mov x29, sp
+00151878: f35301a9  stp x19, x20, [sp, #0x10]
+0015187c: f51300f9  str x21, [sp, #0x20]
+00151880: 143c0012  and w20, w0, #0xffff
+00151884: e0031eaa  mov x0, x30
+00151888: 00000094  bl #0x151888 ; reloc _mcount+0x0 type=283
+0015188c: 15000090  adrp x21, #0x151000 ; reloc .bss+0x7ef78 type=275
+00151890: 03000090  adrp x3, #0x151000 ; reloc __l2_vlan__port_inner_svlan_tpid_bmp+0x0 type=275
+00151894: 63000091  add x3, x3, #0 ; reloc __l2_vlan__port_inner_svlan_tpid_bmp+0x0 type=277
+00151898: 05000090  adrp x5, #0x151000 ; reloc __l2_vlan__port_outer_svlan_tpid_bmp+0x0 type=275
+0015189c: 04000090  adrp x4, #0x151000 ; reloc __l2_vlan__port_outer_cvlan_tpid_bmp+0x0 type=275
+001518a0: a5000091  add x5, x5, #0 ; reloc __l2_vlan__port_outer_svlan_tpid_bmp+0x0 type=277
+001518a4: 84000091  add x4, x4, #0 ; reloc __l2_vlan__port_outer_cvlan_tpid_bmp+0x0 type=277
+001518a8: 00000090  adrp x0, #0x151000 ; reloc __l2_vlan__port_inner_cvlan_tpid_bmp+0x0 type=275
+001518ac: 00000091  add x0, x0, #0 ; reloc __l2_vlan__port_inner_cvlan_tpid_bmp+0x0 type=277
+001518b0: 7f7c00a9  stp xzr, xzr, [x3]
+001518b4: 06000090  adrp x6, #0x151000 ; reloc .data+0x266c8 type=275
+001518b8: 7f7c01a9  stp xzr, xzr, [x3, #0x10]
+001518bc: c6000091  add x6, x6, #0 ; reloc .data+0x266c8 type=277
+001518c0: 7f7c02a9  stp xzr, xzr, [x3, #0x20]
+001518c4: 07209052  mov w7, #0x8100
+001518c8: 7f7c03a9  stp xzr, xzr, [x3, #0x30]
+001518cc: 034092d2  mov x3, #0x9200
+001518d0: 0315d1f2  movk x3, #0x88a8, lsl #32
+001518d4: bf7c00a9  stp xzr, xzr, [x5]
+001518d8: bf7c01a9  stp xzr, xzr, [x5, #0x10]
+001518dc: a2030191  add x2, x29, #0x40
+001518e0: bf7c02a9  stp xzr, xzr, [x5, #0x20]
+001518e4: e1018052  mov w1, #0xf
+001518e8: bf7c03a9  stp xzr, xzr, [x5, #0x30]
+001518ec: b3020091  add x19, x21, #0 ; reloc .bss+0x7ef78 type=277
+001518f0: 9f7c00a9  stp xzr, xzr, [x4]
+001518f4: 9f7c01a9  stp xzr, xzr, [x4, #0x10]
+001518f8: 9f7c02a9  stp xzr, xzr, [x4, #0x20]
+001518fc: 9f7c03a9  stp xzr, xzr, [x4, #0x30]
+00151900: 1f7c00a9  stp xzr, xzr, [x0]
+00151904: 1f7c01a9  stp xzr, xzr, [x0, #0x10]
+00151908: 1f7c02a9  stp xzr, xzr, [x0, #0x20]
+0015190c: 1f7c03a9  stp xzr, xzr, [x0, #0x30]
+00151910: 002092d2  mov x0, #0x9100
+00151914: 0020d0f2  movk x0, #0x8100, lsl #32
+00151918: c71000b9  str w7, [x6, #0x10]
+0015191c: a30304a9  stp x3, x0, [x29, #0x40]
+00151920: 00008052  mov w0, #0
+00151924: c72800b9  str w7, [x6, #0x28]
+00151928: 00000094  bl #0x151928 ; reloc aal_l2_vlan_l3fe_tpid_set+0x0 type=283
+0015192c: a2430191  add x2, x29, #0x50
+00151930: e3031db2  mov x3, #0x800000008
+00151934: 61008052  mov w1, #3
+00151938: 00008052  mov w0, #0
+0015193c: 438c1ef8  str x3, [x2, #-0x18]!
+00151940: 00000094  bl #0x151940 ; reloc aal_l2_vlan_l3fe_tpid_ena_bmp_set+0x0 type=283
+00151944: 41008052  mov w1, #2
+00151948: 60a20491  add x0, x19, #0x128
+0015194c: 00000094  bl #0x15194c ; reloc ca_spin_lock_init+0x0 type=283
+00151950: 40010034  cbz w0, #0x151978
+00151954: 01000090  adrp x1, #0x151000 ; reloc .rodata+0xa0d0 '__l2_vlan_fib_print' type=275
+00151958: 21000091  add x1, x1, #0 ; reloc .rodata+0xa0d0 '__l2_vlan_fib_print' type=277
+0015195c: 00000090  adrp x0, #0x151000 ; reloc .rodata.str1.8+0x35470 '%s: init spinlock fail\n' type=275
+00151960: 21601091  add x1, x1, #0x418
+00151964: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x35470 '%s: init spinlock fail\n' type=277
+00151968: 00000094  bl #0x151968 ; reloc ca_printf+0x0 type=283
+0015196c: 60028052  mov w0, #0x13
+00151970: 18000014  b #0x1519d0
+00151974: 1f2003d5  nop 
+00151978: e003142a  mov w0, w20
+0015197c: 00000094  bl #0x15197c ; reloc aal_l2_vlan_init+0x0 type=283
+00151980: 61420291  add x1, x19, #0x90
+00151984: 60420091  add x0, x19, #0x10
+00151988: e20301aa  mov x2, x1
+0015198c: 1f000039  strb wzr, [x0]
+00151990: 00400091  add x0, x0, #0x10
+00151994: 1f801ff8  stur xzr, [x0, #-8]
+00151998: 21400091  add x1, x1, #0x10
+0015199c: 3f001f38  sturb wzr, [x1, #-0x10]
+001519a0: 1f0002eb  cmp x0, x2
+001519a4: 3f801ff8  stur xzr, [x1, #-8]
+001519a8: 21ffff54  b.ne #0x15198c
+001519ac: a2020091  add x2, x21, #0 ; reloc .bss+0x7ef78 type=277
+001519b0: bf020039  strb wzr, [x21] ; reloc .bss+0x7ef78 type=278
+001519b4: 40000991  add x0, x2, #0x240
+001519b8: 41001191  add x1, x2, #0x440
+001519bc: 5f0400f9  str xzr, [x2, #8]
+001519c0: 1f240078  strh wzr, [x0], #2
+001519c4: 3f0000eb  cmp x1, x0
+001519c8: c1ffff54  b.ne #0x1519c0
+001519cc: 00008052  mov w0, #0
+001519d0: f35341a9  ldp x19, x20, [sp, #0x10]
+001519d4: f51340f9  ldr x21, [sp, #0x20]
+001519d8: fd7bc5a8  ldp x29, x30, [sp], #0x50
+001519dc: c0035fd6  ret 

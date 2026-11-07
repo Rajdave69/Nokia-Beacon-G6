@@ -1,0 +1,11 @@
+006fc448: ff4300d1  sub sp, sp, #0x10
+006fc44c: e00700f9  str x0, [sp, #8]
+006fc450: e00740f9  ldr x0, [sp, #8]
+006fc454: 1f0000f1  cmp x0, #0
+006fc458: 61000054  b.ne #0x6fc464
+006fc45c: 00008052  mov w0, #0
+006fc460: 03000014  b #0x6fc46c
+006fc464: e00740f9  ldr x0, [sp, #8]
+006fc468: 000840b9  ldr w0, [x0, #8]
+006fc46c: ff430091  add sp, sp, #0x10
+006fc470: c0035fd6  ret 

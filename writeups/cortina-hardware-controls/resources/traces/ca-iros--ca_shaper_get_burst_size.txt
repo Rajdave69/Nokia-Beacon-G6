@@ -1,0 +1,65 @@
+004c887c: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+004c8880: fd030091  mov x29, sp
+004c8884: a01700f9  str x0, [x29, #0x28]
+004c8888: a11300f9  str x1, [x29, #0x20]
+004c888c: a21f00b9  str w2, [x29, #0x1c]
+004c8890: a30b00f9  str x3, [x29, #0x10]
+004c8894: bf2700f9  str xzr, [x29, #0x48]
+004c8898: bf1f00f9  str xzr, [x29, #0x38]
+004c889c: bf4700b9  str wzr, [x29, #0x44]
+004c88a0: 401500b0  adrp x0, #0x771000
+004c88a4: 00c00891  add x0, x0, #0x230
+004c88a8: 040080d2  mov x4, #0
+004c88ac: e30300aa  mov x3, x0
+004c88b0: a20b40f9  ldr x2, [x29, #0x10]
+004c88b4: a11f40b9  ldr w1, [x29, #0x1c]
+004c88b8: a01340f9  ldr x0, [x29, #0x20]
+004c88bc: da5dfe97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_shaper_get_burst_size cfg ", "x4": 0}
+004c88c0: 1f040071  cmp w0, #1
+004c88c4: 60050054  b.eq #0x4c8970
+004c88c8: a00b40f9  ldr x0, [x29, #0x10]
+004c88cc: 00200091  add x0, x0, #8
+004c88d0: 010040f9  ldr x1, [x0]
+004c88d4: 602400d0  adrp x0, #0x956000
+004c88d8: 00e00291  add x0, x0, #0xb8
+004c88dc: 025843f9  ldr x2, [x0, #0x6b0]
+004c88e0: a0e30091  add x0, x29, #0x38
+004c88e4: 04008052  mov w4, #0
+004c88e8: e30302aa  mov x3, x2
+004c88ec: e20300aa  mov x2, x0
+004c88f0: a01340f9  ldr x0, [x29, #0x20]
+004c88f4: f358fe97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+004c88f8: a04700b9  str w0, [x29, #0x44]
+004c88fc: a04740b9  ldr w0, [x29, #0x44]
+004c8900: 1f000071  cmp w0, #0
+004c8904: ea010054  b.ge #0x4c8940
+004c8908: a04740b9  ldr w0, [x29, #0x44]
+004c890c: 1f040031  cmn w0, #1
+004c8910: 60000054  b.eq #0x4c891c
+004c8914: a04740b9  ldr w0, [x29, #0x44]
+004c8918: 02000014  b #0x4c8920
+004c891c: 80008012  mov w0, #-5
+004c8920: 5657fe97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+004c8924: e10300aa  mov x1, x0
+004c8928: 401500b0  adrp x0, #0x771000
+004c892c: 00400991  add x0, x0, #0x250
+004c8930: e20300aa  mov x2, x0
+004c8934: a01340f9  ldr x0, [x29, #0x20]
+004c8938: ba57fe97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_shaper_get_burst_size', argument 1 of type 'ca_shaper_t *'"}
+004c893c: 0e000014  b #0x4c8974
+004c8940: a01f40f9  ldr x0, [x29, #0x38]
+004c8944: a02700f9  str x0, [x29, #0x48]
+004c8948: a02740f9  ldr x0, [x29, #0x48]
+004c894c: 9233fd97  bl #0x415794 ; heuristic 0x415794 {}
+004c8950: a04300b9  str w0, [x29, #0x40]
+004c8954: a04340b9  ldr w0, [x29, #0x40]
+004c8958: 1660fe97  bl #0x4609b0 ; heuristic 0x4609b0 {}
+004c895c: e10300aa  mov x1, x0
+004c8960: a01340f9  ldr x0, [x29, #0x20]
+004c8964: 3722fd97  bl #0x411240 ; heuristic Tcl_SetObjResult@plt {}
+004c8968: 00008052  mov w0, #0
+004c896c: 03000014  b #0x4c8978
+004c8970: 1f2003d5  nop 
+004c8974: 20008052  mov w0, #1
+004c8978: fd7bc5a8  ldp x29, x30, [sp], #0x50
+004c897c: c0035fd6  ret 

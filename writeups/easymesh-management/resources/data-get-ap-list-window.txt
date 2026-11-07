@@ -1,0 +1,80 @@
+0005d2e0: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+0005d2e4: fd030091  mov x29, sp
+0005d2e8: f71b00f9  str x23, [sp, #0x30]
+0005d2ec: b70b00f0  adrp x23, #0x1d4000
+0005d2f0: f55b02a9  stp x21, x22, [sp, #0x20]
+0005d2f4: 16600691  add x22, x0, #0x198
+0005d2f8: f35301a9  stp x19, x20, [sp, #0x10]
+0005d2fc: f40300aa  mov x20, x0
+0005d300: e02247f9  ldr x0, [x23, #0xe40]
+0005d304: f50301aa  mov x21, x1
+0005d308: 010040f9  ldr x1, [x0]
+0005d30c: a12700f9  str x1, [x29, #0x48]
+0005d310: 010080d2  mov x1, #0
+0005d314: 93d640f9  ldr x19, [x20, #0x1a8]
+0005d318: 7f0216eb  cmp x19, x22
+0005d31c: 60050054  b.eq #0x5d3c8
+0005d320: b81f00f9  str x24, [x29, #0x38]
+0005d324: b8030191  add x24, x29, #0x40
+0005d328: 07000014  b #0x5d344
+0005d32c: 1f2003d5  nop 
+0005d330: e00313aa  mov x0, x19
+0005d334: efd4fe97  bl #0x126f0 ; heuristic _ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base@plt {"x1": 0}
+0005d338: f30300aa  mov x19, x0
+0005d33c: df0200eb  cmp x22, x0
+0005d340: 20040054  b.eq #0x5d3c4
+0005d344: 61020191  add x1, x19, #0x40
+0005d348: e00314aa  mov x0, x20
+0005d34c: 41ffff97  bl #0x5d050 ; heuristic 0x5d050 {}
+0005d350: 1f0c0071  cmp w0, #3
+0005d354: e1feff54  b.ne #0x5d330
+0005d358: c00080d2  mov x0, #6
+0005d35c: c1d5fe97  bl #0x12a60 ; heuristic _Znwm@plt {"x0": 6}
+0005d360: a18e40a9  ldp x1, x3, [x21, #8]
+0005d364: 1f0000b9  str wzr, [x0]
+0005d368: 1f080079  strh wzr, [x0, #4]
+0005d36c: 62820691  add x2, x19, #0x1a0
+0005d370: 3f0003eb  cmp x1, x3
+0005d374: a02300f9  str x0, [x29, #0x40]
+0005d378: 63a241b9  ldr w3, [x19, #0x1a0]
+0005d37c: 030000b9  str w3, [x0]
+0005d380: 422040b8  ldur w2, [x2, #2]
+0005d384: 022000b8  stur w2, [x0, #2]
+0005d388: 80030054  b.eq #0x5d3f8
+0005d38c: a10000b4  cbz x1, #0x5d3a0
+0005d390: bf2300f9  str xzr, [x29, #0x40]
+0005d394: 200000f9  str x0, [x1]
+0005d398: a10640f9  ldr x1, [x21, #8]
+0005d39c: a02340f9  ldr x0, [x29, #0x40]
+0005d3a0: 21200091  add x1, x1, #8
+0005d3a4: a10600f9  str x1, [x21, #8]
+0005d3a8: 40fcffb4  cbz x0, #0x5d330
+0005d3ac: 95d5fe97  bl #0x12a00 ; heuristic _ZdlPv@plt {}
+0005d3b0: e00313aa  mov x0, x19
+0005d3b4: cfd4fe97  bl #0x126f0 ; heuristic _ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base@plt {}
+0005d3b8: f30300aa  mov x19, x0
+0005d3bc: df0200eb  cmp x22, x0
+0005d3c0: 21fcff54  b.ne #0x5d344
+0005d3c4: b81f40f9  ldr x24, [x29, #0x38]
+0005d3c8: f72247f9  ldr x23, [x23, #0xe40]
+0005d3cc: 00008052  mov w0, #0
+0005d3d0: a22740f9  ldr x2, [x29, #0x48]
+0005d3d4: e10240f9  ldr x1, [x23]
+0005d3d8: 410001ca  eor x1, x2, x1
+0005d3dc: 810100b5  cbnz x1, #0x5d40c
+0005d3e0: f35341a9  ldp x19, x20, [sp, #0x10]
+0005d3e4: f55b42a9  ldp x21, x22, [sp, #0x20]
+0005d3e8: f71b40f9  ldr x23, [sp, #0x30]
+0005d3ec: fd7bc5a8  ldp x29, x30, [sp], #0x50
+0005d3f0: c0035fd6  ret 
+0005d3f4: 1f2003d5  nop 
+0005d3f8: e00315aa  mov x0, x21
+0005d3fc: e20318aa  mov x2, x24
+0005d400: 0a640094  bl #0x76428 ; heuristic 0x76428 {}
+0005d404: a02340f9  ldr x0, [x29, #0x40]
+0005d408: e8ffff17  b #0x5d3a8
+0005d40c: b81f00f9  str x24, [x29, #0x38]
+0005d410: 94d3fe97  bl #0x12260 ; heuristic __stack_chk_fail@plt {}
+0005d414: 1f2003d5  nop 
+0005d418: fd7bafa9  stp x29, x30, [sp, #-0x110]!
+0005d41c: fd030091  mov x29, sp

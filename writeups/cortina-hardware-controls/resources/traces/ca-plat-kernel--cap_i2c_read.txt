@@ -1,0 +1,80 @@
+cap_i2c_read: .text+0xbcb0, 316 bytes; sha256 22da46acbede9cbb56bdc4661f95ad0978a7d0ca594380f1cfe0877babd78fc5
+0000bcb0: fd7bb8a9  stp x29, x30, [sp, #-0x80]!
+0000bcb4: fd030091  mov x29, sp
+0000bcb8: f35301a9  stp x19, x20, [sp, #0x10]
+0000bcbc: f55b02a9  stp x21, x22, [sp, #0x20]
+0000bcc0: f96b04a9  stp x25, x26, [sp, #0x40]
+0000bcc4: f71b00f9  str x23, [sp, #0x30]
+0000bcc8: 13000090  adrp x19, #0xb000 ; reloc .bss+0x388 type=275
+0000bccc: 74020091  add x20, x19, #0 ; reloc .bss+0x388 type=277
+0000bcd0: 1a3c0012  and w26, w0, #0xffff
+0000bcd4: 351c0012  and w21, w1, #0xff
+0000bcd8: e0031eaa  mov x0, x30
+0000bcdc: 591c0012  and w25, w2, #0xff
+0000bce0: 773c0012  and w23, w3, #0xffff
+0000bce4: f60304aa  mov x22, x4
+0000bce8: 00000094  bl #0xbce8 ; reloc _mcount+0x0 type=283
+0000bcec: 803241b9  ldr w0, [x20, #0x130]
+0000bcf0: 00070035  cbnz w0, #0xbdd0
+0000bcf4: ff020471  cmp w23, #0x100
+0000bcf8: c49a40fa  ccmp x22, #0, #4, ls
+0000bcfc: 21010054  b.ne #0xbd20
+0000bd00: 01000090  adrp x1, #0xb000 ; reloc .rodata+0x470 type=275
+0000bd04: 21000091  add x1, x1, #0 ; reloc .rodata+0x470 type=277
+0000bd08: 00000090  adrp x0, #0xb000 ; reloc .rodata.str1.8+0x12f8 '%s: ERROR: Param wrong \n' type=275
+0000bd0c: 21c00691  add x1, x1, #0x1b0
+0000bd10: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x12f8 '%s: ERROR: Param wrong \n' type=277
+0000bd14: 00000094  bl #0xbd14 ; reloc printk+0x0 type=283
+0000bd18: 40008052  mov w0, #2
+0000bd1c: 2e000014  b #0xbdd4
+0000bd20: b81f00f9  str x24, [x29, #0x38]
+0000bd24: 800e40f9  ldr x0, [x20, #0x18]
+0000bd28: 00000094  bl #0xbd28 ; reloc ca_mutex_lock+0x0 type=283
+0000bd2c: 983240f9  ldr x24, [x20, #0x60]
+0000bd30: 580100b5  cbnz x24, #0xbd58
+0000bd34: e0031a2a  mov w0, w26
+0000bd38: 00000094  bl #0xbd38 ; reloc i2c_get_adapter+0x0 type=283
+0000bd3c: f80300aa  mov x24, x0
+0000bd40: c00000b5  cbnz x0, #0xbd58
+0000bd44: 800e40f9  ldr x0, [x20, #0x18]
+0000bd48: 00000094  bl #0xbd48 ; reloc ca_mutex_unlock+0x0 type=283
+0000bd4c: b81f40f9  ldr x24, [x29, #0x38]
+0000bd50: 20008052  mov w0, #1
+0000bd54: 20000014  b #0xbdd4
+0000bd58: 2000a052  mov w0, #0x10000
+0000bd5c: a02306b8  stur w0, [x29, #0x62]
+0000bd60: a0630191  add x0, x29, #0x58
+0000bd64: a03700f9  str x0, [x29, #0x68]
+0000bd68: 20008052  mov w0, #1
+0000bd6c: b54241d3  ubfx x21, x21, #1, #0x10
+0000bd70: a0e70079  strh w0, [x29, #0x72]
+0000bd74: 42008052  mov w2, #2
+0000bd78: b5c30079  strh w21, [x29, #0x60]
+0000bd7c: a1830191  add x1, x29, #0x60
+0000bd80: b9630139  strb w25, [x29, #0x58]
+0000bd84: e00318aa  mov x0, x24
+0000bd88: b5e30079  strh w21, [x29, #0x70]
+0000bd8c: b7eb0079  strh w23, [x29, #0x74]
+0000bd90: b63f00f9  str x22, [x29, #0x78]
+0000bd94: 00000094  bl #0xbd94 ; reloc i2c_transfer+0x0 type=283
+0000bd98: f403002a  mov w20, w0
+0000bd9c: 60020091  add x0, x19, #0 ; reloc .bss+0x388 type=277
+0000bda0: 003040f9  ldr x0, [x0, #0x60]
+0000bda4: 600000b5  cbnz x0, #0xbdb0
+0000bda8: e00318aa  mov x0, x24
+0000bdac: 00000094  bl #0xbdac ; reloc i2c_put_adapter+0x0 type=283
+0000bdb0: 73020091  add x19, x19, #0 ; reloc .bss+0x388 type=277
+0000bdb4: 600e40f9  ldr x0, [x19, #0x18]
+0000bdb8: 00000094  bl #0xbdb8 ; reloc ca_mutex_unlock+0x0 type=283
+0000bdbc: b81f40f9  ldr x24, [x29, #0x38]
+0000bdc0: 9f020071  cmp w20, #0
+0000bdc4: 60018052  mov w0, #0xb
+0000bdc8: e0a3801a  csel w0, wzr, w0, ge
+0000bdcc: 02000014  b #0xbdd4
+0000bdd0: 00008052  mov w0, #0
+0000bdd4: f35341a9  ldp x19, x20, [sp, #0x10]
+0000bdd8: f55b42a9  ldp x21, x22, [sp, #0x20]
+0000bddc: f96b44a9  ldp x25, x26, [sp, #0x40]
+0000bde0: f71b40f9  ldr x23, [sp, #0x30]
+0000bde4: fd7bc8a8  ldp x29, x30, [sp], #0x80
+0000bde8: c0035fd6  ret 

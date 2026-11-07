@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "scope": "Five captured profiles and owner-supplied G6/B9 getters, followed by direct authorized G6 unsigned-package download/install/start/stop/uninstall and cleanup on2026-10-28. No Beacon9 package test, update/reboot/bank test or router firmware change. Offline documentation/validation only on2026-10-29.",
+  "resource_directory": "project://Nokia-Beacon-G6/writeups/application-container-management/resources/",
+  "profile_comparison": "profile-comparison.json",
+  "stock_text": "stock-text.json",
+  "method_catalog": "method-catalog.json",
+  "native_traces": "trace-index.json",
+  "private_capture_references": {
+    "private-source://APPLICATION-CONTAINER-ANALYSIS/owner-g6-observations.json": {
+      "source": "private-source://APPLICATION-CONTAINER-ANALYSIS/owner-g6-observations.json",
+      "bytes": 4403,
+      "sha256_alias": "DIGEST-072"
+    },
+    "private-source://B9-RECON/Pasted text(20261014-013511).txt": {
+      "source": "private-source://B9-RECON/Pasted text(20261014-013511).txt",
+      "bytes": 100543,
+      "sha256_alias": "DIGEST-073"
+    },
+    "private-source://B9-RECON/Pasted text(20261014-020644).txt": {
+      "source": "private-source://B9-RECON/Pasted text(20261014-020644).txt",
+      "bytes": 68405,
+      "sha256_alias": "DIGEST-074"
+    },
+    "private-source://APPLICATION-CONTAINER-ANALYSIS/owner-b9-observations.json": {
+      "source": "private-source://APPLICATION-CONTAINER-ANALYSIS/owner-b9-observations.json",
+      "bytes": 3648,
+      "sha256_alias": "DIGEST-075"
+    }
+  },
+  "architecture": {
+    "control": "lcm CLI and TR069/TR181/USP-facing lcm-adapter",
+    "cli_event": "nokia.prpllcmadapter.requestOp",
+    "completion_event": "nokia.prpllcmadapter.changeDUComplete",
+    "failure_event": "nokia.prpllcmadapter.AdapterCommandFailure",
+    "core_bus": "default/system ubus, live G6 verified",
+    "adapter_listens": "default/system and /var/run/ubus-session/ubus.sock, statically traced G6/B9",
+    "SoftwareModules": "Timingila high-level DU/EU/ExecEnv model",
+    "packager": "timingila-rlyeh -> Rlyeh/librlyeh OCI image handling",
+    "containers": "timingila-cthulhu -> Cthulhu -> cthulhu-lxc -> LXC5",
+    "B9_custom_cli_object": "nokia.lcm.adapter: list/get/set; CertificateVerification is the sole advertised get/set parameter",
+    "WebUI_text_reference_search": "No SoftwareModules or lcm-adapter text reference in selected decoded non-ELF webs files up to 4MB; not a complete proof about all binary/generated HTTP handlers or remote management exposure."
+  },
+  "package_format": {
+    "transport": "OCI/Docker-compatible registry manifest/blob handling, not a router firmware image",
+    "required_metadata_seen": "manifest annotations com.nokia.runtime.config selects runtime configuration layer digest",
+    "runtime_layer": "gzip tar layer, extract config.json, OCI runtime spec/resources/mounts/hooks",
+    "G6_adapter": "pre-fetches registry manifest and runtime layer using its own curl helpers before SoftwareModules.InstallDU",
+    "B9_adapter": "pulls through Rlyeh first; consults local OCI index/manifest/blobs, then parses Nokia runtime layer and invokes SoftwareModules.InstallDU",
+    "generic_Docker_image_compatibility": "One authored arm64/linux OCI fixture with Nokia runtime layer installed and ran on G6 HJL; arbitrary registry-image compatibility and Beacon9 installation remain unproven.",
+    "keys": "Examined package-management route is separate from configuration-export/firmware encryption-key workflows; no finding that key7_2/key18 must be supplied to the local CLI."
+  },
+  "B9_saved_runtime": {
+    "source_scope": "Owner recon saved on 2026-10-14, not a fresh live API test",
+    "mount": "/dev/loop5 -> /opt/lcm/usr/share/cthulhu/data/mounts/generic, ext2, rw",
+    "image": "/opt/lcm/usr/share/cthulhu/data/images/generic",
+    "df_size": "4.8M total,14.0K used,4.6M available",
+    "limit": "Evidence of sandbox storage initialization, not an installed/running application or current state."
+  },
+  "release_comparison": {
+    "captured_trains": [
+      "G6 24.02",
+      "ONT 24.03 two maintenance builds",
+      "G6 24.04",
+      "B9 25.03"
+    ],
+    "core_stack": "absent G6 IJL, present ONT24.03 and G6 HJL; already predates25.xx",
+    "B9_schema_additions": [
+      "EnvVariable",
+      "RequiredRoles",
+      "OptionalRoles",
+      "AvailableRoles",
+      "ModifyAvailableRoles",
+      "X_PRPL-COM_DNSSDRefList"
+    ],
+    "B9_other_changes": [
+      "generic sandbox disk1024->5120 kilobytes",
+      "CertificateVerification default0->1; SignatureVerification default remains0",
+      "rlyeh startup waits /tmp/uspRawAdded and named session-bus objects",
+      "Cthulhu logs file->syslog, extensions-dir added, default onboard settings removed",
+      "LXC halt signal SIGTERM added; ttyUSB device allowlist added",
+      "Timingila ProxyManager and mod-dmproxy import/entrypoint removed from ODL",
+      "lcm CLI adds JSON/listen/data-preservation/get-set, direct nokia.lcm.adapter access",
+      "librlyeh introduces RlyehPlugin/RlyehPluginImageAuthentication ABI; old exported direct GPG verifier/dependency absent; complete trust policy unresolved"
+    ],
+    "counterexample": "ONT KJL24.03 already advertises list -j, listen, PreserveData and nokia.lcm.adapter while core LCM package versions match ONT JJL/G6 HJL. These are not exclusively25.xx markers.",
+    "attribution": "Common lineage/component upgrades supported. Different model/SDK/operator/build/backport choices remain confounded; no same-model G625.xx image has been captured."
+  },
+  "runtime_limits": {
+    "G6": "Generic Up, disk1024KiB; available986KiB before/985KiB after cleanup; memory-1,CPU100 unchanged. Authored app Active/Running during test, no real DU/EU/container objects after removal. Initial G6 placeholder CLI row still not an app.",
+    "interpretation": "The1024 value is sandbox writable allocation, not the total image storage cap. Image storage has a separate budget/check.",
+    "verification": "Owner live verified G6 certificate=false/signature=false; B9 certificate=true/signature=false.",
+    "uninstall": "RmAfterUninstall=true; normal G6 RetainData=false removed app/image state but left empty persistent-data directory, inspected and rmdir-ed. Nonempty retention and newer PreserveData untested.",
+    "B9": "Owner live verified generic Up/lxc5.0.1/Cthulhu3.9.0; disk5120 available4922 kilobytes; memory allocated/available131072; CPU30; InitialRunLevel0; empty ActiveExecutionUnits/AvailableRoles, CLI no rows, no unit/container instance children.",
+    "product_resource_source": "Allfive selected usr/etc/nwf-product-cfg.json ProductParameters.ContainerResources specify AllocatedDiskSpace131072 and AllocatedMemory131072. Separate image-budget logic and ModifyConstraints path exist. G6 live sandbox memory/CPU differ from B9 and stock product targets; exact initialization/state reason unresolved, do not equate all budgets with generic writable disk.",
+    "B9_Cthulhu_Config": {
+      "PluginLocation": "/usr/lib/amx/cthulhu/plugins",
+      "ImageLocation": "/opt/lcm/usr/share/rlyeh/images",
+      "UseOverlayFS": true,
+      "GracefulShutdownTimeoutSeconds": 10,
+      "UseBundles": false,
+      "StorageLocation": "/opt/lcm/usr/share/cthulhu",
+      "DefaultBackend": "/usr/lib/cthulhu-lxc/cthulhu-lxc.so",
+      "BundleLocation": "/opt/lcm/usr/share/celephais/bundles",
+      "BlobLocation": "/opt/lcm/usr/share/rlyeh/blobs"
+    },
+    "G6_initial_empty_baseline": "generic ExecEnv Up/lxc5.0.1/Cthulhu3.7.5, disk1024 available986 kilobytes, CPU100, memory-1, no active EU string; default-bus lists no DU/EU/container instance objects"
+  },
+  "persistence": {
+    "paths": "OCI caches, layers, sandbox writable data, container state and persistent-data bind sources under /opt/lcm; saved ODL/model state also uses /etc/config and effective runtime paths must be checked.",
+    "reset": "HJL/B9 FactoryResetExtraBlackList includes /opt/lcm for explicit deletion; blacklist is not preservation.",
+    "banks": "Separate /opt storage can survive bank switches; IJL lacks higher-level manager, so payload survival does not imply autostart. Upgrade migration/re-registration and factory-reset durability not tested."
+  },
+  "history_corrections": [
+    "Session-bus Not found did not mean LCM absent: owner then found model objects on default bus and running processes.",
+    "lcm list placeholder row is not proof of an installed package; CLI reads cfgmgr mirror while live DU/EU instance objects were not listed.",
+    "Two Cthulhu process lines do not establish two application containers.",
+    "B9 readelf -Ws/objdump -d appeared empty because section headers are stripped; readelf -D -Ws and program-header decoding recover actual symbols/code.",
+    "Tracer hardened32-bit loads/indexed memory and clears state at function prologues/returns; comments remain heuristic and raw instructions are independently verified.",
+    "B9 Request Denied text occurs on pull/metadata/runtime-preparation failures; it is not by itself proof of an operator entitlement or authentication gate.",
+    "Generic default disk values1024/5120 are kilobytes, not megabytes; image-cache budget separate.",
+    "Upstream current project docs are architecture context, not a source-code match for shipped versions. Raw tag README fetches returned cache misses; no upstream version equivalence inferred.",
+    "Later owner B9 helper confirms live Up stack, empty inventory, certificate=true/signature=false,128MiB memory/CPU30,5MiB writable quota and UseBundles=false; supersedes the initial saved-mount-only/pending-runtime limit.",
+    "Allfive product-resource recipes match disk/memory131072; older IJL LXC uses /opt/lxc/NOS. Bounded script-reference search does not establish engine inactivity.",
+    "Initial static/getter-only limitations are historical: G6 now directly package-tested, fresh four lifecycle hashes match saved HJL, self-signed unsigned download accepted under unchanged false/false; no equivalent B9 package test. Full smoke-test fixtures/failures/cleanup retained separately."
+  ],
+  "external_context": [
+    {
+      "url": "https://gitlab.com/prpl-foundation/lcm/modules/timingila-cthulhu",
+      "scope": "Current upstream adapter role and project-family context only; exact shipped behavior comes from captured files."
+    }
+  ],
+  "remaining": [
+    "Beacon 9 package execution with a registry certificate it already trusts",
+    "SignatureVerification=true and TLS rejection policy",
+    "Nonempty data retention/PreserveData, update, autostart/reboot and bank persistence",
+    "Explain initial environment limits and saved-state initialization",
+    "Complete role/plugin policy and deliberate effective isolation/network configuration",
+    "AdGuard-specific DNS/listen/data plan; not deployed",
+    "No verified WebUI-only installer or public remote container HTTP API"
+  ],
+  "owner_observations": [
+    "owner-g6-observations.json",
+    "owner-b9-observations.json"
+  ],
+  "validation": "validation-results.json",
+  "retained_artifacts": [
+    {
+      "file": "b9-bus-startup.txt",
+      "bytes": 14658,
+      "sha256": "d7a774db71c2db98bdf15da83a56eb44ccccfe2513a6970a959ab06d096bd367"
+    },
+    {
+      "file": "b9-command-dispatch.txt",
+      "bytes": 8027,
+      "sha256": "946c1c6b8c9ff23706067529d1cacf9e85a12d02c0067a129bd1a0d051d84d2f"
+    },
+    {
+      "file": "b9-global-resource-limits.txt",
+      "bytes": 13810,
+      "sha256": "8cec1d148267b7e582d8a9317b54bfa116d5c7ff80c58183491be9261b5f0eb4"
+    },
+    {
+      "file": "b9-image-plugins.txt",
+      "bytes": 35545,
+      "sha256": "8b16d20ad9d122e43d40b1f9f7f5047b0e2348aab6c3753a6295017f4a6a5c0d"
+    },
+    {
+      "file": "b9-install-path.txt",
+      "bytes": 16853,
+      "sha256": "f3c84ba3a79e28a9aa3994e79ecf6d89bb6daaba18ca02ac70a1dd3118498dad"
+    },
+    {
+      "file": "b9-lcm-cli.txt",
+      "bytes": 105420,
+      "sha256": "3a63c2bf1091729917e61f1f1a670a5a9afab938d29703e1c08515c66dd72326"
+    },
+    {
+      "file": "b9-rlyeh-handoff.txt",
+      "bytes": 20264,
+      "sha256": "1f0fed21ce15bcc1eb6765d93be81ee01836d2f28c7beb3e7bfa753fd010ca7e"
+    },
+    {
+      "file": "b9-rlyeh-pull.txt",
+      "bytes": 22041,
+      "sha256": "d040b78e6aaa940a456b4da877adb2a2e7587f900ae9d57976b55404c03d05f7"
+    },
+    {
+      "file": "b9-runtime-layer.txt",
+      "bytes": 47297,
+      "sha256": "8156eada8c39483cb1aa27d6072a7b794995808a2de63f61fc4e46644c05f9de"
+    },
+    {
+      "file": "collect-container-evidence.py",
+      "bytes": 1671,
+      "sha256": "3dc0d13ea5f6596071a4cd8eb9460dc494ed29694878c3e0b7867c5e30884726"
+    },
+    {
+      "file": "g6-bus-startup.txt",
+      "bytes": 8401,
+      "sha256": "bb31ec5c642290e46baf724494f9a06df8b26f3899438aa8a17c65a8b7eff8a3"
+    },
+    {
+      "file": "g6-command-dispatch.txt",
+      "bytes": 20823,
+      "sha256": "bd66b1975c8ffdb4842b4b06524630c04ddcd593fadbe777362e8d93acd7124b"
+    },
+    {
+      "file": "g6-global-resource-limits.txt",
+      "bytes": 17080,
+      "sha256": "a95939bac04b81ccb9039ecf6aca96d9a7058a8d23dba5d977eee80875ee210e"
+    },
+    {
+      "file": "g6-image-policy.txt",
+      "bytes": 7674,
+      "sha256": "7380080883be24ae649a3c44626598af18f23264d758fb8006c9847ed02bf6a9"
+    },
+    {
+      "file": "g6-install-path.txt",
+      "bytes": 17495,
+      "sha256": "976c21217c46fc058f27370088da25dacf4450bbaf5d39442a24aa5305ce5f49"
+    },
+    {
+      "file": "g6-lcm-cli.txt",
+      "bytes": 77588,
+      "sha256": "2120a1c274e95743566d6ca326615ad27074aac3b34965b3abbcd74429d03a86"
+    },
+    {
+      "file": "g6-rlyeh-pull.txt",
+      "bytes": 20865,
+      "sha256": "ce6f56de0120ab34fa95b690cbe373bc7ff5ee8c00cdd5fa5a3a3f4ad3d3060d"
+    },
+    {
+      "file": "g6-runtime-layer.txt",
+      "bytes": 39941,
+      "sha256": "598bb2e9eb7e4f276fdfa3050f9521d6182f234f55cce9bc2bab78beb2fca9b7"
+    },
+    {
+      "file": "inspect-lcm.sh",
+      "bytes": 671,
+      "sha256": "a713b5e573ef5c9fd7abdb639842136c6205bfb08615e59053f7e92dcca7194b"
+    },
+    {
+      "file": "method-catalog.json",
+      "bytes": 82238,
+      "sha256": "da41fb1eaf95ace7e56878d5886dc98801568eb05139cef1231f00c7639b53a4"
+    },
+    {
+      "file": "native_trace.py",
+      "bytes": 6416,
+      "sha256": "c52963ebdca8a2bb67ddab6c10516d701f243ab42621d9a63921264c300d2ebd"
+    },
+    {
+      "file": "owner-b9-observations.json",
+      "bytes": 3723,
+      "sha256": "705ab4e703e815465224b1de93ab52a6af986e3ba31f066fe72012b9e2a5c265"
+    },
+    {
+      "file": "owner-g6-observations.json",
+      "bytes": 4529,
+      "sha256": "1092faad126578813c0f116db00791ed4b726bc842171bbf2067dda6000a280e"
+    },
+    {
+      "file": "profile-comparison.json",
+      "bytes": 77928,
+      "sha256": "3a329fb8531c8f891c764f3d9de9dd4508420e13e5396b4c51128c1fd0a0c300"
+    },
+    {
+      "file": "stock-text.json",
+      "bytes": 358247,
+      "sha256": "689433dd327c043d44ee9c4875ce5edfc2cfb847b7bba01d5eee9c4b8f68a0ca"
+    },
+    {
+      "file": "tls-verification.json",
+      "bytes": 5540,
+      "sha256": "569bca3b7310e24864bcc5a80bf2587fd3e606447c6fdc540ece12306edb2af8"
+    },
+    {
+      "file": "trace-index.json",
+      "bytes": 6567,
+      "sha256": "abe7c2030a672cb712c46c2a6044ce8cdc6d3adbb98d23cd6de9157a23b48cc2"
+    },
+    {
+      "file": "validation-results.json",
+      "bytes": 2068,
+      "sha256": "0b817a3de834546878ce1b1f98202b4ef78798ae864a7ee010438ad7bf16c544"
+    }
+  ],
+  "TLS_flag_followup": "tls-verification.json",
+  "initial_static_phase_scope": "Five saved firmware profiles; detailed native CLI/adapter/library review for G6 HJL and B9 JJM; owner-confirmed current G6 and B9 default-bus services/settings; older saved B9 mounts corroborate storage. No target firmware execution, application download/install/start/stop/update/uninstall, resource/set operation or router firmware change performed by the agent.",
+  "updated_on": "2026-10-29",
+  "live_experiment": "smoke-test/evidence.json",
+  "complete_normalized_live_captures": "smoke-test/normalized-captures.json",
+  "live_private_inventory": "smoke-test/retained-evidence.json",
+  "offline_fixture_validation": "smoke-test/offline-validation.json"
+}

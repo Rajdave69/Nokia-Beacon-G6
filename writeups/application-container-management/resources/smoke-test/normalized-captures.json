@@ -1,0 +1,873 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "scope": "Complete untruncated plaintext captures, command scripts and task-local transport source, normalized with registered aliases. Evidence snapshots are not runnable instructions. Raw originals remain hash-pinned privately; CR/CRLF preserved inside strings. TLS files excluded.",
+  "records": [
+    {
+      "source": "private-source://LCM-SMOKE-TEST/active-details-timeout-output.bin",
+      "original_bytes": 3386,
+      "original_sha256_alias": "DIGEST-076",
+      "normalized_text": "sh <<'LCM_SCRIPT_587a9bde9155488bb81128c0f40ca96a'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> ubus call Cthulhu.Container.Instances _get '{\"depth\":1}'\r\n> _lcm_pid=$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -pH)\r\n> case \"$_lcm_pid\" in ''|*[!0-9]*) exit 97;; esac\r\n> readlink /proc/$_lcm_pid/ns/net\r\n> readlink /proc/1/ns/net\r\n> cat /sys/fs/cgroup/cpu/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-14262\r\r\n68a18ff__/cpu.cfs_quota_us\r\n> cat /sys/fs/cgroup/cpu/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-14262\r\r\n68a18ff__/cpu.cfs_period_us\r\n> cat /sys/fs/cgroup/memory/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-14\r\r\n26268a18ff__/memory.limit_in_bytes\r\n> lxc-attach -n 717afa32-49ae-5e01-bccd-1426268a18ff -- /lcm-smoke --self-test\r\n> \r\n> LCM_SCRIPT_587a9bde9155488bb81128c0f40ca96a\r\n{\r\n        \"SoftwareModules.ExecutionUnit.2.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"MemoryInUse\": 1248,\r\n                \"RunLevel\": 0,\r\n                \"AvailableMemory\": 15136,\r\n                \"AutoStart\": false,\r\n                \"ExecEnvLabel\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"ExecutionFaultMessage\": \"\",\r\n                \"VendorLogList\": \"\",\r\n                \"Status\": \"Active\",\r\n                \"AllocatedDiskSpace\": -1,\r\n                \"ExecutionEnvRef\": \"generic\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"AssociatedProcessList\": \"\",\r\n                \"ExecutionFaultCode\": \"NoFault\",\r\n                \"AvailableDiskSpace\": 980,\r\n                \"Vendor\": \"Owner research\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"AllocatedMemory\": 16384,\r\n                \"DiskSpaceInUse\": 23,\r\n                \"AllocatedCPUPercent\": 10,\r\n                \"EUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"References\": \"\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\"\r\n        },\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"Cthulhu.Container.Instances.\": {\r\n                \r\n        },\r\n        \"Cthulhu.Container.Instances.3.\": {\r\n                \"PrivateSandbox\": \"__generic_717afa32-49ae-5e01-bccd-1426268a18ff__\",\r\n                \"Bundle\": \"beacon-lcm-smoke\",\r\n                \"Autostart\": false,\r\n                \"Owner\": \"\",\r\n                \"Status\": \"Running\",\r\n                \"LinkedUUID\": \"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\r\n                \"BundleVersion\": \"0.0.1\",\r\n                \"Pid\": 19289,\r\n                \"Created\": \"TIME-LCM-064\",\r\n                \"Updated\": \"TIME-LCM-061\",\r\n                \"ModuleVersion\": \"\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"Vendor\": \"Owner research\",\r\n                \"ContainerId\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Sandbox\": \"generic\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nnet:[4026531945]\r\nnet:[4026531945]\r\n40000\r\n100000\r\n16777216\r\nbeacon-lcm-smoke self-test ok\r\r\n/lib/firmware # "
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/baseline-result.json",
+      "original_bytes": 4007,
+      "original_sha256_alias": "DIGEST-077",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_f0bf2dd96de24718b889625f4fad26a2'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> id -u\r\n> grep -E '^(IMAGEVERSION|SOFTWAREVERSION|HOMEOSVERSION|BUILDDATE)=' /etc/buildi\r\r\nnfo\r\n> sha256sum /usr/bin/lcm /usr/bin/lcm-adapter /usr/lib/amx/cthulhu/cthulhu.so /u\r\r\nsr/lib/librlyeh.so\r\n> lcm list\r\n> ubus list 'SoftwareModules.DeploymentUnit.*'\r\n> ubus list 'SoftwareModules.ExecutionUnit.*'\r\n> ubus call Cthulhu.Config _get '{\"depth\":0}'\r\n> ubus call SoftwareModules.ExecEnv.1 _get '{\"depth\":0}'\r\n> free\r\n> df -k /opt /tmp\r\n> \r\n> LCM_SCRIPT_f0bf2dd96de24718b889625f4fad26a2\r\n0\r\nIMAGEVERSION=3FE49996HJLL91\r\nSOFTWAREVERSION=HJL.L91p01\r\nBUILDDATE=20241227\r\nHOMEOSVERSION=24.04.00\r\nbb7b15ce9ca2aa2134f963ecf5eca8bc36d5e117efc6cb6ff6cf7cebb036fe7c  /usr/bin/lcm\r\nc9f0ec53747b9621c28641b5c38d3dbb14b46a21fcfef03fff38aa6550cfca57  /usr/bin/lcm-adapter\r\n582d3d9937b99beefee666f0cd621a4c81d6cf0c479722af0bd67881396d10db  /usr/lib/amx/cthulhu/cthulhu.so\r\nf2f00c8b3da08b469a52cca50e5255551d39ffe40eab6d038d5373b307537cbd  /usr/lib/librlyeh.so\r\nDU      Status  AutoStart       UUID                                 EUID\r\n--      ------  ---------       ------------------------------------ ------------------------------------\r\n1       -       -1               \r\nCommand failed: Not found\r\nCommand failed: Not found\r\n{\r\n        \"Cthulhu.Config.\": {\r\n                \"PluginLocation\": \"/usr/lib/amx/cthulhu/plugins\",\r\n                \"ImageLocation\": \"/opt/lcm/usr/share/rlyeh/images\",\r\n                \"UseOverlayFS\": true,\r\n                \"UseBundles\": false,\r\n                \"OnboardingLocation\": \"/etc/amx/cthulhu/onboard\",\r\n                \"StorageLocation\": \"/opt/lcm/usr/share/cthulhu\",\r\n                \"OnboardingFile\": \"/opt/lcm/usr/share/cthulhu/cthulhu_onboarded\",\r\n                \"DefaultBackend\": \"/usr/lib/cthulhu-lxc/cthulhu-lxc.so\",\r\n                \"BundleLocation\": \"/opt/lcm/usr/share/celephais/bundles\",\r\n                \"BlobLocation\": \"/opt/lcm/usr/share/rlyeh/blobs\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecEnv.1.\": {\r\n                \"AvailableMemory\": -1,\r\n                \"Status\": \"Up\",\r\n                \"AllocatedDiskSpace\": 1024,\r\n                \"RestartReason\": \"\",\r\n                \"Enable\": true,\r\n                \"Name\": \"generic\",\r\n                \"ActiveExecutionUnits\": \"\",\r\n                \"InitialRunLevel\": -1,\r\n                \"Type\": \"lxc:5.0.1\",\r\n                \"InitialExecutionUnitRunLevel\": -1,\r\n                \"CurrentRunLevel\": -1,\r\n                \"AvailableDiskSpace\": 986,\r\n                \"ProcessorRefList\": \"\",\r\n                \"Description\": \"\",\r\n                \"Vendor\": \"Cthulhu\",\r\n                \"AllocatedMemory\": -1,\r\n                \"ParentExecEnv\": \"\",\r\n                \"CreatedAt\": \"TIME-LCM-062\",\r\n                \"AllocatedCPUPercent\": 100,\r\n                \"Alias\": \"cpe-generic\",\r\n                \"Version\": \"3.7.5\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n              total        used        free      shared  buff/cache   available\r\nMem:         653596      300692      158984       11264      193920      280064\r\nSwap:             0           0           0\r\nFilesystem           1K-blocks      Used Available Use% Mounted on\r\n/dev/ubi11_0            226432       616    220980   0% /opt\r\ntmpfs                   326796     10108    316688   3% /tmp\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_f0bf2dd96de24718b889625f4fad26a2:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_f0bf2dd96de24718b889625f4fad26a2:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/baseline.sh",
+      "original_bytes": 412,
+      "original_sha256_alias": "DIGEST-078",
+      "normalized_text": "cd /tmp\nid -u\ngrep -E '^(IMAGEVERSION|SOFTWAREVERSION|HOMEOSVERSION|BUILDDATE)=' /etc/buildinfo\nsha256sum /usr/bin/lcm /usr/bin/lcm-adapter /usr/lib/amx/cthulhu/cthulhu.so /usr/lib/librlyeh.so\nlcm list\nubus list 'SoftwareModules.DeploymentUnit.*'\nubus list 'SoftwareModules.ExecutionUnit.*'\nubus call Cthulhu.Config _get '{\"depth\":0}'\nubus call SoftwareModules.ExecEnv.1 _get '{\"depth\":0}'\nfree\ndf -k /opt /tmp\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/check-registry-result.json",
+      "original_bytes": 584,
+      "original_sha256_alias": "DIGEST-079",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_dcc40c32e7154492aa5a0b5037c25b85'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> curl -k --connect-timeout 3 --max-time 8 -sS -w '\\nHTTP_STATUS:%{http_code}\\n'\r\r\n 'https://<MESH-37591-LIVE-CLIENT-IP>/v2/'\r\n> \r\n> LCM_SCRIPT_dcc40c32e7154492aa5a0b5037c25b85\r\n{}\r\nHTTP_STATUS:200\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_dcc40c32e7154492aa5a0b5037c25b85:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_dcc40c32e7154492aa5a0b5037c25b85:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/check-registry.sh",
+      "original_bytes": 116,
+      "original_sha256_alias": "DIGEST-080",
+      "normalized_text": "cd /tmp\r\ncurl -k --connect-timeout 3 --max-time 8 -sS -w '\\nHTTP_STATUS:%{http_code}\\n' 'https://<MESH-37591-LIVE-CLIENT-IP>/v2/'\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/cleanup-empty-data-result.json",
+      "original_bytes": 1566,
+      "original_sha256_alias": "DIGEST-081",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_d1c01dd18326459f96a08230082168f4'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ls -la /opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a\r\n> rmdir /opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a || exit 98\r\r\n> for digest in 28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2\r\r\n c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352 d4c8d401fb3d5b\r\r\nb6b36f5a5f61bd6bc05b2e897e32e614293126c2ba5cac120a b2beec95b221f7182ad6b688221e0\r\r\ncb5215fd60e21d914828438abe5f6c0ca1a; do\r\n>   path=/opt/lcm/usr/share/cthulhu/layers/sha256/$digest\r\n>   if [ -e \"$path\" ]; then printf 'CACHED:%s\r\n> ' \"$digest\"; fi\r\n> done\r\n> if [ -e /tmp/beacon-lcm-smoke.started ]; then printf 'HOST_TMP_MARKER_PRESENT\r\n> '; else printf 'HOST_TMP_MARKER_ABSENT\r\n> '; fi\r\n> ubus list 'Cthulhu.Sandbox.Instances.*' | grep -E '^Cthulhu.Sandbox.Instances.\r\r\n[0-9]+$'\r\n> \r\n> LCM_SCRIPT_d1c01dd18326459f96a08230082168f4\r\ndrwx------    2 root     root           160 Sep 21 08:28 \u001b[1;34m.\u001b[m\r\ndrwx------    7 root     root           584 Sep 21 08:28 \u001b[1;34m..\u001b[m\r\nHOST_TMP_MARKER_ABSENT\r\nCthulhu.Sandbox.Instances.1\r\nCthulhu.Sandbox.Instances.2\r\nCthulhu.Sandbox.Instances.3\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_d1c01dd18326459f96a08230082168f4:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_d1c01dd18326459f96a08230082168f4:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/cleanup-empty-data.sh",
+      "original_bytes": 777,
+      "original_sha256_alias": "DIGEST-082",
+      "normalized_text": "cd /tmp\r\nls -la /opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a\r\nrmdir /opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a || exit 98\r\nfor digest in 28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2 c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352 d4c8d401fb3d5bb6b36f5a5f61bd6bc05b2e897e32e614293126c2ba5cac120a b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a; do\r\n  path=/opt/lcm/usr/share/cthulhu/layers/sha256/$digest\r\n  if [ -e \"$path\" ]; then printf 'CACHED:%s\r\n' \"$digest\"; fi\r\ndone\r\nif [ -e /tmp/beacon-lcm-smoke.started ]; then printf 'HOST_TMP_MARKER_PRESENT\r\n'; else printf 'HOST_TMP_MARKER_ABSENT\r\n'; fi\r\nubus list 'Cthulhu.Sandbox.Instances.*' | grep -E '^Cthulhu.Sandbox.Instances.[0-9]+$'\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/diagnose-lxc-result.json",
+      "original_bytes": 16126,
+      "original_sha256_alias": "DIGEST-083",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_7c12edc6022d4007bf8c9a44a61f885b'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> grep -Ei 'lxc|autodev|seccomp|startup marker' /logs/messages | tail -n 30\r\n> cat /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff/autodevhook\r\n> ls -l /opt/lcm/usr/share/cthulhu/rootfs/717afa32-49ae-5e01-bccd-1426268a18ff\r\n> \r\n> LCM_SCRIPT_7c12edc6022d4007bf8c9a44a61f885b\r\n[info] <158>1 2026-09-16T02:20:05.048048+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.052745+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.059052+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.065116+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.073000+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.080118+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.085462+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.090307+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.090307+03:00 Cortina lcm-adapter - - - [find_object_attribute] Found str value: lxc:5.0.1 \r\n[info] <158>1 2026-09-16T02:20:05.090307+03:00 Cortina lcm-adapter - - - [getExecEnv] key: Type, value: lxc:5.0.1 \r\n[info] <158>1 2026-09-16T02:20:05.090307+03:00 Cortina lcm-adapter - - - [getExecEnv] Saved Type lxc:5.0.1 \r\n[info] <158>1 2026-09-16T02:20:05.095805+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.100863+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.105551+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T02:20:05.111389+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.716858+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.721595+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.725534+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.729636+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.734326+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.738501+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.743351+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.747971+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.747971+03:00 Cortina lcm-adapter - - - [find_object_attribute] Found str value: lxc:5.0.1 \r\n[info] <158>1 2026-09-16T05:34:39.747971+03:00 Cortina lcm-adapter - - - [getExecEnv] key: Type, value: lxc:5.0.1 \r\n[info] <158>1 2026-09-16T05:34:39.747971+03:00 Cortina lcm-adapter - - - [getExecEnv] Saved Type lxc:5.0.1 \r\n[info] <158>1 2026-09-16T05:34:39.752397+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.757170+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.766082+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n[info] <158>1 2026-09-16T05:34:39.770613+03:00 Cortina lcm-adapter - - - [find_object_attribute] Received data : {\"SoftwareModules.ExecEnv.1.\":{\"AvailableMemory\":-1,\"Status\":\"Up\",\"AllocatedDiskSpace\":1024,\"RestartReason\":\"\",\"Enable\":true,\"Name\":\"generic\",\"ActiveExecutionUnits\":\"\",\"InitialRunLevel\":-1,\"Type\":\"lxc:5.0.1\",\"InitialExecutionUnitRunLevel\":-1,\"CurrentRunLevel\":-1,\"AvailableDiskSpace\":986,\"ProcessorRefList\":\"\",\"Description\":\"\",\"Vendor\":\"Cthulhu\",\"AllocatedMemory\":-1,\"ParentExecEnv\":\"\",\"CreatedAt\":\"TIME-LCM-062\",\"Alloca \r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_7c12edc6022d4007bf8c9a44a61f885b:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_7c12edc6022d4007bf8c9a44a61f885b:0\r\n",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/diagnose-lxc.sh",
+      "original_bytes": 225,
+      "original_sha256_alias": "DIGEST-084",
+      "normalized_text": "cd /tmp\r\ngrep -Ei 'lxc|autodev|seccomp|startup marker' /logs/messages | tail -n 30\r\ncat /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff/autodevhook\r\nls -l /opt/lcm/usr/share/cthulhu/rootfs/717afa32-49ae-5e01-bccd-1426268a18ff\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/diagnose-start-result.json",
+      "original_bytes": 15854,
+      "original_sha256_alias": "DIGEST-085",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_72d0af45b1fe4129acf5fd65315d269a'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> cat /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff/config\r\n> tail -n 65 /logs/cthulhu.log\r\n> grep -E '717afa32|lcm-smoke' /logs/messages | tail -n 15\r\n> \r\n> LCM_SCRIPT_72d0af45b1fe4129acf5fd65315d269a\r\n# This file is automatically generated with Cthulhu\r\n# generated on TIME-LCM-065\r\nlxc.include = /etc/amx/cthulhu-lxc/default.conf\r\nlxc.uts.name = 717afa32-49ae-5e01-bccd-1426268a18ff\r\nlxc.log.level = 1\r\nlxc.log.syslog = daemon\r\nlxc.cgroup.dir = cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__\r\nlxc.init.cmd = /lcm-smoke\r\nlxc.environment = PATH=/usr/bin:/bin\r\nlxc.init.cwd = /\r\nlxc.rootfs.path = /opt/lcm/usr/share/cthulhu/rootfs/717afa32-49ae-5e01-bccd-1426268a18ff\r\nlxc.rootfs.options = ro\r\nlxc.mount.entry = tmpfs tmp tmpfs rw,nodev,nosuid,noatime,create=dir 0 0\r\nlxc.mount.entry = tmpfs run tmpfs rw,nodev,nosuid,noatime,create=dir 0 0\r\nlxc.mount.entry = /opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a persistent-data none rw,rbind,create=dir 0 0\r\nlxc.mount.entry = /tmp temporary-data none rw,rbind,create=dir 0 0\r\nlxc.mount.entry = tmpfs tmp tmpfs mode=1777,size=65536,nodev,nosuid,create=dir 0 0\r\nlxc.hook.autodev = /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff/autodevhook\r\nlxc.namespace.share.net = 13541\r\n(TIME-LCM-028)[cthulhu] - cthulhu - [x]Failed to remove container 717afa32-49ae-5e01-bccd-1426268a18ff - (_Container_remove@cthulhu_ctr_rpc.c:1831)\r\n(TIME-LCM-029)[cthulhu] - rpc     - [i]RPC: Container.command - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-029)[cthulhu] -     Parameters: Bundle:beacon-lcm-smoke,Autostart:0,AllocatedDiskSpace:-1,DiskLocation:beacon-lcm-smoke,AllocatedMemory:16384,ContainerId:717afa32-49ae-5e01-bccd-1426268a18ff,LinkedUUID:e5d244c9-af3e-5224-96c0-76ca4ae7290a,BundleVersion:0.0.1,AllocatedCPUPercent:10,Sandbox:generic,HostObject:Options:type=mount,create=dir,rbind,rw ,Source:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a,Destination:/persistent-data,Options:type=mount,create=dir,rbind,rw,Source:/tmp,Destination:/temporary-data,Options:type=mount,nosuid,nodev,mode=1777,size=65536,Source:tmpfs,Destination:/tmp\r\n(TIME-LCM-029)[cthulhu] -     Command: create\r\n(TIME-LCM-029)[cthulhu] -     CommandID: 6F1859A7\r\n(TIME-LCM-029)[cthulhu] - rpc     - [i]RPC: Container.create - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-029)[cthulhu] -     Bundle: beacon-lcm-smoke\r\n(TIME-LCM-029)[cthulhu] -     Autostart: 0\r\n(TIME-LCM-029)[cthulhu] -     AllocatedDiskSpace: -1\r\n(TIME-LCM-029)[cthulhu] -     DiskLocation: beacon-lcm-smoke\r\n(TIME-LCM-030)[cthulhu] -     AllocatedMemory: 16384\r\n(TIME-LCM-030)[cthulhu] -     ContainerId: 717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-030)[cthulhu] -     LinkedUUID: e5d244c9-af3e-5224-96c0-76ca4ae7290a\r\n(TIME-LCM-030)[cthulhu] -     BundleVersion: 0.0.1\r\n(TIME-LCM-030)[cthulhu] -     AllocatedCPUPercent: 10\r\n(TIME-LCM-030)[cthulhu] -     CommandID: 6F1859A7\r\n(TIME-LCM-030)[cthulhu] -     Sandbox: generic\r\n(TIME-LCM-030)[cthulhu] -     HostObject: Options:type=mount,create=dir,rbind,rw ,Source:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a,Destination:/persistent-data,Options:type=mount,create=dir,rbind,rw,Source:/tmp,Destination:/temporary-data,Options:type=mount,nosuid,nodev,mode=1777,size=65536,Source:tmpfs,Destination:/tmp\r\n(TIME-LCM-030)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Private sandbox already exists. Reuse storage - (cthulhu_ctr_priv_sb_create@cthulhu_ctr_create.c:115)\r\n(TIME-LCM-031)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Create container from beacon-lcm-smoke:0.0.1 (location: beacon-lcm-smoke) - (cthulhu_build_container@cthulhu_ctr_create.c:441)\r\n(TIME-LCM-032)[cthulhu] -         - [i]get version 0.0.1 - (cthulhu_get_image_manifest_schema@cthulhu_oci_spec.c:173)\r\n(TIME-LCM-033)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set Diskspace limit to: -1 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:888)\r\n(TIME-LCM-033)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set Memory limit to: 16384 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:895)\r\n(TIME-LCM-033)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set CPU limit to: 10 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:902)\r\n(TIME-LCM-034)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set Diskspace limit to: -1 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:931)\r\n(TIME-LCM-034)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set Memory limit to: 16384 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:938)\r\n(TIME-LCM-034)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set CPU limit to: 10 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:945)\r\n(TIME-LCM-035)[cthulhu] - cthulhu - [i]Extracting layer /opt/lcm/usr/share/rlyeh/blobs/sha256/28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2 - (cthulhu_extract_layer@cthulhu_archive.c:226)\r\n(TIME-LCM-036)[cthulhu] - cthulhu - [i]Extracting layer /opt/lcm/usr/share/rlyeh/blobs/sha256/c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352 - (cthulhu_extract_layer@cthulhu_archive.c:226)\r\n(TIME-LCM-037)[cthulhu] - cthulhu - [i]Create LXC container 717afa32-49ae-5e01-bccd-1426268a18ff - (lxc_create@cthulhu_lxc_main.c:235)\r\n(TIME-LCM-038)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: STATE changed from Ghost to Stopped - (cthulhu_ctr_status_changed@cthulhu_ctr_rpc.c:1191)\r\n(TIME-LCM-039)[cthulhu] - rpc     - [i]RPC: Container.command - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-040)[cthulhu] -     Parameters: ContainerId:717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-040)[cthulhu] -     Command: start\r\n(TIME-LCM-040)[cthulhu] -     CommandID: 6F1859A8\r\n(TIME-LCM-040)[cthulhu] - rpc     - [i]RPC: Container.start - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-040)[cthulhu] -     CommandID: 6F1859A8\r\n(TIME-LCM-040)[cthulhu] -     ContainerId: 717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-040)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Starting container - (cthulhu_ctr_start@cthulhu_ctr_rpc.c:462)\r\n(TIME-LCM-041)[cthulhu] - cthulhu - [n]SB[__generic_717afa32-49ae-5e01-bccd-1426268a18ff__]: Start Sandbox - (cthulhu_sb_start@cthulhu_sb.c:500)\r\n(TIME-LCM-041)[cthulhu] - cthulhu - [i]Mount storage for sandbox [__generic_717afa32-49ae-5e01-bccd-1426268a18ff__] size -1 - (cthulhu_storage_mount@cthulhu_storage.c:292)\r\n(TIME-LCM-042)[cthulhu] - cthulhu - [i]Nr of cpus 4 - (cthulhu_cgroup_config_cpu@cthulhu_cgroup.c:609)\r\n(TIME-LCM-043)[cthulhu] - cthulhu - [i]Write 40000 to /sys/fs/cgroup/cpu/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/cpu.cfs_quota_us - (cthulhu_cgroup_setting_set@cthulhu_cgroup.c:276)\r\n(TIME-LCM-043)[cthulhu] - cthulhu - [i]Write 100000 to /sys/fs/cgroup/cpu/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/cpu.cfs_period_us - (cthulhu_cgroup_setting_set@cthulhu_cgroup.c:276)\r\n(TIME-LCM-043)[cthulhu] - cthulhu - [i]Write 16384k to /sys/fs/cgroup/memory/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/memory.limit_in_bytes - (cthulhu_cgroup_setting_set@cthulhu_cgroup.c:276)\r\n(TIME-LCM-043)[cthulhu] - cthulhu - [i]Write 16384k to /sys/fs/cgroup/memory/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/memory.soft_limit_in_bytes - (cthulhu_cgroup_setting_set@cthulhu_cgroup.c:276)\r\n(TIME-LCM-043)[cthulhu] - cthulhu - [i]Send msg [6: CreateNamespace] - (cthulhu_send_msg@cthulhu_namespace.c:426)\r\n(TIME-LCM-043)[cthulhu] - cthulhu - [i]Rcv msg [6: CreateNamespace] - (cthulhu_recv_msg@cthulhu_namespace.c:480)\r\n(TIME-LCM-044)[cthulhu] - cthulhu - [i]Msg received in namespace [6: CreateNamespace] - (namespace_proc_rcv_msg@cthulhu_namespace.c:542)\r\n(TIME-LCM-045)[cthulhu] - cthulhu - [i]Send msg [2: Ping] - (cthulhu_send_msg@cthulhu_namespace.c:426)\r\n(TIME-LCM-045)[cthulhu] - cthulhu - [i]Waiting for sb process - (cthulhu_ns_create_priv@cthulhu_namespace.c:1151)\r\n(TIME-LCM-046)[cthulhu] - cthulhu - [i]Send msg [2: Ping] - (cthulhu_send_msg@cthulhu_namespace.c:426)\r\n(TIME-LCM-046)[cthulhu] - cthulhu - [i]New incoming connection 24 - (namespace_proc@cthulhu_namespace.c:705)\r\n(TIME-LCM-046)[cthulhu] - cthulhu - [i]Rcv msg [2: Ping] - (cthulhu_recv_msg@cthulhu_namespace.c:480)\r\n(TIME-LCM-047)[cthulhu] - cthulhu - [i]Msg received in namespace [2: Ping] - (namespace_proc_rcv_msg@cthulhu_namespace.c:542)\r\n(TIME-LCM-047)[cthulhu] - cthulhu - [i]Send msg res: 0 - (cthulhu_send_msg@cthulhu_namespace.c:449)\r\n(TIME-LCM-047)[cthulhu] - cthulhu - [i]Send msg res: 13541 - (cthulhu_send_msg@cthulhu_namespace.c:449)\r\n(TIME-LCM-048)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng socket file does not exist [/opt/lcm/usr/share/cthulhu/syslogng/logs/717afa32-49ae-5e01-bccd-1426268a18ff/log.sock] - (cthulhu_syslogng_remove_socket@cthulhu_syslogng.c:229)\r\n(TIME-LCM-049)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng did not create the log socket [/opt/lcm/usr/share/cthulhu/syslogng/logs/717afa32-49ae-5e01-bccd-1426268a18ff/log.sock] - (cthulhu_syslogng_enable@cthulhu_syslogng.c:357)\r\n(TIME-LCM-049)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Failed to configure syslog-ng for this container - (cthulhu_ctr_start@cthulhu_ctr_rpc.c:519)\r\n(TIME-LCM-050)[cthulhu] - cthulhu - [i]Create rootfs for [717afa32-49ae-5e01-bccd-1426268a18ff] with data dir [/opt/lcm/usr/share/cthulhu/data/mounts/generic/mounts/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__] - (cthulhu_overlayfs_create_rootfs@cthulhu_overlayfs.c:195)\r\n(TIME-LCM-050)[cthulhu] - cthulhu - [i]Create overlayfs for rootfs [/opt/lcm/usr/share/cthulhu/rootfs/717afa32-49ae-5e01-bccd-1426268a18ff] Options [lowerdir=/opt/lcm/usr/share/cthulhu/layers/sha256/c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352:/opt/lcm/usr/share/cthulhu/layers/sha256/28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2,upperdir=/opt/lcm/usr/share/cthulhu/data/mounts/generic/mounts/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/717afa32-49ae-5e01-bccd-1426268a18ff/upper,workdir=/opt/lcm/usr/share/cthulhu/data/mounts/generic/mounts/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/717afa32-49ae-5e01-bccd-1426268a18ff/work] - (cthulhu_overlayfs_create_rootfs@cthulhu_overlayfs.c:298)\r\n(TIME-LCM-051)[cthulhu] - cthulhu - [i]Container '717afa32-49ae-5e01-bccd-1426268a18ff' inherrit NET from 13541 - (lxc_start@cthulhu_lxc_main.c:554)\r\n(TIME-LCM-052)[cthulhu] - cthulhu - [i]Container started: 0 - (start_container@cthulhu_lxc_main.c:371)\r\n(TIME-LCM-053)[cthulhu] - cthulhu - [i]Container [717afa32-49ae-5e01-bccd-1426268a18ff] stopped running - (lxc_stopped_handler@cthulhu_lxc_main.c:348)\r\n[info] <158>1 2026-09-21T08:37:01.015580+03:00 Cortina lcm-adapter - - - [handle_instance_added] - Handling obj: SoftwareModules.ExecutionUnit.cpe-717afa32-49ae-5e01-bccd-1426268a18ff.HostObject. \r\n[info] <158>1 2026-09-21T08:37:01.016388+03:00 Cortina lcm-adapter - - - [handle_instance_added] - Handling obj: SoftwareModules.ExecutionUnit.cpe-717afa32-49ae-5e01-bccd-1426268a18ff.HostObject. \r\n[info] <158>1 2026-09-21T08:37:01.016388+03:00 Cortina lcm-adapter - - - [handle_instance_added] - Handling obj: SoftwareModules.ExecutionUnit.cpe-717afa32-49ae-5e01-bccd-1426268a18ff.HostObject. \r\n[info] <158>1 2026-09-21T08:37:01.016388+03:00 Cortina lcm-adapter - - - [handle_object_changed] Event data: {\"object\":\"SoftwareModules.DeploymentUnit.cpe-717afa32-49ae-5e01-bccd-1426268a18ff.\",\"eobject\":\"SoftwareModules.DeploymentUnit.[cpe-717afa32-49ae-5e01-bccd-1426268a18ff].\",\"parameters\":{\"LastUpdate\":{\"from\":\"TIME-LCM-001\",\"to\":\"TIME-LCM-061\"},\"Status\":{\"from\":\"Installing\",\"to\":\"Installed\"},\"Installed\":{\"from\":\"TIME-LCM-001\",\"to\":\"TIME-LCM-063\"}},\"path\":\"SoftwareModules.DeploymentUnit.2.\"} \r\n[info] <158>1 2026-09-21T08:37:01.016388+03:00 Cortina lcm-adapter - - - [handle_object_changed] - Handling SoftwareModules.DeploymentUnit.cpe-717afa32-49ae-5e01-bccd-1426268a18ff. object change \r\n[info] <158>1 2026-09-21T08:37:01.016388+03:00 Cortina lcm-adapter - - - [SoftwareModules.DeploymentUnit.] ALIAS : cpe-717afa32-49ae-5e01-bccd-1426268a18ff \r\n[info] <158>1 2026-09-21T08:37:01.019419+03:00 Cortina lcm-adapter - - - [handle_dustatechange] - Received DUStateChange: {\"data\":{\"OperationPerformed\":\"Install\",\"Resolved\":true,\"Fault.FaultCode\":0,\"CurrentState\":\"\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"ExecutionEnvRef\":\"Device.SoftwareModules.ExecEnv.1.\",\"Fault.FaultString\":\"\",\"Version\":\"0.0.1\"},\"object\":\"SoftwareModules.DeploymentUnit.cpe-717afa32-49ae-5e01-bccd-1426268a18ff.\",\"eobject\":\"SoftwareModules.DeploymentUnit.[cpe-717afa32-49ae-5e01-bccd-1426268a18ff].\",\"path\":\"SoftwareModule \r\n[notice] <157>1 2026-09-21T08:38:38.614968+03:00 Cortina lcm-adapter - - - [requestOp_event_handler_callback] Parsing event_message: {\"operation\":\"SetRequestedState\",\"sender\":\"lcm\",\"EUID\":\"717afa32-49ae-5e01-bccd-1426268a18ff\",\"RequestedState\":\"Active\"} \r\n[notice] <157>1 2026-09-21T08:38:38.617514+03:00 Cortina lcm-adapter - - - Getting EU index for 717afa32-49ae-5e01-bccd-1426268a18ff \r\n[info] <158>1 2026-09-21T08:38:38.626598+03:00 Cortina lcm-adapter - - - Received data:{\"SoftwareModules.ExecutionUnit.1.\":{\"VendorConfigList\":\"\",\"MemoryInUse\":-1,\"RunLevel\":0,\"AvailableMemory\":-1,\"AutoStart\":false,\"ExecEnvLabel\":\"717afa32-49ae-5e01-bccd-1426268a18ff\",\"ExecutionFaultMessage\":\"\",\"VendorLogList\":\"\",\"Status\":\"Idle\",\"AllocatedDiskSpace\":-1,\"ExecutionEnvRef\":\"generic\",\"Name\":\"beacon-lcm-smoke\",\"AssociatedProcessList\":\"\",\"ExecutionFaultCode\":\"NoFault\",\"AvailableDiskSpace\":-1,\"Vendor\":\"Owner research\",\"Description\":\"Writes a container- \r\n[info] <158>1 2026-09-21T08:38:38.636981+03:00 Cortina lcm-adapter - - - [handle_object_changed] Event data: {\"object\":\"SoftwareModules.ExecutionUnit.cpe-717afa32-49ae-5e01-bccd-1426268a18ff.\",\"eobject\":\"SoftwareModules.ExecutionUnit.[cpe-717afa32-49ae-5e01-bccd-1426268a18ff].\",\"parameters\":{\"Status\":{\"from\":\"Idle\",\"to\":\"Starting\"}},\"path\":\"SoftwareModules.ExecutionUnit.1.\"} \r\n[info] <158>1 2026-09-21T08:38:38.636981+03:00 Cortina lcm-adapter - - - [handle_object_changed] - Handling SoftwareModules.ExecutionUnit.cpe-717afa32-49ae-5e01-bccd-1426268a18ff. object change \r\n[info] <158>1 2026-09-21T08:38:38.637238+03:00 Cortina lcm-adapter - - - [SoftwareModules.ExecutionUnit.] ALIAS : cpe-717afa32-49ae-5e01-bccd-1426268a18ff \r\n[info] <158>1 2026-09-21T08:38:38.637857+03:00 Cortina lcm-adapter - - - [handle_object_changed] From disk, EUID: 717afa32-49ae-5e01-bccd-1426268a18ff \r\n[info] <158>1 2026-09-21T08:38:38.637857+03:00 Cortina lcm-adapter - - - [handle_object_changed] executionUnit.EUID : 717afa32-49ae-5e01-bccd-1426268a18ff \r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_72d0af45b1fe4129acf5fd65315d269a:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_72d0af45b1fe4129acf5fd65315d269a:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/diagnose-start.sh",
+      "original_bytes": 155,
+      "original_sha256_alias": "DIGEST-086",
+      "normalized_text": "cd /tmp\r\ncat /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff/config\r\ntail -n 65 /logs/cthulhu.log\r\ngrep -E '717afa32|lcm-smoke' /logs/messages | tail -n 15\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/diagnose-v2-result.json",
+      "original_bytes": 8270,
+      "original_sha256_alias": "DIGEST-087",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_84b23efc9a834dd3b66c54c6324e95e9'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ps w | grep -E '[l]cm-adapter|[r]lyeh|[t]imingila|[c]thulhu'\r\n> grep -E 'lcm-adapter|prpllcm|GetRuntime|beacon-lcm-smoke|parse_installdu' /log\r\r\ns/messages | tail -n 35\r\n> tail -n 12 /logs/rlyeh.log\r\n> \r\n> LCM_SCRIPT_84b23efc9a834dd3b66c54c6324e95e9\r\n19374 root      5572 S    /usr/bin/timingila -D\r\n19382 root     23112 S    /usr/bin/lcm-adapter\r\n19413 root     23940 S    /usr/bin/cthulhu -D\r\n19507 root     23808 S    /usr/bin/cthulhu -D\r\n[info] <158>1 2026-09-21T08:33:32.673134+03:00 Cortina lcm-adapter - - - [get_runtime_limits] - Reading data from /tmp/e5d244c9-af3e-5224-96c0-76ca4ae7290a-config.json \r\n[info] <158>1 2026-09-21T08:33:32.673134+03:00 Cortina lcm-adapter - - - [set_oci_mount_data] - Reading mount data from /tmp/e5d244c9-af3e-5224-96c0-76ca4ae7290a-config.json \r\n[info] <158>1 2026-09-21T08:33:32.673134+03:00 Cortina lcm-adapter - - - [set_oci_mount_data] - Mount point { src:tmpfs, dst:/tmp, type:tmpfs, options:nosuid,nodev,mode=1777,size=65536 } added \r\n[info] <158>1 2026-09-21T08:33:32.673134+03:00 Cortina lcm-adapter - - - [print_oci_mounts] - Mount {src:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a, dst:/persistent-data, type:bind, options:create=dir,rbind,rw } \r\n[info] <158>1 2026-09-21T08:33:32.673134+03:00 Cortina lcm-adapter - - - [print_oci_mounts] - Mount {src:/tmp, dst:/temporary-data, type:bind, options:create=dir,rbind,rw} \r\n[info] <158>1 2026-09-21T08:33:32.673134+03:00 Cortina lcm-adapter - - - [print_oci_mounts] - Mount {src:tmpfs, dst:/tmp, type:tmpfs, options:nosuid,nodev,mode=1777,size=65536} \r\n[info] <158>1 2026-09-21T08:33:32.674211+03:00 Cortina lcm-adapter - - - [get_hooks_data] - Reading data from /tmp/e5d244c9-af3e-5224-96c0-76ca4ae7290a-config.json \r\n[warning] <156>1 2026-09-21T08:33:32.675109+03:00 Cortina lcm-adapter - - - [get_hooks_data] - hooks object not found \r\n[notice] <157>1 2026-09-21T08:33:32.675109+03:00 Cortina lcm-adapter - - - [file_cleanup] - successfully deleted /tmp/e5d244c9-af3e-5224-96c0-76ca4ae7290a.tar.gz \r\n[notice] <157>1 2026-09-21T08:33:32.675109+03:00 Cortina lcm-adapter - - - [file_cleanup] - successfully deleted /tmp/e5d244c9-af3e-5224-96c0-76ca4ae7290a-config.json \r\n[info] <158>1 2026-09-21T08:33:32.675109+03:00 Cortina lcm-adapter - - - [parse_installdu] - Allocated space for images: 128 MB \r\n[info] <158>1 2026-09-21T08:33:32.675109+03:00 Cortina lcm-adapter - - - [parse_installdu] - Disk space used by images:  0 MB \r\n[info] <158>1 2026-09-21T08:33:32.675109+03:00 Cortina lcm-adapter - - - [parse_installdu] - Application image size:     0 MB) \r\n[info] <158>1 2026-09-21T08:33:32.675109+03:00 Cortina lcm-adapter - - - [parse_installdu] - Runtime data (memory: 16384, cpu: 10) \r\n[notice] <157>1 2026-09-21T08:33:32.675109+03:00 Cortina lcm-adapter - - - Sending prpl_install_du command \r\n[notice] <157>1 2026-09-21T08:33:32.677517+03:00 Cortina lcm-adapter - - - [_print_ubus_command] SoftwareModules {\"URL\":\"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:0.0.1\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"ExecutionEnvRef\":\"generic\",\"AllocatedMemory\":16384,\"AllocatedDiskSpace\":-1,\"AllocatedCPUPercent\":10,\"AutoStart\":false,\"HostObject\":[{\"Destination\":\"/persistent-data\",\"Source\":\"/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"Options\":\"type=mount,create=dir,rbind,rw \"},{\"Destination\":\"/temporary-data\",\"Source\":\"/tmp\",\"Option \r\n[info] <158>1 2026-09-21T08:33:32.682535+03:00 Cortina lcm-adapter - - - [prpllcm_response_callback] Received data:{\"retval\":19} \r\n[info] <158>1 2026-09-21T08:33:32.682535+03:00 Cortina lcm-adapter - - - [prpllcm_response_callback] Received data:{\"DUID\":\"717afa32-49ae-5e01-bccd-1426268a18ff\",\"err_msg\":\"Request Denied\",\"err_code\":7002,\"AmxbDefferedCallId\":19} \r\n[info] <158>1 2026-09-21T08:33:32.682535+03:00 Cortina lcm-adapter - - - [prpllcm_response_callback] Received data:{\"amxd-error-code\":1} \r\n[err] <155>1 2026-09-21T08:33:32.682535+03:00 Cortina lcm-adapter - - - [prpl_install_du]: Could not invoke command for SoftwareModules (9) \r\n[err] <155>1 2026-09-21T08:33:32.682535+03:00 Cortina lcm-adapter - - - [parse_installdu] - Error installing du  \r\n[notice] <157>1 2026-09-21T08:33:32.683963+03:00 Cortina lcm-adapter - - - [_send_command_failure_ubus_event] Failure Message sent:\r\n[notice] <157>1 2026-09-21T08:33:32.683963+03:00 Cortina lcm-adapter - - - [send_tr069_ducomplete] - Starting Unix Socket \r\n[err] <155>1 2026-09-21T08:33:32.683963+03:00 Cortina lcm-adapter - - - Failed to connect with the found socket! \r\n[info] <158>1 2026-09-21T08:33:32.684871+03:00 Cortina lcm-adapter - - - Received event on SoftwareModules: DUStateChange! \r\n[info] <158>1 2026-09-21T08:33:32.685177+03:00 Cortina lcm-adapter - - - [handle_dustatechange] - Received DUStateChange: {\"data\":{\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"OperationPerformed\":\"Install\",\"Resolved\":false,\"ExecutionEnvRef\":\"generic\",\"Fault.FaultString\":\"Request Denied\",\"Fault.FaultCode\":7002,\"CurrentState\":\"Failed\"},\"object\":\"SoftwareModules.\",\"eobject\":\"SoftwareModules.\",\"path\":\"SoftwareModules.\"} \r\n[info] <158>1 2026-09-21T08:33:32.685177+03:00 Cortina lcm-adapter - - - UUID: e5d244c9-af3e-5224-96c0-76ca4ae7290a \r\n[info] <158>1 2026-09-21T08:33:32.685177+03:00 Cortina lcm-adapter - - - [handle_dustatechange] get du path with uuid: e5d244c9-af3e-5224-96c0-76ca4ae7290a \r\n[err] <155>1 2026-09-21T08:33:32.686340+03:00 Cortina lcm-adapter - - - [get_du_path_by_du_uuid] could not find du \r\n[info] <158>1 2026-09-21T08:33:32.687046+03:00 Cortina lcm-adapter - - - [handle_dustatechange] get du status with uuid: e5d244c9-af3e-5224-96c0-76ca4ae7290a \r\n[err] <155>1 2026-09-21T08:33:32.687643+03:00 Cortina lcm-adapter - - - [get_du_status_by_du_uuid] could not find du \r\n[err] <155>1 2026-09-21T08:33:32.687643+03:00 Cortina lcm-adapter - - - [handle_dustatechange] get_du_status_by_du_uuid returned error \r\n[notice] <157>1 2026-09-21T08:33:32.688835+03:00 Cortina lcm-adapter - - - [send_tr069_ducomplete] - Starting Unix Socket \r\n[err] <155>1 2026-09-21T08:33:32.689517+03:00 Cortina lcm-adapter - - - Failed to connect with the found socket! \r\n[err] <155>1 2026-09-21T08:33:32.689517+03:00 Cortina lcm-adapter - - - [handle_dustatechange] - failed to send message to tr069client \r\n(TIME-LCM-014)[rlyeh] - rlyeh_f - [i]create image dm - (rlyeh_pull_cb@rlyeh_dm_functions.c:488)\r\n(TIME-LCM-015)[rlyeh] - rlyeh_f - [x]Task completed - (rlyeh_worker_signal_task_complete@rlyeh_worker.c:217)\r\n(TIME-LCM-021)[rlyeh] - rlyeh_f - [i]Executing Remove. DUID [717afa32-49ae-5e01-bccd-1426268a18ff] CID [3485ACC2] - (_Rlyeh_remove@rlyeh_dm_functions.c:320)\r\n(TIME-LCM-021)[rlyeh] - rlyeh_f - [i]Add task to worker thread list - (rlyeh_worker_add_task@rlyeh_worker.c:186)\r\n(TIME-LCM-022)[rlyeh] - rlyeh_c - [i]Updating index.json - (rlyeh_update_index_annotations@rlyeh_image_index_generation.c:292)\r\n(TIME-LCM-023)[rlyeh] - rlyeh_f - [i]Image marked for remove in image spec - (rlyeh_exec_remove@rlyeh_worker_func.c:376)\r\n(TIME-LCM-023)[rlyeh] - rlyeh_f - [i]Wait for task to complete - (rlyeh_worker_loop@rlyeh_worker.c:140)\r\n(TIME-LCM-023)[rlyeh] - rlyeh_f - [i]Mark Image for remove in DM - (rlyeh_remove_cb@rlyeh_dm_functions.c:550)\r\n(TIME-LCM-024)[rlyeh] - rlyeh_f - [i]Executing _Rlyeh_gc() - (_Rlyeh_gc@rlyeh_dm_functions.c:338)\r\n(TIME-LCM-024)[rlyeh] - rlyeh_f - [i]Add task to worker thread list - (rlyeh_worker_add_task@rlyeh_worker.c:186)\r\n(TIME-LCM-024)[rlyeh] - rlyeh_f - [i]executing gc - (rlyeh_exec_gc@rlyeh_worker_func.c:397)\r\n(TIME-LCM-024)[rlyeh] - rlyeh_f - [i]removing image '717afa32-49ae-5e01-bccd-1426268a18ff' [beacon-lcm-smoke:0.0.1] - (remove_image@rlyeh_worker_func.c:148)\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_84b23efc9a834dd3b66c54c6324e95e9:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_84b23efc9a834dd3b66c54c6324e95e9:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/diagnose-v2.sh",
+      "original_bytes": 202,
+      "original_sha256_alias": "DIGEST-088",
+      "normalized_text": "cd /tmp\r\nps w | grep -E '[l]cm-adapter|[r]lyeh|[t]imingila|[c]thulhu'\r\ngrep -E 'lcm-adapter|prpllcm|GetRuntime|beacon-lcm-smoke|parse_installdu' /logs/messages | tail -n 35\r\ntail -n 12 /logs/rlyeh.log\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/direct-uninstall-v1-result.json",
+      "original_bytes": 4594,
+      "original_sha256_alias": "DIGEST-089",
+      "normalized_json": {
+        "exit_status": 9,
+        "stdout": "sh <<'LCM_SCRIPT_cba6035741b94d5db5aaa65113d92682'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus -v list SoftwareModules.DeploymentUnit\r\n> ubus -v list SoftwareModules.DeploymentUnit.1\r\n> ubus call SoftwareModules.DeploymentUnit.1 Uninstall '{\"RetainData\":false}'\r\n> \r\n> LCM_SCRIPT_cba6035741b94d5db5aaa65113d92682\r\n'SoftwareModules.DeploymentUnit' @3eab496f\r\n        \"Update\":{\"URL\":\"String\",\"Username\":\"String\",\"Password\":\"String\",\"RetainData\":\"Boolean\",\"AllocatedMemory\":\"Integer\",\"AllocatedDiskSpace\":\"Integer\",\"AllocatedCPUPercent\":\"Integer\",\"HostObject\":\"Array\",\"NetworkConfig\":\"Array\",\"ModuleVersion\":\"String\",\"Data\":\"Table\"}\r\n        \"Uninstall\":{\"RetainData\":\"Boolean\"}\r\n        \"_list\":{\"parameters\":\"Boolean\",\"functions\":\"Boolean\",\"objects\":\"Boolean\",\"instances\":\"Boolean\",\"template_info\":\"Boolean\",\"events\":\"Boolean\",\"access\":\"(unknown)\",\"rel_path\":\"String\"}\r\n        \"_describe\":{\"parameters\":\"Boolean\",\"functions\":\"Boolean\",\"objects\":\"Boolean\",\"instances\":\"Boolean\",\"exists\":\"Boolean\",\"access\":\"(unknown)\",\"rel_path\":\"String\",\"events\":\"Boolean\"}\r\n        \"_get\":{\"rel_path\":\"String\",\"parameters\":\"Array\",\"depth\":\"Integer\",\"access\":\"(unknown)\",\"filter\":\"String\"}\r\n        \"_get_instances\":{\"rel_path\":\"String\",\"depth\":\"Integer\",\"access\":\"(unknown)\"}\r\n        \"_get_supported\":{\"first_level_only\":\"Boolean\",\"parameters\":\"Boolean\",\"functions\":\"Boolean\",\"events\":\"Boolean\",\"rel_path\":\"String\",\"access\":\"(unknown)\"}\r\n        \"_set\":{\"parameters\":\"Table\",\"oparameters\":\"Table\",\"access\":\"(unknown)\",\"rel_path\":\"String\",\"allow_partial\":\"Boolean\"}\r\n        \"_add\":{\"parameters\":\"Table\",\"index\":\"(unknown)\",\"name\":\"String\",\"access\":\"(unknown)\",\"rel_path\":\"String\"}\r\n        \"_del\":{\"index\":\"(unknown)\",\"name\":\"String\",\"access\":\"(unknown)\",\"rel_path\":\"String\"}\r\n        \"_exec\":{\"method\":\"String\",\"args\":\"Table\",\"rel_path\":\"String\"}\r\n        \"set_trace_zone\":{\"zone\":\"String\",\"level\":\"(unknown)\"}\r\n        \"list_trace_zones\":{}\r\n'SoftwareModules.DeploymentUnit.1' @465c1d8e\r\n        \"Update\":{\"URL\":\"String\",\"Username\":\"String\",\"Password\":\"String\",\"RetainData\":\"Boolean\",\"AllocatedMemory\":\"Integer\",\"AllocatedDiskSpace\":\"Integer\",\"AllocatedCPUPercent\":\"Integer\",\"HostObject\":\"Array\",\"NetworkConfig\":\"Array\",\"ModuleVersion\":\"String\",\"Data\":\"Table\"}\r\n        \"Uninstall\":{\"RetainData\":\"Boolean\"}\r\n        \"_list\":{\"parameters\":\"Boolean\",\"functions\":\"Boolean\",\"objects\":\"Boolean\",\"instances\":\"Boolean\",\"template_info\":\"Boolean\",\"events\":\"Boolean\",\"access\":\"(unknown)\",\"rel_path\":\"String\"}\r\n        \"_describe\":{\"parameters\":\"Boolean\",\"functions\":\"Boolean\",\"objects\":\"Boolean\",\"instances\":\"Boolean\",\"exists\":\"Boolean\",\"access\":\"(unknown)\",\"rel_path\":\"String\",\"events\":\"Boolean\"}\r\n        \"_get\":{\"rel_path\":\"String\",\"parameters\":\"Array\",\"depth\":\"Integer\",\"access\":\"(unknown)\",\"filter\":\"String\"}\r\n        \"_get_instances\":{\"rel_path\":\"String\",\"depth\":\"Integer\",\"access\":\"(unknown)\"}\r\n        \"_get_supported\":{\"first_level_only\":\"Boolean\",\"parameters\":\"Boolean\",\"functions\":\"Boolean\",\"events\":\"Boolean\",\"rel_path\":\"String\",\"access\":\"(unknown)\"}\r\n        \"_set\":{\"parameters\":\"Table\",\"oparameters\":\"Table\",\"access\":\"(unknown)\",\"rel_path\":\"String\",\"allow_partial\":\"Boolean\"}\r\n        \"_add\":{\"parameters\":\"Table\",\"index\":\"(unknown)\",\"name\":\"String\",\"access\":\"(unknown)\",\"rel_path\":\"String\"}\r\n        \"_del\":{\"index\":\"(unknown)\",\"name\":\"String\",\"access\":\"(unknown)\",\"rel_path\":\"String\"}\r\n        \"_exec\":{\"method\":\"String\",\"args\":\"Table\",\"rel_path\":\"String\"}\r\n{\r\n        \"retval\": \"\"\r\n}\r\n{\r\n        \"err_code\": 7004,\r\n        \"err_msg\": \"CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Container does not exist\"\r\n}\r\n{\r\n        \"amxd-error-code\": 1\r\n}\r\nCommand failed: Unknown error\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_cba6035741b94d5db5aaa65113d92682:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_cba6035741b94d5db5aaa65113d92682:9\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/direct-uninstall-v1.sh",
+      "original_bytes": 178,
+      "original_sha256_alias": "DIGEST-090",
+      "normalized_text": "cd /tmp\r\nubus -v list SoftwareModules.DeploymentUnit\r\nubus -v list SoftwareModules.DeploymentUnit.1\r\nubus call SoftwareModules.DeploymentUnit.1 Uninstall '{\"RetainData\":false}'\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/inspect-config-result.json",
+      "original_bytes": 1172,
+      "original_sha256_alias": "DIGEST-091",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_374920c7398b4469916786b0bd2d1cae'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> cat /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff/config\r\n> lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff\r\n> \r\n> LCM_SCRIPT_374920c7398b4469916786b0bd2d1cae\r\n# This file is automatically generated with Cthulhu\r\n# generated on TIME-LCM-065\r\n\r\nlxc.include = /etc/amx/cthulhu-lxc/default.conf\r\nlxc.uts.name = 717afa32-49ae-5e01-bccd-1426268a18ff\r\nlxc.log.level = 1\r\nlxc.log.syslog = daemon\r\nlxc.cgroup.dir = cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__\r\nlxc.init.cmd = /lcm-smoke\r\nlxc.environment = PATH=/usr/bin:/bin\r\nlxc.init.cwd = /\r\nlxc.rootfs.path = /opt/lcm/usr/share/cthulhu/rootfs/717afa32-49ae-5e01-bccd-1426268a18ff\r\nlxc.rootfs.options = ro\r\nName:           717afa32-49ae-5e01-bccd-1426268a18ff\r\nState:          STOPPED\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_374920c7398b4469916786b0bd2d1cae:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_374920c7398b4469916786b0bd2d1cae:0\r\n",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/inspect-config.sh",
+      "original_bytes": 117,
+      "original_sha256_alias": "DIGEST-092",
+      "normalized_text": "cd /tmp\r\ncat /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff/config\r\nlxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/inspect-sandboxes-result.json",
+      "original_bytes": 1379,
+      "original_sha256_alias": "DIGEST-093",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_fd90c837db9a435baaa48a5310260086'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call Cthulhu.Sandbox.Instances _get '{\"depth\":1}'\r\n> \r\n> LCM_SCRIPT_fd90c837db9a435baaa48a5310260086\r\n{\r\n        \"Cthulhu.Sandbox.Instances.\": {\r\n                \r\n        },\r\n        \"Cthulhu.Sandbox.Instances.1.\": {\r\n                \"Status\": \"Up\",\r\n                \"AllocatedDiskSpace\": 1024,\r\n                \"RestartReason\": \"\",\r\n                \"Enable\": true,\r\n                \"Pid\": 19507,\r\n                \"Created\": \"TIME-LCM-062\",\r\n                \"Parent\": \"\",\r\n                \"CreatedByContainer\": false,\r\n                \"AllocatedMemory\": -1,\r\n                \"Vendor\": \"\",\r\n                \"Description\": \"\",\r\n                \"AllocatedCPUPercent\": 100,\r\n                \"Version\": \"\",\r\n                \"Alias\": \"cpe-generic\",\r\n                \"SandboxId\": \"generic\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_fd90c837db9a435baaa48a5310260086:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_fd90c837db9a435baaa48a5310260086:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/inspect-sandboxes.sh",
+      "original_bytes": 65,
+      "original_sha256_alias": "DIGEST-094",
+      "normalized_text": "cd /tmp\r\nubus call Cthulhu.Sandbox.Instances _get '{\"depth\":1}'\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/inspect-start-namespace-result.json",
+      "original_bytes": 2372,
+      "original_sha256_alias": "DIGEST-095",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_561146d433d346658398b2f92533bc03'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> command -v nsenter\r\n> ls -l /proc/13541/ns/mnt /proc/13541/ns/net\r\n> ls /proc/13541/root/opt/lcm/usr/share/cthulhu/rootfs/717afa32-49ae-5e01-bccd-1\r\r\n426268a18ff\r\n> ubus call SoftwareModules.ExecutionUnit.1 _get '{\"depth\":0}'\r\n> \r\n> LCM_SCRIPT_561146d433d346658398b2f92533bc03\r\nlrwxrwxrwx    1 root     root             0 Sep 21 08:43 \u001b[1;36m/proc/13541/ns/mnt\u001b[m -> \u001b[0;0mmnt:[4026531840]\u001b[m\r\nlrwxrwxrwx    1 root     root             0 Sep 21 08:38 \u001b[1;36m/proc/13541/ns/net\u001b[m -> \u001b[0;0mnet:[4026531945]\u001b[m\r\n{\r\n        \"SoftwareModules.ExecutionUnit.1.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"MemoryInUse\": 384,\r\n                \"RunLevel\": 0,\r\n                \"AvailableMemory\": 16000,\r\n                \"AutoStart\": false,\r\n                \"ExecEnvLabel\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"ExecutionFaultMessage\": \"\",\r\n                \"VendorLogList\": \"\",\r\n                \"Status\": \"Idle\",\r\n                \"AllocatedDiskSpace\": -1,\r\n                \"ExecutionEnvRef\": \"generic\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"AssociatedProcessList\": \"\",\r\n                \"ExecutionFaultCode\": \"NoFault\",\r\n                \"AvailableDiskSpace\": 980,\r\n                \"Vendor\": \"Owner research\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"AllocatedMemory\": 16384,\r\n                \"DiskSpaceInUse\": 23,\r\n                \"AllocatedCPUPercent\": 10,\r\n                \"EUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"References\": \"\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_561146d433d346658398b2f92533bc03:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_561146d433d346658398b2f92533bc03:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/inspect-start-namespace.sh",
+      "original_bytes": 227,
+      "original_sha256_alias": "DIGEST-096",
+      "normalized_text": "cd /tmp\r\ncommand -v nsenter\r\nls -l /proc/13541/ns/mnt /proc/13541/ns/net\r\nls /proc/13541/root/opt/lcm/usr/share/cthulhu/rootfs/717afa32-49ae-5e01-bccd-1426268a18ff\r\nubus call SoftwareModules.ExecutionUnit.1 _get '{\"depth\":0}'\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/install-result.json",
+      "original_bytes": 946,
+      "original_sha256_alias": "DIGEST-097",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_d7380f03a0aa4355b217a0c00d68d294'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> if [ -e '/opt/lcm/e5d244c9-af3e-5224-96c0-76ca4ae7290a' ]; then\r\n>   printf 'Test container path already exists; stopping.\\n'\r\n>   exit 91\r\n> fi\r\n> lcm install -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -l 'https://<MESH-37591-LIVE-CLIENT-IP>\r\r\n/beacon-lcm-smoke:smoke-v1' -a 0\r\n> \r\n> LCM_SCRIPT_d7380f03a0aa4355b217a0c00d68d294\r\nMessage sent: {\"operation\":\"InstallDU\",\"sender\":\"lcm\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"ExecutionEnvRef\":\"generic\",\"URL\":\"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:smoke-v1\",\"AutoStart\":false}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_d7380f03a0aa4355b217a0c00d68d294:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_d7380f03a0aa4355b217a0c00d68d294:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/install-v2-after-restore-result.json",
+      "original_bytes": 1501,
+      "original_sha256_alias": "DIGEST-098",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_2075f06cf2bd4d89b8020b301fd30388'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus list Rlyeh || exit 96\r\n> ubus call Rlyeh _get '{\"depth\":0}'\r\n> lcm install -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -l 'https://<MESH-37591-LIVE-CLIENT-IP>\r\r\n/beacon-lcm-smoke:0.0.1' -a 0\r\n> \r\n> LCM_SCRIPT_2075f06cf2bd4d89b8020b301fd30388\r\nRlyeh\r\n{\r\n        \"Rlyeh.\": {\r\n                \"ImageLocation\": \"/opt/lcm/usr/share/rlyeh/images\",\r\n                \"ROImageLocation\": \"/usr/rlyeh/images\",\r\n                \"ROStorageLocation\": \"/usr/rlyeh/blobs\",\r\n                \"CertificateVerification\": false,\r\n                \"SignatureVerification\": false,\r\n                \"RemainingDiskSpaceBytes\": 1000001,\r\n                \"StorageLocation\": \"/opt/lcm/usr/share/rlyeh/blobs\",\r\n                \"OnboardingFile\": \"/opt/lcm/usr/share/rlyeh_onboarded\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nMessage sent: {\"operation\":\"InstallDU\",\"sender\":\"lcm\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"ExecutionEnvRef\":\"generic\",\"URL\":\"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:0.0.1\",\"AutoStart\":false}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_2075f06cf2bd4d89b8020b301fd30388:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_2075f06cf2bd4d89b8020b301fd30388:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/install-v2-after-restore.sh",
+      "original_bytes": 182,
+      "original_sha256_alias": "DIGEST-099",
+      "normalized_text": "cd /tmp\r\nubus list Rlyeh || exit 96\r\nubus call Rlyeh _get '{\"depth\":0}'\r\nlcm install -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -l 'https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:0.0.1' -a 0\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/install-v2-result.json",
+      "original_bytes": 783,
+      "original_sha256_alias": "DIGEST-100",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_602c642b53814923930e27f954a62775'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> lcm install -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -l 'https://<MESH-37591-LIVE-CLIENT-IP>\r\r\n/beacon-lcm-smoke:0.0.1' -a 0\r\n> \r\n> LCM_SCRIPT_602c642b53814923930e27f954a62775\r\nMessage sent: {\"operation\":\"InstallDU\",\"sender\":\"lcm\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"ExecutionEnvRef\":\"generic\",\"URL\":\"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:0.0.1\",\"AutoStart\":false}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_602c642b53814923930e27f954a62775:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_602c642b53814923930e27f954a62775:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/install-v2.sh",
+      "original_bytes": 118,
+      "original_sha256_alias": "DIGEST-101",
+      "normalized_text": "cd /tmp\r\nlcm install -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -l 'https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:0.0.1' -a 0\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/install-v3-result.json",
+      "original_bytes": 783,
+      "original_sha256_alias": "DIGEST-102",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_c4c2b6aeb8e442e89aa8aa35e70973d6'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> lcm install -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -l 'https://<MESH-37591-LIVE-CLIENT-IP>\r\r\n/beacon-lcm-smoke:0.0.1' -a 0\r\n> \r\n> LCM_SCRIPT_c4c2b6aeb8e442e89aa8aa35e70973d6\r\nMessage sent: {\"operation\":\"InstallDU\",\"sender\":\"lcm\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"ExecutionEnvRef\":\"generic\",\"URL\":\"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:0.0.1\",\"AutoStart\":false}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_c4c2b6aeb8e442e89aa8aa35e70973d6:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_c4c2b6aeb8e442e89aa8aa35e70973d6:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/install.sh",
+      "original_bytes": 261,
+      "original_sha256_alias": "DIGEST-103",
+      "normalized_text": "cd /tmp\r\nif [ -e '/opt/lcm/e5d244c9-af3e-5224-96c0-76ca4ae7290a' ]; then\r\n  printf 'Test container path already exists; stopping.\\n'\r\n  exit 91\r\nfi\r\nlcm install -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -l 'https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:smoke-v1' -a 0\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/last-timeout-output.bin",
+      "original_bytes": 3386,
+      "original_sha256_alias": "DIGEST-076",
+      "normalized_text": "sh <<'LCM_SCRIPT_587a9bde9155488bb81128c0f40ca96a'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> ubus call Cthulhu.Container.Instances _get '{\"depth\":1}'\r\n> _lcm_pid=$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -pH)\r\n> case \"$_lcm_pid\" in ''|*[!0-9]*) exit 97;; esac\r\n> readlink /proc/$_lcm_pid/ns/net\r\n> readlink /proc/1/ns/net\r\n> cat /sys/fs/cgroup/cpu/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-14262\r\r\n68a18ff__/cpu.cfs_quota_us\r\n> cat /sys/fs/cgroup/cpu/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-14262\r\r\n68a18ff__/cpu.cfs_period_us\r\n> cat /sys/fs/cgroup/memory/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-14\r\r\n26268a18ff__/memory.limit_in_bytes\r\n> lxc-attach -n 717afa32-49ae-5e01-bccd-1426268a18ff -- /lcm-smoke --self-test\r\n> \r\n> LCM_SCRIPT_587a9bde9155488bb81128c0f40ca96a\r\n{\r\n        \"SoftwareModules.ExecutionUnit.2.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"MemoryInUse\": 1248,\r\n                \"RunLevel\": 0,\r\n                \"AvailableMemory\": 15136,\r\n                \"AutoStart\": false,\r\n                \"ExecEnvLabel\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"ExecutionFaultMessage\": \"\",\r\n                \"VendorLogList\": \"\",\r\n                \"Status\": \"Active\",\r\n                \"AllocatedDiskSpace\": -1,\r\n                \"ExecutionEnvRef\": \"generic\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"AssociatedProcessList\": \"\",\r\n                \"ExecutionFaultCode\": \"NoFault\",\r\n                \"AvailableDiskSpace\": 980,\r\n                \"Vendor\": \"Owner research\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"AllocatedMemory\": 16384,\r\n                \"DiskSpaceInUse\": 23,\r\n                \"AllocatedCPUPercent\": 10,\r\n                \"EUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"References\": \"\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\"\r\n        },\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"Cthulhu.Container.Instances.\": {\r\n                \r\n        },\r\n        \"Cthulhu.Container.Instances.3.\": {\r\n                \"PrivateSandbox\": \"__generic_717afa32-49ae-5e01-bccd-1426268a18ff__\",\r\n                \"Bundle\": \"beacon-lcm-smoke\",\r\n                \"Autostart\": false,\r\n                \"Owner\": \"\",\r\n                \"Status\": \"Running\",\r\n                \"LinkedUUID\": \"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\r\n                \"BundleVersion\": \"0.0.1\",\r\n                \"Pid\": 19289,\r\n                \"Created\": \"TIME-LCM-064\",\r\n                \"Updated\": \"TIME-LCM-061\",\r\n                \"ModuleVersion\": \"\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"Vendor\": \"Owner research\",\r\n                \"ContainerId\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Sandbox\": \"generic\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nnet:[4026531945]\r\nnet:[4026531945]\r\n40000\r\n100000\r\n16777216\r\nbeacon-lcm-smoke self-test ok\r\r\n/lib/firmware # "
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/post-uninstall-v1-result.json",
+      "original_bytes": 2224,
+      "original_sha256_alias": "DIGEST-122",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_64c2fcad889f4055a5f0ec8ff35afec7'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> lcm list\r\n> \r\n> LCM_SCRIPT_64c2fcad889f4055a5f0ec8ff35afec7\r\n{\r\n        \"SoftwareModules.DeploymentUnit.\": {\r\n                \r\n        },\r\n        \"SoftwareModules.DeploymentUnit.1.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"Status\": \"Installing\",\r\n                \"VendorLogList\": \"\",\r\n                \"UUID\": \"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\r\n                \"ExecutionEnvRef\": \"Device.SoftwareModules.ExecEnv.1.\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"ModuleVersion\": \"\",\r\n                \"ExecutionUnitList\": \"\",\r\n                \"URL\": \"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:smoke-v1\",\r\n                \"Resolved\": true,\r\n                \"DUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"Vendor\": \"Owner research\",\r\n                \"LastUpdate\": \"TIME-LCM-001\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\",\r\n                \"Installed\": \"TIME-LCM-001\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nDU      Status  AutoStart       UUID                                 EUID\r\n--      ------  ---------       ------------------------------------ ------------------------------------\r\n1       -       -1               \r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_64c2fcad889f4055a5f0ec8ff35afec7:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_64c2fcad889f4055a5f0ec8ff35afec7:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/post-uninstall-v1.sh",
+      "original_bytes": 140,
+      "original_sha256_alias": "DIGEST-123",
+      "normalized_text": "cd /tmp\r\nubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\nlcm list\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/post-uninstall-v2-result.json",
+      "original_bytes": 3029,
+      "original_sha256_alias": "DIGEST-124",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_3737f598ae1744a795c562458e705b2e'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> lxc-ls --fancy\r\n> ps w | grep '[r]lyeh'\r\n> tail -n 14 /logs/rlyeh.log\r\n> \r\n> LCM_SCRIPT_3737f598ae1744a795c562458e705b2e\r\n{\r\n        \"SoftwareModules.DeploymentUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n12007 root     86216 S    /usr/bin/rlyeh -D\r\n(TIME-LCM-054)[rlyeh] - rlyeh_r - [i]Removing index /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json - (rlyeh_remove@rlyeh_remove.c:737)\r\n(TIME-LCM-055)[rlyeh] - rlyeh_r - [i]Removing oci-layout /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/oci-layout - (remove_oci_layout@rlyeh_remove.c:104)\r\n(TIME-LCM-055)[rlyeh] - rlyeh_r - [i]Removing /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke - (rm_image_dir@rlyeh_remove.c:655)\r\n(TIME-LCM-055)[rlyeh] - rlyeh_r - [i]Removing blob /opt/lcm/usr/share/rlyeh/blobs/sha256/44aa47fe8c95af8060359df1063e40479ea9c266fcd3397eae42d4697672bef7 - (remove_blob@rlyeh_remove.c:77)\r\n(TIME-LCM-056)[rlyeh] - rlyeh_r - [i]Removing blob /opt/lcm/usr/share/rlyeh/blobs/sha256/28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2 - (remove_blob@rlyeh_remove.c:77)\r\n(TIME-LCM-057)[rlyeh] - rlyeh_r - [i]Removing blob /opt/lcm/usr/share/rlyeh/blobs/sha256/c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352 - (remove_blob@rlyeh_remove.c:77)\r\n(TIME-LCM-057)[rlyeh] - rlyeh_r - [i]Removing manifest /opt/lcm/usr/share/rlyeh/blobs/sha256/bab8ae08804215aa7b80edbfbcdab976fe2511b5801214bae69a471ae306d7d3 - (remove_blobs@rlyeh_remove.c:332)\r\n(TIME-LCM-058)[rlyeh] - rlyeh_f - [i]Image removed: beacon-lcm-smoke:0.0.1 - (rlyeh_exec_gc@rlyeh_worker_func.c:421)\r\n(TIME-LCM-058)[rlyeh] - rlyeh_f - [i]Wait for task to complete - (rlyeh_worker_loop@rlyeh_worker.c:140)\r\n(TIME-LCM-059)[rlyeh] - rlyeh_f - [i]Add task to worker thread list - (rlyeh_worker_add_task@rlyeh_worker.c:186)\r\n(TIME-LCM-059)[rlyeh] - rlyeh_f - [x]Task completed - (rlyeh_worker_signal_task_complete@rlyeh_worker.c:217)\r\n(TIME-LCM-059)[rlyeh] - rlyeh_f - [i]executing gc - (rlyeh_exec_gc@rlyeh_worker_func.c:397)\r\n(TIME-LCM-059)[rlyeh] - rlyeh_f - [i]Wait for task to complete - (rlyeh_worker_loop@rlyeh_worker.c:140)\r\n(TIME-LCM-060)[rlyeh] - rlyeh_f - [x]Task completed - (rlyeh_worker_signal_task_complete@rlyeh_worker.c:217)\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_3737f598ae1744a795c562458e705b2e:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_3737f598ae1744a795c562458e705b2e:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/post-uninstall-v2.sh",
+      "original_bytes": 197,
+      "original_sha256_alias": "DIGEST-125",
+      "normalized_text": "cd /tmp\r\nubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\nlxc-ls --fancy\r\nps w | grep '[r]lyeh'\r\ntail -n 14 /logs/rlyeh.log\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/registry-access-v2.jsonl",
+      "original_bytes": 2591,
+      "original_sha256_alias": "DIGEST-127",
+      "normalized_json_lines": [
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "status": 200,
+          "bytes": 481,
+          "accept": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "status": 200,
+          "bytes": 481,
+          "accept": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "status": 200,
+          "bytes": 481,
+          "accept": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "status": 200,
+          "bytes": 481,
+          "accept": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        }
+      ]
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/registry-access-v3.jsonl",
+      "original_bytes": 2231,
+      "original_sha256_alias": "DIGEST-128",
+      "normalized_json_lines": [
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a",
+          "status": 200,
+          "bytes": 424,
+          "accept": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a",
+          "status": 200,
+          "bytes": 424,
+          "accept": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/manifests/0.0.1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:85466a651b4ef429be4ef01417f81657baae9a6ea2885d90367f7d9f2b0079e4",
+          "status": 200,
+          "bytes": 791,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:d4c8d401fb3d5bb6b36f5a5f61bd6bc05b2e897e32e614293126c2ba5cac120a",
+          "status": 200,
+          "bytes": 279544,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a",
+          "status": 200,
+          "bytes": 424,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        }
+      ]
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/registry-access.jsonl",
+      "original_bytes": 2377,
+      "original_sha256_alias": "DIGEST-129",
+      "normalized_json_lines": [
+        {
+          "method": "GET",
+          "path": "/v2/",
+          "status": 200,
+          "bytes": 2,
+          "accept": "*/*",
+          "user_agent": "curl/8.9.1",
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/smoke-v1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/manifests/smoke-v1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "status": 200,
+          "bytes": 481,
+          "accept": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "status": 200,
+          "bytes": 481,
+          "accept": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/smoke-v1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "HEAD",
+          "path": "/v2/beacon-lcm-smoke/manifests/smoke-v1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/manifests/smoke-v1",
+          "status": 200,
+          "bytes": 942,
+          "accept": "application/vnd.oci.image.manifest.v1+json",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:44aa47fe8c95af8060359df1063e40479ea9c266fcd3397eae42d4697672bef7",
+          "status": 200,
+          "bytes": 791,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2",
+          "status": 200,
+          "bytes": 279309,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/beacon-lcm-smoke/blobs/sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "status": 200,
+          "bytes": 481,
+          "accept": "*/*",
+          "user_agent": null,
+          "peer": "MESH-37591-LIVE-LAN-IP"
+        }
+      ]
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/remove-final-result.json",
+      "original_bytes": 2432,
+      "original_sha256_alias": "DIGEST-130",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_f994c8afdf06434d8873541369939d4a'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff\r\n> [ \"$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -sH)\" = STOPPED ] || exi\r\r\nt 97\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> lcm uninstall -i e5d244c9-af3e-5224-96c0-76ca4ae7290a -r 0\r\n> \r\n> LCM_SCRIPT_f994c8afdf06434d8873541369939d4a\r\nName:           717afa32-49ae-5e01-bccd-1426268a18ff\r\nState:          STOPPED\r\n{\r\n        \"SoftwareModules.ExecutionUnit.2.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"MemoryInUse\": -1,\r\n                \"RunLevel\": 0,\r\n                \"AvailableMemory\": -1,\r\n                \"AutoStart\": false,\r\n                \"ExecEnvLabel\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"ExecutionFaultMessage\": \"\",\r\n                \"VendorLogList\": \"\",\r\n                \"Status\": \"Idle\",\r\n                \"AllocatedDiskSpace\": -1,\r\n                \"ExecutionEnvRef\": \"generic\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"AssociatedProcessList\": \"\",\r\n                \"ExecutionFaultCode\": \"NoFault\",\r\n                \"AvailableDiskSpace\": -1,\r\n                \"Vendor\": \"Owner research\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"AllocatedMemory\": 16384,\r\n                \"DiskSpaceInUse\": -1,\r\n                \"AllocatedCPUPercent\": 10,\r\n                \"EUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"References\": \"\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\"\r\n        },\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nMessage sent: {\"operation\":\"Uninstall\",\"sender\":\"lcm\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"RetainData\":false}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_f994c8afdf06434d8873541369939d4a:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_f994c8afdf06434d8873541369939d4a:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/remove-final.sh",
+      "original_bytes": 263,
+      "original_sha256_alias": "DIGEST-131",
+      "normalized_text": "cd /tmp\r\nlxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff\r\n[ \"$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -sH)\" = STOPPED ] || exit 97\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\nlcm uninstall -i e5d244c9-af3e-5224-96c0-76ca4ae7290a -r 0\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/remove-orphan-v1-result.json",
+      "original_bytes": 1333,
+      "original_sha256_alias": "DIGEST-132",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_ff6fde0d02294ce1bd9a1ac02702d1ce'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> record=$(ubus call SoftwareModules.DeploymentUnit.1 _get '{\"depth\":0}') || exi\r\r\nt 92\r\n> printf '%s\\n' \"$record\" | grep -F 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' >/dev\r\r\n/null || exit 93\r\n> ubus call SoftwareModules.DeploymentUnit _del '{\"index\":1}'\r\n> ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> \r\n> LCM_SCRIPT_ff6fde0d02294ce1bd9a1ac02702d1ce\r\n{\r\n        \"retval\": [\r\n                \"SoftwareModules.DeploymentUnit.1.\"\r\n        ]\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.DeploymentUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_ff6fde0d02294ce1bd9a1ac02702d1ce:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_ff6fde0d02294ce1bd9a1ac02702d1ce:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/remove-orphan-v1.sh",
+      "original_bytes": 371,
+      "original_sha256_alias": "DIGEST-133",
+      "normalized_text": "cd /tmp\r\nrecord=$(ubus call SoftwareModules.DeploymentUnit.1 _get '{\"depth\":0}') || exit 92\r\nprintf '%s\\n' \"$record\" | grep -F 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' >/dev/null || exit 93\r\nubus call SoftwareModules.DeploymentUnit _del '{\"index\":1}'\r\nubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/restore-rlyeh-result.json",
+      "original_bytes": 1475,
+      "original_sha256_alias": "DIGEST-134",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_00d2cf298f4e41cba026c99c86acecb6'\r\nps w | grep '[r]lyeh'\r\n\r\nLCM_SCRIPT_00d2cf298f4e41cba026c99c86acecb6\r\n_lcm_smoke_rc=$?\r\nprintf '\\nLCM_END_00d2cf298f4e41cba026c99c86acecb6:%s\\n' \"$_lcm_smoke_rc\"\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> dmesg | grep -i -E 'rlyeh|segfault' | tail -n 8\r\n> grep -F '717afa32-49ae-5e01-bccd-1426268a18ff' /opt/lcm/usr/share/rlyeh/images\r\r\n/beacon-lcm-smoke/index.json >/dev/null || exit 94\r\n> [ \"$(grep -c '\"digest\"' /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index\r\r\n.json)\" = 1 ] || exit 95\r\n> sha256sum /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json\r\n> rm /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json\r\n> rm /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/oci-layout\r\n> rmdir /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke\r\n> /usr/bin/rlyeh -D\r\n> ubus list Rlyeh\r\n> ps w | grep '[r]lyeh'\r\n> \r\n> LCM_SCRIPT_00d2cf298f4e41cba026c99c86acecb6\r\nDIGEST-164  /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json\r\nCommand failed: Not found\r\n12007 root     20680 S    /usr/bin/rlyeh -D\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_00d2cf298f4e41cba026c99c86acecb6:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_00d2cf298f4e41cba026c99c86acecb6:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/restore-rlyeh.sh",
+      "original_bytes": 606,
+      "original_sha256_alias": "DIGEST-135",
+      "normalized_text": "cd /tmp\r\ndmesg | grep -i -E 'rlyeh|segfault' | tail -n 8\r\ngrep -F '717afa32-49ae-5e01-bccd-1426268a18ff' /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json >/dev/null || exit 94\r\n[ \"$(grep -c '\"digest\"' /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json)\" = 1 ] || exit 95\r\nsha256sum /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json\r\nrm /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json\r\nrm /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/oci-layout\r\nrmdir /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke\r\n/usr/bin/rlyeh -D\r\nubus list Rlyeh\r\nps w | grep '[r]lyeh'\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/rlyeh-failure-state-result.json",
+      "original_bytes": 1568,
+      "original_sha256_alias": "DIGEST-136",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_b261afb008244ab7bb89f576dec38b8f'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ps w | grep '[r]lyeh'\r\n> grep -E 'rlyeh.*(signal|segfault|core|exit)|segfault.*rlyeh' /logs/messages | \r\r\ntail -n 12\r\n> ls -l /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke\r\n> cat /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json\r\n> \r\n> LCM_SCRIPT_b261afb008244ab7bb89f576dec38b8f\r\n-rw-r--r--    1 root     root           612 Sep 21 08:28 \u001b[0;0mindex.json\u001b[m\r\n-rw-r--r--    1 root     root            31 Sep 21 08:28 \u001b[0;0moci-layout\u001b[m\r\n{\r\n    \"schemaVersion\": 2,\r\n    \"manifests\": [\r\n        {\r\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\r\n            \"size\": 942,\r\n            \"digest\": \"sha256:bab8ae08804215aa7b80edbfbcdab976fe2511b5801214bae69a471ae306d7d3\",\r\n            \"annotations\": {\r\n                \"org.opencontainers.image.ref.name\": \"smoke-v1\",\r\n                \"com.softathome.image.uri\": \"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:smoke-v1\",\r\n                \"com.softathome.image.duid\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"com.softathome.image.markforremoval\": \"0\"\r\n            }\r\n        }\r\n    ]\r\n}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_b261afb008244ab7bb89f576dec38b8f:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_b261afb008244ab7bb89f576dec38b8f:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/rlyeh-failure-state.sh",
+      "original_bytes": 243,
+      "original_sha256_alias": "DIGEST-137",
+      "normalized_text": "cd /tmp\r\nps w | grep '[r]lyeh'\r\ngrep -E 'rlyeh.*(signal|segfault|core|exit)|segfault.*rlyeh' /logs/messages | tail -n 12\r\nls -l /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke\r\ncat /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/router_shell.py",
+      "original_bytes": 3154,
+      "original_sha256_alias": "DIGEST-138",
+      "normalized_text": "\"\"\"Task-local client for the owner's existing Telnet root shell, no login guessing.\"\"\"\r\nimport argparse,base64,json,re,socket,time,uuid\r\nfrom pathlib import Path\r\nclass Shell:\r\n def __init__(self,host,port=2323):\r\n  self.sock=socket.create_connection((host,port),timeout=4);self.sock.settimeout(.3);self.pending=b''\r\n def receive(self,data):\r\n  data=self.pending+data;self.pending=b'';out=bytearray();i=0\r\n  while i<len(data):\r\n   if data[i]!=255:out.append(data[i]);i+=1;continue\r\n   if i+1>=len(data):self.pending=data[i:];break\r\n   cmd=data[i+1]\r\n   if cmd==255:out.append(255);i+=2;continue\r\n   if cmd in (251,252,253,254):\r\n    if i+2>=len(data):self.pending=data[i:];break\r\n    if cmd in (251,253):self.sock.sendall(bytes([255,254 if cmd==251 else 252,data[i+2]]))\r\n    i+=3;continue\r\n   if cmd==250:\r\n    end=data.find(bytes([255,240]),i+2)\r\n    if end<0:self.pending=data[i:];break\r\n    i=end+2;continue\r\n   i+=2\r\n  return bytes(out)\r\n def drain(self,seconds=3):\r\n  out=b'';end=time.monotonic()+seconds\r\n  while time.monotonic()<end:\r\n   try:\r\n    raw=self.sock.recv(65536)\r\n    if not raw:break\r\n    out+=self.receive(raw)\r\n   except socket.timeout:\r\n    if out:break\r\n  return out\r\n def run(self,script,timeout=60):\r\n  banner=self.drain();self.sock.sendall(b'\\r\\n');banner+=self.drain(2)\r\n  if b'# ' not in banner or re.search(br'(?:login|Password):',banner):raise RuntimeError('No existing shell prompt; no credentials submitted')\r\n  tag=uuid.uuid4().hex\r\n  if any(len(line.encode())>400 for line in script.splitlines()):raise ValueError('Use short shell lines for BusyBox console transport')\r\n  command=\"sh <<'LCM_SCRIPT_\"+tag+\"'\\n[ \\\"$(id -u)\\\" = 0 ] || exit 125\\n\"+script+\"\\nLCM_SCRIPT_\"+tag+\"\\n_lcm_smoke_rc=$?\\nprintf '\\\\nLCM_END_\"+tag+\":%s\\\\n' \\\"$_lcm_smoke_rc\\\"\\n\"\r\n  self.sock.sendall(command.replace('\\n','\\r\\n').encode());out=b'';end=time.monotonic()+timeout\r\n  pattern=re.compile(('(?:^|[\\\\r\\\\n])LCM_END_'+tag+':([0-9]+)[\\\\r\\\\n]+').encode())\r\n  while time.monotonic()<end:\r\n   try:\r\n    raw=self.sock.recv(65536)\r\n    if not raw:raise RuntimeError('Shell closed before receipt')\r\n    out+=self.receive(raw);match=pattern.search(out)\r\n    if match:return {'exit_status':int(match[1]),'stdout':out.decode(errors='backslashreplace'),'source_IP':self.sock.getsockname()[0]}\r\n   except socket.timeout:continue\r\n  Path(__file__).with_name('last-timeout-output.bin').write_bytes(out);self.sock.sendall(b'\\x03');raise TimeoutError('Command receipt timed out; inspect operation state before retrying')\r\n def close(self):self.sock.close()\r\nif __name__=='__main__':\r\n ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--host',required=True);ap.add_argument('--port',type=int,default=2323);ap.add_argument('--script',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);ap.add_argument('--timeout',type=int,default=60);args=ap.parse_args();shell=Shell(args.host,args.port)\r\n try:result=shell.run(args.script.read_text(encoding='utf-8-sig'),args.timeout)\r\n finally:shell.close()\r\n args.out.write_text(json.dumps(result,indent=2)+'\\n');print(result['stdout']);print('remote_exit='+str(result['exit_status']))\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/stage.json",
+      "original_bytes": 339,
+      "original_sha256_alias": "DIGEST-139",
+      "normalized_json": {
+        "router_host": "MESH-37591-LIVE-LAN-IP",
+        "bind_IP": "<MESH-37591-LIVE-CLIENT-IP>",
+        "port": 443,
+        "URL": "https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:smoke-v1",
+        "UUID": "e5d244c9-af3e-5224-96c0-76ca4ae7290a",
+        "certificate": "tls/registry.crt",
+        "key": "tls/registry.key",
+        "stop_file": "registry-443.stop",
+        "baseline_hashes_match_HJL": true
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/start-result.json",
+      "original_bytes": 651,
+      "original_sha256_alias": "DIGEST-140",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_b668fc7d103d4501bf8032066f1ef9cc'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> lcm start -e '717afa32-49ae-5e01-bccd-1426268a18ff'\r\n> \r\n> LCM_SCRIPT_b668fc7d103d4501bf8032066f1ef9cc\r\nMessage sent: {\"operation\":\"SetRequestedState\",\"sender\":\"lcm\",\"EUID\":\"717afa32-49ae-5e01-bccd-1426268a18ff\",\"RequestedState\":\"Active\"}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_b668fc7d103d4501bf8032066f1ef9cc:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_b668fc7d103d4501bf8032066f1ef9cc:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/start-v3-result.json",
+      "original_bytes": 2135,
+      "original_sha256_alias": "DIGEST-141",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_c136eaea00a4491aba2a9a542d561e80'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> record=$(ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}') || exit \r\r\n98\r\n> printf '%s\r\n> ' \"$record\"\r\n> printf '%s\r\n> ' \"$record\" | grep -F '\"Status\": \"Installed\"' >/dev/null || exit 99\r\n> lcm start -e 717afa32-49ae-5e01-bccd-1426268a18ff\r\n> \r\n> LCM_SCRIPT_c136eaea00a4491aba2a9a542d561e80\r\n{\r\n        \"SoftwareModules.DeploymentUnit.3.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"Status\": \"Installed\",\r\n                \"VendorLogList\": \"\",\r\n                \"UUID\": \"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\r\n                \"ExecutionEnvRef\": \"Device.SoftwareModules.ExecEnv.1.\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"ModuleVersion\": \"\",\r\n                \"ExecutionUnitList\": \"\",\r\n                \"URL\": \"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:0.0.1\",\r\n                \"Resolved\": true,\r\n                \"DUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"Vendor\": \"Owner research\",\r\n                \"LastUpdate\": \"TIME-LCM-061\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\",\r\n                \"Installed\": \"TIME-LCM-064\"\r\n        },\r\n        \"SoftwareModules.DeploymentUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nMessage sent: {\"operation\":\"SetRequestedState\",\"sender\":\"lcm\",\"EUID\":\"717afa32-49ae-5e01-bccd-1426268a18ff\",\"RequestedState\":\"Active\"}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_c136eaea00a4491aba2a9a542d561e80:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_c136eaea00a4491aba2a9a542d561e80:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/start-v3.sh",
+      "original_bytes": 248,
+      "original_sha256_alias": "DIGEST-142",
+      "normalized_text": "cd /tmp\r\nrecord=$(ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}') || exit 98\r\nprintf '%s\r\n' \"$record\"\r\nprintf '%s\r\n' \"$record\" | grep -F '\"Status\": \"Installed\"' >/dev/null || exit 99\r\nlcm start -e 717afa32-49ae-5e01-bccd-1426268a18ff\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/start.sh",
+      "original_bytes": 62,
+      "original_sha256_alias": "DIGEST-143",
+      "normalized_text": "cd /tmp\r\nlcm start -e '717afa32-49ae-5e01-bccd-1426268a18ff'\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/status-1-result.json",
+      "original_bytes": 12613,
+      "original_sha256_alias": "DIGEST-144",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_cc67e70cfc0348ca8b14f08ca75dad00'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> lcm list\r\n> ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> ubus call Rlyeh.Images _get '{\"depth\":1}'\r\n> tail -n 35 /logs/rlyeh.log\r\n> tail -n 35 /logs/cthulhu.log\r\n> \r\n> LCM_SCRIPT_cc67e70cfc0348ca8b14f08ca75dad00\r\nDU      Status  AutoStart       UUID                                 EUID\r\n--      ------  ---------       ------------------------------------ ------------------------------------\r\n1       -       -1               \r\n2       -       -1              e5d244c9-af3e-5224-96c0-76ca4ae7290a \r\n{\r\n        \"SoftwareModules.DeploymentUnit.\": {\r\n                \r\n        },\r\n        \"SoftwareModules.DeploymentUnit.1.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"Status\": \"Installing\",\r\n                \"VendorLogList\": \"\",\r\n                \"UUID\": \"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\r\n                \"ExecutionEnvRef\": \"Device.SoftwareModules.ExecEnv.1.\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"ModuleVersion\": \"\",\r\n                \"ExecutionUnitList\": \"\",\r\n                \"URL\": \"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:smoke-v1\",\r\n                \"Resolved\": true,\r\n                \"DUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"Vendor\": \"Owner research\",\r\n                \"LastUpdate\": \"TIME-LCM-001\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\",\r\n                \"Installed\": \"TIME-LCM-001\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nCommand failed: Not found\r\n(TIME-LCM-003)[rlyeh] - rlyeh_c - [i]SRC: https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:smoke-v1 DEST: oci:/opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke:smoke-v1 - (print_parse_input@rlyeh_copy.c:641)\r\n(TIME-LCM-003)[rlyeh] - rlyeh_c - [i]DEST-SHARED-BLOB-DIR: /opt/lcm/usr/share/rlyeh/blobs - (print_parse_input@rlyeh_copy.c:644)\r\n(TIME-LCM-004)[rlyeh] - rlyeh_c - [n]Using '/usr/rlyeh/blobs' for RO Blob store directory - (create_output_directories@rlyeh_copy.c:623)\r\n(TIME-LCM-005)[rlyeh] - rlyeh_c - [x]RO Blob store directory doesn't exist, let's continue without - (create_output_directories@rlyeh_copy.c:628)\r\n(TIME-LCM-005)[rlyeh] - rlyeh_c - [i]curl_easy_perform url: [https://<MESH-37591-LIVE-CLIENT-IP>/v2/beacon-lcm-smoke/manifests/smoke-v1] - (rlyeh_curl_get_httpauthentication@rlyeh_curl.c:324)\r\n(TIME-LCM-006)[rlyeh] - rlyeh_u - [i]Credentials not found with server <MESH-37591-LIVE-CLIENT-IP>... - (rlyeh_get_creds_from_file@rlyeh_utils.c:371)\r\n(TIME-LCM-007)[rlyeh] - rlyeh_c - [i]curl_easy_perform url: [https://<MESH-37591-LIVE-CLIENT-IP>/v2/beacon-lcm-smoke/manifests/smoke-v1] - (rlyeh_curl_head@rlyeh_curl.c:276)\r\n(TIME-LCM-008)[rlyeh] - rlyeh_c - [!]Downloading with NO_AUTHENTICATION - (rlyeh_curl_download_content@rlyeh_curl.c:183)\r\n(TIME-LCM-008)[rlyeh] - rlyeh_c - [i]curl_easy_perform url: [https://<MESH-37591-LIVE-CLIENT-IP>/v2/beacon-lcm-smoke/manifests/smoke-v1] - (rlyeh_curl_download_content@rlyeh_curl.c:202)\r\n(TIME-LCM-009)[rlyeh] - rlyeh_c - [!]Unable to rename the file: (18) Invalid cross-device link - (rename_manifest@rlyeh_copy.c:500)\r\n(TIME-LCM-009)[rlyeh] - rlyeh_c - [i]Sendfile succesful - (send_file_manifest@rlyeh_copy.c:481)\r\n(TIME-LCM-010)[rlyeh] - rlyeh_c - [!]Downloading with NO_AUTHENTICATION - (rlyeh_curl_download_content@rlyeh_curl.c:183)\r\n(TIME-LCM-010)[rlyeh] - rlyeh_c - [i]curl_easy_perform url: [https://<MESH-37591-LIVE-CLIENT-IP>/v2/beacon-lcm-smoke/blobs/sha256:44aa47fe8c95af8060359df1063e40479ea9c266fcd3397eae42d4697672bef7] - (rlyeh_curl_download_content@rlyeh_curl.c:202)\r\n(TIME-LCM-011)[rlyeh] - rlyeh_c - [n]Pulling layer 'sha256:28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2' - (download_layers@rlyeh_copy.c:426)\r\n(TIME-LCM-011)[rlyeh] - rlyeh_c - [!]Downloading with NO_AUTHENTICATION - (rlyeh_curl_download_content@rlyeh_curl.c:183)\r\n(TIME-LCM-011)[rlyeh] - rlyeh_c - [i]curl_easy_perform url: [https://<MESH-37591-LIVE-CLIENT-IP>/v2/beacon-lcm-smoke/blobs/sha256:28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2] - (rlyeh_curl_download_content@rlyeh_curl.c:202)\r\n(TIME-LCM-012)[rlyeh] - rlyeh_c - [n]Pulling layer 'sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352' - (download_layers@rlyeh_copy.c:426)\r\n(TIME-LCM-012)[rlyeh] - rlyeh_c - [!]Downloading with NO_AUTHENTICATION - (rlyeh_curl_download_content@rlyeh_curl.c:183)\r\n(TIME-LCM-012)[rlyeh] - rlyeh_c - [i]curl_easy_perform url: [https://<MESH-37591-LIVE-CLIENT-IP>/v2/beacon-lcm-smoke/blobs/sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352] - (rlyeh_curl_download_content@rlyeh_curl.c:202)\r\n(TIME-LCM-013)[rlyeh] - rlyeh_u - [i]File does not exist: /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke/index.json - (rlyeh_parse_image_spec_schema@rlyeh_utils.c:552)\r\n(TIME-LCM-013)[rlyeh] - rlyeh_c - [i]Creating index.json - (generate_index@rlyeh_copy.c:355)\r\n(TIME-LCM-013)[rlyeh] - rlyeh_c - [i]Creating oci-layout - (rlyeh_copy@rlyeh_copy.c:966)\r\n(TIME-LCM-014)[rlyeh] - rlyeh_f - [i]Wait for task to complete - (rlyeh_worker_loop@rlyeh_worker.c:140)\r\n(TIME-LCM-014)[rlyeh] - rlyeh_f - [i]create image dm - (rlyeh_pull_cb@rlyeh_dm_functions.c:488)\r\n(TIME-LCM-015)[rlyeh] - rlyeh_f - [x]Task completed - (rlyeh_worker_signal_task_complete@rlyeh_worker.c:217)\r\n(TIME-LCM-021)[rlyeh] - rlyeh_f - [i]Executing Remove. DUID [717afa32-49ae-5e01-bccd-1426268a18ff] CID [3485ACC2] - (_Rlyeh_remove@rlyeh_dm_functions.c:320)\r\n(TIME-LCM-021)[rlyeh] - rlyeh_f - [i]Add task to worker thread list - (rlyeh_worker_add_task@rlyeh_worker.c:186)\r\n(TIME-LCM-022)[rlyeh] - rlyeh_c - [i]Updating index.json - (rlyeh_update_index_annotations@rlyeh_image_index_generation.c:292)\r\n(TIME-LCM-023)[rlyeh] - rlyeh_f - [i]Image marked for remove in image spec - (rlyeh_exec_remove@rlyeh_worker_func.c:376)\r\n(TIME-LCM-023)[rlyeh] - rlyeh_f - [i]Wait for task to complete - (rlyeh_worker_loop@rlyeh_worker.c:140)\r\n(TIME-LCM-023)[rlyeh] - rlyeh_f - [i]Mark Image for remove in DM - (rlyeh_remove_cb@rlyeh_dm_functions.c:550)\r\n(TIME-LCM-024)[rlyeh] - rlyeh_f - [i]Executing _Rlyeh_gc() - (_Rlyeh_gc@rlyeh_dm_functions.c:338)\r\n(TIME-LCM-024)[rlyeh] - rlyeh_f - [i]Add task to worker thread list - (rlyeh_worker_add_task@rlyeh_worker.c:186)\r\n(TIME-LCM-024)[rlyeh] - rlyeh_f - [i]executing gc - (rlyeh_exec_gc@rlyeh_worker_func.c:397)\r\n(TIME-LCM-024)[rlyeh] - rlyeh_f - [i]removing image '717afa32-49ae-5e01-bccd-1426268a18ff' [beacon-lcm-smoke:0.0.1] - (remove_image@rlyeh_worker_func.c:148)\r\n(TIME-LCM-002)[cthulhu] - rpc     - [i]RPC: Container.ls - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-002)[cthulhu] -     CommandID: 6F1859A3\r\n(TIME-LCM-016)[cthulhu] - rpc     - [i]RPC: Container.command - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-016)[cthulhu] -     Parameters: Bundle:beacon-lcm-smoke,Autostart:0,AllocatedDiskSpace:-1,DiskLocation:beacon-lcm-smoke,AllocatedMemory:16384,ContainerId:717afa32-49ae-5e01-bccd-1426268a18ff,LinkedUUID:e5d244c9-af3e-5224-96c0-76ca4ae7290a,BundleVersion:0.0.1,AllocatedCPUPercent:10,Sandbox:generic,HostObject:Options:type=mount,create=dir,rbind,rw ,Source:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a,Destination:/persistent-data,Options:type=mount,create=dir,rbind,rw,Source:/tmp,Destination:/temporary-data,Options:type=mount,nosuid,nodev,mode=1777,size=65536,Source:tmpfs,Destination:/tmp\r\n(TIME-LCM-016)[cthulhu] -     Command: create\r\n(TIME-LCM-016)[cthulhu] -     CommandID: 6F1859A4\r\n(TIME-LCM-016)[cthulhu] - rpc     - [i]RPC: Container.create - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-016)[cthulhu] -     Bundle: beacon-lcm-smoke\r\n(TIME-LCM-016)[cthulhu] -     Autostart: 0\r\n(TIME-LCM-016)[cthulhu] -     AllocatedDiskSpace: -1\r\n(TIME-LCM-016)[cthulhu] -     DiskLocation: beacon-lcm-smoke\r\n(TIME-LCM-016)[cthulhu] -     AllocatedMemory: 16384\r\n(TIME-LCM-016)[cthulhu] -     ContainerId: 717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-016)[cthulhu] -     LinkedUUID: e5d244c9-af3e-5224-96c0-76ca4ae7290a\r\n(TIME-LCM-016)[cthulhu] -     BundleVersion: 0.0.1\r\n(TIME-LCM-016)[cthulhu] -     AllocatedCPUPercent: 10\r\n(TIME-LCM-016)[cthulhu] -     CommandID: 6F1859A4\r\n(TIME-LCM-016)[cthulhu] -     Sandbox: generic\r\n(TIME-LCM-017)[cthulhu] -     HostObject: Options:type=mount,create=dir,rbind,rw ,Source:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a,Destination:/persistent-data,Options:type=mount,create=dir,rbind,rw,Source:/tmp,Destination:/temporary-data,Options:type=mount,nosuid,nodev,mode=1777,size=65536,Source:tmpfs,Destination:/tmp\r\n(TIME-LCM-018)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Create container from beacon-lcm-smoke:0.0.1 (location: beacon-lcm-smoke) - (cthulhu_build_container@cthulhu_ctr_create.c:441)\r\n(TIME-LCM-018)[cthulhu] -         - [i]get version 0.0.1 - (cthulhu_get_image_manifest_schema@cthulhu_oci_spec.c:173)\r\n(TIME-LCM-018)[cthulhu] - cthulhu - [x]Manifest with version 0.0.1 not found - (cthulhu_get_image_manifest_schema@cthulhu_oci_spec.c:201)\r\n(TIME-LCM-018)[cthulhu] - cthulhu - [x]Could not find Image Manifest for image beacon-lcm-smoke:0.0.1 - (cthulhu_build_container@cthulhu_ctr_create.c:469)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Stopping container - (cthulhu_ctr_stop@cthulhu_ctr_rpc.c:694)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Container is a Ghost - (cthulhu_ctr_stop_priv@cthulhu_ctr_rpc.c:606)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [n]SB[__generic_717afa32-49ae-5e01-bccd-1426268a18ff__]: Stop Sandbox - (cthulhu_sb_stop@cthulhu_sb.c:754)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [n]SB[__generic_717afa32-49ae-5e01-bccd-1426268a18ff__]: Stop Sandbox - (cthulhu_sb_stop_priv@cthulhu_sb.c:609)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [i]SB[__generic_717afa32-49ae-5e01-bccd-1426268a18ff__]: Sandbox is already disabled - (cthulhu_sb_stop_priv@cthulhu_sb.c:612)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng socket file does not exist [/opt/lcm/usr/share/cthulhu/syslogng/logs/717afa32-49ae-5e01-bccd-1426268a18ff/log.sock] - (cthulhu_syslogng_remove_socket@cthulhu_syslogng.c:229)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [!]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng config file does not exist [/opt/lcm/usr/share/cthulhu/syslogng/configs/717afa32-49ae-5e01-bccd-1426268a18ff.conf] - (cthulhu_syslogng_remove_config@cthulhu_syslogng.c:205)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Could not remove syslogng config - (cthulhu_syslogng_disable@cthulhu_syslogng.c:386)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [x]Container '717afa32-49ae-5e01-bccd-1426268a18ff' does not exist - (lxc_remove@cthulhu_lxc_main.c:645)\r\n(TIME-LCM-020)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Delete directory [/opt/lcm/usr/share/cthulhu/syslogng/logs/717afa32-49ae-5e01-bccd-1426268a18ff] - (cthulhu_syslogng_remove_log_dir@cthulhu_syslogng.c:404)\r\n(TIME-LCM-020)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng dir does not exist [/opt/lcm/usr/share/cthulhu/syslogng/logs/717afa32-49ae-5e01-bccd-1426268a18ff] - (cthulhu_syslogng_remove_log_dir@cthulhu_syslogng.c:406)\r\n(TIME-LCM-020)[cthulhu] - cthulhu - [!]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng config file does not exist [/opt/lcm/usr/share/cthulhu/syslogng/configs/717afa32-49ae-5e01-bccd-1426268a18ff.conf] - (cthulhu_syslogng_remove_config@cthulhu_syslogng.c:205)\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_cc67e70cfc0348ca8b14f08ca75dad00:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_cc67e70cfc0348ca8b14f08ca75dad00:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/status-1.sh",
+      "original_bytes": 241,
+      "original_sha256_alias": "DIGEST-145",
+      "normalized_text": "cd /tmp\r\nlcm list\r\nubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\nubus call Rlyeh.Images _get '{\"depth\":1}'\r\ntail -n 35 /logs/rlyeh.log\r\ntail -n 35 /logs/cthulhu.log\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/status-v2-after-restore-result.json",
+      "original_bytes": 10738,
+      "original_sha256_alias": "DIGEST-146",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_ed878693e39f47368148c1d5ee9a3b6d'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> ubus call Cthulhu.Container.Instances _get '{\"depth\":1}'\r\n> lxc-ls --fancy\r\n> tail -n 45 /logs/cthulhu.log\r\n> \r\n> LCM_SCRIPT_ed878693e39f47368148c1d5ee9a3b6d\r\n{\r\n        \"SoftwareModules.DeploymentUnit.\": {\r\n                \r\n        },\r\n        \"SoftwareModules.DeploymentUnit.2.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"Status\": \"Installed\",\r\n                \"VendorLogList\": \"\",\r\n                \"UUID\": \"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\r\n                \"ExecutionEnvRef\": \"Device.SoftwareModules.ExecEnv.1.\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"ModuleVersion\": \"\",\r\n                \"ExecutionUnitList\": \"\",\r\n                \"URL\": \"https://<MESH-37591-LIVE-CLIENT-IP>/beacon-lcm-smoke:0.0.1\",\r\n                \"Resolved\": true,\r\n                \"DUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"Vendor\": \"Owner research\",\r\n                \"LastUpdate\": \"TIME-LCM-061\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\",\r\n                \"Installed\": \"TIME-LCM-063\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecutionUnit.1.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"MemoryInUse\": -1,\r\n                \"RunLevel\": 0,\r\n                \"AvailableMemory\": -1,\r\n                \"AutoStart\": false,\r\n                \"ExecEnvLabel\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"ExecutionFaultMessage\": \"\",\r\n                \"VendorLogList\": \"\",\r\n                \"Status\": \"Idle\",\r\n                \"AllocatedDiskSpace\": -1,\r\n                \"ExecutionEnvRef\": \"generic\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"AssociatedProcessList\": \"\",\r\n                \"ExecutionFaultCode\": \"NoFault\",\r\n                \"AvailableDiskSpace\": -1,\r\n                \"Vendor\": \"Owner research\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"AllocatedMemory\": 16384,\r\n                \"DiskSpaceInUse\": -1,\r\n                \"AllocatedCPUPercent\": 10,\r\n                \"EUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"References\": \"\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\"\r\n        },\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"Cthulhu.Container.Instances.2.\": {\r\n                \"PrivateSandbox\": \"__generic_717afa32-49ae-5e01-bccd-1426268a18ff__\",\r\n                \"Bundle\": \"beacon-lcm-smoke\",\r\n                \"Autostart\": false,\r\n                \"Owner\": \"\",\r\n                \"Status\": \"Stopped\",\r\n                \"LinkedUUID\": \"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\r\n                \"BundleVersion\": \"0.0.1\",\r\n                \"Pid\": -1,\r\n                \"Created\": \"TIME-LCM-063\",\r\n                \"Updated\": \"TIME-LCM-061\",\r\n                \"ModuleVersion\": \"\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"Vendor\": \"Owner research\",\r\n                \"ContainerId\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Sandbox\": \"generic\"\r\n        },\r\n        \"Cthulhu.Container.Instances.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nNAME                                 STATE   AUTOSTART GROUPS IPV4 IPV6 UNPRIVILEGED \r\n717afa32-49ae-5e01-bccd-1426268a18ff STOPPED 0         -      -    -    false        \r\n(TIME-LCM-025)[cthulhu] -     RemoveData: 1\r\n(TIME-LCM-025)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Removing container. Removing data. - (_Container_remove@cthulhu_ctr_rpc.c:1827)\r\n(TIME-LCM-026)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Container does not exist - (cthulhu_ctr_remove@cthulhu_ctr_rpc.c:1045)\r\n(TIME-LCM-026)[cthulhu] - cthulhu - [x]Failed to remove container 717afa32-49ae-5e01-bccd-1426268a18ff - (_Container_remove@cthulhu_ctr_rpc.c:1831)\r\n(TIME-LCM-027)[cthulhu] - rpc     - [i]RPC: Container.command - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-027)[cthulhu] -     Parameters: ContainerId:717afa32-49ae-5e01-bccd-1426268a18ff,RemoveData:1\r\n(TIME-LCM-027)[cthulhu] -     Command: remove\r\n(TIME-LCM-027)[cthulhu] -     CommandID: 6F1859A6\r\n(TIME-LCM-027)[cthulhu] - rpc     - [i]RPC: Container.remove - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-027)[cthulhu] -     CommandID: 6F1859A6\r\n(TIME-LCM-027)[cthulhu] -     ContainerId: 717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-027)[cthulhu] -     RemoveData: 1\r\n(TIME-LCM-027)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Removing container. Removing data. - (_Container_remove@cthulhu_ctr_rpc.c:1827)\r\n(TIME-LCM-027)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Container does not exist - (cthulhu_ctr_remove@cthulhu_ctr_rpc.c:1045)\r\n(TIME-LCM-028)[cthulhu] - cthulhu - [x]Failed to remove container 717afa32-49ae-5e01-bccd-1426268a18ff - (_Container_remove@cthulhu_ctr_rpc.c:1831)\r\n(TIME-LCM-029)[cthulhu] - rpc     - [i]RPC: Container.command - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-029)[cthulhu] -     Parameters: Bundle:beacon-lcm-smoke,Autostart:0,AllocatedDiskSpace:-1,DiskLocation:beacon-lcm-smoke,AllocatedMemory:16384,ContainerId:717afa32-49ae-5e01-bccd-1426268a18ff,LinkedUUID:e5d244c9-af3e-5224-96c0-76ca4ae7290a,BundleVersion:0.0.1,AllocatedCPUPercent:10,Sandbox:generic,HostObject:Options:type=mount,create=dir,rbind,rw ,Source:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a,Destination:/persistent-data,Options:type=mount,create=dir,rbind,rw,Source:/tmp,Destination:/temporary-data,Options:type=mount,nosuid,nodev,mode=1777,size=65536,Source:tmpfs,Destination:/tmp\r\n(TIME-LCM-029)[cthulhu] -     Command: create\r\n(TIME-LCM-029)[cthulhu] -     CommandID: 6F1859A7\r\n(TIME-LCM-029)[cthulhu] - rpc     - [i]RPC: Container.create - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-029)[cthulhu] -     Bundle: beacon-lcm-smoke\r\n(TIME-LCM-029)[cthulhu] -     Autostart: 0\r\n(TIME-LCM-029)[cthulhu] -     AllocatedDiskSpace: -1\r\n(TIME-LCM-029)[cthulhu] -     DiskLocation: beacon-lcm-smoke\r\n(TIME-LCM-030)[cthulhu] -     AllocatedMemory: 16384\r\n(TIME-LCM-030)[cthulhu] -     ContainerId: 717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-030)[cthulhu] -     LinkedUUID: e5d244c9-af3e-5224-96c0-76ca4ae7290a\r\n(TIME-LCM-030)[cthulhu] -     BundleVersion: 0.0.1\r\n(TIME-LCM-030)[cthulhu] -     AllocatedCPUPercent: 10\r\n(TIME-LCM-030)[cthulhu] -     CommandID: 6F1859A7\r\n(TIME-LCM-030)[cthulhu] -     Sandbox: generic\r\n(TIME-LCM-030)[cthulhu] -     HostObject: Options:type=mount,create=dir,rbind,rw ,Source:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a,Destination:/persistent-data,Options:type=mount,create=dir,rbind,rw,Source:/tmp,Destination:/temporary-data,Options:type=mount,nosuid,nodev,mode=1777,size=65536,Source:tmpfs,Destination:/tmp\r\n(TIME-LCM-030)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Private sandbox already exists. Reuse storage - (cthulhu_ctr_priv_sb_create@cthulhu_ctr_create.c:115)\r\n(TIME-LCM-031)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Create container from beacon-lcm-smoke:0.0.1 (location: beacon-lcm-smoke) - (cthulhu_build_container@cthulhu_ctr_create.c:441)\r\n(TIME-LCM-032)[cthulhu] -         - [i]get version 0.0.1 - (cthulhu_get_image_manifest_schema@cthulhu_oci_spec.c:173)\r\n(TIME-LCM-033)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set Diskspace limit to: -1 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:888)\r\n(TIME-LCM-033)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set Memory limit to: 16384 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:895)\r\n(TIME-LCM-033)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set CPU limit to: 10 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:902)\r\n(TIME-LCM-034)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set Diskspace limit to: -1 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:931)\r\n(TIME-LCM-034)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set Memory limit to: 16384 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:938)\r\n(TIME-LCM-034)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Set CPU limit to: 10 - (cthulhu_ctr_apply_metadata_resources@cthulhu_ctr_create.c:945)\r\n(TIME-LCM-035)[cthulhu] - cthulhu - [i]Extracting layer /opt/lcm/usr/share/rlyeh/blobs/sha256/28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2 - (cthulhu_extract_layer@cthulhu_archive.c:226)\r\n(TIME-LCM-036)[cthulhu] - cthulhu - [i]Extracting layer /opt/lcm/usr/share/rlyeh/blobs/sha256/c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352 - (cthulhu_extract_layer@cthulhu_archive.c:226)\r\n(TIME-LCM-037)[cthulhu] - cthulhu - [i]Create LXC container 717afa32-49ae-5e01-bccd-1426268a18ff - (lxc_create@cthulhu_lxc_main.c:235)\r\n(TIME-LCM-038)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: STATE changed from Ghost to Stopped - (cthulhu_ctr_status_changed@cthulhu_ctr_rpc.c:1191)\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_ed878693e39f47368148c1d5ee9a3b6d:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_ed878693e39f47368148c1d5ee9a3b6d:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/status-v2-result.json",
+      "original_bytes": 7133,
+      "original_sha256_alias": "DIGEST-147",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_fd43a0dd17b94da79e2ba5f16f5990f8'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> ubus call Cthulhu.Container.Instances _get '{\"depth\":1}'\r\n> lxc-ls --fancy\r\n> tail -n 45 /logs/cthulhu.log\r\n> \r\n> LCM_SCRIPT_fd43a0dd17b94da79e2ba5f16f5990f8\r\n{\r\n        \"SoftwareModules.DeploymentUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"Cthulhu.Container.Instances.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n(TIME-LCM-016)[cthulhu] -     ContainerId: 717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-016)[cthulhu] -     LinkedUUID: e5d244c9-af3e-5224-96c0-76ca4ae7290a\r\n(TIME-LCM-016)[cthulhu] -     BundleVersion: 0.0.1\r\n(TIME-LCM-016)[cthulhu] -     AllocatedCPUPercent: 10\r\n(TIME-LCM-016)[cthulhu] -     CommandID: 6F1859A4\r\n(TIME-LCM-016)[cthulhu] -     Sandbox: generic\r\n(TIME-LCM-017)[cthulhu] -     HostObject: Options:type=mount,create=dir,rbind,rw ,Source:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a,Destination:/persistent-data,Options:type=mount,create=dir,rbind,rw,Source:/tmp,Destination:/temporary-data,Options:type=mount,nosuid,nodev,mode=1777,size=65536,Source:tmpfs,Destination:/tmp\r\n(TIME-LCM-018)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Create container from beacon-lcm-smoke:0.0.1 (location: beacon-lcm-smoke) - (cthulhu_build_container@cthulhu_ctr_create.c:441)\r\n(TIME-LCM-018)[cthulhu] -         - [i]get version 0.0.1 - (cthulhu_get_image_manifest_schema@cthulhu_oci_spec.c:173)\r\n(TIME-LCM-018)[cthulhu] - cthulhu - [x]Manifest with version 0.0.1 not found - (cthulhu_get_image_manifest_schema@cthulhu_oci_spec.c:201)\r\n(TIME-LCM-018)[cthulhu] - cthulhu - [x]Could not find Image Manifest for image beacon-lcm-smoke:0.0.1 - (cthulhu_build_container@cthulhu_ctr_create.c:469)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Stopping container - (cthulhu_ctr_stop@cthulhu_ctr_rpc.c:694)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Container is a Ghost - (cthulhu_ctr_stop_priv@cthulhu_ctr_rpc.c:606)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [n]SB[__generic_717afa32-49ae-5e01-bccd-1426268a18ff__]: Stop Sandbox - (cthulhu_sb_stop@cthulhu_sb.c:754)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [n]SB[__generic_717afa32-49ae-5e01-bccd-1426268a18ff__]: Stop Sandbox - (cthulhu_sb_stop_priv@cthulhu_sb.c:609)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [i]SB[__generic_717afa32-49ae-5e01-bccd-1426268a18ff__]: Sandbox is already disabled - (cthulhu_sb_stop_priv@cthulhu_sb.c:612)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng socket file does not exist [/opt/lcm/usr/share/cthulhu/syslogng/logs/717afa32-49ae-5e01-bccd-1426268a18ff/log.sock] - (cthulhu_syslogng_remove_socket@cthulhu_syslogng.c:229)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [!]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng config file does not exist [/opt/lcm/usr/share/cthulhu/syslogng/configs/717afa32-49ae-5e01-bccd-1426268a18ff.conf] - (cthulhu_syslogng_remove_config@cthulhu_syslogng.c:205)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Could not remove syslogng config - (cthulhu_syslogng_disable@cthulhu_syslogng.c:386)\r\n(TIME-LCM-019)[cthulhu] - cthulhu - [x]Container '717afa32-49ae-5e01-bccd-1426268a18ff' does not exist - (lxc_remove@cthulhu_lxc_main.c:645)\r\n(TIME-LCM-020)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Delete directory [/opt/lcm/usr/share/cthulhu/syslogng/logs/717afa32-49ae-5e01-bccd-1426268a18ff] - (cthulhu_syslogng_remove_log_dir@cthulhu_syslogng.c:404)\r\n(TIME-LCM-020)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng dir does not exist [/opt/lcm/usr/share/cthulhu/syslogng/logs/717afa32-49ae-5e01-bccd-1426268a18ff] - (cthulhu_syslogng_remove_log_dir@cthulhu_syslogng.c:406)\r\n(TIME-LCM-020)[cthulhu] - cthulhu - [!]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Syslogng config file does not exist [/opt/lcm/usr/share/cthulhu/syslogng/configs/717afa32-49ae-5e01-bccd-1426268a18ff.conf] - (cthulhu_syslogng_remove_config@cthulhu_syslogng.c:205)\r\n(TIME-LCM-025)[cthulhu] - rpc     - [i]RPC: Container.command - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-025)[cthulhu] -     Parameters: ContainerId:717afa32-49ae-5e01-bccd-1426268a18ff,RemoveData:1\r\n(TIME-LCM-025)[cthulhu] -     Command: remove\r\n(TIME-LCM-025)[cthulhu] -     CommandID: 6F1859A5\r\n(TIME-LCM-025)[cthulhu] - rpc     - [i]RPC: Container.remove - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-025)[cthulhu] -     CommandID: 6F1859A5\r\n(TIME-LCM-025)[cthulhu] -     ContainerId: 717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-025)[cthulhu] -     RemoveData: 1\r\n(TIME-LCM-025)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Removing container. Removing data. - (_Container_remove@cthulhu_ctr_rpc.c:1827)\r\n(TIME-LCM-026)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Container does not exist - (cthulhu_ctr_remove@cthulhu_ctr_rpc.c:1045)\r\n(TIME-LCM-026)[cthulhu] - cthulhu - [x]Failed to remove container 717afa32-49ae-5e01-bccd-1426268a18ff - (_Container_remove@cthulhu_ctr_rpc.c:1831)\r\n(TIME-LCM-027)[cthulhu] - rpc     - [i]RPC: Container.command - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-027)[cthulhu] -     Parameters: ContainerId:717afa32-49ae-5e01-bccd-1426268a18ff,RemoveData:1\r\n(TIME-LCM-027)[cthulhu] -     Command: remove\r\n(TIME-LCM-027)[cthulhu] -     CommandID: 6F1859A6\r\n(TIME-LCM-027)[cthulhu] - rpc     - [i]RPC: Container.remove - (cthulhu_dump_rpc@cthulhu_common.c:65)\r\n(TIME-LCM-027)[cthulhu] -     CommandID: 6F1859A6\r\n(TIME-LCM-027)[cthulhu] -     ContainerId: 717afa32-49ae-5e01-bccd-1426268a18ff\r\n(TIME-LCM-027)[cthulhu] -     RemoveData: 1\r\n(TIME-LCM-027)[cthulhu] - cthulhu - [i]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Removing container. Removing data. - (_Container_remove@cthulhu_ctr_rpc.c:1827)\r\n(TIME-LCM-027)[cthulhu] - cthulhu - [x]CTR[717afa32-49ae-5e01-bccd-1426268a18ff]: Container does not exist - (cthulhu_ctr_remove@cthulhu_ctr_rpc.c:1045)\r\n(TIME-LCM-028)[cthulhu] - cthulhu - [x]Failed to remove container 717afa32-49ae-5e01-bccd-1426268a18ff - (_Container_remove@cthulhu_ctr_rpc.c:1831)\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_fd43a0dd17b94da79e2ba5f16f5990f8:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_fd43a0dd17b94da79e2ba5f16f5990f8:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/status-v2.sh",
+      "original_bytes": 234,
+      "original_sha256_alias": "DIGEST-148",
+      "normalized_text": "cd /tmp\r\nubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\nubus call Cthulhu.Container.Instances _get '{\"depth\":1}'\r\nlxc-ls --fancy\r\ntail -n 45 /logs/cthulhu.log\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/stop-result.json",
+      "original_bytes": 646,
+      "original_sha256_alias": "DIGEST-149",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_fa3a75f17e4146e782dfb946ad836c55'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> lcm stop -e 717afa32-49ae-5e01-bccd-1426268a18ff\r\n> \r\n> LCM_SCRIPT_fa3a75f17e4146e782dfb946ad836c55\r\nMessage sent: {\"operation\":\"SetRequestedState\",\"sender\":\"lcm\",\"EUID\":\"717afa32-49ae-5e01-bccd-1426268a18ff\",\"RequestedState\":\"Idle\"}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_fa3a75f17e4146e782dfb946ad836c55:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_fa3a75f17e4146e782dfb946ad836c55:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/stop.sh",
+      "original_bytes": 59,
+      "original_sha256_alias": "DIGEST-150",
+      "normalized_text": "cd /tmp\r\nlcm stop -e 717afa32-49ae-5e01-bccd-1426268a18ff\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/uninstall-v1-result.json",
+      "original_bytes": 643,
+      "original_sha256_alias": "DIGEST-153",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_a841e33870834562ba11a929ad6ff28d'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> lcm uninstall -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -r 0\r\n> \r\n> LCM_SCRIPT_a841e33870834562ba11a929ad6ff28d\r\nMessage sent: {\"operation\":\"Uninstall\",\"sender\":\"lcm\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"RetainData\":false}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_a841e33870834562ba11a929ad6ff28d:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_a841e33870834562ba11a929ad6ff28d:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/uninstall-v1.sh",
+      "original_bytes": 71,
+      "original_sha256_alias": "DIGEST-154",
+      "normalized_text": "cd /tmp\r\nlcm uninstall -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -r 0\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/uninstall-v2-result.json",
+      "original_bytes": 643,
+      "original_sha256_alias": "DIGEST-155",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_1e8c885cf80f42b6b54054dedc627e9f'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> lcm uninstall -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -r 0\r\n> \r\n> LCM_SCRIPT_1e8c885cf80f42b6b54054dedc627e9f\r\nMessage sent: {\"operation\":\"Uninstall\",\"sender\":\"lcm\",\"UUID\":\"e5d244c9-af3e-5224-96c0-76ca4ae7290a\",\"RetainData\":false}\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_1e8c885cf80f42b6b54054dedc627e9f:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_1e8c885cf80f42b6b54054dedc627e9f:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/uninstall-v2.sh",
+      "original_bytes": 71,
+      "original_sha256_alias": "DIGEST-154",
+      "normalized_text": "cd /tmp\r\nlcm uninstall -i 'e5d244c9-af3e-5224-96c0-76ca4ae7290a' -r 0\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/verify-active-details.sh",
+      "original_bytes": 705,
+      "original_sha256_alias": "DIGEST-156",
+      "normalized_text": "cd /tmp\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\nubus call Cthulhu.Container.Instances _get '{\"depth\":1}'\r\n_lcm_pid=$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -pH)\r\ncase \"$_lcm_pid\" in ''|*[!0-9]*) exit 97;; esac\r\nreadlink /proc/$_lcm_pid/ns/net\r\nreadlink /proc/1/ns/net\r\ncat /sys/fs/cgroup/cpu/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/cpu.cfs_quota_us\r\ncat /sys/fs/cgroup/cpu/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/cpu.cfs_period_us\r\ncat /sys/fs/cgroup/memory/cthulhu/generic/__generic_717afa32-49ae-5e01-bccd-1426268a18ff__/memory.limit_in_bytes\r\nlxc-attach -n 717afa32-49ae-5e01-bccd-1426268a18ff -- /lcm-smoke --self-test\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/verify-cleanup-result.json",
+      "original_bytes": 4040,
+      "original_sha256_alias": "DIGEST-157",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_d082e5b6823d4c42b5e9013f341c8346'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> ubus call Cthulhu.Container.Instances _get '{\"depth\":1}'\r\n> ubus call SoftwareModules.ExecEnv.1 _get '{\"depth\":0}'\r\n> ubus call Rlyeh _get '{\"depth\":0}'\r\n> lxc-ls --fancy\r\n> lcm list\r\n> ps w | grep -E '[r]lyeh|[c]thulhu|[t]imingila|[l]cm-adapter|[l]cm-smoke'\r\n> for path in /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff /opt/lcm/persistent-\r\r\ndata/e5d244c9-af3e-5224-96c0-76ca4ae7290a /opt/lcm/usr/share/rlyeh/images/beacon\r\r\n-lcm-smoke; do\r\n>   if [ -e \"$path\" ]; then printf 'RETAINED:%s\r\n> ' \"$path\"; else printf 'ABSENT:%s\r\n> ' \"$path\"; fi\r\n> done\r\n> \r\n> LCM_SCRIPT_d082e5b6823d4c42b5e9013f341c8346\r\n{\r\n        \"SoftwareModules.DeploymentUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"Cthulhu.Container.Instances.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"SoftwareModules.ExecEnv.1.\": {\r\n                \"AvailableMemory\": -1,\r\n                \"Status\": \"Up\",\r\n                \"AllocatedDiskSpace\": 1024,\r\n                \"RestartReason\": \"\",\r\n                \"Enable\": true,\r\n                \"Name\": \"generic\",\r\n                \"ActiveExecutionUnits\": \"\",\r\n                \"InitialRunLevel\": -1,\r\n                \"Type\": \"lxc:5.0.1\",\r\n                \"InitialExecutionUnitRunLevel\": -1,\r\n                \"CurrentRunLevel\": -1,\r\n                \"AvailableDiskSpace\": 985,\r\n                \"ProcessorRefList\": \"\",\r\n                \"Description\": \"\",\r\n                \"Vendor\": \"Cthulhu\",\r\n                \"AllocatedMemory\": -1,\r\n                \"ParentExecEnv\": \"\",\r\n                \"CreatedAt\": \"TIME-LCM-062\",\r\n                \"AllocatedCPUPercent\": 100,\r\n                \"Alias\": \"cpe-generic\",\r\n                \"Version\": \"3.7.5\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\n{\r\n        \"Rlyeh.\": {\r\n                \"ImageLocation\": \"/opt/lcm/usr/share/rlyeh/images\",\r\n                \"ROImageLocation\": \"/usr/rlyeh/images\",\r\n                \"ROStorageLocation\": \"/usr/rlyeh/blobs\",\r\n                \"CertificateVerification\": false,\r\n                \"SignatureVerification\": false,\r\n                \"RemainingDiskSpaceBytes\": 1000001,\r\n                \"StorageLocation\": \"/opt/lcm/usr/share/rlyeh/blobs\",\r\n                \"OnboardingFile\": \"/opt/lcm/usr/share/rlyeh_onboarded\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nDU      Status  AutoStart       UUID                                 EUID\r\n--      ------  ---------       ------------------------------------ ------------------------------------\r\n1       -       -1               \r\n12007 root     86216 S    /usr/bin/rlyeh -D\r\n19374 root      5704 S    /usr/bin/timingila -D\r\n19382 root     23284 S    /usr/bin/lcm-adapter\r\n19413 root     90396 S    /usr/bin/cthulhu -D\r\n19507 root     23932 S    /usr/bin/cthulhu -D\r\nABSENT:/opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff\r\nRETAINED:/opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a\r\nABSENT:/opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_d082e5b6823d4c42b5e9013f341c8346:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_d082e5b6823d4c42b5e9013f341c8346:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/verify-cleanup.sh",
+      "original_bytes": 657,
+      "original_sha256_alias": "DIGEST-158",
+      "normalized_text": "cd /tmp\r\nubus call SoftwareModules.DeploymentUnit _get '{\"depth\":1}'\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\nubus call Cthulhu.Container.Instances _get '{\"depth\":1}'\r\nubus call SoftwareModules.ExecEnv.1 _get '{\"depth\":0}'\r\nubus call Rlyeh _get '{\"depth\":0}'\r\nlxc-ls --fancy\r\nlcm list\r\nps w | grep -E '[r]lyeh|[c]thulhu|[t]imingila|[l]cm-adapter|[l]cm-smoke'\r\nfor path in /opt/lcm/717afa32-49ae-5e01-bccd-1426268a18ff /opt/lcm/persistent-data/e5d244c9-af3e-5224-96c0-76ca4ae7290a /opt/lcm/usr/share/rlyeh/images/beacon-lcm-smoke; do\r\n  if [ -e \"$path\" ]; then printf 'RETAINED:%s\r\n' \"$path\"; else printf 'ABSENT:%s\r\n' \"$path\"; fi\r\ndone\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/verify-running-result.json",
+      "original_bytes": 2493,
+      "original_sha256_alias": "DIGEST-159",
+      "normalized_json": {
+        "exit_status": 97,
+        "stdout": "sh <<'LCM_SCRIPT_a7728b1db34b47b59dae3c6cebbb05a8'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.ExecutionUnit.1 _get '{\"depth\":0}'\r\n> lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff\r\n> _lcm_pid=$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -pH)\r\n> case \"$_lcm_pid\" in ''|*[!0-9]*) exit 97;; esac\r\n> cat /proc/$_lcm_pid/root/tmp/beacon-lcm-smoke.started\r\n> readlink /proc/$_lcm_pid/ns/net /proc/1/ns/net\r\n> grep -E '^(Name|State|NSpid|Uid|Gid|CapEff|NoNewPrivs):' /proc/$_lcm_pid/statu\r\r\ns\r\n> \r\n> LCM_SCRIPT_a7728b1db34b47b59dae3c6cebbb05a8\r\n_lcm_smoke_rc=$?\r\nprintf '\\nLCM_END_a7728b1db34b47b59dae3c6cebbb05a8:%s\\n' \"$_lcm_smoke_rc\"\r\n{\r\n        \"SoftwareModules.ExecutionUnit.1.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"MemoryInUse\": 400,\r\n                \"RunLevel\": 0,\r\n                \"AvailableMemory\": 15984,\r\n                \"AutoStart\": false,\r\n                \"ExecEnvLabel\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"ExecutionFaultMessage\": \"\",\r\n                \"VendorLogList\": \"\",\r\n                \"Status\": \"Starting\",\r\n                \"AllocatedDiskSpace\": -1,\r\n                \"ExecutionEnvRef\": \"generic\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"AssociatedProcessList\": \"\",\r\n                \"ExecutionFaultCode\": \"NoFault\",\r\n                \"AvailableDiskSpace\": 980,\r\n                \"Vendor\": \"Owner research\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"AllocatedMemory\": 16384,\r\n                \"DiskSpaceInUse\": 23,\r\n                \"AllocatedCPUPercent\": 10,\r\n                \"EUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"References\": \"\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\"\r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nName:           717afa32-49ae-5e01-bccd-1426268a18ff\r\nState:          STOPPED\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_a7728b1db34b47b59dae3c6cebbb05a8:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_a7728b1db34b47b59dae3c6cebbb05a8:97\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/verify-running-v3-result.json",
+      "original_bytes": 3107,
+      "original_sha256_alias": "DIGEST-160",
+      "normalized_json": {
+        "exit_status": 0,
+        "stdout": "sh <<'LCM_SCRIPT_1653319331884721b486070c2efd210f'\r\n> [ \"$(id -u)\" = 0 ] || exit 125\r\n> cd /tmp\r\n> ubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\n> lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff\r\n> _lcm_pid=$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -pH)\r\n> case \"$_lcm_pid\" in ''|*[!0-9]*) exit 97;; esac\r\n> cat /proc/$_lcm_pid/root/tmp/beacon-lcm-smoke.started\r\n> readlink /proc/$_lcm_pid/ns/net /proc/1/ns/net\r\n> grep -E '^(Name|State|NSpid|Uid|Gid|CapEff|NoNewPrivs):' /proc/$_lcm_pid/statu\r\r\ns\r\n> \r\n> LCM_SCRIPT_1653319331884721b486070c2efd210f\r\n{\r\n        \"SoftwareModules.ExecutionUnit.2.\": {\r\n                \"VendorConfigList\": \"\",\r\n                \"MemoryInUse\": 1248,\r\n                \"RunLevel\": 0,\r\n                \"AvailableMemory\": 15136,\r\n                \"AutoStart\": false,\r\n                \"ExecEnvLabel\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"ExecutionFaultMessage\": \"\",\r\n                \"VendorLogList\": \"\",\r\n                \"Status\": \"Starting\",\r\n                \"AllocatedDiskSpace\": -1,\r\n                \"ExecutionEnvRef\": \"generic\",\r\n                \"Name\": \"beacon-lcm-smoke\",\r\n                \"AssociatedProcessList\": \"\",\r\n                \"ExecutionFaultCode\": \"NoFault\",\r\n                \"AvailableDiskSpace\": 980,\r\n                \"Vendor\": \"Owner research\",\r\n                \"Description\": \"Writes a container-local marker and sleeps; no network activity or host hooks.\",\r\n                \"AllocatedMemory\": 16384,\r\n                \"DiskSpaceInUse\": 23,\r\n                \"AllocatedCPUPercent\": 10,\r\n                \"EUID\": \"717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"References\": \"\",\r\n                \"Alias\": \"cpe-717afa32-49ae-5e01-bccd-1426268a18ff\",\r\n                \"Version\": \"0.0.1\"\r\n        },\r\n        \"SoftwareModules.ExecutionUnit.\": {\r\n                \r\n        }\r\n}\r\n{\r\n        \r\n}\r\n{\r\n        \"amxd-error-code\": 0\r\n}\r\nName:           717afa32-49ae-5e01-bccd-1426268a18ff\r\nState:          RUNNING\r\nPID:            19289\r\nIP:             MESH-37591-LIVE-LAN-IP\r\nCPU use:        0.03 seconds\r\nMemory use:     536.00 KiB\r\nKMem use:       272.00 KiB\r\nbeacon-lcm-smoke 0.0.1 started\r\nBusyBox v1.34.1 (2020-05-16 18:32:20 UTC) multi-call binary.\r\n\r\nUsage: readlink [-fnv] FILE\r\n\r\nDisplay the value of a symlink\r\n\r\n        -f      Canonicalize by following all symlinks\r\n        -n      Don't add newline\r\n        -v      Verbose\r\nName:   lcm-smoke\r\nState:  S (sleeping)\r\nUid:    0       0       0       0\r\nGid:    0       0       0       0\r\nNSpid:  19289   1\r\nCapEff: 0000003fffffffff\r\nNoNewPrivs:     0\r\n/lib/firmware # _lcm_smoke_rc=$?\r\n/lib/firmware # printf '\\nLCM_END_1653319331884721b486070c2efd210f:%s\\n' \"$_lcm_\r\r\nsmoke_rc\"\r\n\r\nLCM_END_1653319331884721b486070c2efd210f:0\r\n/lib/firmware # ",
+        "source_IP": "<MESH-37591-LIVE-CLIENT-IP>"
+      }
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/verify-running-v3.sh",
+      "original_bytes": 418,
+      "original_sha256_alias": "DIGEST-161",
+      "normalized_text": "cd /tmp\r\nubus call SoftwareModules.ExecutionUnit _get '{\"depth\":1}'\r\nlxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff\r\n_lcm_pid=$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -pH)\r\ncase \"$_lcm_pid\" in ''|*[!0-9]*) exit 97;; esac\r\ncat /proc/$_lcm_pid/root/tmp/beacon-lcm-smoke.started\r\nreadlink /proc/$_lcm_pid/ns/net /proc/1/ns/net\r\ngrep -E '^(Name|State|NSpid|Uid|Gid|CapEff|NoNewPrivs):' /proc/$_lcm_pid/status\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/verify-running.sh",
+      "original_bytes": 420,
+      "original_sha256_alias": "DIGEST-162",
+      "normalized_text": "cd /tmp\r\nubus call SoftwareModules.ExecutionUnit.1 _get '{\"depth\":0}'\r\nlxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff\r\n_lcm_pid=$(lxc-info -n 717afa32-49ae-5e01-bccd-1426268a18ff -pH)\r\ncase \"$_lcm_pid\" in ''|*[!0-9]*) exit 97;; esac\r\ncat /proc/$_lcm_pid/root/tmp/beacon-lcm-smoke.started\r\nreadlink /proc/$_lcm_pid/ns/net /proc/1/ns/net\r\ngrep -E '^(Name|State|NSpid|Uid|Gid|CapEff|NoNewPrivs):' /proc/$_lcm_pid/status\r\n"
+    },
+    {
+      "source": "private-source://LCM-SMOKE-TEST/wrap-up-checkpoint.json",
+      "original_bytes": 885,
+      "original_sha256_alias": "DIGEST-163",
+      "normalized_json": {
+        "date": "2026-10-28",
+        "scope": "User requested immediate wrap-up; experiment completed and cleaned. No further deployment pending.",
+        "tested_model": "G6 HJL.L91p01 only",
+        "live_success": [
+          "unsigned private-HTTPS download",
+          "stock install",
+          "explicit start",
+          "PID1 marker",
+          "Active/Running",
+          "explicit stop",
+          "normal uninstall",
+          "cleanup verified"
+        ],
+        "app_removed": true,
+        "registry_stopped": true,
+        "verification_flags_changed": false,
+        "DNS_WiFi_firmware_changed": false,
+        "rebooted": false,
+        "Rlyeh_restored_once": true,
+        "remaining": [
+          "Publish/alias exact evidence and tutorial",
+          "B9 trusted-registry test if requested",
+          "Updates/retention/autostart/reboot/bank persistence",
+          "AdGuard-specific deployment planning"
+        ],
+        "private_evidence": "project://Nokia-Beacon-G6/config-private/lcm-smoke-test-20261028/"
+      }
+    }
+  ]
+}

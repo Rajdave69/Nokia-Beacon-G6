@@ -1,0 +1,13 @@
+cap_watchdog_get_callback: .text+0x7980, 48 bytes; sha256 eba9110e913bff0ec6be0465e210f118112613fe20a22e90564b285b3c3c8224
+00007980: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00007984: fd030091  mov x29, sp
+00007988: f30b00f9  str x19, [sp, #0x10]
+0000798c: f30300aa  mov x19, x0
+00007990: e0031eaa  mov x0, x30
+00007994: 00000094  bl #0x7994 ; reloc _mcount+0x0 type=283
+00007998: 61120091  add x1, x19, #4
+0000799c: 60024079  ldrh w0, [x19]
+000079a0: 00000094  bl #0x79a0 ; reloc cap_watchdog_get+0x0 type=283
+000079a4: f30b40f9  ldr x19, [sp, #0x10]
+000079a8: fd7bc2a8  ldp x29, x30, [sp], #0x20
+000079ac: c0035fd6  ret 

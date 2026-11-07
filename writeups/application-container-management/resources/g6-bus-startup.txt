@@ -1,0 +1,178 @@
+00403998: fd030091  mov x29, sp
+0040399c: f35301a9  stp x19, x20, [sp, #0x10]
+004039a0: f55b02a9  stp x21, x22, [sp, #0x20]
+004039a4: a1050054  b.ne #0x403a58
+004039a8: 200440f9  ldr x0, [x1, #8]
+004039ac: 600500b4  cbz x0, #0x403a58
+004039b0: 81000090  adrp x1, #0x413000
+004039b4: 21381091  add x1, x1, #0x40e
+004039b8: 46ffff97  bl #0x4036d0 ; heuristic strcmp@plt {"x1": "--debug"}
+004039bc: e0040035  cbnz w0, #0x403a58
+004039c0: 01008052  mov w1, #0
+004039c4: 82000090  adrp x2, #0x413000
+004039c8: 42581091  add x2, x2, #0x416
+004039cc: c0008052  mov w0, #6
+004039d0: a8feff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "Debug mode: on\n"}
+004039d4: 01048052  mov w1, #0x20
+004039d8: 200100b0  adrp x0, #0x428000
+004039dc: 002442f9  ldr x0, [x0, #0x448]
+004039e0: 330100b0  adrp x19, #0x428000
+004039e4: 02138052  mov w2, #0x98
+004039e8: 72feff97  bl #0x4033b0 ; heuristic openlog@plt {"x0": "lcm-adapter", "x1": 32, "x2": 152}
+004039ec: 60e641f9  ldr x0, [x19, #0x3c8]
+004039f0: c2368052  mov w2, #0x1b6
+004039f4: 41088052  mov w1, #0x42
+004039f8: e6fdff97  bl #0x403190 ; heuristic open@plt {"x0": "/tmp/run/lcm_adapter.pid", "x1": 66, "x2": 438}
+004039fc: f403002a  mov w20, w0
+00403a00: c1008052  mov w1, #6
+00403a04: 4bffff97  bl #0x403730 ; heuristic flock@plt {"x1": 6}
+00403a08: a0010035  cbnz w0, #0x403a3c
+00403a0c: 010080d2  mov x1, #0
+00403a10: e003142a  mov w0, w20
+00403a14: 83feff97  bl #0x403420 ; heuristic ftruncate@plt {"x1": 0}
+00403a18: 1f040031  cmn w0, #1
+00403a1c: 21020054  b.ne #0x403a60
+00403a20: 83000090  adrp x3, #0x413000
+00403a24: 63a00c91  add x3, x3, #0x328
+00403a28: 82000090  adrp x2, #0x413000
+00403a2c: 42981091  add x2, x2, #0x426
+00403a30: 01008052  mov w1, #0
+00403a34: 60008052  mov w0, #3
+00403a38: 8efeff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "[%s] Error truncating pid file", "x3": "is_process_running"}
+00403a3c: 82000090  adrp x2, #0x413000
+00403a40: 429c1191  add x2, x2, #0x467
+00403a44: 01008052  mov w1, #0
+00403a48: 60008052  mov w0, #3
+00403a4c: 89feff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "LCM Adapter is already running"}
+00403a50: 20008052  mov w0, #1
+00403a54: 6fffff97  bl #0x403810 ; heuristic exit@plt {"x0": 1}
+00403a58: 01008052  mov w1, #0
+00403a5c: dfffff17  b #0x4039d8
+00403a60: bf5b00f9  str xzr, [x29, #0xb0]
+00403a64: bf730179  strh wzr, [x29, #0xb8]
+00403a68: 7afeff97  bl #0x403450 ; heuristic getpid@plt {"x1": 0}
+00403a6c: 620000f0  adrp x2, #0x412000
+00403a70: 42983c91  add x2, x2, #0xf26
+00403a74: e303002a  mov w3, w0
+00403a78: 410180d2  mov x1, #0xa
+00403a7c: a0c30291  add x0, x29, #0xb0
+00403a80: b8feff97  bl #0x403560 ; heuristic snprintf@plt {"x1": 10, "x2": "%d\n"}
+00403a84: a0c30291  add x0, x29, #0xb0
+00403a88: aafdff97  bl #0x403130 ; heuristic strlen@plt {}
+00403a8c: e20300aa  mov x2, x0
+00403a90: a1c30291  add x1, x29, #0xb0
+00403a94: e003142a  mov w0, w20
+00403a98: 1effff97  bl #0x403710 ; heuristic write@plt {}
+00403a9c: 1f0400b1  cmn x0, #1
+00403aa0: c1000054  b.ne #0x403ab8
+00403aa4: 83000090  adrp x3, #0x413000
+00403aa8: 63a00c91  add x3, x3, #0x328
+00403aac: 82000090  adrp x2, #0x413000
+00403ab0: 42141191  add x2, x2, #0x445
+00403ab4: dfffff17  b #0x403a30
+00403ab8: 000080d2  mov x0, #0
+00403abc: 45feff97  bl #0x4033d0 ; heuristic ubus_connect@plt {"x0": 0, "x2": "[%s] Error while writing pid file", "x3": "is_process_running"}
+00403ac0: 410100b0  adrp x1, #0x42c000
+00403ac4: 36401591  add x22, x1, #0x550
+00403ac8: f50301aa  mov x21, x1
+00403acc: 20a802f9  str x0, [x1, #0x550]
+00403ad0: 200100b5  cbnz x0, #0x403af4
+00403ad4: 82000090  adrp x2, #0x413000
+00403ad8: 42181291  add x2, x2, #0x486
+00403adc: 030080d2  mov x3, #0
+00403ae0: 01008052  mov w1, #0
+00403ae4: 60008052  mov w0, #3
+00403ae8: 62feff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "Failed to connect to system ubus: %s", "x3": 0}
+00403aec: da230094  bl #0x40ca54 ; heuristic 0x40ca54 {}
+00403af0: d8ffff17  b #0x403a50
+00403af4: 94000090  adrp x20, #0x413000
+00403af8: 94ae1291  add x20, x20, #0x4ab
+00403afc: e00314aa  mov x0, x20
+00403b00: 34feff97  bl #0x4033d0 ; heuristic ubus_connect@plt {"x0": "/var/run/ubus-session/ubus.sock"}
+00403b04: c00600f9  str x0, [x22, #8]
+00403b08: a00000b5  cbnz x0, #0x403b1c
+00403b0c: 82000090  adrp x2, #0x413000
+00403b10: 422c1391  add x2, x2, #0x4cb
+00403b14: e30314aa  mov x3, x20
+00403b18: f2ffff17  b #0x403ae0
+00403b1c: a0aa42f9  ldr x0, [x21, #0x550]
+00403b20: 76040094  bl #0x404cf8 ; heuristic 0x404cf8 {"x2": "Failed to connect to service ubus: %s", "x3": "/var/run/ubus-session/ubus.sock"}
+00403b24: c0000034  cbz w0, #0x403b3c
+00403b28: 82000090  adrp x2, #0x413000
+00403b2c: 42c41391  add x2, x2, #0x4f1
+00403b30: 01008052  mov w1, #0
+00403b34: 60008052  mov w0, #3
+00403b38: 4efeff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "Failed to set global limits"}
+00403b3c: a8050094  bl #0x4051dc ; heuristic 0x4051dc {}
+00403b40: c0000034  cbz w0, #0x403b58
+00403b44: 82000090  adrp x2, #0x413000
+00403b48: 42341491  add x2, x2, #0x50d
+00403b4c: 01008052  mov w1, #0
+00403b50: 60008052  mov w0, #3
+00403b54: 47feff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 3, "x1": 0, "x2": "Failed to set ExecEnv"}
+00403b58: 73220f91  add x19, x19, #0x3c8
+00403b5c: a2aa42f9  ldr x2, [x21, #0x550]
+00403b60: b4421591  add x20, x21, #0x550
+00403b64: a1c30091  add x1, x29, #0x30
+00403b68: 600640f9  ldr x0, [x19, #8]
+00403b6c: c20e0094  bl #0x407674 ; heuristic 0x407674 {"x0": "nokia.prpllcmadapter.requestOp"}
+00403b70: c0000034  cbz w0, #0x403b88
+00403b74: 77ffff97  bl #0x403950 ; heuristic ubus_strerror@plt {}
+00403b78: e30300aa  mov x3, x0
+00403b7c: 82000090  adrp x2, #0x413000
+00403b80: 428c1491  add x2, x2, #0x523
+00403b84: d7ffff17  b #0x403ae0
+00403b88: 01008052  mov w1, #0
+00403b8c: c0008052  mov w0, #6
+00403b90: 82000090  adrp x2, #0x413000
+00403b94: 427c1591  add x2, x2, #0x55f
+00403b98: 36feff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "Listener successfully registerd to system ubus."}
+00403b9c: 600640f9  ldr x0, [x19, #8]
+00403ba0: a1c30291  add x1, x29, #0xb0
+00403ba4: 820640f9  ldr x2, [x20, #8]
+00403ba8: b30e0094  bl #0x407674 ; heuristic 0x407674 {"x0": "nokia.prpllcmadapter.requestOp"}
+00403bac: c0000034  cbz w0, #0x403bc4
+00403bb0: 68ffff97  bl #0x403950 ; heuristic ubus_strerror@plt {}
+00403bb4: e30300aa  mov x3, x0
+00403bb8: 82000090  adrp x2, #0x413000
+00403bbc: 423c1691  add x2, x2, #0x58f
+00403bc0: c8ffff17  b #0x403ae0
+00403bc4: 01008052  mov w1, #0
+00403bc8: c0008052  mov w0, #6
+00403bcc: 82000090  adrp x2, #0x413000
+00403bd0: 42301791  add x2, x2, #0x5cc
+00403bd4: 27feff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "Listener successfully registerd to service ubus."}
+00403bd8: a1aa42f9  ldr x1, [x21, #0x550]
+00403bdc: 600a40f9  ldr x0, [x19, #0x10]
+00403be0: bf0e0094  bl #0x4076dc ; heuristic 0x4076dc {"x0": "SoftwareModules"}
+00403be4: 40f8ff35  cbnz w0, #0x403aec
+00403be8: e5370094  bl #0x411b7c ; heuristic 0x411b7c {}
+00403bec: 82000090  adrp x2, #0x413000
+00403bf0: 42f41791  add x2, x2, #0x5fd
+00403bf4: 01008052  mov w1, #0
+00403bf8: c0008052  mov w0, #6
+00403bfc: 1dfeff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "Starting ubus loop"}
+00403c00: 85230094  bl #0x40ca14 ; heuristic 0x40ca14 {}
+00403c04: 82000090  adrp x2, #0x413000
+00403c08: 42401891  add x2, x2, #0x610
+00403c0c: 01008052  mov w1, #0
+00403c10: c0008052  mov w0, #6
+00403c14: 17feff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "Freeing ubus"}
+00403c18: 8f230094  bl #0x40ca54 ; heuristic 0x40ca54 {}
+00403c1c: 03008052  mov w3, #0
+00403c20: 01008052  mov w1, #0
+00403c24: c0008052  mov w0, #6
+00403c28: 82000090  adrp x2, #0x413000
+00403c2c: 42741891  add x2, x2, #0x61d
+00403c30: 10feff97  bl #0x403470 ; heuristic __syslog_chk@plt {"x0": 6, "x1": 0, "x2": "Exit code: %d", "x3": 0}
+00403c34: 00008052  mov w0, #0
+00403c38: f35341a9  ldp x19, x20, [sp, #0x10]
+00403c3c: f55b42a9  ldp x21, x22, [sp, #0x20]
+00403c40: fd7bd3a8  ldp x29, x30, [sp], #0x130
+00403c44: c0035fd6  ret 
+00403c48: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+00403c4c: 040080d2  mov x4, #0
+00403c50: 030080d2  mov x3, #0
+00403c54: 620000d0  adrp x2, #0x411000
+00403c58: 42e01191  add x2, x2, #0x478
+00403c5c: fd030091  mov x29, sp

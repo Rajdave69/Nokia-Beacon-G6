@@ -1,0 +1,45 @@
+
+ics_set_default_cfg_time:
+0001c918: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+0001c91c: fd030091  mov x29, sp
+0001c920: f40f00f9  str x20, [sp, #0x18]
+0001c924: 940200d0  adrp x20, #0x6e000
+0001c928: f61700f9  str x22, [sp, #0x28]
+0001c92c: 163c0012  and w22, w0, #0xffff
+0001c930: 819647f9  ldr x1, [x20, #0xf28]
+0001c934: e003162a  mov w0, w22
+0001c938: 220040f9  ldr x2, [x1]
+0001c93c: a21f00f9  str x2, [x29, #0x38]
+0001c940: 020080d2  mov x2, #0
+0001c944: f3e0ff97  bl #0x14d10 ; heuristic ics_map_m2_bss_freq_band_to_index@plt {"x1": "@__stack_chk_guard", "x2": 0}
+0001c948: 4003f837  tbnz w0, #0x1f, #0x1c9b0
+0001c94c: 007c4093  sxtw x0, w0
+0001c950: b51300f9  str x21, [x29, #0x20]
+0001c954: 0004008b  add x0, x0, x0, lsl #1
+0001c958: 950200d0  adrp x21, #0x6e000
+0001c95c: b30b00f9  str x19, [x29, #0x10]
+0001c960: 13f07dd3  lsl x19, x0, #3
+0001c964: b53247f9  ldr x21, [x21, #0xe60]
+0001c968: 2ae1ff97  bl #0x14e10 ; heuristic get_current_time@plt {}
+0001c96c: a302138b  add x3, x21, x19
+0001c970: 02008052  mov w2, #0
+0001c974: b66a3378  strh w22, [x21, x19]
+0001c978: 608400a9  stp x0, x1, [x3, #8]
+0001c97c: b30b40f9  ldr x19, [x29, #0x10]
+0001c980: b51340f9  ldr x21, [x29, #0x20]
+0001c984: 949647f9  ldr x20, [x20, #0xf28]
+0001c988: e003022a  mov w0, w2
+0001c98c: a21f40f9  ldr x2, [x29, #0x38]
+0001c990: 810240f9  ldr x1, [x20]
+0001c994: 410001ca  eor x1, x2, x1
+0001c998: 010100b5  cbnz x1, #0x1c9b8
+0001c99c: f40f40f9  ldr x20, [sp, #0x18]
+0001c9a0: f61740f9  ldr x22, [sp, #0x28]
+0001c9a4: fd7bc4a8  ldp x29, x30, [sp], #0x40
+0001c9a8: c0035fd6  ret 
+0001c9ac: 1f2003d5  nop 
+0001c9b0: 02008012  mov w2, #-1
+0001c9b4: f4ffff17  b #0x1c984
+0001c9b8: b30b00f9  str x19, [x29, #0x10]
+0001c9bc: b51300f9  str x21, [x29, #0x20]
+0001c9c0: 80deff97  bl #0x143c0 ; heuristic __stack_chk_fail@plt {"x2": -1}

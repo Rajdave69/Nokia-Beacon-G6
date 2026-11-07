@@ -1,0 +1,65 @@
+00556ca0: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+00556ca4: fd030091  mov x29, sp
+00556ca8: a01700f9  str x0, [x29, #0x28]
+00556cac: a11300f9  str x1, [x29, #0x20]
+00556cb0: a21f00b9  str w2, [x29, #0x1c]
+00556cb4: a30b00f9  str x3, [x29, #0x10]
+00556cb8: bf2700f9  str xzr, [x29, #0x48]
+00556cbc: bf1f00f9  str xzr, [x29, #0x38]
+00556cc0: bf4700b9  str wzr, [x29, #0x44]
+00556cc4: a0130090  adrp x0, #0x7ca000
+00556cc8: 00401a91  add x0, x0, #0x690
+00556ccc: 040080d2  mov x4, #0
+00556cd0: e30300aa  mov x3, x0
+00556cd4: a20b40f9  ldr x2, [x29, #0x10]
+00556cd8: a11f40b9  ldr w1, [x29, #0x1c]
+00556cdc: a01340f9  ldr x0, [x29, #0x20]
+00556ce0: d124fc97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_port_discard_control_get_drop_single_tag cfg ", "x4": 0}
+00556ce4: 1f040071  cmp w0, #1
+00556ce8: 60050054  b.eq #0x556d94
+00556cec: a00b40f9  ldr x0, [x29, #0x10]
+00556cf0: 00200091  add x0, x0, #8
+00556cf4: 010040f9  ldr x1, [x0]
+00556cf8: 00200090  adrp x0, #0x956000
+00556cfc: 00e00291  add x0, x0, #0xb8
+00556d00: 02e842f9  ldr x2, [x0, #0x5d0]
+00556d04: a0e30091  add x0, x29, #0x38
+00556d08: 04008052  mov w4, #0
+00556d0c: e30302aa  mov x3, x2
+00556d10: e20300aa  mov x2, x0
+00556d14: a01340f9  ldr x0, [x29, #0x20]
+00556d18: ea1ffc97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+00556d1c: a04700b9  str w0, [x29, #0x44]
+00556d20: a04740b9  ldr w0, [x29, #0x44]
+00556d24: 1f000071  cmp w0, #0
+00556d28: ea010054  b.ge #0x556d64
+00556d2c: a04740b9  ldr w0, [x29, #0x44]
+00556d30: 1f040031  cmn w0, #1
+00556d34: 60000054  b.eq #0x556d40
+00556d38: a04740b9  ldr w0, [x29, #0x44]
+00556d3c: 02000014  b #0x556d44
+00556d40: 80008012  mov w0, #-5
+00556d44: 4d1efc97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+00556d48: e10300aa  mov x1, x0
+00556d4c: a0130090  adrp x0, #0x7ca000
+00556d50: 00201b91  add x0, x0, #0x6c8
+00556d54: e20300aa  mov x2, x0
+00556d58: a01340f9  ldr x0, [x29, #0x20]
+00556d5c: b11efc97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_port_discard_control_get_drop_single_tag', argument 1 of type 'ca_port_discard_control_t *'"}
+00556d60: 0e000014  b #0x556d98
+00556d64: a01f40f9  ldr x0, [x29, #0x38]
+00556d68: a02700f9  str x0, [x29, #0x48]
+00556d6c: a02740f9  ldr x0, [x29, #0x48]
+00556d70: ce950694  bl #0x6fc4a8 ; heuristic 0x6fc4a8 {}
+00556d74: a04300b9  str w0, [x29, #0x40]
+00556d78: a04340b9  ldr w0, [x29, #0x40]
+00556d7c: 0d27fc97  bl #0x4609b0 ; heuristic 0x4609b0 {}
+00556d80: e10300aa  mov x1, x0
+00556d84: a01340f9  ldr x0, [x29, #0x20]
+00556d88: 2ee9fa97  bl #0x411240 ; heuristic Tcl_SetObjResult@plt {}
+00556d8c: 00008052  mov w0, #0
+00556d90: 03000014  b #0x556d9c
+00556d94: 1f2003d5  nop 
+00556d98: 20008052  mov w0, #1
+00556d9c: fd7bc5a8  ldp x29, x30, [sp], #0x50
+00556da0: c0035fd6  ret 

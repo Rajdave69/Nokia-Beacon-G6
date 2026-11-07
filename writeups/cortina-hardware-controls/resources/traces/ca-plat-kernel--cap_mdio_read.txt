@@ -1,0 +1,39 @@
+cap_mdio_read: .text+0xb5e8, 152 bytes; sha256 3f090e5da4aaaa6eef73ca4f782515237288b07ba5ee2a91bba6fd822738d632
+0000b5e8: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+0000b5ec: fd030091  mov x29, sp
+0000b5f0: f35301a9  stp x19, x20, [sp, #0x10]
+0000b5f4: f55b02a9  stp x21, x22, [sp, #0x20]
+0000b5f8: f76303a9  stp x23, x24, [sp, #0x30]
+0000b5fc: 13000090  adrp x19, #0xb000 ; reloc .bss+0x388 type=275
+0000b600: 73020091  add x19, x19, #0 ; reloc .bss+0x388 type=277
+0000b604: 371c0012  and w23, w1, #0xff
+0000b608: e0031eaa  mov x0, x30
+0000b60c: 561c0012  and w22, w2, #0xff
+0000b610: 741c0012  and w20, w3, #0xff
+0000b614: 983c0012  and w24, w4, #0xffff
+0000b618: f50305aa  mov x21, x5
+0000b61c: 00000094  bl #0xb61c ; reloc _mcount+0x0 type=283
+0000b620: 617a40f9  ldr x1, [x19, #0xf0]
+0000b624: 20008052  mov w0, #1
+0000b628: 210200b4  cbz x1, #0xb66c
+0000b62c: 600a40f9  ldr x0, [x19, #0x10]
+0000b630: 94121053  ubfiz w20, w20, #0x10, #5
+0000b634: 9402182a  orr w20, w20, w24
+0000b638: 00000094  bl #0xb638 ; reloc ca_mutex_lock+0x0 type=283
+0000b63c: 637a40f9  ldr x3, [x19, #0xf0]
+0000b640: ff020071  cmp w23, #0
+0000b644: 82020232  orr w2, w20, #0x40000000
+0000b648: e103162a  mov w1, w22
+0000b64c: e00303aa  mov x0, x3
+0000b650: 4200941a  csel w2, w2, w20, eq
+0000b654: 632c40f9  ldr x3, [x3, #0x58]
+0000b658: 60003fd6  blr x3
+0000b65c: a0020079  strh w0, [x21]
+0000b660: 600a40f9  ldr x0, [x19, #0x10]
+0000b664: 00000094  bl #0xb664 ; reloc ca_mutex_unlock+0x0 type=283
+0000b668: 00008052  mov w0, #0
+0000b66c: f35341a9  ldp x19, x20, [sp, #0x10]
+0000b670: f55b42a9  ldp x21, x22, [sp, #0x20]
+0000b674: f76343a9  ldp x23, x24, [sp, #0x30]
+0000b678: fd7bc4a8  ldp x29, x30, [sp], #0x40
+0000b67c: c0035fd6  ret 

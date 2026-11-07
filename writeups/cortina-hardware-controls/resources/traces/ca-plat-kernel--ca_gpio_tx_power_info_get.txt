@@ -1,0 +1,34 @@
+ca_gpio_tx_power_info_get: .text+0xc298, 132 bytes; sha256 1301a842d2085a3ba67434965db36066954bbdec03a31554dbcc5076e7e86785
+0000c298: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0000c29c: fd030091  mov x29, sp
+0000c2a0: f30b00f9  str x19, [sp, #0x10]
+0000c2a4: e0031eaa  mov x0, x30
+0000c2a8: f30301aa  mov x19, x1
+0000c2ac: 00000094  bl #0xc2ac ; reloc _mcount+0x0 type=283
+0000c2b0: 00000090  adrp x0, #0xc000 ; reloc .data+0x40 type=275
+0000c2b4: 000040b9  ldr w0, [x0] ; reloc .data+0x40 type=285
+0000c2b8: 1f040031  cmn w0, #1
+0000c2bc: a0020054  b.eq #0xc310
+0000c2c0: 01000090  adrp x1, #0xc000 ; reloc aal_plat_peri_reg_iobase+0x0 type=275
+0000c2c4: 210040f9  ldr x1, [x1] ; reloc aal_plat_peri_reg_iobase+0x0 type=286
+0000c2c8: 21c00a91  add x1, x1, #0x2b0
+0000c2cc: 210040b9  ldr w1, [x1]
+0000c2d0: 9f3d03d5  dsb ld
+0000c2d4: e203012a  mov w2, w1
+0000c2d8: 420002ca  eor x2, x2, x2
+0000c2dc: 020000b5  cbnz x2, #0xc2dc
+0000c2e0: 03000090  adrp x3, #0xc000 ; reloc .bss+0x470 type=275
+0000c2e4: 22008052  mov w2, #1
+0000c2e8: 4020c01a  lsl w0, w2, w0
+0000c2ec: 0000010a  and w0, w0, w1
+0000c2f0: 610040b9  ldr w1, [x3] ; reloc .bss+0x470 type=285
+0000c2f4: 3f00006b  cmp w1, w0
+0000c2f8: 81000054  b.ne #0xc308
+0000c2fc: 00008052  mov w0, #0
+0000c300: 620200b9  str w2, [x19]
+0000c304: 03000014  b #0xc310
+0000c308: 00008052  mov w0, #0
+0000c30c: 7f0200b9  str wzr, [x19]
+0000c310: f30b40f9  ldr x19, [sp, #0x10]
+0000c314: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0000c318: c0035fd6  ret 

@@ -1,0 +1,16 @@
+
+cli_aal_port_ilpb_cfg_get:
+0020f598: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0020f59c: fd030091  mov x29, sp
+0020f5a0: a01700f9  str x0, [x29, #0x28]
+0020f5a4: a12700b9  str w1, [x29, #0x24]
+0020f5a8: a20f00f9  str x2, [x29, #0x18]
+0020f5ac: c00500d0  adrp x0, #0x2c9000
+0020f5b0: 00800d91  add x0, x0, #0x360
+0020f5b4: a30f40f9  ldr x3, [x29, #0x18]
+0020f5b8: a22740b9  ldr w2, [x29, #0x24]
+0020f5bc: e10300aa  mov x1, x0
+0020f5c0: a01740f9  ldr x0, [x29, #0x28]
+0020f5c4: 9b50ff97  bl #0x1e3830 ; heuristic cli_cmd_ioctl@plt {"x1": "cli_aal_port_ilpb_cfg_get"}
+0020f5c8: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0020f5cc: c0035fd6  ret 

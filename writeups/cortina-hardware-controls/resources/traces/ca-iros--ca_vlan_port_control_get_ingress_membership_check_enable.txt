@@ -1,0 +1,65 @@
+00565464: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+00565468: fd030091  mov x29, sp
+0056546c: a01700f9  str x0, [x29, #0x28]
+00565470: a11300f9  str x1, [x29, #0x20]
+00565474: a21f00b9  str w2, [x29, #0x1c]
+00565478: a30b00f9  str x3, [x29, #0x10]
+0056547c: bf2700f9  str xzr, [x29, #0x48]
+00565480: bf1f00f9  str xzr, [x29, #0x38]
+00565484: bf4700b9  str wzr, [x29, #0x44]
+00565488: 601300d0  adrp x0, #0x7d3000
+0056548c: 00002291  add x0, x0, #0x880
+00565490: 040080d2  mov x4, #0
+00565494: e30300aa  mov x3, x0
+00565498: a20b40f9  ldr x2, [x29, #0x10]
+0056549c: a11f40b9  ldr w1, [x29, #0x1c]
+005654a0: a01340f9  ldr x0, [x29, #0x20]
+005654a4: e0eafb97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_vlan_port_control_get_ingress_membership_check_enable cfg ", "x4": 0}
+005654a8: 1f040071  cmp w0, #1
+005654ac: 60050054  b.eq #0x565558
+005654b0: a00b40f9  ldr x0, [x29, #0x10]
+005654b4: 00200091  add x0, x0, #8
+005654b8: 010040f9  ldr x1, [x0]
+005654bc: 801f00b0  adrp x0, #0x956000
+005654c0: 00e00291  add x0, x0, #0xb8
+005654c4: 02b443f9  ldr x2, [x0, #0x768]
+005654c8: a0e30091  add x0, x29, #0x38
+005654cc: 04008052  mov w4, #0
+005654d0: e30302aa  mov x3, x2
+005654d4: e20300aa  mov x2, x0
+005654d8: a01340f9  ldr x0, [x29, #0x20]
+005654dc: f9e5fb97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+005654e0: a04700b9  str w0, [x29, #0x44]
+005654e4: a04740b9  ldr w0, [x29, #0x44]
+005654e8: 1f000071  cmp w0, #0
+005654ec: ea010054  b.ge #0x565528
+005654f0: a04740b9  ldr w0, [x29, #0x44]
+005654f4: 1f040031  cmn w0, #1
+005654f8: 60000054  b.eq #0x565504
+005654fc: a04740b9  ldr w0, [x29, #0x44]
+00565500: 02000014  b #0x565508
+00565504: 80008012  mov w0, #-5
+00565508: 5ce4fb97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+0056550c: e10300aa  mov x1, x0
+00565510: 601300d0  adrp x0, #0x7d3000
+00565514: 00002391  add x0, x0, #0x8c0
+00565518: e20300aa  mov x2, x0
+0056551c: a01340f9  ldr x0, [x29, #0x20]
+00565520: c0e4fb97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_vlan_port_control_get_ingress_membership_check_enable', argument 1 of type 'ca_vlan_port_control_t *'"}
+00565524: 0e000014  b #0x56555c
+00565528: a01f40f9  ldr x0, [x29, #0x38]
+0056552c: a02700f9  str x0, [x29, #0x48]
+00565530: a02740f9  ldr x0, [x29, #0x48]
+00565534: 134d0694  bl #0x6f8980 ; heuristic 0x6f8980 {}
+00565538: a04300b9  str w0, [x29, #0x40]
+0056553c: a04340b9  ldr w0, [x29, #0x40]
+00565540: 1cedfb97  bl #0x4609b0 ; heuristic 0x4609b0 {}
+00565544: e10300aa  mov x1, x0
+00565548: a01340f9  ldr x0, [x29, #0x20]
+0056554c: 3daffa97  bl #0x411240 ; heuristic Tcl_SetObjResult@plt {}
+00565550: 00008052  mov w0, #0
+00565554: 03000014  b #0x565560
+00565558: 1f2003d5  nop 
+0056555c: 20008052  mov w0, #1
+00565560: fd7bc5a8  ldp x29, x30, [sp], #0x50
+00565564: c0035fd6  ret 

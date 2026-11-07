@@ -1,0 +1,65 @@
+004c43ac: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+004c43b0: fd030091  mov x29, sp
+004c43b4: a01700f9  str x0, [x29, #0x28]
+004c43b8: a11300f9  str x1, [x29, #0x20]
+004c43bc: a21f00b9  str w2, [x29, #0x1c]
+004c43c0: a30b00f9  str x3, [x29, #0x10]
+004c43c4: bf2700f9  str xzr, [x29, #0x48]
+004c43c8: bf1f00f9  str xzr, [x29, #0x38]
+004c43cc: bf4700b9  str wzr, [x29, #0x44]
+004c43d0: 401500d0  adrp x0, #0x76e000
+004c43d4: 00003791  add x0, x0, #0xdc0
+004c43d8: 040080d2  mov x4, #0
+004c43dc: e30300aa  mov x3, x0
+004c43e0: a20b40f9  ldr x2, [x29, #0x10]
+004c43e4: a11f40b9  ldr w1, [x29, #0x1c]
+004c43e8: a01340f9  ldr x0, [x29, #0x20]
+004c43ec: 0e6ffe97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_policer_get_pbs cfg ", "x4": 0}
+004c43f0: 1f040071  cmp w0, #1
+004c43f4: 60050054  b.eq #0x4c44a0
+004c43f8: a00b40f9  ldr x0, [x29, #0x10]
+004c43fc: 00200091  add x0, x0, #8
+004c4400: 010040f9  ldr x1, [x0]
+004c4404: 802400d0  adrp x0, #0x956000
+004c4408: 00e00291  add x0, x0, #0xb8
+004c440c: 02d842f9  ldr x2, [x0, #0x5b0]
+004c4410: a0e30091  add x0, x29, #0x38
+004c4414: 04008052  mov w4, #0
+004c4418: e30302aa  mov x3, x2
+004c441c: e20300aa  mov x2, x0
+004c4420: a01340f9  ldr x0, [x29, #0x20]
+004c4424: 276afe97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+004c4428: a04700b9  str w0, [x29, #0x44]
+004c442c: a04740b9  ldr w0, [x29, #0x44]
+004c4430: 1f000071  cmp w0, #0
+004c4434: ea010054  b.ge #0x4c4470
+004c4438: a04740b9  ldr w0, [x29, #0x44]
+004c443c: 1f040031  cmn w0, #1
+004c4440: 60000054  b.eq #0x4c444c
+004c4444: a04740b9  ldr w0, [x29, #0x44]
+004c4448: 02000014  b #0x4c4450
+004c444c: 80008012  mov w0, #-5
+004c4450: 8a68fe97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+004c4454: e10300aa  mov x1, x0
+004c4458: 401500d0  adrp x0, #0x76e000
+004c445c: 00803791  add x0, x0, #0xde0
+004c4460: e20300aa  mov x2, x0
+004c4464: a01340f9  ldr x0, [x29, #0x20]
+004c4468: ee68fe97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_policer_get_pbs', argument 1 of type 'ca_policer_t *'"}
+004c446c: 0e000014  b #0x4c44a4
+004c4470: a01f40f9  ldr x0, [x29, #0x38]
+004c4474: a02700f9  str x0, [x29, #0x48]
+004c4478: a02740f9  ldr x0, [x29, #0x48]
+004c447c: 6f41fd97  bl #0x414a38 ; heuristic 0x414a38 {}
+004c4480: a04300b9  str w0, [x29, #0x40]
+004c4484: a04340b9  ldr w0, [x29, #0x40]
+004c4488: 4a71fe97  bl #0x4609b0 ; heuristic 0x4609b0 {}
+004c448c: e10300aa  mov x1, x0
+004c4490: a01340f9  ldr x0, [x29, #0x20]
+004c4494: 6b33fd97  bl #0x411240 ; heuristic Tcl_SetObjResult@plt {}
+004c4498: 00008052  mov w0, #0
+004c449c: 03000014  b #0x4c44a8
+004c44a0: 1f2003d5  nop 
+004c44a4: 20008052  mov w0, #1
+004c44a8: fd7bc5a8  ldp x29, x30, [sp], #0x50
+004c44ac: c0035fd6  ret 

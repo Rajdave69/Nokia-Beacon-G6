@@ -1,0 +1,65 @@
+aal_get_wdt_config: .text+0xa748, 256 bytes; sha256 3db3e34e6f1cbc3bdc8e7f3920d261096f3e47adc5949ab59882a2bd1b118535
+0000a748: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+0000a74c: fd030091  mov x29, sp
+0000a750: f30b00f9  str x19, [sp, #0x10]
+0000a754: f30301aa  mov x19, x1
+0000a758: e0031eaa  mov x0, x30
+0000a75c: 00000094  bl #0xa75c ; reloc _mcount+0x0 type=283
+0000a760: 02000090  adrp x2, #0xa000 ; reloc .bss+0x328 type=275
+0000a764: 410040f9  ldr x1, [x2] ; reloc .bss+0x328 type=286
+0000a768: 21200091  add x1, x1, #8
+0000a76c: 210040b9  ldr w1, [x1]
+0000a770: 9f3d03d5  dsb ld
+0000a774: e003012a  mov w0, w1
+0000a778: 000000ca  eor x0, x0, x0
+0000a77c: 000000b5  cbnz x0, #0xa77c
+0000a780: 400040f9  ldr x0, [x2] ; reloc .bss+0x328 type=286
+0000a784: a13300b9  str w1, [x29, #0x30]
+0000a788: 00300091  add x0, x0, #0xc
+0000a78c: 000040b9  ldr w0, [x0]
+0000a790: 9f3d03d5  dsb ld
+0000a794: e103002a  mov w1, w0
+0000a798: 210001ca  eor x1, x1, x1
+0000a79c: 010000b5  cbnz x1, #0xa79c
+0000a7a0: a03b00b9  str w0, [x29, #0x38]
+0000a7a4: 20008052  mov w0, #1
+0000a7a8: a13b40b9  ldr w1, [x29, #0x38]
+0000a7ac: 21010034  cbz w1, #0xa7d0
+0000a7b0: a33340b9  ldr w3, [x29, #0x30]
+0000a7b4: 61d09b52  mov w1, #0xde83
+0000a7b8: a03b40b9  ldr w0, [x29, #0x38]
+0000a7bc: 6163a872  movk w1, #0x431b, lsl #16
+0000a7c0: 6000001b  madd w0, w3, w0, w0
+0000a7c4: 007ca19b  umull x0, w0, w1
+0000a7c8: 00fc60d3  lsr x0, x0, #0x20
+0000a7cc: 007c0f53  lsr w0, w0, #0xf
+0000a7d0: 410040f9  ldr x1, [x2] ; reloc .bss+0x328 type=286
+0000a7d4: 21100091  add x1, x1, #4
+0000a7d8: 210040b9  ldr w1, [x1]
+0000a7dc: 9f3d03d5  dsb ld
+0000a7e0: e303012a  mov w3, w1
+0000a7e4: 630003ca  eor x3, x3, x3
+0000a7e8: 030000b5  cbnz x3, #0xa7e8
+0000a7ec: a12b00b9  str w1, [x29, #0x28]
+0000a7f0: a12b40b9  ldr w1, [x29, #0x28]
+0000a7f4: a32b40b9  ldr w3, [x29, #0x28]
+0000a7f8: 21000012  and w1, w1, #1
+0000a7fc: 610200b9  str w1, [x19]
+0000a800: 410040f9  ldr x1, [x2] ; reloc .bss+0x328 type=286
+0000a804: 7f007ff2  tst x3, #2
+0000a808: e2179f1a  cset w2, eq
+0000a80c: 620a00b9  str w2, [x19, #8]
+0000a810: 21400091  add x1, x1, #0x10
+0000a814: 210040b9  ldr w1, [x1]
+0000a818: 9f3d03d5  dsb ld
+0000a81c: e203012a  mov w2, w1
+0000a820: 420002ca  eor x2, x2, x2
+0000a824: 020000b5  cbnz x2, #0xa824
+0000a828: 027c011b  mul w2, w0, w1
+0000a82c: 1f000071  cmp w0, #0
+0000a830: 00008052  mov w0, #0
+0000a834: 2100821a  csel w1, w1, w2, eq
+0000a838: 610600b9  str w1, [x19, #4]
+0000a83c: f30b40f9  ldr x19, [sp, #0x10]
+0000a840: fd7bc4a8  ldp x29, x30, [sp], #0x40
+0000a844: c0035fd6  ret 

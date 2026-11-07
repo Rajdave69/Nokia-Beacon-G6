@@ -1,0 +1,15 @@
+cap_otp_read_callback: .text+0x7648, 56 bytes; sha256 7d69c3a0311c0efeaaaa04688ff468407ac6dbbe662464d35338ead7349193de
+00007648: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0000764c: fd030091  mov x29, sp
+00007650: f30b00f9  str x19, [sp, #0x10]
+00007654: f30300aa  mov x19, x0
+00007658: e0031eaa  mov x0, x30
+0000765c: 00000094  bl #0x765c ; reloc _mcount+0x0 type=283
+00007660: 610a0091  add x1, x19, #2
+00007664: 620644b9  ldr w2, [x19, #0x404]
+00007668: 630a44b9  ldr w3, [x19, #0x408]
+0000766c: 60024079  ldrh w0, [x19]
+00007670: 00000094  bl #0x7670 ; reloc cap_otp_read+0x0 type=283
+00007674: f30b40f9  ldr x19, [sp, #0x10]
+00007678: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0000767c: c0035fd6  ret 

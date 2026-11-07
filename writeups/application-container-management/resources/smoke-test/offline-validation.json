@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "scope": "Offline revalidation and two local rebuilds only; no router or registry contacted",
+  "retained_package_validation": {
+    "schema_version": 1,
+    "scope": "Offline validation of the successful fixture format; no registry connection, router operation or publisher-signature validation",
+    "passed": true,
+    "blob_count": 4,
+    "blobs": [
+      {
+        "digest": "sha256:f5710845f96ad5069fcf3498fef8d0272ba9892bf9bbb9584f483c99c4dcaca9",
+        "bytes": 942,
+        "mediaType": "application/vnd.oci.image.manifest.v1+json"
+      },
+      {
+        "digest": "sha256:85466a651b4ef429be4ef01417f81657baae9a6ea2885d90367f7d9f2b0079e4",
+        "bytes": 791,
+        "mediaType": "application/vnd.oci.image.config.v1+json"
+      },
+      {
+        "digest": "sha256:d4c8d401fb3d5bb6b36f5a5f61bd6bc05b2e897e32e614293126c2ba5cac120a",
+        "bytes": 279544,
+        "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip"
+      },
+      {
+        "digest": "sha256:b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a",
+        "bytes": 424,
+        "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip"
+      }
+    ],
+    "layers": [
+      {
+        "digest": "sha256:d4c8d401fb3d5bb6b36f5a5f61bd6bc05b2e897e32e614293126c2ba5cac120a",
+        "diff_id": "sha256:dddebc7dee187f50fdb6bca768952c3c28bbdc9be0f1cb2b61e5c72cf025dc27",
+        "members": [
+          {
+            "path": "tmp",
+            "mode": "0o1777",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "run",
+            "mode": "0o755",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "proc",
+            "mode": "0o555",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "sys",
+            "mode": "0o555",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "sys/fs",
+            "mode": "0o755",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "sys/fs/cgroup",
+            "mode": "0o755",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "dev",
+            "mode": "0o755",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "dev/pts",
+            "mode": "0o755",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "dev/shm",
+            "mode": "0o1777",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "etc",
+            "mode": "0o755",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "persistent-data",
+            "mode": "0o755",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "temporary-data",
+            "mode": "0o755",
+            "bytes": 0,
+            "type": "directory"
+          },
+          {
+            "path": "lcm-smoke",
+            "mode": "0o755",
+            "bytes": 597912,
+            "type": "file"
+          }
+        ]
+      },
+      {
+        "digest": "sha256:b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a",
+        "diff_id": "sha256:fba4e3b16d0071ad3412b8d3bd595c6bcfb47d2490fd007a63a4551f486245d7",
+        "members": [
+          {
+            "path": "config.json",
+            "mode": "0o644",
+            "bytes": 521,
+            "type": "file"
+          }
+        ]
+      }
+    ],
+    "ELF_bytes": 597912,
+    "ELF_sha256": "653f602952460e3f401445544f42c502f034d780da3b7f293111ae6d51bfa660",
+    "ELF_machine": "AArch64",
+    "ELF_has_PT_INTERP": false,
+    "manifest_digest": "sha256:f5710845f96ad5069fcf3498fef8d0272ba9892bf9bbb9584f483c99c4dcaca9",
+    "tag": "0.0.1",
+    "version": "0.0.1",
+    "application_UUID": "e5d244c9-af3e-5224-96c0-76ca4ae7290a",
+    "runtime": {
+      "hostname": "beacon-lcm-smoke",
+      "linux": {
+        "namespaces": [
+          {
+            "type": "pid"
+          },
+          {
+            "type": "mount"
+          },
+          {
+            "type": "uts"
+          },
+          {
+            "type": "ipc"
+          },
+          {
+            "type": "network"
+          }
+        ],
+        "resources": {
+          "cpu": {
+            "period": 100000,
+            "quota": 10000
+          },
+          "memory": {
+            "limit": 16777216
+          }
+        }
+      },
+      "mounts": [],
+      "ociVersion": "1.0.2",
+      "process": {
+        "args": [
+          "/lcm-smoke"
+        ],
+        "capabilities": {
+          "ambient": [],
+          "bounding": [],
+          "effective": [],
+          "inheritable": [],
+          "permitted": []
+        },
+        "cwd": "/",
+        "env": [
+          "PATH=/usr/bin:/bin"
+        ],
+        "noNewPrivileges": true,
+        "terminal": false,
+        "user": {
+          "gid": 0,
+          "uid": 0
+        }
+      },
+      "root": {
+        "path": "rootfs",
+        "readonly": true
+      }
+    }
+  },
+  "rebuilds": [
+    {
+      "build": 1,
+      "manifest_digest": "sha256:f5710845f96ad5069fcf3498fef8d0272ba9892bf9bbb9584f483c99c4dcaca9",
+      "ELF_sha256": "653f602952460e3f401445544f42c502f034d780da3b7f293111ae6d51bfa660",
+      "qemu_exit": 0,
+      "qemu_stdout": "beacon-lcm-smoke self-test ok\n"
+    },
+    {
+      "build": 2,
+      "manifest_digest": "sha256:f5710845f96ad5069fcf3498fef8d0272ba9892bf9bbb9584f483c99c4dcaca9",
+      "ELF_sha256": "653f602952460e3f401445544f42c502f034d780da3b7f293111ae6d51bfa660",
+      "qemu_exit": 0,
+      "qemu_stdout": "beacon-lcm-smoke self-test ok\n"
+    }
+  ],
+  "original_payload_byte_comparison": {
+    "passed": true,
+    "files": [
+      "manifest.json",
+      "image-config.json",
+      "runtime.json",
+      "rootfs.tar.gz",
+      "runtime.tar.gz",
+      "lcm-smoke",
+      "oci/index.json",
+      "oci/oci-layout"
+    ],
+    "note": "package.json compatibility prose updated after experiment; payload files and OCI digests unchanged"
+  },
+  "tools": {
+    "python3": "Python 3.14.7",
+    "aarch64-linux-gnu-gcc": "aarch64-linux-gnu-gcc (Debian 15.2.0-17) 15.2.0",
+    "aarch64-linux-gnu-strip": "GNU strip (GNU Binutils for Debian) 2.47",
+    "qemu-aarch64": "qemu-aarch64 version 10.2.2 (Debian 1:10.2.2+ds-1)"
+  }
+}

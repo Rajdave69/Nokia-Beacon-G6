@@ -1,0 +1,65 @@
+004c3c68: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+004c3c6c: fd030091  mov x29, sp
+004c3c70: a01700f9  str x0, [x29, #0x28]
+004c3c74: a11300f9  str x1, [x29, #0x20]
+004c3c78: a21f00b9  str w2, [x29, #0x1c]
+004c3c7c: a30b00f9  str x3, [x29, #0x10]
+004c3c80: bf2700f9  str xzr, [x29, #0x48]
+004c3c84: bf1f00f9  str xzr, [x29, #0x38]
+004c3c88: bf4700b9  str wzr, [x29, #0x44]
+004c3c8c: 401500f0  adrp x0, #0x76e000
+004c3c90: 00e02991  add x0, x0, #0xa78
+004c3c94: 040080d2  mov x4, #0
+004c3c98: e30300aa  mov x3, x0
+004c3c9c: a20b40f9  ldr x2, [x29, #0x10]
+004c3ca0: a11f40b9  ldr w1, [x29, #0x1c]
+004c3ca4: a01340f9  ldr x0, [x29, #0x20]
+004c3ca8: df70fe97  bl #0x460024 ; heuristic 0x460024 {"x3": "o:ca_policer_get_cir cfg ", "x4": 0}
+004c3cac: 1f040071  cmp w0, #1
+004c3cb0: 60050054  b.eq #0x4c3d5c
+004c3cb4: a00b40f9  ldr x0, [x29, #0x10]
+004c3cb8: 00200091  add x0, x0, #8
+004c3cbc: 010040f9  ldr x1, [x0]
+004c3cc0: 802400f0  adrp x0, #0x956000
+004c3cc4: 00e00291  add x0, x0, #0xb8
+004c3cc8: 02d842f9  ldr x2, [x0, #0x5b0]
+004c3ccc: a0e30091  add x0, x29, #0x38
+004c3cd0: 04008052  mov w4, #0
+004c3cd4: e30302aa  mov x3, x2
+004c3cd8: e20300aa  mov x2, x0
+004c3cdc: a01340f9  ldr x0, [x29, #0x20]
+004c3ce0: f86bfe97  bl #0x45ecc0 ; heuristic 0x45ecc0 {"x4": 0}
+004c3ce4: a04700b9  str w0, [x29, #0x44]
+004c3ce8: a04740b9  ldr w0, [x29, #0x44]
+004c3cec: 1f000071  cmp w0, #0
+004c3cf0: ea010054  b.ge #0x4c3d2c
+004c3cf4: a04740b9  ldr w0, [x29, #0x44]
+004c3cf8: 1f040031  cmn w0, #1
+004c3cfc: 60000054  b.eq #0x4c3d08
+004c3d00: a04740b9  ldr w0, [x29, #0x44]
+004c3d04: 02000014  b #0x4c3d0c
+004c3d08: 80008012  mov w0, #-5
+004c3d0c: 5b6afe97  bl #0x45e678 ; heuristic 0x45e678 {"x0": -5}
+004c3d10: e10300aa  mov x1, x0
+004c3d14: 401500f0  adrp x0, #0x76e000
+004c3d18: 00602a91  add x0, x0, #0xa98
+004c3d1c: e20300aa  mov x2, x0
+004c3d20: a01340f9  ldr x0, [x29, #0x20]
+004c3d24: bf6afe97  bl #0x45e820 ; heuristic 0x45e820 {"x2": "in method 'ca_policer_get_cir', argument 1 of type 'ca_policer_t *'"}
+004c3d28: 0e000014  b #0x4c3d60
+004c3d2c: a01f40f9  ldr x0, [x29, #0x38]
+004c3d30: a02700f9  str x0, [x29, #0x48]
+004c3d34: a02740f9  ldr x0, [x29, #0x48]
+004c3d38: f842fd97  bl #0x414918 ; heuristic 0x414918 {}
+004c3d3c: a04300b9  str w0, [x29, #0x40]
+004c3d40: a04340b9  ldr w0, [x29, #0x40]
+004c3d44: 1b73fe97  bl #0x4609b0 ; heuristic 0x4609b0 {}
+004c3d48: e10300aa  mov x1, x0
+004c3d4c: a01340f9  ldr x0, [x29, #0x20]
+004c3d50: 3c35fd97  bl #0x411240 ; heuristic Tcl_SetObjResult@plt {}
+004c3d54: 00008052  mov w0, #0
+004c3d58: 03000014  b #0x4c3d64
+004c3d5c: 1f2003d5  nop 
+004c3d60: 20008052  mov w0, #1
+004c3d64: fd7bc5a8  ldp x29, x30, [sp], #0x50
+004c3d68: c0035fd6  ret 

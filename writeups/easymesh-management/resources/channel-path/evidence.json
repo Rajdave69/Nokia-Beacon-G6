@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "scope": "Static G6 HJL matched-source follow-up only. No live router, QEMU firmware execution, setting changes or network calls. Older IJL/B9 request layouts not assumed equal.",
+  "supersedes": [
+    "Previous missing queue opcode5-to-worker mapping",
+    "Inference that ics_set_default_* names imply persistent storage"
+  ],
+  "queue": {
+    "header_bytes": 40,
+    "fields": {
+      "0x00": "u8 opcode",
+      "0x08": "internal request pointer",
+      "0x10": "internal output pointer",
+      "0x18": "internal result socket-pair object pointer",
+      "0x20": "u32 request bytes",
+      "0x24": "u32 output bytes"
+    },
+    "constructor": "0x98ec0",
+    "submission": "0x980d4..0x98120 writes8bytes holding message pointer;0x984bc uv_async_send",
+    "consumer": "read8bytes0x98868; getters0x98ab4..0x98b00; dispatcher0x98b18 ->0x8d320",
+    "opcode": 5,
+    "switch_index": "opcode-3",
+    "table": "0x1a8030",
+    "entry_halfword": 102,
+    "target_calculation": "0x8d430 + 102*4 = 0x8d5c8",
+    "worker_call": "0x8d5e4 ->0x824d0",
+    "result_completion": "0x8d5f0 ->0x99198 writes4byte worker status to completion socket pair; callback0x90e84 ->0x99590 reads4bytes",
+    "completion_socketpair": "0x99a00 socketpair(domain1,type5,protocol0); local Unix SOCK_SEQPACKET, not TCP or a named socket",
+    "internal_timeout": "No poll/select/timed wait in the inspected completion-reader function; outer D-Bus wrapper timeout15000ms is separate. End-to-end cancellation/FD policy not established."
+  },
+  "request_bytes": 52,
+  "request_fields": [
+    {
+      "offset": 0,
+      "bytes": 36,
+      "name": "MAC string region before band; exact declaration/padding capacity not recovered",
+      "encoding": "NUL-terminated ASCII interpreted by strlen; conventional colon MAC; all-zero literal has special handling"
+    },
+    {
+      "offset": 36,
+      "bytes": 4,
+      "name": "radio/band selector",
+      "encoding": "little-endian u32; accepted exact values16,32,64,128,512"
+    },
+    {
+      "offset": 40,
+      "bytes": 1,
+      "name": "channel",
+      "encoding": "u8"
+    },
+    {
+      "offset": 41,
+      "bytes": 1,
+      "name": "backup channel",
+      "encoding": "u8"
+    },
+    {
+      "offset": 42,
+      "bytes": 2,
+      "name": "padding/reserved",
+      "encoding": "not consumed in traced worker"
+    },
+    {
+      "offset": 44,
+      "bytes": 4,
+      "name": "bandwidth",
+      "encoding": "little-endian32bit value; do not assume literal MHz"
+    },
+    {
+      "offset": 48,
+      "bytes": 4,
+      "name": "reason",
+      "encoding": "little-endian32bit value; low8bits copied to internal configuration"
+    }
+  ],
+  "request_to_internal_band": {
+    "16": 0,
+    "128": 1,
+    "64": 2,
+    "32": 3,
+    "512": 5
+  },
+  "reply_bytes": 12,
+  "reply_fields": [
+    {
+      "offset": 0,
+      "bytes": 4,
+      "name": "MAP response code"
+    },
+    {
+      "offset": 4,
+      "bytes": 1,
+      "name": "channel"
+    },
+    {
+      "offset": 5,
+      "bytes": 3,
+      "name": "padding/reserved; not explicitly filled here"
+    },
+    {
+      "offset": 8,
+      "bytes": 4,
+      "name": "bandwidth"
+    }
+  ],
+  "separate_method_status": "Worker return code is sent separately from the12byte result; payload validness must be judged with status, not any one zero field.",
+  "gates": [
+    "Both pointers required; null path returns-2",
+    "All-zero colon MAC bypasses normal DB lookup",
+    "Nonzero MAC must resolve through0x81f00 and entry byte+0x184 must be nonzero; missing/offline paths reject",
+    "Invalid band selector rejects before ConfigurationMinder call",
+    "Actual driver/regulatory/provisioning checks remain downstream"
+  ],
+  "default_storage": {
+    "source": "usr/lib/libplatform_map.so",
+    "symbol": "g_default_channel_cfg",
+    "VA": "0xc17b8",
+    "bytes": 168,
+    "record_bytes": 24,
+    "record_fields": {
+      "0": "u16 band",
+      "2": "u8 default channel",
+      "3": "u8 default bandwidth",
+      "8": "16byte get_current_time result"
+    },
+    "channel_setter": "0x1c7f8..0x1c884",
+    "bandwidth_setter": "0x1c888..0x1c914",
+    "time_setter": "0x1c918..0x1c9c4",
+    "finding": "These exact setters update RAM object, with band-index helper and time getter only; no direct configuration-save/flash operation. This does not establish whole-request volatility or successful RF application."
+  },
+  "remaining": [
+    "Exact band labels/bandwidth enum/reason semantics",
+    "Downstream radio application, errors and persistence outside these RAM stores",
+    "MAC declaration capacity and complete input validation",
+    "Role/regulatory/provisioning guard semantics",
+    "Cross-build ABI and live control/restore verification"
+  ]
+}

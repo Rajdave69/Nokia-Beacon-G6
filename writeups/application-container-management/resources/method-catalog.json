@@ -1,0 +1,1765 @@
+{
+  "date": "2026-10-28",
+  "scope": "Extracted shipped ODL method declarations, not proof that every method succeeds or an exhaustive runtime extension inventory. Complete original definitions retained in stock-text.json.",
+  "profiles": {
+    "G6-IJL": [],
+    "G6-HJL": [
+      {
+        "object": "Timingila",
+        "method": "loadPluginPackager",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadPluginPackager(%in %mandatory %strict string plugin);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 9,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "loadPluginContainer",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadPluginContainer(%in %mandatory %strict string plugin);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 15,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "rmAfterUninstall",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool rmAfterUninstall(%in %mandatory bool enable);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 20,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "lateInit",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool lateInit();",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 24,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "register",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool register(%in %mandatory string proxy, %in %mandatory string real);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 27,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "unregister",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool unregister(%in %mandatory string proxy);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 28,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "list",
+        "return_type": "htable",
+        "async": false,
+        "signature": "htable 'list'();",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 29,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules",
+        "method": "InstallDU",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool InstallDU(%in %mandatory %strict string URL, %in %mandatory %strict string UUID, %in %strict string Username, %in %strict string Password, %in %mandatory %strict string ExecutionEnvRef, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in int32 AllocatedCPUPercent, %in bool AutoStart, %in list HostObject, %in list NetworkConfig, %in %strict htable Data, %in %strict string Signature, %in string ModuleVersion);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 8,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules",
+        "method": "AddExecEnv",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool AddExecEnv(%in %mandatory %strict string Name, %in %mandatory %strict string Vendor, %in %mandatory %strict string Version, %in %mandatory %strict string ParentExecEnv, %in %mandatory int16 InitialRunLevel, %in %mandatory int32 AllocatedMemory, %in %mandatory int32 AllocatedDiskSpace, %in %mandatory int32 AllocatedCPUPercent, %in int32 MaxBandwidthUpstream, %in int32 MaxBandwidthDownstream);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 26,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "SetRunLevel",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool SetRunLevel(%in %strict int32 RequestedRunLevel);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 120,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "Restart",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool Restart(%in %strict string RestartReason);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 121,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "ModifyConstraints",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyConstraints(%in bool Force, %in int64 AllocatedDiskSpace, %in int64 AllocatedMemory, %in int32 AllocatedCPUPercent);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 126,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "Delete",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool Delete();",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 131,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.DeploymentUnit[]",
+        "method": "Update",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool Update(%in %strict string URL, %in %strict string Username, %in %strict string Password, %in bool RetainData, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in int32 AllocatedCPUPercent, %in list HostObject, %in list NetworkConfig, %in string ModuleVersion, %in %strict htable Data);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 193,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.DeploymentUnit[]",
+        "method": "Uninstall",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool Uninstall(%in bool RetainData);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 205,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecutionUnit[]",
+        "method": "SetRequestedState",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool SetRequestedState(%in %strict string RequestedState);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 325,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecutionUnit[]",
+        "method": "ModifyNetworkConfig",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyNetworkConfig(%in list NetworkConfig);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 326,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory string command, %in string commandID, %in htable parameters);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 24,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "pull",
+        "return_type": "void",
+        "async": false,
+        "signature": "void pull(%in %mandatory string URI, %in %mandatory string DUID, %in string username, %in string password, %in string signature);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 31,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in string DUID, %in string Version);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 36,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "gc",
+        "return_type": "void",
+        "async": false,
+        "signature": "void gc();",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 41,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "sv",
+        "return_type": "void",
+        "async": false,
+        "signature": "void sv(%in bool Enable);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 46,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "list",
+        "return_type": "void",
+        "async": false,
+        "signature": "void \"list\"(%in string image-filter);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 48,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "status",
+        "return_type": "void",
+        "async": false,
+        "signature": "void status(%in string DUID, %in string Version);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 49,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu",
+        "method": "loadBackend",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadBackend(%in %mandatory %strict string Backend);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 35,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory %strict string Command, %in %strict string CommandID, %in %strict htable Parameters);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 133,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "create",
+        "return_type": "void",
+        "async": false,
+        "signature": "void create(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Bundle, %in %strict string LinkedUUID, %in %strict string BundleVersion, %in %strict string DiskLocation, %in %strict string Sandbox = \"generic\", %in bool Autostart, %in bool AutoRestart, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in list HostObject, %in list NetworkConfig, %in %strict string ModuleVersion, %in %strict htable Data);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 174,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "update",
+        "return_type": "void",
+        "async": false,
+        "signature": "void update(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Bundle, %in %mandatory %strict string BundleVersion, %in %strict string DiskLocation, %in bool RemoveData = false, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in list HostObject, %in list NetworkConfig, %in %strict string ModuleVersion);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 215,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "start",
+        "return_type": "void",
+        "async": false,
+        "signature": "void start(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 233,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "stop",
+        "return_type": "void",
+        "async": false,
+        "signature": "void stop(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 239,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "restart",
+        "return_type": "void",
+        "async": false,
+        "signature": "void restart(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 245,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in %mandatory %strict string ContainerId, %in bool RemoveData = true);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 252,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "ls",
+        "return_type": "void",
+        "async": false,
+        "signature": "void ls(%in bool quiet);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 261,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "modify",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modify(%in %mandatory %strict string ContainerId, %in bool Force, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 274,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "modifyNetworkConfig",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modifyNetworkConfig(%in %mandatory %strict string ContainerId, %in list NetworkConfig);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 280,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory %strict string Command, %in %strict string CommandID, %in %strict htable Parameters);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 456,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "create",
+        "return_type": "void",
+        "async": false,
+        "signature": "void create(%in %mandatory %strict string SandboxId, %in string Parent, %in bool Enable = true, %in string Version, %in string Vendor, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 471,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "modify",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modify(%in %mandatory %strict string SandboxId, %in bool Force, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 491,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 501,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "start",
+        "return_type": "void",
+        "async": false,
+        "signature": "void start(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 507,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "stop",
+        "return_type": "void",
+        "async": false,
+        "signature": "void stop(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 513,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "restart",
+        "return_type": "void",
+        "async": false,
+        "signature": "void restart(%in %mandatory %strict string SandboxId, %in %strict string RestartReason);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 520,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "exec",
+        "return_type": "void",
+        "async": false,
+        "signature": "void exec(%in %mandatory %strict string SandboxId, %in %mandatory %strict string Cmd);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 528,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "ls",
+        "return_type": "void",
+        "async": false,
+        "signature": "void ls(%in bool Quiet);",
+        "source": "private-source://PROFILE-G6-HJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 536,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      }
+    ],
+    "B9-JJM": [
+      {
+        "object": "Timingila",
+        "method": "loadPluginPackager",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadPluginPackager(%in %mandatory %strict string plugin);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/timingila_definition.odl",
+        "line": 9,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "loadPluginContainer",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadPluginContainer(%in %mandatory %strict string plugin);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/timingila_definition.odl",
+        "line": 15,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "rmAfterUninstall",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool rmAfterUninstall(%in %mandatory bool enable);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/timingila_definition.odl",
+        "line": 20,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "lateInit",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool lateInit();",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/timingila_definition.odl",
+        "line": 24,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules",
+        "method": "InstallDU",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool InstallDU(%in %mandatory %strict string URL, %in %mandatory %strict string UUID, %in %strict string Username, %in %strict string Password, %in %mandatory %strict string ExecutionEnvRef, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in int32 AllocatedCPUPercent, %in bool AutoStart, %in list HostObject, %in list NetworkConfig, %in %strict htable Data, %in list EnvVariable, %in %strict string Signature, %in string ModuleVersion, %in csv_string RequiredRoles, %in csv_string OptionalRoles);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 8,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules",
+        "method": "AddExecEnv",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool AddExecEnv(%in %mandatory %strict string Name, %in %mandatory %strict string Vendor, %in %mandatory %strict string Version, %in %mandatory %strict string ParentExecEnv, %in %mandatory uint32 InitialRunLevel, %in %mandatory int32 AllocatedMemory, %in %mandatory int32 AllocatedDiskSpace, %in %mandatory int32 AllocatedCPUPercent, %in int32 MaxBandwidthUpstream, %in int32 MaxBandwidthDownstream, %in csv_string AvailableRoles);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 29,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "SetRunLevel",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool SetRunLevel(%in %strict int32 RequestedRunLevel);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 127,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "Restart",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool Restart(%in %strict string RestartReason);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 128,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "ModifyConstraints",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyConstraints(%in bool Force, %in int64 AllocatedDiskSpace, %in int64 AllocatedMemory, %in int32 AllocatedCPUPercent);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 133,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "ModifyAvailableRoles",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyAvailableRoles(%in csv_string AvailableRoles = \"\");",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 138,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "Delete",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool Delete();",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 143,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.DeploymentUnit[]",
+        "method": "Update",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool Update(%in %strict string URL, %in %strict string Username, %in %strict string Password, %in bool RetainData, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in int32 AllocatedCPUPercent, %in list HostObject, %in list NetworkConfig, %in list EnvVariable, %in string ModuleVersion, %in %strict htable Data, %in csv_string RequiredRoles, %in csv_string OptionalRoles);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 205,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.DeploymentUnit[]",
+        "method": "Uninstall",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool Uninstall(%in bool RetainData);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 220,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecutionUnit[]",
+        "method": "SetRequestedState",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool SetRequestedState(%in %strict string RequestedState);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 352,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecutionUnit[]",
+        "method": "ModifyNetworkConfig",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyNetworkConfig(%in list NetworkConfig);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 353,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory string command, %in string commandID, %in htable parameters);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 25,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "pull",
+        "return_type": "void",
+        "async": false,
+        "signature": "void pull(%in %mandatory string URI, %in %mandatory string DUID, %in string username, %in string password, %in string signature);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 32,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in string DUID, %in string Version);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 37,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "gc",
+        "return_type": "void",
+        "async": false,
+        "signature": "void gc();",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 42,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "sv",
+        "return_type": "void",
+        "async": false,
+        "signature": "void sv(%in bool Enable);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 47,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "list",
+        "return_type": "void",
+        "async": false,
+        "signature": "void \"list\"(%in string image-filter);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 49,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "status",
+        "return_type": "void",
+        "async": false,
+        "signature": "void status(%in string DUID, %in string Version);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 50,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu",
+        "method": "loadBackend",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadBackend(%in %mandatory %strict string Backend);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 35,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory %strict string Command, %in %strict string CommandID, %in %strict htable Parameters);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 144,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "create",
+        "return_type": "void",
+        "async": false,
+        "signature": "void create(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Bundle, %in %strict string LinkedUUID, %in %strict string BundleVersion, %in %strict string DiskLocation, %in %strict string Sandbox = \"generic\", %in bool Autostart, %in bool AutoRestart, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in list HostObject, %in list NetworkConfig, %in %strict string ModuleVersion, %in list EnvVariable, %in csv_string RequiredRoles, %in csv_string OptionalRoles, %in %strict htable Data);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 186,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "update",
+        "return_type": "void",
+        "async": false,
+        "signature": "void update(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Bundle, %in %mandatory %strict string BundleVersion, %in %strict string DiskLocation, %in bool RemoveData = false, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in list HostObject, %in list NetworkConfig, %in %strict string ModuleVersion, %in list EnvVariable, %in csv_string RequiredRoles, %in csv_string OptionalRoles);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 230,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "start",
+        "return_type": "void",
+        "async": false,
+        "signature": "void start(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 250,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "stop",
+        "return_type": "void",
+        "async": false,
+        "signature": "void stop(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 256,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "restart",
+        "return_type": "void",
+        "async": false,
+        "signature": "void restart(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 262,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in %mandatory %strict string ContainerId, %in bool RemoveData = true);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 269,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "ls",
+        "return_type": "void",
+        "async": false,
+        "signature": "void ls(%in bool quiet);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 278,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "modify",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modify(%in %mandatory %strict string ContainerId, %in bool Force, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in csv_string AvailableRoles);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 291,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "modifyNetworkConfig",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modifyNetworkConfig(%in %mandatory %strict string ContainerId, %in list NetworkConfig);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 298,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "execute",
+        "return_type": "void",
+        "async": false,
+        "signature": "void execute(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Cmd, %in list Arguments, %in uint32 Timeout = 60);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 309,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory %strict string Command, %in %strict string CommandID, %in %strict htable Parameters);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 504,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "create",
+        "return_type": "void",
+        "async": false,
+        "signature": "void create(%in %mandatory %strict string SandboxId, %in string Parent, %in csv_string AvailableRoles, %in bool Enable = true, %in string Version, %in string Vendor, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 519,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "modify",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modify(%in %mandatory %strict string SandboxId, %in bool Force, %in csv_string AvailableRoles, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 540,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 551,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "start",
+        "return_type": "void",
+        "async": false,
+        "signature": "void start(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 557,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "stop",
+        "return_type": "void",
+        "async": false,
+        "signature": "void stop(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 563,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "restart",
+        "return_type": "void",
+        "async": false,
+        "signature": "void restart(%in %mandatory %strict string SandboxId, %in %strict string RestartReason);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 570,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "exec",
+        "return_type": "void",
+        "async": false,
+        "signature": "void exec(%in %mandatory %strict string SandboxId, %in %mandatory %strict string Cmd);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 578,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "ls",
+        "return_type": "void",
+        "async": false,
+        "signature": "void ls(%in bool Quiet);",
+        "source": "private-source://PROFILE-B9-JJM/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 586,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      }
+    ],
+    "ONT-JJL": [
+      {
+        "object": "Timingila",
+        "method": "loadPluginPackager",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadPluginPackager(%in %mandatory %strict string plugin);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 9,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "loadPluginContainer",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadPluginContainer(%in %mandatory %strict string plugin);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 15,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "rmAfterUninstall",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool rmAfterUninstall(%in %mandatory bool enable);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 20,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "lateInit",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool lateInit();",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 24,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "register",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool register(%in %mandatory string proxy, %in %mandatory string real);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 27,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "unregister",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool unregister(%in %mandatory string proxy);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 28,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "list",
+        "return_type": "htable",
+        "async": false,
+        "signature": "htable 'list'();",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 29,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules",
+        "method": "InstallDU",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool InstallDU(%in %mandatory %strict string URL, %in %mandatory %strict string UUID, %in %strict string Username, %in %strict string Password, %in %mandatory %strict string ExecutionEnvRef, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in int32 AllocatedCPUPercent, %in bool AutoStart, %in list HostObject, %in list NetworkConfig, %in %strict htable Data, %in %strict string Signature, %in string ModuleVersion);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 8,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules",
+        "method": "AddExecEnv",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool AddExecEnv(%in %mandatory %strict string Name, %in %mandatory %strict string Vendor, %in %mandatory %strict string Version, %in %mandatory %strict string ParentExecEnv, %in %mandatory int16 InitialRunLevel, %in %mandatory int32 AllocatedMemory, %in %mandatory int32 AllocatedDiskSpace, %in %mandatory int32 AllocatedCPUPercent, %in int32 MaxBandwidthUpstream, %in int32 MaxBandwidthDownstream);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 26,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "SetRunLevel",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool SetRunLevel(%in %strict int32 RequestedRunLevel);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 120,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "Restart",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool Restart(%in %strict string RestartReason);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 121,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "ModifyConstraints",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyConstraints(%in bool Force, %in int64 AllocatedDiskSpace, %in int64 AllocatedMemory, %in int32 AllocatedCPUPercent);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 126,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "Delete",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool Delete();",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 131,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.DeploymentUnit[]",
+        "method": "Update",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool Update(%in %strict string URL, %in %strict string Username, %in %strict string Password, %in bool RetainData, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in int32 AllocatedCPUPercent, %in list HostObject, %in list NetworkConfig, %in string ModuleVersion, %in %strict htable Data);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 193,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.DeploymentUnit[]",
+        "method": "Uninstall",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool Uninstall(%in bool RetainData);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 205,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecutionUnit[]",
+        "method": "SetRequestedState",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool SetRequestedState(%in %strict string RequestedState);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 325,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecutionUnit[]",
+        "method": "ModifyNetworkConfig",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyNetworkConfig(%in list NetworkConfig);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 326,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory string command, %in string commandID, %in htable parameters);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 24,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "pull",
+        "return_type": "void",
+        "async": false,
+        "signature": "void pull(%in %mandatory string URI, %in %mandatory string DUID, %in string username, %in string password, %in string signature);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 31,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in string DUID, %in string Version);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 36,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "gc",
+        "return_type": "void",
+        "async": false,
+        "signature": "void gc();",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 41,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "sv",
+        "return_type": "void",
+        "async": false,
+        "signature": "void sv(%in bool Enable);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 46,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "list",
+        "return_type": "void",
+        "async": false,
+        "signature": "void \"list\"(%in string image-filter);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 48,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "status",
+        "return_type": "void",
+        "async": false,
+        "signature": "void status(%in string DUID, %in string Version);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 49,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu",
+        "method": "loadBackend",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadBackend(%in %mandatory %strict string Backend);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 35,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory %strict string Command, %in %strict string CommandID, %in %strict htable Parameters);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 133,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "create",
+        "return_type": "void",
+        "async": false,
+        "signature": "void create(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Bundle, %in %strict string LinkedUUID, %in %strict string BundleVersion, %in %strict string DiskLocation, %in %strict string Sandbox = \"generic\", %in bool Autostart, %in bool AutoRestart, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in list HostObject, %in list NetworkConfig, %in %strict string ModuleVersion, %in %strict htable Data);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 174,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "update",
+        "return_type": "void",
+        "async": false,
+        "signature": "void update(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Bundle, %in %mandatory %strict string BundleVersion, %in %strict string DiskLocation, %in bool RemoveData = false, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in list HostObject, %in list NetworkConfig, %in %strict string ModuleVersion);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 215,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "start",
+        "return_type": "void",
+        "async": false,
+        "signature": "void start(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 233,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "stop",
+        "return_type": "void",
+        "async": false,
+        "signature": "void stop(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 239,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "restart",
+        "return_type": "void",
+        "async": false,
+        "signature": "void restart(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 245,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in %mandatory %strict string ContainerId, %in bool RemoveData = true);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 252,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "ls",
+        "return_type": "void",
+        "async": false,
+        "signature": "void ls(%in bool quiet);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 261,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "modify",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modify(%in %mandatory %strict string ContainerId, %in bool Force, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 274,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "modifyNetworkConfig",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modifyNetworkConfig(%in %mandatory %strict string ContainerId, %in list NetworkConfig);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 280,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory %strict string Command, %in %strict string CommandID, %in %strict htable Parameters);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 456,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "create",
+        "return_type": "void",
+        "async": false,
+        "signature": "void create(%in %mandatory %strict string SandboxId, %in string Parent, %in bool Enable = true, %in string Version, %in string Vendor, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 471,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "modify",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modify(%in %mandatory %strict string SandboxId, %in bool Force, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 491,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 501,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "start",
+        "return_type": "void",
+        "async": false,
+        "signature": "void start(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 507,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "stop",
+        "return_type": "void",
+        "async": false,
+        "signature": "void stop(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 513,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "restart",
+        "return_type": "void",
+        "async": false,
+        "signature": "void restart(%in %mandatory %strict string SandboxId, %in %strict string RestartReason);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 520,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "exec",
+        "return_type": "void",
+        "async": false,
+        "signature": "void exec(%in %mandatory %strict string SandboxId, %in %mandatory %strict string Cmd);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 528,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "ls",
+        "return_type": "void",
+        "async": false,
+        "signature": "void ls(%in bool Quiet);",
+        "source": "private-source://PROFILE-ONT-JJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 536,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      }
+    ],
+    "ONT-KJL": [
+      {
+        "object": "Timingila",
+        "method": "loadPluginPackager",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadPluginPackager(%in %mandatory %strict string plugin);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 9,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "loadPluginContainer",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadPluginContainer(%in %mandatory %strict string plugin);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 15,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "rmAfterUninstall",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool rmAfterUninstall(%in %mandatory bool enable);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 20,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila",
+        "method": "lateInit",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool lateInit();",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 24,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "register",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool register(%in %mandatory string proxy, %in %mandatory string real);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 27,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "unregister",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool unregister(%in %mandatory string proxy);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 28,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Timingila.ProxyManager",
+        "method": "list",
+        "return_type": "htable",
+        "async": false,
+        "signature": "htable 'list'();",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/timingila_definition.odl",
+        "line": 29,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules",
+        "method": "InstallDU",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool InstallDU(%in %mandatory %strict string URL, %in %mandatory %strict string UUID, %in %strict string Username, %in %strict string Password, %in %mandatory %strict string ExecutionEnvRef, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in int32 AllocatedCPUPercent, %in bool AutoStart, %in list HostObject, %in list NetworkConfig, %in %strict htable Data, %in %strict string Signature, %in string ModuleVersion);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 8,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules",
+        "method": "AddExecEnv",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool AddExecEnv(%in %mandatory %strict string Name, %in %mandatory %strict string Vendor, %in %mandatory %strict string Version, %in %mandatory %strict string ParentExecEnv, %in %mandatory int16 InitialRunLevel, %in %mandatory int32 AllocatedMemory, %in %mandatory int32 AllocatedDiskSpace, %in %mandatory int32 AllocatedCPUPercent, %in int32 MaxBandwidthUpstream, %in int32 MaxBandwidthDownstream);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 26,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "SetRunLevel",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool SetRunLevel(%in %strict int32 RequestedRunLevel);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 120,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "Restart",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool Restart(%in %strict string RestartReason);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 121,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "ModifyConstraints",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyConstraints(%in bool Force, %in int64 AllocatedDiskSpace, %in int64 AllocatedMemory, %in int32 AllocatedCPUPercent);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 126,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecEnv[]",
+        "method": "Delete",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool Delete();",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 131,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.DeploymentUnit[]",
+        "method": "Update",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool Update(%in %strict string URL, %in %strict string Username, %in %strict string Password, %in bool RetainData, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in int32 AllocatedCPUPercent, %in list HostObject, %in list NetworkConfig, %in string ModuleVersion, %in %strict htable Data);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 193,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.DeploymentUnit[]",
+        "method": "Uninstall",
+        "return_type": "bool",
+        "async": true,
+        "signature": "%async bool Uninstall(%in bool RetainData);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 205,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecutionUnit[]",
+        "method": "SetRequestedState",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool SetRequestedState(%in %strict string RequestedState);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 325,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "SoftwareModules.ExecutionUnit[]",
+        "method": "ModifyNetworkConfig",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool ModifyNetworkConfig(%in list NetworkConfig);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/timingila/softwaremodules_definition.odl",
+        "line": 326,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory string command, %in string commandID, %in htable parameters);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 24,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "pull",
+        "return_type": "void",
+        "async": false,
+        "signature": "void pull(%in %mandatory string URI, %in %mandatory string DUID, %in string username, %in string password, %in string signature);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 31,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in string DUID, %in string Version);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 36,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "gc",
+        "return_type": "void",
+        "async": false,
+        "signature": "void gc();",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 41,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "sv",
+        "return_type": "void",
+        "async": false,
+        "signature": "void sv(%in bool Enable);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 46,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "list",
+        "return_type": "void",
+        "async": false,
+        "signature": "void \"list\"(%in string image-filter);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 48,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Rlyeh",
+        "method": "status",
+        "return_type": "void",
+        "async": false,
+        "signature": "void status(%in string DUID, %in string Version);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/rlyeh/rlyeh_definition.odl",
+        "line": 49,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu",
+        "method": "loadBackend",
+        "return_type": "bool",
+        "async": false,
+        "signature": "bool loadBackend(%in %mandatory %strict string Backend);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 35,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory %strict string Command, %in %strict string CommandID, %in %strict htable Parameters);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 133,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "create",
+        "return_type": "void",
+        "async": false,
+        "signature": "void create(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Bundle, %in %strict string LinkedUUID, %in %strict string BundleVersion, %in %strict string DiskLocation, %in %strict string Sandbox = \"generic\", %in bool Autostart, %in bool AutoRestart, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in list HostObject, %in list NetworkConfig, %in %strict string ModuleVersion, %in %strict htable Data);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 174,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "update",
+        "return_type": "void",
+        "async": false,
+        "signature": "void update(%in %mandatory %strict string ContainerId, %in %mandatory %strict string Bundle, %in %mandatory %strict string BundleVersion, %in %strict string DiskLocation, %in bool RemoveData = false, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace, %in list HostObject, %in list NetworkConfig, %in %strict string ModuleVersion);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 215,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "start",
+        "return_type": "void",
+        "async": false,
+        "signature": "void start(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 233,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "stop",
+        "return_type": "void",
+        "async": false,
+        "signature": "void stop(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 239,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "restart",
+        "return_type": "void",
+        "async": false,
+        "signature": "void restart(%in %mandatory %strict string ContainerId);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 245,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in %mandatory %strict string ContainerId, %in bool RemoveData = true);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 252,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "ls",
+        "return_type": "void",
+        "async": false,
+        "signature": "void ls(%in bool quiet);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 261,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "modify",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modify(%in %mandatory %strict string ContainerId, %in bool Force, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 274,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Container",
+        "method": "modifyNetworkConfig",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modifyNetworkConfig(%in %mandatory %strict string ContainerId, %in list NetworkConfig);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 280,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "command",
+        "return_type": "void",
+        "async": false,
+        "signature": "void command(%in %mandatory %strict string Command, %in %strict string CommandID, %in %strict htable Parameters);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 456,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "create",
+        "return_type": "void",
+        "async": false,
+        "signature": "void create(%in %mandatory %strict string SandboxId, %in string Parent, %in bool Enable = true, %in string Version, %in string Vendor, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 471,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "modify",
+        "return_type": "void",
+        "async": false,
+        "signature": "void modify(%in %mandatory %strict string SandboxId, %in bool Force, %in int32 AllocatedCPUPercent, %in int32 AllocatedMemory, %in int32 AllocatedDiskSpace);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 491,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "remove",
+        "return_type": "void",
+        "async": false,
+        "signature": "void remove(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 501,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "start",
+        "return_type": "void",
+        "async": false,
+        "signature": "void start(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 507,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "stop",
+        "return_type": "void",
+        "async": false,
+        "signature": "void stop(%in %mandatory %strict string SandboxId);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 513,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "restart",
+        "return_type": "void",
+        "async": false,
+        "signature": "void restart(%in %mandatory %strict string SandboxId, %in %strict string RestartReason);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 520,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "exec",
+        "return_type": "void",
+        "async": false,
+        "signature": "void exec(%in %mandatory %strict string SandboxId, %in %mandatory %strict string Cmd);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 528,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      },
+      {
+        "object": "Cthulhu.Sandbox",
+        "method": "ls",
+        "return_type": "void",
+        "async": false,
+        "signature": "void ls(%in bool Quiet);",
+        "source": "private-source://PROFILE-ONT-KJL/etc/amx/cthulhu/cthulhu_definition.odl",
+        "line": 536,
+        "scope": "ODL declaration; extra runtime overloads/plugins may differ"
+      }
+    ]
+  }
+}

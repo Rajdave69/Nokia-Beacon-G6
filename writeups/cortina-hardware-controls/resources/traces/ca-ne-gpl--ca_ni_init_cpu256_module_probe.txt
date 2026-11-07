@@ -1,0 +1,124 @@
+ca_ni_init_cpu256_module_probe: .text+0x40ee8, 492 bytes; sha256 49b0133be3dec0b24a760ff570e671aabb9633359561aa2f2a654f324bf6dc4f
+00040ee8: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+00040eec: fd030091  mov x29, sp
+00040ef0: f30b00f9  str x19, [sp, #0x10]
+00040ef4: f30300aa  mov x19, x0
+00040ef8: e0031eaa  mov x0, x30
+00040efc: 00000094  bl #0x40efc ; reloc _mcount+0x0 type=283
+00040f00: 00000090  adrp x0, #0x40000 ; reloc cfg_support_cpu256_in_linux+0x0 type=275
+00040f04: 00004039  ldrb w0, [x0] ; reloc cfg_support_cpu256_in_linux+0x0 type=278
+00040f08: 00010035  cbnz w0, #0x40f28
+00040f0c: 01000090  adrp x1, #0x40000 ; reloc .rodata+0x3350 'ca_ni_cpu256_open' type=275
+00040f10: 21000091  add x1, x1, #0 ; reloc .rodata+0x3350 'ca_ni_cpu256_open' type=277
+00040f14: 00000090  adrp x0, #0x40000 ; reloc .rodata.str1.8+0x16458 '%s: CPU256 is not supportted in Linux!!\n' type=275
+00040f18: 21c00d91  add x1, x1, #0x370
+00040f1c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x16458 '%s: CPU256 is not supportted in Linux!!\n' type=277
+00040f20: 00000094  bl #0x40f20 ; reloc printk+0x0 type=283
+00040f24: 69000014  b #0x410c8
+00040f28: b4d701a9  stp x20, x21, [x29, #0x18]
+00040f2c: e00313aa  mov x0, x19
+00040f30: b61700f9  str x22, [x29, #0x28]
+00040f34: 14000090  adrp x20, #0x40000 ; reloc .rodata+0x3350 'ca_ni_cpu256_open' type=275
+00040f38: 94020091  add x20, x20, #0 ; reloc .rodata+0x3350 'ca_ni_cpu256_open' type=277
+00040f3c: 753e41f9  ldr x21, [x19, #0x278]
+00040f40: 00000094  bl #0x40f40 ; reloc ca_ni_init_cpu256_intfs+0x0 type=283
+00040f44: 00000090  adrp x0, #0x40000 ; reloc ni_info_data+0x0 type=275
+00040f48: 16000091  add x22, x0, #0 ; reloc ni_info_data+0x0 type=277
+00040f4c: d38a4a91  add x19, x22, #0x2a2, lsl #12
+00040f50: 94c20d91  add x20, x20, #0x370
+00040f54: 000040f9  ldr x0, [x0] ; reloc ni_info_data+0x0 type=286
+00040f58: d6824a91  add x22, x22, #0x2a0, lsl #12
+00040f5c: 00000094  bl #0x40f5c ; reloc ca_ni_fill_cpu256_eq_buf_pool+0x0 type=283
+00040f60: e00315aa  mov x0, x21
+00040f64: 41018052  mov w1, #0xa
+00040f68: 00000094  bl #0x40f68 ; reloc irq_of_parse_and_map+0x0 type=283
+00040f6c: 608a0479  strh w0, [x19, #0x244]
+00040f70: 61018052  mov w1, #0xb
+00040f74: e00315aa  mov x0, x21
+00040f78: 00000094  bl #0x40f78 ; reloc irq_of_parse_and_map+0x0 type=283
+00040f7c: 033c0012  and w3, w0, #0xffff
+00040f80: 628a4479  ldrh w2, [x19, #0x244]
+00040f84: e10314aa  mov x1, x20
+00040f88: 608e0479  strh w0, [x19, #0x246]
+00040f8c: 00000090  adrp x0, #0x40000 ; reloc .rodata.str1.8+0x16840 '%s: ni_info_data.cpu256_fifo_req_hi=%d, ni_info_data.cpu256_fifo_req_lo=%d\n' type=275
+00040f90: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x16840 '%s: ni_info_data.cpu256_fifo_req_hi=%d, ni_info_data.cpu256_fifo_req_lo=%d\n' type=277
+00040f94: 00000094  bl #0x40f94 ; reloc printk+0x0 type=283
+00040f98: e00315aa  mov x0, x21
+00040f9c: 81018052  mov w1, #0xc
+00040fa0: 00000094  bl #0x40fa0 ; reloc irq_of_parse_and_map+0x0 type=283
+00040fa4: 60b20479  strh w0, [x19, #0x258]
+00040fa8: a1018052  mov w1, #0xd
+00040fac: e00315aa  mov x0, x21
+00040fb0: 00000094  bl #0x40fb0 ; reloc irq_of_parse_and_map+0x0 type=283
+00040fb4: 60b60479  strh w0, [x19, #0x25a]
+00040fb8: c1018052  mov w1, #0xe
+00040fbc: e00315aa  mov x0, x21
+00040fc0: 00000094  bl #0x40fc0 ; reloc irq_of_parse_and_map+0x0 type=283
+00040fc4: 60ba0479  strh w0, [x19, #0x25c]
+00040fc8: e1018052  mov w1, #0xf
+00040fcc: e00315aa  mov x0, x21
+00040fd0: 00000094  bl #0x40fd0 ; reloc irq_of_parse_and_map+0x0 type=283
+00040fd4: 60be0479  strh w0, [x19, #0x25e]
+00040fd8: 63b64479  ldrh w3, [x19, #0x25a]
+00040fdc: 04000090  adrp x4, #0x40000 ; reloc .rodata.str1.8+0x16890 '%s: ni_info_data.cpu256_refill_req_4=%d, ni_info_data.cpu256_refill_req_5=%d,\n' type=275
+00040fe0: 62b24479  ldrh w2, [x19, #0x258]
+00040fe4: 80000091  add x0, x4, #0 ; reloc .rodata.str1.8+0x16890 '%s: ni_info_data.cpu256_refill_req_4=%d, ni_info_data.cpu256_refill_req_5=%d,\n' type=277
+00040fe8: e10314aa  mov x1, x20
+00040fec: 00000094  bl #0x40fec ; reloc printk+0x0 type=283
+00040ff0: 63be4479  ldrh w3, [x19, #0x25e]
+00040ff4: e10314aa  mov x1, x20
+00040ff8: 62ba4479  ldrh w2, [x19, #0x25c]
+00040ffc: 00000090  adrp x0, #0x40000 ; reloc .rodata.str1.8+0x168e0 '%s: ni_info_data.cpu256_refill_req_6=%d, ni_info_data.cpu256_refill_req_7=%d,\n' type=275
+00041000: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x168e0 '%s: ni_info_data.cpu256_refill_req_6=%d, ni_info_data.cpu256_refill_req_7=%d,\n' type=277
+00041004: 00000094  bl #0x41004 ; reloc printk+0x0 type=283
+00041008: c02651f9  ldr x0, [x22, #0x2248]
+0004100c: 03148052  mov w3, #0xa0
+00041010: 02000090  adrp x2, #0x41000 ; reloc .text+0x3ff00 type=275
+00041014: 42000091  add x2, x2, #0 ; reloc .text+0x3ff00 type=277
+00041018: 13802491  add x19, x0, #0x920
+0004101c: 15002491  add x21, x0, #0x900
+00041020: e10313aa  mov x1, x19
+00041024: 00000094  bl #0x41024 ; reloc netif_napi_add+0x0 type=283
+00041028: c22651f9  ldr x2, [x22, #0x2248]
+0004102c: 04148052  mov w4, #0xa0
+00041030: e30313aa  mov x3, x19
+00041034: e10314aa  mov x1, x20
+00041038: 00000090  adrp x0, #0x41000 ; reloc .rodata.str1.8+0x16930 '%s: ni_info_data.cpu256_dev[0]=%p, cep->napi[0]=%p, budget=%d\n' type=275
+0004103c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x16930 '%s: ni_info_data.cpu256_dev[0]=%p, cep->napi[0]=%p, budget=%d\n' type=277
+00041040: 00000094  bl #0x41040 ; reloc printk+0x0 type=283
+00041044: 40018052  mov w0, #0xa
+00041048: a0761739  strb w0, [x21, #0x5dd]
+0004104c: 03148052  mov w3, #0xa0
+00041050: 02000090  adrp x2, #0x41000 ; reloc .text+0x3fec8 type=275
+00041054: c02a51f9  ldr x0, [x22, #0x2250]
+00041058: 42000091  add x2, x2, #0 ; reloc .text+0x3fec8 type=277
+0004105c: 13802491  add x19, x0, #0x920
+00041060: 15002491  add x21, x0, #0x900
+00041064: e10313aa  mov x1, x19
+00041068: 00000094  bl #0x41068 ; reloc netif_napi_add+0x0 type=283
+0004106c: c22a51f9  ldr x2, [x22, #0x2250]
+00041070: e30313aa  mov x3, x19
+00041074: 04148052  mov w4, #0xa0
+00041078: e10314aa  mov x1, x20
+0004107c: 00000090  adrp x0, #0x41000 ; reloc .rodata.str1.8+0x16970 '%s: ni_info_data.cpu256_dev[1]=%p, cep->napi[0]=%p, budget=%d\n' type=275
+00041080: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x16970 '%s: ni_info_data.cpu256_dev[1]=%p, cep->napi[0]=%p, budget=%d\n' type=277
+00041084: 00000094  bl #0x41084 ; reloc printk+0x0 type=283
+00041088: 60018052  mov w0, #0xb
+0004108c: a0761739  strb w0, [x21, #0x5dd]
+00041090: 01008052  mov w1, #0
+00041094: 00008052  mov w0, #0
+00041098: 00000094  bl #0x41098 ; reloc aal_l3qm_enable_tx_cpu256+0x0 type=283
+0004109c: 01008052  mov w1, #0
+000410a0: 20008052  mov w0, #1
+000410a4: 00000094  bl #0x410a4 ; reloc aal_l3qm_enable_tx_cpu256+0x0 type=283
+000410a8: 01008052  mov w1, #0
+000410ac: 00008052  mov w0, #0
+000410b0: 00000094  bl #0x410b0 ; reloc aal_l3qm_enable_cpu256_epp_interrupt+0x0 type=283
+000410b4: 01008052  mov w1, #0
+000410b8: 20008052  mov w0, #1
+000410bc: 00000094  bl #0x410bc ; reloc aal_l3qm_enable_cpu256_epp_interrupt+0x0 type=283
+000410c0: b61740f9  ldr x22, [x29, #0x28]
+000410c4: b4d741a9  ldp x20, x21, [x29, #0x18]
+000410c8: f30b40f9  ldr x19, [sp, #0x10]
+000410cc: fd7bc3a8  ldp x29, x30, [sp], #0x30
+000410d0: c0035fd6  ret 

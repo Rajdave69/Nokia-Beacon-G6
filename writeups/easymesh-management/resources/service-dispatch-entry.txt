@@ -1,0 +1,56 @@
+0019be20: fd7bbaa9  stp x29, x30, [sp, #-0x60]!
+0019be24: fd030091  mov x29, sp
+0019be28: f35301a9  stp x19, x20, [sp, #0x10]
+0019be2c: d30100b0  adrp x19, #0x1d4000
+0019be30: f55b02a9  stp x21, x22, [sp, #0x20]
+0019be34: f40301aa  mov x20, x1
+0019be38: f71b00f9  str x23, [sp, #0x30]
+0019be3c: f70303aa  mov x23, x3
+0019be40: 632247f9  ldr x3, [x19, #0xe40]
+0019be44: f50300aa  mov x21, x0
+0019be48: 010040f9  ldr x1, [x0]
+0019be4c: f60302aa  mov x22, x2
+0019be50: 640040f9  ldr x4, [x3]
+0019be54: a42f00f9  str x4, [x29, #0x58]
+0019be58: 040080d2  mov x4, #0
+0019be5c: 220100b0  adrp x2, #0x1c0000
+0019be60: e00314aa  mov x0, x20
+0019be64: 42e01691  add x2, x2, #0x5b8
+0019be68: 92d8f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_configsync_rpc", "x3": "@__stack_chk_guard", "x4": 0}
+0019be6c: 1f1c0072  tst w0, #0xff
+0019be70: 80030054  b.eq #0x19bee0
+0019be74: a1430191  add x1, x29, #0x50
+0019be78: a2330191  add x2, x29, #0x4c
+0019be7c: e00314aa  mov x0, x20
+0019be80: 2cdcf997  bl #0x12f30 ; heuristic ndbusReadParcelDynamicPointer@plt {}
+0019be84: a02b40f9  ldr x0, [x29, #0x50]
+0019be88: 92010094  bl #0x19c4d0 ; heuristic 0x19c4d0 {}
+0019be8c: a14f40b9  ldr w1, [x29, #0x4c]
+0019be90: 1f00016b  cmp w0, w1
+0019be94: 21010054  b.ne #0x19beb8
+0019be98: a10a40f9  ldr x1, [x21, #0x10]
+0019be9c: a02b40f9  ldr x0, [x29, #0x50]
+0019bea0: 20003fd6  blr x1 ; heuristic unknown {}
+0019bea4: 21008052  mov w1, #1
+0019bea8: e1020039  strb w1, [x23]
+0019beac: e103002a  mov w1, w0
+0019beb0: e00316aa  mov x0, x22
+0019beb4: afdaf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019beb8: 732247f9  ldr x19, [x19, #0xe40]
+0019bebc: a12f40f9  ldr x1, [x29, #0x58]
+0019bec0: 600240f9  ldr x0, [x19]
+0019bec4: 200000ca  eor x0, x1, x0
+0019bec8: 800100b5  cbnz x0, #0x19bef8
+0019becc: f35341a9  ldp x19, x20, [sp, #0x10]
+0019bed0: f55b42a9  ldp x21, x22, [sp, #0x20]
+0019bed4: f71b40f9  ldr x23, [sp, #0x30]
+0019bed8: fd7bc6a8  ldp x29, x30, [sp], #0x60
+0019bedc: c0035fd6  ret 
+0019bee0: e30317aa  mov x3, x23
+0019bee4: e20316aa  mov x2, x22
+0019bee8: e10314aa  mov x1, x20
+0019beec: e00315aa  mov x0, x21
+0019bef0: 86feff97  bl #0x19b908 ; heuristic 0x19b908 {}
+0019bef4: f1ffff17  b #0x19beb8
+0019bef8: dad8f997  bl #0x12260 ; heuristic __stack_chk_fail@plt {}
+0019befc: 1f2003d5  nop 

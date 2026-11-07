@@ -1,0 +1,21 @@
+ca_sdk_kern_api_cb: .text+0xb8d8, 80 bytes; sha256 be1a2511ac4944a368f27792b8cd62e8cb2b32e06501cce0af945b9bbf397909
+0000b8d8: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0000b8dc: fd030091  mov x29, sp
+0000b8e0: f30b00f9  str x19, [sp, #0x10]
+0000b8e4: f30300aa  mov x19, x0
+0000b8e8: e0031eaa  mov x0, x30
+0000b8ec: 00000094  bl #0xb8ec ; reloc _mcount+0x0 type=283
+0000b8f0: 63024079  ldrh w3, [x19]
+0000b8f4: 7ffc0b71  cmp w3, #0x2ff
+0000b8f8: 08010054  b.hi #0xb918
+0000b8fc: 02000090  adrp x2, #0xb000 ; reloc g_sdk_handler_table+0x0 type=275
+0000b900: 42000091  add x2, x2, #0 ; reloc g_sdk_handler_table+0x0 type=277
+0000b904: 61064079  ldrh w1, [x19, #2]
+0000b908: 60120091  add x0, x19, #4
+0000b90c: 42d863f8  ldr x2, [x2, w3, sxtw #3]
+0000b910: 40003fd6  blr x2
+0000b914: 02000014  b #0xb91c
+0000b918: 00008012  mov w0, #-1
+0000b91c: f30b40f9  ldr x19, [sp, #0x10]
+0000b920: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0000b924: c0035fd6  ret 

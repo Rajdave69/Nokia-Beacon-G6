@@ -1,0 +1,324 @@
+000056b0: 220100d0  adrp x2, #0x2b000
+000056b4: f35301a9  stp x19, x20, [sp, #0x10]
+000056b8: f50302aa  mov x21, x2
+000056bc: 563c46f9  ldr x22, [x2, #0xc78]
+000056c0: 930000d0  adrp x19, #0x17000
+000056c4: f76303a9  stp x23, x24, [sp, #0x30]
+000056c8: 340100d0  adrp x20, #0x2b000
+000056cc: f96b04a9  stp x25, x26, [sp, #0x40]
+000056d0: fb7305a9  stp x27, x28, [sp, #0x50]
+000056d4: df0200b9  str wzr, [x22]
+000056d8: a33700f9  str x3, [x29, #0x68]
+000056dc: 41020054  b.ne #0x5724
+000056e0: 200440f9  ldr x0, [x1, #8]
+000056e4: 000200b4  cbz x0, #0x5724
+000056e8: 220100d0  adrp x2, #0x2b000
+000056ec: 810000d0  adrp x1, #0x17000
+000056f0: 21902691  add x1, x1, #0x9a4
+000056f4: 42cc43f9  ldr x2, [x2, #0x798]
+000056f8: 40003fd6  blr x2 ; heuristic @strcmp {"x1": "--debug", "x2": "@strcmp"}
+000056fc: 40010035  cbnz w0, #0x5724
+00005700: 833a43f9  ldr x3, [x20, #0x670]
+00005704: 62022191  add x2, x19, #0x840
+00005708: c0008052  mov w0, #6
+0000570c: 42000191  add x2, x2, #0x40
+00005710: 810000d0  adrp x1, #0x17000
+00005714: 21b02691  add x1, x1, #0x9ac
+00005718: 60003fd6  blr x3 ; heuristic @syslog {"x0": 6, "x1": "[%s] Debug mode: on\n", "x2": "main", "x3": "@syslog"}
+0000571c: 00048052  mov w0, #0x20
+00005720: c00200b9  str w0, [x22]
+00005724: a03e46f9  ldr x0, [x21, #0xc78]
+00005728: 230100d0  adrp x3, #0x2b000
+0000572c: 02138052  mov w2, #0x98
+00005730: 63d043f9  ldr x3, [x3, #0x7a0]
+00005734: 010040b9  ldr w1, [x0]
+00005738: 200100d0  adrp x0, #0x2b000
+0000573c: 008442f9  ldr x0, [x0, #0x508]
+00005740: 000040f9  ldr x0, [x0]
+00005744: 60003fd6  blr x3 ; heuristic @openlog {"x0": "lcm-adapter", "x2": 152, "x3": "@openlog"}
+00005748: 200100d0  adrp x0, #0x2b000
+0000574c: 230100d0  adrp x3, #0x2b000
+00005750: c2368052  mov w2, #0x1b6
+00005754: 41088052  mov w1, #0x42
+00005758: 002045f9  ldr x0, [x0, #0xa40]
+0000575c: 636c46f9  ldr x3, [x3, #0xcd8]
+00005760: 000040f9  ldr x0, [x0]
+00005764: 60003fd6  blr x3 ; heuristic @open {"x0": "/tmp/run/lcm_adapter.pid", "x1": 66, "x2": 438, "x3": "@open"}
+00005768: f603002a  mov w22, w0
+0000576c: 1f040031  cmn w0, #1
+00005770: 61020054  b.ne #0x57bc
+00005774: 62022191  add x2, x19, #0x840
+00005778: 810000d0  adrp x1, #0x17000
+0000577c: 21042791  add x1, x1, #0x9c1
+00005780: 42200191  add x2, x2, #0x48
+00005784: 833a43f9  ldr x3, [x20, #0x670]
+00005788: 60008052  mov w0, #3
+0000578c: 60003fd6  blr x3 ; heuristic @syslog {"x0": 3, "x1": "[%s] Error creating/opening pid file", "x2": "is_process_running", "x3": "@syslog"}
+00005790: 943a43f9  ldr x20, [x20, #0x670]
+00005794: 62022191  add x2, x19, #0x840
+00005798: 810000d0  adrp x1, #0x17000
+0000579c: 219c2891  add x1, x1, #0xa27
+000057a0: 42000191  add x2, x2, #0x40
+000057a4: 60008052  mov w0, #3
+000057a8: 80023fd6  blr x20 ; heuristic @syslog {"x0": 3, "x1": "[%s] LCM Adapter is already running", "x2": "main"}
+000057ac: 210100d0  adrp x1, #0x2b000
+000057b0: 20008052  mov w0, #1
+000057b4: 212c42f9  ldr x1, [x1, #0x458]
+000057b8: 20003fd6  blr x1 ; heuristic @exit {"x0": 1, "x1": "@exit"}
+000057bc: 220100d0  adrp x2, #0x2b000
+000057c0: c1008052  mov w1, #6
+000057c4: 426447f9  ldr x2, [x2, #0xec8]
+000057c8: 40003fd6  blr x2 ; heuristic @flock {"x1": 6, "x2": "@flock"}
+000057cc: 20feff35  cbnz w0, #0x5790
+000057d0: 220100d0  adrp x2, #0x2b000
+000057d4: 010080d2  mov x1, #0
+000057d8: e003162a  mov w0, w22
+000057dc: 424044f9  ldr x2, [x2, #0x880]
+000057e0: 40003fd6  blr x2 ; heuristic @ftruncate {"x1": 0, "x2": "@ftruncate"}
+000057e4: 1f040031  cmn w0, #1
+000057e8: c1000054  b.ne #0x5800
+000057ec: 62022191  add x2, x19, #0x840
+000057f0: 810000d0  adrp x1, #0x17000
+000057f4: 21982791  add x1, x1, #0x9e6
+000057f8: 42200191  add x2, x2, #0x48
+000057fc: e2ffff17  b #0x5784
+00005800: 200100d0  adrp x0, #0x2b000
+00005804: bfff00f9  str xzr, [x29, #0x1f8]
+00005808: bf030479  strh wzr, [x29, #0x200]
+0000580c: b5e30791  add x21, x29, #0x1f8
+00005810: 009043f9  ldr x0, [x0, #0x720]
+00005814: 00003fd6  blr x0 ; heuristic @getpid {"x0": "@getpid", "x1": "[%s] Error truncating pid file", "x2": "is_process_running"}
+00005818: e303002a  mov w3, w0
+0000581c: 240100d0  adrp x4, #0x2b000
+00005820: 410180d2  mov x1, #0xa
+00005824: 820000d0  adrp x2, #0x17000
+00005828: 421c1391  add x2, x2, #0x4c7
+0000582c: 847c43f9  ldr x4, [x4, #0x6f8]
+00005830: e00315aa  mov x0, x21
+00005834: 80003fd6  blr x4 ; heuristic @snprintf {"x1": 10, "x2": "%d\n", "x4": "@snprintf"}
+00005838: 210100d0  adrp x1, #0x2b000
+0000583c: e00315aa  mov x0, x21
+00005840: 213042f9  ldr x1, [x1, #0x460]
+00005844: 20003fd6  blr x1 ; heuristic @strlen {"x1": "@strlen"}
+00005848: e20300aa  mov x2, x0
+0000584c: 230100d0  adrp x3, #0x2b000
+00005850: e10315aa  mov x1, x21
+00005854: e003162a  mov w0, w22
+00005858: 63cc44f9  ldr x3, [x3, #0x998]
+0000585c: 60003fd6  blr x3 ; heuristic @write {"x3": "@write"}
+00005860: 1f0400b1  cmn x0, #1
+00005864: c1000054  b.ne #0x587c
+00005868: 62022191  add x2, x19, #0x840
+0000586c: 810000d0  adrp x1, #0x17000
+00005870: 21142891  add x1, x1, #0xa05
+00005874: 42200191  add x2, x2, #0x48
+00005878: c3ffff17  b #0x5784
+0000587c: 370100d0  adrp x23, #0x2b000
+00005880: 380100d0  adrp x24, #0x2b000
+00005884: 360100f0  adrp x22, #0x2c000
+00005888: d9021c91  add x25, x22, #0x700
+0000588c: f78645f9  ldr x23, [x23, #0xb08]
+00005890: 350100d0  adrp x21, #0x2b000
+00005894: 184b44f9  ldr x24, [x24, #0x890]
+00005898: e00240f9  ldr x0, [x23]
+0000589c: 00033fd6  blr x24 ; heuristic @ubus_connect {"x1": "[%s] Error while writing pid file", "x2": "is_process_running"}
+000058a0: c08203f9  str x0, [x22, #0x700]
+000058a4: 800100b5  cbnz x0, #0x58d4
+000058a8: 62022191  add x2, x19, #0x840
+000058ac: e30240f9  ldr x3, [x23]
+000058b0: 810000d0  adrp x1, #0x17000
+000058b4: 212c2991  add x1, x1, #0xa4b
+000058b8: 42000191  add x2, x2, #0x40
+000058bc: 943a43f9  ldr x20, [x20, #0x670]
+000058c0: 60008052  mov w0, #3
+000058c4: 80023fd6  blr x20 ; heuristic unknown {"x0": 3, "x1": "[%s] Failed to connect to system ubus: %s", "x2": "main"}
+000058c8: b51245f9  ldr x21, [x21, #0xa20]
+000058cc: a0023fd6  blr x21 ; heuristic 0xb8e4 {}
+000058d0: b7ffff17  b #0x57ac
+000058d4: 370100d0  adrp x23, #0x2b000
+000058d8: f70a45f9  ldr x23, [x23, #0xa10]
+000058dc: e00240f9  ldr x0, [x23]
+000058e0: 00033fd6  blr x24 ; heuristic @ubus_connect {"x0": "/var/run/ubus-session/ubus.sock"}
+000058e4: 200700f9  str x0, [x25, #8]
+000058e8: e00000b5  cbnz x0, #0x5904
+000058ec: 62022191  add x2, x19, #0x840
+000058f0: 810000d0  adrp x1, #0x17000
+000058f4: 21d42991  add x1, x1, #0xa75
+000058f8: 42000191  add x2, x2, #0x40
+000058fc: e30240f9  ldr x3, [x23]
+00005900: efffff17  b #0x58bc
+00005904: 200100d0  adrp x0, #0x2b000
+00005908: 00a846f9  ldr x0, [x0, #0xd50]
+0000590c: 00003fd6  blr x0 ; heuristic 0xe6ac {"x0": 59052, "x1": "[%s] Failed to connect to service ubus: %s", "x2": "main", "x3": "/var/run/ubus-session/ubus.sock"}
+00005910: 00010034  cbz w0, #0x5930
+00005914: 833a43f9  ldr x3, [x20, #0x670]
+00005918: 62022191  add x2, x19, #0x840
+0000591c: 810000d0  adrp x1, #0x17000
+00005920: 21802a91  add x1, x1, #0xaa0
+00005924: 42000191  add x2, x2, #0x40
+00005928: 60008052  mov w0, #3
+0000592c: 60003fd6  blr x3 ; heuristic unknown {"x0": 3, "x1": "[%s] Failed to set global limits", "x2": "main"}
+00005930: 200100d0  adrp x0, #0x2b000
+00005934: 006847f9  ldr x0, [x0, #0xed0]
+00005938: 00003fd6  blr x0 ; heuristic 0xedc0 {"x0": 60864}
+0000593c: 00010034  cbz w0, #0x595c
+00005940: 833a43f9  ldr x3, [x20, #0x670]
+00005944: 62022191  add x2, x19, #0x840
+00005948: 810000d0  adrp x1, #0x17000
+0000594c: 21042b91  add x1, x1, #0xac1
+00005950: 42000191  add x2, x2, #0x40
+00005954: 60008052  mov w0, #3
+00005958: 60003fd6  blr x3 ; heuristic unknown {"x0": 3, "x1": "[%s] Failed to set ExecEnv", "x2": "main"}
+0000595c: 390100d0  adrp x25, #0x2b000
+00005960: 380100d0  adrp x24, #0x2b000
+00005964: c28243f9  ldr x2, [x22, #0x700]
+00005968: dc021c91  add x28, x22, #0x700
+0000596c: 39e746f9  ldr x25, [x25, #0xdc8]
+00005970: a1c30191  add x1, x29, #0x70
+00005974: 18ff41f9  ldr x24, [x24, #0x3f8]
+00005978: 200340f9  ldr x0, [x25]
+0000597c: 00033fd6  blr x24 ; heuristic 0xb6a4 {"x0": "nokia.prpllcmadapter.requestOp"}
+00005980: 40010034  cbz w0, #0x59a8
+00005984: 210100d0  adrp x1, #0x2b000
+00005988: 21ec47f9  ldr x1, [x1, #0xfd8]
+0000598c: 20003fd6  blr x1 ; heuristic @ubus_strerror {"x1": "@ubus_strerror"}
+00005990: e30300aa  mov x3, x0
+00005994: 62022191  add x2, x19, #0x840
+00005998: 810000d0  adrp x1, #0x17000
+0000599c: 21702b91  add x1, x1, #0xadc
+000059a0: 42000191  add x2, x2, #0x40
+000059a4: c6ffff17  b #0x58bc
+000059a8: 973a43f9  ldr x23, [x20, #0x670]
+000059ac: 7b022191  add x27, x19, #0x840
+000059b0: 7a030191  add x26, x27, #0x40
+000059b4: c0008052  mov w0, #6
+000059b8: e2031aaa  mov x2, x26
+000059bc: 810000d0  adrp x1, #0x17000
+000059c0: 21742c91  add x1, x1, #0xb1d
+000059c4: e0023fd6  blr x23 ; heuristic unknown {"x0": 6, "x1": "[%s] Listener successfully registerd to system ubus.", "x2": "main"}
+000059c8: 200340f9  ldr x0, [x25]
+000059cc: a1c30391  add x1, x29, #0xf0
+000059d0: 820740f9  ldr x2, [x28, #8]
+000059d4: 00033fd6  blr x24 ; heuristic 0xb6a4 {"x0": "nokia.prpllcmadapter.requestOp"}
+000059d8: 60010034  cbz w0, #0x5a04
+000059dc: 210100d0  adrp x1, #0x2b000
+000059e0: 21ec47f9  ldr x1, [x1, #0xfd8]
+000059e4: 20003fd6  blr x1 ; heuristic @ubus_strerror {"x1": "@ubus_strerror"}
+000059e8: e30300aa  mov x3, x0
+000059ec: e2031aaa  mov x2, x26
+000059f0: 810000d0  adrp x1, #0x17000
+000059f4: 21482d91  add x1, x1, #0xb52
+000059f8: 60008052  mov w0, #3
+000059fc: e0023fd6  blr x23 ; heuristic unknown {"x0": 3, "x1": "[%s] Failed to register event handler on service ubus, error: %s\n", "x2": "main"}
+00005a00: b2ffff17  b #0x58c8
+00005a04: c0008052  mov w0, #6
+00005a08: e2031aaa  mov x2, x26
+00005a0c: 810000d0  adrp x1, #0x17000
+00005a10: 21502e91  add x1, x1, #0xb94
+00005a14: e0023fd6  blr x23 ; heuristic unknown {"x0": 6, "x1": "[%s] Listener successfully registerd to service ubus.", "x2": "main"}
+00005a18: 210100d0  adrp x1, #0x2b000
+00005a1c: c08243f9  ldr x0, [x22, #0x700]
+00005a20: 213c44f9  ldr x1, [x1, #0x878]
+00005a24: 380040b9  ldr w24, [x1]
+00005a28: a00800b5  cbnz x0, #0x5b3c
+00005a2c: 200100d0  adrp x0, #0x2b000
+00005a30: 00c846f9  ldr x0, [x0, #0xd90]
+00005a34: 000040b9  ldr w0, [x0]
+00005a38: 1f00186b  cmp w0, w24
+00005a3c: 61f4ff54  b.ne #0x58c8
+00005a40: 983a43f9  ldr x24, [x20, #0x670]
+00005a44: 77022191  add x23, x19, #0x840
+00005a48: f7020191  add x23, x23, #0x40
+00005a4c: c0008052  mov w0, #6
+00005a50: e20317aa  mov x2, x23
+00005a54: 810000d0  adrp x1, #0x17000
+00005a58: 21d02f91  add x1, x1, #0xbf4
+00005a5c: 00033fd6  blr x24 ; heuristic unknown {"x0": 6, "x1": "[%s] Registered ubus object", "x2": "main"}
+00005a60: 200100d0  adrp x0, #0x2b000
+00005a64: 230100d0  adrp x3, #0x2b000
+00005a68: c28243f9  ldr x2, [x22, #0x700]
+00005a6c: a1c30591  add x1, x29, #0x170
+00005a70: 008842f9  ldr x0, [x0, #0x510]
+00005a74: 63e444f9  ldr x3, [x3, #0x9c8]
+00005a78: 000040f9  ldr x0, [x0]
+00005a7c: 60003fd6  blr x3 ; heuristic 0xb728 {"x0": "SoftwareModules", "x3": 46888}
+00005a80: 40f2ff35  cbnz w0, #0x58c8
+00005a84: 200100d0  adrp x0, #0x2b000
+00005a88: 00e441f9  ldr x0, [x0, #0x3c8]
+00005a8c: 00003fd6  blr x0 ; heuristic 0xc118 {"x0": 49432}
+00005a90: e20317aa  mov x2, x23
+00005a94: c0060035  cbnz w0, #0x5b6c
+00005a98: 810000d0  adrp x1, #0x17000
+00005a9c: 21403091  add x1, x1, #0xc10
+00005aa0: c0008052  mov w0, #6
+00005aa4: 00033fd6  blr x24 ; heuristic unknown {"x0": 6, "x1": "[%s] Update of eu Status Succesfull", "x2": "main"}
+00005aa8: 73022191  add x19, x19, #0x840
+00005aac: 200100d0  adrp x0, #0x2b000
+00005ab0: 73020191  add x19, x19, #0x40
+00005ab4: 00f847f9  ldr x0, [x0, #0xff0]
+00005ab8: 00003fd6  blr x0 ; heuristic 0x1604c {"x0": 90188}
+00005abc: 943a43f9  ldr x20, [x20, #0x670]
+00005ac0: e20313aa  mov x2, x19
+00005ac4: c0008052  mov w0, #6
+00005ac8: 810000d0  adrp x1, #0x17000
+00005acc: 21483191  add x1, x1, #0xc52
+00005ad0: 80023fd6  blr x20 ; heuristic unknown {"x0": 6, "x1": "[%s] Starting ubus loop", "x2": "main"}
+00005ad4: 200100d0  adrp x0, #0x2b000
+00005ad8: 00b443f9  ldr x0, [x0, #0x768]
+00005adc: 00003fd6  blr x0 ; heuristic 0xb884 {"x0": 47236}
+00005ae0: e20313aa  mov x2, x19
+00005ae4: c0008052  mov w0, #6
+00005ae8: 810000d0  adrp x1, #0x17000
+00005aec: 21a83191  add x1, x1, #0xc6a
+00005af0: 80023fd6  blr x20 ; heuristic unknown {"x0": 6, "x1": "[%s] Freeing ubus", "x2": "main"}
+00005af4: b51245f9  ldr x21, [x21, #0xa20]
+00005af8: a0023fd6  blr x21 ; heuristic 0xf00000e2aa0203f3 {}
+00005afc: e20313aa  mov x2, x19
+00005b00: c0008052  mov w0, #6
+00005b04: 03008052  mov w3, #0
+00005b08: 810000d0  adrp x1, #0x17000
+00005b0c: 21f03191  add x1, x1, #0xc7c
+00005b10: 80023fd6  blr x20 ; heuristic unknown {"x0": 6, "x1": "[%s] Exit code: %d", "x2": "main", "x3": 0}
+00005b14: a13740f9  ldr x1, [x29, #0x68]
+00005b18: 00008052  mov w0, #0
+00005b1c: 21f846f9  ldr x1, [x1, #0xdf0]
+00005b20: a20741f9  ldr x2, [x29, #0x208]
+00005b24: 210040f9  ldr x1, [x1]
+00005b28: 410001ca  eor x1, x2, x1
+00005b2c: 810200b4  cbz x1, #0x5b7c
+00005b30: 200100d0  adrp x0, #0x2b000
+00005b34: 00c843f9  ldr x0, [x0, #0x790]
+00005b38: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+00005b3c: 210100d0  adrp x1, #0x2b000
+00005b40: 220100d0  adrp x2, #0x2b000
+00005b44: 219c47f9  ldr x1, [x1, #0xf38]
+00005b48: 425444f9  ldr x2, [x2, #0x8a8]
+00005b4c: 40003fd6  blr x2 ; heuristic @ubus_add_object {"x1": 181344, "x2": "@ubus_add_object"}
+00005b50: 80f7ff34  cbz w0, #0x5a40
+00005b54: 62830191  add x2, x27, #0x60
+00005b58: 810000d0  adrp x1, #0x17000
+00005b5c: 21282f91  add x1, x1, #0xbca
+00005b60: 60008052  mov w0, #3
+00005b64: e0023fd6  blr x23 ; heuristic 0x17880 {"x0": 3, "x1": "[%s] Error while registering ubus object\n", "x2": "register_adapter_object"}
+00005b68: b1ffff17  b #0x5a2c
+00005b6c: 810000d0  adrp x1, #0x17000
+00005b70: 21d03091  add x1, x1, #0xc34
+00005b74: 60008052  mov w0, #3
+00005b78: cbffff17  b #0x5aa4
+00005b7c: fd7b40a9  ldp x29, x30, [sp]
+00005b80: f35341a9  ldp x19, x20, [sp, #0x10]
+00005b84: f55b42a9  ldp x21, x22, [sp, #0x20]
+00005b88: f76343a9  ldp x23, x24, [sp, #0x30]
+00005b8c: f96b44a9  ldp x25, x26, [sp, #0x40]
+00005b90: fb7345a9  ldp x27, x28, [sp, #0x50]
+00005b94: ff430891  add sp, sp, #0x210
+00005b98: c0035fd6  ret 
+00005b9c: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+00005ba0: 220100d0  adrp x2, #0x2b000
+00005ba4: 210100d0  adrp x1, #0x2b000
+00005ba8: 040080d2  mov x4, #0
+00005bac: fd030091  mov x29, sp
+00005bb0: f71b00f9  str x23, [sp, #0x30]
+00005bb4: 370100d0  adrp x23, #0x2b000
+00005bb8: f35301a9  stp x19, x20, [sp, #0x10]
+00005bbc: 330100d0  adrp x19, #0x2b000

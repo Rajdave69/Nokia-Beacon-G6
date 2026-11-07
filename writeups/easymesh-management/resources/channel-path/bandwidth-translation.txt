@@ -1,0 +1,63 @@
+
+ics_translate_nal_bandwidth_to_map_bandwidth:
+0001a198: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0001a19c: a2020090  adrp x2, #0x6e000
+0001a1a0: fd030091  mov x29, sp
+0001a1a4: 439447f9  ldr x3, [x2, #0xf28]
+0001a1a8: 640040f9  ldr x4, [x3]
+0001a1ac: a40f00f9  str x4, [x29, #0x18]
+0001a1b0: 040080d2  mov x4, #0
+0001a1b4: 610600b4  cbz x1, #0x1a280
+0001a1b8: 1f0c0071  cmp w0, #3
+0001a1bc: a0050054  b.eq #0x1a270
+0001a1c0: 09020054  b.ls #0x1a200
+0001a1c4: 1f140071  cmp w0, #5
+0001a1c8: 40040054  b.eq #0x1a250
+0001a1cc: a3020054  b.lo #0x1a220
+0001a1d0: 1f180071  cmp w0, #6
+0001a1d4: 61040054  b.ne #0x1a260
+0001a1d8: e3008052  mov w3, #7
+0001a1dc: 00008052  mov w0, #0
+0001a1e0: 23000039  strb w3, [x1]
+0001a1e4: 429447f9  ldr x2, [x2, #0xf28]
+0001a1e8: a30f40f9  ldr x3, [x29, #0x18]
+0001a1ec: 410040f9  ldr x1, [x2]
+0001a1f0: 610001ca  eor x1, x3, x1
+0001a1f4: a10400b5  cbnz x1, #0x1a288
+0001a1f8: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0001a1fc: c0035fd6  ret 
+0001a200: 1f040071  cmp w0, #1
+0001a204: e0010054  b.eq #0x1a240
+0001a208: 48010054  b.hi #0x1a230
+0001a20c: 23008052  mov w3, #1
+0001a210: 00008052  mov w0, #0
+0001a214: 23000039  strb w3, [x1]
+0001a218: f3ffff17  b #0x1a1e4
+0001a21c: 1f2003d5  nop 
+0001a220: a3008052  mov w3, #5
+0001a224: 00008052  mov w0, #0
+0001a228: 23000039  strb w3, [x1]
+0001a22c: eeffff17  b #0x1a1e4
+0001a230: 63008052  mov w3, #3
+0001a234: 00008052  mov w0, #0
+0001a238: 23000039  strb w3, [x1]
+0001a23c: eaffff17  b #0x1a1e4
+0001a240: 43008052  mov w3, #2
+0001a244: 00008052  mov w0, #0
+0001a248: 23000039  strb w3, [x1]
+0001a24c: e6ffff17  b #0x1a1e4
+0001a250: c3008052  mov w3, #6
+0001a254: 00008052  mov w0, #0
+0001a258: 23000039  strb w3, [x1]
+0001a25c: e2ffff17  b #0x1a1e4
+0001a260: 3f000039  strb wzr, [x1]
+0001a264: 00008052  mov w0, #0
+0001a268: dfffff17  b #0x1a1e4
+0001a26c: 1f2003d5  nop 
+0001a270: 83008052  mov w3, #4
+0001a274: 00008052  mov w0, #0
+0001a278: 23000039  strb w3, [x1]
+0001a27c: daffff17  b #0x1a1e4
+0001a280: 00008012  mov w0, #-1
+0001a284: d8ffff17  b #0x1a1e4
+0001a288: 4ee8ff97  bl #0x143c0 ; heuristic __stack_chk_fail@plt {"x0": -1, "x3": 4}

@@ -1,0 +1,21 @@
+ca_gpio_tx_power_info_set: .text+0xb308, 80 bytes; sha256 f8955c723175fa28f20aa22d7586efde40788f5e5e768e1a2a6f591f2e972b8a
+0000b308: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0000b30c: fd030091  mov x29, sp
+0000b310: f35301a9  stp x19, x20, [sp, #0x10]
+0000b314: f403012a  mov w20, w1
+0000b318: f303022a  mov w19, w2
+0000b31c: e0031eaa  mov x0, x30
+0000b320: 00000094  bl #0xb320 ; reloc _mcount+0x0 type=283
+0000b324: 9f7e0071  cmp w20, #0x1f
+0000b328: 40008052  mov w0, #2
+0000b32c: 629a417a  ccmp w19, #1, #2, ls
+0000b330: e8000054  b.hi #0xb34c
+0000b334: 02000090  adrp x2, #0xb000 ; reloc .data+0x40 type=275
+0000b338: 01000090  adrp x1, #0xb000 ; reloc .bss+0x470 type=275
+0000b33c: 7322d41a  lsl w19, w19, w20
+0000b340: 00008052  mov w0, #0
+0000b344: 540000b9  str w20, [x2] ; reloc .data+0x40 type=285
+0000b348: 330000b9  str w19, [x1] ; reloc .bss+0x470 type=285
+0000b34c: f35341a9  ldp x19, x20, [sp, #0x10]
+0000b350: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0000b354: c0035fd6  ret 

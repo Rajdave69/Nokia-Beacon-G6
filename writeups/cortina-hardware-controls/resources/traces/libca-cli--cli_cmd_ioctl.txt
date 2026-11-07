@@ -1,0 +1,92 @@
+
+cli_cmd_ioctl:
+001e9848: 105a84d2  mov x16, #0x22d0
+001e984c: ff6330cb  sub sp, sp, x16
+001e9850: fd7b00a9  stp x29, x30, [sp]
+001e9854: fd030091  mov x29, sp
+001e9858: a01700f9  str x0, [x29, #0x28]
+001e985c: a11300f9  str x1, [x29, #0x20]
+001e9860: a21f00b9  str w2, [x29, #0x1c]
+001e9864: a30b00f9  str x3, [x29, #0x10]
+001e9868: bfcf22b9  str wzr, [x29, #0x22cc]
+001e986c: bfcb22b9  str wzr, [x29, #0x22c8]
+001e9870: a0630191  add x0, x29, #0x58
+001e9874: 024d84d2  mov x2, #0x2268
+001e9878: 01008052  mov w1, #0
+001e987c: e5e9ff97  bl #0x1e4010 ; heuristic memset@plt {"x1": 0, "x2": 8808}
+001e9880: a1630191  add x1, x29, #0x58
+001e9884: 800084d2  mov x0, #0x2004
+001e9888: 2000008b  add x0, x1, x0
+001e988c: a11340f9  ldr x1, [x29, #0x20]
+001e9890: 80e9ff97  bl #0x1e3e90 ; heuristic strcpy@plt {}
+001e9894: a01f40b9  ldr w0, [x29, #0x1c]
+001e9898: a0df20b9  str w0, [x29, #0x20dc]
+001e989c: bfcf22b9  str wzr, [x29, #0x22cc]
+001e98a0: 13000014  b #0x1e98ec
+001e98a4: a1630191  add x1, x29, #0x58
+001e98a8: a0cf62b9  ldr w0, [x29, #0x22cc]
+001e98ac: 00100491  add x0, x0, #0x104
+001e98b0: 00e87bd3  lsl x0, x0, #5
+001e98b4: 2000008b  add x0, x1, x0
+001e98b8: 03200091  add x3, x0, #8
+001e98bc: a0cf62b9  ldr w0, [x29, #0x22cc]
+001e98c0: 00f07dd3  lsl x0, x0, #3
+001e98c4: a10b40f9  ldr x1, [x29, #0x10]
+001e98c8: 2000008b  add x0, x1, x0
+001e98cc: 000040f9  ldr x0, [x0]
+001e98d0: e20380d2  mov x2, #0x1f
+001e98d4: e10300aa  mov x1, x0
+001e98d8: e00303aa  mov x0, x3
+001e98dc: 01e7ff97  bl #0x1e34e0 ; heuristic strncpy@plt {"x2": 31}
+001e98e0: a0cf62b9  ldr w0, [x29, #0x22cc]
+001e98e4: 00040011  add w0, w0, #1
+001e98e8: a0cf22b9  str w0, [x29, #0x22cc]
+001e98ec: a1cf62b9  ldr w1, [x29, #0x22cc]
+001e98f0: a01f40b9  ldr w0, [x29, #0x1c]
+001e98f4: 3f00006b  cmp w1, w0
+001e98f8: 63fdff54  b.lo #0x1e98a4
+001e98fc: a0e30091  add x0, x29, #0x38
+001e9900: 020480d2  mov x2, #0x20
+001e9904: 01008052  mov w1, #0
+001e9908: c2e9ff97  bl #0x1e4010 ; heuristic memset@plt {"x1": 0, "x2": 32}
+001e990c: 60040090  adrp x0, #0x275000
+001e9910: 02602c91  add x2, x0, #0xb18
+001e9914: 60040090  adrp x0, #0x275000
+001e9918: 01a02c91  add x1, x0, #0xb28
+001e991c: a0e30091  add x0, x29, #0x38
+001e9920: 2ce9ff97  bl #0x1e3dd0 ; heuristic sprintf@plt {"x1": "/dev/%s", "x2": "cortina-cli-dev"}
+001e9924: a0e30091  add x0, x29, #0x38
+001e9928: 41008052  mov w1, #2
+001e992c: ade9ff97  bl #0x1e3fe0 ; heuristic open@plt {"x1": 2}
+001e9930: a0c722b9  str w0, [x29, #0x22c4]
+001e9934: a0c762b9  ldr w0, [x29, #0x22c4]
+001e9938: 1f040031  cmn w0, #1
+001e993c: 00030054  b.eq #0x1e999c
+001e9940: a0630191  add x0, x29, #0x58
+001e9944: e20300aa  mov x2, x0
+001e9948: 216088d2  mov x1, #0x4301
+001e994c: a0c762b9  ldr w0, [x29, #0x22c4]
+001e9950: 60e8ff97  bl #0x1e3ad0 ; heuristic ioctl@plt {"x1": 17153}
+001e9954: a0cb22b9  str w0, [x29, #0x22c8]
+001e9958: a0cb62b9  ldr w0, [x29, #0x22c8]
+001e995c: 1f000071  cmp w0, #0
+001e9960: a1010054  b.ne #0x1e9994
+001e9964: a0c762b9  ldr w0, [x29, #0x22c4]
+001e9968: 52e9ff97  bl #0x1e3eb0 ; heuristic close@plt {}
+001e996c: a0630191  add x0, x29, #0x58
+001e9970: 01100091  add x1, x0, #4
+001e9974: 60040090  adrp x0, #0x275000
+001e9978: 00c02c91  add x0, x0, #0xb30
+001e997c: e20301aa  mov x2, x1
+001e9980: e10300aa  mov x1, x0
+001e9984: a01740f9  ldr x0, [x29, #0x28]
+001e9988: f2e6ff97  bl #0x1e3550 ; heuristic cli_print@plt {"x1": "%s"}
+001e998c: a05b40b9  ldr w0, [x29, #0x58]
+001e9990: 04000014  b #0x1e99a0
+001e9994: a0c762b9  ldr w0, [x29, #0x22c4]
+001e9998: 46e9ff97  bl #0x1e3eb0 ; heuristic close@plt {}
+001e999c: e0008052  mov w0, #7
+001e99a0: fd7b40a9  ldp x29, x30, [sp]
+001e99a4: 105a84d2  mov x16, #0x22d0
+001e99a8: ff63308b  add sp, sp, x16
+001e99ac: c0035fd6  ret 

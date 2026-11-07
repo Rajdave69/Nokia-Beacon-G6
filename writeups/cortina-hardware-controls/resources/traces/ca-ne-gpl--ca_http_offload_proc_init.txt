@@ -1,0 +1,50 @@
+ca_http_offload_proc_init: .text+0x33950, 196 bytes; sha256 2d4dc0c7016400ba3a6b50e86d63ea2bab9bedc14b4e241e20b802fc905630ad
+00033950: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00033954: fd030091  mov x29, sp
+00033958: f35301a9  stp x19, x20, [sp, #0x10]
+0003395c: e0031eaa  mov x0, x30
+00033960: 00000094  bl #0x33960 ; reloc _mcount+0x0 type=283
+00033964: 01000090  adrp x1, #0x33000 ; reloc proc_adapt_dir+0x0 type=275
+00033968: 14000090  adrp x20, #0x33000 ; reloc .bss+0x5a060 type=275
+0003396c: 94020091  add x20, x20, #0 ; reloc .bss+0x5a060 type=277
+00033970: 00000090  adrp x0, #0x33000 ; reloc .rodata.str1.8+0x12708 'http_offload' type=275
+00033974: 210040f9  ldr x1, [x1] ; reloc proc_adapt_dir+0x0 type=286
+00033978: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x12708 'http_offload' type=277
+0003397c: 13000090  adrp x19, #0x33000 ; reloc .data..read_mostly+0x10e0 type=275
+00033980: 73020091  add x19, x19, #0 ; reloc .data..read_mostly+0x10e0 type=277
+00033984: 00000094  bl #0x33984 ; reloc proc_mkdir+0x0 type=283
+00033988: e20300aa  mov x2, x0
+0003398c: e30313aa  mov x3, x19
+00033990: 00000090  adrp x0, #0x33000 ; reloc .rodata.str1.8+0x12718 'cmd' type=275
+00033994: c1368052  mov w1, #0x1b6
+00033998: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x12718 'cmd' type=277
+0003399c: 82c200f9  str x2, [x20, #0x180]
+000339a0: 00000094  bl #0x339a0 ; reloc proc_create+0x0 type=283
+000339a4: 200100b5  cbnz x0, #0x339c8
+000339a8: 01000090  adrp x1, #0x33000 ; reloc .rodata+0x2ed8 'ca_http_offload_proc_init' type=275
+000339ac: 00000090  adrp x0, #0x33000 ; reloc .rodata.str1.8+0x12720 type=275
+000339b0: 21000091  add x1, x1, #0 ; reloc .rodata+0x2ed8 'ca_http_offload_proc_init' type=277
+000339b4: c2aa8052  mov w2, #0x556
+000339b8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x12720 type=277
+000339bc: 00000094  bl #0x339bc ; reloc printk+0x0 type=283
+000339c0: 01008012  mov w1, #-1
+000339c4: 10000014  b #0x33a04
+000339c8: 82c240f9  ldr x2, [x20, #0x180]
+000339cc: c1368052  mov w1, #0x1b6
+000339d0: 00000090  adrp x0, #0x33000 ; reloc .rodata.str1.8+0x12758 'tx_rate' type=275
+000339d4: 63c20391  add x3, x19, #0xf0
+000339d8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x12758 'tx_rate' type=277
+000339dc: 00000094  bl #0x339dc ; reloc proc_create+0x0 type=283
+000339e0: 01008052  mov w1, #0
+000339e4: 000100b5  cbnz x0, #0x33a04
+000339e8: 01000090  adrp x1, #0x33000 ; reloc .rodata+0x2ed8 'ca_http_offload_proc_init' type=275
+000339ec: 00000090  adrp x0, #0x33000 ; reloc .rodata.str1.8+0x12720 type=275
+000339f0: 21000091  add x1, x1, #0 ; reloc .rodata+0x2ed8 'ca_http_offload_proc_init' type=277
+000339f4: 62ab8052  mov w2, #0x55b
+000339f8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x12720 type=277
+000339fc: 00000094  bl #0x339fc ; reloc printk+0x0 type=283
+00033a00: 01008012  mov w1, #-1
+00033a04: e003012a  mov w0, w1
+00033a08: f35341a9  ldp x19, x20, [sp, #0x10]
+00033a0c: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00033a10: c0035fd6  ret 

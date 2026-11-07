@@ -1,0 +1,111 @@
+aal_set_wdt_config: .text+0xa590, 440 bytes; sha256 c1099925c9b82940b238f18811fbec79f491a584593fe2b34ee1b86c43a079ed
+0000a590: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+0000a594: fd030091  mov x29, sp
+0000a598: f30b00f9  str x19, [sp, #0x10]
+0000a59c: f30301aa  mov x19, x1
+0000a5a0: e0031eaa  mov x0, x30
+0000a5a4: 00000094  bl #0xa5a4 ; reloc _mcount+0x0 type=283
+0000a5a8: 00000090  adrp x0, #0xa000 ; reloc .bss+0x328 type=275
+0000a5ac: 02000091  add x2, x0, #0 ; reloc .bss+0x328 type=277
+0000a5b0: 412440f9  ldr x1, [x2, #0x48]
+0000a5b4: 21300191  add x1, x1, #0x4c
+0000a5b8: 210040b9  ldr w1, [x1]
+0000a5bc: 9f3d03d5  dsb ld
+0000a5c0: e303012a  mov w3, w1
+0000a5c4: 630003ca  eor x3, x3, x3
+0000a5c8: 030000b5  cbnz x3, #0xa5c8
+0000a5cc: a14b00b9  str w1, [x29, #0x48]
+0000a5d0: a14b40b9  ldr w1, [x29, #0x48]
+0000a5d4: 21001832  orr w1, w1, #0x100
+0000a5d8: a14b00b9  str w1, [x29, #0x48]
+0000a5dc: a14b40b9  ldr w1, [x29, #0x48]
+0000a5e0: 21001932  orr w1, w1, #0x80
+0000a5e4: a14b00b9  str w1, [x29, #0x48]
+0000a5e8: a14b40b9  ldr w1, [x29, #0x48]
+0000a5ec: 21001a32  orr w1, w1, #0x40
+0000a5f0: a14b00b9  str w1, [x29, #0x48]
+0000a5f4: a14b40b9  ldr w1, [x29, #0x48]
+0000a5f8: 21001c32  orr w1, w1, #0x10
+0000a5fc: a14b00b9  str w1, [x29, #0x48]
+0000a600: 9f3e03d5  dsb st
+0000a604: 412440f9  ldr x1, [x2, #0x48]
+0000a608: a24b40b9  ldr w2, [x29, #0x48]
+0000a60c: 21300191  add x1, x1, #0x4c
+0000a610: 220000b9  str w2, [x1]
+0000a614: 010040f9  ldr x1, [x0] ; reloc .bss+0x328 type=286
+0000a618: 21100091  add x1, x1, #4
+0000a61c: 210040b9  ldr w1, [x1]
+0000a620: 9f3d03d5  dsb ld
+0000a624: e203012a  mov w2, w1
+0000a628: 420002ca  eor x2, x2, x2
+0000a62c: 020000b5  cbnz x2, #0xa62c
+0000a630: a12b00b9  str w1, [x29, #0x28]
+0000a634: a12b40b9  ldr w1, [x29, #0x28]
+0000a638: 21010036  tbz w1, #0, #0xa65c
+0000a63c: a12b40b9  ldr w1, [x29, #0x28]
+0000a640: 21781f12  and w1, w1, #0xfffffffe
+0000a644: a12b00b9  str w1, [x29, #0x28]
+0000a648: 9f3e03d5  dsb st
+0000a64c: 010040f9  ldr x1, [x0] ; reloc .bss+0x328 type=286
+0000a650: a22b40b9  ldr w2, [x29, #0x28]
+0000a654: 21100091  add x1, x1, #4
+0000a658: 220000b9  str w2, [x1]
+0000a65c: 630240b9  ldr w3, [x19]
+0000a660: 9f3e03d5  dsb st
+0000a664: 010040f9  ldr x1, [x0] ; reloc .bss+0x328 type=286
+0000a668: 620640b9  ldr w2, [x19, #4]
+0000a66c: 21400091  add x1, x1, #0x10
+0000a670: 220000b9  str w2, [x1]
+0000a674: 610a40b9  ldr w1, [x19, #8]
+0000a678: c1000035  cbnz w1, #0xa690
+0000a67c: a12b40b9  ldr w1, [x29, #0x28]
+0000a680: 21001f32  orr w1, w1, #2
+0000a684: a12b00b9  str w1, [x29, #0x28]
+0000a688: 05000014  b #0xa69c
+0000a68c: 1f2003d5  nop 
+0000a690: a12b40b9  ldr w1, [x29, #0x28]
+0000a694: 21781e12  and w1, w1, #0xfffffffd
+0000a698: a12b00b9  str w1, [x29, #0x28]
+0000a69c: a12b40b9  ldr w1, [x29, #0x28]
+0000a6a0: e2089d52  mov w2, #0xe847
+0000a6a4: 2200a072  movk w2, #1, lsl #16
+0000a6a8: 61000033  bfxil w1, w3, #0, #1
+0000a6ac: a12b00b9  str w1, [x29, #0x28]
+0000a6b0: a23b00b9  str w2, [x29, #0x38]
+0000a6b4: a14340b9  ldr w1, [x29, #0x40]
+0000a6b8: 213c1012  and w1, w1, #0xffff0000
+0000a6bc: 21000032  orr w1, w1, #1
+0000a6c0: a14300b9  str w1, [x29, #0x40]
+0000a6c4: a12b40b9  ldr w1, [x29, #0x28]
+0000a6c8: 21001e32  orr w1, w1, #4
+0000a6cc: a12b00b9  str w1, [x29, #0x28]
+0000a6d0: a13340b9  ldr w1, [x29, #0x30]
+0000a6d4: 21001f32  orr w1, w1, #2
+0000a6d8: a13300b9  str w1, [x29, #0x30]
+0000a6dc: a13340b9  ldr w1, [x29, #0x30]
+0000a6e0: 21000032  orr w1, w1, #1
+0000a6e4: a13300b9  str w1, [x29, #0x30]
+0000a6e8: 9f3e03d5  dsb st
+0000a6ec: 010040f9  ldr x1, [x0] ; reloc .bss+0x328 type=286
+0000a6f0: a24340b9  ldr w2, [x29, #0x40]
+0000a6f4: 21300091  add x1, x1, #0xc
+0000a6f8: 220000b9  str w2, [x1]
+0000a6fc: 9f3e03d5  dsb st
+0000a700: 010040f9  ldr x1, [x0] ; reloc .bss+0x328 type=286
+0000a704: a23b40b9  ldr w2, [x29, #0x38]
+0000a708: 21200091  add x1, x1, #8
+0000a70c: 220000b9  str w2, [x1]
+0000a710: 9f3e03d5  dsb st
+0000a714: 010040f9  ldr x1, [x0] ; reloc .bss+0x328 type=286
+0000a718: a23340b9  ldr w2, [x29, #0x30]
+0000a71c: 21500091  add x1, x1, #0x14
+0000a720: 220000b9  str w2, [x1]
+0000a724: 9f3e03d5  dsb st
+0000a728: 000040f9  ldr x0, [x0] ; reloc .bss+0x328 type=286
+0000a72c: a12b40b9  ldr w1, [x29, #0x28]
+0000a730: 00100091  add x0, x0, #4
+0000a734: 010000b9  str w1, [x0]
+0000a738: 00008052  mov w0, #0
+0000a73c: f30b40f9  ldr x19, [sp, #0x10]
+0000a740: fd7bc5a8  ldp x29, x30, [sp], #0x50
+0000a744: c0035fd6  ret 

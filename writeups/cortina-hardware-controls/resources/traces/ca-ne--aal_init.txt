@@ -1,0 +1,507 @@
+aal_init: .text+0x1b0b8, 2024 bytes; sha256 d37a3bc4e2440f28b2a90d5c17f8c7943ab6a073f69c42c0524d9707c7c75ce3
+0001b0b8: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0001b0bc: fd030091  mov x29, sp
+0001b0c0: f35301a9  stp x19, x20, [sp, #0x10]
+0001b0c4: 143c0012  and w20, w0, #0xffff
+0001b0c8: e0031eaa  mov x0, x30
+0001b0cc: 00000094  bl #0x1b0cc ; reloc _mcount+0x0 type=283
+0001b0d0: e003142a  mov w0, w20
+0001b0d4: 00000094  bl #0x1b0d4 ; reloc aal_ni_init+0x0 type=283
+0001b0d8: f303002a  mov w19, w0
+0001b0dc: 20010034  cbz w0, #0x1b100
+0001b0e0: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b0e4: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa758 '%s:%d: Fail to initialize NI. (ret %d)\n' type=275
+0001b0e8: e303132a  mov w3, w19
+0001b0ec: a20d8052  mov w2, #0x6d
+0001b0f0: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b0f4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa758 '%s:%d: Fail to initialize NI. (ret %d)\n' type=277
+0001b0f8: 00000094  bl #0x1b0f8 ; reloc ca_printf+0x0 type=283
+0001b0fc: dc010014  b #0x1b86c
+0001b100: 00000094  bl #0x1b100 ; reloc aal_im3e_mldda_init+0x0 type=283
+0001b104: f303002a  mov w19, w0
+0001b108: 40010034  cbz w0, #0x1b130
+0001b10c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b110: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa780 '%s:%d: Fail to initialize IM3E MLD DA Table. (ret %d)\n' type=275
+0001b114: e303132a  mov w3, w19
+0001b118: 620e8052  mov w2, #0x73
+0001b11c: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b120: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa780 '%s:%d: Fail to initialize IM3E MLD DA Table. (ret %d)\n' type=277
+0001b124: 00000094  bl #0x1b124 ; reloc ca_printf+0x0 type=283
+0001b128: d1010014  b #0x1b86c
+0001b12c: 1f2003d5  nop 
+0001b130: 00000094  bl #0x1b130 ; reloc aal_im3e_mldsa_init+0x0 type=283
+0001b134: f303002a  mov w19, w0
+0001b138: 40010034  cbz w0, #0x1b160
+0001b13c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b140: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa7b8 '%s:%d: Fail to initialize IM3E MLD SA Table. (ret %d)\n' type=275
+0001b144: e303132a  mov w3, w19
+0001b148: 020f8052  mov w2, #0x78
+0001b14c: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b150: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa7b8 '%s:%d: Fail to initialize IM3E MLD SA Table. (ret %d)\n' type=277
+0001b154: 00000094  bl #0x1b154 ; reloc ca_printf+0x0 type=283
+0001b158: c5010014  b #0x1b86c
+0001b15c: 1f2003d5  nop 
+0001b160: 00000094  bl #0x1b160 ; reloc aal_mce_indx_init+0x0 type=283
+0001b164: f303002a  mov w19, w0
+0001b168: 40010034  cbz w0, #0x1b190
+0001b16c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b170: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa7f0 '%s:%d: Fail to initialize MCE INDX Table. (ret %d)\n' type=275
+0001b174: e303132a  mov w3, w19
+0001b178: c20f8052  mov w2, #0x7e
+0001b17c: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b180: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa7f0 '%s:%d: Fail to initialize MCE INDX Table. (ret %d)\n' type=277
+0001b184: 00000094  bl #0x1b184 ; reloc ca_printf+0x0 type=283
+0001b188: b9010014  b #0x1b86c
+0001b18c: 1f2003d5  nop 
+0001b190: 00000094  bl #0x1b190 ; reloc aal_arb_fib_init+0x0 type=283
+0001b194: f303002a  mov w19, w0
+0001b198: 40010034  cbz w0, #0x1b1c0
+0001b19c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b1a0: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa828 '%s:%d: Fail to initialize ARB FIB Table. (ret %d)\n' type=275
+0001b1a4: e303132a  mov w3, w19
+0001b1a8: 62108052  mov w2, #0x83
+0001b1ac: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b1b0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa828 '%s:%d: Fail to initialize ARB FIB Table. (ret %d)\n' type=277
+0001b1b4: 00000094  bl #0x1b1b4 ; reloc ca_printf+0x0 type=283
+0001b1b8: ad010014  b #0x1b86c
+0001b1bc: 1f2003d5  nop 
+0001b1c0: e003142a  mov w0, w20
+0001b1c4: 00000094  bl #0x1b1c4 ; reloc aal_arb_init+0x0 type=283
+0001b1c8: f303002a  mov w19, w0
+0001b1cc: 20010034  cbz w0, #0x1b1f0
+0001b1d0: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b1d4: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa860 '%s:%d: Fail to initialize L2 ARB. (ret %d)\n' type=275
+0001b1d8: e303132a  mov w3, w19
+0001b1dc: 22118052  mov w2, #0x89
+0001b1e0: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b1e4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa860 '%s:%d: Fail to initialize L2 ARB. (ret %d)\n' type=277
+0001b1e8: 00000094  bl #0x1b1e8 ; reloc ca_printf+0x0 type=283
+0001b1ec: a0010014  b #0x1b86c
+0001b1f0: e003142a  mov w0, w20
+0001b1f4: 00000094  bl #0x1b1f4 ; reloc aal_mire_init+0x0 type=283
+0001b1f8: f303002a  mov w19, w0
+0001b1fc: 20010034  cbz w0, #0x1b220
+0001b200: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b204: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa890 '%s:%d: Fail to initialize L2 Mirror Engine. (ret %d)\n' type=275
+0001b208: e303132a  mov w3, w19
+0001b20c: e2118052  mov w2, #0x8f
+0001b210: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b214: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa890 '%s:%d: Fail to initialize L2 Mirror Engine. (ret %d)\n' type=277
+0001b218: 00000094  bl #0x1b218 ; reloc ca_printf+0x0 type=283
+0001b21c: 94010014  b #0x1b86c
+0001b220: e003142a  mov w0, w20
+0001b224: 00000094  bl #0x1b224 ; reloc aal_l2_tm_init+0x0 type=283
+0001b228: f303002a  mov w19, w0
+0001b22c: 20010034  cbz w0, #0x1b250
+0001b230: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b234: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa8c8 '%s:%d: Fail to initialize L2 TM. (ret %d)\n' type=275
+0001b238: e303132a  mov w3, w19
+0001b23c: a2128052  mov w2, #0x95
+0001b240: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b244: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa8c8 '%s:%d: Fail to initialize L2 TM. (ret %d)\n' type=277
+0001b248: 00000094  bl #0x1b248 ; reloc ca_printf+0x0 type=283
+0001b24c: 88010014  b #0x1b86c
+0001b250: e003142a  mov w0, w20
+0001b254: 00000094  bl #0x1b254 ; reloc aal_l2_tm_cb_init+0x0 type=283
+0001b258: f303002a  mov w19, w0
+0001b25c: 20010034  cbz w0, #0x1b280
+0001b260: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b264: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa8f8 '%s:%d: Fail to initialize L2 TM CB. (ret %d)\n' type=275
+0001b268: e303132a  mov w3, w19
+0001b26c: 22138052  mov w2, #0x99
+0001b270: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b274: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa8f8 '%s:%d: Fail to initialize L2 TM CB. (ret %d)\n' type=277
+0001b278: 00000094  bl #0x1b278 ; reloc ca_printf+0x0 type=283
+0001b27c: 7c010014  b #0x1b86c
+0001b280: e003142a  mov w0, w20
+0001b284: 00000094  bl #0x1b284 ; reloc aal_l3_te_cb_init+0x0 type=283
+0001b288: f303002a  mov w19, w0
+0001b28c: 20010034  cbz w0, #0x1b2b0
+0001b290: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b294: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa928 '%s:%d: Fail to initialize L3 TE CB. (ret %d)\n' type=275
+0001b298: e303132a  mov w3, w19
+0001b29c: e2138052  mov w2, #0x9f
+0001b2a0: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b2a4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa928 '%s:%d: Fail to initialize L3 TE CB. (ret %d)\n' type=277
+0001b2a8: 00000094  bl #0x1b2a8 ; reloc ca_printf+0x0 type=283
+0001b2ac: 70010014  b #0x1b86c
+0001b2b0: e003142a  mov w0, w20
+0001b2b4: 00000094  bl #0x1b2b4 ; reloc aal_l2_cls_init+0x0 type=283
+0001b2b8: f303002a  mov w19, w0
+0001b2bc: 20010034  cbz w0, #0x1b2e0
+0001b2c0: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b2c4: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa958 '%s:%d: Fail to initialize L2 CLS. (ret %d)\n' type=275
+0001b2c8: e303132a  mov w3, w19
+0001b2cc: a2148052  mov w2, #0xa5
+0001b2d0: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b2d4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa958 '%s:%d: Fail to initialize L2 CLS. (ret %d)\n' type=277
+0001b2d8: 00000094  bl #0x1b2d8 ; reloc ca_printf+0x0 type=283
+0001b2dc: 64010014  b #0x1b86c
+0001b2e0: 00000094  bl #0x1b2e0 ; reloc __aal_sa_id_tbl_init+0x0 type=283
+0001b2e4: f303002a  mov w19, w0
+0001b2e8: 20010034  cbz w0, #0x1b30c
+0001b2ec: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b2f0: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa988 '%s:%d: Fail to initialize SA ID Table. (ret %d)\n' type=275
+0001b2f4: e303132a  mov w3, w19
+0001b2f8: 62158052  mov w2, #0xab
+0001b2fc: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b300: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa988 '%s:%d: Fail to initialize SA ID Table. (ret %d)\n' type=277
+0001b304: 00000094  bl #0x1b304 ; reloc ca_printf+0x0 type=283
+0001b308: 59010014  b #0x1b86c
+0001b30c: 00000094  bl #0x1b30c ; reloc aal_idx4pe_tbl_init+0x0 type=283
+0001b310: f303002a  mov w19, w0
+0001b314: 20010034  cbz w0, #0x1b338
+0001b318: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b31c: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa9c0 '%s:%d: Fail to initialize IDX4PE Table. (ret %d)\n' type=275
+0001b320: e303132a  mov w3, w19
+0001b324: 22168052  mov w2, #0xb1
+0001b328: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b32c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa9c0 '%s:%d: Fail to initialize IDX4PE Table. (ret %d)\n' type=277
+0001b330: 00000094  bl #0x1b330 ; reloc ca_printf+0x0 type=283
+0001b334: 4e010014  b #0x1b86c
+0001b338: 40008052  mov w0, #2
+0001b33c: 00000094  bl #0x1b33c ; reloc aal_soc_has_module+0x0 type=283
+0001b340: 1f1c0072  tst w0, #0xff
+0001b344: 60210054  b.eq #0x1b770
+0001b348: 00000094  bl #0x1b348 ; reloc aal_l3fe_init+0x0 type=283
+0001b34c: f303002a  mov w19, w0
+0001b350: 20010034  cbz w0, #0x1b374
+0001b354: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b358: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xa9f8 '%s:%d: Fail to initialize L3 FE. (ret %d)\n' type=275
+0001b35c: e303132a  mov w3, w19
+0001b360: 02178052  mov w2, #0xb8
+0001b364: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b368: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xa9f8 '%s:%d: Fail to initialize L3 FE. (ret %d)\n' type=277
+0001b36c: 00000094  bl #0x1b36c ; reloc ca_printf+0x0 type=283
+0001b370: 3f010014  b #0x1b86c
+0001b374: 00000094  bl #0x1b374 ; reloc aal_l3_cam_tbls_init+0x0 type=283
+0001b378: f303002a  mov w19, w0
+0001b37c: 20010034  cbz w0, #0x1b3a0
+0001b380: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b384: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaa28 '%s:%d: Fail to initialize L3 PP CAM Table. (ret %d)\n' type=275
+0001b388: e303132a  mov w3, w19
+0001b38c: c2178052  mov w2, #0xbe
+0001b390: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b394: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaa28 '%s:%d: Fail to initialize L3 PP CAM Table. (ret %d)\n' type=277
+0001b398: 00000094  bl #0x1b398 ; reloc ca_printf+0x0 type=283
+0001b39c: 34010014  b #0x1b86c
+0001b3a0: 00000094  bl #0x1b3a0 ; reloc aal_fe_l3e_if_tbl_init+0x0 type=283
+0001b3a4: f303002a  mov w19, w0
+0001b3a8: 20010034  cbz w0, #0x1b3cc
+0001b3ac: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b3b0: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaa60 '%s:%d: Fail to initialize L3 If Table. (ret %d)\n' type=275
+0001b3b4: e303132a  mov w3, w19
+0001b3b8: 82188052  mov w2, #0xc4
+0001b3bc: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b3c0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaa60 '%s:%d: Fail to initialize L3 If Table. (ret %d)\n' type=277
+0001b3c4: 00000094  bl #0x1b3c4 ; reloc ca_printf+0x0 type=283
+0001b3c8: 29010014  b #0x1b86c
+0001b3cc: 00000094  bl #0x1b3cc ; reloc _hash_mask_tbl_init+0x0 type=283
+0001b3d0: f303002a  mov w19, w0
+0001b3d4: 20010034  cbz w0, #0x1b3f8
+0001b3d8: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b3dc: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaa98 '%s:%d: Fail to initialize Hash Mask Table. (ret %d)\n' type=275
+0001b3e0: e303132a  mov w3, w19
+0001b3e4: 22198052  mov w2, #0xc9
+0001b3e8: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b3ec: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaa98 '%s:%d: Fail to initialize Hash Mask Table. (ret %d)\n' type=277
+0001b3f0: 00000094  bl #0x1b3f0 ; reloc ca_printf+0x0 type=283
+0001b3f4: 1e010014  b #0x1b86c
+0001b3f8: 00000094  bl #0x1b3f8 ; reloc _hash_tbl_init+0x0 type=283
+0001b3fc: f303002a  mov w19, w0
+0001b400: 20010034  cbz w0, #0x1b424
+0001b404: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b408: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaad0 '%s:%d: Fail to initialize Hash Table. (ret %d)\n' type=275
+0001b40c: e303132a  mov w3, w19
+0001b410: c2198052  mov w2, #0xce
+0001b414: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b418: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaad0 '%s:%d: Fail to initialize Hash Table. (ret %d)\n' type=277
+0001b41c: 00000094  bl #0x1b41c ; reloc ca_printf+0x0 type=283
+0001b420: 13010014  b #0x1b86c
+0001b424: 00000094  bl #0x1b424 ; reloc _cache_hash_table_init+0x0 type=283
+0001b428: f303002a  mov w19, w0
+0001b42c: 20010034  cbz w0, #0x1b450
+0001b430: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b434: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xab00 '%s:%d: Fail to initialize Cache Hash Table. (ret %d)\n' type=275
+0001b438: e303132a  mov w3, w19
+0001b43c: 621a8052  mov w2, #0xd3
+0001b440: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b444: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xab00 '%s:%d: Fail to initialize Cache Hash Table. (ret %d)\n' type=277
+0001b448: 00000094  bl #0x1b448 ; reloc ca_printf+0x0 type=283
+0001b44c: 08010014  b #0x1b86c
+0001b450: 00000094  bl #0x1b450 ; reloc _cache_hash_action_table_init+0x0 type=283
+0001b454: f303002a  mov w19, w0
+0001b458: 20010034  cbz w0, #0x1b47c
+0001b45c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b460: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xab38 '%s:%d: Fail to initialize Cache Action Hash Table. (ret %d)\n' type=275
+0001b464: e303132a  mov w3, w19
+0001b468: 021b8052  mov w2, #0xd8
+0001b46c: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b470: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xab38 '%s:%d: Fail to initialize Cache Action Hash Table. (ret %d)\n' type=277
+0001b474: 00000094  bl #0x1b474 ; reloc ca_printf+0x0 type=283
+0001b478: fd000014  b #0x1b86c
+0001b47c: 00000094  bl #0x1b47c ; reloc _hash_age_table_init+0x0 type=283
+0001b480: f303002a  mov w19, w0
+0001b484: 20010034  cbz w0, #0x1b4a8
+0001b488: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b48c: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xab78 '%s:%d: Fail to initialize Hash Age Table. (ret %d)\n' type=275
+0001b490: e303132a  mov w3, w19
+0001b494: a21b8052  mov w2, #0xdd
+0001b498: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b49c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xab78 '%s:%d: Fail to initialize Hash Age Table. (ret %d)\n' type=277
+0001b4a0: 00000094  bl #0x1b4a0 ; reloc ca_printf+0x0 type=283
+0001b4a4: f2000014  b #0x1b86c
+0001b4a8: 00000094  bl #0x1b4a8 ; reloc _hash_overflow_tbl_init+0x0 type=283
+0001b4ac: f303002a  mov w19, w0
+0001b4b0: 20010034  cbz w0, #0x1b4d4
+0001b4b4: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b4b8: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xabb0 '%s:%d: Fail to initialize Hash Overflow Table. (ret %d)\n' type=275
+0001b4bc: e303132a  mov w3, w19
+0001b4c0: 421c8052  mov w2, #0xe2
+0001b4c4: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b4c8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xabb0 '%s:%d: Fail to initialize Hash Overflow Table. (ret %d)\n' type=277
+0001b4cc: 00000094  bl #0x1b4cc ; reloc ca_printf+0x0 type=283
+0001b4d0: e7000014  b #0x1b86c
+0001b4d4: 00000094  bl #0x1b4d4 ; reloc _hash_action_init+0x0 type=283
+0001b4d8: f303002a  mov w19, w0
+0001b4dc: 20010034  cbz w0, #0x1b500
+0001b4e0: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b4e4: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xabf0 '%s:%d: Fail to initialize Hash Action Table. (ret %d)\n' type=275
+0001b4e8: e303132a  mov w3, w19
+0001b4ec: e21c8052  mov w2, #0xe7
+0001b4f0: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b4f4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xabf0 '%s:%d: Fail to initialize Hash Action Table. (ret %d)\n' type=277
+0001b4f8: 00000094  bl #0x1b4f8 ; reloc ca_printf+0x0 type=283
+0001b4fc: dc000014  b #0x1b86c
+0001b500: 00000094  bl #0x1b500 ; reloc _hash_overflow_action_init+0x0 type=283
+0001b504: f303002a  mov w19, w0
+0001b508: 20010034  cbz w0, #0x1b52c
+0001b50c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b510: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xac28 '%s:%d: Fail to initialize Hash Overflow Action Table. (ret %d)\n' type=275
+0001b514: e303132a  mov w3, w19
+0001b518: 821d8052  mov w2, #0xec
+0001b51c: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b520: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xac28 '%s:%d: Fail to initialize Hash Overflow Action Table. (ret %d)\n' type=277
+0001b524: 00000094  bl #0x1b524 ; reloc ca_printf+0x0 type=283
+0001b528: d1000014  b #0x1b86c
+0001b52c: 00000094  bl #0x1b52c ; reloc _hash_default_action_init+0x0 type=283
+0001b530: f303002a  mov w19, w0
+0001b534: 20010034  cbz w0, #0x1b558
+0001b538: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b53c: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xac68 '%s:%d: Fail to initialize Hash Default Action Table. (ret %d)\n' type=275
+0001b540: e303132a  mov w3, w19
+0001b544: 221e8052  mov w2, #0xf1
+0001b548: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b54c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xac68 '%s:%d: Fail to initialize Hash Default Action Table. (ret %d)\n' type=277
+0001b550: 00000094  bl #0x1b550 ; reloc ca_printf+0x0 type=283
+0001b554: c6000014  b #0x1b86c
+0001b558: 00000094  bl #0x1b558 ; reloc __hashlite_mask_tbl_init+0x0 type=283
+0001b55c: f303002a  mov w19, w0
+0001b560: 20010034  cbz w0, #0x1b584
+0001b564: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b568: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaca8 '%s:%d: Fail to initialize Hash-Lite Mask Table. (ret %d)\n' type=275
+0001b56c: e303132a  mov w3, w19
+0001b570: e21e8052  mov w2, #0xf7
+0001b574: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b578: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaca8 '%s:%d: Fail to initialize Hash-Lite Mask Table. (ret %d)\n' type=277
+0001b57c: 00000094  bl #0x1b57c ; reloc ca_printf+0x0 type=283
+0001b580: bb000014  b #0x1b86c
+0001b584: 00000094  bl #0x1b584 ; reloc __hashlite_hash_tbl_init+0x0 type=283
+0001b588: f303002a  mov w19, w0
+0001b58c: 20010034  cbz w0, #0x1b5b0
+0001b590: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b594: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xace8 '%s:%d: Fail to initialize Hash-Lite Hash Table. (ret %d)\n' type=275
+0001b598: e303132a  mov w3, w19
+0001b59c: 821f8052  mov w2, #0xfc
+0001b5a0: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b5a4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xace8 '%s:%d: Fail to initialize Hash-Lite Hash Table. (ret %d)\n' type=277
+0001b5a8: 00000094  bl #0x1b5a8 ; reloc ca_printf+0x0 type=283
+0001b5ac: b0000014  b #0x1b86c
+0001b5b0: 00000094  bl #0x1b5b0 ; reloc __hashlite_overflow_tbl_init+0x0 type=283
+0001b5b4: f303002a  mov w19, w0
+0001b5b8: 20010034  cbz w0, #0x1b5dc
+0001b5bc: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b5c0: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xad28 '%s:%d: Fail to initialize Hash-Lite Overflow Table. (ret %d)\n' type=275
+0001b5c4: e303132a  mov w3, w19
+0001b5c8: 22208052  mov w2, #0x101
+0001b5cc: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b5d0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xad28 '%s:%d: Fail to initialize Hash-Lite Overflow Table. (ret %d)\n' type=277
+0001b5d4: 00000094  bl #0x1b5d4 ; reloc ca_printf+0x0 type=283
+0001b5d8: a5000014  b #0x1b86c
+0001b5dc: 00000094  bl #0x1b5dc ; reloc __hashlite_hash_action_init+0x0 type=283
+0001b5e0: f303002a  mov w19, w0
+0001b5e4: 20010034  cbz w0, #0x1b608
+0001b5e8: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b5ec: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xad68 '%s:%d: Fail to initialize Hash-Lite Hash Action Table. (ret %d)\n' type=275
+0001b5f0: e303132a  mov w3, w19
+0001b5f4: c2208052  mov w2, #0x106
+0001b5f8: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b5fc: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xad68 '%s:%d: Fail to initialize Hash-Lite Hash Action Table. (ret %d)\n' type=277
+0001b600: 00000094  bl #0x1b600 ; reloc ca_printf+0x0 type=283
+0001b604: 9a000014  b #0x1b86c
+0001b608: 00000094  bl #0x1b608 ; reloc __hashlite_overflow_action_init+0x0 type=283
+0001b60c: f303002a  mov w19, w0
+0001b610: 20010034  cbz w0, #0x1b634
+0001b614: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b618: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xadb0 '%s:%d: Fail to initialize Hash-Lite Overflow Action Table. (ret %d)\n' type=275
+0001b61c: e303132a  mov w3, w19
+0001b620: 62218052  mov w2, #0x10b
+0001b624: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b628: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xadb0 '%s:%d: Fail to initialize Hash-Lite Overflow Action Table. (ret %d)\n' type=277
+0001b62c: 00000094  bl #0x1b62c ; reloc ca_printf+0x0 type=283
+0001b630: 8f000014  b #0x1b86c
+0001b634: 00000094  bl #0x1b634 ; reloc __hashlite_default_action_init+0x0 type=283
+0001b638: f303002a  mov w19, w0
+0001b63c: 20010034  cbz w0, #0x1b660
+0001b640: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b644: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xadf8 '%s:%d: Fail to initialize Hash-Lite Default Action Table. (ret %d)\n' type=275
+0001b648: e303132a  mov w3, w19
+0001b64c: 02228052  mov w2, #0x110
+0001b650: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b654: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xadf8 '%s:%d: Fail to initialize Hash-Lite Default Action Table. (ret %d)\n' type=277
+0001b658: 00000094  bl #0x1b658 ; reloc ca_printf+0x0 type=283
+0001b65c: 84000014  b #0x1b86c
+0001b660: 00000094  bl #0x1b660 ; reloc aal_idx_intf_init+0x0 type=283
+0001b664: f303002a  mov w19, w0
+0001b668: 20010034  cbz w0, #0x1b68c
+0001b66c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b670: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xae40 '%s:%d: Fail to initialize Hash-Lite Indexed Interface Table. (ret %d)\n' type=275
+0001b674: e303132a  mov w3, w19
+0001b678: c2228052  mov w2, #0x116
+0001b67c: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b680: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xae40 '%s:%d: Fail to initialize Hash-Lite Indexed Interface Table. (ret %d)\n' type=277
+0001b684: 00000094  bl #0x1b684 ; reloc ca_printf+0x0 type=283
+0001b688: 79000014  b #0x1b86c
+0001b68c: 00000094  bl #0x1b68c ; reloc __aal_lpm_tbl_init+0x0 type=283
+0001b690: f303002a  mov w19, w0
+0001b694: 20010034  cbz w0, #0x1b6b8
+0001b698: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b69c: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xae88 '%s:%d: Fail to initialize LPM Table. (ret %d)\n' type=275
+0001b6a0: e303132a  mov w3, w19
+0001b6a4: a2238052  mov w2, #0x11d
+0001b6a8: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b6ac: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xae88 '%s:%d: Fail to initialize LPM Table. (ret %d)\n' type=277
+0001b6b0: 00000094  bl #0x1b6b0 ; reloc ca_printf+0x0 type=283
+0001b6b4: 6e000014  b #0x1b86c
+0001b6b8: 00000094  bl #0x1b6b8 ; reloc aal_l3pe_sixrd_tbl_init+0x0 type=283
+0001b6bc: f303002a  mov w19, w0
+0001b6c0: 20010034  cbz w0, #0x1b6e4
+0001b6c4: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b6c8: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaeb8 '%s:%d: Fail to initialize L3FE PE 6RD Table. (ret %d)\n' type=275
+0001b6cc: e303132a  mov w3, w19
+0001b6d0: 62248052  mov w2, #0x123
+0001b6d4: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b6d8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaeb8 '%s:%d: Fail to initialize L3FE PE 6RD Table. (ret %d)\n' type=277
+0001b6dc: 00000094  bl #0x1b6dc ; reloc ca_printf+0x0 type=283
+0001b6e0: 63000014  b #0x1b86c
+0001b6e4: 00000094  bl #0x1b6e4 ; reloc aal_l3pe_dsl_tbl_init+0x0 type=283
+0001b6e8: f303002a  mov w19, w0
+0001b6ec: 20010034  cbz w0, #0x1b710
+0001b6f0: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b6f4: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaef0 '%s:%d: Fail to initialize L3FE PE DS-Lite Table. (ret %d)\n' type=275
+0001b6f8: e303132a  mov w3, w19
+0001b6fc: 02258052  mov w2, #0x128
+0001b700: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b704: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaef0 '%s:%d: Fail to initialize L3FE PE DS-Lite Table. (ret %d)\n' type=277
+0001b708: 00000094  bl #0x1b708 ; reloc ca_printf+0x0 type=283
+0001b70c: 58000014  b #0x1b86c
+0001b710: 00000094  bl #0x1b710 ; reloc aal_l3_cls_tbl_init+0x0 type=283
+0001b714: f303002a  mov w19, w0
+0001b718: 20010034  cbz w0, #0x1b73c
+0001b71c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b720: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaf30 '%s:%d: Fail to initialize L3 CLS Table. (ret %d)\n' type=275
+0001b724: e303132a  mov w3, w19
+0001b728: c2258052  mov w2, #0x12e
+0001b72c: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b730: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaf30 '%s:%d: Fail to initialize L3 CLS Table. (ret %d)\n' type=277
+0001b734: 00000094  bl #0x1b734 ; reloc ca_printf+0x0 type=283
+0001b738: 4d000014  b #0x1b86c
+0001b73c: e003142a  mov w0, w20
+0001b740: 00000094  bl #0x1b740 ; reloc aal_dos_init+0x0 type=283
+0001b744: f303002a  mov w19, w0
+0001b748: 40010034  cbz w0, #0x1b770
+0001b74c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b750: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xaf68 '%s:%d: Fail to initialize L3 DOS conf. (ret %d)\n' type=275
+0001b754: e303132a  mov w3, w19
+0001b758: 82268052  mov w2, #0x134
+0001b75c: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b760: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xaf68 '%s:%d: Fail to initialize L3 DOS conf. (ret %d)\n' type=277
+0001b764: 00000094  bl #0x1b764 ; reloc ca_printf+0x0 type=283
+0001b768: 41000014  b #0x1b86c
+0001b76c: 1f2003d5  nop 
+0001b770: 40008052  mov w0, #2
+0001b774: 00000094  bl #0x1b774 ; reloc aal_soc_has_module+0x0 type=283
+0001b778: 1f1c0072  tst w0, #0xff
+0001b77c: a0080054  b.eq #0x1b890
+0001b780: 00000094  bl #0x1b780 ; reloc aal_cam_init+0x0 type=283
+0001b784: f303002a  mov w19, w0
+0001b788: 40010034  cbz w0, #0x1b7b0
+0001b78c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b790: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b794: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xafa0 '%s:%d: Fail to initialize CAM. (ret %d)\n' type=275
+0001b798: e303132a  mov w3, w19
+0001b79c: e2068052  mov w2, #0x37
+0001b7a0: 21400091  add x1, x1, #0x10
+0001b7a4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xafa0 '%s:%d: Fail to initialize CAM. (ret %d)\n' type=277
+0001b7a8: 00000094  bl #0x1b7a8 ; reloc ca_printf+0x0 type=283
+0001b7ac: 30000014  b #0x1b86c
+0001b7b0: 00000094  bl #0x1b7b0 ; reloc aal_hash_init+0x0 type=283
+0001b7b4: f303002a  mov w19, w0
+0001b7b8: 40010034  cbz w0, #0x1b7e0
+0001b7bc: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b7c0: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b7c4: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xafd0 '%s:%d: Fail to initialize Hash Engine. (ret %d)\n' type=275
+0001b7c8: e303132a  mov w3, w19
+0001b7cc: 02088052  mov w2, #0x40
+0001b7d0: 21400091  add x1, x1, #0x10
+0001b7d4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xafd0 '%s:%d: Fail to initialize Hash Engine. (ret %d)\n' type=277
+0001b7d8: 00000094  bl #0x1b7d8 ; reloc ca_printf+0x0 type=283
+0001b7dc: 24000014  b #0x1b86c
+0001b7e0: 00000094  bl #0x1b7e0 ; reloc aal_lpm_init+0x0 type=283
+0001b7e4: f303002a  mov w19, w0
+0001b7e8: 40010034  cbz w0, #0x1b810
+0001b7ec: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b7f0: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b7f4: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xb008 '%s:%d: Fail to initialize LPM. (ret %d)\n' type=275
+0001b7f8: e303132a  mov w3, w19
+0001b7fc: 42098052  mov w2, #0x4a
+0001b800: 21400091  add x1, x1, #0x10
+0001b804: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xb008 '%s:%d: Fail to initialize LPM. (ret %d)\n' type=277
+0001b808: 00000094  bl #0x1b808 ; reloc ca_printf+0x0 type=283
+0001b80c: 18000014  b #0x1b86c
+0001b810: 00000094  bl #0x1b810 ; reloc aal_hashlite_init+0x0 type=283
+0001b814: f303002a  mov w19, w0
+0001b818: 40010034  cbz w0, #0x1b840
+0001b81c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b820: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b824: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xb038 '%s:%d: Fail to initialize Hash-Lite Engine. (ret %d)\n' type=275
+0001b828: e303132a  mov w3, w19
+0001b82c: a20a8052  mov w2, #0x55
+0001b830: 21400091  add x1, x1, #0x10
+0001b834: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xb038 '%s:%d: Fail to initialize Hash-Lite Engine. (ret %d)\n' type=277
+0001b838: 00000094  bl #0x1b838 ; reloc ca_printf+0x0 type=283
+0001b83c: 0c000014  b #0x1b86c
+0001b840: 00000094  bl #0x1b840 ; reloc aal_l3_spcl_pkt_init+0x0 type=283
+0001b844: f303002a  mov w19, w0
+0001b848: 40020034  cbz w0, #0x1b890
+0001b84c: 14000090  adrp x20, #0x1b000 ; reloc .rodata+0x290 'aal_driver_init' type=275
+0001b850: 81020091  add x1, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b854: 00000090  adrp x0, #0x1b000 ; reloc .rodata.str1.8+0xb070 '%s:%d: Fail to initialize L3 spcl pkt. (ret %d)\n' type=275
+0001b858: e303132a  mov w3, w19
+0001b85c: c20b8052  mov w2, #0x5e
+0001b860: 21400091  add x1, x1, #0x10
+0001b864: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xb070 '%s:%d: Fail to initialize L3 spcl pkt. (ret %d)\n' type=277
+0001b868: 00000094  bl #0x1b868 ; reloc ca_printf+0x0 type=283
+0001b86c: 73360011  add w19, w19, #0xd
+0001b870: 60028052  mov w0, #0x13
+0001b874: 7f360071  cmp w19, #0xd
+0001b878: e8000054  b.hi #0x1b894
+0001b87c: 94020091  add x20, x20, #0 ; reloc .rodata+0x290 'aal_driver_init' type=277
+0001b880: 94a20091  add x20, x20, #0x28
+0001b884: 805a73b8  ldr w0, [x20, w19, uxtw #2]
+0001b888: 03000014  b #0x1b894
+0001b88c: 1f2003d5  nop 
+0001b890: 00008052  mov w0, #0
+0001b894: f35341a9  ldp x19, x20, [sp, #0x10]
+0001b898: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0001b89c: c0035fd6  ret 

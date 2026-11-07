@@ -1,0 +1,94 @@
+ca_pal_kioctl_init: .text+0x9868, 372 bytes; sha256 f4fc9c4be3caaf4172e362fed2aebca712106212a0f8a72237a6ccfebdfd8ac8
+00009868: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0000986c: fd030091  mov x29, sp
+00009870: f35301a9  stp x19, x20, [sp, #0x10]
+00009874: f55b02a9  stp x21, x22, [sp, #0x20]
+00009878: 16000090  adrp x22, #0x9000 ; reloc .bss+0x1e8 type=275
+0000987c: d5020091  add x21, x22, #0 ; reloc .bss+0x1e8 type=277
+00009880: e0031eaa  mov x0, x30
+00009884: b4e20091  add x20, x21, #0x38
+00009888: 00000094  bl #0x9888 ; reloc _mcount+0x0 type=283
+0000988c: 13000090  adrp x19, #0x9000 ; reloc .rodata.str1.8+0xd48 'ca_pal_ioctl' type=275
+00009890: 021e80d2  mov x2, #0xf0
+00009894: 01008052  mov w1, #0
+00009898: e00314aa  mov x0, x20
+0000989c: 00000094  bl #0x989c ; reloc memset+0x0 type=283
+000098a0: 73020091  add x19, x19, #0 ; reloc .rodata.str1.8+0xd48 'ca_pal_ioctl' type=277
+000098a4: 00000090  adrp x0, #0x9000 ; reloc .text+0x95a8 type=275
+000098a8: 00000091  add x0, x0, #0 ; reloc .text+0x95a8 type=277
+000098ac: e40314aa  mov x4, x20
+000098b0: a04200f9  str x0, [x21, #0x80]
+000098b4: e30313aa  mov x3, x19
+000098b8: 02208052  mov w2, #0x100
+000098bc: 01008052  mov w1, #0
+000098c0: 00008052  mov w0, #0
+000098c4: 00000094  bl #0x98c4 ; reloc __register_chrdev+0x0 type=283
+000098c8: a02a01b9  str w0, [x21, #0x128]
+000098cc: e000f836  tbz w0, #0x1f, #0x98e8
+000098d0: 00000090  adrp x0, #0x9000 ; reloc .rodata.str1.8+0xd58 'ca-pal: init: failed to register chrdev %s\n' type=275
+000098d4: e10313aa  mov x1, x19
+000098d8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xd58 'ca-pal: init: failed to register chrdev %s\n' type=277
+000098dc: 00000094  bl #0x98dc ; reloc ca_printf+0x0 type=283
+000098e0: 00008012  mov w0, #-1
+000098e4: 3a000014  b #0x99cc
+000098e8: e10313aa  mov x1, x19
+000098ec: 00000090  adrp x0, #0x9000 ; reloc .rodata.str1.8+0xd88 'ca-pal: init %s OK\n' type=275
+000098f0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xd88 'ca-pal: init %s OK\n' type=277
+000098f4: 00000094  bl #0x98f4 ; reloc ca_printf+0x0 type=283
+000098f8: a2c20491  add x2, x21, #0x130
+000098fc: 00000090  adrp x0, #0x9000 ; reloc __this_module+0x0 type=275
+00009900: e10313aa  mov x1, x19
+00009904: 00000091  add x0, x0, #0 ; reloc __this_module+0x0 type=277
+00009908: 00000094  bl #0x9908 ; reloc __class_create+0x0 type=283
+0000990c: a09a00f9  str x0, [x21, #0x130]
+00009910: 1f0440b1  cmn x0, #1, lsl #12
+00009914: e9000054  b.ls #0x9930
+00009918: 00000090  adrp x0, #0x9000 ; reloc .rodata.str1.8+0xda0 'ca-pal: init: failed to create class %s\n' type=275
+0000991c: e10313aa  mov x1, x19
+00009920: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xda0 'ca-pal: init: failed to create class %s\n' type=277
+00009924: 00000094  bl #0x9924 ; reloc ca_printf+0x0 type=283
+00009928: 00008012  mov w0, #-1
+0000992c: 28000014  b #0x99cc
+00009930: a22a41b9  ldr w2, [x21, #0x128]
+00009934: e40313aa  mov x4, x19
+00009938: 030080d2  mov x3, #0
+0000993c: 010080d2  mov x1, #0
+00009940: 422c0c53  lsl w2, w2, #0x14
+00009944: 00000094  bl #0x9944 ; reloc device_create+0x0 type=283
+00009948: 000400b4  cbz x0, #0x99c8
+0000994c: 00188052  mov w0, #0xc0
+00009950: 01008052  mov w1, #0
+00009954: 0028a072  movk w0, #0x140, lsl #16
+00009958: 00000094  bl #0x9958 ; reloc __get_free_pages+0x0 type=283
+0000995c: c00200f9  str x0, [x22] ; reloc .bss+0x1e8 type=286
+00009960: 200100b4  cbz x0, #0x9984
+00009964: e1f7dfd2  mov x1, #0xffbf00000000
+00009968: 00944cd3  ubfx x0, x0, #0xc, #0x1a
+0000996c: e1fffff2  movk x1, #0xffff, lsl #48
+00009970: 211800aa  orr x1, x1, x0, lsl #6
+00009974: 60018052  mov w0, #0xb
+00009978: 00000094  bl #0x9978 ; reloc set_bit+0x0 type=283
+0000997c: 00008052  mov w0, #0
+00009980: 13000014  b #0x99cc
+00009984: 00000090  adrp x0, #0x9000 ; reloc .rodata.str1.8+0xdd0 'ca-pal: init: failed to get free pages\n' type=275
+00009988: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0xdd0 'ca-pal: init: failed to get free pages\n' type=277
+0000998c: 00000094  bl #0x998c ; reloc ca_printf+0x0 type=283
+00009990: a09a40f9  ldr x0, [x21, #0x130]
+00009994: a12a41b9  ldr w1, [x21, #0x128]
+00009998: 212c0c53  lsl w1, w1, #0x14
+0000999c: 00000094  bl #0x999c ; reloc device_destroy+0x0 type=283
+000099a0: a09a40f9  ldr x0, [x21, #0x130]
+000099a4: 00000094  bl #0x99a4 ; reloc class_destroy+0x0 type=283
+000099a8: a02a41b9  ldr w0, [x21, #0x128]
+000099ac: e30313aa  mov x3, x19
+000099b0: 02208052  mov w2, #0x100
+000099b4: 01008052  mov w1, #0
+000099b8: 00000094  bl #0x99b8 ; reloc __unregister_chrdev+0x0 type=283
+000099bc: 00008012  mov w0, #-1
+000099c0: 03000014  b #0x99cc
+000099c4: 1f2003d5  nop 
+000099c8: 00008012  mov w0, #-1
+000099cc: f35341a9  ldp x19, x20, [sp, #0x10]
+000099d0: f55b42a9  ldp x21, x22, [sp, #0x20]
+000099d4: fd7bc3a8  ldp x29, x30, [sp], #0x30
+000099d8: c0035fd6  ret 

@@ -1,0 +1,117 @@
+ca_api_proc_init: .text+0x2320, 464 bytes; sha256 a19ccfa7e9b335efc64adf8cef6caec9defd6bc7802304d44910310c18b1be27
+00002320: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00002324: fd030091  mov x29, sp
+00002328: f35301a9  stp x19, x20, [sp, #0x10]
+0000232c: e0031eaa  mov x0, x30
+00002330: 00000094  bl #0x2330 ; reloc _mcount+0x0 type=283
+00002334: 01000090  adrp x1, #0x2000 ; reloc ca_proc_dir+0x0 type=275
+00002338: 14000090  adrp x20, #0x2000 ; reloc .bss+0x38 type=275
+0000233c: 94020091  add x20, x20, #0 ; reloc .bss+0x38 type=277
+00002340: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x19f8 'api' type=275
+00002344: 210040f9  ldr x1, [x1] ; reloc ca_proc_dir+0x0 type=286
+00002348: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x19f8 'api' type=277
+0000234c: 13000090  adrp x19, #0x2000 ; reloc .data..read_mostly+0xf0 type=275
+00002350: 73020091  add x19, x19, #0 ; reloc .data..read_mostly+0xf0 type=277
+00002354: 00000094  bl #0x2354 ; reloc proc_mkdir+0x0 type=283
+00002358: e20300aa  mov x2, x0
+0000235c: e30313aa  mov x3, x19
+00002360: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1a00 'debug' type=275
+00002364: c1368052  mov w1, #0x1b6
+00002368: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1a00 'debug' type=277
+0000236c: 820600f9  str x2, [x20, #8]
+00002370: 00000094  bl #0x2370 ; reloc proc_create+0x0 type=283
+00002374: 600100b5  cbnz x0, #0x23a0
+00002378: 01000090  adrp x1, #0x2000 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=275
+0000237c: 21000091  add x1, x1, #0 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=277
+00002380: 21800091  add x1, x1, #0x20
+00002384: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1a08 type=275
+00002388: 82608052  mov w2, #0x304
+0000238c: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1a08 type=277
+00002390: 00000094  bl #0x2390 ; reloc printk+0x0 type=283
+00002394: 61018012  mov w1, #-0xc
+00002398: 52000014  b #0x24e0
+0000239c: 1f2003d5  nop 
+000023a0: 820640f9  ldr x2, [x20, #8]
+000023a4: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1a40 'dump' type=275
+000023a8: 63c20391  add x3, x19, #0xf0
+000023ac: c1368052  mov w1, #0x1b6
+000023b0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1a40 'dump' type=277
+000023b4: 00000094  bl #0x23b4 ; reloc proc_create+0x0 type=283
+000023b8: 400100b5  cbnz x0, #0x23e0
+000023bc: 01000090  adrp x1, #0x2000 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=275
+000023c0: 21000091  add x1, x1, #0 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=277
+000023c4: 21800091  add x1, x1, #0x20
+000023c8: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1a48 type=275
+000023cc: 22618052  mov w2, #0x309
+000023d0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1a48 type=277
+000023d4: 00000094  bl #0x23d4 ; reloc printk+0x0 type=283
+000023d8: 61018012  mov w1, #-0xc
+000023dc: 41000014  b #0x24e0
+000023e0: 820640f9  ldr x2, [x20, #8]
+000023e4: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1a80 'wmc_flooding' type=275
+000023e8: 63820791  add x3, x19, #0x1e0
+000023ec: c1368052  mov w1, #0x1b6
+000023f0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1a80 'wmc_flooding' type=277
+000023f4: 00000094  bl #0x23f4 ; reloc proc_create+0x0 type=283
+000023f8: 400100b5  cbnz x0, #0x2420
+000023fc: 01000090  adrp x1, #0x2000 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=275
+00002400: 21000091  add x1, x1, #0 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=277
+00002404: 21800091  add x1, x1, #0x20
+00002408: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1a90 type=275
+0000240c: e2618052  mov w2, #0x30f
+00002410: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1a90 type=277
+00002414: 00000094  bl #0x2414 ; reloc printk+0x0 type=283
+00002418: 61018012  mov w1, #-0xc
+0000241c: 31000014  b #0x24e0
+00002420: 820640f9  ldr x2, [x20, #8]
+00002424: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1ad0 'eth_port_debug_lvl' type=275
+00002428: 63420b91  add x3, x19, #0x2d0
+0000242c: c1368052  mov w1, #0x1b6
+00002430: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1ad0 'eth_port_debug_lvl' type=277
+00002434: 00000094  bl #0x2434 ; reloc proc_create+0x0 type=283
+00002438: 400100b5  cbnz x0, #0x2460
+0000243c: 01000090  adrp x1, #0x2000 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=275
+00002440: 21000091  add x1, x1, #0 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=277
+00002444: 21800091  add x1, x1, #0x20
+00002448: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1ae8 type=275
+0000244c: a2628052  mov w2, #0x315
+00002450: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1ae8 type=277
+00002454: 00000094  bl #0x2454 ; reloc printk+0x0 type=283
+00002458: 61018012  mov w1, #-0xc
+0000245c: 21000014  b #0x24e0
+00002460: 820640f9  ldr x2, [x20, #8]
+00002464: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1b28 'iros_ca_rx_use_mq' type=275
+00002468: 63020f91  add x3, x19, #0x3c0
+0000246c: c1368052  mov w1, #0x1b6
+00002470: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1b28 'iros_ca_rx_use_mq' type=277
+00002474: 00000094  bl #0x2474 ; reloc proc_create+0x0 type=283
+00002478: 400100b5  cbnz x0, #0x24a0
+0000247c: 01000090  adrp x1, #0x2000 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=275
+00002480: 21000091  add x1, x1, #0 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=277
+00002484: 21800091  add x1, x1, #0x20
+00002488: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1b40 type=275
+0000248c: 42638052  mov w2, #0x31a
+00002490: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1b40 type=277
+00002494: 00000094  bl #0x2494 ; reloc printk+0x0 type=283
+00002498: 61018012  mov w1, #-0xc
+0000249c: 11000014  b #0x24e0
+000024a0: 820640f9  ldr x2, [x20, #8]
+000024a4: c1368052  mov w1, #0x1b6
+000024a8: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1b80 'port_x_as_wan' type=275
+000024ac: 63c21291  add x3, x19, #0x4b0
+000024b0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1b80 'port_x_as_wan' type=277
+000024b4: 00000094  bl #0x24b4 ; reloc proc_create+0x0 type=283
+000024b8: 01008052  mov w1, #0
+000024bc: 200100b5  cbnz x0, #0x24e0
+000024c0: 01000090  adrp x1, #0x2000 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=275
+000024c4: 21000091  add x1, x1, #0 ; reloc .rodata+0xb8 'api_wmc_flooding_proc_write' type=277
+000024c8: 21800091  add x1, x1, #0x20
+000024cc: 00000090  adrp x0, #0x2000 ; reloc .rodata.str1.8+0x1b90 type=275
+000024d0: e2638052  mov w2, #0x31f
+000024d4: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x1b90 type=277
+000024d8: 00000094  bl #0x24d8 ; reloc printk+0x0 type=283
+000024dc: 61018012  mov w1, #-0xc
+000024e0: e003012a  mov w0, w1
+000024e4: f35341a9  ldp x19, x20, [sp, #0x10]
+000024e8: fd7bc2a8  ldp x29, x30, [sp], #0x20
+000024ec: c0035fd6  ret 

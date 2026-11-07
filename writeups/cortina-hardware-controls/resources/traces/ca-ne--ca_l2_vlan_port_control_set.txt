@@ -1,0 +1,310 @@
+ca_l2_vlan_port_control_set: .text+0x146560, 1236 bytes; sha256 9eb971a49156179cc520247d0ea696a3c6a3b43300f2a200bc66633225f22cf9
+00146560: fd7ba1a9  stp x29, x30, [sp, #-0x1f0]!
+00146564: fd030091  mov x29, sp
+00146568: f35301a9  stp x19, x20, [sp, #0x10]
+0014656c: f55b02a9  stp x21, x22, [sp, #0x20]
+00146570: 153c0012  and w21, w0, #0xffff
+00146574: f603012a  mov w22, w1
+00146578: f40302aa  mov x20, x2
+0014657c: e0031eaa  mov x0, x30
+00146580: 00000094  bl #0x146580 ; reloc _mcount+0x0 type=283
+00146584: bf4f0139  strb wzr, [x29, #0x53]
+00146588: 142200b4  cbz x20, #0x1469c8
+0014658c: 801a40b9  ldr w0, [x20, #0x18]
+00146590: 53008052  mov w19, #2
+00146594: 1ffc3f71  cmp w0, #0xfff
+00146598: 48240054  b.hi #0x146a20
+0014659c: b71b00f9  str x23, [x29, #0x30]
+001465a0: d73e0012  and w23, w22, #0xffff
+001465a4: a2530191  add x2, x29, #0x54
+001465a8: e003152a  mov w0, w21
+001465ac: e103172a  mov w1, w23
+001465b0: 00000094  bl #0x1465b0 ; reloc aal_l2_vlan_port_memship_map_get+0x0 type=283
+001465b4: f303002a  mov w19, w0
+001465b8: c0220035  cbnz w0, #0x146a10
+001465bc: a14f0191  add x1, x29, #0x53
+001465c0: e003152a  mov w0, w21
+001465c4: 00000094  bl #0x1465c4 ; reloc aal_port_lan_to_l3fe_get+0x0 type=283
+001465c8: f303002a  mov w19, w0
+001465cc: 20220035  cbnz w0, #0x146a10
+001465d0: a0030891  add x0, x29, #0x200
+001465d4: bfff0ca9  stp xzr, xzr, [x29, #0xc8]
+001465d8: bfff0da9  stp xzr, xzr, [x29, #0xd8]
+001465dc: a1230391  add x1, x29, #0xc8
+001465e0: bfff0ea9  stp xzr, xzr, [x29, #0xe8]
+001465e4: bfff0fa9  stp xzr, xzr, [x29, #0xf8]
+001465e8: 1ffc30a9  stp xzr, xzr, [x0, #-0xf8]
+001465ec: 1ffc31a9  stp xzr, xzr, [x0, #-0xe8]
+001465f0: 1ffc33a9  stp xzr, xzr, [x0, #-0xc8]
+001465f4: 1ffc34a9  stp xzr, xzr, [x0, #-0xb8]
+001465f8: 1ffc35a9  stp xzr, xzr, [x0, #-0xa8]
+001465fc: 1ffc36a9  stp xzr, xzr, [x0, #-0x98]
+00146600: 1ffc37a9  stp xzr, xzr, [x0, #-0x88]
+00146604: 1ffc38a9  stp xzr, xzr, [x0, #-0x78]
+00146608: 1ffc39a9  stp xzr, xzr, [x0, #-0x68]
+0014660c: 1ffc3aa9  stp xzr, xzr, [x0, #-0x58]
+00146610: 1ffc3ba9  stp xzr, xzr, [x0, #-0x48]
+00146614: 1ffc3ca9  stp xzr, xzr, [x0, #-0x38]
+00146618: 1ffc3da9  stp xzr, xzr, [x0, #-0x28]
+0014661c: e003152a  mov w0, w21
+00146620: bf7f08a9  stp xzr, xzr, [x29, #0x80]
+00146624: bf7f09a9  stp xzr, xzr, [x29, #0x90]
+00146628: bf7f0aa9  stp xzr, xzr, [x29, #0xa0]
+0014662c: bf7f0ba9  stp xzr, xzr, [x29, #0xb0]
+00146630: bf2f00f9  str xzr, [x29, #0x58]
+00146634: bfc300b9  str wzr, [x29, #0xc0]
+00146638: bf9700f9  str xzr, [x29, #0x128]
+0014663c: bf3301b9  str wzr, [x29, #0x130]
+00146640: bff700f9  str xzr, [x29, #0x1e8]
+00146644: 00000094  bl #0x146644 ; reloc aal_l2_vlan_default_cfg_get+0x0 type=283
+00146648: f303002a  mov w19, w0
+0014664c: 201e0035  cbnz w0, #0x146a10
+00146650: b8e703a9  stp x24, x25, [x29, #0x38]
+00146654: 18000090  adrp x24, #0x146000 ; reloc g_l2_vlan_unknown_port_fib_map+0x0 type=275
+00146658: a25740b9  ldr w2, [x29, #0x54]
+0014665c: 04030091  add x4, x24, #0 ; reloc g_l2_vlan_unknown_port_fib_map+0x0 type=277
+00146660: 830240b9  ldr w3, [x20]
+00146664: 20008052  mov w0, #1
+00146668: a1cbc179  ldrsh w1, [x29, #0xe4]
+0014666c: 0020c21a  lsl w0, w0, w2
+00146670: 99487738  ldrb w25, [x4, w23, uxtw]
+00146674: a2d3c179  ldrsh w2, [x29, #0xe8]
+00146678: 003c0013  sxth w0, w0
+0014667c: 63060034  cbz w3, #0x146748
+00146680: e003202a  mvn w0, w0
+00146684: 363f0013  sxth w22, w25
+00146688: 0100010a  and w1, w0, w1
+0014668c: 0000020a  and w0, w0, w2
+00146690: a1cb0179  strh w1, [x29, #0xe4]
+00146694: dffe0371  cmp w22, #0xff
+00146698: a0d30179  strh w0, [x29, #0xe8]
+0014669c: e0040054  b.eq #0x146738
+001466a0: ba2700f9  str x26, [x29, #0x48]
+001466a4: e103162a  mov w1, w22
+001466a8: e003152a  mov w0, w21
+001466ac: 00000094  bl #0x1466ac ; reloc aal_l2_unknown_vlan_mc_fib_delete+0x0 type=283
+001466b0: 01000090  adrp x1, #0x146000 ; reloc g_vlan_mcgid_0+0x0 type=275
+001466b4: 1a000090  adrp x26, #0x146000 ; reloc .rodata+0xa0d0 '__l2_vlan_fib_print' type=275
+001466b8: 5a030091  add x26, x26, #0 ; reloc .rodata+0xa0d0 '__l2_vlan_fib_print' type=277
+001466bc: f303002a  mov w19, w0
+001466c0: 240040b9  ldr w4, [x1] ; reloc g_vlan_mcgid_0+0x0 type=285
+001466c4: 5ae30091  add x26, x26, #0x38
+001466c8: 00000090  adrp x0, #0x146000 ; reloc .rodata.str1.8+0x33c98 '%s:%d mc_fib_id = %d,g_vlan_mcgid_0 = %d after aal_flooding_mc_fib_delete() \n' type=275
+001466cc: e303192a  mov w3, w25
+001466d0: 22798052  mov w2, #0x3c9
+001466d4: e1031aaa  mov x1, x26
+001466d8: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x33c98 '%s:%d mc_fib_id = %d,g_vlan_mcgid_0 = %d after aal_flooding_mc_fib_delete() \n' type=277
+001466dc: 00000094  bl #0x1466dc ; reloc ca_printf+0x0 type=283
+001466e0: 33010034  cbz w19, #0x146704
+001466e4: e1031aaa  mov x1, x26
+001466e8: 00000090  adrp x0, #0x146000 ; reloc .rodata.str1.8+0x33ce8 '%s:%d aal_flooding_mc_fib_delete() failed\n' type=275
+001466ec: 62798052  mov w2, #0x3cb
+001466f0: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x33ce8 '%s:%d aal_flooding_mc_fib_delete() failed\n' type=277
+001466f4: 00000094  bl #0x1466f4 ; reloc ca_printf+0x0 type=283
+001466f8: b76343a9  ldp x23, x24, [x29, #0x30]
+001466fc: b96b44a9  ldp x25, x26, [x29, #0x40]
+00146700: c8000014  b #0x146a20
+00146704: e003162a  mov w0, w22
+00146708: 00000094  bl #0x146708 ; reloc aal_mc_repl_bit_free+0x0 type=283
+0014670c: f303002a  mov w19, w0
+00146710: 20010034  cbz w0, #0x146734
+00146714: e1031aaa  mov x1, x26
+00146718: 00000090  adrp x0, #0x146000 ; reloc .rodata.str1.8+0x33d18 '%s:%d aal_mc_repl_bit_free() failed\n' type=275
+0014671c: 027a8052  mov w2, #0x3d0
+00146720: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x33d18 '%s:%d aal_mc_repl_bit_free() failed\n' type=277
+00146724: 00000094  bl #0x146724 ; reloc ca_printf+0x0 type=283
+00146728: b76343a9  ldp x23, x24, [x29, #0x30]
+0014672c: b96b44a9  ldp x25, x26, [x29, #0x40]
+00146730: bc000014  b #0x146a20
+00146734: ba2740f9  ldr x26, [x29, #0x48]
+00146738: 18030091  add x24, x24, #0 ; reloc g_l2_vlan_unknown_port_fib_map+0x0 type=277
+0014673c: 00008012  mov w0, #-1
+00146740: 004b3738  strb w0, [x24, w23, uxtw]
+00146744: 4c000014  b #0x146874
+00146748: 2100002a  orr w1, w1, w0
+0014674c: 4000002a  orr w0, w2, w0
+00146750: a1cb0179  strh w1, [x29, #0xe4]
+00146754: 3fff0371  cmp w25, #0xff
+00146758: a0d30179  strh w0, [x29, #0xe8]
+0014675c: c1080054  b.ne #0x146874
+00146760: c17e1053  lsr w1, w22, #0x10
+00146764: 3f040071  cmp w1, #1
+00146768: 81000054  b.ne #0x146778
+0014676c: a04f4139  ldrb w0, [x29, #0x53]
+00146770: 80130035  cbnz w0, #0x1469e0
+00146774: 40000014  b #0x146874
+00146778: 00000090  adrp x0, #0x146000 ; reloc cfg_pon_report_mode+0x0 type=275
+0014677c: 02004039  ldrb w2, [x0] ; reloc cfg_pon_report_mode+0x0 type=278
+00146780: 5f140071  cmp w2, #5
+00146784: 81000054  b.ne #0x146794
+00146788: 3f080071  cmp w1, #2
+0014678c: a1120054  b.ne #0x1469e0
+00146790: 39000014  b #0x146874
+00146794: a0830191  add x0, x29, #0x60
+00146798: 04000090  adrp x4, #0x146000 ; reloc cfg_id_pon_ds_lspid+0x0 type=275
+0014679c: 03080091  add x3, x0, #2
+001467a0: 1f2001f8  stur xzr, [x0, #0x12]
+001467a4: 1fa001b8  stur wzr, [x0, #0x1a]
+001467a8: 3f080071  cmp w1, #2
+001467ac: 81004039  ldrb w1, [x4] ; reloc cfg_id_pon_ds_lspid+0x0 type=278
+001467b0: 7f7c00a9  stp xzr, xzr, [x3]
+001467b4: a1c30079  strh w1, [x29, #0x60]
+001467b8: 1f3c0079  strh wzr, [x0, #0x1e]
+001467bc: 01010054  b.ne #0x1467dc
+001467c0: 41080051  sub w1, w2, #2
+001467c4: 21781e12  and w1, w1, #0xfffffffd
+001467c8: 211c0012  and w1, w1, #0xff
+001467cc: a1000035  cbnz w1, #0x1467e0
+001467d0: 21e08052  mov w1, #0x701
+001467d4: a1f30079  strh w1, [x29, #0x78]
+001467d8: 02000014  b #0x1467e0
+001467dc: b6c30079  strh w22, [x29, #0x60]
+001467e0: 21008052  mov w1, #1
+001467e4: 33008052  mov w19, #1
+001467e8: a1e30079  strh w1, [x29, #0x70]
+001467ec: a1eb0079  strh w1, [x29, #0x74]
+001467f0: 00000094  bl #0x1467f0 ; reloc aal_mc_repl_bit_alloc+0x0 type=283
+001467f4: 163c0013  sxth w22, w0
+001467f8: 1611f837  tbnz w22, #0x1f, #0x146a18
+001467fc: ba2700f9  str x26, [x29, #0x48]
+00146800: e103162a  mov w1, w22
+00146804: e003152a  mov w0, w21
+00146808: 00000094  bl #0x146808 ; reloc aal_l2_unknown_vlan_mc_fib_add+0x0 type=283
+0014680c: 01000090  adrp x1, #0x146000 ; reloc g_vlan_mcgid_0+0x0 type=275
+00146810: 1a000090  adrp x26, #0x146000 ; reloc .rodata+0xa0d0 '__l2_vlan_fib_print' type=275
+00146814: 5a030091  add x26, x26, #0 ; reloc .rodata+0xa0d0 '__l2_vlan_fib_print' type=277
+00146818: f303002a  mov w19, w0
+0014681c: 240040b9  ldr w4, [x1] ; reloc g_vlan_mcgid_0+0x0 type=285
+00146820: 5ae30091  add x26, x26, #0x38
+00146824: 00000090  adrp x0, #0x146000 ; reloc .rodata.str1.8+0x33d40 '%s:%d mc_fib_id = %d,g_vlan_mcgid_0 = %d after aal_l2_unknown_vlan_mc_fib_add() \n' type=275
+00146828: e303162a  mov w3, w22
+0014682c: 02818052  mov w2, #0x408
+00146830: e1031aaa  mov x1, x26
+00146834: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x33d40 '%s:%d mc_fib_id = %d,g_vlan_mcgid_0 = %d after aal_l2_unknown_vlan_mc_fib_add() \n' type=277
+00146838: 00000094  bl #0x146838 ; reloc ca_printf+0x0 type=283
+0014683c: 73010034  cbz w19, #0x146868
+00146840: e003162a  mov w0, w22
+00146844: 00000094  bl #0x146844 ; reloc aal_mc_repl_bit_free+0x0 type=283
+00146848: e1031aaa  mov x1, x26
+0014684c: 82818052  mov w2, #0x40c
+00146850: 00000090  adrp x0, #0x146000 ; reloc .rodata.str1.8+0x33d98 '%s:%d aal_l2_unknown_vlan_mc_fib_add() failed\n' type=275
+00146854: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x33d98 '%s:%d aal_l2_unknown_vlan_mc_fib_add() failed\n' type=277
+00146858: 00000094  bl #0x146858 ; reloc ca_printf+0x0 type=283
+0014685c: b76343a9  ldp x23, x24, [x29, #0x30]
+00146860: b96b44a9  ldp x25, x26, [x29, #0x40]
+00146864: 6f000014  b #0x146a20
+00146868: 18030091  add x24, x24, #0 ; reloc g_l2_vlan_unknown_port_fib_map+0x0 type=277
+0014686c: ba2740f9  ldr x26, [x29, #0x48]
+00146870: 164b3738  strb w22, [x24, w23, uxtw]
+00146874: 829a4129  ldp w2, w6, [x20, #0xc]
+00146878: a69700b9  str w6, [x29, #0x94]
+0014687c: a37f4139  ldrb w3, [x29, #0x5f]
+00146880: a16b4139  ldrb w1, [x29, #0x5a]
+00146884: 5f000071  cmp w2, #0
+00146888: a0674139  ldrb w0, [x29, #0x59]
+0014688c: 63001f32  orr w3, w3, #2
+00146890: 84964229  ldp w4, w5, [x20, #0x14]
+00146894: 21080032  orr w1, w1, #7
+00146898: 889e4029  ldp w8, w7, [x20, #4]
+0014689c: 00001b32  orr w0, w0, #0x20
+001468a0: 62008052  mov w2, #3
+001468a4: a16b0139  strb w1, [x29, #0x5a]
+001468a8: e203821a  csel w2, wzr, w2, eq
+001468ac: a0670139  strb w0, [x29, #0x59]
+001468b0: a37f0139  strb w3, [x29, #0x5f]
+001468b4: a2870539  strb w2, [x29, #0x161]
+001468b8: a5b70279  strh w5, [x29, #0x15a]
+001468bc: a78b00b9  str w7, [x29, #0x88]
+001468c0: a8df01b9  str w8, [x29, #0x1dc]
+001468c4: a4000034  cbz w4, #0x1468d8
+001468c8: 20008052  mov w0, #1
+001468cc: a06701b9  str w0, [x29, #0x164]
+001468d0: a06b01b9  str w0, [x29, #0x168]
+001468d4: 09000014  b #0x1468f8
+001468d8: 00000090  adrp x0, #0x146000 ; reloc g_pvid_is_set+0x0 type=275
+001468dc: e103172a  mov w1, w23
+001468e0: 00000091  add x0, x0, #0 ; reloc g_pvid_is_set+0x0 type=277
+001468e4: bf6701b9  str wzr, [x29, #0x164]
+001468e8: 007861b8  ldr w0, [x0, x1, lsl #2]
+001468ec: 1f040071  cmp w0, #1
+001468f0: 00009f1a  csel w0, w0, wzr, eq
+001468f4: a06b01b9  str w0, [x29, #0x168]
+001468f8: a0774139  ldrb w0, [x29, #0x5d]
+001468fc: a2230391  add x2, x29, #0xc8
+00146900: 812640b9  ldr w1, [x20, #0x24]
+00146904: 00001a32  orr w0, w0, #0x40
+00146908: a1cb01b9  str w1, [x29, #0x1c8]
+0014690c: a0770139  strb w0, [x29, #0x5d]
+00146910: 01808252  mov w1, #0x1400
+00146914: e003152a  mov w0, w21
+00146918: 00000094  bl #0x146918 ; reloc aal_l2_vlan_default_cfg_set+0x0 type=283
+0014691c: f303002a  mov w19, w0
+00146920: c0070035  cbnz w0, #0x146a18
+00146924: a22f40f9  ldr x2, [x29, #0x58]
+00146928: a3e30491  add x3, x29, #0x138
+0014692c: e103172a  mov w1, w23
+00146930: e003152a  mov w0, w21
+00146934: 00000094  bl #0x146934 ; reloc aal_port_ilpb_cfg_set+0x0 type=283
+00146938: f303002a  mov w19, w0
+0014693c: e0060035  cbnz w0, #0x146a18
+00146940: 82088052  mov w2, #0x44
+00146944: a3030291  add x3, x29, #0x80
+00146948: e103172a  mov w1, w23
+0014694c: e003152a  mov w0, w21
+00146950: 00000094  bl #0x146950 ; reloc aal_port_elpb_cfg_set+0x0 type=283
+00146954: f303002a  mov w19, w0
+00146958: 00060035  cbnz w0, #0x146a18
+0014695c: ff1e0071  cmp w23, #7
+00146960: c1050054  b.ne #0x146a18
+00146964: 14000090  adrp x20, #0x146000 ; reloc __gpon_pdc_spid+0x0 type=275
+00146968: 94020091  add x20, x20, #0 ; reloc __gpon_pdc_spid+0x0 type=277
+0014696c: 97320191  add x23, x20, #0x4c
+00146970: 20008052  mov w0, #1
+00146974: f6ff9f52  mov w22, #0xffff
+00146978: a09700b9  str w0, [x29, #0x94]
+0014697c: 81024079  ldrh w1, [x20]
+00146980: a3e30491  add x3, x29, #0x138
+00146984: e003152a  mov w0, w21
+00146988: 3f00166b  cmp w1, w22
+0014698c: a1000054  b.ne #0x1469a0
+00146990: 940a0091  add x20, x20, #2
+00146994: 9f0217eb  cmp x20, x23
+00146998: 21ffff54  b.ne #0x14697c
+0014699c: 1f000014  b #0x146a18
+001469a0: a22f40f9  ldr x2, [x29, #0x58]
+001469a4: 00000094  bl #0x1469a4 ; reloc aal_port_ilpb_cfg_set+0x0 type=283
+001469a8: 40010035  cbnz w0, #0x1469d0
+001469ac: 81024079  ldrh w1, [x20]
+001469b0: a3030291  add x3, x29, #0x80
+001469b4: 82088052  mov w2, #0x44
+001469b8: e003152a  mov w0, w21
+001469bc: 00000094  bl #0x1469bc ; reloc aal_port_elpb_cfg_set+0x0 type=283
+001469c0: 80feff34  cbz w0, #0x146990
+001469c4: 03000014  b #0x1469d0
+001469c8: 53008052  mov w19, #2
+001469cc: 15000014  b #0x146a20
+001469d0: f303002a  mov w19, w0
+001469d4: b92340f9  ldr x25, [x29, #0x40]
+001469d8: b76343a9  ldp x23, x24, [x29, #0x30]
+001469dc: 11000014  b #0x146a20
+001469e0: a0830191  add x0, x29, #0x60
+001469e4: 03000090  adrp x3, #0x146000 ; reloc cfg_id_pon_ds_lspid+0x0 type=275
+001469e8: 02080091  add x2, x0, #2
+001469ec: 1f2001f8  stur xzr, [x0, #0x12]
+001469f0: 1fa001b8  stur wzr, [x0, #0x1a]
+001469f4: 3f040071  cmp w1, #1
+001469f8: 61004039  ldrb w1, [x3] ; reloc cfg_id_pon_ds_lspid+0x0 type=278
+001469fc: 5f7c00a9  stp xzr, xzr, [x2]
+00146a00: a1c30079  strh w1, [x29, #0x60]
+00146a04: 1f3c0079  strh wzr, [x0, #0x1e]
+00146a08: a1eeff54  b.ne #0x1467dc
+00146a0c: 75ffff17  b #0x1467e0
+00146a10: b71b40f9  ldr x23, [x29, #0x30]
+00146a14: 03000014  b #0x146a20
+00146a18: b76343a9  ldp x23, x24, [x29, #0x30]
+00146a1c: b92340f9  ldr x25, [x29, #0x40]
+00146a20: e003132a  mov w0, w19
+00146a24: f35341a9  ldp x19, x20, [sp, #0x10]
+00146a28: f55b42a9  ldp x21, x22, [sp, #0x20]
+00146a2c: fd7bdfa8  ldp x29, x30, [sp], #0x1f0
+00146a30: c0035fd6  ret 

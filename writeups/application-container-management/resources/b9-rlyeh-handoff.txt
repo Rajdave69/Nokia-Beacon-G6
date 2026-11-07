@@ -1,0 +1,484 @@
+000086b0: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+000086b4: 050100f0  adrp x5, #0x2b000
+000086b8: 4208c05a  rev w2, w2
+000086bc: 84008052  mov w4, #4
+000086c0: fd030091  mov x29, sp
+000086c4: a3830091  add x3, x29, #0x20
+000086c8: a50c46f9  ldr x5, [x5, #0xc18]
+000086cc: 62cc1fb8  str w2, [x3, #-4]!
+000086d0: e20301aa  mov x2, x1
+000086d4: a1008052  mov w1, #5
+000086d8: a0003fd6  blr x5 ; heuristic @blobmsg_add_field {"x1": 5, "x4": 4, "x5": "@blobmsg_add_field"}
+000086dc: fd7bc2a8  ldp x29, x30, [sp], #0x20
+000086e0: c0035fd6  ret 
+000086e4: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+000086e8: 050100f0  adrp x5, #0x2b000
+000086ec: 24008052  mov w4, #1
+000086f0: fd030091  mov x29, sp
+000086f4: a3830091  add x3, x29, #0x20
+000086f8: a50c46f9  ldr x5, [x5, #0xc18]
+000086fc: 62fc1f38  strb w2, [x3, #-1]!
+00008700: e20301aa  mov x2, x1
+00008704: e1008052  mov w1, #7
+00008708: a0003fd6  blr x5 ; heuristic @blobmsg_add_field {"x1": 7, "x4": 1, "x5": "@blobmsg_add_field"}
+0000870c: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00008710: c0035fd6  ret 
+00008714: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00008718: 010100f0  adrp x1, #0x2b000
+0000871c: e00302aa  mov x0, x2
+00008720: fd030091  mov x29, sp
+00008724: 213c46f9  ldr x1, [x1, #0xc78]
+00008728: 210040b9  ldr w1, [x1]
+0000872c: f30b00f9  str x19, [sp, #0x10]
+00008730: 81020035  cbnz w1, #0x8780
+00008734: 010100f0  adrp x1, #0x2b000
+00008738: 21e846f9  ldr x1, [x1, #0xdd0]
+0000873c: 20003fd6  blr x1 ; heuristic 0xf3a0 {"x1": 62368}
+00008740: 040100f0  adrp x4, #0x2b000
+00008744: f30300aa  mov x19, x0
+00008748: e30300aa  mov x3, x0
+0000874c: 620000d0  adrp x2, #0x16000
+00008750: 42c03c91  add x2, x2, #0xf30
+00008754: 843843f9  ldr x4, [x4, #0x670]
+00008758: c0008052  mov w0, #6
+0000875c: 610000f0  adrp x1, #0x17000
+00008760: 21cc0091  add x1, x1, #0x33
+00008764: 80003fd6  blr x4 ; heuristic @syslog {"x0": 6, "x1": "[%s] Buffer data: %s\n", "x2": "prpllcm_response_callback", "x4": "@syslog"}
+00008768: 010100f0  adrp x1, #0x2b000
+0000876c: e00313aa  mov x0, x19
+00008770: f30b40f9  ldr x19, [sp, #0x10]
+00008774: 216842f9  ldr x1, [x1, #0x4d0]
+00008778: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0000877c: 20001fd6  br x1
+00008780: 050100f0  adrp x5, #0x2b000
+00008784: 04008012  mov w4, #-1
+00008788: 030080d2  mov x3, #0
+0000878c: 020080d2  mov x2, #0
+00008790: a51043f9  ldr x5, [x5, #0x620]
+00008794: 21008052  mov w1, #1
+00008798: a0003fd6  blr x5 ; heuristic @blobmsg_format_json_with_cb {"x1": 1, "x2": 0, "x3": 0, "x4": -1, "x5": "@blobmsg_format_json_with_cb"}
+0000879c: e9ffff17  b #0x8740
+000087a0: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+000087a4: fd030091  mov x29, sp
+000087a8: 200040f9  ldr x0, [x1]
+000087ac: 010100f0  adrp x1, #0x2b000
+000087b0: 213c46f9  ldr x1, [x1, #0xc78]
+000087b4: 210040b9  ldr w1, [x1]
+000087b8: f30b00f9  str x19, [sp, #0x10]
+000087bc: a1020035  cbnz w1, #0x8810
+000087c0: 010100f0  adrp x1, #0x2b000
+000087c4: 21e846f9  ldr x1, [x1, #0xdd0]
+000087c8: 20003fd6  blr x1 ; heuristic 0xf3a0 {"x1": 62368}
+000087cc: 040100f0  adrp x4, #0x2b000
+000087d0: 620000d0  adrp x2, #0x16000
+000087d4: 42c03c91  add x2, x2, #0xf30
+000087d8: 843843f9  ldr x4, [x4, #0x670]
+000087dc: f30300aa  mov x19, x0
+000087e0: e30300aa  mov x3, x0
+000087e4: 42800091  add x2, x2, #0x20
+000087e8: a0008052  mov w0, #5
+000087ec: 610000d0  adrp x1, #0x16000
+000087f0: 21242991  add x1, x1, #0xa49
+000087f4: 80003fd6  blr x4 ; heuristic @syslog {"x0": 5, "x1": "[%s] Buffer Data : %s\n", "x2": "_print_ubus_command", "x4": "@syslog"}
+000087f8: 010100f0  adrp x1, #0x2b000
+000087fc: e00313aa  mov x0, x19
+00008800: f30b40f9  ldr x19, [sp, #0x10]
+00008804: 216842f9  ldr x1, [x1, #0x4d0]
+00008808: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0000880c: 20001fd6  br x1
+00008810: 050100f0  adrp x5, #0x2b000
+00008814: 04008012  mov w4, #-1
+00008818: 030080d2  mov x3, #0
+0000881c: 020080d2  mov x2, #0
+00008820: a51043f9  ldr x5, [x5, #0x620]
+00008824: 21008052  mov w1, #1
+00008828: a0003fd6  blr x5 ; heuristic @blobmsg_format_json_with_cb {"x1": 1, "x2": 0, "x3": 0, "x4": -1, "x5": "@blobmsg_format_json_with_cb"}
+0000882c: e8ffff17  b #0x87cc
+00008830: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00008834: 020100f0  adrp x2, #0x2b000
+00008838: fd030091  mov x29, sp
+0000883c: 42f841f9  ldr x2, [x2, #0x3f0]
+00008840: f35301a9  stp x19, x20, [sp, #0x10]
+00008844: f40301aa  mov x20, x1
+00008848: f30300aa  mov x19, x0
+0000884c: 01008052  mov w1, #0
+00008850: 40003fd6  blr x2 ; heuristic @blob_buf_init {"x1": 0, "x2": "@blob_buf_init"}
+00008854: 820240f9  ldr x2, [x20]
+00008858: a20000b4  cbz x2, #0x886c
+0000885c: 610000f0  adrp x1, #0x17000
+00008860: 21240191  add x1, x1, #0x49
+00008864: e00313aa  mov x0, x19
+00008868: 7cffff97  bl #0x8658 ; heuristic 0x8658 {"x1": "URI"}
+0000886c: 820640f9  ldr x2, [x20, #8]
+00008870: a20000b4  cbz x2, #0x8884
+00008874: 610000f0  adrp x1, #0x17000
+00008878: 21701691  add x1, x1, #0x59c
+0000887c: e00313aa  mov x0, x19
+00008880: 76ffff97  bl #0x8658 ; heuristic 0x8658 {"x1": "DUID"}
+00008884: 820a40f9  ldr x2, [x20, #0x10]
+00008888: a20000b4  cbz x2, #0x889c
+0000888c: 610000f0  adrp x1, #0x17000
+00008890: 21340191  add x1, x1, #0x4d
+00008894: e00313aa  mov x0, x19
+00008898: 70ffff97  bl #0x8658 ; heuristic 0x8658 {"x1": "username"}
+0000889c: 820e40f9  ldr x2, [x20, #0x18]
+000088a0: e20000b4  cbz x2, #0x88bc
+000088a4: e00313aa  mov x0, x19
+000088a8: 610000f0  adrp x1, #0x17000
+000088ac: 21580191  add x1, x1, #0x56
+000088b0: f35341a9  ldp x19, x20, [sp, #0x10]
+000088b4: fd7bc2a8  ldp x29, x30, [sp], #0x20
+000088b8: 68ffff17  b #0x8658
+000088bc: f35341a9  ldp x19, x20, [sp, #0x10]
+000088c0: fd7bc2a8  ldp x29, x30, [sp], #0x20
+000088c4: c0035fd6  ret 
+000088c8: 010040f9  ldr x1, [x0]
+000088cc: 210100b4  cbz x1, #0x88f0
+000088d0: 21004039  ldrb w1, [x1]
+000088d4: e1000034  cbz w1, #0x88f0
+000088d8: 000440f9  ldr x0, [x0, #8]
+000088dc: a00000b4  cbz x0, #0x88f0
+000088e0: 00004039  ldrb w0, [x0]
+000088e4: 1f000071  cmp w0, #0
+000088e8: e0079f1a  cset w0, ne
+000088ec: c0035fd6  ret 
+000088f0: 00008052  mov w0, #0
+000088f4: feffff17  b #0x88ec
+000088f8: fd7bb8a9  stp x29, x30, [sp, #-0x80]!
+000088fc: fd030091  mov x29, sp
+00008900: f35301a9  stp x19, x20, [sp, #0x10]
+00008904: 130100f0  adrp x19, #0x2b000
+00008908: 61fa46f9  ldr x1, [x19, #0xdf0]
+0000890c: bfff05a9  stp xzr, xzr, [x29, #0x58]
+00008910: 220040f9  ldr x2, [x1]
+00008914: a23f00f9  str x2, [x29, #0x78]
+00008918: 020080d2  mov x2, #0
+0000891c: 010100f0  adrp x1, #0x2b000
+00008920: f51300f9  str x21, [sp, #0x20]
+00008924: f50300aa  mov x21, x0
+00008928: 21a044f9  ldr x1, [x1, #0x940]
+0000892c: bfff06a9  stp xzr, xzr, [x29, #0x68]
+00008930: 20003fd6  blr x1 ; heuristic 0x88c8 {"x1": 35016, "x2": 0}
+00008934: 620000d0  adrp x2, #0x16000
+00008938: 42c03c91  add x2, x2, #0xf30
+0000893c: 030100f0  adrp x3, #0x2b000
+00008940: 42e00091  add x2, x2, #0x38
+00008944: 00020035  cbnz w0, #0x8984
+00008948: 633843f9  ldr x3, [x3, #0x670]
+0000894c: 35008052  mov w21, #1
+00008950: 610000f0  adrp x1, #0x17000
+00008954: 217c0191  add x1, x1, #0x5f
+00008958: 60008052  mov w0, #3
+0000895c: 60003fd6  blr x3 ; heuristic @syslog {"x0": 3, "x1": "[%s] Missing parameters", "x2": "prpl_pull", "x3": "@syslog"}
+00008960: 73fa46f9  ldr x19, [x19, #0xdf0]
+00008964: e003152a  mov w0, w21
+00008968: a23f40f9  ldr x2, [x29, #0x78]
+0000896c: 610240f9  ldr x1, [x19]
+00008970: 410001ca  eor x1, x2, x1
+00008974: 810500b4  cbz x1, #0x8a24
+00008978: 000100f0  adrp x0, #0x2b000
+0000897c: 00c843f9  ldr x0, [x0, #0x790]
+00008980: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+00008984: 633843f9  ldr x3, [x3, #0x670]
+00008988: a0008052  mov w0, #5
+0000898c: 610000f0  adrp x1, #0x17000
+00008990: 21dc0191  add x1, x1, #0x77
+00008994: b4630191  add x20, x29, #0x58
+00008998: 60003fd6  blr x3 ; heuristic unknown {"x0": 5, "x1": "Sending %s command"}
+0000899c: 020100f0  adrp x2, #0x2b000
+000089a0: e10315aa  mov x1, x21
+000089a4: e00314aa  mov x0, x20
+000089a8: 750000f0  adrp x21, #0x17000
+000089ac: b52a0291  add x21, x21, #0x8a
+000089b0: 425c47f9  ldr x2, [x2, #0xeb8]
+000089b4: 40003fd6  blr x2 ; heuristic 0x8830 {"x1": 1, "x2": 34864}
+000089b8: 020100f0  adrp x2, #0x2b000
+000089bc: a08745a9  ldp x0, x1, [x29, #0x58]
+000089c0: a00703a9  stp x0, x1, [x29, #0x30]
+000089c4: 421044f9  ldr x2, [x2, #0x820]
+000089c8: a08746a9  ldp x0, x1, [x29, #0x68]
+000089cc: a00704a9  stp x0, x1, [x29, #0x40]
+000089d0: a1c30091  add x1, x29, #0x30
+000089d4: e00315aa  mov x0, x21
+000089d8: 40003fd6  blr x2 ; heuristic 0x87a0 {"x0": "Rlyeh", "x2": 34720}
+000089dc: 040100f0  adrp x4, #0x2b000
+000089e0: 070100f0  adrp x7, #0x2b000
+000089e4: a32f40f9  ldr x3, [x29, #0x58]
+000089e8: e10315aa  mov x1, x21
+000089ec: 848046f9  ldr x4, [x4, #0xd00]
+000089f0: 06008052  mov w6, #0
+000089f4: e7f045f9  ldr x7, [x7, #0xbe0]
+000089f8: 050080d2  mov x5, #0
+000089fc: 620000f0  adrp x2, #0x17000
+00008a00: 42400291  add x2, x2, #0x90
+00008a04: 00008052  mov w0, #0
+00008a08: e0003fd6  blr x7 ; heuristic 0xdacc {"x0": 0, "x1": "Rlyeh", "x2": "pull", "x4": 34580, "x5": 0, "x6": 0, "x7": 56012}
+00008a0c: f503002a  mov w21, w0
+00008a10: 010100f0  adrp x1, #0x2b000
+00008a14: e00314aa  mov x0, x20
+00008a18: 21f842f9  ldr x1, [x1, #0x5f0]
+00008a1c: 20003fd6  blr x1 ; heuristic @blob_buf_free {"x1": "@blob_buf_free"}
+00008a20: d0ffff17  b #0x8960
+00008a24: f35341a9  ldp x19, x20, [sp, #0x10]
+00008a28: f51340f9  ldr x21, [sp, #0x20]
+00008a2c: fd7bc8a8  ldp x29, x30, [sp], #0x80
+00008a30: c0035fd6  ret 
+00008a34: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+00008a38: 020100f0  adrp x2, #0x2b000
+00008a3c: fd030091  mov x29, sp
+00008a40: 42f841f9  ldr x2, [x2, #0x3f0]
+00008a44: f35301a9  stp x19, x20, [sp, #0x10]
+00008a48: f40301aa  mov x20, x1
+00008a4c: f55b02a9  stp x21, x22, [sp, #0x20]
+00008a50: f30300aa  mov x19, x0
+00008a54: f76303a9  stp x23, x24, [sp, #0x30]
+00008a58: 01008052  mov w1, #0
+00008a5c: f96b04a9  stp x25, x26, [sp, #0x40]
+00008a60: 40003fd6  blr x2 ; heuristic @blob_buf_init {"x1": 0, "x2": "@blob_buf_init"}
+00008a64: 821240f9  ldr x2, [x20, #0x20]
+00008a68: a20000b4  cbz x2, #0x8a7c
+00008a6c: 610000d0  adrp x1, #0x16000
+00008a70: 21c00e91  add x1, x1, #0x3b0
+00008a74: e00313aa  mov x0, x19
+00008a78: f8feff97  bl #0x8658 ; heuristic 0x8658 {"x1": "URL"}
+00008a7c: 822640f9  ldr x2, [x20, #0x48]
+00008a80: a20000b4  cbz x2, #0x8a94
+00008a84: 810000b0  adrp x1, #0x19000
+00008a88: 21042091  add x1, x1, #0x801
+00008a8c: e00313aa  mov x0, x19
+00008a90: f2feff97  bl #0x8658 ; heuristic 0x8658 {"x1": "UUID"}
+00008a94: 822a40f9  ldr x2, [x20, #0x50]
+00008a98: a20000b4  cbz x2, #0x8aac
+00008a9c: 610000d0  adrp x1, #0x16000
+00008aa0: 214c0e91  add x1, x1, #0x393
+00008aa4: e00313aa  mov x0, x19
+00008aa8: ecfeff97  bl #0x8658 ; heuristic 0x8658 {"x1": "ExecutionEnvRef"}
+00008aac: 821a40f9  ldr x2, [x20, #0x30]
+00008ab0: a20000b4  cbz x2, #0x8ac4
+00008ab4: 610000f0  adrp x1, #0x17000
+00008ab8: 21540291  add x1, x1, #0x95
+00008abc: e00313aa  mov x0, x19
+00008ac0: e6feff97  bl #0x8658 ; heuristic 0x8658 {"x1": "Username"}
+00008ac4: 821e40f9  ldr x2, [x20, #0x38]
+00008ac8: a20000b4  cbz x2, #0x8adc
+00008acc: 610000f0  adrp x1, #0x17000
+00008ad0: 21780291  add x1, x1, #0x9e
+00008ad4: e00313aa  mov x0, x19
+00008ad8: e0feff97  bl #0x8658 ; heuristic 0x8658 {"x1": "Password"}
+00008adc: 820240b9  ldr w2, [x20]
+00008ae0: 610000d0  adrp x1, #0x16000
+00008ae4: 210c0e91  add x1, x1, #0x383
+00008ae8: e00313aa  mov x0, x19
+00008aec: f1feff97  bl #0x86b0 ; heuristic 0x86b0 {"x1": "AllocatedMemory"}
+00008af0: 820640b9  ldr w2, [x20, #4]
+00008af4: 610000f0  adrp x1, #0x17000
+00008af8: 219c0291  add x1, x1, #0xa7
+00008afc: e00313aa  mov x0, x19
+00008b00: ecfeff97  bl #0x86b0 ; heuristic 0x86b0 {"x1": "AllocatedDiskSpace"}
+00008b04: 820a40b9  ldr w2, [x20, #8]
+00008b08: 610000d0  adrp x1, #0x16000
+00008b0c: 21bc0d91  add x1, x1, #0x36f
+00008b10: e00313aa  mov x0, x19
+00008b14: e7feff97  bl #0x86b0 ; heuristic 0x86b0 {"x1": "AllocatedCPUPercent"}
+00008b18: 802e40f9  ldr x0, [x20, #0x58]
+00008b1c: c00000b4  cbz x0, #0x8b34
+00008b20: 02004039  ldrb w2, [x0]
+00008b24: 610000d0  adrp x1, #0x16000
+00008b28: 21200c91  add x1, x1, #0x308
+00008b2c: e00313aa  mov x0, x19
+00008b30: edfeff97  bl #0x86e4 ; heuristic 0x86e4 {"x1": "AutoStart"}
+00008b34: 800a40f9  ldr x0, [x20, #0x10]
+00008b38: 800600b4  cbz x0, #0x8c08
+00008b3c: 180100f0  adrp x24, #0x2b000
+00008b40: 170100f0  adrp x23, #0x2b000
+00008b44: 22008052  mov w2, #1
+00008b48: 610000f0  adrp x1, #0x17000
+00008b4c: 21e80291  add x1, x1, #0xba
+00008b50: 03cf46f9  ldr x3, [x24, #0xd98]
+00008b54: e00313aa  mov x0, x19
+00008b58: 950000d0  adrp x21, #0x1a000
+00008b5c: b58e0c91  add x21, x21, #0x323
+00008b60: 760000f0  adrp x22, #0x17000
+00008b64: d6160391  add x22, x22, #0xc5
+00008b68: 60003fd6  blr x3 ; heuristic @blobmsg_open_nested {"x1": "HostObject", "x2": 1, "x3": "@blobmsg_open_nested"}
+00008b6c: f74643f9  ldr x23, [x23, #0x688]
+00008b70: 940a40f9  ldr x20, [x20, #0x10]
+00008b74: f90300aa  mov x25, x0
+00008b78: 740100b5  cbnz x20, #0x8ba4
+00008b7c: 020100f0  adrp x2, #0x2b000
+00008b80: e10319aa  mov x1, x25
+00008b84: e00313aa  mov x0, x19
+00008b88: f35341a9  ldp x19, x20, [sp, #0x10]
+00008b8c: f55b42a9  ldp x21, x22, [sp, #0x20]
+00008b90: f76343a9  ldp x23, x24, [sp, #0x30]
+00008b94: f96b44a9  ldp x25, x26, [sp, #0x40]
+00008b98: 424443f9  ldr x2, [x2, #0x688]
+00008b9c: fd7bc5a8  ldp x29, x30, [sp], #0x50
+00008ba0: 40001fd6  br x2
+00008ba4: 03cf46f9  ldr x3, [x24, #0xd98]
+00008ba8: 02008052  mov w2, #0
+00008bac: e10315aa  mov x1, x21
+00008bb0: e00313aa  mov x0, x19
+00008bb4: 60003fd6  blr x3 ; heuristic unknown {"x2": 0}
+00008bb8: fa0300aa  mov x26, x0
+00008bbc: 825a0291  add x2, x20, #0x96
+00008bc0: e10316aa  mov x1, x22
+00008bc4: e00313aa  mov x0, x19
+00008bc8: a4feff97  bl #0x8658 ; heuristic 0x8658 {}
+00008bcc: e20314aa  mov x2, x20
+00008bd0: 610000f0  adrp x1, #0x17000
+00008bd4: 21440391  add x1, x1, #0xd1
+00008bd8: e00313aa  mov x0, x19
+00008bdc: 9ffeff97  bl #0x8658 ; heuristic 0x8658 {"x1": "Source"}
+00008be0: 829a40f9  ldr x2, [x20, #0x130]
+00008be4: 610000f0  adrp x1, #0x17000
+00008be8: 21600391  add x1, x1, #0xd8
+00008bec: e00313aa  mov x0, x19
+00008bf0: 9afeff97  bl #0x8658 ; heuristic 0x8658 {"x1": "Options"}
+00008bf4: e1031aaa  mov x1, x26
+00008bf8: e00313aa  mov x0, x19
+00008bfc: e0023fd6  blr x23 ; heuristic unknown {}
+00008c00: 94a240f9  ldr x20, [x20, #0x140]
+00008c04: ddffff17  b #0x8b78
+00008c08: f35341a9  ldp x19, x20, [sp, #0x10]
+00008c0c: f55b42a9  ldp x21, x22, [sp, #0x20]
+00008c10: f76343a9  ldp x23, x24, [sp, #0x30]
+00008c14: f96b44a9  ldp x25, x26, [sp, #0x40]
+00008c18: fd7bc5a8  ldp x29, x30, [sp], #0x50
+00008c1c: c0035fd6  ret 
+00008c20: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00008c24: 020100f0  adrp x2, #0x2b000
+00008c28: fd030091  mov x29, sp
+00008c2c: 42f841f9  ldr x2, [x2, #0x3f0]
+00008c30: f35301a9  stp x19, x20, [sp, #0x10]
+00008c34: f40301aa  mov x20, x1
+00008c38: f30300aa  mov x19, x0
+00008c3c: 01008052  mov w1, #0
+00008c40: 40003fd6  blr x2 ; heuristic @blob_buf_init {"x1": 0, "x2": "@blob_buf_init"}
+00008c44: 800640f9  ldr x0, [x20, #8]
+00008c48: 000100b4  cbz x0, #0x8c68
+00008c4c: 02004039  ldrb w2, [x0]
+00008c50: e00313aa  mov x0, x19
+00008c54: f35341a9  ldp x19, x20, [sp, #0x10]
+00008c58: 610000f0  adrp x1, #0x17000
+00008c5c: 21800391  add x1, x1, #0xe0
+00008c60: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00008c64: a0feff17  b #0x86e4
+00008c68: f35341a9  ldp x19, x20, [sp, #0x10]
+00008c6c: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00008c70: c0035fd6  ret 
+00008c74: 011040f9  ldr x1, [x0, #0x20]
+00008c78: a10100b4  cbz x1, #0x8cac
+00008c7c: 21004039  ldrb w1, [x1]
+00008c80: 61010034  cbz w1, #0x8cac
+00008c84: 012440f9  ldr x1, [x0, #0x48]
+00008c88: 210100b4  cbz x1, #0x8cac
+00008c8c: 21004039  ldrb w1, [x1]
+00008c90: e1000034  cbz w1, #0x8cac
+00008c94: 002840f9  ldr x0, [x0, #0x50]
+00008c98: a00000b4  cbz x0, #0x8cac
+00008c9c: 00004039  ldrb w0, [x0]
+00008ca0: 1f000071  cmp w0, #0
+00008ca4: e0079f1a  cset w0, ne
+00008ca8: c0035fd6  ret 
+00008cac: 00008052  mov w0, #0
+00008cb0: feffff17  b #0x8ca8
+00008cb4: fd7bb8a9  stp x29, x30, [sp, #-0x80]!
+00008cb8: fd030091  mov x29, sp
+00008cbc: f35301a9  stp x19, x20, [sp, #0x10]
+00008cc0: 130100f0  adrp x19, #0x2b000
+00008cc4: 61fa46f9  ldr x1, [x19, #0xdf0]
+00008cc8: bfff05a9  stp xzr, xzr, [x29, #0x58]
+00008ccc: 220040f9  ldr x2, [x1]
+00008cd0: a23f00f9  str x2, [x29, #0x78]
+00008cd4: 020080d2  mov x2, #0
+00008cd8: 010100f0  adrp x1, #0x2b000
+00008cdc: f51300f9  str x21, [sp, #0x20]
+00008ce0: f50300aa  mov x21, x0
+00008ce4: 213845f9  ldr x1, [x1, #0xa70]
+00008ce8: bfff06a9  stp xzr, xzr, [x29, #0x68]
+00008cec: 20003fd6  blr x1 ; heuristic 0x8c74 {"x1": 35956, "x2": 0}
+00008cf0: 620000d0  adrp x2, #0x16000
+00008cf4: 42c03c91  add x2, x2, #0xf30
+00008cf8: 030100f0  adrp x3, #0x2b000
+00008cfc: 42200191  add x2, x2, #0x48
+00008d00: 00020035  cbnz w0, #0x8d40
+00008d04: 633843f9  ldr x3, [x3, #0x670]
+00008d08: 35008052  mov w21, #1
+00008d0c: 610000f0  adrp x1, #0x17000
+00008d10: 217c0191  add x1, x1, #0x5f
+00008d14: 60008052  mov w0, #3
+00008d18: 60003fd6  blr x3 ; heuristic @syslog {"x0": 3, "x1": "[%s] Missing parameters", "x2": "prpl_install_du", "x3": "@syslog"}
+00008d1c: 73fa46f9  ldr x19, [x19, #0xdf0]
+00008d20: e003152a  mov w0, w21
+00008d24: a23f40f9  ldr x2, [x29, #0x78]
+00008d28: 610240f9  ldr x1, [x19]
+00008d2c: 410001ca  eor x1, x2, x1
+00008d30: 810500b4  cbz x1, #0x8de0
+00008d34: 000100f0  adrp x0, #0x2b000
+00008d38: 00c843f9  ldr x0, [x0, #0x790]
+00008d3c: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+00008d40: 633843f9  ldr x3, [x3, #0x670]
+00008d44: a0008052  mov w0, #5
+00008d48: 610000f0  adrp x1, #0x17000
+00008d4c: 21dc0191  add x1, x1, #0x77
+00008d50: b4630191  add x20, x29, #0x58
+00008d54: 60003fd6  blr x3 ; heuristic unknown {"x0": 5, "x1": "Sending %s command"}
+00008d58: 020100f0  adrp x2, #0x2b000
+00008d5c: e10315aa  mov x1, x21
+00008d60: e00314aa  mov x0, x20
+00008d64: 750000f0  adrp x21, #0x17000
+00008d68: b5ae0391  add x21, x21, #0xeb
+00008d6c: 42d442f9  ldr x2, [x2, #0x5a8]
+00008d70: 40003fd6  blr x2 ; heuristic 0x8a34 {"x1": 1, "x2": 35380}
+00008d74: 020100f0  adrp x2, #0x2b000
+00008d78: a08745a9  ldp x0, x1, [x29, #0x58]
+00008d7c: a00703a9  stp x0, x1, [x29, #0x30]
+00008d80: 421044f9  ldr x2, [x2, #0x820]
+00008d84: a08746a9  ldp x0, x1, [x29, #0x68]
+00008d88: a00704a9  stp x0, x1, [x29, #0x40]
+00008d8c: a1c30091  add x1, x29, #0x30
+00008d90: e00315aa  mov x0, x21
+00008d94: 40003fd6  blr x2 ; heuristic 0x87a0 {"x0": "SoftwareModules", "x2": 34720}
+00008d98: 040100f0  adrp x4, #0x2b000
+00008d9c: 070100f0  adrp x7, #0x2b000
+00008da0: a32f40f9  ldr x3, [x29, #0x58]
+00008da4: e10315aa  mov x1, x21
+00008da8: 848046f9  ldr x4, [x4, #0xd00]
+00008dac: 06008052  mov w6, #0
+00008db0: e7f045f9  ldr x7, [x7, #0xbe0]
+00008db4: 050080d2  mov x5, #0
+00008db8: 820000b0  adrp x2, #0x19000
+00008dbc: 42b83591  add x2, x2, #0xd6e
+00008dc0: 00008052  mov w0, #0
+00008dc4: e0003fd6  blr x7 ; heuristic 0xdacc {"x0": 0, "x1": "SoftwareModules", "x2": "InstallDU", "x4": 34580, "x5": 0, "x6": 0, "x7": 56012}
+00008dc8: f503002a  mov w21, w0
+00008dcc: 010100f0  adrp x1, #0x2b000
+00008dd0: e00314aa  mov x0, x20
+00008dd4: 21f842f9  ldr x1, [x1, #0x5f0]
+00008dd8: 20003fd6  blr x1 ; heuristic @blob_buf_free {"x1": "@blob_buf_free"}
+00008ddc: d0ffff17  b #0x8d1c
+00008de0: f35341a9  ldp x19, x20, [sp, #0x10]
+00008de4: f51340f9  ldr x21, [sp, #0x20]
+00008de8: fd7bc8a8  ldp x29, x30, [sp], #0x80
+00008dec: c0035fd6  ret 
+00008df0: fd7bb8a9  stp x29, x30, [sp, #-0x80]!
+00008df4: 040100f0  adrp x4, #0x2b000
+00008df8: 620000d0  adrp x2, #0x16000
+00008dfc: 42c03c91  add x2, x2, #0xf30
+00008e00: fd030091  mov x29, sp
+00008e04: f35301a9  stp x19, x20, [sp, #0x10]
+00008e08: 130100f0  adrp x19, #0x2b000
+00008e0c: 843843f9  ldr x4, [x4, #0x670]
+00008e10: 42600191  add x2, x2, #0x58
+00008e14: f55b02a9  stp x21, x22, [sp, #0x20]
+00008e18: f50300aa  mov x21, x0
+00008e1c: 60fa46f9  ldr x0, [x19, #0xdf0]
+00008e20: f60301aa  mov x22, x1
+00008e24: bfff05a9  stp xzr, xzr, [x29, #0x58]
+00008e28: e30315aa  mov x3, x21
+00008e2c: 010040f9  ldr x1, [x0]
+00008e30: a13f00f9  str x1, [x29, #0x78]
+00008e34: 010080d2  mov x1, #0
+00008e38: bfff06a9  stp xzr, xzr, [x29, #0x68]
+00008e3c: 610000f0  adrp x1, #0x17000

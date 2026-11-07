@@ -1,0 +1,123 @@
+unnamed handler: .text+0x61b8, 488 bytes; sha256 a69d1cf7feed3f5d112c1e3faefd2a0a14b268f4c2a24192c66ccf15800f381e
+000061b8: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+000061bc: fd030091  mov x29, sp
+000061c0: f35301a9  stp x19, x20, [sp, #0x10]
+000061c4: f303012a  mov w19, w1
+000061c8: f40302aa  mov x20, x2
+000061cc: e0031eaa  mov x0, x30
+000061d0: 00000094  bl #0x61d0 ; reloc _mcount+0x0 type=283
+000061d4: 73000034  cbz w19, #0x61e0
+000061d8: 00008092  mov x0, #-1
+000061dc: 6d000014  b #0x6390
+000061e0: 00008452  mov w0, #0x2000
+000061e4: 00000094  bl #0x61e4 ; reloc ca_malloc+0x0 type=283
+000061e8: f30300aa  mov x19, x0
+000061ec: 60ffffb4  cbz x0, #0x61d8
+000061f0: b61700f9  str x22, [x29, #0x28]
+000061f4: 020084d2  mov x2, #0x2000
+000061f8: 01008052  mov w1, #0
+000061fc: 00000094  bl #0x61fc ; reloc memset+0x0 type=283
+00006200: 164138d5  mrs x22, sp_el0
+00006204: c20640f9  ldr x2, [x22, #8]
+00006208: e00314aa  mov x0, x20
+0000620c: e10302aa  mov x1, x2
+00006210: 001000b1  adds x0, x0, #4
+00006214: e183819a  csel x1, xzr, x1, hi
+00006218: 00309fda  csinv x0, x0, xzr, lo
+0000621c: 1f0001fa  sbcs xzr, x0, x1
+00006220: e0879f9a  cset x0, ls
+00006224: a00100b4  cbz x0, #0x6258
+00006228: b51300f9  str x21, [x29, #0x20]
+0000622c: 9f0222ea  bics xzr, x20, x2
+00006230: 81029f9a  csel x1, x20, xzr, eq
+00006234: 9f2203d5  csdb 
+00006238: 820080d2  mov x2, #4
+0000623c: e00313aa  mov x0, x19
+00006240: 00000094  bl #0x6240 ; reloc __arch_copy_from_user+0x0 type=283
+00006244: a00600b4  cbz x0, #0x6318
+00006248: 630200cb  sub x3, x19, x0
+0000624c: b51340f9  ldr x21, [x29, #0x20]
+00006250: 63100091  add x3, x3, #4
+00006254: 03000014  b #0x6260
+00006258: e30313aa  mov x3, x19
+0000625c: 800080d2  mov x0, #4
+00006260: e20300aa  mov x2, x0
+00006264: 01008052  mov w1, #0
+00006268: e00303aa  mov x0, x3
+0000626c: 00000094  bl #0x626c ; reloc memset+0x0 type=283
+00006270: e00313aa  mov x0, x19
+00006274: 00000094  bl #0x6274 ; reloc ca_free+0x0 type=283
+00006278: b61740f9  ldr x22, [x29, #0x28]
+0000627c: 00008092  mov x0, #-1
+00006280: 44000014  b #0x6390
+00006284: 1f2003d5  nop 
+00006288: 9f0222ea  bics xzr, x20, x2
+0000628c: 81029f9a  csel x1, x20, xzr, eq
+00006290: 9f2203d5  csdb 
+00006294: e20315aa  mov x2, x21
+00006298: e00313aa  mov x0, x19
+0000629c: 00000094  bl #0x629c ; reloc __arch_copy_from_user+0x0 type=283
+000062a0: 800500b4  cbz x0, #0x6350
+000062a4: a10200cb  sub x1, x21, x0
+000062a8: f50300aa  mov x21, x0
+000062ac: 6002018b  add x0, x19, x1
+000062b0: e20315aa  mov x2, x21
+000062b4: 01008052  mov w1, #0
+000062b8: 00000094  bl #0x62b8 ; reloc memset+0x0 type=283
+000062bc: e00313aa  mov x0, x19
+000062c0: 00000094  bl #0x62c0 ; reloc ca_free+0x0 type=283
+000062c4: 00008092  mov x0, #-1
+000062c8: b55b42a9  ldp x21, x22, [x29, #0x20]
+000062cc: 31000014  b #0x6390
+000062d0: 9f0223ea  bics xzr, x20, x3
+000062d4: 80029f9a  csel x0, x20, xzr, eq
+000062d8: 9f2203d5  csdb 
+000062dc: e10313aa  mov x1, x19
+000062e0: 00000094  bl #0x62e0 ; reloc __arch_copy_to_user+0x0 type=283
+000062e4: e00000b4  cbz x0, #0x6300
+000062e8: e00313aa  mov x0, x19
+000062ec: 00000094  bl #0x62ec ; reloc ca_free+0x0 type=283
+000062f0: 00008092  mov x0, #-1
+000062f4: b55b42a9  ldp x21, x22, [x29, #0x20]
+000062f8: 26000014  b #0x6390
+000062fc: 1f2003d5  nop 
+00006300: e00313aa  mov x0, x19
+00006304: 00000094  bl #0x6304 ; reloc ca_free+0x0 type=283
+00006308: a07e4093  sxtw x0, w21
+0000630c: b55b42a9  ldp x21, x22, [x29, #0x20]
+00006310: 20000014  b #0x6390
+00006314: 1f2003d5  nop 
+00006318: 75064079  ldrh w21, [x19, #2]
+0000631c: e00314aa  mov x0, x20
+00006320: c20640f9  ldr x2, [x22, #8]
+00006324: b5120091  add x21, x21, #4
+00006328: e10302aa  mov x1, x2
+0000632c: 000015ab  adds x0, x0, x21
+00006330: e183819a  csel x1, xzr, x1, hi
+00006334: 00309fda  csinv x0, x0, xzr, lo
+00006338: 1f0001fa  sbcs xzr, x0, x1
+0000633c: e0879f9a  cset x0, ls
+00006340: 40faffb5  cbnz x0, #0x6288
+00006344: e00313aa  mov x0, x19
+00006348: daffff17  b #0x62b0
+0000634c: 1f2003d5  nop 
+00006350: e00313aa  mov x0, x19
+00006354: 00000094  bl #0x6354 ; reloc ca_sdk_kern_api_cb+0x0 type=283
+00006358: 62064079  ldrh w2, [x19, #2]
+0000635c: f503002a  mov w21, w0
+00006360: c30640f9  ldr x3, [x22, #8]
+00006364: e00314aa  mov x0, x20
+00006368: 42100091  add x2, x2, #4
+0000636c: e10303aa  mov x1, x3
+00006370: 000002ab  adds x0, x0, x2
+00006374: e183819a  csel x1, xzr, x1, hi
+00006378: 00309fda  csinv x0, x0, xzr, lo
+0000637c: 1f0001fa  sbcs xzr, x0, x1
+00006380: e0879f9a  cset x0, ls
+00006384: 20fbffb4  cbz x0, #0x62e8
+00006388: d2ffff17  b #0x62d0
+0000638c: 1f2003d5  nop 
+00006390: f35341a9  ldp x19, x20, [sp, #0x10]
+00006394: fd7bc3a8  ldp x29, x30, [sp], #0x30
+00006398: c0035fd6  ret 
+0000639c: 1f2003d5  nop 

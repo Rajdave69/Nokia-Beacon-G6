@@ -1,0 +1,27 @@
+ca_nat_config_get: .text+0x176088, 104 bytes; sha256 79ba3ced9df83c45185ec1b6b2a3d4028e09e0fbf2fe9aee0acf8294c0a519bb
+00176088: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0017608c: fd030091  mov x29, sp
+00176090: f30b00f9  str x19, [sp, #0x10]
+00176094: e0031eaa  mov x0, x30
+00176098: f30301aa  mov x19, x1
+0017609c: 00000094  bl #0x17609c ; reloc _mcount+0x0 type=283
+001760a0: 40008052  mov w0, #2
+001760a4: 130200b4  cbz x19, #0x1760e4
+001760a8: b4d701a9  stp x20, x21, [x29, #0x18]
+001760ac: 14000090  adrp x20, #0x176000 ; reloc .bss+0x32c010 type=275
+001760b0: 95020091  add x21, x20, #0 ; reloc .bss+0x32c010 type=277
+001760b4: 800240f9  ldr x0, [x20] ; reloc .bss+0x32c010 type=286
+001760b8: 00000094  bl #0x1760b8 ; reloc ca_spin_lock+0x0 type=283
+001760bc: a20a40b9  ldr w2, [x21, #8]
+001760c0: a11240b9  ldr w1, [x21, #0x10]
+001760c4: 620200b9  str w2, [x19]
+001760c8: 610a00b9  str w1, [x19, #8]
+001760cc: a00e40b9  ldr w0, [x21, #0xc]
+001760d0: 600600b9  str w0, [x19, #4]
+001760d4: 800240f9  ldr x0, [x20] ; reloc .bss+0x32c010 type=286
+001760d8: 00000094  bl #0x1760d8 ; reloc ca_spin_unlock+0x0 type=283
+001760dc: b4d741a9  ldp x20, x21, [x29, #0x18]
+001760e0: 00008052  mov w0, #0
+001760e4: f30b40f9  ldr x19, [sp, #0x10]
+001760e8: fd7bc3a8  ldp x29, x30, [sp], #0x30
+001760ec: c0035fd6  ret 

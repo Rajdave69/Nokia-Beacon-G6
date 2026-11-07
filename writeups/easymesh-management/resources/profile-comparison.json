@@ -1,0 +1,331 @@
+{
+  "G6-IJL": {
+    "source_root": "private-source://PROFILE-G6-IJL",
+    "ECD_version": "1.14.22",
+    "route_count": 68,
+    "route_literals": 64,
+    "register_function": "0x1191f0",
+    "files": [
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/bin/ecd",
+        "present": true,
+        "bytes": 1818624,
+        "sha256": "bac0aea83878fff8186a9713599d9a9cef795e10d7ee92023bebcc44c0b40c13"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/bin/apcloud",
+        "present": true,
+        "bytes": 285008,
+        "sha256": "c220d1ea06fd0aafe23b92e794ccf5d3157ef6caf5f49b9cfdb4b532695cf0fc"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/lib/libnilecd.so",
+        "present": true,
+        "bytes": 14032,
+        "sha256": "3c827dbf2dbc051c00c31d6d8f709ae92424c1fbd7401335c34448195c4704c2"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/lib/libecdrpc.so",
+        "present": true,
+        "bytes": 18120,
+        "sha256": "a712e4b619ebc2d64b308fd283ce7ff2cacf03de5deff12d1ffdaf7d72529291"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/bin/run_ecd.sh",
+        "present": true,
+        "bytes": 881,
+        "sha256": "c1db444efff8a6878e8a56abd1211ea5999f722e5232c677991096985f370156",
+        "content": "#!/bin/sh\n#\n# This script sets up a bunch of environment variables that the Technicolor\n# EasyMesh stack needs. Please remove variables from this script when better\n# methods for obtaining this information is implemented.\n#\n# These variables can be overridden by setting new values in $PWD/ecd.conf\n#\n# Once the environment variables are set, it runs /usr/bin/ecd\n\nCONF_FILE=\"$HOME/ecd.conf\"\n\n# ecd variables\nECD_LOG_SINK=syslog\n#ECD_LOG_SINK=stdout\n#ECD_LOG_LEVEL=debug\nECD_LOG_LEVEL=info\nECD_EXTRA_OPTIONS=\n\n# if file is not exist, do next, if not , wait and check\nif [ -e /configs/em_no_auto_startup_flag ] ; then\n    exit 0\nfi\n\nif [ -e ${CONF_FILE} ] ; then\n  . ${CONF_FILE}\nfi\n\n# exec ECD to save memory\n#exec /usr/bin/ecd --log-path=$ECD_LOG_SINK --log-level=$ECD_LOG_LEVEL $ECD_EXTRA_OPTIONS\n# exec ecd without arguments, since that is not needed anymore\nexec /usr/bin/ecd \n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/etc/pcd/ECD.pcd",
+        "present": true,
+        "bytes": 3092,
+        "sha256": "0b1e0804a87ba7b917cfd6b09fd481ce7ef371fa671e5b91a42c6cd4adad18d7",
+        "content": "# Incl ude a rule file\n#INCLUDE = filename.pcd\n################### Start of a rule block #############################\n# Index of the rule\n#RULE = GROUPNAME_RULENAME\nRULE = service_ECD\n# Condition to start rule, existence of one of the following\n#\n# NONE - No start condition, application is spawn immediately\n# FILE filename - The existence of a file\n# RULE_COMPLETED id - Rule id completed successfully\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# ENV_VAR name, value - Value of a variable\n#\n#START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }\nSTART_COND = RULE_COMPLETED service_system_init service_NVA\n# Command with parameters, NONE for sync point\n#COMMAND = cmd parameters...\nCOMMAND = /usr/bin/run_ecd.sh\n# Scheduling (priority) of the process\n#SCHED = { NICE value; FIFO value }\nSCHED = NICE 0\n# Daemon flag Process must not end\n#DAEMON = { YES, NO }\nDAEMON = YES\n# Condition to end rule and move to next rule, wait for one of the following:\n#\n# NONE - No monitor on the result, just spawn application and continue.\n# FILE filename - The existence of a file\n# EXIT status - The application exited with status. Other statuses are considered failure\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# PROCESS_READY The process sent a READY event though PCD API.\n# WAIT msecs - Delay, ignore END_COND_TIMEOUT\n#\n#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }\nEND_COND = NONE\n# Timeout for end condition. Fail if timeout expires. -1 if not relevant.\n#END_COND_TIMEOUT = msecs\nEND_COND_TIMEOUT = -1\n# Action upon failure, do one of the following actions upon failure\n# NONE Do not take any action\n# REBOOT - Reboot the system\n# RESTART - Restart the rule\n# EXEC_RULE id - Execute a rule\n#\n#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }\nFAILURE_ACTION = RESTART\n# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.\n# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Interval in seconds between a failure and the next failure action.\n# FAILURE_INTERVAL = (0..4294967)\n# Time in hours before resetting the failure counter. 0: use only the first failure action.\n# FAILURE_RESET_COUNT = (0..1193)\n# Rule is Active or not (To be activated later by PCD API)\n#ACTIVE = { YES, NO }\nACTIVE = NO\n# User id for the process\n# USER = { UID | User name }\n# ping time out ,Fail if timeout expires.\n# ALIVE_TIMEOUT = 10000\n################### End of a rule block #############################\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/etc/pcd/ECD.pcd",
+        "present": true,
+        "bytes": 3105,
+        "sha256": "1ae59167c9793646843f24377ea5d2697faa4828b9ed66a22092ed6a0e105560",
+        "content": "# Incl ude a rule file\n#INCLUDE = filename.pcd\n\n################### Start of a rule block #############################\n# Index of the rule\n#RULE = GROUPNAME_RULENAME\nRULE = EASYMESH_ECD\n\n# Condition to start rule, existence of one of the following\n#\n# NONE - No start condition, application is spawn immediately\n# FILE filename - The existence of a file\n# RULE_COMPLETED id - Rule id completed successfully\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# ENV_VAR name, value - Value of a variable\n#\n# START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }\nSTART_COND = FILE /tmp/pcd_start_ecd_ready\n\n# Command with parameters, NONE for sync point\n#COMMAND = cmd parameters...\nCOMMAND = /usr/bin/run_ecd.sh\n\n# Scheduling (priority) of the process\n#SCHED = { NICE value; FIFO value }\nSCHED = NICE 0\n\n# Daemon flag ¡§C Process must not end\n#DAEMON = { YES, NO }\nDAEMON = YES\n\n# Condition to end rule and move to next rule, wait for one of the following:\n#\n# NONE - No monitor on the result, just spawn application and continue.\n# FILE filename - The existence of a file\n# EXIT status - The application exited with status. Other statuses are considered failure\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# PROCESS_READY ¡§C The process sent a READY event though PCD API.\n# WAIT msecs - Delay, ignore END_COND_TIMEOUT\n#\n#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }\nEND_COND = NONE\n\n# Timeout for end condition. Fail if timeout expires. -1 if not relevant.\n#END_COND_TIMEOUT = msecs\nEND_COND_TIMEOUT = -1\n\n# Action upon failure, do one of the following actions upon failure\n# NONE ¡§C Do not take any action\n# REBOOT - Reboot the system\n# RESTART - Restart the rule\n# EXEC_RULE id - Execute a rule\n#\n#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }\nFAILURE_ACTION = RESTART\n\n# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.\n# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure\n# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE}\n# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure\n# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE}\n# Interval in seconds between a failure and the next failure action.\n# FAILURE_INTERVAL = (0..4294967)\n# Time in hours before resetting the failure counter. 0: use only the first failure action.\n# FAILURE_RESET_COUNT = (0..1193)\n\n# Rule is Active or not (To be activated later by PCD API)\n#ACTIVE = { YES, NO }\nACTIVE = YES\n\n# User id for the process\n# USER = { UID | User name }\n\n# ping time out ,Fail if timeout expires.\n# ALIVE_TIMEOUT = 10000\n################### End of a rule block #############################\n\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/etc/init.d/ecdinterface",
+        "present": true,
+        "bytes": 206,
+        "sha256": "807a37b2d5d370794b45b54db520ae8e45cc0be2ed96e55a049dbc400b61f1c9",
+        "content": "#!/bin/sh /etc/rc.common\n\n# Needs to start before network\nSTART=19\nstart() {\n    ip link add dev ecd0 type veth peer name ecd1\n    ip link set ecd0 up\n    ip link set ecd1 up\n    brctl addif br-lan ecd0 \n}\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/etc/config/apcloud",
+        "present": true,
+        "bytes": 2745,
+        "sha256": "174a915404d5511b7d1cad7073717d476640e11a23f8b7adf06333706d964dc5",
+        "content": "config main main\n       option manufacturer NOKIA_BEACON_1\n       option version 1.0-20-capin\n       option debug 2\n       option config_mode http\n       option notify_mode http\n       option server xca-back.dev2.homewifi.nokia.com\n       option port 8443\n       option use_tls 1\n       option ca_path /etc/ssl/certs\n       option ca_info /etc/ssl/certs/L2_server_cert.pem\n       option special_bootup_flag 1\n       option bootup_flag_check 0\n       option sta_connection_percentage 20\n       option radio_access_type_2g 0\n       option radio_access_type_5g 0\n       option off_channel_scan_5g 1\n       option username \"admin\"\n       option password \"admin\"\n       option compression_type gzip\n       option compression_level medium\n       option dns_addr_resolve ipv4\n       option connection_age_time 0\n       option log_file_size 512000\n       option compress_log_file 1\n\nconfig interfaces interfaces\n       option base_interface_2G rax0\n       option base_interface_5G ra0\n\nconfig url_path url_path\n       option server_path '/NGSCserver'\n       option fault_path '/FMserver'\n       option config_data_path '/apEntries/phyAPConfiguration'\n       option metric_report_path '/apEntries/schemaLessApMetrics'\n       option fault_report_path '/apEntries/faultNotification'\n\nconfig intervals intervals\n       option base_wakeup_time 30\n       option config_polling_interval 6\n       option metric_report_interval  30\n       option neighbor_report_scan_interval 20\n       option neighbor_ap_scan_interval 2880\n       option perf_scan_interval 2\n       option perf_report_interval 30\n       option noise_evaluation_period 5\n       option cloud_config_retry_interval 3\n       option dns_cache_tout 1800\n       option idle_throughput '20'\n       option curr_chn_obss_threshold '90'\n       option idle_threshold '0'\n\nconfig location location\n       option posx 0\n       option posy 0\n       option posz 0\n       option lat 0\n       option long 0\n       option alt 0\n\nconfig fault fault\n       option quick_report 1\n       option noise_threshold -80\n\nconfig rssi_penalty rssi_penalty\n       option maxrssi_threshold_1 -13\n       option maxrssi_penalty_1 0\n       option maxrssi_threshold_2 -23\n       option maxrssi_penalty_2 0\n\nconfig noise_threshold noise_threshold\n\nconfig adaptative_scan adaptative_scan\n       option scan_mode 1\n       option scan_mode_5 1\n       option mode_type_1 0.5,5,2,5,15\n       option mode_type_2 1,20,2,15,60\n       option mode_type_3 0.2,5,5,60,0\n\nconfig 80211h_csa 80211h_csa\n       option spect_mode_2g 1\n       option spect_mode_5g 1\n       option csa_count_2g 5\n       option csa_count_5g 5\n       option noise_threshold -65\n\nconfig 80211h_dfs 80211h_dfs\n\nconfig rrm rrm\n\nconfig status status\n       option enabled 0\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/etc/config/apcloud_bootup_config.txt",
+        "present": true,
+        "bytes": 0,
+        "sha256_alias": "DIGEST-031",
+        "content": "",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/exe/apcloud_mpstat.sh",
+        "present": true,
+        "bytes": 117,
+        "sha256": "d37cca247bf03b3bd217f49bac6aeb2cfa5762d4a5b31cb3a63a14b519b12f14",
+        "content": "#! /bin/sh\n\nwhile true\ndo\nmpstat 300 1 > /tmp/cpuutil_tmp.txt\ncp /tmp/cpuutil_tmp.txt /tmp/cpuutil.txt\nsleep 60\ndone\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/lib/opkg/info/apcloud.control",
+        "present": true,
+        "bytes": 431,
+        "sha256": "4ad371b7efd9985243230b6d5cc4493fe9fe433457e1935edd01f77f335eb4e6",
+        "content": "Package: apcloud\nVersion: 24.02.1-21\nDepends: libc, libssp, librt, libpthread, libcurl4, libjson-c5, libubox20191228, libubus, libblobmsg-json, libuceasy, zlib\nSource: /repo/builder/pullme_BBDR2402OpenWrtB/sw/working/nokia_package/nokia_howi/apcloud\nSourceName: apcloud\nSection: fon\nMaintainer: Fon Firmware Team <fwteam@fon.com>\nArchitecture: aarch64_cortex-a53\nInstalled-Size: 115072\nDescription:  AP Client for Cloud Management\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/lib/opkg/info/apcloud.list",
+        "present": true,
+        "bytes": 102,
+        "sha256": "5001d987efb2c0129267a148099ff6bd785be793318574c74587263a775b3963",
+        "content": "/etc/config/apcloud_bootup_config.txt\n/usr/exe/apcloud_mpstat.sh\n/usr/bin/apcloud\n/etc/config/apcloud\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/lib/opkg/info/apcloud.prerm",
+        "present": true,
+        "bytes": 117,
+        "sha256": "ed0f3b379f15894bd3877e9654f8edb919f4ffd8868753aa62ccfb93a09670d9",
+        "content": "#!/bin/sh\n[ -x ${IPKG_INSTROOT}/lib/functions.sh ] || exit 0\n. ${IPKG_INSTROOT}/lib/functions.sh\ndefault_prerm $0 $@\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-IJL/usr/share/acl.d/apcloud_ubus_acl.json",
+        "present": true,
+        "bytes": 308,
+        "sha256": "8c3776e04a1aa8f003ab0f6519f2a31b8d93f02be23ad98cae78f5b5fc165c39",
+        "content": "{\n  \"user\": \"appService\",\n  \"access\": {\n    \"apcloud_event\": {\n      \"methods\": [\n        \"update\"\n      ]\n    }\n  },\n  \"subscribe\": [\n    \"mesh\"\n  ],\n  \"listen\": [\n    \"mesh\",\n    \"ubus.object.add\",\n    \"ubus.object.remove\"\n  ],\n  \"send\": [\n    \"apcloud_event\"\n  ],\n  \"publish\": [\n    \"apcloud_event\"\n  ]\n}\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      }
+    ]
+  },
+  "G6-HJL": {
+    "source_root": "private-source://PROFILE-G6-HJL",
+    "ECD_version": "1.16.15",
+    "route_count": 68,
+    "route_literals": 64,
+    "register_function": "0x120a10",
+    "files": [
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/bin/ecd",
+        "present": true,
+        "bytes": 1859584,
+        "sha256": "8ff016a5b17aba17c5772dc87c03b1ed4bbab2e5601cedb4e63b6e37498954da"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/bin/apcloud",
+        "present": true,
+        "bytes": 289152,
+        "sha256": "464861e04c838725555c767975e0d441fbd3a7d01ba6377d3e2654bde1033c2a"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/lib/libnilecd.so",
+        "present": true,
+        "bytes": 14032,
+        "sha256": "09c64cdeb628ae8538ddc1d683887bf6b93321b7bf93680a8b85e06ee5b8730d"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/lib/libecdrpc.so",
+        "present": true,
+        "bytes": 18120,
+        "sha256": "69438f2bdd28b2357d8177e3f7d9e92f44b2c460ea7036e62d02737adc3c8b47"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/bin/run_ecd.sh",
+        "present": true,
+        "bytes": 881,
+        "sha256": "c1db444efff8a6878e8a56abd1211ea5999f722e5232c677991096985f370156",
+        "content": "#!/bin/sh\n#\n# This script sets up a bunch of environment variables that the Technicolor\n# EasyMesh stack needs. Please remove variables from this script when better\n# methods for obtaining this information is implemented.\n#\n# These variables can be overridden by setting new values in $PWD/ecd.conf\n#\n# Once the environment variables are set, it runs /usr/bin/ecd\n\nCONF_FILE=\"$HOME/ecd.conf\"\n\n# ecd variables\nECD_LOG_SINK=syslog\n#ECD_LOG_SINK=stdout\n#ECD_LOG_LEVEL=debug\nECD_LOG_LEVEL=info\nECD_EXTRA_OPTIONS=\n\n# if file is not exist, do next, if not , wait and check\nif [ -e /configs/em_no_auto_startup_flag ] ; then\n    exit 0\nfi\n\nif [ -e ${CONF_FILE} ] ; then\n  . ${CONF_FILE}\nfi\n\n# exec ECD to save memory\n#exec /usr/bin/ecd --log-path=$ECD_LOG_SINK --log-level=$ECD_LOG_LEVEL $ECD_EXTRA_OPTIONS\n# exec ecd without arguments, since that is not needed anymore\nexec /usr/bin/ecd \n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/etc/pcd/ECD.pcd",
+        "present": true,
+        "bytes": 3092,
+        "sha256": "0b1e0804a87ba7b917cfd6b09fd481ce7ef371fa671e5b91a42c6cd4adad18d7",
+        "content": "# Incl ude a rule file\n#INCLUDE = filename.pcd\n################### Start of a rule block #############################\n# Index of the rule\n#RULE = GROUPNAME_RULENAME\nRULE = service_ECD\n# Condition to start rule, existence of one of the following\n#\n# NONE - No start condition, application is spawn immediately\n# FILE filename - The existence of a file\n# RULE_COMPLETED id - Rule id completed successfully\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# ENV_VAR name, value - Value of a variable\n#\n#START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }\nSTART_COND = RULE_COMPLETED service_system_init service_NVA\n# Command with parameters, NONE for sync point\n#COMMAND = cmd parameters...\nCOMMAND = /usr/bin/run_ecd.sh\n# Scheduling (priority) of the process\n#SCHED = { NICE value; FIFO value }\nSCHED = NICE 0\n# Daemon flag Process must not end\n#DAEMON = { YES, NO }\nDAEMON = YES\n# Condition to end rule and move to next rule, wait for one of the following:\n#\n# NONE - No monitor on the result, just spawn application and continue.\n# FILE filename - The existence of a file\n# EXIT status - The application exited with status. Other statuses are considered failure\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# PROCESS_READY The process sent a READY event though PCD API.\n# WAIT msecs - Delay, ignore END_COND_TIMEOUT\n#\n#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }\nEND_COND = NONE\n# Timeout for end condition. Fail if timeout expires. -1 if not relevant.\n#END_COND_TIMEOUT = msecs\nEND_COND_TIMEOUT = -1\n# Action upon failure, do one of the following actions upon failure\n# NONE Do not take any action\n# REBOOT - Reboot the system\n# RESTART - Restart the rule\n# EXEC_RULE id - Execute a rule\n#\n#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }\nFAILURE_ACTION = RESTART\n# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.\n# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Interval in seconds between a failure and the next failure action.\n# FAILURE_INTERVAL = (0..4294967)\n# Time in hours before resetting the failure counter. 0: use only the first failure action.\n# FAILURE_RESET_COUNT = (0..1193)\n# Rule is Active or not (To be activated later by PCD API)\n#ACTIVE = { YES, NO }\nACTIVE = NO\n# User id for the process\n# USER = { UID | User name }\n# ping time out ,Fail if timeout expires.\n# ALIVE_TIMEOUT = 10000\n################### End of a rule block #############################\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/etc/pcd/ECD.pcd",
+        "present": true,
+        "bytes": 3105,
+        "sha256": "1ae59167c9793646843f24377ea5d2697faa4828b9ed66a22092ed6a0e105560",
+        "content": "# Incl ude a rule file\n#INCLUDE = filename.pcd\n\n################### Start of a rule block #############################\n# Index of the rule\n#RULE = GROUPNAME_RULENAME\nRULE = EASYMESH_ECD\n\n# Condition to start rule, existence of one of the following\n#\n# NONE - No start condition, application is spawn immediately\n# FILE filename - The existence of a file\n# RULE_COMPLETED id - Rule id completed successfully\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# ENV_VAR name, value - Value of a variable\n#\n# START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }\nSTART_COND = FILE /tmp/pcd_start_ecd_ready\n\n# Command with parameters, NONE for sync point\n#COMMAND = cmd parameters...\nCOMMAND = /usr/bin/run_ecd.sh\n\n# Scheduling (priority) of the process\n#SCHED = { NICE value; FIFO value }\nSCHED = NICE 0\n\n# Daemon flag ¡§C Process must not end\n#DAEMON = { YES, NO }\nDAEMON = YES\n\n# Condition to end rule and move to next rule, wait for one of the following:\n#\n# NONE - No monitor on the result, just spawn application and continue.\n# FILE filename - The existence of a file\n# EXIT status - The application exited with status. Other statuses are considered failure\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# PROCESS_READY ¡§C The process sent a READY event though PCD API.\n# WAIT msecs - Delay, ignore END_COND_TIMEOUT\n#\n#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }\nEND_COND = NONE\n\n# Timeout for end condition. Fail if timeout expires. -1 if not relevant.\n#END_COND_TIMEOUT = msecs\nEND_COND_TIMEOUT = -1\n\n# Action upon failure, do one of the following actions upon failure\n# NONE ¡§C Do not take any action\n# REBOOT - Reboot the system\n# RESTART - Restart the rule\n# EXEC_RULE id - Execute a rule\n#\n#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }\nFAILURE_ACTION = RESTART\n\n# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.\n# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure\n# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE}\n# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure\n# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE}\n# Interval in seconds between a failure and the next failure action.\n# FAILURE_INTERVAL = (0..4294967)\n# Time in hours before resetting the failure counter. 0: use only the first failure action.\n# FAILURE_RESET_COUNT = (0..1193)\n\n# Rule is Active or not (To be activated later by PCD API)\n#ACTIVE = { YES, NO }\nACTIVE = YES\n\n# User id for the process\n# USER = { UID | User name }\n\n# ping time out ,Fail if timeout expires.\n# ALIVE_TIMEOUT = 10000\n################### End of a rule block #############################\n\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/etc/init.d/ecdinterface",
+        "present": true,
+        "bytes": 206,
+        "sha256": "807a37b2d5d370794b45b54db520ae8e45cc0be2ed96e55a049dbc400b61f1c9",
+        "content": "#!/bin/sh /etc/rc.common\n\n# Needs to start before network\nSTART=19\nstart() {\n    ip link add dev ecd0 type veth peer name ecd1\n    ip link set ecd0 up\n    ip link set ecd1 up\n    brctl addif br-lan ecd0 \n}\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/etc/config/apcloud",
+        "present": true,
+        "bytes": 2745,
+        "sha256": "174a915404d5511b7d1cad7073717d476640e11a23f8b7adf06333706d964dc5",
+        "content": "config main main\n       option manufacturer NOKIA_BEACON_1\n       option version 1.0-20-capin\n       option debug 2\n       option config_mode http\n       option notify_mode http\n       option server xca-back.dev2.homewifi.nokia.com\n       option port 8443\n       option use_tls 1\n       option ca_path /etc/ssl/certs\n       option ca_info /etc/ssl/certs/L2_server_cert.pem\n       option special_bootup_flag 1\n       option bootup_flag_check 0\n       option sta_connection_percentage 20\n       option radio_access_type_2g 0\n       option radio_access_type_5g 0\n       option off_channel_scan_5g 1\n       option username \"admin\"\n       option password \"admin\"\n       option compression_type gzip\n       option compression_level medium\n       option dns_addr_resolve ipv4\n       option connection_age_time 0\n       option log_file_size 512000\n       option compress_log_file 1\n\nconfig interfaces interfaces\n       option base_interface_2G rax0\n       option base_interface_5G ra0\n\nconfig url_path url_path\n       option server_path '/NGSCserver'\n       option fault_path '/FMserver'\n       option config_data_path '/apEntries/phyAPConfiguration'\n       option metric_report_path '/apEntries/schemaLessApMetrics'\n       option fault_report_path '/apEntries/faultNotification'\n\nconfig intervals intervals\n       option base_wakeup_time 30\n       option config_polling_interval 6\n       option metric_report_interval  30\n       option neighbor_report_scan_interval 20\n       option neighbor_ap_scan_interval 2880\n       option perf_scan_interval 2\n       option perf_report_interval 30\n       option noise_evaluation_period 5\n       option cloud_config_retry_interval 3\n       option dns_cache_tout 1800\n       option idle_throughput '20'\n       option curr_chn_obss_threshold '90'\n       option idle_threshold '0'\n\nconfig location location\n       option posx 0\n       option posy 0\n       option posz 0\n       option lat 0\n       option long 0\n       option alt 0\n\nconfig fault fault\n       option quick_report 1\n       option noise_threshold -80\n\nconfig rssi_penalty rssi_penalty\n       option maxrssi_threshold_1 -13\n       option maxrssi_penalty_1 0\n       option maxrssi_threshold_2 -23\n       option maxrssi_penalty_2 0\n\nconfig noise_threshold noise_threshold\n\nconfig adaptative_scan adaptative_scan\n       option scan_mode 1\n       option scan_mode_5 1\n       option mode_type_1 0.5,5,2,5,15\n       option mode_type_2 1,20,2,15,60\n       option mode_type_3 0.2,5,5,60,0\n\nconfig 80211h_csa 80211h_csa\n       option spect_mode_2g 1\n       option spect_mode_5g 1\n       option csa_count_2g 5\n       option csa_count_5g 5\n       option noise_threshold -65\n\nconfig 80211h_dfs 80211h_dfs\n\nconfig rrm rrm\n\nconfig status status\n       option enabled 0\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/etc/config/apcloud_bootup_config.txt",
+        "present": true,
+        "bytes": 0,
+        "sha256_alias": "DIGEST-031",
+        "content": "",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/exe/apcloud_mpstat.sh",
+        "present": true,
+        "bytes": 117,
+        "sha256": "d37cca247bf03b3bd217f49bac6aeb2cfa5762d4a5b31cb3a63a14b519b12f14",
+        "content": "#! /bin/sh\n\nwhile true\ndo\nmpstat 300 1 > /tmp/cpuutil_tmp.txt\ncp /tmp/cpuutil_tmp.txt /tmp/cpuutil.txt\nsleep 60\ndone\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/lib/opkg/info/apcloud.control",
+        "present": true,
+        "bytes": 431,
+        "sha256": "02691473fb7793b72fd24148ea69094d7b039946f47483e24866b3d622a4712a",
+        "content": "Package: apcloud\nVersion: 24.04.2-21\nDepends: libc, libssp, librt, libpthread, libcurl4, libjson-c5, libubox20191228, libubus, libblobmsg-json, libuceasy, zlib\nSource: /repo/builder/pullme_BBDR2404OpenWrtB/sw/working/nokia_package/nokia_howi/apcloud\nSourceName: apcloud\nSection: fon\nMaintainer: Fon Firmware Team <fwteam@fon.com>\nArchitecture: aarch64_cortex-a53\nInstalled-Size: 115401\nDescription:  AP Client for Cloud Management\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/lib/opkg/info/apcloud.list",
+        "present": true,
+        "bytes": 102,
+        "sha256": "5001d987efb2c0129267a148099ff6bd785be793318574c74587263a775b3963",
+        "content": "/etc/config/apcloud_bootup_config.txt\n/usr/exe/apcloud_mpstat.sh\n/usr/bin/apcloud\n/etc/config/apcloud\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/lib/opkg/info/apcloud.prerm",
+        "present": true,
+        "bytes": 117,
+        "sha256": "ed0f3b379f15894bd3877e9654f8edb919f4ffd8868753aa62ccfb93a09670d9",
+        "content": "#!/bin/sh\n[ -x ${IPKG_INSTROOT}/lib/functions.sh ] || exit 0\n. ${IPKG_INSTROOT}/lib/functions.sh\ndefault_prerm $0 $@\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-G6-HJL/usr/share/acl.d/apcloud_ubus_acl.json",
+        "present": true,
+        "bytes": 308,
+        "sha256": "8c3776e04a1aa8f003ab0f6519f2a31b8d93f02be23ad98cae78f5b5fc165c39",
+        "content": "{\n  \"user\": \"appService\",\n  \"access\": {\n    \"apcloud_event\": {\n      \"methods\": [\n        \"update\"\n      ]\n    }\n  },\n  \"subscribe\": [\n    \"mesh\"\n  ],\n  \"listen\": [\n    \"mesh\",\n    \"ubus.object.add\",\n    \"ubus.object.remove\"\n  ],\n  \"send\": [\n    \"apcloud_event\"\n  ],\n  \"publish\": [\n    \"apcloud_event\"\n  ]\n}\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      }
+    ]
+  },
+  "B9-JJM": {
+    "source_root": "private-source://PROFILE-B9-JJM",
+    "ECD_version": "1.19.13f",
+    "route_count": 71,
+    "route_literals": 67,
+    "register_function": "0x1346f0",
+    "files": [
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/bin/ecd",
+        "present": true,
+        "bytes": 2007096,
+        "sha256": "a93b58f6b346f648c881eff9ae82cbafadaefc32ed22e963296ee880c8155d5f"
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/bin/apcloud",
+        "present": false
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/lib/libnilecd.so",
+        "present": true,
+        "bytes": 18120,
+        "sha256": "a834ce0964c1b1a5417620d48e645bc1762248099f6607cec7b42900dc274451"
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/lib/libecdrpc.so",
+        "present": true,
+        "bytes": 18112,
+        "sha256": "33cab6decd4a61961874ac2a1c77c2ad395f2524b368ae8216c1dba7f09b285f"
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/bin/run_ecd.sh",
+        "present": true,
+        "bytes": 881,
+        "sha256": "c1db444efff8a6878e8a56abd1211ea5999f722e5232c677991096985f370156",
+        "content": "#!/bin/sh\n#\n# This script sets up a bunch of environment variables that the Technicolor\n# EasyMesh stack needs. Please remove variables from this script when better\n# methods for obtaining this information is implemented.\n#\n# These variables can be overridden by setting new values in $PWD/ecd.conf\n#\n# Once the environment variables are set, it runs /usr/bin/ecd\n\nCONF_FILE=\"$HOME/ecd.conf\"\n\n# ecd variables\nECD_LOG_SINK=syslog\n#ECD_LOG_SINK=stdout\n#ECD_LOG_LEVEL=debug\nECD_LOG_LEVEL=info\nECD_EXTRA_OPTIONS=\n\n# if file is not exist, do next, if not , wait and check\nif [ -e /configs/em_no_auto_startup_flag ] ; then\n    exit 0\nfi\n\nif [ -e ${CONF_FILE} ] ; then\n  . ${CONF_FILE}\nfi\n\n# exec ECD to save memory\n#exec /usr/bin/ecd --log-path=$ECD_LOG_SINK --log-level=$ECD_LOG_LEVEL $ECD_EXTRA_OPTIONS\n# exec ecd without arguments, since that is not needed anymore\nexec /usr/bin/ecd \n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/etc/pcd/ECD.pcd",
+        "present": true,
+        "bytes": 3092,
+        "sha256": "0b1e0804a87ba7b917cfd6b09fd481ce7ef371fa671e5b91a42c6cd4adad18d7",
+        "content": "# Incl ude a rule file\n#INCLUDE = filename.pcd\n################### Start of a rule block #############################\n# Index of the rule\n#RULE = GROUPNAME_RULENAME\nRULE = service_ECD\n# Condition to start rule, existence of one of the following\n#\n# NONE - No start condition, application is spawn immediately\n# FILE filename - The existence of a file\n# RULE_COMPLETED id - Rule id completed successfully\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# ENV_VAR name, value - Value of a variable\n#\n#START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }\nSTART_COND = RULE_COMPLETED service_system_init service_NVA\n# Command with parameters, NONE for sync point\n#COMMAND = cmd parameters...\nCOMMAND = /usr/bin/run_ecd.sh\n# Scheduling (priority) of the process\n#SCHED = { NICE value; FIFO value }\nSCHED = NICE 0\n# Daemon flag Process must not end\n#DAEMON = { YES, NO }\nDAEMON = YES\n# Condition to end rule and move to next rule, wait for one of the following:\n#\n# NONE - No monitor on the result, just spawn application and continue.\n# FILE filename - The existence of a file\n# EXIT status - The application exited with status. Other statuses are considered failure\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# PROCESS_READY The process sent a READY event though PCD API.\n# WAIT msecs - Delay, ignore END_COND_TIMEOUT\n#\n#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }\nEND_COND = NONE\n# Timeout for end condition. Fail if timeout expires. -1 if not relevant.\n#END_COND_TIMEOUT = msecs\nEND_COND_TIMEOUT = -1\n# Action upon failure, do one of the following actions upon failure\n# NONE Do not take any action\n# REBOOT - Reboot the system\n# RESTART - Restart the rule\n# EXEC_RULE id - Execute a rule\n#\n#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }\nFAILURE_ACTION = RESTART\n# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.\n# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure \n# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE} \n# Interval in seconds between a failure and the next failure action.\n# FAILURE_INTERVAL = (0..4294967)\n# Time in hours before resetting the failure counter. 0: use only the first failure action.\n# FAILURE_RESET_COUNT = (0..1193)\n# Rule is Active or not (To be activated later by PCD API)\n#ACTIVE = { YES, NO }\nACTIVE = NO\n# User id for the process\n# USER = { UID | User name }\n# ping time out ,Fail if timeout expires.\n# ALIVE_TIMEOUT = 10000\n################### End of a rule block #############################\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/etc/pcd/ECD.pcd",
+        "present": true,
+        "bytes": 3105,
+        "sha256": "1ae59167c9793646843f24377ea5d2697faa4828b9ed66a22092ed6a0e105560",
+        "content": "# Incl ude a rule file\n#INCLUDE = filename.pcd\n\n################### Start of a rule block #############################\n# Index of the rule\n#RULE = GROUPNAME_RULENAME\nRULE = EASYMESH_ECD\n\n# Condition to start rule, existence of one of the following\n#\n# NONE - No start condition, application is spawn immediately\n# FILE filename - The existence of a file\n# RULE_COMPLETED id - Rule id completed successfully\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# ENV_VAR name, value - Value of a variable\n#\n# START_COND = { NONE; FILE filename; PNAME pname; RULE_COMPLETED id; NETDEVICE netdev; IPC_OWNER owner, STATUS script, status }\nSTART_COND = FILE /tmp/pcd_start_ecd_ready\n\n# Command with parameters, NONE for sync point\n#COMMAND = cmd parameters...\nCOMMAND = /usr/bin/run_ecd.sh\n\n# Scheduling (priority) of the process\n#SCHED = { NICE value; FIFO value }\nSCHED = NICE 0\n\n# Daemon flag ¡§C Process must not end\n#DAEMON = { YES, NO }\nDAEMON = YES\n\n# Condition to end rule and move to next rule, wait for one of the following:\n#\n# NONE - No monitor on the result, just spawn application and continue.\n# FILE filename - The existence of a file\n# EXIT status - The application exited with status. Other statuses are considered failure\n# NETDEVICE netdev - The existence of a networking device\n# IPC_OWNER owner - The existence of an IPC destination point\n# PROCESS_READY ¡§C The process sent a READY event though PCD API.\n# WAIT msecs - Delay, ignore END_COND_TIMEOUT\n#\n#END_COND = { NONE; FILE filename; EXIT status; NETDEVICE netdev; IPC_OWNER owner; WAIT msecs; PROCESS_READY }\nEND_COND = NONE\n\n# Timeout for end condition. Fail if timeout expires. -1 if not relevant.\n#END_COND_TIMEOUT = msecs\nEND_COND_TIMEOUT = -1\n\n# Action upon failure, do one of the following actions upon failure\n# NONE ¡§C Do not take any action\n# REBOOT - Reboot the system\n# RESTART - Restart the rule\n# EXEC_RULE id - Execute a rule\n#\n#FAILURE_ACTION = { NONE, REBOOT, RESTART, EXEC_RULE id }\nFAILURE_ACTION = RESTART\n\n# if RESTART is followed by a number, it will the number of restart allowed in FAILURE_RESET_COUNT hour(s). After this number of fail, the action will be definitively NONE.\n# Action upon second failure (only if the first one is RESTART), do one of the following actions upon failure\n# FAILURE_ACTION2 = {NONE | REBOOT | RESTART | EXEC_RULE}\n# Action upon next failures (only if the second one is RESTART), do one of the following actions upon failure\n# FAILURE_ACTION_NEXT = {NONE | REBOOT | RESTART | EXEC_RULE}\n# Interval in seconds between a failure and the next failure action.\n# FAILURE_INTERVAL = (0..4294967)\n# Time in hours before resetting the failure counter. 0: use only the first failure action.\n# FAILURE_RESET_COUNT = (0..1193)\n\n# Rule is Active or not (To be activated later by PCD API)\n#ACTIVE = { YES, NO }\nACTIVE = YES\n\n# User id for the process\n# USER = { UID | User name }\n\n# ping time out ,Fail if timeout expires.\n# ALIVE_TIMEOUT = 10000\n################### End of a rule block #############################\n\n",
+        "encoding": "UTF-8 with backslash replacement for invalid source bytes"
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/etc/init.d/ecdinterface",
+        "present": false
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/etc/config/apcloud",
+        "present": false
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/etc/config/apcloud_bootup_config.txt",
+        "present": false
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/exe/apcloud_mpstat.sh",
+        "present": false
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/lib/opkg/info/apcloud.control",
+        "present": false
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/lib/opkg/info/apcloud.list",
+        "present": false
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/lib/opkg/info/apcloud.prerm",
+        "present": false
+      },
+      {
+        "source": "private-source://PROFILE-B9-JJM/usr/share/acl.d/apcloud_ubus_acl.json",
+        "present": false
+      }
+    ]
+  }
+}

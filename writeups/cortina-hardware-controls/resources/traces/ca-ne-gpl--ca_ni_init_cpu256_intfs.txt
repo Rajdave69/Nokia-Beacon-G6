@@ -1,0 +1,96 @@
+ca_ni_init_cpu256_intfs: .text+0x40440, 380 bytes; sha256 cd6557cb2b3c4923443d7585f9a0f802536ded3612a1756d3550b7afd5d72c35
+00040440: fd7bbaa9  stp x29, x30, [sp, #-0x60]!
+00040444: fd030091  mov x29, sp
+00040448: f35301a9  stp x19, x20, [sp, #0x10]
+0004044c: f55b02a9  stp x21, x22, [sp, #0x20]
+00040450: f76303a9  stp x23, x24, [sp, #0x30]
+00040454: f96b04a9  stp x25, x26, [sp, #0x40]
+00040458: fb2b00f9  str x27, [sp, #0x50]
+0004045c: f70300aa  mov x23, x0
+00040460: e0031eaa  mov x0, x30
+00040464: 00000094  bl #0x40464 ; reloc _mcount+0x0 type=283
+00040468: 380180d2  mov x24, #9
+0004046c: 00000090  adrp x0, #0x40000 ; reloc .bss+0xb6da0 type=275
+00040470: 16000090  adrp x22, #0x40000 ; reloc .rodata+0x3350 'ca_ni_cpu256_open' type=275
+00040474: 194984d2  mov x25, #0x2248
+00040478: d6020091  add x22, x22, #0 ; reloc .rodata+0x3350 'ca_ni_cpu256_open' type=277
+0004047c: 3802a0f2  movk x24, #0x11, lsl #16
+00040480: 1f0000f9  str xzr, [x0] ; reloc .bss+0xb6da0 type=286
+00040484: 150080d2  mov x21, #0
+00040488: 74068052  mov w20, #0x33
+0004048c: 1b000090  adrp x27, #0x40000 ; reloc ether_setup+0x0 type=275
+00040490: 1a000090  adrp x26, #0x40000 ; reloc .rodata.str1.8+0x16380 'cpu256_eth%d' type=275
+00040494: 5905a0f2  movk x25, #0x2a, lsl #16
+00040498: d6820191  add x22, x22, #0x60
+0004049c: 1808c0f2  movk x24, #0x40, lsl #32
+000404a0: 03000014  b #0x404ac
+000404a4: 1f2003d5  nop 
+000404a8: 350080d2  mov x21, #1
+000404ac: 25008052  mov w5, #1
+000404b0: 63030091  add x3, x27, #0 ; reloc ether_setup+0x0 type=277
+000404b4: e403052a  mov w4, w5
+000404b8: 02008052  mov w2, #0
+000404bc: 41030091  add x1, x26, #0 ; reloc .rodata.str1.8+0x16380 'cpu256_eth%d' type=277
+000404c0: 00b48152  mov w0, #0xda0
+000404c4: 00000094  bl #0x404c4 ; reloc alloc_netdev_mqs+0x0 type=283
+000404c8: f30300aa  mov x19, x0
+000404cc: a21e0012  and w2, w21, #0xff
+000404d0: 06008a52  mov w6, #0x5000
+000404d4: 5400140b  add w20, w2, w20
+000404d8: 03000090  adrp x3, #0x40000 ; reloc ni_info_data+0x0 type=275
+000404dc: 290f158b  add x9, x25, x21, lsl #3
+000404e0: 63000091  add x3, x3, #0 ; reloc ni_info_data+0x0 type=277
+000404e4: 01002491  add x1, x0, #0x900
+000404e8: ea420091  add x10, x23, #0x10
+000404ec: 48280011  add w8, w2, #0xa
+000404f0: e71f8052  mov w7, #0xff
+000404f4: 4638a272  movk w6, #0x11c2, lsl #16
+000404f8: 941e0012  and w20, w20, #0xff
+000404fc: 45048052  mov w5, #0x22
+00040500: 04f80891  add x4, x0, #0x23e
+00040504: e00000b5  cbnz x0, #0x40520
+00040508: 00000090  adrp x0, #0x40000 ; reloc .rodata.str1.8+0x16390 type=275
+0004050c: e103152a  mov w1, w21
+00040510: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x16390 type=277
+00040514: 00000094  bl #0x40514 ; reloc printk+0x0 type=283
+00040518: 60018012  mov w0, #-0xc
+0004051c: 21000014  b #0x405a0
+00040520: 0a9402f9  str x10, [x0, #0x528]
+00040524: 206923f8  str x0, [x9, x3]
+00040528: 608204f9  str x0, [x19, #0x900]
+0004052c: 3fe02139  strb wzr, [x1, #0x878]
+00040530: 22501739  strb w2, [x1, #0x5d4]
+00040534: 28741739  strb w8, [x1, #0x5dd]
+00040538: 370400f9  str x23, [x1, #8]
+0004053c: 27f405b9  str w7, [x1, #0x5f4]
+00040540: 029841f9  ldr x2, [x0, #0x330]
+00040544: 460000b9  str w6, [x2]
+00040548: 45100039  strb w5, [x2, #4]
+0004054c: 54140039  strb w20, [x2, #5]
+00040550: 029841f9  ldr x2, [x0, #0x330]
+00040554: 430040b9  ldr w3, [x2]
+00040558: 830000b9  str w3, [x4]
+0004055c: 422040b8  ldur w2, [x2, #2]
+00040560: 822000b8  stur w2, [x4, #2]
+00040564: 202400f9  str x0, [x1, #0x48]
+00040568: 22c06339  ldrb w2, [x1, #0x8f0]
+0004056c: 3fa02339  strb wzr, [x1, #0x8e8]
+00040570: 42781f12  and w2, w2, #0xfffffffe
+00040574: 22c02339  strb w2, [x1, #0x8f0]
+00040578: 16f800f9  str x22, [x0, #0x1f0]
+0004057c: 1ff411b9  str wzr, [x0, #0x11f4]
+00040580: 00000094  bl #0x40580 ; reloc ca_ni_set_ethtool_ops+0x0 type=283
+00040584: 200188d2  mov x0, #0x4009
+00040588: 014b8052  mov w1, #0x258
+0004058c: 0008c0f2  movk x0, #0x40, lsl #32
+00040590: 61a204b9  str w1, [x19, #0x4a0]
+00040594: 60620da9  stp x0, x24, [x19, #0xd0]
+00040598: 95f8ffb4  cbz x21, #0x404a8
+0004059c: 00008052  mov w0, #0
+000405a0: f35341a9  ldp x19, x20, [sp, #0x10]
+000405a4: f55b42a9  ldp x21, x22, [sp, #0x20]
+000405a8: f76343a9  ldp x23, x24, [sp, #0x30]
+000405ac: f96b44a9  ldp x25, x26, [sp, #0x40]
+000405b0: fb2b40f9  ldr x27, [sp, #0x50]
+000405b4: fd7bc6a8  ldp x29, x30, [sp], #0x60
+000405b8: c0035fd6  ret 

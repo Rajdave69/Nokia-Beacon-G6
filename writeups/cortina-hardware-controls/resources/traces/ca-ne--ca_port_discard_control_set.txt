@@ -1,0 +1,158 @@
+ca_port_discard_control_set: .text+0x136d48, 628 bytes; sha256 d84c2a3fbac1fa030eb2afd65077e7ca2670ae0baf97d7b1f6ac2725818639cc
+00136d48: fd7bb1a9  stp x29, x30, [sp, #-0xf0]!
+00136d4c: fd030091  mov x29, sp
+00136d50: f35301a9  stp x19, x20, [sp, #0x10]
+00136d54: f55b02a9  stp x21, x22, [sp, #0x20]
+00136d58: 153c0012  and w21, w0, #0xffff
+00136d5c: f303012a  mov w19, w1
+00136d60: f40302aa  mov x20, x2
+00136d64: e0031eaa  mov x0, x30
+00136d68: 00000094  bl #0x136d68 ; reloc _mcount+0x0 type=283
+00136d6c: 75010034  cbz w21, #0x136d98
+00136d70: 01000090  adrp x1, #0x136000 ; reloc .rodata+0x8ce8 'ca_port_enable_set' type=275
+00136d74: 21000091  add x1, x1, #0 ; reloc .rodata+0x8ce8 'ca_port_enable_set' type=277
+00136d78: 00000090  adrp x0, #0x136000 ; reloc .rodata.str1.8+0x31490 '%s:[%d] device_id is %d!!\n' type=275
+00136d7c: e303152a  mov w3, w21
+00136d80: 02818052  mov w2, #0x408
+00136d84: 21400f91  add x1, x1, #0x3d0
+00136d88: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x31490 '%s:[%d] device_id is %d!!\n' type=277
+00136d8c: 56008052  mov w22, #2
+00136d90: 00000094  bl #0x136d90 ; reloc ca_printf+0x0 type=283
+00136d94: 85000014  b #0x136fa8
+00136d98: 607e1053  lsr w0, w19, #0x10
+00136d9c: 01040051  sub w1, w0, #1
+00136da0: 3f040071  cmp w1, #1
+00136da4: a8000054  b.hi #0x136db8
+00136da8: 613e0012  and w1, w19, #0xffff
+00136dac: 3f1c0071  cmp w1, #7
+00136db0: 81010054  b.ne #0x136de0
+00136db4: 2a000014  b #0x136e5c
+00136db8: 1f140071  cmp w0, #5
+00136dbc: 00050054  b.eq #0x136e5c
+00136dc0: 1f0c0071  cmp w0, #3
+00136dc4: e1000054  b.ne #0x136de0
+00136dc8: 603e0012  and w0, w19, #0xffff
+00136dcc: 56008052  mov w22, #2
+00136dd0: 1f1c0071  cmp w0, #7
+00136dd4: ac0e0054  b.gt #0x136fa8
+00136dd8: 21000014  b #0x136e5c
+00136ddc: 1f2003d5  nop 
+00136de0: 1f100071  cmp w0, #4
+00136de4: e1010054  b.ne #0x136e20
+00136de8: 601e0012  and w0, w19, #0xff
+00136dec: 01400051  sub w1, w0, #0x10
+00136df0: 211c0012  and w1, w1, #0xff
+00136df4: 3f1c0071  cmp w1, #7
+00136df8: 29030054  b.ls #0x136e5c
+00136dfc: 01800051  sub w1, w0, #0x20
+00136e00: 56008052  mov w22, #2
+00136e04: 211c0012  and w1, w1, #0xff
+00136e08: 3f7c0071  cmp w1, #0x1f
+00136e0c: e80c0054  b.hi #0x136fa8
+00136e10: f6fcff97  bl #0x1361e8
+00136e14: a00c0034  cbz w0, #0x136fa8
+00136e18: 11000014  b #0x136e5c
+00136e1c: 1f2003d5  nop 
+00136e20: 1f1c0071  cmp w0, #7
+00136e24: e1000054  b.ne #0x136e40
+00136e28: 603e0012  and w0, w19, #0xffff
+00136e2c: 56008052  mov w22, #2
+00136e30: 00600051  sub w0, w0, #0x18
+00136e34: 1f040071  cmp w0, #1
+00136e38: 880b0054  b.hi #0x136fa8
+00136e3c: 08000014  b #0x136e5c
+00136e40: 1f340071  cmp w0, #0xd
+00136e44: 010b0054  b.ne #0x136fa4
+00136e48: 603e0012  and w0, w19, #0xffff
+00136e4c: 56008052  mov w22, #2
+00136e50: 00800051  sub w0, w0, #0x20
+00136e54: 1f7c0071  cmp w0, #0x1f
+00136e58: 880a0054  b.hi #0x136fa8
+00136e5c: b40100b5  cbnz x20, #0x136e90
+00136e60: 01000090  adrp x1, #0x136000 ; reloc .rodata+0x8ce8 'ca_port_enable_set' type=275
+00136e64: 21000091  add x1, x1, #0 ; reloc .rodata+0x8ce8 'ca_port_enable_set' type=277
+00136e68: 03000090  adrp x3, #0x136000 ; reloc .rodata.str1.8+0x318d0 'control' type=275
+00136e6c: 00000090  adrp x0, #0x136000 ; reloc .rodata.str1.8+0x315f8 '%s() _%d_: assert %s fail\n' type=275
+00136e70: 63000091  add x3, x3, #0 ; reloc .rodata.str1.8+0x318d0 'control' type=277
+00136e74: 62818052  mov w2, #0x40b
+00136e78: 21c00f91  add x1, x1, #0x3f0
+00136e7c: 56008052  mov w22, #2
+00136e80: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x315f8 '%s() _%d_: assert %s fail\n' type=277
+00136e84: 00000094  bl #0x136e84 ; reloc printk+0x0 type=283
+00136e88: 48000014  b #0x136fa8
+00136e8c: 1f2003d5  nop 
+00136e90: 800240b9  ldr w0, [x20]
+00136e94: e1018052  mov w1, #0xf
+00136e98: bf1b00f9  str xzr, [x29, #0x30]
+00136e9c: a1cf0039  strb w1, [x29, #0x33]
+00136ea0: 613e0012  and w1, w19, #0xffff
+00136ea4: bfff03a9  stp xzr, xzr, [x29, #0x38]
+00136ea8: bfff04a9  stp xzr, xzr, [x29, #0x48]
+00136eac: bfff05a9  stp xzr, xzr, [x29, #0x58]
+00136eb0: bfff06a9  stp xzr, xzr, [x29, #0x68]
+00136eb4: bfff07a9  stp xzr, xzr, [x29, #0x78]
+00136eb8: bfff08a9  stp xzr, xzr, [x29, #0x88]
+00136ebc: bfff09a9  stp xzr, xzr, [x29, #0x98]
+00136ec0: bfff0aa9  stp xzr, xzr, [x29, #0xa8]
+00136ec4: bfff0ba9  stp xzr, xzr, [x29, #0xb8]
+00136ec8: bfff0ca9  stp xzr, xzr, [x29, #0xc8]
+00136ecc: bfff0da9  stp xzr, xzr, [x29, #0xd8]
+00136ed0: bf7700f9  str xzr, [x29, #0xe8]
+00136ed4: 60000034  cbz w0, #0x136ee0
+00136ed8: 20008052  mov w0, #1
+00136edc: a08300b9  str w0, [x29, #0x80]
+00136ee0: 800640b9  ldr w0, [x20, #4]
+00136ee4: 60000034  cbz w0, #0x136ef0
+00136ee8: 20008052  mov w0, #1
+00136eec: a08700b9  str w0, [x29, #0x84]
+00136ef0: 800a40b9  ldr w0, [x20, #8]
+00136ef4: 60000034  cbz w0, #0x136f00
+00136ef8: 20008052  mov w0, #1
+00136efc: a08b00b9  str w0, [x29, #0x88]
+00136f00: 800e40b9  ldr w0, [x20, #0xc]
+00136f04: 60000034  cbz w0, #0x136f10
+00136f08: 20008052  mov w0, #1
+00136f0c: a08f00b9  str w0, [x29, #0x8c]
+00136f10: a21b40f9  ldr x2, [x29, #0x30]
+00136f14: a3e30091  add x3, x29, #0x38
+00136f18: 00008052  mov w0, #0
+00136f1c: 00000094  bl #0x136f1c ; reloc aal_port_ilpb_cfg_set+0x0 type=283
+00136f20: f603002a  mov w22, w0
+00136f24: 20040035  cbnz w0, #0x136fa8
+00136f28: 73424051  sub w19, w19, #0x10, lsl #12
+00136f2c: 731e0051  sub w19, w19, #7
+00136f30: 7f7a0f72  tst w19, #0xfffeffff
+00136f34: a1030054  b.ne #0x136fa8
+00136f38: 13000090  adrp x19, #0x136000 ; reloc __gpon_pdc_spid+0x0 type=275
+00136f3c: 73020091  add x19, x19, #0 ; reloc __gpon_pdc_spid+0x0 type=277
+00136f40: 75320191  add x21, x19, #0x4c
+00136f44: f4ff9f52  mov w20, #0xffff
+00136f48: 61024079  ldrh w1, [x19]
+00136f4c: a3e30091  add x3, x29, #0x38
+00136f50: 730a0091  add x19, x19, #2
+00136f54: 00008052  mov w0, #0
+00136f58: 3f00146b  cmp w1, w20
+00136f5c: e0010054  b.eq #0x136f98
+00136f60: a21b40f9  ldr x2, [x29, #0x30]
+00136f64: 00000094  bl #0x136f64 ; reloc aal_port_ilpb_cfg_set+0x0 type=283
+00136f68: 80010034  cbz w0, #0x136f98
+00136f6c: 04000090  adrp x4, #0x136000 ; reloc .rodata.str1.8+0x317f0 '%s:[%d] return %d!!\n' type=275
+00136f70: e303002a  mov w3, w0
+00136f74: 01000090  adrp x1, #0x136000 ; reloc .rodata+0x8ce8 'ca_port_enable_set' type=275
+00136f78: 21000091  add x1, x1, #0 ; reloc .rodata+0x8ce8 'ca_port_enable_set' type=277
+00136f7c: 62868052  mov w2, #0x433
+00136f80: 21400f91  add x1, x1, #0x3d0
+00136f84: 80000091  add x0, x4, #0 ; reloc .rodata.str1.8+0x317f0 '%s:[%d] return %d!!\n' type=277
+00136f88: f603032a  mov w22, w3
+00136f8c: 00000094  bl #0x136f8c ; reloc ca_printf+0x0 type=283
+00136f90: 06000014  b #0x136fa8
+00136f94: 1f2003d5  nop 
+00136f98: 7f0215eb  cmp x19, x21
+00136f9c: 61fdff54  b.ne #0x136f48
+00136fa0: 02000014  b #0x136fa8
+00136fa4: 56008052  mov w22, #2
+00136fa8: e003162a  mov w0, w22
+00136fac: f35341a9  ldp x19, x20, [sp, #0x10]
+00136fb0: f55b42a9  ldp x21, x22, [sp, #0x20]
+00136fb4: fd7bcfa8  ldp x29, x30, [sp], #0xf0
+00136fb8: c0035fd6  ret 

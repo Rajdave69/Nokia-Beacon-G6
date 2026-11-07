@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-28",
+  "scope": "Supplementary exact TLS-control functions, not a live download/CA rejection test. Settings apply to this Rlyeh downloader path, not all router TLS or the WebUI server certificate.",
+  "functions": [
+    {
+      "source": "private-source://PROFILE-G6-HJL/usr/lib/librlyeh.so",
+      "source_sha256": "f2f00c8b3da08b469a52cca50e5255551d39ffe40eab6d038d5373b307537cbd",
+      "start_va": "0xb7e4",
+      "end_va_exclusive": "0xb858",
+      "instruction_count": 29,
+      "raw_bytes_hex": "fd7bbea91f1c0072fd030091f35301a9b40000f0830a40f9b30000d0c0010054733647f9220080d201088052e00303aa60023fd6420080d2210a8052800a40f960023fd600008052f35341a9fd7bc2a8c0035fd6733647f9020080d2210a8052e00303aa60023fd6020080d201088052f3ffff17",
+      "raw_bytes_sha256": "5f0292d8d123538ecba89f09fff7174c253c3cf08bafbfd814c5b168c91e6bc5",
+      "complete_disassembly": "0000b7e4: fd7bbea9  stp x29, x30, [sp, #-0x20]!\n0000b7e8: 1f1c0072  tst w0, #0xff\n0000b7ec: fd030091  mov x29, sp\n0000b7f0: f35301a9  stp x19, x20, [sp, #0x10]\n0000b7f4: b40000f0  adrp x20, #0x22000\n0000b7f8: 830a40f9  ldr x3, [x20, #0x10]\n0000b7fc: b30000d0  adrp x19, #0x21000\n0000b800: c0010054  b.eq #0xb838\n0000b804: 733647f9  ldr x19, [x19, #0xe68]\n0000b808: 220080d2  mov x2, #1\n0000b80c: 01088052  mov w1, #0x40\n0000b810: e00303aa  mov x0, x3\n0000b814: 60023fd6  blr x19 ; heuristic @curl_easy_setopt {\"x1\": 64, \"x2\": 1}\n0000b818: 420080d2  mov x2, #2\n0000b81c: 210a8052  mov w1, #0x51\n0000b820: 800a40f9  ldr x0, [x20, #0x10]\n0000b824: 60023fd6  blr x19 ; heuristic @curl_easy_setopt {\"x1\": 81, \"x2\": 2}\n0000b828: 00008052  mov w0, #0\n0000b82c: f35341a9  ldp x19, x20, [sp, #0x10]\n0000b830: fd7bc2a8  ldp x29, x30, [sp], #0x20\n0000b834: c0035fd6  ret \n0000b838: 733647f9  ldr x19, [x19, #0xe68]\n0000b83c: 020080d2  mov x2, #0\n0000b840: 210a8052  mov w1, #0x51\n0000b844: e00303aa  mov x0, x3\n0000b848: 60023fd6  blr x19 ; heuristic unknown {\"x1\": 81, \"x2\": 0}\n0000b84c: 020080d2  mov x2, #0\n0000b850: 01088052  mov w1, #0x40\n0000b854: f3ffff17  b #0xb820\n",
+      "download_call_sites": [
+        "0xbc74",
+        "0xc048",
+        "0xc384",
+        "0xc6e0"
+      ]
+    },
+    {
+      "source": "private-source://PROFILE-B9-JJM/usr/lib/librlyeh.so",
+      "source_sha256": "b790e35495612dc7875780f5bd547dae09833b68832af57bc01268e998fd9813",
+      "start_va": "0xa378",
+      "end_va_exclusive": "0xa3f0",
+      "instruction_count": 30,
+      "raw_bytes_hex": "fd7bbea91f1c0072fd030091f35301a9b40000f094020191b30000d0830640f9c001005473be45f9220080d201088052e00303aa60023fd6420080d2210a8052800640f960023fd600008052f35341a9fd7bc2a8c0035fd673be45f9020080d2210a8052e00303aa60023fd6020080d201088052f3ffff17",
+      "raw_bytes_sha256": "65068bf938cb1fdba2a5247acc6f71ad53ec563bf441454d580cca27bd16f91d",
+      "complete_disassembly": "0000a378: fd7bbea9  stp x29, x30, [sp, #-0x20]!\n0000a37c: 1f1c0072  tst w0, #0xff\n0000a380: fd030091  mov x29, sp\n0000a384: f35301a9  stp x19, x20, [sp, #0x10]\n0000a388: b40000f0  adrp x20, #0x21000\n0000a38c: 94020191  add x20, x20, #0x40\n0000a390: b30000d0  adrp x19, #0x20000\n0000a394: 830640f9  ldr x3, [x20, #8]\n0000a398: c0010054  b.eq #0xa3d0\n0000a39c: 73be45f9  ldr x19, [x19, #0xb78]\n0000a3a0: 220080d2  mov x2, #1\n0000a3a4: 01088052  mov w1, #0x40\n0000a3a8: e00303aa  mov x0, x3\n0000a3ac: 60023fd6  blr x19 ; heuristic @curl_easy_setopt {\"x1\": 64, \"x2\": 1}\n0000a3b0: 420080d2  mov x2, #2\n0000a3b4: 210a8052  mov w1, #0x51\n0000a3b8: 800640f9  ldr x0, [x20, #8]\n0000a3bc: 60023fd6  blr x19 ; heuristic @curl_easy_setopt {\"x1\": 81, \"x2\": 2}\n0000a3c0: 00008052  mov w0, #0\n0000a3c4: f35341a9  ldp x19, x20, [sp, #0x10]\n0000a3c8: fd7bc2a8  ldp x29, x30, [sp], #0x20\n0000a3cc: c0035fd6  ret \n0000a3d0: 73be45f9  ldr x19, [x19, #0xb78]\n0000a3d4: 020080d2  mov x2, #0\n0000a3d8: 210a8052  mov w1, #0x51\n0000a3dc: e00303aa  mov x0, x3\n0000a3e0: 60023fd6  blr x19 ; heuristic unknown {\"x1\": 81, \"x2\": 0}\n0000a3e4: 020080d2  mov x2, #0\n0000a3e8: 01088052  mov w1, #0x40\n0000a3ec: f3ffff17  b #0xa3b8\n",
+      "download_call_sites": [
+        "0xa774",
+        "0xab8c",
+        "0xaf84",
+        "0xb340"
+      ]
+    }
+  ],
+  "curl_option_semantics_sources": [
+    "https://curl.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html",
+    "https://curl.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html"
+  ],
+  "true_branch": {
+    "CURLOPT_SSL_VERIFYPEER": 1,
+    "CURLOPT_SSL_VERIFYHOST": 2
+  },
+  "false_branch": {
+    "CURLOPT_SSL_VERIFYPEER": 0,
+    "CURLOPT_SSL_VERIFYHOST": 0
+  },
+  "concepts": {
+    "CertificateVerification": "Authenticate HTTPS server certificate chain and URL hostname; encryption can still occur when disabled but server identity is not checked. This does not require a Nokia-signed app or the router client certificate.",
+    "SignatureVerification": "Separate package/image publisher authentication against configured signing trust/policy. G6 includes GPG verifier, B9 image-authentication plugin ABI requires further policy tracing. False is not proof arbitrary images bypass all checks.",
+    "checksums": "Matching image digests establishes correspondence to the supplied manifest, not an independent trusted publisher identity.",
+    "own_registry": "An own registry may use a TLS certificate trusted by the router. Disabled package signature setting makes owner-built unsigned payloads a plausible candidate, not a demonstrated successful install; runtime metadata, platform, resource and other policy checks remain."
+  }
+}

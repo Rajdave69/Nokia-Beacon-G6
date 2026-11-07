@@ -1,0 +1,21 @@
+cap_otp_read: .text+0xca78, 80 bytes; sha256 19774100f15081985bc87bba33e9b4be5a194eec3bda4f5ab14b933eae223e7e
+0000ca78: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0000ca7c: fd030091  mov x29, sp
+0000ca80: f35301a9  stp x19, x20, [sp, #0x10]
+0000ca84: f55b02a9  stp x21, x22, [sp, #0x20]
+0000ca88: 133c0012  and w19, w0, #0xffff
+0000ca8c: f40301aa  mov x20, x1
+0000ca90: e0031eaa  mov x0, x30
+0000ca94: f503022a  mov w21, w2
+0000ca98: f603032a  mov w22, w3
+0000ca9c: 00000094  bl #0xca9c ; reloc _mcount+0x0 type=283
+0000caa0: e303162a  mov w3, w22
+0000caa4: e203152a  mov w2, w21
+0000caa8: e10314aa  mov x1, x20
+0000caac: 24008052  mov w4, #1
+0000cab0: e003132a  mov w0, w19
+0000cab4: 00000094  bl #0xcab4 ; reloc cap_otp_access+0x0 type=283
+0000cab8: f35341a9  ldp x19, x20, [sp, #0x10]
+0000cabc: f55b42a9  ldp x21, x22, [sp, #0x20]
+0000cac0: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0000cac4: c0035fd6  ret 

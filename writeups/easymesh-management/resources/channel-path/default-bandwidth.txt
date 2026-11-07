@@ -1,0 +1,37 @@
+
+ics_set_default_bandwidth:
+0001c888: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+0001c88c: fd030091  mov x29, sp
+0001c890: f35301a9  stp x19, x20, [sp, #0x10]
+0001c894: 930200d0  adrp x19, #0x6e000
+0001c898: f51300f9  str x21, [sp, #0x20]
+0001c89c: 351c0012  and w21, w1, #0xff
+0001c8a0: 629647f9  ldr x2, [x19, #0xf28]
+0001c8a4: 143c0012  and w20, w0, #0xffff
+0001c8a8: e003142a  mov w0, w20
+0001c8ac: 410040f9  ldr x1, [x2]
+0001c8b0: a11f00f9  str x1, [x29, #0x38]
+0001c8b4: 010080d2  mov x1, #0
+0001c8b8: 16e1ff97  bl #0x14d10 ; heuristic ics_map_m2_bss_freq_band_to_index@plt {"x1": 0, "x2": "@__stack_chk_guard"}
+0001c8bc: 6002f837  tbnz w0, #0x1f, #0x1c908
+0001c8c0: 830200d0  adrp x3, #0x6e000
+0001c8c4: 007c4093  sxtw x0, w0
+0001c8c8: 0204008b  add x2, x0, x0, lsl #1
+0001c8cc: 00008052  mov w0, #0
+0001c8d0: 633047f9  ldr x3, [x3, #0xe60]
+0001c8d4: 42f07dd3  lsl x2, x2, #3
+0001c8d8: 6100028b  add x1, x3, x2
+0001c8dc: 74682278  strh w20, [x3, x2]
+0001c8e0: 350c0039  strb w21, [x1, #3]
+0001c8e4: 739647f9  ldr x19, [x19, #0xf28]
+0001c8e8: a21f40f9  ldr x2, [x29, #0x38]
+0001c8ec: 610240f9  ldr x1, [x19]
+0001c8f0: 410001ca  eor x1, x2, x1
+0001c8f4: e10000b5  cbnz x1, #0x1c910
+0001c8f8: f35341a9  ldp x19, x20, [sp, #0x10]
+0001c8fc: f51340f9  ldr x21, [sp, #0x20]
+0001c900: fd7bc4a8  ldp x29, x30, [sp], #0x40
+0001c904: c0035fd6  ret 
+0001c908: 00008012  mov w0, #-1
+0001c90c: f6ffff17  b #0x1c8e4
+0001c910: acdeff97  bl #0x143c0 ; heuristic __stack_chk_fail@plt {"x0": -1}

@@ -1,0 +1,19 @@
+ca_adapt_proc_init: .text+0x1e158, 72 bytes; sha256 aea950429060f300be01f048acfccd96fdfb0ef5610c1f1659de564aac23a900
+0001e158: fd7bbfa9  stp x29, x30, [sp, #-0x10]!
+0001e15c: fd030091  mov x29, sp
+0001e160: e0031eaa  mov x0, x30
+0001e164: 00000094  bl #0x1e164 ; reloc _mcount+0x0 type=283
+0001e168: 01000090  adrp x1, #0x1e000 ; reloc ca_proc_dir+0x0 type=275
+0001e16c: 00000090  adrp x0, #0x1e000 ; reloc .rodata.str1.8+0x9e28 'adapt' type=275
+0001e170: 00000091  add x0, x0, #0 ; reloc .rodata.str1.8+0x9e28 'adapt' type=277
+0001e174: 210040f9  ldr x1, [x1] ; reloc ca_proc_dir+0x0 type=286
+0001e178: 00000094  bl #0x1e178 ; reloc proc_mkdir+0x0 type=283
+0001e17c: 01000090  adrp x1, #0x1e000 ; reloc proc_adapt_dir+0x0 type=275
+0001e180: 200000f9  str x0, [x1] ; reloc proc_adapt_dir+0x0 type=286
+0001e184: 00000094  bl #0x1e184 ; reloc ca_l2fp_proc_init+0x0 type=283
+0001e188: 00000094  bl #0x1e188 ; reloc ca_accel_proc_init+0x0 type=283
+0001e18c: 00000094  bl #0x1e18c ; reloc ca_pb_proc_init+0x0 type=283
+0001e190: 00000094  bl #0x1e190 ; reloc ca_http_offload_proc_init+0x0 type=283
+0001e194: 00008052  mov w0, #0
+0001e198: fd7bc1a8  ldp x29, x30, [sp], #0x10
+0001e19c: c0035fd6  ret 

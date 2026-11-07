@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "scope": "Exact authored nonsecret OCI JSON for all three historical attempts. Historical package compatibility/safety prose is superseded by actual observations in evidence.json; metadata bytes not silently rewritten.",
+  "fixtures": {
+    "attempt-1": {
+      "source_root": "private-source://LCM-SMOKE-TEST/package-v1",
+      "package_report_historical": {
+        "ELF_bytes": 597912,
+        "ELF_sha256": "653f602952460e3f401445544f42c502f034d780da3b7f293111ae6d51bfa660",
+        "application_UUID": "e5d244c9-af3e-5224-96c0-76ca4ae7290a",
+        "architecture": "arm64",
+        "compatibility": "Offline fixture pending actual router install; do not claim success from valid OCI hashes alone.",
+        "container_tmpfs_bytes": 65536,
+        "layers": [
+          {
+            "digest": "sha256:28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 279309
+          },
+          {
+            "digest": "sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 481
+          }
+        ],
+        "manifest_digest": "sha256:bab8ae08804215aa7b80edbfbcdab976fe2511b5801214bae69a471ae306d7d3",
+        "name": "beacon-lcm-smoke",
+        "repository": "beacon-lcm-smoke",
+        "runtime_CPU_period": 100000,
+        "runtime_CPU_quota": 10000,
+        "runtime_memory_bytes": 16777216,
+        "safety_scope": "No network listeners/connections, host-directory mounts, lifecycle hooks or autostart. Writes two marker files only under container /tmp; stop handles TERM/INT/PWR.",
+        "tag": "smoke-v1",
+        "version": "0.0.1"
+      },
+      "runtime": {
+        "hostname": "beacon-lcm-smoke",
+        "linux": {
+          "namespaces": [
+            {
+              "type": "pid"
+            },
+            {
+              "type": "mount"
+            },
+            {
+              "type": "uts"
+            },
+            {
+              "type": "ipc"
+            },
+            {
+              "type": "network"
+            }
+          ],
+          "resources": {
+            "cpu": {
+              "period": 100000,
+              "quota": 10000
+            },
+            "memory": {
+              "limit": 16777216
+            }
+          }
+        },
+        "mounts": [
+          {
+            "destination": "/tmp",
+            "options": [
+              "nosuid",
+              "nodev",
+              "mode=1777",
+              "size=65536"
+            ],
+            "source": "tmpfs",
+            "type": "tmpfs"
+          }
+        ],
+        "ociVersion": "1.0.2",
+        "process": {
+          "args": [
+            "/lcm-smoke"
+          ],
+          "capabilities": {
+            "ambient": [],
+            "bounding": [],
+            "effective": [],
+            "inheritable": [],
+            "permitted": []
+          },
+          "cwd": "/",
+          "env": [
+            "PATH=/usr/bin:/bin"
+          ],
+          "noNewPrivileges": true,
+          "terminal": false,
+          "user": {
+            "gid": 0,
+            "uid": 0
+          }
+        },
+        "root": {
+          "path": "rootfs",
+          "readonly": true
+        }
+      },
+      "image_config": {
+        "architecture": "arm64",
+        "config": {
+          "Entrypoint": [
+            "/lcm-smoke"
+          ],
+          "Env": [
+            "PATH=/usr/bin:/bin"
+          ],
+          "Labels": {
+            "org.opencontainers.image.description": "Writes a container-local marker and sleeps; no network activity or host hooks.",
+            "org.opencontainers.image.title": "beacon-lcm-smoke",
+            "org.opencontainers.image.vendor": "Owner research",
+            "org.opencontainers.image.version": "0.0.1"
+          },
+          "User": "0:0",
+          "WorkingDir": "/"
+        },
+        "created": "2026-10-28T00:00:00Z",
+        "history": [
+          {
+            "created": "2026-10-28T00:00:00Z",
+            "created_by": "owner smoke rootfs"
+          },
+          {
+            "created": "2026-10-28T00:00:00Z",
+            "created_by": "owner smoke runtime layer"
+          }
+        ],
+        "os": "linux",
+        "rootfs": {
+          "diff_ids": [
+            "sha256:32fcbcab3af8070d64508f0c9bd2a29fda73a775065821d7d83a47d9c243ffa7",
+            "sha256:be50b485b323e88dc4ccc2f3b48d09c6567ebd373ae01e13e680b7077a834bbc"
+          ],
+          "type": "layers"
+        }
+      },
+      "manifest": {
+        "annotations": {
+          "com.nokia.runtime.config": "sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "org.opencontainers.image.description": "Writes a container-local marker and sleeps; no network activity or host hooks.",
+          "org.opencontainers.image.title": "beacon-lcm-smoke",
+          "org.opencontainers.image.vendor": "Owner research",
+          "org.opencontainers.image.version": "0.0.1"
+        },
+        "config": {
+          "digest": "sha256:44aa47fe8c95af8060359df1063e40479ea9c266fcd3397eae42d4697672bef7",
+          "mediaType": "application/vnd.oci.image.config.v1+json",
+          "size": 791
+        },
+        "layers": [
+          {
+            "digest": "sha256:28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 279309
+          },
+          {
+            "digest": "sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 481
+          }
+        ],
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "schemaVersion": 2
+      },
+      "OCI_index": {
+        "manifests": [
+          {
+            "annotations": {
+              "org.opencontainers.image.ref.name": "smoke-v1"
+            },
+            "digest": "sha256:bab8ae08804215aa7b80edbfbcdab976fe2511b5801214bae69a471ae306d7d3",
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "platform": {
+              "architecture": "arm64",
+              "os": "linux"
+            },
+            "size": 942
+          }
+        ],
+        "schemaVersion": 2
+      },
+      "OCI_layout": {
+        "imageLayoutVersion": "1.0.0"
+      }
+    },
+    "attempt-2": {
+      "source_root": "private-source://LCM-SMOKE-TEST/package-v2",
+      "package_report_historical": {
+        "ELF_bytes": 597912,
+        "ELF_sha256": "653f602952460e3f401445544f42c502f034d780da3b7f293111ae6d51bfa660",
+        "application_UUID": "e5d244c9-af3e-5224-96c0-76ca4ae7290a",
+        "architecture": "arm64",
+        "compatibility": "Offline fixture pending actual router install; do not claim success from valid OCI hashes alone.",
+        "container_tmpfs_bytes": 65536,
+        "layers": [
+          {
+            "digest": "sha256:28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 279309
+          },
+          {
+            "digest": "sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 481
+          }
+        ],
+        "manifest_digest": "sha256:bab8ae08804215aa7b80edbfbcdab976fe2511b5801214bae69a471ae306d7d3",
+        "name": "beacon-lcm-smoke",
+        "repository": "beacon-lcm-smoke",
+        "runtime_CPU_period": 100000,
+        "runtime_CPU_quota": 10000,
+        "runtime_memory_bytes": 16777216,
+        "safety_scope": "No network listeners/connections, host-directory mounts, lifecycle hooks or autostart. Writes two marker files only under container /tmp; stop handles TERM/INT/PWR.",
+        "tag": "0.0.1",
+        "version": "0.0.1"
+      },
+      "runtime": {
+        "hostname": "beacon-lcm-smoke",
+        "linux": {
+          "namespaces": [
+            {
+              "type": "pid"
+            },
+            {
+              "type": "mount"
+            },
+            {
+              "type": "uts"
+            },
+            {
+              "type": "ipc"
+            },
+            {
+              "type": "network"
+            }
+          ],
+          "resources": {
+            "cpu": {
+              "period": 100000,
+              "quota": 10000
+            },
+            "memory": {
+              "limit": 16777216
+            }
+          }
+        },
+        "mounts": [
+          {
+            "destination": "/tmp",
+            "options": [
+              "nosuid",
+              "nodev",
+              "mode=1777",
+              "size=65536"
+            ],
+            "source": "tmpfs",
+            "type": "tmpfs"
+          }
+        ],
+        "ociVersion": "1.0.2",
+        "process": {
+          "args": [
+            "/lcm-smoke"
+          ],
+          "capabilities": {
+            "ambient": [],
+            "bounding": [],
+            "effective": [],
+            "inheritable": [],
+            "permitted": []
+          },
+          "cwd": "/",
+          "env": [
+            "PATH=/usr/bin:/bin"
+          ],
+          "noNewPrivileges": true,
+          "terminal": false,
+          "user": {
+            "gid": 0,
+            "uid": 0
+          }
+        },
+        "root": {
+          "path": "rootfs",
+          "readonly": true
+        }
+      },
+      "image_config": {
+        "architecture": "arm64",
+        "config": {
+          "Entrypoint": [
+            "/lcm-smoke"
+          ],
+          "Env": [
+            "PATH=/usr/bin:/bin"
+          ],
+          "Labels": {
+            "org.opencontainers.image.description": "Writes a container-local marker and sleeps; no network activity or host hooks.",
+            "org.opencontainers.image.title": "beacon-lcm-smoke",
+            "org.opencontainers.image.vendor": "Owner research",
+            "org.opencontainers.image.version": "0.0.1"
+          },
+          "User": "0:0",
+          "WorkingDir": "/"
+        },
+        "created": "2026-10-28T00:00:00Z",
+        "history": [
+          {
+            "created": "2026-10-28T00:00:00Z",
+            "created_by": "owner smoke rootfs"
+          },
+          {
+            "created": "2026-10-28T00:00:00Z",
+            "created_by": "owner smoke runtime layer"
+          }
+        ],
+        "os": "linux",
+        "rootfs": {
+          "diff_ids": [
+            "sha256:32fcbcab3af8070d64508f0c9bd2a29fda73a775065821d7d83a47d9c243ffa7",
+            "sha256:be50b485b323e88dc4ccc2f3b48d09c6567ebd373ae01e13e680b7077a834bbc"
+          ],
+          "type": "layers"
+        }
+      },
+      "manifest": {
+        "annotations": {
+          "com.nokia.runtime.config": "sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+          "org.opencontainers.image.description": "Writes a container-local marker and sleeps; no network activity or host hooks.",
+          "org.opencontainers.image.title": "beacon-lcm-smoke",
+          "org.opencontainers.image.vendor": "Owner research",
+          "org.opencontainers.image.version": "0.0.1"
+        },
+        "config": {
+          "digest": "sha256:44aa47fe8c95af8060359df1063e40479ea9c266fcd3397eae42d4697672bef7",
+          "mediaType": "application/vnd.oci.image.config.v1+json",
+          "size": 791
+        },
+        "layers": [
+          {
+            "digest": "sha256:28004633c0e60fa796d4a07150ea01dd77692fc0c7076a67164b64df6adb18c2",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 279309
+          },
+          {
+            "digest": "sha256:c6f32d5acaea665b1ffef7979dcfd0317a9a783c9f3daab8fe57da8f23f99352",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 481
+          }
+        ],
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "schemaVersion": 2
+      },
+      "OCI_index": {
+        "manifests": [
+          {
+            "annotations": {
+              "org.opencontainers.image.ref.name": "0.0.1"
+            },
+            "digest": "sha256:bab8ae08804215aa7b80edbfbcdab976fe2511b5801214bae69a471ae306d7d3",
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "platform": {
+              "architecture": "arm64",
+              "os": "linux"
+            },
+            "size": 942
+          }
+        ],
+        "schemaVersion": 2
+      },
+      "OCI_layout": {
+        "imageLayoutVersion": "1.0.0"
+      }
+    },
+    "attempt-3": {
+      "source_root": "private-source://LCM-SMOKE-TEST/package-v3",
+      "package_report_historical": {
+        "ELF_bytes": 597912,
+        "ELF_sha256": "653f602952460e3f401445544f42c502f034d780da3b7f293111ae6d51bfa660",
+        "application_UUID": "e5d244c9-af3e-5224-96c0-76ca4ae7290a",
+        "architecture": "arm64",
+        "compatibility": "Offline fixture pending actual router install; do not claim success from valid OCI hashes alone.",
+        "container_tmpfs": "stock default; no additional mount request",
+        "layers": [
+          {
+            "digest": "sha256:d4c8d401fb3d5bb6b36f5a5f61bd6bc05b2e897e32e614293126c2ba5cac120a",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 279544
+          },
+          {
+            "digest": "sha256:b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 424
+          }
+        ],
+        "manifest_digest": "sha256:f5710845f96ad5069fcf3498fef8d0272ba9892bf9bbb9584f483c99c4dcaca9",
+        "name": "beacon-lcm-smoke",
+        "repository": "beacon-lcm-smoke",
+        "runtime_CPU_period": 100000,
+        "runtime_CPU_quota": 10000,
+        "runtime_memory_bytes": 16777216,
+        "safety_scope": "No network listeners/connections, requested host-directory mounts, lifecycle hooks or autostart; stock adapter injects data and host-tmp mappings. Writes two marker files only under container /tmp; stop handles TERM/INT/PWR.",
+        "tag": "0.0.1",
+        "version": "0.0.1"
+      },
+      "runtime": {
+        "hostname": "beacon-lcm-smoke",
+        "linux": {
+          "namespaces": [
+            {
+              "type": "pid"
+            },
+            {
+              "type": "mount"
+            },
+            {
+              "type": "uts"
+            },
+            {
+              "type": "ipc"
+            },
+            {
+              "type": "network"
+            }
+          ],
+          "resources": {
+            "cpu": {
+              "period": 100000,
+              "quota": 10000
+            },
+            "memory": {
+              "limit": 16777216
+            }
+          }
+        },
+        "mounts": [],
+        "ociVersion": "1.0.2",
+        "process": {
+          "args": [
+            "/lcm-smoke"
+          ],
+          "capabilities": {
+            "ambient": [],
+            "bounding": [],
+            "effective": [],
+            "inheritable": [],
+            "permitted": []
+          },
+          "cwd": "/",
+          "env": [
+            "PATH=/usr/bin:/bin"
+          ],
+          "noNewPrivileges": true,
+          "terminal": false,
+          "user": {
+            "gid": 0,
+            "uid": 0
+          }
+        },
+        "root": {
+          "path": "rootfs",
+          "readonly": true
+        }
+      },
+      "image_config": {
+        "architecture": "arm64",
+        "config": {
+          "Entrypoint": [
+            "/lcm-smoke"
+          ],
+          "Env": [
+            "PATH=/usr/bin:/bin"
+          ],
+          "Labels": {
+            "org.opencontainers.image.description": "Writes a container-local marker and sleeps; no network activity or host hooks.",
+            "org.opencontainers.image.title": "beacon-lcm-smoke",
+            "org.opencontainers.image.vendor": "Owner research",
+            "org.opencontainers.image.version": "0.0.1"
+          },
+          "User": "0:0",
+          "WorkingDir": "/"
+        },
+        "created": "2026-10-28T00:00:00Z",
+        "history": [
+          {
+            "created": "2026-10-28T00:00:00Z",
+            "created_by": "owner smoke rootfs"
+          },
+          {
+            "created": "2026-10-28T00:00:00Z",
+            "created_by": "owner smoke runtime layer"
+          }
+        ],
+        "os": "linux",
+        "rootfs": {
+          "diff_ids": [
+            "sha256:dddebc7dee187f50fdb6bca768952c3c28bbdc9be0f1cb2b61e5c72cf025dc27",
+            "sha256:fba4e3b16d0071ad3412b8d3bd595c6bcfb47d2490fd007a63a4551f486245d7"
+          ],
+          "type": "layers"
+        }
+      },
+      "manifest": {
+        "annotations": {
+          "com.nokia.runtime.config": "sha256:b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a",
+          "org.opencontainers.image.description": "Writes a container-local marker and sleeps; no network activity or host hooks.",
+          "org.opencontainers.image.title": "beacon-lcm-smoke",
+          "org.opencontainers.image.vendor": "Owner research",
+          "org.opencontainers.image.version": "0.0.1"
+        },
+        "config": {
+          "digest": "sha256:85466a651b4ef429be4ef01417f81657baae9a6ea2885d90367f7d9f2b0079e4",
+          "mediaType": "application/vnd.oci.image.config.v1+json",
+          "size": 791
+        },
+        "layers": [
+          {
+            "digest": "sha256:d4c8d401fb3d5bb6b36f5a5f61bd6bc05b2e897e32e614293126c2ba5cac120a",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 279544
+          },
+          {
+            "digest": "sha256:b2beec95b221f7182ad6b688221e0cb5215fd60e21d914828438abe5f6c0ca1a",
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "size": 424
+          }
+        ],
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "schemaVersion": 2
+      },
+      "OCI_index": {
+        "manifests": [
+          {
+            "annotations": {
+              "org.opencontainers.image.ref.name": "0.0.1"
+            },
+            "digest": "sha256:f5710845f96ad5069fcf3498fef8d0272ba9892bf9bbb9584f483c99c4dcaca9",
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "platform": {
+              "architecture": "arm64",
+              "os": "linux"
+            },
+            "size": 942
+          }
+        ],
+        "schemaVersion": 2
+      },
+      "OCI_layout": {
+        "imageLayoutVersion": "1.0.0"
+      }
+    }
+  }
+}

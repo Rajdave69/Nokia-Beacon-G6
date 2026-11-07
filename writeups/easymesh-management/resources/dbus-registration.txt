@@ -1,0 +1,593 @@
+0019b90c: fd7b00a9  stp x29, x30, [sp]
+0019b910: fd030091  mov x29, sp
+0019b914: f35301a9  stp x19, x20, [sp, #0x10]
+0019b918: d30100b0  adrp x19, #0x1d4000
+0019b91c: f55b02a9  stp x21, x22, [sp, #0x20]
+0019b920: f50301aa  mov x21, x1
+0019b924: f81f00f9  str x24, [sp, #0x38]
+0019b928: f80303aa  mov x24, x3
+0019b92c: 632247f9  ldr x3, [x19, #0xe40]
+0019b930: f40300aa  mov x20, x0
+0019b934: 010040f9  ldr x1, [x0]
+0019b938: f60302aa  mov x22, x2
+0019b93c: 640040f9  ldr x4, [x3]
+0019b940: a46f05f9  str x4, [x29, #0xad8]
+0019b944: 040080d2  mov x4, #0
+0019b948: 220100b0  adrp x2, #0x1c0000
+0019b94c: e00315aa  mov x0, x21
+0019b950: 42e01191  add x2, x2, #0x478
+0019b954: d7d9f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_setradiochannel_rpc", "x3": "@__stack_chk_guard", "x4": 0}
+0019b958: 1f1c0072  tst w0, #0xff
+0019b95c: a10b0054  b.ne #0x19bad0
+0019b960: 810240f9  ldr x1, [x20]
+0019b964: 220100b0  adrp x2, #0x1c0000
+0019b968: e00315aa  mov x0, x21
+0019b96c: 42401291  add x2, x2, #0x490
+0019b970: d0d9f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_getavailablechannel_rpc"}
+0019b974: 1f1c0072  tst w0, #0xff
+0019b978: c1060054  b.ne #0x19ba50
+0019b97c: 810240f9  ldr x1, [x20]
+0019b980: 220100b0  adrp x2, #0x1c0000
+0019b984: e00315aa  mov x0, x21
+0019b988: 42c01291  add x2, x2, #0x4b0
+0019b98c: c9d9f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_removeextender_rpc"}
+0019b990: 1f1c0072  tst w0, #0xff
+0019b994: a10c0054  b.ne #0x19bb28
+0019b998: 810240f9  ldr x1, [x20]
+0019b99c: 220100b0  adrp x2, #0x1c0000
+0019b9a0: e00315aa  mov x0, x21
+0019b9a4: 42201391  add x2, x2, #0x4c8
+0019b9a8: c2d9f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_getextenderinfo_rpc"}
+0019b9ac: 1f1c0072  tst w0, #0xff
+0019b9b0: c10d0054  b.ne #0x19bb68
+0019b9b4: 810240f9  ldr x1, [x20]
+0019b9b8: 220100b0  adrp x2, #0x1c0000
+0019b9bc: e00315aa  mov x0, x21
+0019b9c0: 42801391  add x2, x2, #0x4e0
+0019b9c4: bbd9f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_debug_rpc"}
+0019b9c8: 1f1c0072  tst w0, #0xff
+0019b9cc: a10f0054  b.ne #0x19bbc0
+0019b9d0: 810240f9  ldr x1, [x20]
+0019b9d4: 220100b0  adrp x2, #0x1c0000
+0019b9d8: e00315aa  mov x0, x21
+0019b9dc: 42c01391  add x2, x2, #0x4f0
+0019b9e0: b4d9f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_setsteeringthreshold_rpc"}
+0019b9e4: 1f1c0072  tst w0, #0xff
+0019b9e8: 81110054  b.ne #0x19bc18
+0019b9ec: 810240f9  ldr x1, [x20]
+0019b9f0: 220100b0  adrp x2, #0x1c0000
+0019b9f4: e00315aa  mov x0, x21
+0019b9f8: 42401491  add x2, x2, #0x510
+0019b9fc: add9f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_thresholdevent_rpc"}
+0019ba00: 1f1c0072  tst w0, #0xff
+0019ba04: a0110054  b.eq #0x19bc38
+0019ba08: a1630191  add x1, x29, #0x58
+0019ba0c: a2430191  add x2, x29, #0x50
+0019ba10: e00315aa  mov x0, x21
+0019ba14: 47ddf997  bl #0x12f30 ; heuristic ndbusReadParcelDynamicPointer@plt {}
+0019ba18: a02f40f9  ldr x0, [x29, #0x58]
+0019ba1c: c1030094  bl #0x19c920 ; heuristic 0x19c920 {}
+0019ba20: a15340b9  ldr w1, [x29, #0x50]
+0019ba24: 1f00016b  cmp w0, w1
+0019ba28: e1030054  b.ne #0x19baa4
+0019ba2c: 812640f9  ldr x1, [x20, #0x48]
+0019ba30: a02f40f9  ldr x0, [x29, #0x58]
+0019ba34: 20003fd6  blr x1 ; heuristic unknown {}
+0019ba38: 21008052  mov w1, #1
+0019ba3c: 01030039  strb w1, [x24]
+0019ba40: e103002a  mov w1, w0
+0019ba44: e00316aa  mov x0, x22
+0019ba48: cadbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019ba4c: 16000014  b #0x19baa4
+0019ba50: b71b00f9  str x23, [x29, #0x30]
+0019ba54: b7a30191  add x23, x29, #0x68
+0019ba58: e10317aa  mov x1, x23
+0019ba5c: 02058052  mov w2, #0x28
+0019ba60: e00315aa  mov x0, x21
+0019ba64: 23dcf997  bl #0x12af0 ; heuristic ndbusReadParcelPointer@plt {"x2": 40}
+0019ba68: 821240f9  ldr x2, [x20, #0x20]
+0019ba6c: b4430291  add x20, x29, #0x90
+0019ba70: e00317aa  mov x0, x23
+0019ba74: e10314aa  mov x1, x20
+0019ba78: 40003fd6  blr x2 ; heuristic unknown {}
+0019ba7c: 21008052  mov w1, #1
+0019ba80: 01030039  strb w1, [x24]
+0019ba84: e103002a  mov w1, w0
+0019ba88: e00316aa  mov x0, x22
+0019ba8c: b9dbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019ba90: e2418052  mov w2, #0x20f
+0019ba94: e10314aa  mov x1, x20
+0019ba98: e00316aa  mov x0, x22
+0019ba9c: 31daf997  bl #0x12360 ; heuristic ndbusWriteParcelPointer@plt {"x2": 527}
+0019baa0: b71b40f9  ldr x23, [x29, #0x30]
+0019baa4: 732247f9  ldr x19, [x19, #0xe40]
+0019baa8: a16f45f9  ldr x1, [x29, #0xad8]
+0019baac: 600240f9  ldr x0, [x19]
+0019bab0: 200000ca  eor x0, x1, x0
+0019bab4: 201200b5  cbnz x0, #0x19bcf8
+0019bab8: f35341a9  ldp x19, x20, [sp, #0x10]
+0019babc: f55b42a9  ldp x21, x22, [sp, #0x20]
+0019bac0: fd7b40a9  ldp x29, x30, [sp]
+0019bac4: f81f40f9  ldr x24, [sp, #0x38]
+0019bac8: ff832b91  add sp, sp, #0xae0
+0019bacc: c0035fd6  ret 
+0019bad0: b71b00f9  str x23, [x29, #0x30]
+0019bad4: b7430291  add x23, x29, #0x90
+0019bad8: e10317aa  mov x1, x23
+0019badc: 82068052  mov w2, #0x34
+0019bae0: e00315aa  mov x0, x21
+0019bae4: 03dcf997  bl #0x12af0 ; heuristic ndbusReadParcelPointer@plt {"x2": 52}
+0019bae8: 820e40f9  ldr x2, [x20, #0x18]
+0019baec: b4630191  add x20, x29, #0x58
+0019baf0: e00317aa  mov x0, x23
+0019baf4: e10314aa  mov x1, x20
+0019baf8: 40003fd6  blr x2 ; heuristic unknown {}
+0019bafc: 21008052  mov w1, #1
+0019bb00: 01030039  strb w1, [x24]
+0019bb04: e103002a  mov w1, w0
+0019bb08: e00316aa  mov x0, x22
+0019bb0c: 99dbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019bb10: 82018052  mov w2, #0xc
+0019bb14: e10314aa  mov x1, x20
+0019bb18: e00316aa  mov x0, x22
+0019bb1c: 11daf997  bl #0x12360 ; heuristic ndbusWriteParcelPointer@plt {"x2": 12}
+0019bb20: b71b40f9  ldr x23, [x29, #0x30]
+0019bb24: e0ffff17  b #0x19baa4
+0019bb28: b71b00f9  str x23, [x29, #0x30]
+0019bb2c: b7430291  add x23, x29, #0x90
+0019bb30: e10317aa  mov x1, x23
+0019bb34: 22048052  mov w2, #0x21
+0019bb38: e00315aa  mov x0, x21
+0019bb3c: eddbf997  bl #0x12af0 ; heuristic ndbusReadParcelPointer@plt {"x2": 33}
+0019bb40: 811640f9  ldr x1, [x20, #0x28]
+0019bb44: e00317aa  mov x0, x23
+0019bb48: 20003fd6  blr x1 ; heuristic unknown {}
+0019bb4c: 21008052  mov w1, #1
+0019bb50: 01030039  strb w1, [x24]
+0019bb54: e103002a  mov w1, w0
+0019bb58: e00316aa  mov x0, x22
+0019bb5c: 85dbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019bb60: b71b40f9  ldr x23, [x29, #0x30]
+0019bb64: d0ffff17  b #0x19baa4
+0019bb68: b71b00f9  str x23, [x29, #0x30]
+0019bb6c: b7a30191  add x23, x29, #0x68
+0019bb70: e10317aa  mov x1, x23
+0019bb74: 22048052  mov w2, #0x21
+0019bb78: e00315aa  mov x0, x21
+0019bb7c: dddbf997  bl #0x12af0 ; heuristic ndbusReadParcelPointer@plt {"x2": 33}
+0019bb80: 821a40f9  ldr x2, [x20, #0x30]
+0019bb84: b4430291  add x20, x29, #0x90
+0019bb88: e00317aa  mov x0, x23
+0019bb8c: e10314aa  mov x1, x20
+0019bb90: 40003fd6  blr x2 ; heuristic unknown {}
+0019bb94: 21008052  mov w1, #1
+0019bb98: 01030039  strb w1, [x24]
+0019bb9c: e103002a  mov w1, w0
+0019bba0: e00316aa  mov x0, x22
+0019bba4: 73dbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019bba8: 22488152  mov w2, #0xa41
+0019bbac: e10314aa  mov x1, x20
+0019bbb0: e00316aa  mov x0, x22
+0019bbb4: ebd9f997  bl #0x12360 ; heuristic ndbusWriteParcelPointer@plt {"x2": 2625}
+0019bbb8: b71b40f9  ldr x23, [x29, #0x30]
+0019bbbc: baffff17  b #0x19baa4
+0019bbc0: b71b00f9  str x23, [x29, #0x30]
+0019bbc4: b7430291  add x23, x29, #0x90
+0019bbc8: e10317aa  mov x1, x23
+0019bbcc: 02098052  mov w2, #0x48
+0019bbd0: e00315aa  mov x0, x21
+0019bbd4: c7dbf997  bl #0x12af0 ; heuristic ndbusReadParcelPointer@plt {"x2": 72}
+0019bbd8: 821e40f9  ldr x2, [x20, #0x38]
+0019bbdc: b4630191  add x20, x29, #0x58
+0019bbe0: e00317aa  mov x0, x23
+0019bbe4: e10314aa  mov x1, x20
+0019bbe8: 40003fd6  blr x2 ; heuristic unknown {}
+0019bbec: 21008052  mov w1, #1
+0019bbf0: 01030039  strb w1, [x24]
+0019bbf4: e103002a  mov w1, w0
+0019bbf8: e00316aa  mov x0, x22
+0019bbfc: 5ddbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019bc00: 82008052  mov w2, #4
+0019bc04: e10314aa  mov x1, x20
+0019bc08: e00316aa  mov x0, x22
+0019bc0c: d5d9f997  bl #0x12360 ; heuristic ndbusWriteParcelPointer@plt {"x2": 4}
+0019bc10: b71b40f9  ldr x23, [x29, #0x30]
+0019bc14: a4ffff17  b #0x19baa4
+0019bc18: b71b00f9  str x23, [x29, #0x30]
+0019bc1c: b7630191  add x23, x29, #0x58
+0019bc20: e10317aa  mov x1, x23
+0019bc24: 02028052  mov w2, #0x10
+0019bc28: e00315aa  mov x0, x21
+0019bc2c: b1dbf997  bl #0x12af0 ; heuristic ndbusReadParcelPointer@plt {"x2": 16}
+0019bc30: 812240f9  ldr x1, [x20, #0x40]
+0019bc34: c4ffff17  b #0x19bb44
+0019bc38: 810240f9  ldr x1, [x20]
+0019bc3c: 220100b0  adrp x2, #0x1c0000
+0019bc40: e00315aa  mov x0, x21
+0019bc44: 42a01491  add x2, x2, #0x528
+0019bc48: 1ad9f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_getmeshtopology_rpc"}
+0019bc4c: 1f1c0072  tst w0, #0xff
+0019bc50: a0020054  b.eq #0x19bca4
+0019bc54: 822a40f9  ldr x2, [x20, #0x50]
+0019bc58: a1430191  add x1, x29, #0x50
+0019bc5c: a0630191  add x0, x29, #0x58
+0019bc60: 40003fd6  blr x2 ; heuristic unknown {}
+0019bc64: 21008052  mov w1, #1
+0019bc68: 01030039  strb w1, [x24]
+0019bc6c: e103002a  mov w1, w0
+0019bc70: e00316aa  mov x0, x22
+0019bc74: 3fdbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019bc78: b42f40f9  ldr x20, [x29, #0x58]
+0019bc7c: 54f1ffb4  cbz x20, #0x19baa4
+0019bc80: e00314aa  mov x0, x20
+0019bc84: 39020094  bl #0x19c568 ; heuristic 0x19c568 {}
+0019bc88: e203002a  mov w2, w0
+0019bc8c: e10314aa  mov x1, x20
+0019bc90: e00316aa  mov x0, x22
+0019bc94: 77def997  bl #0x13670 ; heuristic ndbusWriteParcelDynamicPointer@plt {}
+0019bc98: a02f40f9  ldr x0, [x29, #0x58]
+0019bc9c: 09daf997  bl #0x124c0 ; heuristic free@plt {}
+0019bca0: 81ffff17  b #0x19baa4
+0019bca4: 810240f9  ldr x1, [x20]
+0019bca8: 220100b0  adrp x2, #0x1c0000
+0019bcac: e00315aa  mov x0, x21
+0019bcb0: 42001591  add x2, x2, #0x540
+0019bcb4: ffd8f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_getmeshtopologyinfo_rpc"}
+0019bcb8: 1f1c0072  tst w0, #0xff
+0019bcbc: 20020054  b.eq #0x19bd00
+0019bcc0: 822e40f9  ldr x2, [x20, #0x58]
+0019bcc4: a1430191  add x1, x29, #0x50
+0019bcc8: a0630191  add x0, x29, #0x58
+0019bccc: 40003fd6  blr x2 ; heuristic unknown {}
+0019bcd0: 21008052  mov w1, #1
+0019bcd4: 01030039  strb w1, [x24]
+0019bcd8: e103002a  mov w1, w0
+0019bcdc: e00316aa  mov x0, x22
+0019bce0: 24dbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019bce4: b42f40f9  ldr x20, [x29, #0x58]
+0019bce8: f4edffb4  cbz x20, #0x19baa4
+0019bcec: e00314aa  mov x0, x20
+0019bcf0: 0c020094  bl #0x19c520 ; heuristic 0x19c520 {}
+0019bcf4: e5ffff17  b #0x19bc88
+0019bcf8: b71b00f9  str x23, [x29, #0x30]
+0019bcfc: 59d9f997  bl #0x12260 ; heuristic __stack_chk_fail@plt {}
+0019bd00: 810240f9  ldr x1, [x20]
+0019bd04: 220100b0  adrp x2, #0x1c0000
+0019bd08: e00315aa  mov x0, x21
+0019bd0c: 42801591  add x2, x2, #0x560
+0019bd10: e8d8f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_getdataelementsrequest_rpc"}
+0019bd14: 1f1c0072  tst w0, #0xff
+0019bd18: 20030054  b.eq #0x19bd7c
+0019bd1c: a1430191  add x1, x29, #0x50
+0019bd20: a2230191  add x2, x29, #0x48
+0019bd24: e00315aa  mov x0, x21
+0019bd28: 82dcf997  bl #0x12f30 ; heuristic ndbusReadParcelDynamicPointer@plt {}
+0019bd2c: a02b40f9  ldr x0, [x29, #0x50]
+0019bd30: c6020094  bl #0x19c848 ; heuristic 0x19c848 {}
+0019bd34: a14b40b9  ldr w1, [x29, #0x48]
+0019bd38: 1f00016b  cmp w0, w1
+0019bd3c: 41ebff54  b.ne #0x19baa4
+0019bd40: 833240f9  ldr x3, [x20, #0x60]
+0019bd44: a2330191  add x2, x29, #0x4c
+0019bd48: a02b40f9  ldr x0, [x29, #0x50]
+0019bd4c: a1630191  add x1, x29, #0x58
+0019bd50: 60003fd6  blr x3 ; heuristic unknown {}
+0019bd54: 21008052  mov w1, #1
+0019bd58: 01030039  strb w1, [x24]
+0019bd5c: e103002a  mov w1, w0
+0019bd60: e00316aa  mov x0, x22
+0019bd64: 03dbf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019bd68: b42f40f9  ldr x20, [x29, #0x58]
+0019bd6c: d4e9ffb4  cbz x20, #0x19baa4
+0019bd70: e00314aa  mov x0, x20
+0019bd74: a3020094  bl #0x19c800 ; heuristic 0x19c800 {}
+0019bd78: c4ffff17  b #0x19bc88
+0019bd7c: 810240f9  ldr x1, [x20]
+0019bd80: 220100b0  adrp x2, #0x1c0000
+0019bd84: e00315aa  mov x0, x21
+0019bd88: 42001691  add x2, x2, #0x580
+0019bd8c: c9d8f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_getavailablechannelinfo_rpc"}
+0019bd90: 1f1c0072  tst w0, #0xff
+0019bd94: 20030054  b.eq #0x19bdf8
+0019bd98: a1430191  add x1, x29, #0x50
+0019bd9c: a2230191  add x2, x29, #0x48
+0019bda0: e00315aa  mov x0, x21
+0019bda4: 63dcf997  bl #0x12f30 ; heuristic ndbusReadParcelDynamicPointer@plt {}
+0019bda8: a02b40f9  ldr x0, [x29, #0x50]
+0019bdac: b9020094  bl #0x19c890 ; heuristic 0x19c890 {}
+0019bdb0: a14b40b9  ldr w1, [x29, #0x48]
+0019bdb4: 1f00016b  cmp w0, w1
+0019bdb8: 61e7ff54  b.ne #0x19baa4
+0019bdbc: 833640f9  ldr x3, [x20, #0x68]
+0019bdc0: a2330191  add x2, x29, #0x4c
+0019bdc4: a02b40f9  ldr x0, [x29, #0x50]
+0019bdc8: a1630191  add x1, x29, #0x58
+0019bdcc: 60003fd6  blr x3 ; heuristic unknown {}
+0019bdd0: 21008052  mov w1, #1
+0019bdd4: 01030039  strb w1, [x24]
+0019bdd8: e103002a  mov w1, w0
+0019bddc: e00316aa  mov x0, x22
+0019bde0: e4daf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019bde4: b42f40f9  ldr x20, [x29, #0x58]
+0019bde8: f4e5ffb4  cbz x20, #0x19baa4
+0019bdec: e00314aa  mov x0, x20
+0019bdf0: ba020094  bl #0x19c8d8 ; heuristic 0x19c8d8 {}
+0019bdf4: a5ffff17  b #0x19bc88
+0019bdf8: e00315aa  mov x0, x21
+0019bdfc: 5dddf997  bl #0x13370 ; heuristic ndbusGetMethodName@plt {}
+0019be00: 220100b0  adrp x2, #0x1c0000
+0019be04: e30300aa  mov x3, x0
+0019be08: 210100b0  adrp x1, #0x1c0000
+0019be0c: 42801691  add x2, x2, #0x5a0
+0019be10: 21a01091  add x1, x1, #0x428
+0019be14: 001f8052  mov w0, #0xf8
+0019be18: bed9f997  bl #0x12510 ; heuristic ndbusLogFatalReal@plt {"x0": 248, "x1": "onNokiaEcdApplicationDispatch", "x2": "unknown message: %s\n"}
+0019be1c: 22ffff17  b #0x19baa4
+0019be20: fd7bbaa9  stp x29, x30, [sp, #-0x60]!
+0019be24: fd030091  mov x29, sp
+0019be28: f35301a9  stp x19, x20, [sp, #0x10]
+0019be2c: d30100b0  adrp x19, #0x1d4000
+0019be30: f55b02a9  stp x21, x22, [sp, #0x20]
+0019be34: f40301aa  mov x20, x1
+0019be38: f71b00f9  str x23, [sp, #0x30]
+0019be3c: f70303aa  mov x23, x3
+0019be40: 632247f9  ldr x3, [x19, #0xe40]
+0019be44: f50300aa  mov x21, x0
+0019be48: 010040f9  ldr x1, [x0]
+0019be4c: f60302aa  mov x22, x2
+0019be50: 640040f9  ldr x4, [x3]
+0019be54: a42f00f9  str x4, [x29, #0x58]
+0019be58: 040080d2  mov x4, #0
+0019be5c: 220100b0  adrp x2, #0x1c0000
+0019be60: e00314aa  mov x0, x20
+0019be64: 42e01691  add x2, x2, #0x5b8
+0019be68: 92d8f997  bl #0x120b0 ; heuristic ndbusIsMethodCall@plt {"x2": "ecd_configsync_rpc", "x3": "@__stack_chk_guard", "x4": 0}
+0019be6c: 1f1c0072  tst w0, #0xff
+0019be70: 80030054  b.eq #0x19bee0
+0019be74: a1430191  add x1, x29, #0x50
+0019be78: a2330191  add x2, x29, #0x4c
+0019be7c: e00314aa  mov x0, x20
+0019be80: 2cdcf997  bl #0x12f30 ; heuristic ndbusReadParcelDynamicPointer@plt {}
+0019be84: a02b40f9  ldr x0, [x29, #0x50]
+0019be88: 92010094  bl #0x19c4d0 ; heuristic 0x19c4d0 {}
+0019be8c: a14f40b9  ldr w1, [x29, #0x4c]
+0019be90: 1f00016b  cmp w0, w1
+0019be94: 21010054  b.ne #0x19beb8
+0019be98: a10a40f9  ldr x1, [x21, #0x10]
+0019be9c: a02b40f9  ldr x0, [x29, #0x50]
+0019bea0: 20003fd6  blr x1 ; heuristic unknown {}
+0019bea4: 21008052  mov w1, #1
+0019bea8: e1020039  strb w1, [x23]
+0019beac: e103002a  mov w1, w0
+0019beb0: e00316aa  mov x0, x22
+0019beb4: afdaf997  bl #0x12970 ; heuristic ndbusWriteParcelUint32@plt {}
+0019beb8: 732247f9  ldr x19, [x19, #0xe40]
+0019bebc: a12f40f9  ldr x1, [x29, #0x58]
+0019bec0: 600240f9  ldr x0, [x19]
+0019bec4: 200000ca  eor x0, x1, x0
+0019bec8: 800100b5  cbnz x0, #0x19bef8
+0019becc: f35341a9  ldp x19, x20, [sp, #0x10]
+0019bed0: f55b42a9  ldp x21, x22, [sp, #0x20]
+0019bed4: f71b40f9  ldr x23, [sp, #0x30]
+0019bed8: fd7bc6a8  ldp x29, x30, [sp], #0x60
+0019bedc: c0035fd6  ret 
+0019bee0: e30317aa  mov x3, x23
+0019bee4: e20316aa  mov x2, x22
+0019bee8: e10314aa  mov x1, x20
+0019beec: e00315aa  mov x0, x21
+0019bef0: 86feff97  bl #0x19b908 ; heuristic 0x19b908 {}
+0019bef4: f1ffff17  b #0x19beb8
+0019bef8: dad8f997  bl #0x12260 ; heuristic __stack_chk_fail@plt {}
+0019befc: 1f2003d5  nop 
+0019bf00: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0019bf04: 200100b0  adrp x0, #0x1c0000
+0019bf08: 00401791  add x0, x0, #0x5d0
+0019bf0c: fd030091  mov x29, sp
+0019bf10: f30b00f9  str x19, [sp, #0x10]
+0019bf14: d30100b0  adrp x19, #0x1d4000
+0019bf18: 732247f9  ldr x19, [x19, #0xe40]
+0019bf1c: 610240f9  ldr x1, [x19]
+0019bf20: a11700f9  str x1, [x29, #0x28]
+0019bf24: 010080d2  mov x1, #0
+0019bf28: 72ddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.ecd',member='ecdDuplicationSignal'", "x1": 0}
+0019bf2c: 200100b0  adrp x0, #0x1c0000
+0019bf30: 00601891  add x0, x0, #0x618
+0019bf34: 6fddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyVapConfig'"}
+0019bf38: 200100b0  adrp x0, #0x1c0000
+0019bf3c: 00601991  add x0, x0, #0x658
+0019bf40: 6cddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyTxPowerConfig'"}
+0019bf44: 200100b0  adrp x0, #0x1c0000
+0019bf48: 00801a91  add x0, x0, #0x6a0
+0019bf4c: 69ddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyAddExtender'"}
+0019bf50: 200100b0  adrp x0, #0x1c0000
+0019bf54: 00801b91  add x0, x0, #0x6e0
+0019bf58: 66ddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyNwecConfig'"}
+0019bf5c: 200100b0  adrp x0, #0x1c0000
+0019bf60: 00801c91  add x0, x0, #0x720
+0019bf64: 63ddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyDefault8021qConfig'"}
+0019bf68: 200100b0  adrp x0, #0x1c0000
+0019bf6c: 00a01d91  add x0, x0, #0x768
+0019bf70: 60ddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyTrafficSeparationPolicy'"}
+0019bf74: 200100b0  adrp x0, #0x1c0000
+0019bf78: 00e01e91  add x0, x0, #0x7b8
+0019bf7c: 5dddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.l2_agent',member='enableAutoChannel'"}
+0019bf80: 200100b0  adrp x0, #0x1c0000
+0019bf84: 00002091  add x0, x0, #0x800
+0019bf88: 5addf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyClientDeauth'"}
+0019bf8c: 200100b0  adrp x0, #0x1c0000
+0019bf90: 00002191  add x0, x0, #0x840
+0019bf94: 57ddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nwsld',member='notifyBeaconJoin'"}
+0019bf98: 200100b0  adrp x0, #0x1c0000
+0019bf9c: 00002291  add x0, x0, #0x880
+0019bfa0: 54ddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyConfigSync'"}
+0019bfa4: 200100b0  adrp x0, #0x1c0000
+0019bfa8: 00002391  add x0, x0, #0x8c0
+0019bfac: 51ddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyDEObjectStatusChange'"}
+0019bfb0: 200100b0  adrp x0, #0x1c0000
+0019bfb4: 00202491  add x0, x0, #0x908
+0019bfb8: 4eddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyDynamicBackhaulSwitchStatus'"}
+0019bfbc: 200100b0  adrp x0, #0x1c0000
+0019bfc0: 00602591  add x0, x0, #0x958
+0019bfc4: 4bddf997  bl #0x134f0 ; heuristic ndbusAddInterestedSignal@plt {"x0": "type='signal',interface='nokia.nil',member='notifyRadioChannelConfig'"}
+0019bfc8: a11740f9  ldr x1, [x29, #0x28]
+0019bfcc: 600240f9  ldr x0, [x19]
+0019bfd0: 200000ca  eor x0, x1, x0
+0019bfd4: e00000b5  cbnz x0, #0x19bff0
+0019bfd8: f30b40f9  ldr x19, [sp, #0x10]
+0019bfdc: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0019bfe0: c00100d0  adrp x0, #0x1d5000
+0019bfe4: c1018052  mov w1, #0xe
+0019bfe8: 00a00191  add x0, x0, #0x68
+0019bfec: 29dcf917  b #0x13090
+0019bff0: 9cd8f997  bl #0x12260 ; heuristic __stack_chk_fail@plt {"x0": "nokia.ecd", "x1": 14}
+0019bff4: 1f2003d5  nop 
+0019bff8: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0019bffc: 200100b0  adrp x0, #0x1c0000
+0019c000: 00401791  add x0, x0, #0x5d0
+0019c004: fd030091  mov x29, sp
+0019c008: f30b00f9  str x19, [sp, #0x10]
+0019c00c: d3010090  adrp x19, #0x1d4000
+0019c010: 732247f9  ldr x19, [x19, #0xe40]
+0019c014: 610240f9  ldr x1, [x19]
+0019c018: a11700f9  str x1, [x29, #0x28]
+0019c01c: 010080d2  mov x1, #0
+0019c020: f8dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.ecd',member='ecdDuplicationSignal'", "x1": 0}
+0019c024: 20010090  adrp x0, #0x1c0000
+0019c028: 00601891  add x0, x0, #0x618
+0019c02c: f5dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyVapConfig'"}
+0019c030: 20010090  adrp x0, #0x1c0000
+0019c034: 00601991  add x0, x0, #0x658
+0019c038: f2dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyTxPowerConfig'"}
+0019c03c: 20010090  adrp x0, #0x1c0000
+0019c040: 00801a91  add x0, x0, #0x6a0
+0019c044: efdcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyAddExtender'"}
+0019c048: 20010090  adrp x0, #0x1c0000
+0019c04c: 00801b91  add x0, x0, #0x6e0
+0019c050: ecdcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyNwecConfig'"}
+0019c054: 20010090  adrp x0, #0x1c0000
+0019c058: 00801c91  add x0, x0, #0x720
+0019c05c: e9dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyDefault8021qConfig'"}
+0019c060: 20010090  adrp x0, #0x1c0000
+0019c064: 00a01d91  add x0, x0, #0x768
+0019c068: e6dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyTrafficSeparationPolicy'"}
+0019c06c: 20010090  adrp x0, #0x1c0000
+0019c070: 00e01e91  add x0, x0, #0x7b8
+0019c074: e3dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.l2_agent',member='enableAutoChannel'"}
+0019c078: 20010090  adrp x0, #0x1c0000
+0019c07c: 00002091  add x0, x0, #0x800
+0019c080: e0dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyClientDeauth'"}
+0019c084: 20010090  adrp x0, #0x1c0000
+0019c088: 00002191  add x0, x0, #0x840
+0019c08c: dddcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nwsld',member='notifyBeaconJoin'"}
+0019c090: 20010090  adrp x0, #0x1c0000
+0019c094: 00002291  add x0, x0, #0x880
+0019c098: dadcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyConfigSync'"}
+0019c09c: 20010090  adrp x0, #0x1c0000
+0019c0a0: 00002391  add x0, x0, #0x8c0
+0019c0a4: d7dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyDEObjectStatusChange'"}
+0019c0a8: 20010090  adrp x0, #0x1c0000
+0019c0ac: 00202491  add x0, x0, #0x908
+0019c0b0: d4dcf997  bl #0x13400 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.nil',member='notifyDynamicBackhaulSwitchStatus'"}
+0019c0b4: a11740f9  ldr x1, [x29, #0x28]
+0019c0b8: 600240f9  ldr x0, [x19]
+0019c0bc: 200000ca  eor x0, x1, x0
+0019c0c0: c00000b5  cbnz x0, #0x19c0d8
+0019c0c4: f30b40f9  ldr x19, [sp, #0x10]
+0019c0c8: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0019c0cc: 20010090  adrp x0, #0x1c0000
+0019c0d0: 00602591  add x0, x0, #0x958
+0019c0d4: cbdcf917  b #0x13400
+0019c0d8: 62d8f997  bl #0x12260 ; heuristic __stack_chk_fail@plt {"x0": "type='signal',interface='nokia.nil',member='notifyRadioChannelConfig'"}
+0019c0dc: 1f2003d5  nop 
+0019c0e0: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0019c0e4: 200000f0  adrp x0, #0x1a3000
+0019c0e8: 00001a91  add x0, x0, #0x680
+0019c0ec: fd030091  mov x29, sp
+0019c0f0: f35301a9  stp x19, x20, [sp, #0x10]
+0019c0f4: d4010090  adrp x20, #0x1d4000
+0019c0f8: 932247f9  ldr x19, [x20, #0xe40]
+0019c0fc: 610240f9  ldr x1, [x19]
+0019c100: a11700f9  str x1, [x29, #0x28]
+0019c104: 010080d2  mov x1, #0
+0019c108: badaf997  bl #0x12bf0 ; heuristic ndbusOwnName@plt {"x0": "nokia.ecdd", "x1": 0}
+0019c10c: 20060035  cbnz w0, #0x19c1d0
+0019c110: 000e80d2  mov x0, #0x70
+0019c114: 1bdcf997  bl #0x13180 ; heuristic malloc@plt {"x0": 112}
+0019c118: 000800b4  cbz x0, #0x19c218
+0019c11c: c3010090  adrp x3, #0x1d4000
+0019c120: c2010090  adrp x2, #0x1d4000
+0019c124: cd010090  adrp x13, #0x1d4000
+0019c128: cc010090  adrp x12, #0x1d4000
+0019c12c: cb010090  adrp x11, #0x1d4000
+0019c130: ca010090  adrp x10, #0x1d4000
+0019c134: c9010090  adrp x9, #0x1d4000
+0019c138: c8010090  adrp x8, #0x1d4000
+0019c13c: c7010090  adrp x7, #0x1d4000
+0019c140: c6010090  adrp x6, #0x1d4000
+0019c144: c5010090  adrp x5, #0x1d4000
+0019c148: c4010090  adrp x4, #0x1d4000
+0019c14c: 63cc47f9  ldr x3, [x3, #0xf98]
+0019c150: 425c47f9  ldr x2, [x2, #0xeb8]
+0019c154: ad4547f9  ldr x13, [x13, #0xe88]
+0019c158: 8ca147f9  ldr x12, [x12, #0xf40]
+0019c15c: 6bdd47f9  ldr x11, [x11, #0xfb8]
+0019c160: 4a9947f9  ldr x10, [x10, #0xf30]
+0019c164: 290547f9  ldr x9, [x9, #0xe08]
+0019c168: 081147f9  ldr x8, [x8, #0xe20]
+0019c16c: e7c047f9  ldr x7, [x7, #0xf80]
+0019c170: c67c47f9  ldr x6, [x6, #0xef8]
+0019c174: a5a447f9  ldr x5, [x5, #0xf48]
+0019c178: 84c447f9  ldr x4, [x4, #0xf88]
+0019c17c: 030806a9  stp x3, x2, [x0, #0x60]
+0019c180: 23010090  adrp x3, #0x1c0000
+0019c184: e2fffff0  adrp x2, #0x19b000
+0019c188: 63402791  add x3, x3, #0x9d0
+0019c18c: 42803891  add x2, x2, #0xe20
+0019c190: 0d3001a9  stp x13, x12, [x0, #0x10]
+0019c194: 0b2802a9  stp x11, x10, [x0, #0x20]
+0019c198: 092003a9  stp x9, x8, [x0, #0x30]
+0019c19c: 071804a9  stp x7, x6, [x0, #0x40]
+0019c1a0: 051005a9  stp x5, x4, [x0, #0x50]
+0019c1a4: 030800a9  stp x3, x2, [x0]
+0019c1a8: 26daf997  bl #0x12a40 ; heuristic ndbusRegisterService@plt {"x2": 1687072, "x3": "nokia.ecd.application", "x4": 600272, "x5": 599000, "x6": 605544, "x7": 604272}
+0019c1ac: a0040035  cbnz w0, #0x19c240
+0019c1b0: a21740f9  ldr x2, [x29, #0x28]
+0019c1b4: 610240f9  ldr x1, [x19]
+0019c1b8: 410001ca  eor x1, x2, x1
+0019c1bc: 610400b5  cbnz x1, #0x19c248
+0019c1c0: f35341a9  ldp x19, x20, [sp, #0x10]
+0019c1c4: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0019c1c8: 7edbf917  b #0x12fc0
+0019c1cc: 1f2003d5  nop 
+0019c1d0: e303002a  mov w3, w0
+0019c1d4: 21010090  adrp x1, #0x1c0000
+0019c1d8: 21a01091  add x1, x1, #0x428
+0019c1dc: 22010090  adrp x2, #0x1c0000
+0019c1e0: 21800091  add x1, x1, #0x20
+0019c1e4: 42802691  add x2, x2, #0x9a0
+0019c1e8: e0228052  mov w0, #0x117
+0019c1ec: f303032a  mov w19, w3
+0019c1f0: c8d8f997  bl #0x12510 ; heuristic ndbusLogFatalReal@plt {"x0": 279, "x1": "register_ecdd_service", "x2": "failed to request bus name for ecdd service\n"}
+0019c1f4: 942247f9  ldr x20, [x20, #0xe40]
+0019c1f8: e003132a  mov w0, w19
+0019c1fc: a21740f9  ldr x2, [x29, #0x28]
+0019c200: 810240f9  ldr x1, [x20]
+0019c204: 410001ca  eor x1, x2, x1
+0019c208: 010200b5  cbnz x1, #0x19c248
+0019c20c: f35341a9  ldp x19, x20, [sp, #0x10]
+0019c210: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0019c214: c0035fd6  ret 
+0019c218: 93008052  mov w19, #4
+0019c21c: 21010090  adrp x1, #0x1c0000
+0019c220: 21a01091  add x1, x1, #0x428
+0019c224: 22010090  adrp x2, #0x1c0000
+0019c228: 21800091  add x1, x1, #0x20
+0019c22c: 42a02791  add x2, x2, #0x9e8
+0019c230: a0238052  mov w0, #0x11d
+0019c234: b7d8f997  bl #0x12510 ; heuristic ndbusLogFatalReal@plt {"x0": 285, "x1": "register_ecdd_service", "x2": "failed to register NokiaEcdApplication interface\n"}
+0019c238: efffff17  b #0x19c1f4
+0019c23c: 1f2003d5  nop 
+0019c240: f303002a  mov w19, w0
+0019c244: f6ffff17  b #0x19c21c
+0019c248: 06d8f997  bl #0x12260 ; heuristic __stack_chk_fail@plt {}
+0019c24c: 1f2003d5  nop 
