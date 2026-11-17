@@ -1,0 +1,115 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libdm_utility.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000007e5c <dmUtl_GetReleaseVersionFromBuildinfo@@Base>:
+    7e5c:	a9b97bfd 	stp	x29, x30, [sp, #-112]!
+    7e60:	71000c3f 	cmp	w1, #0x3
+    7e64:	910003fd 	mov	x29, sp
+    7e68:	a9025bf5 	stp	x21, x22, [sp, #32]
+    7e6c:	f0000095 	adrp	x21, 1a000 <_fini@@Base+0x11300>
+    7e70:	aa0003f6 	mov	x22, x0
+    7e74:	a90153f3 	stp	x19, x20, [sp, #16]
+    7e78:	f9475aa0 	ldr	x0, [x21, #3760]  ; GOT __stack_chk_guard@GLIBC_2.17
+    7e7c:	a904ffbf 	stp	xzr, xzr, [x29, #72]
+    7e80:	f9400002 	ldr	x2, [x0]
+    7e84:	f90037a2 	str	x2, [x29, #104]
+    7e88:	d2800002 	mov	x2, #0x0                   	// #0
+    7e8c:	a905ffbf 	stp	xzr, xzr, [x29, #88]
+    7e90:	f9001bf7 	str	x23, [sp, #48]
+    7e94:	5400006c 	b.gt	7ea0 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x44>
+    7e98:	52800014 	mov	w20, #0x0                   	// #0
+    7e9c:	14000045 	b	7fb0 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x154>
+    7ea0:	f0000082 	adrp	x2, 1a000 <_fini@@Base+0x11300>
+    7ea4:	910123b3 	add	x19, x29, #0x48
+    7ea8:	52800401 	mov	w1, #0x20                  	// #32
+    7eac:	aa1303e0 	mov	x0, x19
+    7eb0:	f946d442 	ldr	x2, [x2, #3496]  ; GOT dmUtl_GetSWVersionFromBuildinfo
+    7eb4:	d63f0040 	blr	x2
+    7eb8:	34ffff00 	cbz	w0, 7e98 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x3c>
+    7ebc:	f0000081 	adrp	x1, 1a000 <_fini@@Base+0x11300>
+    7ec0:	f0000094 	adrp	x20, 1a000 <_fini@@Base+0x11300>
+    7ec4:	aa1303e0 	mov	x0, x19
+    7ec8:	f9468c21 	ldr	x1, [x1, #3352]  ; GOT strlen@GLIBC_2.17
+    7ecc:	d63f0020 	blr	x1
+    7ed0:	f9470694 	ldr	x20, [x20, #3592]  ; GOT strncmp@GLIBC_2.17
+    7ed4:	aa0003f7 	mov	x23, x0
+    7ed8:	d0000001 	adrp	x1, 9000 <_fini@@Base+0x300>
+    7edc:	913d5c21 	add	x1, x1, #0xf57  ; '3FE'
+    7ee0:	d2800062 	mov	x2, #0x3                   	// #3
+    7ee4:	aa1303e0 	mov	x0, x19
+    7ee8:	d63f0280 	blr	x20
+    7eec:	340000e0 	cbz	w0, 7f08 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0xac>
+    7ef0:	d0000001 	adrp	x1, 9000 <_fini@@Base+0x300>
+    7ef4:	913d6c21 	add	x1, x1, #0xf5b  ; '3TN'
+    7ef8:	d2800062 	mov	x2, #0x3                   	// #3
+    7efc:	aa1303e0 	mov	x0, x19
+    7f00:	d63f0280 	blr	x20
+    7f04:	350002e0 	cbnz	w0, 7f60 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x104>
+    7f08:	71002eff 	cmp	w23, #0xb
+    7f0c:	540001ac 	b.gt	7f40 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0xe4>
+    7f10:	d0000003 	adrp	x3, 9000 <_fini@@Base+0x300>
+    7f14:	913d7c63 	add	x3, x3, #0xf5f  ; 'swversion[%s] len err'
+    7f18:	aa1303e4 	mov	x4, x19
+    7f1c:	5280d042 	mov	w2, #0x682                 	// #1666
+    7f20:	f0000085 	adrp	x5, 1a000 <_fini@@Base+0x11300>
+    7f24:	b0000001 	adrp	x1, 8000 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x1a4>
+    7f28:	91348021 	add	x1, x1, #0xd20  ; 'cfgUtlReadSWVersion'
+    7f2c:	f947dca5 	ldr	x5, [x5, #4024]  ; GOT log_log
+    7f30:	911a8021 	add	x1, x1, #0x6a0  ; 'dmUtl_GetReleaseVersionFromBuildinfo'
+    7f34:	52800060 	mov	w0, #0x3                   	// #3
+    7f38:	d63f00a0 	blr	x5
+    7f3c:	17ffffd7 	b	7e98 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x3c>
+    7f40:	91002661 	add	x1, x19, #0x9
+    7f44:	d2800062 	mov	x2, #0x3                   	// #3
+    7f48:	f0000083 	adrp	x3, 1a000 <_fini@@Base+0x11300>
+    7f4c:	aa1603e0 	mov	x0, x22
+    7f50:	52800034 	mov	w20, #0x1                   	// #1
+    7f54:	f947c863 	ldr	x3, [x3, #3984]  ; GOT strncpy@GLIBC_2.17
+    7f58:	d63f0060 	blr	x3
+    7f5c:	14000015 	b	7fb0 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x154>
+    7f60:	d2800082 	mov	x2, #0x4                   	// #4
+    7f64:	d0000001 	adrp	x1, 9000 <_fini@@Base+0x300>
+    7f68:	913dd421 	add	x1, x1, #0xf75  ; 'ALCL'
+    7f6c:	aa1303e0 	mov	x0, x19
+    7f70:	d63f0280 	blr	x20
+    7f74:	2a0003f4 	mov	w20, w0
+    7f78:	35000340 	cbnz	w0, 7fe0 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x184>
+    7f7c:	71002aff 	cmp	w23, #0xa
+    7f80:	540002ac 	b.gt	7fd4 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x178>
+    7f84:	f0000085 	adrp	x5, 1a000 <_fini@@Base+0x11300>
+    7f88:	b0000001 	adrp	x1, 8000 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x1a4>
+    7f8c:	91348021 	add	x1, x1, #0xd20  ; 'cfgUtlReadSWVersion'
+    7f90:	f947dca5 	ldr	x5, [x5, #4024]  ; GOT log_log
+    7f94:	d0000003 	adrp	x3, 9000 <_fini@@Base+0x300>
+    7f98:	913d7c63 	add	x3, x3, #0xf5f  ; 'swversion[%s] len err'
+    7f9c:	aa1303e4 	mov	x4, x19
+    7fa0:	5280d122 	mov	w2, #0x689                 	// #1673
+    7fa4:	911a8021 	add	x1, x1, #0x6a0  ; 'dmUtl_GetReleaseVersionFromBuildinfo'
+    7fa8:	52800060 	mov	w0, #0x3                   	// #3
+    7fac:	d63f00a0 	blr	x5
+    7fb0:	f9475ab5 	ldr	x21, [x21, #3760]  ; GOT __stack_chk_guard@GLIBC_2.17
+    7fb4:	2a1403e0 	mov	w0, w20
+    7fb8:	f94037a2 	ldr	x2, [x29, #104]
+    7fbc:	f94002a1 	ldr	x1, [x21]
+    7fc0:	ca010041 	eor	x1, x2, x1
+    7fc4:	b4000181 	cbz	x1, 7ff4 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x198>
+    7fc8:	f0000080 	adrp	x0, 1a000 <_fini@@Base+0x11300>
+    7fcc:	f9474000 	ldr	x0, [x0, #3712]  ; GOT __stack_chk_fail@GLIBC_2.17
+    7fd0:	d63f0000 	blr	x0
+    7fd4:	d2800062 	mov	x2, #0x3                   	// #3
+    7fd8:	91002261 	add	x1, x19, #0x8
+    7fdc:	17ffffdb 	b	7f48 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0xec>
+    7fe0:	d0000003 	adrp	x3, 9000 <_fini@@Base+0x300>
+    7fe4:	913de863 	add	x3, x3, #0xf7a  ; 'swversion[%s] not support'
+    7fe8:	aa1303e4 	mov	x4, x19
+    7fec:	5280d1e2 	mov	w2, #0x68f                 	// #1679
+    7ff0:	17ffffcc 	b	7f20 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0xc4>
+    7ff4:	a94153f3 	ldp	x19, x20, [sp, #16]
+    7ff8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    7ffc:	f9401bf7 	ldr	x23, [sp, #48]
+    8000:	a8c77bfd 	ldp	x29, x30, [sp], #112
+    8004:	d65f03c0 	ret

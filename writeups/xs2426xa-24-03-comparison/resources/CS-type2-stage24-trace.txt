@@ -1,0 +1,202 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000015da8 <TZ_decrypt@@Base+0x116c>:
+   15da8:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   15dac:	910003fd 	mov	x29, sp
+   15db0:	a90153f3 	stp	x19, x20, [sp, #16]
+   15db4:	b0000193 	adrp	x19, 46000 <_fini@@Base+0x18828>
+   15db8:	aa0003f4 	mov	x20, x0
+   15dbc:	f942c273 	ldr	x19, [x19, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   15dc0:	f9400260 	ldr	x0, [x19]
+   15dc4:	f90017a0 	str	x0, [x29, #40]
+   15dc8:	d2800000 	mov	x0, #0x0                   	// #0
+   15dcc:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15dd0:	f9444800 	ldr	x0, [x0, #2192]
+   15dd4:	d63f0000 	blr	x0
+   15dd8:	b9400681 	ldr	w1, [x20, #4]
+   15ddc:	7100043f 	cmp	w1, #0x1
+   15de0:	54000241 	b.ne	15e28 <TZ_decrypt@@Base+0x11ec>  // b.any
+   15de4:	f94017a2 	ldr	x2, [x29, #40]
+   15de8:	f9400261 	ldr	x1, [x19]
+   15dec:	ca010041 	eor	x1, x2, x1
+   15df0:	b4000081 	cbz	x1, 15e00 <TZ_decrypt@@Base+0x11c4>
+   15df4:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15df8:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   15dfc:	d63f0000 	blr	x0
+   15e00:	f9400001 	ldr	x1, [x0]
+   15e04:	90000004 	adrp	x4, 15000 <TZ_decrypt@@Base+0x3c4>
+   15e08:	910ee084 	add	x4, x4, #0x3b8
+   15e0c:	f9400c02 	ldr	x2, [x0, #24]
+   15e10:	90000003 	adrp	x3, 15000 <TZ_decrypt@@Base+0x3c4>
+   15e14:	912cd063 	add	x3, x3, #0xb34
+   15e18:	aa1403e0 	mov	x0, x20
+   15e1c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   15e20:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   15e24:	17ffff8c 	b	15c54 <TZ_decrypt@@Base+0x1018>
+   15e28:	35000181 	cbnz	w1, 15e58 <TZ_decrypt@@Base+0x121c>
+   15e2c:	f94017a2 	ldr	x2, [x29, #40]
+   15e30:	f9400261 	ldr	x1, [x19]
+   15e34:	ca010041 	eor	x1, x2, x1
+   15e38:	b5fffde1 	cbnz	x1, 15df4 <TZ_decrypt@@Base+0x11b8>
+   15e3c:	90000002 	adrp	x2, 15000 <TZ_decrypt@@Base+0x3c4>
+   15e40:	910ee042 	add	x2, x2, #0x3b8
+   15e44:	90000001 	adrp	x1, 15000 <TZ_decrypt@@Base+0x3c4>
+   15e48:	911b9021 	add	x1, x1, #0x6e4
+   15e4c:	f9400403 	ldr	x3, [x0, #8]
+   15e50:	f9400c04 	ldr	x4, [x0, #24]
+   15e54:	17fffff1 	b	15e18 <TZ_decrypt@@Base+0x11dc>
+   15e58:	52800280 	mov	w0, #0x14                  	// #20
+   15e5c:	f94017a2 	ldr	x2, [x29, #40]
+   15e60:	f9400261 	ldr	x1, [x19]
+   15e64:	ca010041 	eor	x1, x2, x1
+   15e68:	b5fffc61 	cbnz	x1, 15df4 <TZ_decrypt@@Base+0x11b8>
+   15e6c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   15e70:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   15e74:	d65f03c0 	ret
+   15e78:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   15e7c:	b0000181 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   15e80:	910003fd 	mov	x29, sp
+   15e84:	f942c021 	ldr	x1, [x1, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   15e88:	f9400020 	ldr	x0, [x1]
+   15e8c:	f9000fa0 	str	x0, [x29, #24]
+   15e90:	d2800000 	mov	x0, #0x0                   	// #0
+   15e94:	f9400fa2 	ldr	x2, [x29, #24]
+   15e98:	f9400021 	ldr	x1, [x1]
+   15e9c:	ca010041 	eor	x1, x2, x1
+   15ea0:	b4000081 	cbz	x1, 15eb0 <TZ_decrypt@@Base+0x1274>
+   15ea4:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15ea8:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   15eac:	d63f0000 	blr	x0
+   15eb0:	d0000180 	adrp	x0, 47000 <_fini@@Base+0x19828>
+   15eb4:	91144000 	add	x0, x0, #0x510
+   15eb8:	9100a000 	add	x0, x0, #0x28
+   15ebc:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   15ec0:	d65f03c0 	ret
+   15ec4:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   15ec8:	b0000181 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   15ecc:	910003fd 	mov	x29, sp
+   15ed0:	f942c021 	ldr	x1, [x1, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   15ed4:	f9400020 	ldr	x0, [x1]
+   15ed8:	f9000fa0 	str	x0, [x29, #24]
+   15edc:	d2800000 	mov	x0, #0x0                   	// #0
+   15ee0:	f9400fa2 	ldr	x2, [x29, #24]
+   15ee4:	f9400021 	ldr	x1, [x1]
+   15ee8:	ca010041 	eor	x1, x2, x1
+   15eec:	b4000081 	cbz	x1, 15efc <TZ_decrypt@@Base+0x12c0>
+   15ef0:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15ef4:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   15ef8:	d63f0000 	blr	x0
+   15efc:	d0000180 	adrp	x0, 47000 <_fini@@Base+0x19828>
+   15f00:	91144000 	add	x0, x0, #0x510
+   15f04:	91014000 	add	x0, x0, #0x50
+   15f08:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   15f0c:	d65f03c0 	ret
+
+0000000000015f10 <SE_b64Encode@@Base>:
+   15f10:	a9ba7bfd 	stp	x29, x30, [sp, #-96]!
+   15f14:	910003fd 	mov	x29, sp
+   15f18:	a90153f3 	stp	x19, x20, [sp, #16]
+   15f1c:	b0000194 	adrp	x20, 46000 <_fini@@Base+0x18828>
+   15f20:	f90023f9 	str	x25, [sp, #64]
+   15f24:	aa0003f9 	mov	x25, x0
+   15f28:	f942c280 	ldr	x0, [x20, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   15f2c:	f100033f 	cmp	x25, #0x0
+   15f30:	a9025bf5 	stp	x21, x22, [sp, #32]
+   15f34:	2a0103f6 	mov	w22, w1
+   15f38:	f9400001 	ldr	x1, [x0]
+   15f3c:	f9002fa1 	str	x1, [x29, #88]
+   15f40:	d2800001 	mov	x1, #0x0                   	// #0
+   15f44:	a90363f7 	stp	x23, x24, [sp, #48]
+   15f48:	7a401ac4 	ccmp	w22, #0x0, #0x4, ne	// ne = any
+   15f4c:	54000060 	b.eq	15f58 <SE_b64Encode@@Base+0x48>  // b.none
+   15f50:	aa0203f8 	mov	x24, x2
+   15f54:	b5000282 	cbnz	x2, 15fa4 <SE_b64Encode@@Base+0x94>
+   15f58:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15f5c:	52803be3 	mov	w3, #0x1df                 	// #479
+   15f60:	f00000c2 	adrp	x2, 30000 <_fini@@Base+0x2828>
+   15f64:	910ee042 	add	x2, x2, #0x3b8  ; 'SE_b64Encode'
+   15f68:	f9419800 	ldr	x0, [x0, #816]  ; GOT SE_syslog
+   15f6c:	f00000c1 	adrp	x1, 30000 <_fini@@Base+0x2828>
+   15f70:	91069821 	add	x1, x1, #0x1a6  ; 'sec:Invalid input %s:%d\n'
+   15f74:	f9400004 	ldr	x4, [x0]
+   15f78:	52800060 	mov	w0, #0x3                   	// #3
+   15f7c:	d63f0080 	blr	x4
+   15f80:	52800140 	mov	w0, #0xa                   	// #10
+   15f84:	f942c294 	ldr	x20, [x20, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   15f88:	f9402fa2 	ldr	x2, [x29, #88]
+   15f8c:	f9400281 	ldr	x1, [x20]
+   15f90:	ca010041 	eor	x1, x2, x1
+   15f94:	b40007e1 	cbz	x1, 16090 <SE_b64Encode@@Base+0x180>
+   15f98:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15f9c:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   15fa0:	d63f0000 	blr	x0
+   15fa4:	52800077 	mov	w23, #0x3                   	// #3
+   15fa8:	1ad70ac1 	udiv	w1, w22, w23
+   15fac:	11000433 	add	w19, w1, #0x1
+   15fb0:	0b010422 	add	w2, w1, w1, lsl #1
+   15fb4:	531e7660 	lsl	w0, w19, #2
+   15fb8:	531e7433 	lsl	w19, w1, #2
+   15fbc:	b0000181 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   15fc0:	6b0202df 	cmp	w22, w2
+   15fc4:	1a800273 	csel	w19, w19, w0, eq	// eq = none
+   15fc8:	f9445821 	ldr	x1, [x1, #2224]  ; GOT SE_bufMalloc
+   15fcc:	11000673 	add	w19, w19, #0x1
+   15fd0:	2a1303e0 	mov	w0, w19
+   15fd4:	d63f0020 	blr	x1
+   15fd8:	aa0003f5 	mov	x21, x0
+   15fdc:	b50001a0 	cbnz	x0, 16010 <SE_b64Encode@@Base+0x100>
+   15fe0:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15fe4:	52803ce3 	mov	w3, #0x1e7                 	// #487
+   15fe8:	f00000c2 	adrp	x2, 30000 <_fini@@Base+0x2828>
+   15fec:	910ee042 	add	x2, x2, #0x3b8  ; 'SE_b64Encode'
+   15ff0:	f9419800 	ldr	x0, [x0, #816]  ; GOT SE_syslog
+   15ff4:	f00000c1 	adrp	x1, 30000 <_fini@@Base+0x2828>
+   15ff8:	910f5421 	add	x1, x1, #0x3d5  ; 'sec:No more memory %s:%d\n'
+   15ffc:	f9400004 	ldr	x4, [x0]
+   16000:	2a1703e0 	mov	w0, w23
+   16004:	d63f0080 	blr	x4
+   16008:	52800100 	mov	w0, #0x8                   	// #8
+   1600c:	17ffffde 	b	15f84 <SE_b64Encode@@Base+0x74>
+   16010:	90000183 	adrp	x3, 46000 <_fini@@Base+0x18828>
+   16014:	93407e62 	sxtw	x2, w19
+   16018:	52800001 	mov	w1, #0x0                   	// #0
+   1601c:	f9433c63 	ldr	x3, [x3, #1656]  ; GOT memset@GLIBC_2.17
+   16020:	d63f0060 	blr	x3
+   16024:	90000183 	adrp	x3, 46000 <_fini@@Base+0x18828>
+   16028:	2a1603e2 	mov	w2, w22
+   1602c:	aa1903e1 	mov	x1, x25
+   16030:	aa1503e0 	mov	x0, x21
+   16034:	f946cc63 	ldr	x3, [x3, #3480]  ; GOT EVP_EncodeBlock@OPENSSL_3.0.0
+   16038:	d63f0060 	blr	x3
+   1603c:	6b00027f 	cmp	w19, w0
+   16040:	5400022c 	b.gt	16084 <SE_b64Encode@@Base+0x174>
+   16044:	90000181 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   16048:	aa1503e0 	mov	x0, x21
+   1604c:	f9466821 	ldr	x1, [x1, #3280]  ; GOT SE_bufFree
+   16050:	d63f0020 	blr	x1
+   16054:	90000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   16058:	52803de3 	mov	w3, #0x1ef                 	// #495
+   1605c:	d00000c2 	adrp	x2, 30000 <_fini@@Base+0x2828>
+   16060:	910ee042 	add	x2, x2, #0x3b8  ; 'SE_b64Encode'
+   16064:	f9419800 	ldr	x0, [x0, #816]  ; GOT SE_syslog
+   16068:	d00000c1 	adrp	x1, 30000 <_fini@@Base+0x2828>
+   1606c:	910fbc21 	add	x1, x1, #0x3ef  ; 'sec:memory out of bounds %s:%d\n'
+   16070:	f9400004 	ldr	x4, [x0]
+   16074:	2a1703e0 	mov	w0, w23
+   16078:	d63f0080 	blr	x4
+   1607c:	528002c0 	mov	w0, #0x16                  	// #22
+   16080:	17ffffc1 	b	15f84 <SE_b64Encode@@Base+0x74>
+   16084:	52800000 	mov	w0, #0x0                   	// #0
+   16088:	f9000315 	str	x21, [x24]
+   1608c:	17ffffbe 	b	15f84 <SE_b64Encode@@Base+0x74>
+   16090:	a94153f3 	ldp	x19, x20, [sp, #16]
+   16094:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   16098:	a94363f7 	ldp	x23, x24, [sp, #48]
+   1609c:	f94023f9 	ldr	x25, [sp, #64]
+   160a0:	a8c67bfd 	ldp	x29, x30, [sp], #96
+   160a4:	d65f03c0 	ret

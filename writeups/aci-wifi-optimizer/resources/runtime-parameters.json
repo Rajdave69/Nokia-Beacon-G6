@@ -1,0 +1,29 @@
+{
+  "source": "private-source://ACI-ANALYSIS/read-only-runtime-raw-result.json",
+  "scope": "Read-only four-byte reads at hash/mapping-guarded controller offsets; no writes or process attachment",
+  "values": {
+    "utilization_threshold": {
+      "bytes_hex": "50000000",
+      "value": 80
+    },
+    "interference_threshold_float": {
+      "bytes_hex": "00008c42",
+      "value": 70.0
+    },
+    "sensing_period": {
+      "bytes_hex": "1e000000",
+      "value": 30
+    },
+    "exploration_period": {
+      "bytes_hex": "84030000",
+      "value": 900
+    }
+  },
+  "native_offsets": {
+    "utilization_threshold": "0x85530",
+    "interference_threshold_float": "0x8551c",
+    "sensing_period": "0x8554c",
+    "exploration_period": "0x85540"
+  },
+  "guard": "Exact live ai_controller hash, unique PID and same executable mapping; /proc/PID/mem read only, four words, no ptrace attachment; offsets specific to HJL hash."
+}

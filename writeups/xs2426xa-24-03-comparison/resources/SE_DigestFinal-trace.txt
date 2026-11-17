@@ -1,0 +1,56 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000028cd4 <SE_DigestFinal@@Base>:
+   28cd4:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   28cd8:	d00000e3 	adrp	x3, 46000 <_fini@@Base+0x18828>
+   28cdc:	f100001f 	cmp	x0, #0x0
+   28ce0:	910003fd 	mov	x29, sp
+   28ce4:	f942c065 	ldr	x5, [x3, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   28ce8:	fa401824 	ccmp	x1, #0x0, #0x4, ne	// ne = any
+   28cec:	f94000a6 	ldr	x6, [x5]
+   28cf0:	f90017a6 	str	x6, [x29, #40]
+   28cf4:	d2800006 	mov	x6, #0x0                   	// #0
+   28cf8:	f9000bf3 	str	x19, [sp, #16]
+   28cfc:	aa0303f3 	mov	x19, x3
+   28d00:	540003c0 	b.eq	28d78 <SE_DigestFinal@@Base+0xa4>  // b.none
+   28d04:	b40003a2 	cbz	x2, 28d78 <SE_DigestFinal@@Base+0xa4>
+   28d08:	d00000e3 	adrp	x3, 46000 <_fini@@Base+0x18828>
+   28d0c:	f9439863 	ldr	x3, [x3, #1840]  ; GOT EVP_DigestFinal_ex@OPENSSL_3.0.0
+   28d10:	d63f0060 	blr	x3
+   28d14:	35000360 	cbnz	w0, 28d80 <SE_DigestFinal@@Base+0xac>
+   28d18:	d00000e0 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   28d1c:	f9456800 	ldr	x0, [x0, #2768]  ; GOT SE_logOpenSSLErr
+   28d20:	d63f0000 	blr	x0
+   28d24:	d00000e0 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   28d28:	f0000043 	adrp	x3, 33000 <_fini@@Base+0x5828>
+   28d2c:	913de063 	add	x3, x3, #0xf78  ; 'seDigestNew'
+   28d30:	f9419800 	ldr	x0, [x0, #816]  ; GOT SE_syslog
+   28d34:	52801964 	mov	w4, #0xcb                  	// #203
+   28d38:	91008063 	add	x3, x3, #0x20  ; 'SE_DigestFinal'
+   28d3c:	52800402 	mov	w2, #0x20                  	// #32
+   28d40:	90000061 	adrp	x1, 34000 <_fini@@Base+0x6828>
+   28d44:	91006421 	add	x1, x1, #0x19  ; 'sec:err[%ld] %s:%d\n'
+   28d48:	f9400005 	ldr	x5, [x0]
+   28d4c:	52800060 	mov	w0, #0x3                   	// #3
+   28d50:	d63f00a0 	blr	x5
+   28d54:	52800400 	mov	w0, #0x20                  	// #32
+   28d58:	f942c261 	ldr	x1, [x19, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   28d5c:	f94017a2 	ldr	x2, [x29, #40]
+   28d60:	f9400021 	ldr	x1, [x1]
+   28d64:	ca010041 	eor	x1, x2, x1
+   28d68:	b4000101 	cbz	x1, 28d88 <SE_DigestFinal@@Base+0xb4>
+   28d6c:	d00000e0 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   28d70:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   28d74:	d63f0000 	blr	x0
+   28d78:	52800140 	mov	w0, #0xa                   	// #10
+   28d7c:	17fffff7 	b	28d58 <SE_DigestFinal@@Base+0x84>
+   28d80:	52800000 	mov	w0, #0x0                   	// #0
+   28d84:	17fffff5 	b	28d58 <SE_DigestFinal@@Base+0x84>
+   28d88:	f9400bf3 	ldr	x19, [sp, #16]
+   28d8c:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   28d90:	d65f03c0 	ret

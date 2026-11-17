@@ -1,0 +1,84 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libdbgen.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000001462c <cfgEncryptString@@Base>:
+   1462c:	a9b77bfd 	stp	x29, x30, [sp, #-144]!
+   14630:	910003fd 	mov	x29, sp
+   14634:	a90153f3 	stp	x19, x20, [sp, #16]
+   14638:	f00000b3 	adrp	x19, 2b000 <_fini@@Base+0x16488>
+   1463c:	f90023f9 	str	x25, [sp, #64]
+   14640:	2a0003f9 	mov	w25, w0
+   14644:	f9469660 	ldr	x0, [x19, #3368]  ; GOT __stack_chk_guard@GLIBC_2.17
+   14648:	aa0303f4 	mov	x20, x3
+   1464c:	a90363f7 	stp	x23, x24, [sp, #48]
+   14650:	2a0103f8 	mov	w24, w1
+   14654:	f9400001 	ldr	x1, [x0]
+   14658:	f90047a1 	str	x1, [x29, #136]
+   1465c:	d2800001 	mov	x1, #0x0                   	// #0
+   14660:	910153a0 	add	x0, x29, #0x54
+   14664:	a9025bf5 	stp	x21, x22, [sp, #32]
+   14668:	93407c95 	sxtw	x21, w4
+   1466c:	aa0203f7 	mov	x23, x2
+   14670:	aa1503e2 	mov	x2, x21
+   14674:	a9007c1f 	stp	xzr, xzr, [x0]
+   14678:	910193a0 	add	x0, x29, #0x64
+   1467c:	a9007c1f 	stp	xzr, xzr, [x0]
+   14680:	9101d3a0 	add	x0, x29, #0x74
+   14684:	a9007c1f 	stp	xzr, xzr, [x0]
+   14688:	aa0303e0 	mov	x0, x3
+   1468c:	f00000a3 	adrp	x3, 2b000 <_fini@@Base+0x16488>
+   14690:	b90087bf 	str	wzr, [x29, #132]
+   14694:	f9461863 	ldr	x3, [x3, #3120]  ; GOT memset@GLIBC_2.17
+   14698:	d63f0060 	blr	x3
+   1469c:	b90053b9 	str	w25, [x29, #80]
+   146a0:	f00000a1 	adrp	x1, 2b000 <_fini@@Base+0x16488>
+   146a4:	aa1703e0 	mov	x0, x23
+   146a8:	f9002fb7 	str	x23, [x29, #88]
+   146ac:	f9454021 	ldr	x1, [x1, #2688]  ; GOT strlen@GLIBC_2.17
+   146b0:	f90037b4 	str	x20, [x29, #104]
+   146b4:	d63f0020 	blr	x1
+   146b8:	b90057b8 	str	w24, [x29, #84]
+   146bc:	f00000a1 	adrp	x1, 2b000 <_fini@@Base+0x16488>
+   146c0:	b90063a0 	str	w0, [x29, #96]
+   146c4:	b90073b5 	str	w21, [x29, #112]
+   146c8:	910143a0 	add	x0, x29, #0x50
+   146cc:	f9462421 	ldr	x1, [x1, #3144]  ; GOT CS_crypt
+   146d0:	d63f0020 	blr	x1
+   146d4:	34000300 	cbz	w0, 14734 <cfgEncryptString@@Base+0x108>
+   146d8:	f00000a8 	adrp	x8, 2b000 <_fini@@Base+0x16488>
+   146dc:	f9402fa7 	ldr	x7, [x29, #88]
+   146e0:	d0000021 	adrp	x1, 1a000 <_fini@@Base+0x5488>
+   146e4:	9103c021 	add	x1, x1, #0xf0  ; 'gen_voicecheckpwd'
+   146e8:	f947d908 	ldr	x8, [x8, #4016]  ; GOT log_log
+   146ec:	2a0003e6 	mov	w6, w0
+   146f0:	5280f165 	mov	w5, #0x78b                 	// #1931
+   146f4:	91046024 	add	x4, x1, #0x118  ; 'cfgEncryptString'
+   146f8:	52800060 	mov	w0, #0x3                   	// #3
+   146fc:	d0000023 	adrp	x3, 1a000 <_fini@@Base+0x5488>
+   14700:	910dfc63 	add	x3, x3, #0x37f  ; '%s:%d errcode %d instr %s\r\n'
+   14704:	2a0503e2 	mov	w2, w5
+   14708:	9104c021 	add	x1, x1, #0x130  ; 'cfgEncryptString'
+   1470c:	d63f0100 	blr	x8
+   14710:	52846540 	mov	w0, #0x232a                	// #9002
+   14714:	f9469673 	ldr	x19, [x19, #3368]  ; GOT __stack_chk_guard@GLIBC_2.17
+   14718:	f94047a2 	ldr	x2, [x29, #136]
+   1471c:	f9400261 	ldr	x1, [x19]
+   14720:	ca010041 	eor	x1, x2, x1
+   14724:	b4000101 	cbz	x1, 14744 <cfgEncryptString@@Base+0x118>
+   14728:	f00000a0 	adrp	x0, 2b000 <_fini@@Base+0x16488>
+   1472c:	f9467800 	ldr	x0, [x0, #3312]  ; GOT __stack_chk_fail@GLIBC_2.17
+   14730:	d63f0000 	blr	x0
+   14734:	8b150283 	add	x3, x20, x21
+   14738:	52800000 	mov	w0, #0x0                   	// #0
+   1473c:	381ff07f 	sturb	wzr, [x3, #-1]
+   14740:	17fffff5 	b	14714 <cfgEncryptString@@Base+0xe8>
+   14744:	a94153f3 	ldp	x19, x20, [sp, #16]
+   14748:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   1474c:	a94363f7 	ldp	x23, x24, [sp, #48]
+   14750:	f94023f9 	ldr	x25, [sp, #64]
+   14754:	a8c97bfd 	ldp	x29, x30, [sp], #144
+   14758:	d65f03c0 	ret

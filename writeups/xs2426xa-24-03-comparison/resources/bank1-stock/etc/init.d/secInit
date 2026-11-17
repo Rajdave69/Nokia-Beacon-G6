@@ -1,0 +1,73 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2021 NSB
+USE_PROCD=1
+#After optee(30) initing
+START=31
+STOP=90
+
+
+BINLOADER_BIN="/sbin/sec_monitor"
+
+
+SE_LOG_FILE=/logs/selog2
+SEC_EXTFS_HASH_FILE=/tmp/.secHashStr
+getSrc4()
+{
+    ri_tool_name=/usr/sbin/ritool
+    src4=$(${ri_tool_name} get LabelCode)
+    if [ $? != 0 ];then
+        src4="execute_failed"
+    else
+        src4=${src4#*:}
+    fi
+    if [ "${src4}x" = " 00000000x" -o "${src4}x" = "execute_failedx" ];then
+        src4="invalid_key_src4_str"
+    fi
+    echo "src4:"${src4} >>${SE_LOG_FILE} 2>&1
+    echo ${src4}
+}
+
+sec_db_init()
+{
+    ri_tool_name=/usr/sbin/ritool
+    sec_db_tool=/sbin/sec_cli
+    SEC_EXTFS_TOOL=sec_extfs
+    src1=$(${ri_tool_name} get G984Serial)
+    src2=$(${ri_tool_name} get ProgDate)
+    src3=$(${ri_tool_name} get Mnemonic)
+    src4=$(getSrc4)
+    ${SEC_EXTFS_TOOL} -t all -o ${SEC_EXTFS_HASH_FILE}
+
+    echo "src1:"${src1} >>${SE_LOG_FILE} 2>&1
+    echo "src2:"${src2} >>${SE_LOG_FILE} 2>&1
+    echo "src3:"${src3} >>${SE_LOG_FILE} 2>&1
+    
+    ${sec_db_tool} sedb -1 "${src1#*:}" -2 "${src2#*:}" -3 "${src3#*:}" -4 "${src4}" -e "${SEC_EXTFS_HASH_FILE}" >>${SE_LOG_FILE} 2>&1
+    ${SEC_EXTFS_TOOL} -t mft -i boot
+    echo "init securitydb success" >>${SE_LOG_FILE} 2>&1
+}
+
+boot()
+{
+    BOOT=1
+    sec_db_init
+    start "$@"
+}
+
+start_service()
+{
+    procd_open_instance
+    procd_set_param respawn
+    procd_set_param command $BINLOADER_BIN -c /usr/etc/se.conf
+    procd_close_instance
+}
+stop_service()
+{
+    rm -f /tmp/run_se_mn.pid
+}
+
+restart()
+{
+    stop
+    start
+}

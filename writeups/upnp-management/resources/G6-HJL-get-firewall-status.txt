@@ -1,0 +1,53 @@
+00018120: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+00018124: 410000b0  adrp x1, #0x21000
+00018128: 21600791  add x1, x1, #0x1d8
+0001812c: fd030091  mov x29, sp
+00018130: f35301a9  stp x19, x20, [sp, #0x10]
+00018134: d30000d0  adrp x19, #0x32000
+00018138: d40000d0  adrp x20, #0x32000
+0001813c: 62d644f9  ldr x2, [x19, #0x9a8]
+00018140: 943645f9  ldr x20, [x20, #0xa68]
+00018144: 430040f9  ldr x3, [x2]
+00018148: a31f00f9  str x3, [x29, #0x38]
+0001814c: 030080d2  mov x3, #0
+00018150: f51300f9  str x21, [sp, #0x20]
+00018154: f50300aa  mov x21, x0
+00018158: 20008052  mov w0, #1
+0001815c: 80023fd6  blr x20 ; heuristic 0xf5d0 {"x0": 1, "x1": "\nGet Firewall status\n", "x2": "@__stack_chk_guard", "x3": 0}
+00018160: c10000d0  adrp x1, #0x32000
+00018164: a0e241f9  ldr x0, [x21, #0x3c0]
+00018168: 21a447f9  ldr x1, [x1, #0xf48]
+0001816c: 20003fd6  blr x1 ; heuristic 0xff60 {"x1": 65376}
+00018170: 40020034  cbz w0, #0x181b8
+00018174: 20008052  mov w0, #1
+00018178: 410000b0  adrp x1, #0x21000
+0001817c: 21400991  add x1, x1, #0x250
+00018180: 80023fd6  blr x20 ; heuristic 0xf5d0 {"x0": 1, "x1": "GetFirewallStatus invalid number of parameters"}
+00018184: e10315aa  mov x1, x21
+00018188: 40328052  mov w0, #0x192
+0001818c: ddfeff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+00018190: 73d644f9  ldr x19, [x19, #0x9a8]
+00018194: a00240b9  ldr w0, [x21]
+00018198: a21f40f9  ldr x2, [x29, #0x38]
+0001819c: 610240f9  ldr x1, [x19]
+000181a0: 410001ca  eor x1, x2, x1
+000181a4: 010200b5  cbnz x1, #0x181e4
+000181a8: f35341a9  ldp x19, x20, [sp, #0x10]
+000181ac: f51340f9  ldr x21, [sp, #0x20]
+000181b0: fd7bc4a8  ldp x29, x30, [sp], #0x40
+000181b4: c0035fd6  ret 
+000181b8: c30000d0  adrp x3, #0x32000
+000181bc: c40000d0  adrp x4, #0x32000
+000181c0: 410000b0  adrp x1, #0x21000
+000181c4: e00315aa  mov x0, x21
+000181c8: 631046f9  ldr x3, [x3, #0xc20]
+000181cc: 21c00791  add x1, x1, #0x1f0
+000181d0: 84e045f9  ldr x4, [x4, #0xbc0]
+000181d4: 62e444b9  ldr w2, [x3, #0x4e4]
+000181d8: 63e844b9  ldr w3, [x3, #0x4e8]
+000181dc: 80003fd6  blr x4 ; heuristic 0xfdb0 {"x1": "<FirewallEnabled>%i</FirewallEnabled>\n<InboundPinholeAllowed>%i</InboundPinholeAllowed>\n", "x4": 64944}
+000181e0: ecffff17  b #0x18190
+000181e4: c00000d0  adrp x0, #0x32000
+000181e8: 00a844f9  ldr x0, [x0, #0x950]
+000181ec: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+

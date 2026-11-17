@@ -1,0 +1,165 @@
+00415f00: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00415f04: c0035fd6  ret 
+00415f08: c0035fd6  ret 
+00415f0c: ff4312d1  sub sp, sp, #0x490
+00415f10: fd7b00a9  stp x29, x30, [sp]
+00415f14: fd030091  mov x29, sp
+00415f18: a0c30091  add x0, x29, #0x30
+00415f1c: f35301a9  stp x19, x20, [sp, #0x10]
+00415f20: f55b02a9  stp x21, x22, [sp, #0x20]
+00415f24: f50301aa  mov x21, x1
+00415f28: d2bbff97  bl #0x404e70 ; heuristic sigemptyset@plt {}
+00415f2c: 21028052  mov w1, #0x11
+00415f30: a0c30091  add x0, x29, #0x30
+00415f34: e3bdff97  bl #0x4056c0 ; heuristic sigaddset@plt {"x1": 17}
+00415f38: a2c30291  add x2, x29, #0xb0
+00415f3c: a1c30091  add x1, x29, #0x30
+00415f40: 00008052  mov w0, #0
+00415f44: f3baff97  bl #0x404b10 ; heuristic sigprocmask@plt {"x0": 0}
+00415f48: 200080d2  mov x0, #1
+00415f4c: a09b00f9  str x0, [x29, #0x130]
+00415f50: bfbb01b9  str wzr, [x29, #0x1b8]
+00415f54: a0e30491  add x0, x29, #0x138
+00415f58: c6bbff97  bl #0x404e70 ; heuristic sigemptyset@plt {}
+00415f5c: a2830991  add x2, x29, #0x260
+00415f60: a1c30491  add x1, x29, #0x130
+00415f64: 40008052  mov w0, #2
+00415f68: 5abcff97  bl #0x4050d0 ; heuristic sigaction@plt {"x0": 2}
+00415f6c: a2230791  add x2, x29, #0x1c8
+00415f70: a1c30491  add x1, x29, #0x130
+00415f74: 60008052  mov w0, #3
+00415f78: 56bcff97  bl #0x4050d0 ; heuristic sigaction@plt {"x0": 3}
+00415f7c: 49bbff97  bl #0x404ca0 ; heuristic fork@plt {}
+00415f80: f303002a  mov w19, w0
+00415f84: 1f040031  cmn w0, #1
+00415f88: a0060054  b.eq #0x41605c
+00415f8c: 400b0035  cbnz w0, #0x4160f4
+00415f90: a0030c91  add x0, x29, #0x300
+00415f94: bf7f01f9  str xzr, [x29, #0x2f8]
+00415f98: bf8303b9  str wzr, [x29, #0x380]
+00415f9c: b5bbff97  bl #0x404e70 ; heuristic sigemptyset@plt {}
+00415fa0: a03341f9  ldr x0, [x29, #0x260]
+00415fa4: 1f0400f1  cmp x0, #1
+00415fa8: a0000054  b.eq #0x415fbc
+00415fac: 020080d2  mov x2, #0
+00415fb0: a1e30b91  add x1, x29, #0x2f8
+00415fb4: 40008052  mov w0, #2
+00415fb8: 46bcff97  bl #0x4050d0 ; heuristic sigaction@plt {"x0": 2, "x2": 0}
+00415fbc: a0e740f9  ldr x0, [x29, #0x1c8]
+00415fc0: 1f0400f1  cmp x0, #1
+00415fc4: a0000054  b.eq #0x415fd8
+00415fc8: 020080d2  mov x2, #0
+00415fcc: a1e30b91  add x1, x29, #0x2f8
+00415fd0: 60008052  mov w0, #3
+00415fd4: 3fbcff97  bl #0x4050d0 ; heuristic sigaction@plt {"x0": 3, "x2": 0}
+00415fd8: a1c30291  add x1, x29, #0xb0
+00415fdc: 020080d2  mov x2, #0
+00415fe0: 40008052  mov w0, #2
+00415fe4: cbbaff97  bl #0x404b10 ; heuristic sigprocmask@plt {"x0": 2, "x2": 0}
+00415fe8: f6baff97  bl #0x404bc0 ; heuristic getuid@plt {}
+00415fec: 40010035  cbnz w0, #0x416014
+00415ff0: 730100f0  adrp x19, #0x444000
+00415ff4: 73f22d91  add x19, x19, #0xb7c
+00415ff8: e00313aa  mov x0, x19
+00415ffc: c9bbff97  bl #0x404f20 ; heuristic getpwnam@plt {"x0": "appService"}
+00416000: c00500b5  cbnz x0, #0x4160b8
+00416004: 00008052  mov w0, #0
+00416008: 8abaff97  bl #0x404a30 ; heuristic setuid@plt {"x0": 0}
+0041600c: 00008052  mov w0, #0
+00416010: 54bcff97  bl #0x405160 ; heuristic setgid@plt {"x0": 0}
+00416014: 022080d2  mov x2, #0x100
+00416018: 01008052  mov w1, #0
+0041601c: a0430e91  add x0, x29, #0x390
+00416020: b0bbff97  bl #0x404ee0 ; heuristic memset@plt {"x1": 0, "x2": 256}
+00416024: 930200d0  adrp x19, #0x468000
+00416028: 639e40f9  ldr x3, [x19, #0x138]
+0041602c: 620100d0  adrp x2, #0x444000
+00416030: 421c2e91  add x2, x2, #0xb87
+00416034: 012080d2  mov x1, #0x100
+00416038: a0430e91  add x0, x29, #0x390
+0041603c: 21bbff97  bl #0x404cc0 ; heuristic snprintf@plt {"x1": 256, "x2": "chmod o+rx %s", "x3": "/sbin/ndk_upnpd"}
+00416040: a0430e91  add x0, x29, #0x390
+00416044: 0bbcff97  bl #0x405070 ; heuristic system@plt {}
+00416048: 609e40f9  ldr x0, [x19, #0x138]
+0041604c: e10315aa  mov x1, x21
+00416050: e4bbff97  bl #0x404fe0 ; heuristic execv@plt {"x0": "/sbin/ndk_upnpd"}
+00416054: e00f8052  mov w0, #0x7f
+00416058: 6ebaff97  bl #0x404a10 ; heuristic _exit@plt {"x0": 127}
+0041605c: a09303b9  str w0, [x29, #0x390]
+00416060: b4bdff97  bl #0x405730 ; heuristic __errno_location@plt {}
+00416064: f30300aa  mov x19, x0
+00416068: a1c30291  add x1, x29, #0xb0
+0041606c: 020080d2  mov x2, #0
+00416070: 40008052  mov w0, #2
+00416074: 740240b9  ldr w20, [x19]
+00416078: a6baff97  bl #0x404b10 ; heuristic sigprocmask@plt {"x0": 2, "x2": 0}
+0041607c: a1830991  add x1, x29, #0x260
+00416080: 020080d2  mov x2, #0
+00416084: 40008052  mov w0, #2
+00416088: 12bcff97  bl #0x4050d0 ; heuristic sigaction@plt {"x0": 2, "x2": 0}
+0041608c: a1230791  add x1, x29, #0x1c8
+00416090: 020080d2  mov x2, #0
+00416094: 60008052  mov w0, #3
+00416098: 0ebcff97  bl #0x4050d0 ; heuristic sigaction@plt {"x0": 3, "x2": 0}
+0041609c: a09343b9  ldr w0, [x29, #0x390]
+004160a0: fd7b40a9  ldp x29, x30, [sp]
+004160a4: f55b42a9  ldp x21, x22, [sp, #0x20]
+004160a8: 740200b9  str w20, [x19]
+004160ac: f35341a9  ldp x19, x20, [sp, #0x10]
+004160b0: ff431291  add sp, sp, #0x490
+004160b4: c0035fd6  ret 
+004160b8: 16504229  ldp w22, w20, [x0, #0x10]
+004160bc: 010080d2  mov x1, #0
+004160c0: 000080d2  mov x0, #0
+004160c4: 03bdff97  bl #0x4054d0 ; heuristic setgroups@plt {"x0": 0, "x1": 0}
+004160c8: e0f9ff37  tbnz w0, #0x1f, #0x416004
+004160cc: e003142a  mov w0, w20
+004160d0: 24bcff97  bl #0x405160 ; heuristic setgid@plt {}
+004160d4: 80f9ff37  tbnz w0, #0x1f, #0x416004
+004160d8: e103142a  mov w1, w20
+004160dc: e00313aa  mov x0, x19
+004160e0: 3cbaff97  bl #0x4049d0 ; heuristic initgroups@plt {}
+004160e4: e003162a  mov w0, w22
+004160e8: 52baff97  bl #0x404a30 ; heuristic setuid@plt {}
+004160ec: 40f9ff36  tbz w0, #0x1f, #0x416014
+004160f0: c5ffff17  b #0x416004
+004160f4: a1430e91  add x1, x29, #0x390
+004160f8: 02008052  mov w2, #0
+004160fc: e003132a  mov w0, w19
+00416100: b0bdff97  bl #0x4057c0 ; heuristic waitpid@plt {"x2": 0}
+00416104: f403002a  mov w20, w0
+00416108: 8abdff97  bl #0x405730 ; heuristic __errno_location@plt {}
+0041610c: 9f060031  cmn w20, #1
+00416110: 81faff54  b.ne #0x416060
+00416114: 000040b9  ldr w0, [x0]
+00416118: 1f100071  cmp w0, #4
+0041611c: c0feff54  b.eq #0x4160f4
+00416120: b49303b9  str w20, [x29, #0x390]
+00416124: cfffff17  b #0x416060
+00416128: 01004039  ldrb w1, [x0]
+0041612c: 61030034  cbz w1, #0x416198
+00416130: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00416134: fd030091  mov x29, sp
+00416138: f35301a9  stp x19, x20, [sp, #0x10]
+0041613c: b3020090  adrp x19, #0x46a000
+00416140: 73222891  add x19, x19, #0xa08
+00416144: 61064039  ldrb w1, [x19, #1]
+00416148: 21020034  cbz w1, #0x41618c
+0041614c: 73060091  add x19, x19, #1
+00416150: f40300aa  mov x20, x0
+00416154: e10313aa  mov x1, x19
+00416158: 22bcff97  bl #0x4051e0 ; heuristic strcmp@plt {"x1": 4631049}
+0041615c: 80010034  cbz w0, #0x41618c
+00416160: e40313aa  mov x4, x19
+00416164: e30314aa  mov x3, x20
+00416168: f35341a9  ldp x19, x20, [sp, #0x10]
+0041616c: 620100d0  adrp x2, #0x444000
+00416170: 42602c91  add x2, x2, #0xb18
+00416174: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00416178: 610100d0  adrp x1, #0x444000
+0041617c: 21542e91  add x1, x1, #0xb95
+00416180: 600100d0  adrp x0, #0x444000
+00416184: 00c82d91  add x0, x0, #0xb72
+00416188: 449e0014  b #0x43da98
+0041618c: f35341a9  ldp x19, x20, [sp, #0x10]
+

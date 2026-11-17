@@ -1,0 +1,172 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libdmdb.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000a554 <dm_db_open_memory@@Base>:
+    a554:	a9b77bfd 	stp	x29, x30, [sp, #-144]!
+    a558:	910003fd 	mov	x29, sp
+    a55c:	a90153f3 	stp	x19, x20, [sp, #16]
+    a560:	d0000114 	adrp	x20, 2c000 <_fini@@Base+0x12d68>
+    a564:	a9025bf5 	stp	x21, x22, [sp, #32]
+    a568:	aa0003f6 	mov	x22, x0
+    a56c:	f945f280 	ldr	x0, [x20, #3040]  ; GOT __stack_chk_guard@GLIBC_2.17
+    a570:	a90363f7 	stp	x23, x24, [sp, #48]
+    a574:	2a0103f7 	mov	w23, w1
+    a578:	f9400001 	ldr	x1, [x0]
+    a57c:	f90047a1 	str	x1, [x29, #136]
+    a580:	d2800001 	mov	x1, #0x0                   	// #0
+    a584:	a9046bf9 	stp	x25, x26, [sp, #64]
+    a588:	a90573fb 	stp	x27, x28, [sp, #80]
+    a58c:	710002ff 	cmp	w23, #0x0
+    a590:	fa401ac4 	ccmp	x22, #0x0, #0x4, ne	// ne = any
+    a594:	54000fa0 	b.eq	a788 <dm_db_open_memory@@Base+0x234>  // b.none
+    a598:	d0000115 	adrp	x21, 2c000 <_fini@@Base+0x12d68>
+    a59c:	aa0203f8 	mov	x24, x2
+    a5a0:	d2800900 	mov	x0, #0x48                  	// #72
+    a5a4:	f94706b5 	ldr	x21, [x21, #3592]  ; GOT malloc@GLIBC_2.17
+    a5a8:	d63f02a0 	blr	x21
+    a5ac:	aa0003f3 	mov	x19, x0
+    a5b0:	b5000180 	cbnz	x0, a5e0 <dm_db_open_memory@@Base+0x8c>
+    a5b4:	d0000104 	adrp	x4, 2c000 <_fini@@Base+0x12d68>
+    a5b8:	f0000063 	adrp	x3, 19000 <dm_value_shallow_copy@@Base+0x134>
+    a5bc:	910e8063 	add	x3, x3, #0x3a0  ; 'dm_node_new'
+    a5c0:	f9468884 	ldr	x4, [x4, #3344]  ; GOT __assert_fail@GLIBC_2.17
+    a5c4:	f0000061 	adrp	x1, 19000 <dm_value_shallow_copy@@Base+0x134>
+    a5c8:	91399021 	add	x1, x1, #0xe64  ; 'dm-node.c'
+    a5cc:	90000080 	adrp	x0, 1a000 <_fini@@Base+0xd68>
+    a5d0:	91261000 	add	x0, x0, #0x984  ; 'db != NULL'
+    a5d4:	910d8063 	add	x3, x3, #0x360  ; 'dm_db_open_memory'
+    a5d8:	52804062 	mov	w2, #0x203                 	// #515
+    a5dc:	d63f0080 	blr	x4
+    a5e0:	d0000102 	adrp	x2, 2c000 <_fini@@Base+0x12d68>
+    a5e4:	a9007c1f 	stp	xzr, xzr, [x0]
+    a5e8:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+    a5ec:	2a1703e1 	mov	w1, w23
+    a5f0:	f946e842 	ldr	x2, [x2, #3536]  ; GOT dm_schema_new
+    a5f4:	a9027c1f 	stp	xzr, xzr, [x0, #32]
+    a5f8:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+    a5fc:	aa1603e0 	mov	x0, x22
+    a600:	f900227f 	str	xzr, [x19, #64]
+    a604:	d63f0040 	blr	x2
+    a608:	f9000260 	str	x0, [x19]
+    a60c:	aa0003f9 	mov	x25, x0
+    a610:	b4000b40 	cbz	x0, a778 <dm_db_open_memory@@Base+0x224>
+    a614:	d2808000 	mov	x0, #0x400                 	// #1024
+    a618:	d63f02a0 	blr	x21
+    a61c:	d0000103 	adrp	x3, 2c000 <_fini@@Base+0x12d68>
+    a620:	f9001260 	str	x0, [x19, #32]
+    a624:	d2808002 	mov	x2, #0x400                 	// #1024
+    a628:	52800001 	mov	w1, #0x0                   	// #0
+    a62c:	f947fc63 	ldr	x3, [x3, #4088]  ; GOT memset@GLIBC_2.17
+    a630:	d63f0060 	blr	x3
+    a634:	b9400b39 	ldr	w25, [x25, #8]
+    a638:	52800020 	mov	w0, #0x1                   	// #1
+    a63c:	b9002a60 	str	w0, [x19, #40]
+    a640:	f9001a7f 	str	xzr, [x19, #48]
+    a644:	35000479 	cbnz	w25, a6d0 <dm_db_open_memory@@Base+0x17c>
+    a648:	f9400260 	ldr	x0, [x19]
+    a64c:	d0000103 	adrp	x3, 2c000 <_fini@@Base+0x12d68>
+    a650:	9101c3b5 	add	x21, x29, #0x70
+    a654:	f9464c63 	ldr	x3, [x3, #3224]  ; GOT input_init
+    a658:	b9403801 	ldr	w1, [x0, #56]
+    a65c:	aa1503e0 	mov	x0, x21
+    a660:	4b0102e2 	sub	w2, w23, w1
+    a664:	8b2142c1 	add	x1, x22, w1, uxtw
+    a668:	d63f0060 	blr	x3
+    a66c:	d0000102 	adrp	x2, 2c000 <_fini@@Base+0x12d68>
+    a670:	910243a1 	add	x1, x29, #0x90
+    a674:	aa1503e0 	mov	x0, x21
+    a678:	f947e442 	ldr	x2, [x2, #4040]  ; GOT input_read_uint32
+    a67c:	b81dcc3f 	str	wzr, [x1, #-36]!
+    a680:	d63f0040 	blr	x2
+    a684:	b9406fa2 	ldr	w2, [x29, #108]
+    a688:	529579a0 	mov	w0, #0xabcd                	// #43981
+    a68c:	72a24680 	movk	w0, #0x1234, lsl #16
+    a690:	5ac00841 	rev	w1, w2
+    a694:	6b00005f 	cmp	w2, w0
+    a698:	54000501 	b.ne	a738 <dm_db_open_memory@@Base+0x1e4>  // b.any
+    a69c:	d2800002 	mov	x2, #0x0                   	// #0
+    a6a0:	aa1303e1 	mov	x1, x19
+    a6a4:	aa1503e0 	mov	x0, x21
+    a6a8:	97ffed0a 	bl	5ad0 <__gmon_start__@plt+0x1140>
+    a6ac:	f9000a60 	str	x0, [x19, #16]
+    a6b0:	b5000700 	cbnz	x0, a790 <dm_db_open_memory@@Base+0x23c>
+    a6b4:	f0000062 	adrp	x2, 19000 <dm_value_shallow_copy@@Base+0x134>
+    a6b8:	910e8042 	add	x2, x2, #0x3a0  ; 'dm_node_new'
+    a6bc:	90000083 	adrp	x3, 1a000 <_fini@@Base+0xd68>
+    a6c0:	91110c63 	add	x3, x3, #0x443  ; 'invalid database\n'
+    a6c4:	910de042 	add	x2, x2, #0x378  ; 'dm_db_load'
+    a6c8:	52803921 	mov	w1, #0x1c9                 	// #457
+    a6cc:	14000027 	b	a768 <dm_db_open_memory@@Base+0x214>
+    a6d0:	d0000102 	adrp	x2, 2c000 <_fini@@Base+0x12d68>
+    a6d4:	d000011b 	adrp	x27, 2c000 <_fini@@Base+0x12d68>
+    a6d8:	d2800701 	mov	x1, #0x38                  	// #56
+    a6dc:	2a1903e0 	mov	w0, w25
+    a6e0:	f9475842 	ldr	x2, [x2, #3760]  ; GOT calloc@GLIBC_2.17
+    a6e4:	90fffffa 	adrp	x26, 6000 <__gmon_start__@plt+0x1670>
+    a6e8:	911aa35a 	add	x26, x26, #0x6a8
+    a6ec:	d2800015 	mov	x21, #0x0                   	// #0
+    a6f0:	d280071c 	mov	x28, #0x38                  	// #56
+    a6f4:	d63f0040 	blr	x2
+    a6f8:	f947977b 	ldr	x27, [x27, #3880]  ; GOT avl_init
+    a6fc:	f9000e60 	str	x0, [x19, #24]
+    a700:	6b15033f 	cmp	w25, w21
+    a704:	54fffa29 	b.ls	a648 <dm_db_open_memory@@Base+0xf4>  // b.plast
+    a708:	9b1c7ea1 	mul	x1, x21, x28
+    a70c:	f9400e62 	ldr	x2, [x19, #24]
+    a710:	12800003 	mov	w3, #0xffffffff            	// #-1
+    a714:	910006b5 	add	x21, x21, #0x1
+    a718:	8b010040 	add	x0, x2, x1
+    a71c:	91002000 	add	x0, x0, #0x8
+    a720:	b8216843 	str	w3, [x2, x1]
+    a724:	d2800003 	mov	x3, #0x0                   	// #0
+    a728:	52800002 	mov	w2, #0x0                   	// #0
+    a72c:	aa1a03e1 	mov	x1, x26
+    a730:	d63f0360 	blr	x27
+    a734:	17fffff3 	b	a700 <dm_db_open_memory@@Base+0x1ac>
+    a738:	b9006fa1 	str	w1, [x29, #108]
+    a73c:	6b00003f 	cmp	w1, w0
+    a740:	54000081 	b.ne	a750 <dm_db_open_memory@@Base+0x1fc>  // b.any
+    a744:	52800020 	mov	w0, #0x1                   	// #1
+    a748:	390203a0 	strb	w0, [x29, #128]
+    a74c:	17ffffd4 	b	a69c <dm_db_open_memory@@Base+0x148>
+    a750:	f0000062 	adrp	x2, 19000 <dm_value_shallow_copy@@Base+0x134>
+    a754:	910e8042 	add	x2, x2, #0x3a0  ; 'dm_node_new'
+    a758:	90000083 	adrp	x3, 1a000 <_fini@@Base+0xd68>
+    a75c:	9110a863 	add	x3, x3, #0x42a  ; 'invalid database foramt\n'
+    a760:	910de042 	add	x2, x2, #0x378  ; 'dm_db_load'
+    a764:	52803841 	mov	w1, #0x1c2                 	// #450
+    a768:	d0000104 	adrp	x4, 2c000 <_fini@@Base+0x12d68>
+    a76c:	52800040 	mov	w0, #0x2                   	// #2
+    a770:	f9462884 	ldr	x4, [x4, #3152]  ; GOT dmdb_log_real
+    a774:	d63f0080 	blr	x4
+    a778:	d0000101 	adrp	x1, 2c000 <_fini@@Base+0x12d68>
+    a77c:	aa1303e0 	mov	x0, x19
+    a780:	f946d021 	ldr	x1, [x1, #3488]  ; GOT dm_db_close
+    a784:	d63f0020 	blr	x1
+    a788:	d2800013 	mov	x19, #0x0                   	// #0
+    a78c:	14000006 	b	a7a4 <dm_db_open_memory@@Base+0x250>
+    a790:	aa0003e1 	mov	x1, x0
+    a794:	aa1303e0 	mov	x0, x19
+    a798:	97ffff17 	bl	a3f4 <dm_node_get_path@@Base+0x5e4>
+    a79c:	b2407fe0 	mov	x0, #0xffffffff            	// #4294967295
+    a7a0:	a9038278 	stp	x24, x0, [x19, #56]
+    a7a4:	f945f294 	ldr	x20, [x20, #3040]  ; GOT __stack_chk_guard@GLIBC_2.17
+    a7a8:	aa1303e0 	mov	x0, x19
+    a7ac:	f94047a2 	ldr	x2, [x29, #136]
+    a7b0:	f9400281 	ldr	x1, [x20]
+    a7b4:	ca010041 	eor	x1, x2, x1
+    a7b8:	b4000081 	cbz	x1, a7c8 <dm_db_open_memory@@Base+0x274>
+    a7bc:	d0000100 	adrp	x0, 2c000 <_fini@@Base+0x12d68>
+    a7c0:	f946c800 	ldr	x0, [x0, #3472]  ; GOT __stack_chk_fail@GLIBC_2.17
+    a7c4:	d63f0000 	blr	x0
+    a7c8:	a94153f3 	ldp	x19, x20, [sp, #16]
+    a7cc:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    a7d0:	a94363f7 	ldp	x23, x24, [sp, #48]
+    a7d4:	a9446bf9 	ldp	x25, x26, [sp, #64]
+    a7d8:	a94573fb 	ldp	x27, x28, [sp, #80]
+    a7dc:	a8c97bfd 	ldp	x29, x30, [sp], #144
+    a7e0:	d65f03c0 	ret

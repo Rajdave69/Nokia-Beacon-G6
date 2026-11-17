@@ -1,0 +1,79 @@
+{
+  "scope": "Linux host shell; fake daemon/listener/firewall/launcher; no sockets, router contact or router writes",
+  "production_poll_seconds": 5,
+  "test_poll_seconds": 1,
+  "checks": [
+    {
+      "name": "concurrent launch establishes managed listener",
+      "passed": true
+    },
+    {
+      "name": "exactly one detached watchdog",
+      "passed": true
+    },
+    {
+      "name": "TERM-killed daemon is replaced",
+      "passed": true
+    },
+    {
+      "name": "removed firewall rule is restored",
+      "passed": true
+    },
+    {
+      "name": "KILL-killed daemon is replaced",
+      "passed": true
+    },
+    {
+      "name": "unrelated stale PID does not block recovery",
+      "passed": true
+    },
+    {
+      "name": "unrelated stale-PID process is not killed",
+      "passed": true
+    },
+    {
+      "name": "managed process without listener is restarted",
+      "passed": true
+    },
+    {
+      "name": "stop removes supervisor daemon and firewall",
+      "passed": true
+    },
+    {
+      "name": "stale supervisor PID and lock recover",
+      "passed": true
+    },
+    {
+      "name": "stale supervisor PID owner survives",
+      "passed": true
+    },
+    {
+      "name": "occupied port does not start duplicate daemon",
+      "passed": true
+    },
+    {
+      "name": "launch failure is reported as not listening",
+      "passed": true
+    },
+    {
+      "name": "failed daemon launch is retried successfully",
+      "passed": true
+    },
+    {
+      "name": "explicit stop remains stopped",
+      "passed": true
+    }
+  ],
+  "date": "2026-11-05",
+  "script_sha256": "a2e0da2845f8737331d87cbae48421b3b758aa9129ce89a4b8473c5f473f8874",
+  "root_identity_and_credentials": "id -u intercepted as0; launcher mocked. No live credential-selection test.",
+  "native_syntax_check": {
+    "runtime": "Captured ONT BusyBox1.34.1 under qemu-aarch64",
+    "mode": "sh -n, no hook execution",
+    "exit_status": 0
+  },
+  "native_empty_pid_source_check": {
+    "mode": "start-stop-daemon -S -p /dev/null -x /bin/true; harmless local command",
+    "exit_status": 0
+  }
+}

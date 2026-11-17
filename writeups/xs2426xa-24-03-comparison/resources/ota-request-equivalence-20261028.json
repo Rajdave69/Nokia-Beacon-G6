@@ -1,0 +1,417 @@
+{
+  "date": "2026-10-28",
+  "user_request": "Verify that our request was identical, including the API credential.",
+  "current_conclusion": "The prior request is not byte-identical to the native construction. With the same injected values, the seven application header values match but the formatted JSON/body length differs. Actual effective API-key equivalence is still pending a read-only stock getter comparison; do not infer it from the native fixture or HTTP 200.",
+  "scope": "Offline native library/executable-function tests, raw NAND scans, fake-socket Python reconstruction and a prepared read-only live comparator. No new cloud request, router connection, firmware install, OTA daemon startup or actual flash write. Live comparator output not yet received.",
+  "native_execution": {
+    "original_executable": {
+      "source": "private-source://PROFILE-ONT-KJL/usr/bin/swmgnt",
+      "bytes": 98840,
+      "sha256": "20ed20bc629f5ee627ae0a0ed6ef8a36cd48f41ba57d32c309a168f2fe1b2edb"
+    },
+    "private_load_copy": {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/swmgnt-offline-load-copy.so",
+      "bytes": 98840,
+      "sha256": "21cf08ea3565062e67ae07c1874cad67a1967375d8bb11aa2b38a53774bf4da9"
+    },
+    "copy_change": "Cleared only DF_1_PIE from DT_FLAGS_1 so the PIE can be loaded as a research DSO. Original main never called; library constructors run.",
+    "changed_byte_offsets": [
+      92619
+    ],
+    "function_offsets": {
+      "main_for_base": "0x41f0",
+      "create_payload": "0x8108",
+      "build_http_request": "0x4e40"
+    },
+    "RAM_fixture": {
+      "node_structure": "0x27aa0",
+      "node_bytes": 472,
+      "node_initialized_flag": "0x27c78",
+      "config_structure": "0x27ca8",
+      "config_bytes": 9280,
+      "config_initialized_flag": "0x27c80",
+      "source": "Same saved current ONT profile; candidate key, identities and values deliberately injected, not recovered by this execution.",
+      "operator_getters": "Stub nal_getNodeInfo supplies factory VDQA at +0x1d8; stub nal_getOperatorUniqueID returns empty, exercising the actual native fallback.",
+      "mesh_case": "Global mesh count zero. Native payload can append extender entries; no live peer inventory or request-time cache state verified."
+    },
+    "summary": {
+      "native_builder_status": 0,
+      "payload_return_bytes": 121,
+      "body_bytes": 120,
+      "intercepted_system_calls": 4,
+      "fake_HTTP_status": 200,
+      "real_network_calls": 0
+    },
+    "intercepts": "curl init/setopt/perform/getinfo/cleanup and slist handling intercepted; perform records headers and drains original native read callback. system/_system return without execution and count calls; cfg_getObj and socket/connect/execve/popen abort. No real configuration IPC or network used in successful harness. Fake HTTP200 is a fixture, not a Nokia response.",
+    "system_commands_not_executed": [
+      "iptables -D INPUT_FW_LEVEL -p tcp -m tcp --sport 443 --dport 47791:47807 -j ACCEPT",
+      "iptables -D INPUT_WAN_REMOTE_ACCESS -p tcp -m tcp --sport 443 --dport 47791:47807 -j ACCEPT",
+      "iptables -I INPUT_WAN_REMOTE_ACCESS -p tcp -m tcp --sport 443 --dport 47791:47807 -j ACCEPT",
+      "iptables -I INPUT_FW_LEVEL -p tcp -m tcp --sport 443 --dport 47791:47807 -j ACCEPT"
+    ],
+    "earlier_failed_runs": [
+      {
+        "log": {
+          "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-builder-probe-private.log",
+          "bytes": 389,
+          "sha256": "8f0a9d5e8a7f32f8723bba0f4765ed71af1f7b2ad28de96af6154916f1c572c3"
+        },
+        "result": "Loader rejected host-linked probe because adding complete stock /lib selected libc without GLIBC_2.34."
+      },
+      {
+        "log": {
+          "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-builder-probe-v2-private.log",
+          "bytes": 0,
+          "sha256": "DIGEST-031"
+        },
+        "result": "Vendor-library-only compat directory fixed loader; guarded actual cfg_getObj aborted before any IPC."
+      },
+      {
+        "log": {
+          "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-builder-probe-v3-private.log",
+          "bytes": 66,
+          "sha256": "11e607fb9d018eee42a2ef60d970282f37deaa3afd6cb46282d0c80f97bbce6a"
+        },
+        "result": "Identified extra operator-header nal_getNodeInfo call: phase3/oid66/size36143/flags0. Added explicit operator-only node-info fixture; no live getter permitted."
+      }
+    ]
+  },
+  "application_comparison": {
+    "method": "POST",
+    "URL": "https://swupd.wifi.nokia.com",
+    "explicit_headers": [
+      {
+        "header": "x-api-key",
+        "native_value_bytes": 41,
+        "same_given_injected_profile": true,
+        "effective_live_value_verified": false,
+        "limit": "Candidate API default injected into cache. Equality here is not a live credential check."
+      },
+      {
+        "header": "operatorcode",
+        "native_value_bytes": 4,
+        "same_given_injected_profile": true,
+        "effective_live_value_verified": false,
+        "native_value": "VDQA",
+        "previous_value": "VDQA"
+      },
+      {
+        "header": "current-rgw-swversion",
+        "native_value_bytes": 14,
+        "same_given_injected_profile": true,
+        "effective_live_value_verified": false,
+        "native_value": "3FE49940KJLK50",
+        "previous_value": "3FE49940KJLK50"
+      },
+      {
+        "header": "rgw-sn",
+        "native_value_bytes": 12,
+        "same_given_injected_profile": true,
+        "effective_live_value_verified": false
+      },
+      {
+        "header": "countrycode",
+        "native_value_bytes": 2,
+        "same_given_injected_profile": true,
+        "effective_live_value_verified": false,
+        "native_value": "qa",
+        "previous_value": "qa"
+      },
+      {
+        "header": "isopctl",
+        "native_value_bytes": 1,
+        "same_given_injected_profile": true,
+        "effective_live_value_verified": false,
+        "native_value": "N",
+        "previous_value": "N"
+      },
+      {
+        "header": "content-type",
+        "native_value_bytes": 16,
+        "same_given_injected_profile": true,
+        "effective_live_value_verified": false,
+        "native_value": "Application/json",
+        "previous_value": "Application/json"
+      },
+      {
+        "header": "content-length",
+        "native_value_bytes": 3,
+        "same_given_injected_profile": false,
+        "effective_live_value_verified": false,
+        "native_value": "120",
+        "previous_value": "102"
+      }
+    ],
+    "same_JSON_values_given_injected_profile": true,
+    "previous_compact_body_bytes": 102,
+    "native_formatted_body_bytes": 120,
+    "body_bytes_identical": false,
+    "native_content_length": 120,
+    "previous_content_length": 102,
+    "native_output_matches_separate_stock_cJSON_probe": true,
+    "native_transmitted_body_ends_in_NUL": false,
+    "NUL_limit": "create_payload returns strlen+1, but native caller at0xb6f4 recomputes strlen before setting upload remaining. Native read-callback capture confirms120 bytes, no NUL.",
+    "causal_limit": "Different JSON whitespace is observed, not established as the reason for no firmware offer. Both bodies parse to equal JSON values. Earlier compact G6 requests to the same endpoint obtained a real download offer."
+  },
+  "Python_transport_reconstruction": {
+    "scope": "Windows Python3.14.7 with fake HTTPS socket; no actual connection or packet capture. Same client/profile recreated outgoing plaintext HTTP/1.1 request.",
+    "metadata": {
+      "header_metadata": {
+        "accept-encoding": {
+          "bytes": 8,
+          "value": "identity"
+        },
+        "content-length": {
+          "bytes": 3,
+          "value": "102"
+        },
+        "host": {
+          "bytes": 20,
+          "value": "swupd.wifi.nokia.com"
+        },
+        "user-agent": {
+          "bytes": 18,
+          "value": "Python-urllib/3.14"
+        },
+        "x-api-key": {
+          "bytes": 41
+        },
+        "operatorcode": {
+          "bytes": 4,
+          "value": "VDQA"
+        },
+        "current-rgw-swversion": {
+          "bytes": 14,
+          "value": "3FE49940KJLK50"
+        },
+        "rgw-sn": {
+          "bytes": 12
+        },
+        "countrycode": {
+          "bytes": 2,
+          "value": "qa"
+        },
+        "isopctl": {
+          "bytes": 1,
+          "value": "N"
+        },
+        "content-type": {
+          "bytes": 16,
+          "value": "Application/json"
+        },
+        "connection": {
+          "bytes": 5,
+          "value": "close"
+        }
+      },
+      "body_bytes": 102,
+      "wire_bytes": 444
+    },
+    "limits": "This identifies automatic urllib headers, not a captured original TLS session. curl I/O in the native harness is intercepted, so libcurl automatic wire headers, protocol negotiation and TLS fingerprint were not reproduced."
+  },
+  "native_transport_observations": {
+    "local_port": 47791,
+    "local_port_range_option": 16,
+    "firewall_rule_port_text": "47791:47807",
+    "limit": "Native code sets curl local-port options and temporary reply-accept rules. Workstation client leaves local source port to OS. No inference that server routing depends on these, and no workstation/router firewall rule was executed."
+  },
+  "credential_work": {
+    "raw_NAND_header_scan": {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-request-raw-scan.json",
+      "bytes": 270,
+      "sha256": "b36330281cf4e4cd8ce4f2eb7dcde28189db56b264fbda00f098a6304ed7c770"
+    },
+    "working_key_file_name_scan": {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-working-key-file-name-scan.json",
+      "bytes": 742,
+      "sha256": "48b1c6bff4ce6667ebf8e1c51e8a2ba2522d36ef9febe9ab63a9959643668065"
+    },
+    "native_packaged_key_parser": {
+      "status": 0,
+      "key7_bytes": 64,
+      "matches_Python_static_parser": true,
+      "source": {
+        "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-packaged-key-probe.c",
+        "bytes": 1290,
+        "sha256": "261537cd4de862691c0b91cd443c820cbc280eaf16420399b64819f0112506e1"
+      },
+      "limit": "Native SE_loadConfFile/SE_getConfValue agrees on packaged key7; this does not resolve effective runtime key7 or decrypt the saved API field."
+    },
+    "effective_API_key_verified": false,
+    "remaining": "Read the actual cfg_getObj result used by nal_getSwAutoUpgradeInfo and compare locally. The prepared helper reads the same oid599/0x8c5-byte object/0x1000 flags, avoiding any assumption about whether that API returns plaintext or a stored wrapper."
+  },
+  "live_comparator": {
+    "requested": true,
+    "result_received": false,
+    "source": {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/check-ont-ota-request.c",
+      "bytes": 4282,
+      "sha256": "c197a408355163fb248d403f24be2d21555f762ad682f4f950f5616e2f3bdee2"
+    },
+    "private_binary": {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/check-ont-ota-request",
+      "bytes": 69328,
+      "sha256": "62a071854cb72e2d5e17583e716a2b76724cd6c43f12ae3ca2816000ffa7fc9b"
+    },
+    "expected_file": {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ont-ota-expected.bin",
+      "bytes": 72,
+      "sha256": "c43b1ea612d07ffb299b5f9fdbca281f8f63ab74560c557afcb3dc1655157fb5"
+    },
+    "expected_format": "72 bytes: LEuint32 candidate-key length + SHA256(candidate-key), LEuint32 URL length + SHA256(URL). No plaintext key in comparison file.",
+    "preparer": {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/prepare-ont-ota-comparison.py",
+      "bytes": 1059,
+      "sha256": "66fc0ade97c624e76d0be74b94c23125b14c1e0f152e87c3936a9e9ee7a72c39"
+    },
+    "preparer_reproduces_existing_expected_bytes": true,
+    "tests": {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-request-comparator-tests.json",
+      "bytes": 1747,
+      "sha256": "57392e6d4646fe4b2930895a75912914836c60e08ad713bba582148e00d8bb76"
+    },
+    "GLIBC_requirement": "GLIBC_2.17 only; custom startup and dlopen/dlsym symbol versions for target libc compatibility.",
+    "behavior": "Preserve output fd; suppress stock stdout/stderr before dlopen; call only cfg_getObj with original OID/size/flags; hash bounded key and URL fields; print return status, key length, equality booleans and enable flag. AF_UNIX allowed for local config IPC; exported Internet socket/process entrypoints blocked. No set API/SE_Init/updater used.",
+    "limits": "Synthetic stub tests verify ABI inputs, match/mismatch handling, unterminated field rejection, getter failure/null results and blocked IPv4 socket. They do not establish a live ONT match. Stock library constructors run; local getter may create its normal transient IPC/log state. No full operating-system syscall sandbox claimed."
+  },
+  "sources": [
+    {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-json-probe.c",
+      "bytes": 1492,
+      "sha256": "38dbe1bde214c0dc1b9bcdae3d2127b62d4abc86ff95b5a3c2fb27696fcadf3f"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-builder-probe.c",
+      "bytes": 4383,
+      "sha256": "a1a774e1f6de9f79f8326e0f9c9fd98601f8c28facd4e3042d6d78cfd0a14ca5"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-packaged-key-probe.c",
+      "bytes": 1290,
+      "sha256": "261537cd4de862691c0b91cd443c820cbc280eaf16420399b64819f0112506e1"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/check-ont-ota-request.c",
+      "bytes": 4282,
+      "sha256": "c197a408355163fb248d403f24be2d21555f762ad682f4f950f5616e2f3bdee2"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-request-comparator-fixture.c",
+      "bytes": 563,
+      "sha256": "e4eb4aa205fe5d4b26fe13eaeda4c971009252b46c348ac5f24ba40403a6dba9"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-request-comparator-tests.json",
+      "bytes": 1747,
+      "sha256": "57392e6d4646fe4b2930895a75912914836c60e08ad713bba582148e00d8bb76"
+    },
+    {
+      "binary": {
+        "source": "private-source://PROFILE-ONT-KJL/usr/bin/swmgnt",
+        "bytes": 98840,
+        "sha256": "20ed20bc629f5ee627ae0a0ed6ef8a36cd48f41ba57d32c309a168f2fe1b2edb"
+      },
+      "start": "0x8108",
+      "stop_exclusive": "0x8338",
+      "trace": {
+        "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-request-payload-trace.txt",
+        "bytes": 6336,
+        "sha256": "4ce4464ec039f9654602b67257aa3a66c94889e3b1c3598d170eaf870389a9b0"
+      }
+    },
+    {
+      "binary": {
+        "source": "private-source://PROFILE-ONT-KJL/usr/bin/swmgnt",
+        "bytes": 98840,
+        "sha256": "20ed20bc629f5ee627ae0a0ed6ef8a36cd48f41ba57d32c309a168f2fe1b2edb"
+      },
+      "start": "0x4e40",
+      "stop_exclusive": "0x57b8",
+      "trace": {
+        "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-request-builder-trace.txt",
+        "bytes": 26983,
+        "sha256": "56424cf7f25cdc43ff4c4db61e9a8a45e0471b20d2a1c55cc96ceff7696bb474"
+      }
+    },
+    {
+      "binary": {
+        "source": "private-source://PROFILE-ONT-KJL/usr/bin/swmgnt",
+        "bytes": 98840,
+        "sha256": "20ed20bc629f5ee627ae0a0ed6ef8a36cd48f41ba57d32c309a168f2fe1b2edb"
+      },
+      "start": "0xb660",
+      "stop_exclusive": "0xb714",
+      "trace": {
+        "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-request-caller-trace.txt",
+        "bytes": 2161,
+        "sha256": "a3335f4ae4e089688e257e463d9a24a8e76b93fd5937d3736bff148360f67714"
+      }
+    },
+    {
+      "binary": {
+        "source": "private-source://PROFILE-ONT-KJL/usr/bin/swmgnt",
+        "bytes": 98840,
+        "sha256": "20ed20bc629f5ee627ae0a0ed6ef8a36cd48f41ba57d32c309a168f2fe1b2edb"
+      },
+      "start": "0x63b8",
+      "stop_exclusive": "0x6560",
+      "trace": {
+        "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-native-request-operator-trace.txt",
+        "bytes": 4799,
+        "sha256": "41ab278b3491daec8851783d5b10c003caee77e97625dfc821943ac34e95fd58"
+      }
+    }
+  ],
+  "private_artifacts": [
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-previous-body-private.json",
+      "bytes": 102,
+      "sha256": "4be4b35425e1c1022b3ec4509401598150160e279aea846ef7a3b357f8b15348"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-formatted-body-private.json",
+      "bytes": 120,
+      "sha256": "390b6b729a4b8a42d8da30aa06927a5913a27d09b26785ffc329266e7f93a96e"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-builder-capture.headers-private.txt",
+      "bytes": 216,
+      "sha256": "e17e87b9aeadf7a181f381268d3e327e3aa756eaa0a990094bbbce33e5748f3c"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-builder-capture.body-private.json",
+      "bytes": 120,
+      "sha256": "390b6b729a4b8a42d8da30aa06927a5913a27d09b26785ffc329266e7f93a96e"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-builder-capture.summary.json",
+      "bytes": 147,
+      "sha256": "7dc14975f31fb56b25a69c697a94e8295649d2c6cb488b4b42fd44bb32f48abb"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-builder-fixture-private.bin",
+      "bytes": 9752,
+      "sha256": "130c3e8b252beda2bc527aaf6e2bad103c34203805b34e75200bfa667058c3ab"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-previous-request-plaintext-reconstructed.bin",
+      "bytes": 444,
+      "sha256": "21a0ad826596ac2f9699ae48db68dd01d78b6ed4a0d7b9b7632b1036d4e3872d"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-previous-request-plaintext-reconstructed-metadata.json",
+      "bytes": 950,
+      "sha256": "688a5442d54f67a89d717609300181c1a6efc61fe8f5cc8784d6dc3e668a8cbc"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-native-packaged-key-probe-private.log",
+      "bytes": 45,
+      "sha256": "cfb2322eab32ba9d0c35180a16c41a0dd8ca2ea90d6cf74c435fca0b5aa19930"
+    }
+  ],
+  "cumulative_cloud_operations_unchanged": {
+    "completed_device_OTA_POSTs": 105,
+    "firmware_CDN_GETs": 1
+  },
+  "next_step": "Use the already-prepared read-only comparison helper on XS-2426X-A if a live shell is available; do not label the credential verified before receiving the actual result. If only the dump is available, continue effective-key/configuration-state recovery without replacing unknown data with assumed defaults."
+}

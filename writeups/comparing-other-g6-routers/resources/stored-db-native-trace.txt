@@ -1,0 +1,127 @@
+
+usr/bin/cfgmgr 0x691f8..0x69290
+000691f8: adrp     x2, #0x2c7000                          
+000691fc: adrp     x0, #0x232000                          
+00069200: add      x0, x0, #0x73b                          ; 'key10'
+00069204: ldr      x2, [x2, #0xf88]                        ; GOT SE_getKeyByName
+00069208: add      x1, x29, #0x60                         
+0006920c: blr      x2                                     
+00069210: cbz      w0, #0x69254                           
+00069214: adrp     x5, #0x2c6000                          
+00069218: adrp     x1, #0x232000                          
+0006921c: add      x1, x1, #0x128                          ; 'getValueFromSecExtfs'
+00069220: ldr      x5, [x5, #0xd90]                        ; GOT log_log
+00069224: mov      w2, #0x39a                             
+00069228: add      x1, x1, #0xd0                           ; 'cfgUtl_compress_encrypt'
+0006922c: mov      w0, #3                                 
+00069230: adrp     x4, #0x232000                          
+00069234: add      x4, x4, #0x741                          ; 'key9'
+00069238: adrp     x3, #0x232000                          
+0006923c: add      x3, x3, #0x746                          ; 'get key [%s] failed\n'
+00069240: blr      x5                                     
+00069244: ldr      x19, [x19, #0x568]                     
+00069248: mov      x0, x22                                
+0006924c: blr      x19                                    
+00069250: b        #0x6917c                               
+00069254: adrp     x1, #0x2c6000                          
+00069258: ldr      x24, [x29, #0x60]                      
+0006925c: ldr      x1, [x1, #0x788]                        ; GOT strlen
+00069260: mov      x0, x24                                
+00069264: blr      x1                                     
+00069268: mov      x4, x0                                 
+0006926c: adrp     x7, #0x2c7000                          
+00069270: mov      x5, x23                                
+00069274: mov      w2, w20                                
+00069278: add      x6, x29, #0x5c                         
+0006927c: ldr      x7, [x7, #0x380]                        ; GOT SE_encBin2BinEx
+00069280: mov      x3, x24                                
+00069284: mov      x1, x22                                
+00069288: mov      w0, #1                                 
+0006928c: blr      x7                                     
+
+usr/lib/libsec_engine.so 0x259ec..0x25a60
+000259ec: sub      sp, sp, #0x40                          
+000259f0: stp      x29, x30, [sp, #0x10]                  
+000259f4: add      x29, sp, #0x10                         
+000259f8: str      x19, [sp, #0x20]                       
+000259fc: adrp     x19, #0x46000                          
+00025a00: ldr      x19, [x19, #0x578]                      ; GOT __stack_chk_guard
+00025a04: ldr      x7, [x19]                              
+00025a08: str      x7, [x29, #0x28]                       
+00025a0c: mov      x7, #0                                 
+00025a10: str      x6, [sp]                               
+00025a14: mov      x7, x5                                 
+00025a18: mov      w6, w4                                 
+00025a1c: mov      x5, x3                                 
+00025a20: mov      w4, w2                                 
+00025a24: mov      x3, x1                                 
+00025a28: mov      w2, #0                                 
+00025a2c: mov      w1, #0                                 
+00025a30: bl       #0x2578c                               
+00025a34: ldr      x2, [x29, #0x28]                       
+00025a38: ldr      x1, [x19]                              
+00025a3c: eor      x1, x2, x1                             
+00025a40: cbz      x1, #0x25a50                           
+00025a44: adrp     x0, #0x46000                           
+00025a48: ldr      x0, [x0, #0x4a8]                        ; GOT __stack_chk_fail
+00025a4c: blr      x0                                     
+00025a50: ldp      x29, x30, [sp, #0x10]                  
+00025a54: ldr      x19, [sp, #0x20]                       
+00025a58: add      sp, sp, #0x40                          
+00025a5c: ret                                             
+
+usr/lib/libsec_engine.so 0x258a4..0x258d4
+000258a4: cmp      w28, #0                                
+000258a8: str      w27, [sp]                              
+000258ac: mov      x4, x24                                
+000258b0: mov      w7, w26                                
+000258b4: mov      w6, #0xa                               
+000258b8: mov      w5, w25                                
+000258bc: mov      w3, #0                                 
+000258c0: mov      x2, x19                                
+000258c4: mov      x1, x20                                
+000258c8: cset     w0, ne                                 
+000258cc: bl       #0x252b0                               
+000258d0: mov      w24, w0                                
+
+usr/lib/libsec_engine.so 0x254c4..0x25564
+000254c4: adrp     x1, #0x46000                           
+000254c8: mov      x0, x22                                
+000254cc: add      x25, x29, #0xe8                        
+000254d0: ldr      x1, [x1, #0xae0]                        ; GOT EVP_CIPHER_get_key_length
+000254d4: blr      x1                                     
+000254d8: sxtw     x27, w0                                
+000254dc: adrp     x1, #0x46000                           
+000254e0: mov      x0, x22                                
+000254e4: ldr      x1, [x1, #0xef8]                        ; GOT EVP_CIPHER_get_iv_length
+000254e8: blr      x1                                     
+000254ec: mov      w28, w0                                
+000254f0: adrp     x0, #0x46000                           
+000254f4: ldr      x0, [x0, #0xdd0]                        ; GOT EVP_sha256
+000254f8: blr      x0                                     
+000254fc: mov      x5, x0                                 
+00025500: adrp     x8, #0x46000                           
+00025504: ldr      x0, [x29, #0x78]                       
+00025508: ldp      w4, w1, [x29, #0x70]                   
+0002550c: mov      x7, x25                                
+00025510: ldr      x8, [x8, #0xdb0]                        ; GOT PKCS5_PBKDF2_HMAC
+00025514: add      w6, w27, w28                           
+00025518: mov      w3, w26                                
+0002551c: mov      x2, x24                                
+00025520: blr      x8                                     
+00025524: cbz      w0, #0x25760                           
+00025528: adrp     x24, #0x46000                          
+0002552c: add      x26, x29, #0xa8                        
+00025530: mov      x1, x25                                
+00025534: mov      x3, #0x40                              
+00025538: ldr      x24, [x24, #0xd60]                      ; GOT __memcpy_chk
+0002553c: mov      x2, x27                                
+00025540: mov      x0, x26                                
+00025544: blr      x24                                    
+00025548: add      x1, x25, x27                           
+0002554c: mov      x3, #0x10                              
+00025550: sxtw     x2, w28                                
+00025554: add      x0, x29, #0x98                         
+00025558: str      x0, [x29, #0x78]                       
+0002555c: blr      x24                                    
+00025560: adrp     x0, #0x46000                           

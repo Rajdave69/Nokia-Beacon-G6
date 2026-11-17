@@ -1,0 +1,200 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000001555c <TZ_decrypt@@Base+0x920>:
+   1555c:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   15560:	910003fd 	mov	x29, sp
+   15564:	a90153f3 	stp	x19, x20, [sp, #16]
+   15568:	b0000193 	adrp	x19, 46000 <_fini@@Base+0x18828>
+   1556c:	aa0003f4 	mov	x20, x0
+   15570:	f942c273 	ldr	x19, [x19, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   15574:	f9400260 	ldr	x0, [x19]
+   15578:	f90017a0 	str	x0, [x29, #40]
+   1557c:	d2800000 	mov	x0, #0x0                   	// #0
+   15580:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15584:	f9444800 	ldr	x0, [x0, #2192]
+   15588:	d63f0000 	blr	x0
+   1558c:	f94017a2 	ldr	x2, [x29, #40]
+   15590:	f9400261 	ldr	x1, [x19]
+   15594:	ca010041 	eor	x1, x2, x1
+   15598:	b4000081 	cbz	x1, 155a8 <TZ_decrypt@@Base+0x96c>
+   1559c:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   155a0:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   155a4:	d63f0000 	blr	x0
+   155a8:	f9400801 	ldr	x1, [x0, #16]
+   155ac:	aa1403e0 	mov	x0, x20
+   155b0:	a94153f3 	ldp	x19, x20, [sp, #16]
+   155b4:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   155b8:	d61f0020 	br	x1
+   155bc:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   155c0:	910003fd 	mov	x29, sp
+   155c4:	a90153f3 	stp	x19, x20, [sp, #16]
+   155c8:	b0000193 	adrp	x19, 46000 <_fini@@Base+0x18828>
+   155cc:	aa0003f4 	mov	x20, x0
+   155d0:	f942c273 	ldr	x19, [x19, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   155d4:	f9400260 	ldr	x0, [x19]
+   155d8:	f90017a0 	str	x0, [x29, #40]
+   155dc:	d2800000 	mov	x0, #0x0                   	// #0
+   155e0:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   155e4:	f9444800 	ldr	x0, [x0, #2192]
+   155e8:	d63f0000 	blr	x0
+   155ec:	f94017a2 	ldr	x2, [x29, #40]
+   155f0:	f9400261 	ldr	x1, [x19]
+   155f4:	ca010041 	eor	x1, x2, x1
+   155f8:	b4000081 	cbz	x1, 15608 <TZ_decrypt@@Base+0x9cc>
+   155fc:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15600:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   15604:	d63f0000 	blr	x0
+   15608:	f9401001 	ldr	x1, [x0, #32]
+   1560c:	aa1403e0 	mov	x0, x20
+   15610:	a94153f3 	ldp	x19, x20, [sp, #16]
+   15614:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   15618:	d61f0020 	br	x1
+   1561c:	a9ba7bfd 	stp	x29, x30, [sp, #-96]!
+   15620:	910003fd 	mov	x29, sp
+   15624:	a90153f3 	stp	x19, x20, [sp, #16]
+   15628:	b0000194 	adrp	x20, 46000 <_fini@@Base+0x18828>
+   1562c:	aa0003f3 	mov	x19, x0
+   15630:	a9025bf5 	stp	x21, x22, [sp, #32]
+   15634:	f942c280 	ldr	x0, [x20, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   15638:	a903ffbf 	stp	xzr, xzr, [x29, #56]
+   1563c:	f9400001 	ldr	x1, [x0]
+   15640:	f9002fa1 	str	x1, [x29, #88]
+   15644:	d2800001 	mov	x1, #0x0                   	// #0
+   15648:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   1564c:	a904ffbf 	stp	xzr, xzr, [x29, #72]
+   15650:	f946c400 	ldr	x0, [x0, #3464]
+   15654:	d63f0000 	blr	x0
+   15658:	f9400c02 	ldr	x2, [x0, #24]
+   1565c:	b50002e2 	cbnz	x2, 156b8 <TZ_decrypt@@Base+0xa7c>
+   15660:	f9400e60 	ldr	x0, [x19, #24]
+   15664:	b9401275 	ldr	w21, [x19, #16]
+   15668:	f9400676 	ldr	x22, [x19, #8]
+   1566c:	a9400c02 	ldp	x2, x3, [x0]
+   15670:	a9038fa2 	stp	x2, x3, [x29, #56]
+   15674:	a9410400 	ldp	x0, x1, [x0, #16]
+   15678:	a90487a0 	stp	x0, x1, [x29, #72]
+   1567c:	9100e3a0 	add	x0, x29, #0x38
+   15680:	f9000660 	str	x0, [x19, #8]
+   15684:	52800400 	mov	w0, #0x20                  	// #32
+   15688:	b9001260 	str	w0, [x19, #16]
+   1568c:	aa1303e0 	mov	x0, x19
+   15690:	97ffff4a 	bl	153b8 <TZ_decrypt@@Base+0x77c>
+   15694:	340001a0 	cbz	w0, 156c8 <TZ_decrypt@@Base+0xa8c>
+   15698:	f942c281 	ldr	x1, [x20, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   1569c:	f9402fa2 	ldr	x2, [x29, #88]
+   156a0:	f9400021 	ldr	x1, [x1]
+   156a4:	ca010041 	eor	x1, x2, x1
+   156a8:	b4000161 	cbz	x1, 156d4 <TZ_decrypt@@Base+0xa98>
+   156ac:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   156b0:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   156b4:	d63f0000 	blr	x0
+   156b8:	aa1303e0 	mov	x0, x19
+   156bc:	d63f0040 	blr	x2
+   156c0:	34fffd00 	cbz	w0, 15660 <TZ_decrypt@@Base+0xa24>
+   156c4:	17fffff5 	b	15698 <TZ_decrypt@@Base+0xa5c>
+   156c8:	f9000676 	str	x22, [x19, #8]
+   156cc:	b9001275 	str	w21, [x19, #16]
+   156d0:	17fffff2 	b	15698 <TZ_decrypt@@Base+0xa5c>
+   156d4:	a94153f3 	ldp	x19, x20, [sp, #16]
+   156d8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   156dc:	a8c67bfd 	ldp	x29, x30, [sp], #96
+   156e0:	d65f03c0 	ret
+   156e4:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   156e8:	b0000181 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   156ec:	910003fd 	mov	x29, sp
+   156f0:	f942c022 	ldr	x2, [x1, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   156f4:	f9400043 	ldr	x3, [x2]
+   156f8:	f9000fa3 	str	x3, [x29, #24]
+   156fc:	d2800003 	mov	x3, #0x0                   	// #0
+   15700:	aa0103e2 	mov	x2, x1
+   15704:	b9400403 	ldr	w3, [x0, #4]
+   15708:	7100047f 	cmp	w3, #0x1
+   1570c:	540002a1 	b.ne	15760 <TZ_decrypt@@Base+0xb24>  // b.any
+   15710:	b9401004 	ldr	w4, [x0, #16]
+   15714:	340003c4 	cbz	w4, 1578c <TZ_decrypt@@Base+0xb50>
+   15718:	52800061 	mov	w1, #0x3                   	// #3
+   1571c:	1ac10881 	udiv	w1, w4, w1
+   15720:	0b010425 	add	w5, w1, w1, lsl #1
+   15724:	11000423 	add	w3, w1, #0x1
+   15728:	531e7463 	lsl	w3, w3, #2
+   1572c:	531e7421 	lsl	w1, w1, #2
+   15730:	6b05009f 	cmp	w4, w5
+   15734:	1a830021 	csel	w1, w1, w3, eq	// eq = none
+   15738:	b9002001 	str	w1, [x0, #32]
+   1573c:	52800000 	mov	w0, #0x0                   	// #0
+   15740:	f942c041 	ldr	x1, [x2, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   15744:	f9400fa2 	ldr	x2, [x29, #24]
+   15748:	f9400021 	ldr	x1, [x1]
+   1574c:	ca010041 	eor	x1, x2, x1
+   15750:	b40002a1 	cbz	x1, 157a4 <TZ_decrypt@@Base+0xb68>
+   15754:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15758:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   1575c:	d63f0000 	blr	x0
+   15760:	350001a3 	cbnz	w3, 15794 <TZ_decrypt@@Base+0xb58>
+   15764:	b9401004 	ldr	w4, [x0, #16]
+   15768:	71000c9f 	cmp	w4, #0x3
+   1576c:	54000189 	b.ls	1579c <TZ_decrypt@@Base+0xb60>  // b.plast
+   15770:	53027c81 	lsr	w1, w4, #2
+   15774:	f240049f 	tst	x4, #0x3
+   15778:	11000423 	add	w3, w1, #0x1
+   1577c:	0b010421 	add	w1, w1, w1, lsl #1
+   15780:	0b030463 	add	w3, w3, w3, lsl #1
+   15784:	1a830021 	csel	w1, w1, w3, eq	// eq = none
+   15788:	17ffffec 	b	15738 <TZ_decrypt@@Base+0xafc>
+   1578c:	528002a0 	mov	w0, #0x15                  	// #21
+   15790:	17ffffec 	b	15740 <TZ_decrypt@@Base+0xb04>
+   15794:	52800280 	mov	w0, #0x14                  	// #20
+   15798:	17ffffea 	b	15740 <TZ_decrypt@@Base+0xb04>
+   1579c:	52800320 	mov	w0, #0x19                  	// #25
+   157a0:	17ffffe8 	b	15740 <TZ_decrypt@@Base+0xb04>
+   157a4:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   157a8:	d65f03c0 	ret
+   157ac:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   157b0:	b0000181 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   157b4:	910003fd 	mov	x29, sp
+   157b8:	f942c021 	ldr	x1, [x1, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   157bc:	f9400022 	ldr	x2, [x1]
+   157c0:	f9000fa2 	str	x2, [x29, #24]
+   157c4:	d2800002 	mov	x2, #0x0                   	// #0
+   157c8:	f9400fa2 	ldr	x2, [x29, #24]
+   157cc:	f9400021 	ldr	x1, [x1]
+   157d0:	ca010041 	eor	x1, x2, x1
+   157d4:	b4000081 	cbz	x1, 157e4 <TZ_decrypt@@Base+0xba8>
+   157d8:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   157dc:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   157e0:	d63f0000 	blr	x0
+   157e4:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   157e8:	17ffffbf 	b	156e4 <TZ_decrypt@@Base+0xaa8>
+   157ec:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+   157f0:	b0000181 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   157f4:	910003fd 	mov	x29, sp
+   157f8:	f942c022 	ldr	x2, [x1, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   157fc:	a90153f3 	stp	x19, x20, [sp, #16]
+   15800:	aa0103f4 	mov	x20, x1
+   15804:	f9400043 	ldr	x3, [x2]
+   15808:	f9001fa3 	str	x3, [x29, #56]
+   1580c:	d2800003 	mov	x3, #0x0                   	// #0
+   15810:	b9400403 	ldr	w3, [x0, #4]
+   15814:	f90013f5 	str	x21, [sp, #32]
+   15818:	7100047f 	cmp	w3, #0x1
+   1581c:	54000361 	b.ne	15888 <TZ_decrypt@@Base+0xc4c>  // b.any
+   15820:	aa0003f3 	mov	x19, x0
+   15824:	b0000180 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   15828:	f9444800 	ldr	x0, [x0, #2192]
+   1582c:	d63f0000 	blr	x0
+   15830:	f9400001 	ldr	x1, [x0]
+   15834:	b5000121 	cbnz	x1, 15858 <TZ_decrypt@@Base+0xc1c>
+   15838:	b9402260 	ldr	w0, [x19, #32]
+   1583c:	b9401275 	ldr	w21, [x19, #16]
+   15840:	b9001260 	str	w0, [x19, #16]
+   15844:	aa1303e0 	mov	x0, x19
+   15848:	97ffffa7 	bl	156e4 <TZ_decrypt@@Base+0xaa8>
+   1584c:	350000c0 	cbnz	w0, 15864 <TZ_decrypt@@Base+0xc28>
+   15850:	b9001275 	str	w21, [x19, #16]
+   15854:	14000004 	b	15864 <TZ_decrypt@@Base+0xc28>
+   15858:	aa1303e0 	mov	x0, x19

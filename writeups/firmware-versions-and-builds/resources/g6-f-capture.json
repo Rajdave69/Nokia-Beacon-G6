@@ -1,0 +1,264 @@
+{
+  "date": "2026-11-14",
+  "alias": "G6-F",
+  "source_root": "private-source://CAPTURE-G6-F/beacon-g6-clean-dumps-20261114-143216",
+  "operator_code": "BOQA",
+  "manifest_files_verified": 10,
+  "bootloader": {
+    "bytes": 4194304,
+    "banner": "U-Boot 2020.04 (May 16 2020 - 18:32:20 +0000) Venus-SoC",
+    "ssb_sha256_by_alias": {
+      "G6-A": "87624a2f7e60c35bdd40b07a2541734e152753dae53396ddbbcb935fae4af177",
+      "G6-B": "ef2d95e3a44b463cf685dc7d2d7dc561a51b79c42fba675d72c3eb7ec1cfde1a",
+      "G6-C": "87624a2f7e60c35bdd40b07a2541734e152753dae53396ddbbcb935fae4af177",
+      "G6-D": "87624a2f7e60c35bdd40b07a2541734e152753dae53396ddbbcb935fae4af177",
+      "G6-E": "87624a2f7e60c35bdd40b07a2541734e152753dae53396ddbbcb935fae4af177",
+      "G6-F": "87624a2f7e60c35bdd40b07a2541734e152753dae53396ddbbcb935fae4af177"
+    },
+    "fip_offsets": [
+      131072,
+      1048576
+    ]
+  },
+  "environment": [
+    {
+      "offset": 0,
+      "crc_valid": true,
+      "redundancy_byte": 25,
+      "active_part": "1",
+      "sb_flag": "114",
+      "secboot": "2",
+      "cfg_partition": "rootfs_data1",
+      "bootcmd": "bootcortina",
+      "console_present": false
+    },
+    {
+      "offset": 1048576,
+      "crc_valid": true,
+      "redundancy_byte": 26,
+      "active_part": "1",
+      "sb_flag": "114",
+      "secboot": "2",
+      "cfg_partition": "rootfs_data1",
+      "bootcmd": "bootcortina",
+      "console_present": false
+    }
+  ],
+  "banks": {
+    "0": {
+      "image": "3FE49996IJLJ03",
+      "raw_bytes": 83886080,
+      "raw_sha256": "467531de78c9c8e08781056401399958e7e845d3dc373a5cf97414bc8e31a4fb",
+      "volumes": {
+        "0": {
+          "used_bytes": 5003446,
+          "sha256": "1d5c04c5be1cbc964e1c5a992d08af717e4cf35f9fd10834531b547f94316843",
+          "format": "FIT/FDT",
+          "logical_blocks": 20
+        },
+        "1": {
+          "used_bytes": 37633784,
+          "sha256": "b6104b8f794ef4a07b8aaeb4101c702c9d1f1e0db5d396af21bf2b20af445dfd",
+          "format": "SquashFS",
+          "logical_blocks": 149
+        },
+        "3": {
+          "used_bytes": 1801324,
+          "sha256": "a7f83ba7906a4a14868264c915ab9dee7b08a5079670e471c9fd0205251dc9b3",
+          "format": "SquashFS",
+          "logical_blocks": 8
+        }
+      },
+      "matches": [
+        {
+          "alias": "G6-B",
+          "bank": 0,
+          "raw_equal": true
+        },
+        {
+          "alias": "G6-D",
+          "bank": 0,
+          "raw_equal": true
+        }
+      ],
+      "software": "IJL.J03p01",
+      "release": "R24.02",
+      "build_date": "2024-07-02"
+    },
+    "1": {
+      "image": "3FE49996HJLL91",
+      "raw_bytes": 83886080,
+      "raw_sha256": "d924b4ed80e7e893d081d432d09488984ece97b2e54f9fe86e30a7f225e46945",
+      "volumes": {
+        "0": {
+          "used_bytes": 5005934,
+          "sha256": "26be8ef67f047c6a37105ba0e1622ef3a3a1874d80558a91aac969f586d7c4c9",
+          "format": "FIT/FDT",
+          "logical_blocks": 20
+        },
+        "1": {
+          "used_bytes": 39269512,
+          "sha256": "3b168d9f0c478d53a3097c5009dd434caa99fe5462b41f36a277fb010dd8fc00",
+          "format": "SquashFS",
+          "logical_blocks": 155
+        },
+        "3": {
+          "used_bytes": 1809324,
+          "sha256": "9c06e71a6600e22cd41aeafa99e1577c58711f8ca7333aecbc17150a5fe4f3fa",
+          "format": "SquashFS",
+          "logical_blocks": 8
+        }
+      },
+      "matches": [
+        {
+          "alias": "G6-A",
+          "bank": 0,
+          "raw_equal": false
+        },
+        {
+          "alias": "G6-B",
+          "bank": 1,
+          "raw_equal": true
+        },
+        {
+          "alias": "G6-D",
+          "bank": 1,
+          "raw_equal": true
+        }
+      ],
+      "software": "HJL.L91p01",
+      "release": "R24.04",
+      "build_date": "2024-12-27"
+    }
+  },
+  "missing_raw_partition_dumps": [
+    "mtd08_log.bin",
+    "mtd11_user_data.bin"
+  ],
+  "G6-E_comparison": {
+    "environment": [
+      {
+        "offset": 0,
+        "crc_valid": true,
+        "redundancy_byte": 191,
+        "active_part": "0",
+        "sb_flag": "39",
+        "secboot": "2",
+        "cfg_partition": "rootfs_data1",
+        "bootcmd": "bootcortina",
+        "console_present": false
+      },
+      {
+        "offset": 1048576,
+        "crc_valid": true,
+        "redundancy_byte": 192,
+        "active_part": "0",
+        "sb_flag": "39",
+        "secboot": "2",
+        "cfg_partition": "rootfs_data1",
+        "bootcmd": "bootcortina",
+        "console_present": false
+      }
+    ],
+    "banks": {
+      "0": {
+        "image": "3FE49996HJLL91",
+        "raw_bytes": 83886080,
+        "raw_sha256": "7e5ea3ce840c267f776c2d4d819db0b513d39b3955427facbb160de261ca7d47",
+        "volumes": {
+          "0": {
+            "used_bytes": 5005934,
+            "sha256": "26be8ef67f047c6a37105ba0e1622ef3a3a1874d80558a91aac969f586d7c4c9",
+            "format": "FIT/FDT",
+            "logical_blocks": 20
+          },
+          "1": {
+            "used_bytes": 39269512,
+            "sha256": "3b168d9f0c478d53a3097c5009dd434caa99fe5462b41f36a277fb010dd8fc00",
+            "format": "SquashFS",
+            "logical_blocks": 155
+          },
+          "3": {
+            "used_bytes": 1809324,
+            "sha256": "9c06e71a6600e22cd41aeafa99e1577c58711f8ca7333aecbc17150a5fe4f3fa",
+            "format": "SquashFS",
+            "logical_blocks": 8
+          }
+        },
+        "matches": [
+          {
+            "alias": "G6-A",
+            "bank": 0,
+            "raw_equal": true
+          },
+          {
+            "alias": "G6-B",
+            "bank": 1,
+            "raw_equal": false
+          },
+          {
+            "alias": "G6-D",
+            "bank": 1,
+            "raw_equal": false
+          }
+        ],
+        "software": "HJL.L91p01",
+        "release": "R24.04",
+        "build_date": "2024-12-27"
+      },
+      "1": {
+        "image": "3FE49996HJLL91",
+        "raw_bytes": 83886080,
+        "raw_sha256": "d924b4ed80e7e893d081d432d09488984ece97b2e54f9fe86e30a7f225e46945",
+        "volumes": {
+          "0": {
+            "used_bytes": 5005934,
+            "sha256": "26be8ef67f047c6a37105ba0e1622ef3a3a1874d80558a91aac969f586d7c4c9",
+            "format": "FIT/FDT",
+            "logical_blocks": 20
+          },
+          "1": {
+            "used_bytes": 39269512,
+            "sha256": "3b168d9f0c478d53a3097c5009dd434caa99fe5462b41f36a277fb010dd8fc00",
+            "format": "SquashFS",
+            "logical_blocks": 155
+          },
+          "3": {
+            "used_bytes": 1809324,
+            "sha256": "9c06e71a6600e22cd41aeafa99e1577c58711f8ca7333aecbc17150a5fe4f3fa",
+            "format": "SquashFS",
+            "logical_blocks": 8
+          }
+        },
+        "matches": [
+          {
+            "alias": "G6-A",
+            "bank": 0,
+            "raw_equal": false
+          },
+          {
+            "alias": "G6-B",
+            "bank": 1,
+            "raw_equal": true
+          },
+          {
+            "alias": "G6-D",
+            "bank": 1,
+            "raw_equal": true
+          }
+        ],
+        "software": "HJL.L91p01",
+        "release": "R24.04",
+        "build_date": "2024-12-27"
+      }
+    }
+  },
+  "boot_selection": {
+    "kernel_cmdline_rootfs": "rootfs1",
+    "kernel_log_attached": "mtd4/rootfs1",
+    "running_bank": 1,
+    "swug_active": 1,
+    "swug_committed": 1,
+    "swug_next_active": 1
+  }
+}

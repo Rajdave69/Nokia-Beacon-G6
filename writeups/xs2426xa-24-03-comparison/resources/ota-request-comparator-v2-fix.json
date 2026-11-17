@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-28",
+  "problem": "The owner correctly ran v1 but it exited127 without output. This was a helper linkage bug, not incorrect owner commands.",
+  "reproduced_original_exit": 127,
+  "visible_diagnostic": "symbol dlopen version GLIBC_2.17 not defined in file libc.so.6 with link time reference",
+  "cause": "Modern workstation glibc merges libdl into libc. Linking v1 with -ldl produced only DT_NEEDED libc.so.6 and attributed dlopen/dlsym GLIBC_2.17 to libc. The ONT glibc2.27 provides these in separate libdl.so.2. v1 suppressed stderr before its first lazy dlopen resolution, hiding the relocation error. Minimum symbol version alone did not establish compatibility.",
+  "v1_binary": {
+    "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/check-ont-ota-request",
+    "bytes": 69328,
+    "sha256": "62a071854cb72e2d5e17583e716a2b76724cd6c43f12ae3ca2816000ffa7fc9b"
+  },
+  "v1_source": {
+    "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/check-ont-ota-request.c",
+    "bytes": 4282,
+    "sha256": "c197a408355163fb248d403f24be2d21555f762ad682f4f950f5616e2f3bdee2"
+  },
+  "v2_binary": {
+    "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/check-ont-ota-request-v2",
+    "bytes": 69480,
+    "sha256": "f8e71364a23855cf4f4934be209d932f4035cb8ab34d99c3c385453c99ff2177"
+  },
+  "v2_source": {
+    "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/check-ont-ota-request-v2.c",
+    "bytes": 4976,
+    "sha256": "23612366a6c134f3fed8c1e50e5bba5ce93a6bf4b2c27462de3c2fe10c2d7945"
+  },
+  "fixes": [
+    "Explicitly link the original target libdl.so.2, preserving DT_NEEDED libdl.so.2 and attributing dlopen/dlsym GLIBC_2.17 to that provider.",
+    "Enable BIND_NOW so startup relocation failures appear before stderr suppression.",
+    "Add a 15-second alarm with stage-specific secret-free timeout JSON; no updater or configuration change."
+  ],
+  "target_runtime": [
+    {
+      "source": "private-source://PROFILE-ONT-KJL/lib/ld-2.27.so",
+      "bytes": 128768,
+      "sha256": "ca992d911a28097be89b2f8cd32a2c1f0232a173786e5558f9062063c4b624fc"
+    },
+    {
+      "source": "private-source://PROFILE-ONT-KJL/lib/libc-2.27.so",
+      "bytes": 1345456,
+      "sha256": "4738288c0e05f7650de2713356aa89a246b47f9fc5f80ca58fc5abfbc32de711"
+    },
+    {
+      "source": "private-source://PROFILE-ONT-KJL/lib/libdl-2.27.so",
+      "bytes": 10144,
+      "sha256": "13b2aea7f5a52e7a9b8742d29d8907f447c78d2440cc0fb52361d5ec551a7570"
+    },
+    {
+      "source": "private-source://PROFILE-ONT-KJL/usr/lib/libcrypto.so.3",
+      "bytes": 4261608,
+      "sha256": "bda8027fb777f8d899077a6b0ba038cd82f1f5bfd0941ed39c4bfe7ad02bb6cc"
+    }
+  ],
+  "reproduction_logs": [
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-comparator-original-glibc-reproduction-private.log",
+      "bytes": 7362,
+      "sha256": "cf001c08582c1fa01a8526cbc3e0760fef2f1d2b86a029a934b1561f579c65aa"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-comparator-v1-visible-loader-error-private.log",
+      "bytes": 358,
+      "sha256": "793e9f2d2143dc84a6b6d223919108c54ba94986330bf030715e71145542b224"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/matching_fixture-v2-stock-runtime-private.log",
+      "bytes": 133,
+      "sha256": "4c3528cd1bb1a48a9314bb085e2ae0728fb01fa7ccd70444b66e30b527936b29"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/real_library_without_router-v2-stock-runtime-private.log",
+      "bytes": 99,
+      "sha256": "e3b3871e6658837e45ab3e1668d1d9e61533c81be664103c6fdf57c4bb5e959a"
+    }
+  ],
+  "tests": {
+    "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-request-comparator-v2-tests.json",
+    "bytes": 2165,
+    "sha256": "3fc5270a488ed5e14ba8c2eefe32422ba4b9588922a8ab91df85232675a745c3"
+  },
+  "additional_real_library_test": "With exact stock loader/libs but no live router cfgmgr, real libcfg loads successfully and returns explicit cfg_getObj_status=-1/null match flags, exit1. This is not a live key result.",
+  "owner_live_result": {
+    "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-request-comparator-owner-live-result-20261028.json",
+    "bytes": 2005,
+    "sha256": "291ce4e5d260d0be4affc158c09041c57cef82ee5f408f564fa57bd0b9825aee"
+  },
+  "current_conclusion": "v2 live owner result confirms the 41-byte effective API key and URL match the profile used in all three completed ONT queries. The key-substitution uncertainty is resolved. The saved wrapped-field decoder is still unresolved, and full prior-request wire equality remains false.",
+  "counts": "No additional completed OTA POST or CDN GET; totals remain105 and1."
+}

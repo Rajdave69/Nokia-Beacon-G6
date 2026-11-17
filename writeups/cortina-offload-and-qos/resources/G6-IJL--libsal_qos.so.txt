@@ -1,0 +1,106 @@
+sal_hgu_qos_config_overall_ratelimit (0x1bc44, 80 bytes)
+Disassembly of section .text:
+
+000000000001bc44 <sal_hgu_qos_config_overall_ratelimit@@Base>:
+   1bc44:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   1bc48:	910003fd 	mov	x29, sp
+   1bc4c:	b9001fa0 	str	w0, [x29, #28]
+   1bc50:	90000140 	adrp	x0, 43000 <memcpy@GLIBC_2.17>
+   1bc54:	f947d000 	ldr	x0, [x0, #4000]
+   1bc58:	f9400001 	ldr	x1, [x0]
+   1bc5c:	f90017a1 	str	x1, [x29, #40]
+   1bc60:	d2800001 	mov	x1, #0x0                   	// #0
+   1bc64:	b90027bf 	str	wzr, [x29, #36]
+   1bc68:	b94027a0 	ldr	w0, [x29, #36]
+   1bc6c:	90000141 	adrp	x1, 43000 <memcpy@GLIBC_2.17>
+   1bc70:	f947d021 	ldr	x1, [x1, #4000]
+   1bc74:	f94017a2 	ldr	x2, [x29, #40]
+   1bc78:	f9400021 	ldr	x1, [x1]
+   1bc7c:	ca010041 	eor	x1, x2, x1
+   1bc80:	f100003f 	cmp	x1, #0x0
+   1bc84:	54000040 	b.eq	1bc8c <sal_hgu_qos_config_overall_ratelimit@@Base+0x48>  // b.none
+   1bc88:	97ffeb2a 	bl	16930 <__stack_chk_fail@plt>
+   1bc8c:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   1bc90:	d65f03c0 	ret
+
+sal_hgu_qos_create_classifier (0x1c128, 308 bytes)
+Disassembly of section .text:
+
+000000000001c128 <sal_hgu_qos_create_classifier@@Base>:
+   1c128:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   1c12c:	910003fd 	mov	x29, sp
+   1c130:	f0000120 	adrp	x0, 43000 <memcpy@GLIBC_2.17>
+   1c134:	f947d000 	ldr	x0, [x0, #4000]
+   1c138:	f9400001 	ldr	x1, [x0]
+   1c13c:	f9000fa1 	str	x1, [x29, #24]
+   1c140:	d2800001 	mov	x1, #0x0                   	// #0
+   1c144:	b90017bf 	str	wzr, [x29, #20]
+   1c148:	f0000120 	adrp	x0, 43000 <memcpy@GLIBC_2.17>
+   1c14c:	f947c800 	ldr	x0, [x0, #3984]
+   1c150:	79400000 	ldrh	w0, [x0]
+   1c154:	12000000 	and	w0, w0, #0x1
+   1c158:	7100001f 	cmp	w0, #0x0
+   1c15c:	540000e1 	b.ne	1c178 <sal_hgu_qos_create_classifier@@Base+0x50>  // b.any
+   1c160:	d0000060 	adrp	x0, 2a000 <_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKj13qos_policer_tEEE9constructIS5_JRKSt21piecewise_construct_tSt5tupleIJRS3_EESC_IJEEEEEvPT_DpOT0_@@Base+0x98>
+   1c164:	913be000 	add	x0, x0, #0xef8
+   1c168:	52800001 	mov	w1, #0x0                   	// #0
+   1c16c:	97ffeb35 	bl	16e40 <access@plt>
+   1c170:	7100001f 	cmp	w0, #0x0
+   1c174:	54000061 	b.ne	1c180 <sal_hgu_qos_create_classifier@@Base+0x58>  // b.any
+   1c178:	52800020 	mov	w0, #0x1                   	// #1
+   1c17c:	14000002 	b	1c184 <sal_hgu_qos_create_classifier@@Base+0x5c>
+   1c180:	52800000 	mov	w0, #0x0                   	// #0
+   1c184:	7100001f 	cmp	w0, #0x0
+   1c188:	54000540 	b.eq	1c230 <sal_hgu_qos_create_classifier@@Base+0x108>  // b.none
+   1c18c:	f0000120 	adrp	x0, 43000 <memcpy@GLIBC_2.17>
+   1c190:	f947e800 	ldr	x0, [x0, #4048]
+   1c194:	d2800001 	mov	x1, #0x0                   	// #0
+   1c198:	97ffeb8e 	bl	16fd0 <gettimeofday@plt>
+   1c19c:	f0000120 	adrp	x0, 43000 <memcpy@GLIBC_2.17>
+   1c1a0:	f947e800 	ldr	x0, [x0, #4048]
+   1c1a4:	f9400002 	ldr	x2, [x0]
+   1c1a8:	d28f80a0 	mov	x0, #0x7c05                	// #31749
+   1c1ac:	f2ad5e60 	movk	x0, #0x6af3, lsl #16
+   1c1b0:	f2cb3c40 	movk	x0, #0x59e2, lsl #32
+   1c1b4:	f2e91a20 	movk	x0, #0x48d1, lsl #48
+   1c1b8:	9b407c40 	smulh	x0, x2, x0
+   1c1bc:	934afc01 	asr	x1, x0, #10
+   1c1c0:	937ffc40 	asr	x0, x2, #63
+   1c1c4:	cb000021 	sub	x1, x1, x0
+   1c1c8:	aa0103e0 	mov	x0, x1
+   1c1cc:	d37df000 	lsl	x0, x0, #3
+   1c1d0:	cb010000 	sub	x0, x0, x1
+   1c1d4:	d37be800 	lsl	x0, x0, #5
+   1c1d8:	8b010000 	add	x0, x0, x1
+   1c1dc:	d37cec00 	lsl	x0, x0, #4
+   1c1e0:	cb000041 	sub	x1, x2, x0
+   1c1e4:	f0000120 	adrp	x0, 43000 <memcpy@GLIBC_2.17>
+   1c1e8:	f947e800 	ldr	x0, [x0, #4048]
+   1c1ec:	f9400400 	ldr	x0, [x0, #8]
+   1c1f0:	d29ef9e2 	mov	x2, #0xf7cf                	// #63439
+   1c1f4:	f2bc6a62 	movk	x2, #0xe353, lsl #16
+   1c1f8:	f2d374a2 	movk	x2, #0x9ba5, lsl #32
+   1c1fc:	f2e41882 	movk	x2, #0x20c4, lsl #48
+   1c200:	9b427c02 	smulh	x2, x0, x2
+   1c204:	9347fc42 	asr	x2, x2, #7
+   1c208:	937ffc00 	asr	x0, x0, #63
+   1c20c:	cb000042 	sub	x2, x2, x0
+   1c210:	f0000060 	adrp	x0, 2b000 <_fini@@Base+0x148>
+   1c214:	912be004 	add	x4, x0, #0xaf8
+   1c218:	f0000060 	adrp	x0, 2b000 <_fini@@Base+0x148>
+   1c21c:	9127e000 	add	x0, x0, #0x9f8
+   1c220:	aa0203e3 	mov	x3, x2
+   1c224:	aa0103e2 	mov	x2, x1
+   1c228:	aa0403e1 	mov	x1, x4
+   1c22c:	97fff069 	bl	183d0 <printf@plt>
+   1c230:	b94017a0 	ldr	w0, [x29, #20]
+   1c234:	f0000121 	adrp	x1, 43000 <memcpy@GLIBC_2.17>
+   1c238:	f947d021 	ldr	x1, [x1, #4000]
+   1c23c:	f9400fa2 	ldr	x2, [x29, #24]
+   1c240:	f9400021 	ldr	x1, [x1]
+   1c244:	ca010041 	eor	x1, x2, x1
+   1c248:	f100003f 	cmp	x1, #0x0
+   1c24c:	54000040 	b.eq	1c254 <sal_hgu_qos_create_classifier@@Base+0x12c>  // b.none
+   1c250:	97ffe9b8 	bl	16930 <__stack_chk_fail@plt>
+   1c254:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   1c258:	d65f03c0 	ret

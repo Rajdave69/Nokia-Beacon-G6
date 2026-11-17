@@ -1,0 +1,517 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "scope": "Host QEMU execution of original G6 ACI command parser with all vendor operations replaced by inert mock libraries; no original RRM/controller/network/radio operation. Mock return values are synthetic, not actual router results.",
+  "source_sha256": "876a66e3563d234711a24487a62b58b6f010611d1cf868061e30a6c32f65d132",
+  "cases": [
+    {
+      "name": "help",
+      "argv": [
+        "-h"
+      ],
+      "expected_mock": null,
+      "mock_calls": [],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "aci usage:\n\taci start\n\taci enable/disable\n\taci dump_config \n\taci -s utilization_threshold -i 80 \n\taci -s interference_threshold -i 60 \n\taci -s sensing_period -i 30 \n\taci -s exploration_period -i 300 \n\taci -s log -o 1 -l 3\n\taci -s auto -b 24 -e 1\n\taci -g auto -b 24\n\taci -s channel_list -b 24 -v 1,2,3,4,5,6,7,8,9,10,11,12,13;1,2,3,4,5,6,7,8,9,10,11,12,13\n\taci -s channel_list -b 5 -v 36,40,44,48,52,56,60,64,100,104,108,112,116,120,124,128,132,136,140,149,153,157,161,165;36,40,44,48,52,56,60,64,100,104,108,112,116,120,124,128,132,136,149,153,157,161;36,40,44,48,52,56,60,64,100,104,108,112,116,120,124,128,149,153,157,161\n\taci -g channel_list -b 24\n\n\taci -g score -m MAC-PRIVATE-010 -b 5 \n\taci -g align_score -m <mac> -b <band>\n\taci -g node -m MAC-PRIVATE-010\n\taci -g location -m MAC-PRIVATE-010 -c 161\n\taci -g radio -m MAC-PRIVATE-010 -r ath0\n\taci -g station -m MAC-PRIVATE-011 \n\taci -g link -m MAC-PRIVATE-010 -d MAC-PRIVATE-011 \n\taci -g domain \n\taci -g action -i 2 -b 4 -w 3 -c 11\n\taci -g all_actions -i 1\n\taci -g blocked_channels\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "version",
+      "argv": [],
+      "expected_mock": "ai_engine_get_version_info",
+      "mock_calls": [
+        "MOCK ai_engine_get_version_info"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_get_version_info\nGet version info failed : -7\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "dump-stub",
+      "argv": [
+        "dump_config"
+      ],
+      "expected_mock": null,
+      "mock_calls": [],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "global-enable",
+      "argv": [
+        "enable"
+      ],
+      "expected_mock": "nwa_local_rrm_contrl 1",
+      "mock_calls": [
+        "MOCK nwa_local_rrm_contrl 1"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK nwa_local_rrm_contrl 1\nEnable auto channel\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "global-disable",
+      "argv": [
+        "disable"
+      ],
+      "expected_mock": "nwa_local_rrm_contrl 0",
+      "mock_calls": [
+        "MOCK nwa_local_rrm_contrl 0"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK nwa_local_rrm_contrl 0\nDisable auto channel\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "auto24-help-set-skipped",
+      "argv": [
+        "-s",
+        "auto",
+        "-b",
+        "24",
+        "-e",
+        "1"
+      ],
+      "expected_mock": null,
+      "mock_calls": [],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "LocalRRM radio 24 enable 1\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "auto5-set",
+      "argv": [
+        "-s",
+        "auto",
+        "-b",
+        "5",
+        "-e",
+        "1"
+      ],
+      "expected_mock": "nwa_local_rrm_enable_radio band=5 enable=1",
+      "mock_calls": [
+        "MOCK nwa_local_rrm_enable_radio band=5 enable=1"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "LocalRRM radio 5 enable 1\nMOCK nwa_local_rrm_enable_radio band=5 enable=1\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-auto24",
+      "argv": [
+        "-g",
+        "auto",
+        "-b",
+        "24"
+      ],
+      "expected_mock": "ai_engine_getAutoChannelStatus 24",
+      "mock_calls": [
+        "MOCK ai_engine_getAutoChannelStatus 24"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "show band 24 :\nMOCK ai_engine_getAutoChannelStatus 24\nGet auto status failed : -7\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-list24",
+      "argv": [
+        "-g",
+        "channel_list",
+        "-b",
+        "24"
+      ],
+      "expected_mock": "ai_engine_getAvaliableChannelList 24",
+      "mock_calls": [
+        "MOCK ai_engine_getAvaliableChannelList 24"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getAvaliableChannelList 24\nGet available channel list failed:-7\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-domain-error-mislabel",
+      "argv": [
+        "-g",
+        "domain"
+      ],
+      "expected_mock": "ai_engine_getDomainInfo return=-7",
+      "mock_calls": [
+        "MOCK ai_engine_getDomainInfo return=-7"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getDomainInfo return=-7\nCountry Domain: ETSI\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-node",
+      "argv": [
+        "-g",
+        "node",
+        "-m",
+        "02:00:00:00:00:01"
+      ],
+      "expected_mock": "ai_engine_getNodeInfo 02:00:00:00:00:01",
+      "mock_calls": [
+        "MOCK ai_engine_getNodeInfo 02:00:00:00:00:01"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getNodeInfo 02:00:00:00:00:01\nGet Node info failed : -7",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-radio",
+      "argv": [
+        "-g",
+        "radio",
+        "-m",
+        "02:00:00:00:00:01",
+        "-r",
+        "ath0"
+      ],
+      "expected_mock": "ai_engine_getRadioInfo 02:00:00:00:00:01 ath0",
+      "mock_calls": [
+        "MOCK ai_engine_getRadioInfo 02:00:00:00:00:01 ath0"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getRadioInfo 02:00:00:00:00:01 ath0\nGet radio info failed : -7\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-score",
+      "argv": [
+        "-g",
+        "score",
+        "-m",
+        "02:00:00:00:00:01",
+        "-b",
+        "5"
+      ],
+      "expected_mock": "ai_engine_getChannelScore 02:00:00:00:00:01 5",
+      "mock_calls": [
+        "MOCK ai_engine_getChannelScore 02:00:00:00:00:01 5"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getChannelScore 02:00:00:00:00:01 5\nGet channel score failed : -7\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-align",
+      "argv": [
+        "-g",
+        "align_score",
+        "-m",
+        "02:00:00:00:00:01",
+        "-b",
+        "5"
+      ],
+      "expected_mock": "ai_engine_getNeighbhorAlignScore 02:00:00:00:00:01 5",
+      "mock_calls": [
+        "MOCK ai_engine_getNeighbhorAlignScore 02:00:00:00:00:01 5"
+      ],
+      "exit_status": 35,
+      "expected_exit_status": 35,
+      "stdout": "MOCK ai_engine_getNeighbhorAlignScore 02:00:00:00:00:01 5\nGet channel score failed : -7\nGet neighbour align scores failed \n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-location",
+      "argv": [
+        "-g",
+        "location",
+        "-m",
+        "02:00:00:00:00:01",
+        "-c",
+        "108"
+      ],
+      "expected_mock": "ai_engine_getChannelLocationInfo 02:00:00:00:00:01 108",
+      "mock_calls": [
+        "MOCK ai_engine_getChannelLocationInfo 02:00:00:00:00:01 108"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getChannelLocationInfo 02:00:00:00:00:01 108\nGet channel location failed :-7\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-action",
+      "argv": [
+        "-g",
+        "action",
+        "-i",
+        "1",
+        "-b",
+        "5",
+        "-w",
+        "3",
+        "-c",
+        "108"
+      ],
+      "expected_mock": "ai_engine_getActionInfo 1 108 5 3",
+      "mock_calls": [
+        "MOCK ai_engine_getActionInfo 1 108 5 3"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getActionInfo 1 108 5 3\n\nAction: \n        ID: 0\n        Wi-Fi Node ID: 0 \n        Location ID: 0 \n        Description:   \n        Q value: 0.000 \n        Type: UNDEFINED \n         Probabilty: 0.000\n        Number of radar events: 0\n        Hidden node factor: 0.000\n        Nbr Failed to apply: 0\n        Valid: No\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-action6",
+      "argv": [
+        "-g",
+        "action",
+        "-i",
+        "1",
+        "-b",
+        "6",
+        "-w",
+        "3",
+        "-c",
+        "37"
+      ],
+      "expected_mock": "ai_engine_getActionInfo6 1 37 6 3",
+      "mock_calls": [
+        "MOCK ai_engine_getActionInfo6 1 37 6 3"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getActionInfo6 1 37 6 3\n\nAction: \n        ID: 0\n        Wi-Fi Node ID: 0 \n        Location ID: 0 \n        Description:   \n        Q value: 0.000 \n        Type: UNDEFINED \n         Probabilty: 0.000\n        Number of radar events: 0\n        Hidden node factor: 0.000\n        Nbr Failed to apply: 0\n        Valid: No\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "all-actions",
+      "argv": [
+        "-g",
+        "all_actions",
+        "-i",
+        "1"
+      ],
+      "expected_mock": "ai_engine_getAllActionInfo 1",
+      "mock_calls": [
+        "MOCK ai_engine_getAllActionInfo 1"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_getAllActionInfo 1\ncheck tmp/actions.txt file for command output",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "blocked-dump",
+      "argv": [
+        "-g",
+        "blocked_channels"
+      ],
+      "expected_mock": "ai_engine_logBlockedChannels",
+      "mock_calls": [
+        "MOCK ai_engine_logBlockedChannels"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_logBlockedChannels\ncheck tmp/blocked_channels.txt file for command output",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "set-channel",
+      "argv": [
+        "-s",
+        "channel",
+        "-i",
+        "1",
+        "-b",
+        "5",
+        "-c",
+        "108",
+        "-w",
+        "3"
+      ],
+      "expected_mock": "ai_engine_setForceChannel 1 5 108 3",
+      "mock_calls": [
+        "MOCK ai_engine_setForceChannel 1 5 108 3"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_setForceChannel 1 5 108 3\nSet Force channel 108\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "set-channel-list",
+      "argv": [
+        "-s",
+        "channel_list",
+        "-b",
+        "24",
+        "-v",
+        "1,6,11;1,6,11"
+      ],
+      "expected_mock": "ai_engine_setAvaliableChannelList 24 1,6,11;1,6,11",
+      "mock_calls": [
+        "MOCK ai_engine_setAvaliableChannelList 24 1,6,11;1,6,11"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_setAvaliableChannelList 24 1,6,11;1,6,11\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "set-utilization",
+      "argv": [
+        "-s",
+        "utilization_threshold",
+        "-i",
+        "80"
+      ],
+      "expected_mock": "ai_engine_setUtilizationThreshold 80",
+      "mock_calls": [
+        "MOCK ai_engine_setUtilizationThreshold 80"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_setUtilizationThreshold 80\nSet utilization threshold  succesful\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "set-interference",
+      "argv": [
+        "-s",
+        "interference_threshold",
+        "-i",
+        "60"
+      ],
+      "expected_mock": "ai_engine_setMinInterferenceThreshold 60",
+      "mock_calls": [
+        "MOCK ai_engine_setMinInterferenceThreshold 60"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_setMinInterferenceThreshold 60\nSet Min Interference Threshold  succesful\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "set-sensing",
+      "argv": [
+        "-s",
+        "sensing_period",
+        "-i",
+        "30"
+      ],
+      "expected_mock": "ai_engine_setSensingPeriod 30",
+      "mock_calls": [
+        "MOCK ai_engine_setSensingPeriod 30"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_setSensingPeriod 30\nSet Sensing Period succesful\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "set-exploration",
+      "argv": [
+        "-s",
+        "exploration_period",
+        "-i",
+        "900"
+      ],
+      "expected_mock": "ai_engine_setExplorationPeriod 900",
+      "mock_calls": [
+        "MOCK ai_engine_setExplorationPeriod 900"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_setExplorationPeriod 900\nSet Exploration Period  succesful\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "set-log",
+      "argv": [
+        "-s",
+        "log",
+        "-o",
+        "1",
+        "-l",
+        "3"
+      ],
+      "expected_mock": "ai_engine_setLogLevel 1 3",
+      "mock_calls": [
+        "MOCK ai_engine_setLogLevel 1 3"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK ai_engine_setLogLevel 1 3\nSet log level succesful\n",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "get-optimize-is-action",
+      "argv": [
+        "-g",
+        "optimize_wifi"
+      ],
+      "expected_mock": "nwa_local_rrm_enable_optimize_wifi",
+      "mock_calls": [
+        "MOCK nwa_local_rrm_enable_optimize_wifi",
+        "MOCK nwa_retrieve_domain_info_from_localRRM"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "MOCK nwa_local_rrm_enable_optimize_wifi\noptimize wifi not okprocess_result=0calling nwa_retrieve_domain_info_from_localRRM\nMOCK nwa_retrieve_domain_info_from_localRRM\ndomain=0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "set-optimize-is-domain-query",
+      "argv": [
+        "-s",
+        "optimize_wifi"
+      ],
+      "expected_mock": "nwa_retrieve_domain_info_from_localRRM",
+      "mock_calls": [
+        "MOCK nwa_retrieve_domain_info_from_localRRM"
+      ],
+      "exit_status": 0,
+      "expected_exit_status": 0,
+      "stdout": "calling nwa_retrieve_domain_info_from_localRRM\nMOCK nwa_retrieve_domain_info_from_localRRM\ndomain=0",
+      "stderr": "",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-05",
+  "result": "passed",
+  "scope": "Two additional loopback-only captures; sh -n parses actual emitted frames; fixed-printf-only child checks framing semantics. No original device command executed by sh, no real router access. WSL is a developer-test dependency only.",
+  "script_sha256": "9deb0b31b1e5414cf84f63d7590fa0288d44c1a896cee00a1a9da872caeb0d24",
+  "tests": [
+    {
+      "runtime": "powershell.exe",
+      "actual_frame_count": 21,
+      "all_frames_POSIX_syntax_valid": true,
+      "safe_printf_only_framing_execution": "passed",
+      "actual_frames": [
+        "printf '\\n%s\\n' '__G6PS_BEGIN_182cd04796814059bcfe8b545623302c__'; { id -u; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_182cd04796814059bcfe8b545623302c__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_8c074ebd2f334694a7fd59d83aa21dd3__'; { if command -v base64 >/dev/null 2>&1; then echo G6ENC:base64; elif busybox base64 </dev/null >/dev/null 2>&1; then echo G6ENC:busybox; elif command -v openssl >/dev/null 2>&1; then echo G6ENC:openssl; else echo G6ENC:none; fi; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_8c074ebd2f334694a7fd59d83aa21dd3__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_eefda5d284e44502a6796a1503a470dd__'; { cat /proc/mtd; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_eefda5d284e44502a6796a1503a470dd__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_a12d0aa8befa4b569387950dcc0796da__'; { uname -a; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_a12d0aa8befa4b569387950dcc0796da__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_63f0a6aa824c4dc0bac5f216c2afac97__'; { cat /etc/openwrt_release 2>/dev/null || true; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_63f0a6aa824c4dc0bac5f216c2afac97__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_2a2cd393dd0246b88e08b3bd8da23cde__'; { cat /proc/mtd; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_2a2cd393dd0246b88e08b3bd8da23cde__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_f10a55fa76154a41a8427f12f9c645af__'; { cat /proc/cmdline; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_f10a55fa76154a41a8427f12f9c645af__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_74c3ca163fde43a2ac3b81cbeda3a6f2__'; { cat /proc/mounts; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_74c3ca163fde43a2ac3b81cbeda3a6f2__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_116ea6d8fb054de68d7726dd3418ea91__'; { ubinfo -a 2>&1 || true; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_116ea6d8fb054de68d7726dd3418ea91__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_bea8bd8387ea4017b44706bc30c21838__'; { for d in /sys/class/mtd/mtd*; do echo \"--- $d ---\"; for f in name size erasesize writesize oobsize; do if [ -f \"$d/$f\" ]; then printf \"%s=\" \"$f\"; cat \"$d/$f\"; fi; done; done; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_bea8bd8387ea4017b44706bc30c21838__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_90c858ccb94f454b9392867324618c43__'; { dmesg | grep -Ei \"nand|mtd|ubi|ubifs|squashfs|fit\" || true; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_90c858ccb94f454b9392867324618c43__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_3b60feb32ec74f55b184ccb4030fd8a5__'; { base64 /dev/mtd0; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_3b60feb32ec74f55b184ccb4030fd8a5__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_6f50f41e4c1d4376b53f645bf3dcf96f__'; { base64 /dev/mtd1; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_6f50f41e4c1d4376b53f645bf3dcf96f__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_0109834dd0a84211941a0707fa3d313d__'; { base64 /dev/mtd2; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_0109834dd0a84211941a0707fa3d313d__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_c2bc5de7e36a403f8adccdf708e95e40__'; { base64 /dev/mtd3; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_c2bc5de7e36a403f8adccdf708e95e40__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_3139adc3925f4405a12fc8148ff0fd53__'; { base64 /dev/mtd4; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_3139adc3925f4405a12fc8148ff0fd53__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_1b0de1c12a8c4f1e9bc5e5b6044ed5e3__'; { base64 /dev/mtd5; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_1b0de1c12a8c4f1e9bc5e5b6044ed5e3__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_fd3ca85f248d497686d0287a1bc5dd1e__'; { base64 /dev/mtd6; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_fd3ca85f248d497686d0287a1bc5dd1e__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_2ca696a6c308463c90a177f0181f9415__'; { base64 /dev/mtd7; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_2ca696a6c308463c90a177f0181f9415__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_5809f2ecaaa44297b763244fc17f38e2__'; { base64 /dev/mtd9; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_5809f2ecaaa44297b763244fc17f38e2__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_a6bcbee8e34f4ae295078b285ab0975e__'; { base64 /dev/mtd10; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_a6bcbee8e34f4ae295078b285ab0975e__' \"$g6_ps_rc\""
+      ]
+    },
+    {
+      "runtime": "pwsh.exe",
+      "actual_frame_count": 21,
+      "all_frames_POSIX_syntax_valid": true,
+      "safe_printf_only_framing_execution": "passed",
+      "actual_frames": [
+        "printf '\\n%s\\n' '__G6PS_BEGIN_146cf4b4e70c454999d485d4f4df9eca__'; { id -u; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_146cf4b4e70c454999d485d4f4df9eca__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_7f020fd1cd174e59821a76ad961b3e4c__'; { if command -v base64 >/dev/null 2>&1; then echo G6ENC:base64; elif busybox base64 </dev/null >/dev/null 2>&1; then echo G6ENC:busybox; elif command -v openssl >/dev/null 2>&1; then echo G6ENC:openssl; else echo G6ENC:none; fi; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_7f020fd1cd174e59821a76ad961b3e4c__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_ce22fefc6b92427cb62efff8c2f6f5aa__'; { cat /proc/mtd; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_ce22fefc6b92427cb62efff8c2f6f5aa__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_ddc88c0eecac4c6eb45890b9b8ecacfc__'; { uname -a; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_ddc88c0eecac4c6eb45890b9b8ecacfc__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_6ef182934d4a4c6bba34bac4defab847__'; { cat /etc/openwrt_release 2>/dev/null || true; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_6ef182934d4a4c6bba34bac4defab847__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_e46a2b072eca4f7795089558db1f3b4d__'; { cat /proc/mtd; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_e46a2b072eca4f7795089558db1f3b4d__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_f147090ba5fe4327b2db6d52f3474c30__'; { cat /proc/cmdline; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_f147090ba5fe4327b2db6d52f3474c30__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_28f0207b556048e685bf5e9444fa09f3__'; { cat /proc/mounts; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_28f0207b556048e685bf5e9444fa09f3__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_470e105d1b3a47558b5bb448249e1891__'; { ubinfo -a 2>&1 || true; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_470e105d1b3a47558b5bb448249e1891__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_ce5bb8d871db470dbb29e6bb04537c27__'; { for d in /sys/class/mtd/mtd*; do echo \"--- $d ---\"; for f in name size erasesize writesize oobsize; do if [ -f \"$d/$f\" ]; then printf \"%s=\" \"$f\"; cat \"$d/$f\"; fi; done; done; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_ce5bb8d871db470dbb29e6bb04537c27__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_dcabf761d8e040a6a80301fa5c998cb6__'; { dmesg | grep -Ei \"nand|mtd|ubi|ubifs|squashfs|fit\" || true; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_dcabf761d8e040a6a80301fa5c998cb6__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_0597c9cee39b493f9f1a5a112b432d2b__'; { base64 /dev/mtd0; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_0597c9cee39b493f9f1a5a112b432d2b__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_3251a08d10ba4a80a79cc094973c1250__'; { base64 /dev/mtd1; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_3251a08d10ba4a80a79cc094973c1250__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_13d9425b469a4c5783f1046dd528bbb5__'; { base64 /dev/mtd2; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_13d9425b469a4c5783f1046dd528bbb5__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_721165a8ead6406188f93adc941f1ffa__'; { base64 /dev/mtd3; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_721165a8ead6406188f93adc941f1ffa__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_0de74711433849c3be1e90caf64f0f89__'; { base64 /dev/mtd4; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_0de74711433849c3be1e90caf64f0f89__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_2e63aba33cca471c80e479370299b92a__'; { base64 /dev/mtd5; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_2e63aba33cca471c80e479370299b92a__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_0c7469d8725e4e419f644a401ac8c361__'; { base64 /dev/mtd6; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_0c7469d8725e4e419f644a401ac8c361__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_5f7e646b8a074bb98a02e23215021d6a__'; { base64 /dev/mtd7; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_5f7e646b8a074bb98a02e23215021d6a__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_5fa82eb3a9bd429aafdc9dc077c8c0c0__'; { base64 /dev/mtd9; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_5fa82eb3a9bd429aafdc9dc077c8c0c0__' \"$g6_ps_rc\"",
+        "printf '\\n%s\\n' '__G6PS_BEGIN_bb8a79b89cd64f1a925ace1ec4a0a81b__'; { base64 /dev/mtd10; }; g6_ps_rc=$?; printf '\\n%s:%s\\n' '__G6PS_END_bb8a79b89cd64f1a925ace1ec4a0a81b__' \"$g6_ps_rc\""
+      ]
+    }
+  ]
+}

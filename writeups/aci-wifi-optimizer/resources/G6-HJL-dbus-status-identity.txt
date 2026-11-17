@@ -1,0 +1,16 @@
+
+ndbus_get_status_value:
+00005a68: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+00005a6c: a1000090  adrp x1, #0x19000
+00005a70: fd030091  mov x29, sp
+00005a74: 21f847f9  ldr x1, [x1, #0xff0]
+00005a78: 220040f9  ldr x2, [x1]
+00005a7c: a20f00f9  str x2, [x29, #0x18]
+00005a80: 020080d2  mov x2, #0
+00005a84: a20f40f9  ldr x2, [x29, #0x18]
+00005a88: 210040f9  ldr x1, [x1]
+00005a8c: 410001ca  eor x1, x2, x1
+00005a90: 610000b5  cbnz x1, #0x5a9c
+00005a94: fd7bc2a8  ldp x29, x30, [sp], #0x20
+00005a98: c0035fd6  ret 
+00005a9c: ddf6ff97  bl #0x3610 ; heuristic __stack_chk_fail@plt {}

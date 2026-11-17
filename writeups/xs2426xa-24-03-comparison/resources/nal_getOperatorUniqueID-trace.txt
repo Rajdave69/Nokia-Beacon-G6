@@ -1,0 +1,76 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/lib/libnal.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000251e8 <nal_getOperatorUniqueID@@Base>:
+   251e8:	d132c3ff 	sub	sp, sp, #0xcb0
+   251ec:	d0000303 	adrp	x3, 87000 <_fini@@Base+0x28dd8>
+   251f0:	d28189e2 	mov	x2, #0xc4f                 	// #3151
+   251f4:	a9007bfd 	stp	x29, x30, [sp]
+   251f8:	910003fd 	mov	x29, sp
+   251fc:	f947e863 	ldr	x3, [x3, #4048]  ; GOT memset@GLIBC_2.17
+   25200:	a90153f3 	stp	x19, x20, [sp, #16]
+   25204:	d0000313 	adrp	x19, 87000 <_fini@@Base+0x28dd8>
+   25208:	f90013f5 	str	x21, [sp, #32]
+   2520c:	aa0003f5 	mov	x21, x0
+   25210:	f9420660 	ldr	x0, [x19, #1032]  ; GOT __stack_chk_guard@GLIBC_2.17
+   25214:	910163b4 	add	x20, x29, #0x58
+   25218:	a903ffbf 	stp	xzr, xzr, [x29, #56]
+   2521c:	f9400001 	ldr	x1, [x0]
+   25220:	f90657a1 	str	x1, [x29, #3240]
+   25224:	d2800001 	mov	x1, #0x0                   	// #0
+   25228:	f90027bf 	str	xzr, [x29, #72]
+   2522c:	b90053bf 	str	wzr, [x29, #80]
+   25230:	aa1403e0 	mov	x0, x20
+   25234:	d63f0060 	blr	x3
+   25238:	910173a2 	add	x2, x29, #0x5c
+   2523c:	528049e0 	mov	w0, #0x24f                 	// #591
+   25240:	d0000303 	adrp	x3, 87000 <_fini@@Base+0x28dd8>
+   25244:	b9005ba0 	str	w0, [x29, #88]
+   25248:	a94387a0 	ldp	x0, x1, [x29, #56]
+   2524c:	a9000440 	stp	x0, x1, [x2]
+   25250:	f947f463 	ldr	x3, [x3, #4072]  ; GOT cfg_getObj
+   25254:	52820002 	mov	w2, #0x1000                	// #4096
+   25258:	f94027a0 	ldr	x0, [x29, #72]
+   2525c:	528189e1 	mov	w1, #0xc4f                 	// #3151
+   25260:	f806c3a0 	stur	x0, [x29, #108]
+   25264:	b94053a0 	ldr	w0, [x29, #80]
+   25268:	b90077a0 	str	w0, [x29, #116]
+   2526c:	aa1403e0 	mov	x0, x20
+   25270:	d63f0060 	blr	x3
+   25274:	340001a0 	cbz	w0, 252a8 <nal_getOperatorUniqueID@@Base+0xc0>
+   25278:	d0000304 	adrp	x4, 87000 <_fini@@Base+0x28dd8>
+   2527c:	2a0003e3 	mov	w3, w0
+   25280:	f00001c0 	adrp	x0, 60000 <_fini@@Base+0x1dd8>
+   25284:	913b4000 	add	x0, x0, #0xed0  ; 'getvlanBindedPvid'
+   25288:	f9424c84 	ldr	x4, [x4, #1176]  ; GOT nalLogError
+   2528c:	90000202 	adrp	x2, 65000 <_fini@@Base+0x6dd8>
+   25290:	91283442 	add	x2, x2, #0xa0d  ; 'Get WifiServiceObject failed, ret=%d\n'
+   25294:	5281f741 	mov	w1, #0xfba                 	// #4026
+   25298:	912b6000 	add	x0, x0, #0xad8  ; 'nal_getOperatorUniqueID'
+   2529c:	d63f0080 	blr	x4
+   252a0:	12800000 	mov	w0, #0xffffffff            	// #-1
+   252a4:	14000008 	b	252c4 <nal_getOperatorUniqueID@@Base+0xdc>
+   252a8:	b4ffffd5 	cbz	x21, 252a0 <nal_getOperatorUniqueID@@Base+0xb8>
+   252ac:	d0000302 	adrp	x2, 87000 <_fini@@Base+0x28dd8>
+   252b0:	910ac281 	add	x1, x20, #0x2b0
+   252b4:	aa1503e0 	mov	x0, x21
+   252b8:	f9476c42 	ldr	x2, [x2, #3800]  ; GOT strcpy@GLIBC_2.17
+   252bc:	d63f0040 	blr	x2
+   252c0:	52800000 	mov	w0, #0x0                   	// #0
+   252c4:	f9420673 	ldr	x19, [x19, #1032]  ; GOT __stack_chk_guard@GLIBC_2.17
+   252c8:	f94657a2 	ldr	x2, [x29, #3240]
+   252cc:	f9400261 	ldr	x1, [x19]
+   252d0:	ca010041 	eor	x1, x2, x1
+   252d4:	b4000081 	cbz	x1, 252e4 <nal_getOperatorUniqueID@@Base+0xfc>
+   252d8:	d0000300 	adrp	x0, 87000 <_fini@@Base+0x28dd8>
+   252dc:	f9449c00 	ldr	x0, [x0, #2360]  ; GOT __stack_chk_fail@GLIBC_2.17
+   252e0:	d63f0000 	blr	x0
+   252e4:	a9407bfd 	ldp	x29, x30, [sp]
+   252e8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   252ec:	f94013f5 	ldr	x21, [sp, #32]
+   252f0:	9132c3ff 	add	sp, sp, #0xcb0
+   252f4:	d65f03c0 	ret

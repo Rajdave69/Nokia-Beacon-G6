@@ -1,0 +1,718 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/sbin/sec_extfs:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000401a70 <main@@Base>:
+  401a70:	d10d83ff 	sub	sp, sp, #0x360
+  401a74:	d2804082 	mov	x2, #0x204                 	// #516
+  401a78:	a9007bfd 	stp	x29, x30, [sp]
+  401a7c:	910003fd 	mov	x29, sp
+  401a80:	a90153f3 	stp	x19, x20, [sp, #16]
+  401a84:	900000b4 	adrp	x20, 415000 <__data_start@@Base>
+  401a88:	f90023f9 	str	x25, [sp, #64]
+  401a8c:	2a0003f9 	mov	w25, w0
+  401a90:	f0000093 	adrp	x19, 414000 <_IO_stdin_used@@Base+0x108b8>
+  401a94:	912f8260 	add	x0, x19, #0xbe0
+  401a98:	a9025bf5 	stp	x21, x22, [sp, #32]
+  401a9c:	910953b6 	add	x22, x29, #0x254
+  401aa0:	a90363f7 	stp	x23, x24, [sp, #48]
+  401aa4:	aa0103f7 	mov	x23, x1
+  401aa8:	f9400001 	ldr	x1, [x0]
+  401aac:	f901afa1 	str	x1, [x29, #856]
+  401ab0:	d2800001 	mov	x1, #0x0                   	// #0
+  401ab4:	910543a0 	add	x0, x29, #0x150
+  401ab8:	97ffff6a 	bl	401860 <memset@plt>
+  401abc:	910553b5 	add	x21, x29, #0x154
+  401ac0:	d2802002 	mov	x2, #0x100                 	// #256
+  401ac4:	52800001 	mov	w1, #0x0                   	// #0
+  401ac8:	910143a0 	add	x0, x29, #0x50
+  401acc:	97ffff65 	bl	401860 <memset@plt>
+  401ad0:	d2801fe2 	mov	x2, #0xff                  	// #255
+  401ad4:	f0000001 	adrp	x1, 404000 <_IO_stdin_used@@Base+0x8b8>
+  401ad8:	91030021 	add	x1, x1, #0xc0  ; '/tmp/.ext_fwkey'
+  401adc:	aa1603e0 	mov	x0, x22
+  401ae0:	97ffff84 	bl	4018f0 <strncpy@plt>
+  401ae4:	f0000018 	adrp	x24, 404000 <_IO_stdin_used@@Base+0x8b8>
+  401ae8:	91034318 	add	x24, x24, #0xd0  ; 't:o:f:i:'
+  401aec:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401af0:	913c8821 	add	x1, x1, #0xf22  ; '/tmp/.secHashStr'
+  401af4:	d2801fe2 	mov	x2, #0xff                  	// #255
+  401af8:	aa1503e0 	mov	x0, x21
+  401afc:	97ffff7d 	bl	4018f0 <strncpy@plt>
+  401b00:	aa1803e2 	mov	x2, x24
+  401b04:	aa1703e1 	mov	x1, x23
+  401b08:	2a1903e0 	mov	w0, w25
+  401b0c:	97ffff6d 	bl	4018c0 <getopt@plt>
+  401b10:	3100041f 	cmn	w0, #0x1
+  401b14:	540001c1 	b.ne	401b4c <main@@Base+0xdc>  // b.any
+  401b18:	394143a0 	ldrb	w0, [x29, #80]
+  401b1c:	34000500 	cbz	w0, 401bbc <main@@Base+0x14c>
+  401b20:	b94153a0 	ldr	w0, [x29, #336]
+  401b24:	7100101f 	cmp	w0, #0x4
+  401b28:	540004a1 	b.ne	401bbc <main@@Base+0x14c>  // b.any
+  401b2c:	910143a0 	add	x0, x29, #0x50
+  401b30:	94000543 	bl	40303c <process_ntz_files@@Base>
+  401b34:	912f8273 	add	x19, x19, #0xbe0
+  401b38:	f941afa2 	ldr	x2, [x29, #856]
+  401b3c:	f9400261 	ldr	x1, [x19]
+  401b40:	ca010041 	eor	x1, x2, x1
+  401b44:	b4000441 	cbz	x1, 401bcc <main@@Base+0x15c>
+  401b48:	97ffff1a 	bl	4017b0 <__stack_chk_fail@plt>
+  401b4c:	7101a41f 	cmp	w0, #0x69
+  401b50:	540002e0 	b.eq	401bac <main@@Base+0x13c>  // b.none
+  401b54:	540000ac 	b.gt	401b68 <main@@Base+0xf8>
+  401b58:	7101981f 	cmp	w0, #0x66
+  401b5c:	54000200 	b.eq	401b9c <main@@Base+0x12c>  // b.none
+  401b60:	f94002e0 	ldr	x0, [x23]
+  401b64:	94000041 	bl	401c68 <_start@@Base+0x80>
+  401b68:	7101bc1f 	cmp	w0, #0x6f
+  401b6c:	540000e0 	b.eq	401b88 <main@@Base+0x118>  // b.none
+  401b70:	7101d01f 	cmp	w0, #0x74
+  401b74:	54ffff61 	b.ne	401b60 <main@@Base+0xf0>  // b.any
+  401b78:	f9403680 	ldr	x0, [x20, #104]
+  401b7c:	940000c5 	bl	401e90 <getOptNumber@@Base>
+  401b80:	b90153a0 	str	w0, [x29, #336]
+  401b84:	17ffffdf 	b	401b00 <main@@Base+0x90>
+  401b88:	f9403681 	ldr	x1, [x20, #104]
+  401b8c:	aa1503e0 	mov	x0, x21
+  401b90:	d2801fe2 	mov	x2, #0xff                  	// #255
+  401b94:	97ffff57 	bl	4018f0 <strncpy@plt>
+  401b98:	17ffffda 	b	401b00 <main@@Base+0x90>
+  401b9c:	d2801fe2 	mov	x2, #0xff                  	// #255
+  401ba0:	f9403681 	ldr	x1, [x20, #104]
+  401ba4:	aa1603e0 	mov	x0, x22
+  401ba8:	17fffffb 	b	401b94 <main@@Base+0x124>
+  401bac:	d2801fe2 	mov	x2, #0xff                  	// #255
+  401bb0:	f9403681 	ldr	x1, [x20, #104]
+  401bb4:	910143a0 	add	x0, x29, #0x50
+  401bb8:	17fffff7 	b	401b94 <main@@Base+0x124>
+  401bbc:	910543a0 	add	x0, x29, #0x150
+  401bc0:	940001c0 	bl	4022c0 <procExtfsSecurityData@@Base>
+  401bc4:	34fffb80 	cbz	w0, 401b34 <main@@Base+0xc4>
+  401bc8:	17ffffe6 	b	401b60 <main@@Base+0xf0>
+  401bcc:	a9407bfd 	ldp	x29, x30, [sp]
+  401bd0:	a94153f3 	ldp	x19, x20, [sp, #16]
+  401bd4:	a9425bf5 	ldp	x21, x22, [sp, #32]
+  401bd8:	a94363f7 	ldp	x23, x24, [sp, #48]
+  401bdc:	f94023f9 	ldr	x25, [sp, #64]
+  401be0:	910d83ff 	add	sp, sp, #0x360
+  401be4:	d65f03c0 	ret
+
+0000000000401be8 <_start@@Base>:
+  401be8:	d280001d 	mov	x29, #0x0                   	// #0
+  401bec:	d280001e 	mov	x30, #0x0                   	// #0
+  401bf0:	aa0003e5 	mov	x5, x0
+  401bf4:	f94003e1 	ldr	x1, [sp]
+  401bf8:	910023e2 	add	x2, sp, #0x8
+  401bfc:	910003e6 	mov	x6, sp
+  401c00:	d2e00000 	movz	x0, #0x0, lsl #48
+  401c04:	f2c00000 	movk	x0, #0x0, lsl #32
+  401c08:	f2a00800 	movk	x0, #0x40, lsl #16
+  401c0c:	f2834e00 	movk	x0, #0x1a70
+  401c10:	d2e00003 	movz	x3, #0x0, lsl #48
+  401c14:	f2c00003 	movk	x3, #0x0, lsl #32
+  401c18:	f2a00803 	movk	x3, #0x40, lsl #16
+  401c1c:	f286d403 	movk	x3, #0x36a0
+  401c20:	d2e00004 	movz	x4, #0x0, lsl #48
+  401c24:	f2c00004 	movk	x4, #0x0, lsl #32
+  401c28:	f2a00804 	movk	x4, #0x40, lsl #16
+  401c2c:	f286e604 	movk	x4, #0x3730
+  401c30:	97ffff20 	bl	4018b0 <__libc_start_main@plt>
+  401c34:	97ffff67 	bl	4019d0 <abort@plt>
+  401c38:	f0000080 	adrp	x0, 414000 <_IO_stdin_used@@Base+0x108b8>
+  401c3c:	f947fc00 	ldr	x0, [x0, #4088]  ; GOT __gmon_start__
+  401c40:	b4000040 	cbz	x0, 401c48 <_start@@Base+0x60>
+  401c44:	17ffff77 	b	401a20 <__gmon_start__@plt>
+  401c48:	d65f03c0 	ret
+  401c4c:	900000a0 	adrp	x0, 415000 <__data_start@@Base>
+  401c50:	3941c001 	ldrb	w1, [x0, #112]
+  401c54:	35000061 	cbnz	w1, 401c60 <_start@@Base+0x78>
+  401c58:	52800021 	mov	w1, #0x1                   	// #1
+  401c5c:	3901c001 	strb	w1, [x0, #112]
+  401c60:	d65f03c0 	ret
+  401c64:	d65f03c0 	ret
+  401c68:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+  401c6c:	910003fd 	mov	x29, sp
+  401c70:	a90153f3 	stp	x19, x20, [sp, #16]
+  401c74:	aa0003f3 	mov	x19, x0
+  401c78:	97fffeca 	bl	4017a0 <strlen@plt>
+  401c7c:	11001814 	add	w20, w0, #0x6
+  401c80:	aa1303e1 	mov	x1, x19
+  401c84:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401c88:	91204800 	add	x0, x0, #0x812  ; 'usage:%s -t <sechash|fwstr|mft|all> [-o path] [-f path] \n'
+  401c8c:	97ffff71 	bl	401a50 <printf@plt>
+  401c90:	d0000013 	adrp	x19, 403000 <process_tz_files@@Base+0x5cc>
+  401c94:	91212e73 	add	x19, x19, #0x84b
+  401c98:	aa1303e2 	mov	x2, x19
+  401c9c:	2a1403e1 	mov	w1, w20
+  401ca0:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401ca4:	91213000 	add	x0, x0, #0x84c  ; '%*s Tool for extfs security data\n'
+  401ca8:	97ffff6a 	bl	401a50 <printf@plt>
+  401cac:	aa1303e2 	mov	x2, x19
+  401cb0:	2a1403e1 	mov	w1, w20
+  401cb4:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401cb8:	9121b800 	add	x0, x0, #0x86e  ; '%*s -t [sechash|fwstr|all]       Indicate the operation type\n'
+  401cbc:	97ffff65 	bl	401a50 <printf@plt>
+  401cc0:	aa1303e2 	mov	x2, x19
+  401cc4:	2a1403e1 	mov	w1, w20
+  401cc8:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401ccc:	9122b000 	add	x0, x0, #0x8ac  ; '%*s -o path   Save the sechash result to the file\n'
+  401cd0:	97ffff60 	bl	401a50 <printf@plt>
+  401cd4:	aa1303e2 	mov	x2, x19
+  401cd8:	2a1403e1 	mov	w1, w20
+  401cdc:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401ce0:	91237c00 	add	x0, x0, #0x8df  ; '%*s -f path   Save the fwstr result to the file\n'
+  401ce4:	97ffff5b 	bl	401a50 <printf@plt>
+  401ce8:	aa1303e2 	mov	x2, x19
+  401cec:	2a1403e1 	mov	w1, w20
+  401cf0:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401cf4:	91244000 	add	x0, x0, #0x910  ; '%*s -i fullpath   load and check mft file when type is mft\n'
+  401cf8:	97ffff56 	bl	401a50 <printf@plt>
+  401cfc:	12800000 	mov	w0, #0xffffffff            	// #-1
+  401d00:	97ffff40 	bl	401a00 <exit@plt>
+  401d04:	d2840810 	mov	x16, #0x2040                	// #8256
+  401d08:	cb3063ff 	sub	sp, sp, x16
+  401d0c:	d2840002 	mov	x2, #0x2000                	// #8192
+  401d10:	a9007bfd 	stp	x29, x30, [sp]
+  401d14:	910003fd 	mov	x29, sp
+  401d18:	a9025bf5 	stp	x21, x22, [sp, #32]
+  401d1c:	aa0003f6 	mov	x22, x0
+  401d20:	f0000095 	adrp	x21, 414000 <_IO_stdin_used@@Base+0x108b8>
+  401d24:	912f82a0 	add	x0, x21, #0xbe0
+  401d28:	f9400001 	ldr	x1, [x0]
+  401d2c:	f9101fa1 	str	x1, [x29, #8248]
+  401d30:	d2800001 	mov	x1, #0x0                   	// #0
+  401d34:	a90153f3 	stp	x19, x20, [sp, #16]
+  401d38:	9100e3a0 	add	x0, x29, #0x38
+  401d3c:	f9001bbf 	str	xzr, [x29, #48]
+  401d40:	97fffec8 	bl	401860 <memset@plt>
+  401d44:	52840002 	mov	w2, #0x2000                	// #8192
+  401d48:	9100e3a1 	add	x1, x29, #0x38
+  401d4c:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401d50:	91253000 	add	x0, x0, #0x94c  ; 'SECURITY'
+  401d54:	97ffff43 	bl	401a60 <extfs_get@plt>
+  401d58:	2a0003f3 	mov	w19, w0
+  401d5c:	35000060 	cbnz	w0, 401d68 <_start@@Base+0x180>
+  401d60:	3940e3a0 	ldrb	w0, [x29, #56]
+  401d64:	35000260 	cbnz	w0, 401db0 <_start@@Base+0x1c8>
+  401d68:	9100e3a0 	add	x0, x29, #0x38
+  401d6c:	97fffe8d 	bl	4017a0 <strlen@plt>
+  401d70:	2a1303e1 	mov	w1, w19
+  401d74:	12800013 	mov	w19, #0xffffffff            	// #-1
+  401d78:	aa0003e2 	mov	x2, x0
+  401d7c:	52802524 	mov	w4, #0x129                 	// #297
+  401d80:	d0000003 	adrp	x3, 403000 <process_tz_files@@Base+0x5cc>
+  401d84:	911d4063 	add	x3, x3, #0x750  ; 'getValueFromSecExtfs'
+  401d88:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401d8c:	91255400 	add	x0, x0, #0x955  ; 'extfs_get ret(%d) len(%d) %s:%d\n'
+  401d90:	97fffe90 	bl	4017d0 <selog@plt>
+  401d94:	912f82a1 	add	x1, x21, #0xbe0
+  401d98:	2a1303e0 	mov	w0, w19
+  401d9c:	f9501fa2 	ldr	x2, [x29, #8248]
+  401da0:	f9400021 	ldr	x1, [x1]
+  401da4:	ca010041 	eor	x1, x2, x1
+  401da8:	b4000681 	cbz	x1, 401e78 <_start@@Base+0x290>
+  401dac:	97fffe81 	bl	4017b0 <__stack_chk_fail@plt>
+  401db0:	97ffff24 	bl	401a40 <SecBlockInit@plt>
+  401db4:	f9001ba0 	str	x0, [x29, #48]
+  401db8:	b5000120 	cbnz	x0, 401ddc <_start@@Base+0x1f4>
+  401dbc:	52802602 	mov	w2, #0x130                 	// #304
+  401dc0:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401dc4:	911d4021 	add	x1, x1, #0x750  ; 'getValueFromSecExtfs'
+  401dc8:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401dcc:	9125d800 	add	x0, x0, #0x976  ; 'SecBlockInit fail %s:%d\n'
+  401dd0:	12800033 	mov	w19, #0xfffffffe            	// #-2
+  401dd4:	97fffe7f 	bl	4017d0 <selog@plt>
+  401dd8:	17ffffef 	b	401d94 <_start@@Base+0x1ac>
+  401ddc:	9100e3a1 	add	x1, x29, #0x38
+  401de0:	97fffeb0 	bl	4018a0 <SecSetSerializedStr@plt>
+  401de4:	f9401ba0 	ldr	x0, [x29, #48]
+  401de8:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401dec:	91263c21 	add	x1, x1, #0x98f  ; 'EXT_RANDOM_VAR'
+  401df0:	97fffe5c 	bl	401760 <SecGetData@plt>
+  401df4:	aa0003f4 	mov	x20, x0
+  401df8:	b5000160 	cbnz	x0, 401e24 <_start@@Base+0x23c>
+  401dfc:	9100c3a0 	add	x0, x29, #0x30
+  401e00:	97fffe54 	bl	401750 <SecBlockFree@plt>
+  401e04:	52802722 	mov	w2, #0x139                 	// #313
+  401e08:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401e0c:	911d4021 	add	x1, x1, #0x750  ; 'getValueFromSecExtfs'
+  401e10:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401e14:	91267800 	add	x0, x0, #0x99e  ; 'SecGetData fail %s:%d\n'
+  401e18:	12800053 	mov	w19, #0xfffffffd            	// #-3
+  401e1c:	97fffe6d 	bl	4017d0 <selog@plt>
+  401e20:	17ffffdd 	b	401d94 <_start@@Base+0x1ac>
+  401e24:	97fffe5f 	bl	4017a0 <strlen@plt>
+  401e28:	f101fc1f 	cmp	x0, #0x7f
+  401e2c:	54000149 	b.ls	401e54 <_start@@Base+0x26c>  // b.plast
+  401e30:	528027c3 	mov	w3, #0x13e                 	// #318
+  401e34:	d0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  401e38:	911d4042 	add	x2, x2, #0x750  ; 'getValueFromSecExtfs'
+  401e3c:	aa1403e1 	mov	x1, x20
+  401e40:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401e44:	9126d400 	add	x0, x0, #0x9b5  ; 'value is too long(%s) %s:%d\n'
+  401e48:	97fffe62 	bl	4017d0 <selog@plt>
+  401e4c:	12800093 	mov	w19, #0xfffffffb            	// #-5
+  401e50:	17ffffd1 	b	401d94 <_start@@Base+0x1ac>
+  401e54:	aa1403e3 	mov	x3, x20
+  401e58:	d0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  401e5c:	913d7c42 	add	x2, x2, #0xf5f
+  401e60:	d2801001 	mov	x1, #0x80                  	// #128
+  401e64:	aa1603e0 	mov	x0, x22
+  401e68:	97fffeae 	bl	401920 <snprintf@plt>
+  401e6c:	9100c3a0 	add	x0, x29, #0x30
+  401e70:	97fffe38 	bl	401750 <SecBlockFree@plt>
+  401e74:	17ffffc8 	b	401d94 <_start@@Base+0x1ac>
+  401e78:	a9407bfd 	ldp	x29, x30, [sp]
+  401e7c:	d2840810 	mov	x16, #0x2040                	// #8256
+  401e80:	a94153f3 	ldp	x19, x20, [sp, #16]
+  401e84:	a9425bf5 	ldp	x21, x22, [sp, #32]
+  401e88:	8b3063ff 	add	sp, sp, x16
+  401e8c:	d65f03c0 	ret
+
+0000000000401e90 <getOptNumber@@Base>:
+  401e90:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+  401e94:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401e98:	91274821 	add	x1, x1, #0x9d2  ; 'sechash'
+  401e9c:	910003fd 	mov	x29, sp
+  401ea0:	f9000bf3 	str	x19, [sp, #16]
+  401ea4:	d2800102 	mov	x2, #0x8                   	// #8
+  401ea8:	aa0003f3 	mov	x19, x0
+  401eac:	97fffe89 	bl	4018d0 <strncmp@plt>
+  401eb0:	340003c0 	cbz	w0, 401f28 <getOptNumber@@Base+0x98>
+  401eb4:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401eb8:	91276821 	add	x1, x1, #0x9da  ; 'fwstr'
+  401ebc:	d28000c2 	mov	x2, #0x6                   	// #6
+  401ec0:	aa1303e0 	mov	x0, x19
+  401ec4:	97fffe83 	bl	4018d0 <strncmp@plt>
+  401ec8:	340003a0 	cbz	w0, 401f3c <getOptNumber@@Base+0xac>
+  401ecc:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401ed0:	91278021 	add	x1, x1, #0x9e0  ; 'all'
+  401ed4:	d2800082 	mov	x2, #0x4                   	// #4
+  401ed8:	aa1303e0 	mov	x0, x19
+  401edc:	97fffe7d 	bl	4018d0 <strncmp@plt>
+  401ee0:	34000320 	cbz	w0, 401f44 <getOptNumber@@Base+0xb4>
+  401ee4:	d2800082 	mov	x2, #0x4                   	// #4
+  401ee8:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401eec:	91279021 	add	x1, x1, #0x9e4  ; 'mft'
+  401ef0:	aa1303e0 	mov	x0, x19
+  401ef4:	97fffe77 	bl	4018d0 <strncmp@plt>
+  401ef8:	52800081 	mov	w1, #0x4                   	// #4
+  401efc:	34000180 	cbz	w0, 401f2c <getOptNumber@@Base+0x9c>
+  401f00:	d0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  401f04:	911d4042 	add	x2, x2, #0x750  ; 'getValueFromSecExtfs'
+  401f08:	91006042 	add	x2, x2, #0x18  ; 'getOptNumber'
+  401f0c:	aa1303e1 	mov	x1, x19
+  401f10:	52800a83 	mov	w3, #0x54                  	// #84
+  401f14:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401f18:	9127a000 	add	x0, x0, #0x9e8  ; 'Unsupport operation type[%s]! %s:%d\n'
+  401f1c:	97fffe2d 	bl	4017d0 <selog@plt>
+  401f20:	12800000 	mov	w0, #0xffffffff            	// #-1
+  401f24:	97fffeb7 	bl	401a00 <exit@plt>
+  401f28:	52800021 	mov	w1, #0x1                   	// #1
+  401f2c:	2a0103e0 	mov	w0, w1
+  401f30:	f9400bf3 	ldr	x19, [sp, #16]
+  401f34:	a8c27bfd 	ldp	x29, x30, [sp], #32
+  401f38:	d65f03c0 	ret
+  401f3c:	52800041 	mov	w1, #0x2                   	// #2
+  401f40:	17fffffb 	b	401f2c <getOptNumber@@Base+0x9c>
+  401f44:	12800001 	mov	w1, #0xffffffff            	// #-1
+  401f48:	17fffff9 	b	401f2c <getOptNumber@@Base+0x9c>
+
+0000000000401f4c <str2File@@Base>:
+  401f4c:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+  401f50:	910003fd 	mov	x29, sp
+  401f54:	a90153f3 	stp	x19, x20, [sp, #16]
+  401f58:	a9025bf5 	stp	x21, x22, [sp, #32]
+  401f5c:	aa0103f5 	mov	x21, x1
+  401f60:	aa0003f6 	mov	x22, x0
+  401f64:	97fffe0f 	bl	4017a0 <strlen@plt>
+  401f68:	d0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  401f6c:	91283421 	add	x1, x1, #0xa0d
+  401f70:	aa0003f4 	mov	x20, x0
+  401f74:	aa1503e0 	mov	x0, x21
+  401f78:	97fffe8a 	bl	4019a0 <fopen@plt>
+  401f7c:	b50001c0 	cbnz	x0, 401fb4 <str2File@@Base+0x68>
+  401f80:	d0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  401f84:	911d4042 	add	x2, x2, #0x750  ; 'getValueFromSecExtfs'
+  401f88:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401f8c:	91283c00 	add	x0, x0, #0xa0f  ; 'open file[%s] failed \r\n %s:%d\n'
+  401f90:	52800c03 	mov	w3, #0x60                  	// #96
+  401f94:	9100a042 	add	x2, x2, #0x28  ; 'str2File'
+  401f98:	aa1503e1 	mov	x1, x21
+  401f9c:	97fffe0d 	bl	4017d0 <selog@plt>
+  401fa0:	12800000 	mov	w0, #0xffffffff            	// #-1
+  401fa4:	a94153f3 	ldp	x19, x20, [sp, #16]
+  401fa8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+  401fac:	a8c37bfd 	ldp	x29, x30, [sp], #48
+  401fb0:	d65f03c0 	ret
+  401fb4:	aa0003e3 	mov	x3, x0
+  401fb8:	aa0003f3 	mov	x19, x0
+  401fbc:	aa1403e2 	mov	x2, x20
+  401fc0:	d2800021 	mov	x1, #0x1                   	// #1
+  401fc4:	aa1603e0 	mov	x0, x22
+  401fc8:	97fffe92 	bl	401a10 <fwrite@plt>
+  401fcc:	eb14001f 	cmp	x0, x20
+  401fd0:	54000180 	b.eq	402000 <str2File@@Base+0xb4>  // b.none
+  401fd4:	d0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  401fd8:	911d4042 	add	x2, x2, #0x750  ; 'getValueFromSecExtfs'
+  401fdc:	9100a042 	add	x2, x2, #0x28  ; 'str2File'
+  401fe0:	aa1403e1 	mov	x1, x20
+  401fe4:	52800ca3 	mov	w3, #0x65                  	// #101
+  401fe8:	d0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  401fec:	9128b800 	add	x0, x0, #0xa2e  ; 'write data len[%d] failed \r\n %s:%d\n'
+  401ff0:	97fffdf8 	bl	4017d0 <selog@plt>
+  401ff4:	aa1303e0 	mov	x0, x19
+  401ff8:	97fffe06 	bl	401810 <fclose@plt>
+  401ffc:	17ffffe9 	b	401fa0 <str2File@@Base+0x54>
+  402000:	aa1303e0 	mov	x0, x19
+  402004:	97fffe03 	bl	401810 <fclose@plt>
+  402008:	52800000 	mov	w0, #0x0                   	// #0
+  40200c:	17ffffe6 	b	401fa4 <str2File@@Base+0x58>
+
+0000000000402010 <genSecHashFile@@Base>:
+  402010:	a9aa7bfd 	stp	x29, x30, [sp, #-352]!
+  402014:	d2801002 	mov	x2, #0x80                  	// #128
+  402018:	910003fd 	mov	x29, sp
+  40201c:	a90153f3 	stp	x19, x20, [sp, #16]
+  402020:	a90363f7 	stp	x23, x24, [sp, #48]
+  402024:	aa0003f8 	mov	x24, x0
+  402028:	d0000094 	adrp	x20, 414000 <_IO_stdin_used@@Base+0x108b8>
+  40202c:	912f8280 	add	x0, x20, #0xbe0
+  402030:	a9046bf9 	stp	x25, x26, [sp, #64]
+  402034:	aa0103fa 	mov	x26, x1
+  402038:	f9400001 	ldr	x1, [x0]
+  40203c:	f900afa1 	str	x1, [x29, #344]
+  402040:	d2800001 	mov	x1, #0x0                   	// #0
+  402044:	910363b7 	add	x23, x29, #0xd8
+  402048:	a9025bf5 	stp	x21, x22, [sp, #32]
+  40204c:	aa1703e0 	mov	x0, x23
+  402050:	b9005fbf 	str	wzr, [x29, #92]
+  402054:	a909ffbf 	stp	xzr, xzr, [x29, #152]
+  402058:	a90affbf 	stp	xzr, xzr, [x29, #168]
+  40205c:	a90bffbf 	stp	xzr, xzr, [x29, #184]
+  402060:	a90cffbf 	stp	xzr, xzr, [x29, #200]
+  402064:	97fffdff 	bl	401860 <memset@plt>
+  402068:	a9067fbf 	stp	xzr, xzr, [x29, #96]
+  40206c:	a9077fbf 	stp	xzr, xzr, [x29, #112]
+  402070:	a9087fbf 	stp	xzr, xzr, [x29, #128]
+  402074:	f9004bbf 	str	xzr, [x29, #144]
+  402078:	97fffdc6 	bl	401790 <SE_DigestNew@plt>
+  40207c:	b5000200 	cbnz	x0, 4020bc <genSecHashFile@@Base+0xac>
+  402080:	12800013 	mov	w19, #0xffffffff            	// #-1
+  402084:	b0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  402088:	911d4021 	add	x1, x1, #0x750  ; 'getValueFromSecExtfs'
+  40208c:	52800fe2 	mov	w2, #0x7f                  	// #127
+  402090:	9100e021 	add	x1, x1, #0x38  ; 'genSecHashFile'
+  402094:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  402098:	91294800 	add	x0, x0, #0xa52  ; 'digest new failed %s:%d\n'
+  40209c:	97fffdcd 	bl	4017d0 <selog@plt>
+  4020a0:	912f8294 	add	x20, x20, #0xbe0
+  4020a4:	2a1303e0 	mov	w0, w19
+  4020a8:	f940afa2 	ldr	x2, [x29, #344]
+  4020ac:	f9400281 	ldr	x1, [x20]
+  4020b0:	ca010041 	eor	x1, x2, x1
+  4020b4:	b4000b41 	cbz	x1, 40221c <genSecHashFile@@Base+0x20c>
+  4020b8:	97fffdbe 	bl	4017b0 <__stack_chk_fail@plt>
+  4020bc:	aa0003f5 	mov	x21, x0
+  4020c0:	f0000080 	adrp	x0, 415000 <__data_start@@Base>
+  4020c4:	91004016 	add	x22, x0, #0x10
+  4020c8:	f9400801 	ldr	x1, [x0, #16]
+  4020cc:	910022d6 	add	x22, x22, #0x8
+  4020d0:	52800013 	mov	w19, #0x0                   	// #0
+  4020d4:	b5000181 	cbnz	x1, 402104 <genSecHashFile@@Base+0xf4>
+  4020d8:	350004b3 	cbnz	w19, 40216c <genSecHashFile@@Base+0x15c>
+  4020dc:	b0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  4020e0:	911d4021 	add	x1, x1, #0x750  ; 'getValueFromSecExtfs'
+  4020e4:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  4020e8:	912a3000 	add	x0, x0, #0xa8c  ; 'No security data in extfs %s:%d\n'
+  4020ec:	528013a2 	mov	w2, #0x9d                  	// #157
+  4020f0:	9100e021 	add	x1, x1, #0x38  ; 'genSecHashFile'
+  4020f4:	97fffdb7 	bl	4017d0 <selog@plt>
+  4020f8:	aa1503e0 	mov	x0, x21
+  4020fc:	97fffe4d 	bl	401a30 <SE_DigestFree@plt>
+  402100:	17ffffe8 	b	4020a0 <genSecHashFile@@Base+0x90>
+  402104:	aa1a03e0 	mov	x0, x26
+  402108:	97fffd96 	bl	401760 <SecGetData@plt>
+  40210c:	aa0003f9 	mov	x25, x0
+  402110:	b40002a0 	cbz	x0, 402164 <genSecHashFile@@Base+0x154>
+  402114:	97fffda3 	bl	4017a0 <strlen@plt>
+  402118:	51000401 	sub	w1, w0, #0x1
+  40211c:	7100f83f 	cmp	w1, #0x3e
+  402120:	54000228 	b.hi	402164 <genSecHashFile@@Base+0x154>  // b.pmore
+  402124:	2a0003e2 	mov	w2, w0
+  402128:	aa1903e1 	mov	x1, x25
+  40212c:	aa1503e0 	mov	x0, x21
+  402130:	97fffe30 	bl	4019f0 <SE_DigestUpdate@plt>
+  402134:	34000160 	cbz	w0, 402160 <genSecHashFile@@Base+0x150>
+  402138:	b0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  40213c:	911d4042 	add	x2, x2, #0x750  ; 'getValueFromSecExtfs'
+  402140:	2a0003e1 	mov	w1, w0
+  402144:	9100e042 	add	x2, x2, #0x38  ; 'genSecHashFile'
+  402148:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  40214c:	9129ac00 	add	x0, x0, #0xa6b  ; 'digest update failed [%d] %s:%d\n'
+  402150:	52801223 	mov	w3, #0x91                  	// #145
+  402154:	97fffd9f 	bl	4017d0 <selog@plt>
+  402158:	12800013 	mov	w19, #0xffffffff            	// #-1
+  40215c:	17ffffe7 	b	4020f8 <genSecHashFile@@Base+0xe8>
+  402160:	52800033 	mov	w19, #0x1                   	// #1
+  402164:	f84086c1 	ldr	x1, [x22], #8
+  402168:	17ffffdb 	b	4020d4 <genSecHashFile@@Base+0xc4>
+  40216c:	910263b3 	add	x19, x29, #0x98
+  402170:	910173a2 	add	x2, x29, #0x5c
+  402174:	aa1303e1 	mov	x1, x19
+  402178:	aa1503e0 	mov	x0, x21
+  40217c:	97fffe05 	bl	401990 <SE_DigestFinal@plt>
+  402180:	34000120 	cbz	w0, 4021a4 <genSecHashFile@@Base+0x194>
+  402184:	b0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  402188:	911d4042 	add	x2, x2, #0x750  ; 'getValueFromSecExtfs'
+  40218c:	2a0003e1 	mov	w1, w0
+  402190:	52801483 	mov	w3, #0xa4                  	// #164
+  402194:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  402198:	912ab400 	add	x0, x0, #0xaad  ; 'digest final failed [%d] %s:%d\n'
+  40219c:	9100e042 	add	x2, x2, #0x38  ; 'genSecHashFile'
+  4021a0:	17ffffed 	b	402154 <genSecHashFile@@Base+0x144>
+  4021a4:	aa1503e0 	mov	x0, x21
+  4021a8:	97fffe22 	bl	401a30 <SE_DigestFree@plt>
+  4021ac:	52800020 	mov	w0, #0x1                   	// #1
+  4021b0:	b90067a0 	str	w0, [x29, #100]
+  4021b4:	528000a0 	mov	w0, #0x5                   	// #5
+  4021b8:	b90063a0 	str	w0, [x29, #96]
+  4021bc:	b9405fa0 	ldr	w0, [x29, #92]
+  4021c0:	b90073a0 	str	w0, [x29, #112]
+  4021c4:	52800fe0 	mov	w0, #0x7f                  	// #127
+  4021c8:	f90037b3 	str	x19, [x29, #104]
+  4021cc:	f9003fb7 	str	x23, [x29, #120]
+  4021d0:	b90083a0 	str	w0, [x29, #128]
+  4021d4:	910183a0 	add	x0, x29, #0x60
+  4021d8:	97fffd7a 	bl	4017c0 <CS_crypt@plt>
+  4021dc:	2a0003f3 	mov	w19, w0
+  4021e0:	34000140 	cbz	w0, 402208 <genSecHashFile@@Base+0x1f8>
+  4021e4:	b0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  4021e8:	911d4042 	add	x2, x2, #0x750  ; 'getValueFromSecExtfs'
+  4021ec:	2a0003e1 	mov	w1, w0
+  4021f0:	52801683 	mov	w3, #0xb4                  	// #180
+  4021f4:	9100e042 	add	x2, x2, #0x38  ; 'genSecHashFile'
+  4021f8:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  4021fc:	912b3400 	add	x0, x0, #0xacd  ; 'Gen b64 failed [%d] %s:%d\n'
+  402200:	97fffd74 	bl	4017d0 <selog@plt>
+  402204:	17ffffa7 	b	4020a0 <genSecHashFile@@Base+0x90>
+  402208:	91001301 	add	x1, x24, #0x4  ; ' file[%s] failed \r\n %s:%d\n'
+  40220c:	aa1703e0 	mov	x0, x23
+  402210:	97ffff4f 	bl	401f4c <str2File@@Base>
+  402214:	2a0003f3 	mov	w19, w0
+  402218:	17ffffa2 	b	4020a0 <genSecHashFile@@Base+0x90>
+  40221c:	a94153f3 	ldp	x19, x20, [sp, #16]
+  402220:	a9425bf5 	ldp	x21, x22, [sp, #32]
+  402224:	a94363f7 	ldp	x23, x24, [sp, #48]
+  402228:	a9446bf9 	ldp	x25, x26, [sp, #64]
+  40222c:	a8d67bfd 	ldp	x29, x30, [sp], #352
+  402230:	d65f03c0 	ret
+
+0000000000402234 <saveFwkey@@Base>:
+  402234:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+  402238:	910003fd 	mov	x29, sp
+  40223c:	f9000bf3 	str	x19, [sp, #16]
+  402240:	aa0003f3 	mov	x19, x0
+  402244:	aa0103e0 	mov	x0, x1
+  402248:	b0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  40224c:	912ba021 	add	x1, x1, #0xae8  ; 'EXT_KEY_FW'
+  402250:	97fffd44 	bl	401760 <SecGetData@plt>
+  402254:	b5000140 	cbnz	x0, 40227c <saveFwkey@@Base+0x48>
+  402258:	f9400bf3 	ldr	x19, [sp, #16]
+  40225c:	b0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  402260:	911d4021 	add	x1, x1, #0x750  ; 'getValueFromSecExtfs'
+  402264:	a8c27bfd 	ldp	x29, x30, [sp], #32
+  402268:	52801942 	mov	w2, #0xca                  	// #202
+  40226c:	91012021 	add	x1, x1, #0x48  ; 'saveFwkey'
+  402270:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  402274:	912bcc00 	add	x0, x0, #0xaf3  ; 'No FW key info %s:%d\n'
+  402278:	17fffd56 	b	4017d0 <selog@plt>
+  40227c:	91041273 	add	x19, x19, #0x104
+  402280:	aa1303e1 	mov	x1, x19
+  402284:	97ffff32 	bl	401f4c <str2File@@Base>
+  402288:	34000160 	cbz	w0, 4022b4 <saveFwkey@@Base+0x80>
+  40228c:	aa1303e1 	mov	x1, x19
+  402290:	f9400bf3 	ldr	x19, [sp, #16]
+  402294:	a8c27bfd 	ldp	x29, x30, [sp], #32
+  402298:	b0000002 	adrp	x2, 403000 <process_tz_files@@Base+0x5cc>
+  40229c:	911d4042 	add	x2, x2, #0x750  ; 'getValueFromSecExtfs'
+  4022a0:	52801a23 	mov	w3, #0xd1                  	// #209
+  4022a4:	91012042 	add	x2, x2, #0x48  ; 'saveFwkey'
+  4022a8:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  4022ac:	912c2400 	add	x0, x0, #0xb09  ; '%s save failed %s:%d\n'
+  4022b0:	17fffd48 	b	4017d0 <selog@plt>
+  4022b4:	f9400bf3 	ldr	x19, [sp, #16]
+  4022b8:	a8c27bfd 	ldp	x29, x30, [sp], #32
+  4022bc:	d65f03c0 	ret
+
+00000000004022c0 <procExtfsSecurityData@@Base>:
+  4022c0:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+  4022c4:	910003fd 	mov	x29, sp
+  4022c8:	b9400001 	ldr	w1, [x0]
+  4022cc:	a90153f3 	stp	x19, x20, [sp, #16]
+  4022d0:	f9001fbf 	str	xzr, [x29, #56]
+  4022d4:	f90013f5 	str	x21, [sp, #32]
+  4022d8:	340008e1 	cbz	w1, 4023f4 <procExtfsSecurityData@@Base+0x134>
+  4022dc:	aa0003f3 	mov	x19, x0
+  4022e0:	d2840000 	mov	x0, #0x2000                	// #8192
+  4022e4:	97fffdb7 	bl	4019c0 <malloc@plt>
+  4022e8:	aa0003f4 	mov	x20, x0
+  4022ec:	b5000140 	cbnz	x0, 402314 <procExtfsSecurityData@@Base+0x54>
+  4022f0:	b0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  4022f4:	911d4021 	add	x1, x1, #0x750  ; 'getValueFromSecExtfs'
+  4022f8:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  4022fc:	912ca400 	add	x0, x0, #0xb29  ; 'malloc failed %s:%d\n'
+  402300:	52801c82 	mov	w2, #0xe4                  	// #228
+  402304:	91016021 	add	x1, x1, #0x58  ; 'procExtfsSecurityData'
+  402308:	97fffd32 	bl	4017d0 <selog@plt>
+  40230c:	12800015 	mov	w21, #0xffffffff            	// #-1
+  402310:	14000030 	b	4023d0 <procExtfsSecurityData@@Base+0x110>
+  402314:	d2840002 	mov	x2, #0x2000                	// #8192
+  402318:	52800001 	mov	w1, #0x0                   	// #0
+  40231c:	97fffd51 	bl	401860 <memset@plt>
+  402320:	97fffdc8 	bl	401a40 <SecBlockInit@plt>
+  402324:	f9001fa0 	str	x0, [x29, #56]
+  402328:	b5000160 	cbnz	x0, 402354 <procExtfsSecurityData@@Base+0x94>
+  40232c:	b0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  402330:	911d4021 	add	x1, x1, #0x750  ; 'getValueFromSecExtfs'
+  402334:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  402338:	912c7c00 	add	x0, x0, #0xb1f  ; 'sec_block malloc failed %s:%d\n'
+  40233c:	91016021 	add	x1, x1, #0x58  ; 'procExtfsSecurityData'
+  402340:	52801d62 	mov	w2, #0xeb                  	// #235
+  402344:	97fffd23 	bl	4017d0 <selog@plt>
+  402348:	aa1403e0 	mov	x0, x20
+  40234c:	97fffd39 	bl	401830 <free@plt>
+  402350:	17ffffef 	b	40230c <procExtfsSecurityData@@Base+0x4c>
+  402354:	52840002 	mov	w2, #0x2000                	// #8192
+  402358:	aa1403e1 	mov	x1, x20
+  40235c:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  402360:	91253000 	add	x0, x0, #0x94c  ; 'SECURITY'
+  402364:	97fffdbf 	bl	401a60 <extfs_get@plt>
+  402368:	2a0003f5 	mov	w21, w0
+  40236c:	35000060 	cbnz	w0, 402378 <procExtfsSecurityData@@Base+0xb8>
+  402370:	39400280 	ldrb	w0, [x20]
+  402374:	35000100 	cbnz	w0, 402394 <procExtfsSecurityData@@Base+0xd4>
+  402378:	b0000001 	adrp	x1, 403000 <process_tz_files@@Base+0x5cc>
+  40237c:	911d4021 	add	x1, x1, #0x750  ; 'getValueFromSecExtfs'
+  402380:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  402384:	912cf800 	add	x0, x0, #0xb3e  ; 'Get SECURITY extfs failed %s:%d\n'
+  402388:	52801e62 	mov	w2, #0xf3                  	// #243
+  40238c:	91016021 	add	x1, x1, #0x58  ; 'procExtfsSecurityData'
+  402390:	17ffffed 	b	402344 <procExtfsSecurityData@@Base+0x84>
+  402394:	f9401fa0 	ldr	x0, [x29, #56]
+  402398:	aa1403e1 	mov	x1, x20
+  40239c:	97fffd41 	bl	4018a0 <SecSetSerializedStr@plt>
+  4023a0:	aa1403e0 	mov	x0, x20
+  4023a4:	97fffd23 	bl	401830 <free@plt>
+  4023a8:	b9400260 	ldr	w0, [x19]
+  4023ac:	36000080 	tbz	w0, #0, 4023bc <procExtfsSecurityData@@Base+0xfc>
+  4023b0:	f9401fa1 	ldr	x1, [x29, #56]
+  4023b4:	aa1303e0 	mov	x0, x19
+  4023b8:	97ffff16 	bl	402010 <genSecHashFile@@Base>
+  4023bc:	b9400260 	ldr	w0, [x19]
+  4023c0:	36080080 	tbz	w0, #1, 4023d0 <procExtfsSecurityData@@Base+0x110>
+  4023c4:	f9401fa1 	ldr	x1, [x29, #56]
+  4023c8:	aa1303e0 	mov	x0, x19
+  4023cc:	97ffff9a 	bl	402234 <saveFwkey@@Base>
+  4023d0:	f9401fa0 	ldr	x0, [x29, #56]
+  4023d4:	b4000060 	cbz	x0, 4023e0 <procExtfsSecurityData@@Base+0x120>
+  4023d8:	9100e3a0 	add	x0, x29, #0x38
+  4023dc:	97fffcdd 	bl	401750 <SecBlockFree@plt>
+  4023e0:	2a1503e0 	mov	w0, w21
+  4023e4:	f94013f5 	ldr	x21, [sp, #32]
+  4023e8:	a94153f3 	ldp	x19, x20, [sp, #16]
+  4023ec:	a8c47bfd 	ldp	x29, x30, [sp], #64
+  4023f0:	d65f03c0 	ret
+  4023f4:	12800015 	mov	w21, #0xffffffff            	// #-1
+  4023f8:	17fffffa 	b	4023e0 <procExtfsSecurityData@@Base+0x120>
+
+00000000004023fc <write_tz2_file@@Base>:
+  4023fc:	a9a17bfd 	stp	x29, x30, [sp, #-496]!
+  402400:	d2802002 	mov	x2, #0x100                 	// #256
+  402404:	910003fd 	mov	x29, sp
+  402408:	a9025bf5 	stp	x21, x22, [sp, #32]
+  40240c:	d0000095 	adrp	x21, 414000 <_IO_stdin_used@@Base+0x108b8>
+  402410:	912f82a0 	add	x0, x21, #0xbe0
+  402414:	f9400001 	ldr	x1, [x0]
+  402418:	f900f7a1 	str	x1, [x29, #488]
+  40241c:	d2800001 	mov	x1, #0x0                   	// #0
+  402420:	a90153f3 	stp	x19, x20, [sp, #16]
+  402424:	9103a3b4 	add	x20, x29, #0xe8
+  402428:	d2800013 	mov	x19, #0x0                   	// #0
+  40242c:	aa1403e0 	mov	x0, x20
+  402430:	97fffd0c 	bl	401860 <memset@plt>
+  402434:	d2800000 	mov	x0, #0x0                   	// #0
+  402438:	52800336 	mov	w22, #0x19                  	// #25
+  40243c:	b9003fbf 	str	wzr, [x29, #60]
+  402440:	f90023bf 	str	xzr, [x29, #64]
+  402444:	a904ffbf 	stp	xzr, xzr, [x29, #72]
+  402448:	a905ffbf 	stp	xzr, xzr, [x29, #88]
+  40244c:	97fffd41 	bl	401950 <time@plt>
+  402450:	97fffd08 	bl	401870 <srand@plt>
+  402454:	97fffcff 	bl	401850 <rand@plt>
+  402458:	1ad60c01 	sdiv	w1, w0, w22
+  40245c:	1b168020 	msub	w0, w1, w22, w0
+  402460:	11018400 	add	w0, w0, #0x61
+  402464:	38336a80 	strb	w0, [x20, x19]
+  402468:	91000673 	add	x19, x19, #0x1  ; 's save failed %s:%d\n'
+  40246c:	f100a27f 	cmp	x19, #0x28
+  402470:	54ffff21 	b.ne	402454 <write_tz2_file@@Base+0x58>  // b.any
+  402474:	390443bf 	strb	wzr, [x29, #272]
+  402478:	aa1403e0 	mov	x0, x20
+  40247c:	97fffcc9 	bl	4017a0 <strlen@plt>
+  402480:	2a0003e1 	mov	w1, w0
+  402484:	910123a2 	add	x2, x29, #0x48
+  402488:	aa1403e0 	mov	x0, x20
+  40248c:	97fffd39 	bl	401970 <SE_md5Gen@plt>
+  402490:	b0000013 	adrp	x19, 403000 <process_tz_files@@Base+0x5cc>
+  402494:	d2800201 	mov	x1, #0x10                  	// #16
+  402498:	910123a0 	add	x0, x29, #0x48
+  40249c:	97fffd51 	bl	4019e0 <SE_buf2HexStr@plt>
+  4024a0:	aa0003f6 	mov	x22, x0
+  4024a4:	b4000180 	cbz	x0, 4024d4 <write_tz2_file@@Base+0xd8>
+  4024a8:	97fffcbe 	bl	4017a0 <strlen@plt>
+  4024ac:	aa0003e2 	mov	x2, x0
+  4024b0:	911d4263 	add	x3, x19, #0x750  ; 'getValueFromSecExtfs'
+  4024b4:	aa1603e1 	mov	x1, x22
+  4024b8:	9101c063 	add	x3, x3, #0x70  ; 'write_tz2_file'
+  4024bc:	52802b44 	mov	w4, #0x15a                 	// #346
+  4024c0:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  4024c4:	912d7c00 	add	x0, x0, #0xb5f  ; 'hash(%s) len(%d) %s:%d\n'
+  4024c8:	97fffcc2 	bl	4017d0 <selog@plt>
+  4024cc:	aa1603e0 	mov	x0, x22
+  4024d0:	97fffd38 	bl	4019b0 <SE_bufFree@plt>
+  4024d4:	aa1403e0 	mov	x0, x20
+  4024d8:	97fffcb2 	bl	4017a0 <strlen@plt>
+  4024dc:	9100f3a3 	add	x3, x29, #0x3c
+  4024e0:	2a0003e1 	mov	w1, w0
+  4024e4:	910103a2 	add	x2, x29, #0x40
+  4024e8:	aa1403e0 	mov	x0, x20
+  4024ec:	97fffd1d 	bl	401960 <TZ_encrypt@plt>
+  4024f0:	2a0003f6 	mov	w22, w0
+  4024f4:	34000d40 	cbz	w0, 40269c <write_tz2_file@@Base+0x2a0>
+  4024f8:	f94023a0 	ldr	x0, [x29, #64]
+  4024fc:	b4000140 	cbz	x0, 402524 <write_tz2_file@@Base+0x128>
+  402500:	97fffd2c 	bl	4019b0 <SE_bufFree@plt>
+  402504:	b9003fbf 	str	wzr, [x29, #60]
+  402508:	911d4261 	add	x1, x19, #0x750  ; 'getValueFromSecExtfs'
+  40250c:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  402510:	912ddc00 	add	x0, x0, #0xb77  ; 'fail to ec tz %s:%d\n'
+  402514:	52802ce2 	mov	w2, #0x167                 	// #359
+  402518:	9101c021 	add	x1, x1, #0x70  ; 'write_tz2_file'
+  40251c:	f90023bf 	str	xzr, [x29, #64]
+  402520:	97fffcac 	bl	4017d0 <selog@plt>
+  402524:	12be0000 	mov	w0, #0xfffffff             	// #268435455
+  402528:	6b0002df 	cmp	w22, w0
+  40252c:	540001e0 	b.eq	402568 <write_tz2_file@@Base+0x16c>  // b.none
+  402530:	911d4262 	add	x2, x19, #0x750  ; 'getValueFromSecExtfs'
+  402534:	52802d83 	mov	w3, #0x16c                 	// #364
+  402538:	9101c042 	add	x2, x2, #0x70  ; 'write_tz2_file'
+  40253c:	2a1603e1 	mov	w1, w22
+  402540:	b0000000 	adrp	x0, 403000 <process_tz_files@@Base+0x5cc>
+  402544:	912e3000 	add	x0, x0, #0xb8c  ; 'TZ_encrypt failed retval(%d) %s:%d\n'
+  402548:	97fffca2 	bl	4017d0 <selog@plt>
+  40254c:	528000a0 	mov	w0, #0x5                   	// #5

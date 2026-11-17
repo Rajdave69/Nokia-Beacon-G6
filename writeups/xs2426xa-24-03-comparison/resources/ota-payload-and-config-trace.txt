@@ -1,0 +1,1010 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libotaSwAgent.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000080f0 <parse_SwmgntCfg_from_json@@Base+0x98>:
+    80f0:	ca010041 	eor	x1, x2, x1
+    80f4:	f100003f 	cmp	x1, #0x0
+    80f8:	54000040 	b.eq	8100 <parse_SwmgntCfg_from_json@@Base+0xa8>  // b.none
+    80fc:	97fff1bd 	bl	47f0 <__stack_chk_fail@plt>
+    8100:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    8104:	d65f03c0 	ret
+
+0000000000008108 <decode_SwmgntCfg_from_json@@Base>:
+    8108:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    810c:	910003fd 	mov	x29, sp
+    8110:	f9000fa0 	str	x0, [x29, #24]
+    8114:	f9000ba1 	str	x1, [x29, #16]
+    8118:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    811c:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8120:	f9400001 	ldr	x1, [x0]
+    8124:	f9001fa1 	str	x1, [x29, #56]
+    8128:	d2800001 	mov	x1, #0x0                   	// #0
+    812c:	b9002fbf 	str	wzr, [x29, #44]
+    8130:	f9001bbf 	str	xzr, [x29, #48]
+    8134:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8138:	91256000 	add	x0, x0, #0x958  ; 'url'
+    813c:	aa0003e1 	mov	x1, x0
+    8140:	f9400fa0 	ldr	x0, [x29, #24]
+    8144:	97fff357 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8148:	f9001ba0 	str	x0, [x29, #48]
+    814c:	f9401ba0 	ldr	x0, [x29, #48]
+    8150:	f100001f 	cmp	x0, #0x0
+    8154:	540000a0 	b.eq	8168 <decode_SwmgntCfg_from_json@@Base+0x60>  // b.none
+    8158:	f9401ba0 	ldr	x0, [x29, #48]
+    815c:	97fff309 	bl	4d80 <cJSON_IsString@plt>
+    8160:	7100001f 	cmp	w0, #0x0
+    8164:	54000081 	b.ne	8174 <decode_SwmgntCfg_from_json@@Base+0x6c>  // b.any
+    8168:	12800000 	mov	w0, #0xffffffff            	// #-1
+    816c:	b9002fa0 	str	w0, [x29, #44]
+    8170:	14000008 	b	8190 <decode_SwmgntCfg_from_json@@Base+0x88>
+    8174:	f9400ba3 	ldr	x3, [x29, #16]
+    8178:	f9401ba0 	ldr	x0, [x29, #48]
+    817c:	f9401000 	ldr	x0, [x0, #32]
+    8180:	d283ffe2 	mov	x2, #0x1fff                	// #8191
+    8184:	aa0003e1 	mov	x1, x0
+    8188:	aa0303e0 	mov	x0, x3
+    818c:	97fff279 	bl	4b70 <strncpy@plt>
+    8190:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8194:	91258000 	add	x0, x0, #0x960  ; 'key'
+    8198:	aa0003e1 	mov	x1, x0
+    819c:	f9400fa0 	ldr	x0, [x29, #24]
+    81a0:	97fff340 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    81a4:	f9001ba0 	str	x0, [x29, #48]
+    81a8:	f9401ba0 	ldr	x0, [x29, #48]
+    81ac:	f100001f 	cmp	x0, #0x0
+    81b0:	540000a0 	b.eq	81c4 <decode_SwmgntCfg_from_json@@Base+0xbc>  // b.none
+    81b4:	f9401ba0 	ldr	x0, [x29, #48]
+    81b8:	97fff2f2 	bl	4d80 <cJSON_IsString@plt>
+    81bc:	7100001f 	cmp	w0, #0x0
+    81c0:	54000081 	b.ne	81d0 <decode_SwmgntCfg_from_json@@Base+0xc8>  // b.any
+    81c4:	12800000 	mov	w0, #0xffffffff            	// #-1
+    81c8:	b9002fa0 	str	w0, [x29, #44]
+    81cc:	14000009 	b	81f0 <decode_SwmgntCfg_from_json@@Base+0xe8>
+    81d0:	f9400ba0 	ldr	x0, [x29, #16]
+    81d4:	91400803 	add	x3, x0, #0x2, lsl #12
+    81d8:	f9401ba0 	ldr	x0, [x29, #48]
+    81dc:	f9401000 	ldr	x0, [x0, #32]
+    81e0:	d2807fe2 	mov	x2, #0x3ff                 	// #1023
+    81e4:	aa0003e1 	mov	x1, x0
+    81e8:	aa0303e0 	mov	x0, x3
+    81ec:	97fff261 	bl	4b70 <strncpy@plt>
+    81f0:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    81f4:	9125a000 	add	x0, x0, #0x968  ; 'activationTime'
+    81f8:	aa0003e1 	mov	x1, x0
+    81fc:	f9400fa0 	ldr	x0, [x29, #24]
+    8200:	97fff328 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8204:	f9001ba0 	str	x0, [x29, #48]
+    8208:	f9401ba0 	ldr	x0, [x29, #48]
+    820c:	f100001f 	cmp	x0, #0x0
+    8210:	540000a0 	b.eq	8224 <decode_SwmgntCfg_from_json@@Base+0x11c>  // b.none
+    8214:	f9401ba0 	ldr	x0, [x29, #48]
+    8218:	97fff2da 	bl	4d80 <cJSON_IsString@plt>
+    821c:	7100001f 	cmp	w0, #0x0
+    8220:	54000081 	b.ne	8230 <decode_SwmgntCfg_from_json@@Base+0x128>  // b.any
+    8224:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8228:	b9002fa0 	str	w0, [x29, #44]
+    822c:	1400000a 	b	8254 <decode_SwmgntCfg_from_json@@Base+0x14c>
+    8230:	f9400ba1 	ldr	x1, [x29, #16]
+    8234:	d2848000 	mov	x0, #0x2400                	// #9216
+    8238:	8b000023 	add	x3, x1, x0
+    823c:	f9401ba0 	ldr	x0, [x29, #48]
+    8240:	f9401000 	ldr	x0, [x0, #32]
+    8244:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8248:	aa0003e1 	mov	x1, x0
+    824c:	aa0303e0 	mov	x0, x3
+    8250:	97fff248 	bl	4b70 <strncpy@plt>
+    8254:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8258:	9125e000 	add	x0, x0, #0x978  ; 'pollingTime'
+    825c:	aa0003e1 	mov	x1, x0
+    8260:	f9400fa0 	ldr	x0, [x29, #24]
+    8264:	97fff30f 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8268:	f9001ba0 	str	x0, [x29, #48]
+    826c:	f9401ba0 	ldr	x0, [x29, #48]
+    8270:	f100001f 	cmp	x0, #0x0
+    8274:	540000a0 	b.eq	8288 <decode_SwmgntCfg_from_json@@Base+0x180>  // b.none
+    8278:	f9401ba0 	ldr	x0, [x29, #48]
+    827c:	97fff2c1 	bl	4d80 <cJSON_IsString@plt>
+    8280:	7100001f 	cmp	w0, #0x0
+    8284:	54000081 	b.ne	8294 <decode_SwmgntCfg_from_json@@Base+0x18c>  // b.any
+    8288:	12800000 	mov	w0, #0xffffffff            	// #-1
+    828c:	b9002fa0 	str	w0, [x29, #44]
+    8290:	1400000a 	b	82b8 <decode_SwmgntCfg_from_json@@Base+0x1b0>
+    8294:	f9400ba1 	ldr	x1, [x29, #16]
+    8298:	d2848400 	mov	x0, #0x2420                	// #9248
+    829c:	8b000023 	add	x3, x1, x0
+    82a0:	f9401ba0 	ldr	x0, [x29, #48]
+    82a4:	f9401000 	ldr	x0, [x0, #32]
+    82a8:	d28003e2 	mov	x2, #0x1f                  	// #31
+    82ac:	aa0003e1 	mov	x1, x0
+    82b0:	aa0303e0 	mov	x0, x3
+    82b4:	97fff22f 	bl	4b70 <strncpy@plt>
+    82b8:	52800000 	mov	w0, #0x0                   	// #0
+    82bc:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    82c0:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    82c4:	f9401fa2 	ldr	x2, [x29, #56]
+    82c8:	f9400021 	ldr	x1, [x1]
+    82cc:	ca010041 	eor	x1, x2, x1
+    82d0:	f100003f 	cmp	x1, #0x0
+    82d4:	54000040 	b.eq	82dc <decode_SwmgntCfg_from_json@@Base+0x1d4>  // b.none
+    82d8:	97fff146 	bl	47f0 <__stack_chk_fail@plt>
+    82dc:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    82e0:	d65f03c0 	ret
+
+00000000000082e4 <parse_MatrixItem_from_json@@Base>:
+    82e4:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    82e8:	910003fd 	mov	x29, sp
+    82ec:	f9000fa0 	str	x0, [x29, #24]
+    82f0:	f9000ba1 	str	x1, [x29, #16]
+    82f4:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    82f8:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    82fc:	f9400001 	ldr	x1, [x0]
+    8300:	f9001fa1 	str	x1, [x29, #56]
+    8304:	d2800001 	mov	x1, #0x0                   	// #0
+    8308:	f9001bbf 	str	xzr, [x29, #48]
+    830c:	b9002fbf 	str	wzr, [x29, #44]
+    8310:	f9400fa0 	ldr	x0, [x29, #24]
+    8314:	f100001f 	cmp	x0, #0x0
+    8318:	54000080 	b.eq	8328 <parse_MatrixItem_from_json@@Base+0x44>  // b.none
+    831c:	f9400ba0 	ldr	x0, [x29, #16]
+    8320:	f100001f 	cmp	x0, #0x0
+    8324:	54000061 	b.ne	8330 <parse_MatrixItem_from_json@@Base+0x4c>  // b.any
+    8328:	12800000 	mov	w0, #0xffffffff            	// #-1
+    832c:	14000010 	b	836c <parse_MatrixItem_from_json@@Base+0x88>
+    8330:	f9400fa0 	ldr	x0, [x29, #24]
+    8334:	97fff26f 	bl	4cf0 <cJSON_Parse@plt>
+    8338:	f9001ba0 	str	x0, [x29, #48]
+    833c:	f9401ba0 	ldr	x0, [x29, #48]
+    8340:	f100001f 	cmp	x0, #0x0
+    8344:	54000061 	b.ne	8350 <parse_MatrixItem_from_json@@Base+0x6c>  // b.any
+    8348:	12800000 	mov	w0, #0xffffffff            	// #-1
+    834c:	14000008 	b	836c <parse_MatrixItem_from_json@@Base+0x88>
+    8350:	f9400ba1 	ldr	x1, [x29, #16]
+    8354:	f9401ba0 	ldr	x0, [x29, #48]
+    8358:	97fff1f2 	bl	4b20 <decode_MatrixItem_from_json@plt>
+    835c:	b9002fa0 	str	w0, [x29, #44]
+    8360:	f9401ba0 	ldr	x0, [x29, #48]
+    8364:	97fff143 	bl	4870 <cJSON_Delete@plt>
+    8368:	b9402fa0 	ldr	w0, [x29, #44]
+    836c:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    8370:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8374:	f9401fa2 	ldr	x2, [x29, #56]
+    8378:	f9400021 	ldr	x1, [x1]
+    837c:	ca010041 	eor	x1, x2, x1
+    8380:	f100003f 	cmp	x1, #0x0
+    8384:	54000040 	b.eq	838c <parse_MatrixItem_from_json@@Base+0xa8>  // b.none
+    8388:	97fff11a 	bl	47f0 <__stack_chk_fail@plt>
+    838c:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    8390:	d65f03c0 	ret
+
+0000000000008394 <decode_MatrixItem_from_json@@Base>:
+    8394:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    8398:	910003fd 	mov	x29, sp
+    839c:	f9000fa0 	str	x0, [x29, #24]
+    83a0:	f9000ba1 	str	x1, [x29, #16]
+    83a4:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    83a8:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    83ac:	f9400001 	ldr	x1, [x0]
+    83b0:	f9001fa1 	str	x1, [x29, #56]
+    83b4:	d2800001 	mov	x1, #0x0                   	// #0
+    83b8:	b9002fbf 	str	wzr, [x29, #44]
+    83bc:	f9001bbf 	str	xzr, [x29, #48]
+    83c0:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    83c4:	91262000 	add	x0, x0, #0x988  ; 'model'
+    83c8:	aa0003e1 	mov	x1, x0
+    83cc:	f9400fa0 	ldr	x0, [x29, #24]
+    83d0:	97fff2b4 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    83d4:	f9001ba0 	str	x0, [x29, #48]
+    83d8:	f9401ba0 	ldr	x0, [x29, #48]
+    83dc:	f100001f 	cmp	x0, #0x0
+    83e0:	540000a0 	b.eq	83f4 <decode_MatrixItem_from_json@@Base+0x60>  // b.none
+    83e4:	f9401ba0 	ldr	x0, [x29, #48]
+    83e8:	97fff266 	bl	4d80 <cJSON_IsString@plt>
+    83ec:	7100001f 	cmp	w0, #0x0
+    83f0:	54000081 	b.ne	8400 <decode_MatrixItem_from_json@@Base+0x6c>  // b.any
+    83f4:	12800000 	mov	w0, #0xffffffff            	// #-1
+    83f8:	b9002fa0 	str	w0, [x29, #44]
+    83fc:	14000008 	b	841c <decode_MatrixItem_from_json@@Base+0x88>
+    8400:	f9400ba3 	ldr	x3, [x29, #16]
+    8404:	f9401ba0 	ldr	x0, [x29, #48]
+    8408:	f9401000 	ldr	x0, [x0, #32]
+    840c:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8410:	aa0003e1 	mov	x1, x0
+    8414:	aa0303e0 	mov	x0, x3
+    8418:	97fff1d6 	bl	4b70 <strncpy@plt>
+    841c:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8420:	91264000 	add	x0, x0, #0x990  ; 'nxtMSVersion'
+    8424:	aa0003e1 	mov	x1, x0
+    8428:	f9400fa0 	ldr	x0, [x29, #24]
+    842c:	97fff29d 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8430:	f9001ba0 	str	x0, [x29, #48]
+    8434:	f9401ba0 	ldr	x0, [x29, #48]
+    8438:	f100001f 	cmp	x0, #0x0
+    843c:	540000a0 	b.eq	8450 <decode_MatrixItem_from_json@@Base+0xbc>  // b.none
+    8440:	f9401ba0 	ldr	x0, [x29, #48]
+    8444:	97fff24f 	bl	4d80 <cJSON_IsString@plt>
+    8448:	7100001f 	cmp	w0, #0x0
+    844c:	54000081 	b.ne	845c <decode_MatrixItem_from_json@@Base+0xc8>  // b.any
+    8450:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8454:	b9002fa0 	str	w0, [x29, #44]
+    8458:	14000009 	b	847c <decode_MatrixItem_from_json@@Base+0xe8>
+    845c:	f9400ba0 	ldr	x0, [x29, #16]
+    8460:	91008003 	add	x3, x0, #0x20
+    8464:	f9401ba0 	ldr	x0, [x29, #48]
+    8468:	f9401000 	ldr	x0, [x0, #32]
+    846c:	d28007e2 	mov	x2, #0x3f                  	// #63
+    8470:	aa0003e1 	mov	x1, x0
+    8474:	aa0303e0 	mov	x0, x3
+    8478:	97fff1be 	bl	4b70 <strncpy@plt>
+    847c:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8480:	91268000 	add	x0, x0, #0x9a0  ; 'fileServerURL'
+    8484:	aa0003e1 	mov	x1, x0
+    8488:	f9400fa0 	ldr	x0, [x29, #24]
+    848c:	97fff285 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8490:	f9001ba0 	str	x0, [x29, #48]
+    8494:	f9401ba0 	ldr	x0, [x29, #48]
+    8498:	f100001f 	cmp	x0, #0x0
+    849c:	540000a0 	b.eq	84b0 <decode_MatrixItem_from_json@@Base+0x11c>  // b.none
+    84a0:	f9401ba0 	ldr	x0, [x29, #48]
+    84a4:	97fff237 	bl	4d80 <cJSON_IsString@plt>
+    84a8:	7100001f 	cmp	w0, #0x0
+    84ac:	54000081 	b.ne	84bc <decode_MatrixItem_from_json@@Base+0x128>  // b.any
+    84b0:	12800000 	mov	w0, #0xffffffff            	// #-1
+    84b4:	b9002fa0 	str	w0, [x29, #44]
+    84b8:	14000009 	b	84dc <decode_MatrixItem_from_json@@Base+0x148>
+    84bc:	f9400ba0 	ldr	x0, [x29, #16]
+    84c0:	91018003 	add	x3, x0, #0x60
+    84c4:	f9401ba0 	ldr	x0, [x29, #48]
+    84c8:	f9401000 	ldr	x0, [x0, #32]
+    84cc:	d283ffe2 	mov	x2, #0x1fff                	// #8191
+    84d0:	aa0003e1 	mov	x1, x0
+    84d4:	aa0303e0 	mov	x0, x3
+    84d8:	97fff1a6 	bl	4b70 <strncpy@plt>
+    84dc:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    84e0:	9126c000 	add	x0, x0, #0x9b0  ; 'checksum'
+    84e4:	aa0003e1 	mov	x1, x0
+    84e8:	f9400fa0 	ldr	x0, [x29, #24]
+    84ec:	97fff26d 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    84f0:	f9001ba0 	str	x0, [x29, #48]
+    84f4:	f9401ba0 	ldr	x0, [x29, #48]
+    84f8:	f100001f 	cmp	x0, #0x0
+    84fc:	540000a0 	b.eq	8510 <decode_MatrixItem_from_json@@Base+0x17c>  // b.none
+    8500:	f9401ba0 	ldr	x0, [x29, #48]
+    8504:	97fff21f 	bl	4d80 <cJSON_IsString@plt>
+    8508:	7100001f 	cmp	w0, #0x0
+    850c:	54000081 	b.ne	851c <decode_MatrixItem_from_json@@Base+0x188>  // b.any
+    8510:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8514:	b9002fa0 	str	w0, [x29, #44]
+    8518:	1400000a 	b	8540 <decode_MatrixItem_from_json@@Base+0x1ac>
+    851c:	f9400ba1 	ldr	x1, [x29, #16]
+    8520:	d2840c00 	mov	x0, #0x2060                	// #8288
+    8524:	8b000023 	add	x3, x1, x0
+    8528:	f9401ba0 	ldr	x0, [x29, #48]
+    852c:	f9401000 	ldr	x0, [x0, #32]
+    8530:	d28005e2 	mov	x2, #0x2f                  	// #47
+    8534:	aa0003e1 	mov	x1, x0
+    8538:	aa0303e0 	mov	x0, x3
+    853c:	97fff18d 	bl	4b70 <strncpy@plt>
+    8540:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8544:	91270000 	add	x0, x0, #0x9c0  ; 'policy'
+    8548:	aa0003e1 	mov	x1, x0
+    854c:	f9400fa0 	ldr	x0, [x29, #24]
+    8550:	97fff254 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8554:	f9001ba0 	str	x0, [x29, #48]
+    8558:	f9401ba0 	ldr	x0, [x29, #48]
+    855c:	f100001f 	cmp	x0, #0x0
+    8560:	540000a0 	b.eq	8574 <decode_MatrixItem_from_json@@Base+0x1e0>  // b.none
+    8564:	f9401ba0 	ldr	x0, [x29, #48]
+    8568:	97fff29e 	bl	4fe0 <cJSON_IsNumber@plt>
+    856c:	7100001f 	cmp	w0, #0x0
+    8570:	54000081 	b.ne	8580 <decode_MatrixItem_from_json@@Base+0x1ec>  // b.any
+    8574:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8578:	b9002fa0 	str	w0, [x29, #44]
+    857c:	14000005 	b	8590 <decode_MatrixItem_from_json@@Base+0x1fc>
+    8580:	f9401ba0 	ldr	x0, [x29, #48]
+    8584:	b9402801 	ldr	w1, [x0, #40]
+    8588:	f9400ba0 	ldr	x0, [x29, #16]
+    858c:	b9209001 	str	w1, [x0, #8336]
+    8590:	52800000 	mov	w0, #0x0                   	// #0
+    8594:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    8598:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    859c:	f9401fa2 	ldr	x2, [x29, #56]
+    85a0:	f9400021 	ldr	x1, [x1]
+    85a4:	ca010041 	eor	x1, x2, x1
+    85a8:	f100003f 	cmp	x1, #0x0
+    85ac:	54000040 	b.eq	85b4 <decode_MatrixItem_from_json@@Base+0x220>  // b.none
+    85b0:	97fff090 	bl	47f0 <__stack_chk_fail@plt>
+    85b4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    85b8:	d65f03c0 	ret
+
+00000000000085bc <parse_OtaMatrixItem_from_json@@Base>:
+    85bc:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    85c0:	910003fd 	mov	x29, sp
+    85c4:	f9000fa0 	str	x0, [x29, #24]
+    85c8:	f9000ba1 	str	x1, [x29, #16]
+    85cc:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    85d0:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    85d4:	f9400001 	ldr	x1, [x0]
+    85d8:	f9001fa1 	str	x1, [x29, #56]
+    85dc:	d2800001 	mov	x1, #0x0                   	// #0
+    85e0:	f9001bbf 	str	xzr, [x29, #48]
+    85e4:	b9002fbf 	str	wzr, [x29, #44]
+    85e8:	f9400fa0 	ldr	x0, [x29, #24]
+    85ec:	f100001f 	cmp	x0, #0x0
+    85f0:	54000080 	b.eq	8600 <parse_OtaMatrixItem_from_json@@Base+0x44>  // b.none
+    85f4:	f9400ba0 	ldr	x0, [x29, #16]
+    85f8:	f100001f 	cmp	x0, #0x0
+    85fc:	54000061 	b.ne	8608 <parse_OtaMatrixItem_from_json@@Base+0x4c>  // b.any
+    8600:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8604:	14000010 	b	8644 <parse_OtaMatrixItem_from_json@@Base+0x88>
+    8608:	f9400fa0 	ldr	x0, [x29, #24]
+    860c:	97fff1b9 	bl	4cf0 <cJSON_Parse@plt>
+    8610:	f9001ba0 	str	x0, [x29, #48]
+    8614:	f9401ba0 	ldr	x0, [x29, #48]
+    8618:	f100001f 	cmp	x0, #0x0
+    861c:	54000061 	b.ne	8628 <parse_OtaMatrixItem_from_json@@Base+0x6c>  // b.any
+    8620:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8624:	14000008 	b	8644 <parse_OtaMatrixItem_from_json@@Base+0x88>
+    8628:	f9400ba1 	ldr	x1, [x29, #16]
+    862c:	f9401ba0 	ldr	x0, [x29, #48]
+    8630:	97fff128 	bl	4ad0 <decode_OtaMatrixItem_from_json@plt>
+    8634:	b9002fa0 	str	w0, [x29, #44]
+    8638:	f9401ba0 	ldr	x0, [x29, #48]
+    863c:	97fff08d 	bl	4870 <cJSON_Delete@plt>
+    8640:	b9402fa0 	ldr	w0, [x29, #44]
+    8644:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    8648:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    864c:	f9401fa2 	ldr	x2, [x29, #56]
+    8650:	f9400021 	ldr	x1, [x1]
+    8654:	ca010041 	eor	x1, x2, x1
+    8658:	f100003f 	cmp	x1, #0x0
+    865c:	54000040 	b.eq	8664 <parse_OtaMatrixItem_from_json@@Base+0xa8>  // b.none
+    8660:	97fff064 	bl	47f0 <__stack_chk_fail@plt>
+    8664:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    8668:	d65f03c0 	ret
+
+000000000000866c <decode_OtaMatrixItem_from_json@@Base>:
+    866c:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    8670:	910003fd 	mov	x29, sp
+    8674:	f9000fa0 	str	x0, [x29, #24]
+    8678:	f9000ba1 	str	x1, [x29, #16]
+    867c:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    8680:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8684:	f9400001 	ldr	x1, [x0]
+    8688:	f9001fa1 	str	x1, [x29, #56]
+    868c:	d2800001 	mov	x1, #0x0                   	// #0
+    8690:	b9002fbf 	str	wzr, [x29, #44]
+    8694:	f9001bbf 	str	xzr, [x29, #48]
+    8698:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    869c:	91262000 	add	x0, x0, #0x988  ; 'model'
+    86a0:	aa0003e1 	mov	x1, x0
+    86a4:	f9400fa0 	ldr	x0, [x29, #24]
+    86a8:	97fff1fe 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    86ac:	f9001ba0 	str	x0, [x29, #48]
+    86b0:	f9401ba0 	ldr	x0, [x29, #48]
+    86b4:	f100001f 	cmp	x0, #0x0
+    86b8:	540000a0 	b.eq	86cc <decode_OtaMatrixItem_from_json@@Base+0x60>  // b.none
+    86bc:	f9401ba0 	ldr	x0, [x29, #48]
+    86c0:	97fff1b0 	bl	4d80 <cJSON_IsString@plt>
+    86c4:	7100001f 	cmp	w0, #0x0
+    86c8:	54000081 	b.ne	86d8 <decode_OtaMatrixItem_from_json@@Base+0x6c>  // b.any
+    86cc:	12800000 	mov	w0, #0xffffffff            	// #-1
+    86d0:	b9002fa0 	str	w0, [x29, #44]
+    86d4:	14000008 	b	86f4 <decode_OtaMatrixItem_from_json@@Base+0x88>
+    86d8:	f9400ba3 	ldr	x3, [x29, #16]
+    86dc:	f9401ba0 	ldr	x0, [x29, #48]
+    86e0:	f9401000 	ldr	x0, [x0, #32]
+    86e4:	d28003e2 	mov	x2, #0x1f                  	// #31
+    86e8:	aa0003e1 	mov	x1, x0
+    86ec:	aa0303e0 	mov	x0, x3
+    86f0:	97fff120 	bl	4b70 <strncpy@plt>
+    86f4:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    86f8:	91264000 	add	x0, x0, #0x990  ; 'nxtMSVersion'
+    86fc:	aa0003e1 	mov	x1, x0
+    8700:	f9400fa0 	ldr	x0, [x29, #24]
+    8704:	97fff1e7 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8708:	f9001ba0 	str	x0, [x29, #48]
+    870c:	f9401ba0 	ldr	x0, [x29, #48]
+    8710:	f100001f 	cmp	x0, #0x0
+    8714:	540000a0 	b.eq	8728 <decode_OtaMatrixItem_from_json@@Base+0xbc>  // b.none
+    8718:	f9401ba0 	ldr	x0, [x29, #48]
+    871c:	97fff199 	bl	4d80 <cJSON_IsString@plt>
+    8720:	7100001f 	cmp	w0, #0x0
+    8724:	54000081 	b.ne	8734 <decode_OtaMatrixItem_from_json@@Base+0xc8>  // b.any
+    8728:	12800000 	mov	w0, #0xffffffff            	// #-1
+    872c:	b9002fa0 	str	w0, [x29, #44]
+    8730:	14000009 	b	8754 <decode_OtaMatrixItem_from_json@@Base+0xe8>
+    8734:	f9400ba0 	ldr	x0, [x29, #16]
+    8738:	91008003 	add	x3, x0, #0x20
+    873c:	f9401ba0 	ldr	x0, [x29, #48]
+    8740:	f9401000 	ldr	x0, [x0, #32]
+    8744:	d28007e2 	mov	x2, #0x3f                  	// #63
+    8748:	aa0003e1 	mov	x1, x0
+    874c:	aa0303e0 	mov	x0, x3
+    8750:	97fff108 	bl	4b70 <strncpy@plt>
+    8754:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8758:	91268000 	add	x0, x0, #0x9a0  ; 'fileServerURL'
+    875c:	aa0003e1 	mov	x1, x0
+    8760:	f9400fa0 	ldr	x0, [x29, #24]
+    8764:	97fff1cf 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8768:	f9001ba0 	str	x0, [x29, #48]
+    876c:	f9401ba0 	ldr	x0, [x29, #48]
+    8770:	f100001f 	cmp	x0, #0x0
+    8774:	540000a0 	b.eq	8788 <decode_OtaMatrixItem_from_json@@Base+0x11c>  // b.none
+    8778:	f9401ba0 	ldr	x0, [x29, #48]
+    877c:	97fff181 	bl	4d80 <cJSON_IsString@plt>
+    8780:	7100001f 	cmp	w0, #0x0
+    8784:	54000081 	b.ne	8794 <decode_OtaMatrixItem_from_json@@Base+0x128>  // b.any
+    8788:	12800000 	mov	w0, #0xffffffff            	// #-1
+    878c:	b9002fa0 	str	w0, [x29, #44]
+    8790:	14000009 	b	87b4 <decode_OtaMatrixItem_from_json@@Base+0x148>
+    8794:	f9400ba0 	ldr	x0, [x29, #16]
+    8798:	91018003 	add	x3, x0, #0x60
+    879c:	f9401ba0 	ldr	x0, [x29, #48]
+    87a0:	f9401000 	ldr	x0, [x0, #32]
+    87a4:	d283ffe2 	mov	x2, #0x1fff                	// #8191
+    87a8:	aa0003e1 	mov	x1, x0
+    87ac:	aa0303e0 	mov	x0, x3
+    87b0:	97fff0f0 	bl	4b70 <strncpy@plt>
+    87b4:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    87b8:	9126c000 	add	x0, x0, #0x9b0  ; 'checksum'
+    87bc:	aa0003e1 	mov	x1, x0
+    87c0:	f9400fa0 	ldr	x0, [x29, #24]
+    87c4:	97fff1b7 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    87c8:	f9001ba0 	str	x0, [x29, #48]
+    87cc:	f9401ba0 	ldr	x0, [x29, #48]
+    87d0:	f100001f 	cmp	x0, #0x0
+    87d4:	540000a0 	b.eq	87e8 <decode_OtaMatrixItem_from_json@@Base+0x17c>  // b.none
+    87d8:	f9401ba0 	ldr	x0, [x29, #48]
+    87dc:	97fff169 	bl	4d80 <cJSON_IsString@plt>
+    87e0:	7100001f 	cmp	w0, #0x0
+    87e4:	54000081 	b.ne	87f4 <decode_OtaMatrixItem_from_json@@Base+0x188>  // b.any
+    87e8:	12800000 	mov	w0, #0xffffffff            	// #-1
+    87ec:	b9002fa0 	str	w0, [x29, #44]
+    87f0:	1400000a 	b	8818 <decode_OtaMatrixItem_from_json@@Base+0x1ac>
+    87f4:	f9400ba1 	ldr	x1, [x29, #16]
+    87f8:	d2840c00 	mov	x0, #0x2060                	// #8288
+    87fc:	8b000023 	add	x3, x1, x0
+    8800:	f9401ba0 	ldr	x0, [x29, #48]
+    8804:	f9401000 	ldr	x0, [x0, #32]
+    8808:	d28005e2 	mov	x2, #0x2f                  	// #47
+    880c:	aa0003e1 	mov	x1, x0
+    8810:	aa0303e0 	mov	x0, x3
+    8814:	97fff0d7 	bl	4b70 <strncpy@plt>
+    8818:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    881c:	91272000 	add	x0, x0, #0x9c8  ; 'mac'
+    8820:	aa0003e1 	mov	x1, x0
+    8824:	f9400fa0 	ldr	x0, [x29, #24]
+    8828:	97fff19e 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    882c:	f9001ba0 	str	x0, [x29, #48]
+    8830:	f9401ba0 	ldr	x0, [x29, #48]
+    8834:	f100001f 	cmp	x0, #0x0
+    8838:	540000a0 	b.eq	884c <decode_OtaMatrixItem_from_json@@Base+0x1e0>  // b.none
+    883c:	f9401ba0 	ldr	x0, [x29, #48]
+    8840:	97fff150 	bl	4d80 <cJSON_IsString@plt>
+    8844:	7100001f 	cmp	w0, #0x0
+    8848:	54000081 	b.ne	8858 <decode_OtaMatrixItem_from_json@@Base+0x1ec>  // b.any
+    884c:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8850:	b9002fa0 	str	w0, [x29, #44]
+    8854:	1400000a 	b	887c <decode_OtaMatrixItem_from_json@@Base+0x210>
+    8858:	f9400ba1 	ldr	x1, [x29, #16]
+    885c:	d2841200 	mov	x0, #0x2090                	// #8336
+    8860:	8b000023 	add	x3, x1, x0
+    8864:	f9401ba0 	ldr	x0, [x29, #48]
+    8868:	f9401000 	ldr	x0, [x0, #32]
+    886c:	d2800222 	mov	x2, #0x11                  	// #17
+    8870:	aa0003e1 	mov	x1, x0
+    8874:	aa0303e0 	mov	x0, x3
+    8878:	97fff0be 	bl	4b70 <strncpy@plt>
+    887c:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8880:	91270000 	add	x0, x0, #0x9c0  ; 'policy'
+    8884:	aa0003e1 	mov	x1, x0
+    8888:	f9400fa0 	ldr	x0, [x29, #24]
+    888c:	97fff185 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8890:	f9001ba0 	str	x0, [x29, #48]
+    8894:	f9401ba0 	ldr	x0, [x29, #48]
+    8898:	f100001f 	cmp	x0, #0x0
+    889c:	540000a0 	b.eq	88b0 <decode_OtaMatrixItem_from_json@@Base+0x244>  // b.none
+    88a0:	f9401ba0 	ldr	x0, [x29, #48]
+    88a4:	97fff1cf 	bl	4fe0 <cJSON_IsNumber@plt>
+    88a8:	7100001f 	cmp	w0, #0x0
+    88ac:	54000081 	b.ne	88bc <decode_OtaMatrixItem_from_json@@Base+0x250>  // b.any
+    88b0:	12800000 	mov	w0, #0xffffffff            	// #-1
+    88b4:	b9002fa0 	str	w0, [x29, #44]
+    88b8:	14000005 	b	88cc <decode_OtaMatrixItem_from_json@@Base+0x260>
+    88bc:	f9401ba0 	ldr	x0, [x29, #48]
+    88c0:	b9402801 	ldr	w1, [x0, #40]
+    88c4:	f9400ba0 	ldr	x0, [x29, #16]
+    88c8:	b920a401 	str	w1, [x0, #8356]
+    88cc:	52800000 	mov	w0, #0x0                   	// #0
+    88d0:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    88d4:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    88d8:	f9401fa2 	ldr	x2, [x29, #56]
+    88dc:	f9400021 	ldr	x1, [x1]
+    88e0:	ca010041 	eor	x1, x2, x1
+    88e4:	f100003f 	cmp	x1, #0x0
+    88e8:	54000040 	b.eq	88f0 <decode_OtaMatrixItem_from_json@@Base+0x284>  // b.none
+    88ec:	97ffefc1 	bl	47f0 <__stack_chk_fail@plt>
+    88f0:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    88f4:	d65f03c0 	ret
+
+00000000000088f8 <parse_PostPload_from_json@@Base>:
+    88f8:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    88fc:	910003fd 	mov	x29, sp
+    8900:	f9000fa0 	str	x0, [x29, #24]
+    8904:	f9000ba1 	str	x1, [x29, #16]
+    8908:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    890c:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8910:	f9400001 	ldr	x1, [x0]
+    8914:	f9001fa1 	str	x1, [x29, #56]
+    8918:	d2800001 	mov	x1, #0x0                   	// #0
+    891c:	f9001bbf 	str	xzr, [x29, #48]
+    8920:	b9002fbf 	str	wzr, [x29, #44]
+    8924:	f9400fa0 	ldr	x0, [x29, #24]
+    8928:	f100001f 	cmp	x0, #0x0
+    892c:	54000080 	b.eq	893c <parse_PostPload_from_json@@Base+0x44>  // b.none
+    8930:	f9400ba0 	ldr	x0, [x29, #16]
+    8934:	f100001f 	cmp	x0, #0x0
+    8938:	54000061 	b.ne	8944 <parse_PostPload_from_json@@Base+0x4c>  // b.any
+    893c:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8940:	14000010 	b	8980 <parse_PostPload_from_json@@Base+0x88>
+    8944:	f9400fa0 	ldr	x0, [x29, #24]
+    8948:	97fff0ea 	bl	4cf0 <cJSON_Parse@plt>
+    894c:	f9001ba0 	str	x0, [x29, #48]
+    8950:	f9401ba0 	ldr	x0, [x29, #48]
+    8954:	f100001f 	cmp	x0, #0x0
+    8958:	54000061 	b.ne	8964 <parse_PostPload_from_json@@Base+0x6c>  // b.any
+    895c:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8960:	14000008 	b	8980 <parse_PostPload_from_json@@Base+0x88>
+    8964:	f9400ba1 	ldr	x1, [x29, #16]
+    8968:	f9401ba0 	ldr	x0, [x29, #48]
+    896c:	97fff13d 	bl	4e60 <decode_PostPload_from_json@plt>
+    8970:	b9002fa0 	str	w0, [x29, #44]
+    8974:	f9401ba0 	ldr	x0, [x29, #48]
+    8978:	97ffefbe 	bl	4870 <cJSON_Delete@plt>
+    897c:	b9402fa0 	ldr	w0, [x29, #44]
+    8980:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    8984:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8988:	f9401fa2 	ldr	x2, [x29, #56]
+    898c:	f9400021 	ldr	x1, [x1]
+    8990:	ca010041 	eor	x1, x2, x1
+    8994:	f100003f 	cmp	x1, #0x0
+    8998:	54000040 	b.eq	89a0 <parse_PostPload_from_json@@Base+0xa8>  // b.none
+    899c:	97ffef95 	bl	47f0 <__stack_chk_fail@plt>
+    89a0:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    89a4:	d65f03c0 	ret
+
+00000000000089a8 <decode_PostPload_from_json@@Base>:
+    89a8:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    89ac:	910003fd 	mov	x29, sp
+    89b0:	f9000fa0 	str	x0, [x29, #24]
+    89b4:	f9000ba1 	str	x1, [x29, #16]
+    89b8:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    89bc:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    89c0:	f9400001 	ldr	x1, [x0]
+    89c4:	f9001fa1 	str	x1, [x29, #56]
+    89c8:	d2800001 	mov	x1, #0x0                   	// #0
+    89cc:	b9002fbf 	str	wzr, [x29, #44]
+    89d0:	f9001bbf 	str	xzr, [x29, #48]
+    89d4:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    89d8:	91274000 	add	x0, x0, #0x9d0  ; 'responseCode'
+    89dc:	aa0003e1 	mov	x1, x0
+    89e0:	f9400fa0 	ldr	x0, [x29, #24]
+    89e4:	97fff12f 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    89e8:	f9001ba0 	str	x0, [x29, #48]
+    89ec:	f9401ba0 	ldr	x0, [x29, #48]
+    89f0:	f100001f 	cmp	x0, #0x0
+    89f4:	540000a0 	b.eq	8a08 <decode_PostPload_from_json@@Base+0x60>  // b.none
+    89f8:	f9401ba0 	ldr	x0, [x29, #48]
+    89fc:	97fff179 	bl	4fe0 <cJSON_IsNumber@plt>
+    8a00:	7100001f 	cmp	w0, #0x0
+    8a04:	54000081 	b.ne	8a14 <decode_PostPload_from_json@@Base+0x6c>  // b.any
+    8a08:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8a0c:	b9002fa0 	str	w0, [x29, #44]
+    8a10:	14000005 	b	8a24 <decode_PostPload_from_json@@Base+0x7c>
+    8a14:	f9401ba0 	ldr	x0, [x29, #48]
+    8a18:	b9402801 	ldr	w1, [x0, #40]
+    8a1c:	f9400ba0 	ldr	x0, [x29, #16]
+    8a20:	b9000001 	str	w1, [x0]
+    8a24:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8a28:	91278000 	add	x0, x0, #0x9e0  ; 'responseMsg'
+    8a2c:	aa0003e1 	mov	x1, x0
+    8a30:	f9400fa0 	ldr	x0, [x29, #24]
+    8a34:	97fff11b 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8a38:	f9001ba0 	str	x0, [x29, #48]
+    8a3c:	f9401ba0 	ldr	x0, [x29, #48]
+    8a40:	f100001f 	cmp	x0, #0x0
+    8a44:	540000a0 	b.eq	8a58 <decode_PostPload_from_json@@Base+0xb0>  // b.none
+    8a48:	f9401ba0 	ldr	x0, [x29, #48]
+    8a4c:	97fff0cd 	bl	4d80 <cJSON_IsString@plt>
+    8a50:	7100001f 	cmp	w0, #0x0
+    8a54:	54000081 	b.ne	8a64 <decode_PostPload_from_json@@Base+0xbc>  // b.any
+    8a58:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8a5c:	b9002fa0 	str	w0, [x29, #44]
+    8a60:	14000009 	b	8a84 <decode_PostPload_from_json@@Base+0xdc>
+    8a64:	f9400ba0 	ldr	x0, [x29, #16]
+    8a68:	91001003 	add	x3, x0, #0x4
+    8a6c:	f9401ba0 	ldr	x0, [x29, #48]
+    8a70:	f9401000 	ldr	x0, [x0, #32]
+    8a74:	d2800c62 	mov	x2, #0x63                  	// #99
+    8a78:	aa0003e1 	mov	x1, x0
+    8a7c:	aa0303e0 	mov	x0, x3
+    8a80:	97fff03c 	bl	4b70 <strncpy@plt>
+    8a84:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8a88:	9127c000 	add	x0, x0, #0x9f0  ; 'versions'
+    8a8c:	aa0003e1 	mov	x1, x0
+    8a90:	f9400fa0 	ldr	x0, [x29, #24]
+    8a94:	97fff103 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8a98:	f9001ba0 	str	x0, [x29, #48]
+    8a9c:	f9400ba0 	ldr	x0, [x29, #16]
+    8aa0:	9101a001 	add	x1, x0, #0x68
+    8aa4:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    8aa8:	f947a800 	ldr	x0, [x0, #3920]  ; GOT decode_MatrixItem_from_json
+    8aac:	aa0003e4 	mov	x4, x0
+    8ab0:	52800203 	mov	w3, #0x10                  	// #16
+    8ab4:	52841282 	mov	w2, #0x2094                	// #8340
+    8ab8:	f9401ba0 	ldr	x0, [x29, #48]
+    8abc:	97fff139 	bl	4fa0 <cJSON_GetObjectArray@plt>
+    8ac0:	52800000 	mov	w0, #0x0                   	// #0
+    8ac4:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    8ac8:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8acc:	f9401fa2 	ldr	x2, [x29, #56]
+    8ad0:	f9400021 	ldr	x1, [x1]
+    8ad4:	ca010041 	eor	x1, x2, x1
+    8ad8:	f100003f 	cmp	x1, #0x0
+    8adc:	54000040 	b.eq	8ae4 <decode_PostPload_from_json@@Base+0x13c>  // b.none
+    8ae0:	97ffef44 	bl	47f0 <__stack_chk_fail@plt>
+    8ae4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    8ae8:	d65f03c0 	ret
+
+0000000000008aec <parse_UpgradeStatus_from_json@@Base>:
+    8aec:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    8af0:	910003fd 	mov	x29, sp
+    8af4:	f9000fa0 	str	x0, [x29, #24]
+    8af8:	f9000ba1 	str	x1, [x29, #16]
+    8afc:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    8b00:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8b04:	f9400001 	ldr	x1, [x0]
+    8b08:	f9001fa1 	str	x1, [x29, #56]
+    8b0c:	d2800001 	mov	x1, #0x0                   	// #0
+    8b10:	f9001bbf 	str	xzr, [x29, #48]
+    8b14:	b9002fbf 	str	wzr, [x29, #44]
+    8b18:	f9400fa0 	ldr	x0, [x29, #24]
+    8b1c:	f100001f 	cmp	x0, #0x0
+    8b20:	54000080 	b.eq	8b30 <parse_UpgradeStatus_from_json@@Base+0x44>  // b.none
+    8b24:	f9400ba0 	ldr	x0, [x29, #16]
+    8b28:	f100001f 	cmp	x0, #0x0
+    8b2c:	54000061 	b.ne	8b38 <parse_UpgradeStatus_from_json@@Base+0x4c>  // b.any
+    8b30:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8b34:	14000010 	b	8b74 <parse_UpgradeStatus_from_json@@Base+0x88>
+    8b38:	f9400fa0 	ldr	x0, [x29, #24]
+    8b3c:	97fff06d 	bl	4cf0 <cJSON_Parse@plt>
+    8b40:	f9001ba0 	str	x0, [x29, #48]
+    8b44:	f9401ba0 	ldr	x0, [x29, #48]
+    8b48:	f100001f 	cmp	x0, #0x0
+    8b4c:	54000061 	b.ne	8b58 <parse_UpgradeStatus_from_json@@Base+0x6c>  // b.any
+    8b50:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8b54:	14000008 	b	8b74 <parse_UpgradeStatus_from_json@@Base+0x88>
+    8b58:	f9400ba1 	ldr	x1, [x29, #16]
+    8b5c:	f9401ba0 	ldr	x0, [x29, #48]
+    8b60:	97fff054 	bl	4cb0 <decode_UpgradeStatus_from_json@plt>
+    8b64:	b9002fa0 	str	w0, [x29, #44]
+    8b68:	f9401ba0 	ldr	x0, [x29, #48]
+    8b6c:	97ffef41 	bl	4870 <cJSON_Delete@plt>
+    8b70:	b9402fa0 	ldr	w0, [x29, #44]
+    8b74:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    8b78:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8b7c:	f9401fa2 	ldr	x2, [x29, #56]
+    8b80:	f9400021 	ldr	x1, [x1]
+    8b84:	ca010041 	eor	x1, x2, x1
+    8b88:	f100003f 	cmp	x1, #0x0
+    8b8c:	54000040 	b.eq	8b94 <parse_UpgradeStatus_from_json@@Base+0xa8>  // b.none
+    8b90:	97ffef18 	bl	47f0 <__stack_chk_fail@plt>
+    8b94:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    8b98:	d65f03c0 	ret
+
+0000000000008b9c <decode_UpgradeStatus_from_json@@Base>:
+    8b9c:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    8ba0:	910003fd 	mov	x29, sp
+    8ba4:	f9000fa0 	str	x0, [x29, #24]
+    8ba8:	f9000ba1 	str	x1, [x29, #16]
+    8bac:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    8bb0:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8bb4:	f9400001 	ldr	x1, [x0]
+    8bb8:	f9001fa1 	str	x1, [x29, #56]
+    8bbc:	d2800001 	mov	x1, #0x0                   	// #0
+    8bc0:	b9002fbf 	str	wzr, [x29, #44]
+    8bc4:	f9001bbf 	str	xzr, [x29, #48]
+    8bc8:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8bcc:	91262000 	add	x0, x0, #0x988  ; 'model'
+    8bd0:	aa0003e1 	mov	x1, x0
+    8bd4:	f9400fa0 	ldr	x0, [x29, #24]
+    8bd8:	97fff0b2 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8bdc:	f9001ba0 	str	x0, [x29, #48]
+    8be0:	f9401ba0 	ldr	x0, [x29, #48]
+    8be4:	f100001f 	cmp	x0, #0x0
+    8be8:	540000a0 	b.eq	8bfc <decode_UpgradeStatus_from_json@@Base+0x60>  // b.none
+    8bec:	f9401ba0 	ldr	x0, [x29, #48]
+    8bf0:	97fff064 	bl	4d80 <cJSON_IsString@plt>
+    8bf4:	7100001f 	cmp	w0, #0x0
+    8bf8:	54000081 	b.ne	8c08 <decode_UpgradeStatus_from_json@@Base+0x6c>  // b.any
+    8bfc:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8c00:	b9002fa0 	str	w0, [x29, #44]
+    8c04:	14000008 	b	8c24 <decode_UpgradeStatus_from_json@@Base+0x88>
+    8c08:	f9400ba3 	ldr	x3, [x29, #16]
+    8c0c:	f9401ba0 	ldr	x0, [x29, #48]
+    8c10:	f9401000 	ldr	x0, [x0, #32]
+    8c14:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8c18:	aa0003e1 	mov	x1, x0
+    8c1c:	aa0303e0 	mov	x0, x3
+    8c20:	97ffefd4 	bl	4b70 <strncpy@plt>
+    8c24:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8c28:	91280000 	add	x0, x0, #0xa00  ; 'curswversion'
+    8c2c:	aa0003e1 	mov	x1, x0
+    8c30:	f9400fa0 	ldr	x0, [x29, #24]
+    8c34:	97fff09b 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8c38:	f9001ba0 	str	x0, [x29, #48]
+    8c3c:	f9401ba0 	ldr	x0, [x29, #48]
+    8c40:	f100001f 	cmp	x0, #0x0
+    8c44:	540000a0 	b.eq	8c58 <decode_UpgradeStatus_from_json@@Base+0xbc>  // b.none
+    8c48:	f9401ba0 	ldr	x0, [x29, #48]
+    8c4c:	97fff04d 	bl	4d80 <cJSON_IsString@plt>
+    8c50:	7100001f 	cmp	w0, #0x0
+    8c54:	54000081 	b.ne	8c64 <decode_UpgradeStatus_from_json@@Base+0xc8>  // b.any
+    8c58:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8c5c:	b9002fa0 	str	w0, [x29, #44]
+    8c60:	14000009 	b	8c84 <decode_UpgradeStatus_from_json@@Base+0xe8>
+    8c64:	f9400ba0 	ldr	x0, [x29, #16]
+    8c68:	91008003 	add	x3, x0, #0x20
+    8c6c:	f9401ba0 	ldr	x0, [x29, #48]
+    8c70:	f9401000 	ldr	x0, [x0, #32]
+    8c74:	d28007e2 	mov	x2, #0x3f                  	// #63
+    8c78:	aa0003e1 	mov	x1, x0
+    8c7c:	aa0303e0 	mov	x0, x3
+    8c80:	97ffefbc 	bl	4b70 <strncpy@plt>
+    8c84:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8c88:	91284000 	add	x0, x0, #0xa10  ; 'prevswversion'
+    8c8c:	aa0003e1 	mov	x1, x0
+    8c90:	f9400fa0 	ldr	x0, [x29, #24]
+    8c94:	97fff083 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8c98:	f9001ba0 	str	x0, [x29, #48]
+    8c9c:	f9401ba0 	ldr	x0, [x29, #48]
+    8ca0:	f100001f 	cmp	x0, #0x0
+    8ca4:	540000a0 	b.eq	8cb8 <decode_UpgradeStatus_from_json@@Base+0x11c>  // b.none
+    8ca8:	f9401ba0 	ldr	x0, [x29, #48]
+    8cac:	97fff035 	bl	4d80 <cJSON_IsString@plt>
+    8cb0:	7100001f 	cmp	w0, #0x0
+    8cb4:	54000081 	b.ne	8cc4 <decode_UpgradeStatus_from_json@@Base+0x128>  // b.any
+    8cb8:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8cbc:	b9002fa0 	str	w0, [x29, #44]
+    8cc0:	14000009 	b	8ce4 <decode_UpgradeStatus_from_json@@Base+0x148>
+    8cc4:	f9400ba0 	ldr	x0, [x29, #16]
+    8cc8:	91018003 	add	x3, x0, #0x60
+    8ccc:	f9401ba0 	ldr	x0, [x29, #48]
+    8cd0:	f9401000 	ldr	x0, [x0, #32]
+    8cd4:	d28007e2 	mov	x2, #0x3f                  	// #63
+    8cd8:	aa0003e1 	mov	x1, x0
+    8cdc:	aa0303e0 	mov	x0, x3
+    8ce0:	97ffefa4 	bl	4b70 <strncpy@plt>
+    8ce4:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8ce8:	91272000 	add	x0, x0, #0x9c8  ; 'mac'
+    8cec:	aa0003e1 	mov	x1, x0
+    8cf0:	f9400fa0 	ldr	x0, [x29, #24]
+    8cf4:	97fff06b 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8cf8:	f9001ba0 	str	x0, [x29, #48]
+    8cfc:	f9401ba0 	ldr	x0, [x29, #48]
+    8d00:	f100001f 	cmp	x0, #0x0
+    8d04:	540000a0 	b.eq	8d18 <decode_UpgradeStatus_from_json@@Base+0x17c>  // b.none
+    8d08:	f9401ba0 	ldr	x0, [x29, #48]
+    8d0c:	97fff01d 	bl	4d80 <cJSON_IsString@plt>
+    8d10:	7100001f 	cmp	w0, #0x0
+    8d14:	54000081 	b.ne	8d24 <decode_UpgradeStatus_from_json@@Base+0x188>  // b.any
+    8d18:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8d1c:	b9002fa0 	str	w0, [x29, #44]
+    8d20:	14000009 	b	8d44 <decode_UpgradeStatus_from_json@@Base+0x1a8>
+    8d24:	f9400ba0 	ldr	x0, [x29, #16]
+    8d28:	91028003 	add	x3, x0, #0xa0
+    8d2c:	f9401ba0 	ldr	x0, [x29, #48]
+    8d30:	f9401000 	ldr	x0, [x0, #32]
+    8d34:	d2800222 	mov	x2, #0x11                  	// #17
+    8d38:	aa0003e1 	mov	x1, x0
+    8d3c:	aa0303e0 	mov	x0, x3
+    8d40:	97ffef8c 	bl	4b70 <strncpy@plt>
+    8d44:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8d48:	91288000 	add	x0, x0, #0xa20
+    8d4c:	aa0003e1 	mov	x1, x0
+    8d50:	f9400fa0 	ldr	x0, [x29, #24]
+    8d54:	97fff053 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8d58:	f9001ba0 	str	x0, [x29, #48]
+    8d5c:	f9401ba0 	ldr	x0, [x29, #48]
+    8d60:	f100001f 	cmp	x0, #0x0
+    8d64:	540000a0 	b.eq	8d78 <decode_UpgradeStatus_from_json@@Base+0x1dc>  // b.none
+    8d68:	f9401ba0 	ldr	x0, [x29, #48]
+    8d6c:	97fff005 	bl	4d80 <cJSON_IsString@plt>
+    8d70:	7100001f 	cmp	w0, #0x0
+    8d74:	54000081 	b.ne	8d84 <decode_UpgradeStatus_from_json@@Base+0x1e8>  // b.any
+    8d78:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8d7c:	b9002fa0 	str	w0, [x29, #44]
+    8d80:	14000009 	b	8da4 <decode_UpgradeStatus_from_json@@Base+0x208>
+    8d84:	f9400ba0 	ldr	x0, [x29, #16]
+    8d88:	9102c803 	add	x3, x0, #0xb2
+    8d8c:	f9401ba0 	ldr	x0, [x29, #48]
+    8d90:	f9401000 	ldr	x0, [x0, #32]
+    8d94:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8d98:	aa0003e1 	mov	x1, x0
+    8d9c:	aa0303e0 	mov	x0, x3
+    8da0:	97ffef74 	bl	4b70 <strncpy@plt>
+    8da4:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8da8:	9128a000 	add	x0, x0, #0xa28  ; 'status'
+    8dac:	aa0003e1 	mov	x1, x0
+    8db0:	f9400fa0 	ldr	x0, [x29, #24]
+    8db4:	97fff03b 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8db8:	f9001ba0 	str	x0, [x29, #48]
+    8dbc:	f9401ba0 	ldr	x0, [x29, #48]
+    8dc0:	f100001f 	cmp	x0, #0x0
+    8dc4:	540000a0 	b.eq	8dd8 <decode_UpgradeStatus_from_json@@Base+0x23c>  // b.none
+    8dc8:	f9401ba0 	ldr	x0, [x29, #48]
+    8dcc:	97ffefed 	bl	4d80 <cJSON_IsString@plt>
+    8dd0:	7100001f 	cmp	w0, #0x0
+    8dd4:	54000081 	b.ne	8de4 <decode_UpgradeStatus_from_json@@Base+0x248>  // b.any
+    8dd8:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8ddc:	b9002fa0 	str	w0, [x29, #44]
+    8de0:	14000009 	b	8e04 <decode_UpgradeStatus_from_json@@Base+0x268>
+    8de4:	f9400ba0 	ldr	x0, [x29, #16]
+    8de8:	91034803 	add	x3, x0, #0xd2
+    8dec:	f9401ba0 	ldr	x0, [x29, #48]
+    8df0:	f9401000 	ldr	x0, [x0, #32]
+    8df4:	d2800622 	mov	x2, #0x31                  	// #49
+    8df8:	aa0003e1 	mov	x1, x0
+    8dfc:	aa0303e0 	mov	x0, x3
+    8e00:	97ffef5c 	bl	4b70 <strncpy@plt>
+    8e04:	52800000 	mov	w0, #0x0                   	// #0
+    8e08:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    8e0c:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8e10:	f9401fa2 	ldr	x2, [x29, #56]
+    8e14:	f9400021 	ldr	x1, [x1]
+    8e18:	ca010041 	eor	x1, x2, x1
+    8e1c:	f100003f 	cmp	x1, #0x0
+    8e20:	54000040 	b.eq	8e28 <decode_UpgradeStatus_from_json@@Base+0x28c>  // b.none
+    8e24:	97ffee73 	bl	47f0 <__stack_chk_fail@plt>
+    8e28:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    8e2c:	d65f03c0 	ret
+
+0000000000008e30 <parse_BeaconInfo_from_json@@Base>:
+    8e30:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    8e34:	910003fd 	mov	x29, sp
+    8e38:	f9000fa0 	str	x0, [x29, #24]
+    8e3c:	f9000ba1 	str	x1, [x29, #16]
+    8e40:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    8e44:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8e48:	f9400001 	ldr	x1, [x0]
+    8e4c:	f9001fa1 	str	x1, [x29, #56]
+    8e50:	d2800001 	mov	x1, #0x0                   	// #0
+    8e54:	f9001bbf 	str	xzr, [x29, #48]
+    8e58:	b9002fbf 	str	wzr, [x29, #44]
+    8e5c:	f9400fa0 	ldr	x0, [x29, #24]
+    8e60:	f100001f 	cmp	x0, #0x0
+    8e64:	54000080 	b.eq	8e74 <parse_BeaconInfo_from_json@@Base+0x44>  // b.none
+    8e68:	f9400ba0 	ldr	x0, [x29, #16]
+    8e6c:	f100001f 	cmp	x0, #0x0
+    8e70:	54000061 	b.ne	8e7c <parse_BeaconInfo_from_json@@Base+0x4c>  // b.any
+    8e74:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8e78:	14000010 	b	8eb8 <parse_BeaconInfo_from_json@@Base+0x88>
+    8e7c:	f9400fa0 	ldr	x0, [x29, #24]
+    8e80:	97ffef9c 	bl	4cf0 <cJSON_Parse@plt>
+    8e84:	f9001ba0 	str	x0, [x29, #48]
+    8e88:	f9401ba0 	ldr	x0, [x29, #48]
+    8e8c:	f100001f 	cmp	x0, #0x0
+    8e90:	54000061 	b.ne	8e9c <parse_BeaconInfo_from_json@@Base+0x6c>  // b.any
+    8e94:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8e98:	14000008 	b	8eb8 <parse_BeaconInfo_from_json@@Base+0x88>
+    8e9c:	f9400ba1 	ldr	x1, [x29, #16]
+    8ea0:	f9401ba0 	ldr	x0, [x29, #48]
+    8ea4:	97fff063 	bl	5030 <decode_BeaconInfo_from_json@plt>
+    8ea8:	b9002fa0 	str	w0, [x29, #44]
+    8eac:	f9401ba0 	ldr	x0, [x29, #48]
+    8eb0:	97ffee70 	bl	4870 <cJSON_Delete@plt>
+    8eb4:	b9402fa0 	ldr	w0, [x29, #44]
+    8eb8:	d0000101 	adrp	x1, 2a000 <_fini@@Base+0x16ee8>
+    8ebc:	f9478021 	ldr	x1, [x1, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8ec0:	f9401fa2 	ldr	x2, [x29, #56]
+    8ec4:	f9400021 	ldr	x1, [x1]
+    8ec8:	ca010041 	eor	x1, x2, x1
+    8ecc:	f100003f 	cmp	x1, #0x0
+    8ed0:	54000040 	b.eq	8ed8 <parse_BeaconInfo_from_json@@Base+0xa8>  // b.none
+    8ed4:	97ffee47 	bl	47f0 <__stack_chk_fail@plt>
+    8ed8:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    8edc:	d65f03c0 	ret
+
+0000000000008ee0 <decode_BeaconInfo_from_json@@Base>:
+    8ee0:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    8ee4:	910003fd 	mov	x29, sp
+    8ee8:	f9000fa0 	str	x0, [x29, #24]
+    8eec:	f9000ba1 	str	x1, [x29, #16]
+    8ef0:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x16ee8>
+    8ef4:	f9478000 	ldr	x0, [x0, #3840]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8ef8:	f9400001 	ldr	x1, [x0]
+    8efc:	f9001fa1 	str	x1, [x29, #56]
+    8f00:	d2800001 	mov	x1, #0x0                   	// #0
+    8f04:	b9002fbf 	str	wzr, [x29, #44]
+    8f08:	f9001bbf 	str	xzr, [x29, #48]
+    8f0c:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8f10:	91272000 	add	x0, x0, #0x9c8  ; 'mac'
+    8f14:	aa0003e1 	mov	x1, x0
+    8f18:	f9400fa0 	ldr	x0, [x29, #24]
+    8f1c:	97ffefe1 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8f20:	f9001ba0 	str	x0, [x29, #48]
+    8f24:	f9401ba0 	ldr	x0, [x29, #48]
+    8f28:	f100001f 	cmp	x0, #0x0
+    8f2c:	540000a0 	b.eq	8f40 <decode_BeaconInfo_from_json@@Base+0x60>  // b.none
+    8f30:	f9401ba0 	ldr	x0, [x29, #48]
+    8f34:	97ffef93 	bl	4d80 <cJSON_IsString@plt>
+    8f38:	7100001f 	cmp	w0, #0x0
+    8f3c:	54000081 	b.ne	8f4c <decode_BeaconInfo_from_json@@Base+0x6c>  // b.any
+    8f40:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8f44:	b9002fa0 	str	w0, [x29, #44]
+    8f48:	14000008 	b	8f68 <decode_BeaconInfo_from_json@@Base+0x88>
+    8f4c:	f9400ba3 	ldr	x3, [x29, #16]
+    8f50:	f9401ba0 	ldr	x0, [x29, #48]
+    8f54:	f9401000 	ldr	x0, [x0, #32]
+    8f58:	d2800222 	mov	x2, #0x11                  	// #17
+    8f5c:	aa0003e1 	mov	x1, x0
+    8f60:	aa0303e0 	mov	x0, x3
+    8f64:	97ffef03 	bl	4b70 <strncpy@plt>
+    8f68:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8f6c:	9128c000 	add	x0, x0, #0xa30  ; 'vender'
+    8f70:	aa0003e1 	mov	x1, x0
+    8f74:	f9400fa0 	ldr	x0, [x29, #24]
+    8f78:	97ffefca 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8f7c:	f9001ba0 	str	x0, [x29, #48]
+    8f80:	f9401ba0 	ldr	x0, [x29, #48]
+    8f84:	f100001f 	cmp	x0, #0x0
+    8f88:	540000a0 	b.eq	8f9c <decode_BeaconInfo_from_json@@Base+0xbc>  // b.none
+    8f8c:	f9401ba0 	ldr	x0, [x29, #48]
+    8f90:	97ffef7c 	bl	4d80 <cJSON_IsString@plt>
+    8f94:	7100001f 	cmp	w0, #0x0
+    8f98:	54000081 	b.ne	8fa8 <decode_BeaconInfo_from_json@@Base+0xc8>  // b.any
+    8f9c:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8fa0:	b9002fa0 	str	w0, [x29, #44]
+    8fa4:	14000009 	b	8fc8 <decode_BeaconInfo_from_json@@Base+0xe8>
+    8fa8:	f9400ba0 	ldr	x0, [x29, #16]
+    8fac:	91004803 	add	x3, x0, #0x12
+    8fb0:	f9401ba0 	ldr	x0, [x29, #48]
+    8fb4:	f9401000 	ldr	x0, [x0, #32]
+    8fb8:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8fbc:	aa0003e1 	mov	x1, x0
+    8fc0:	aa0303e0 	mov	x0, x3
+    8fc4:	97ffeeeb 	bl	4b70 <strncpy@plt>
+    8fc8:	90000060 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    8fcc:	91262000 	add	x0, x0, #0x988  ; 'model'
+    8fd0:	aa0003e1 	mov	x1, x0
+    8fd4:	f9400fa0 	ldr	x0, [x29, #24]
+    8fd8:	97ffefb2 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    8fdc:	f9001ba0 	str	x0, [x29, #48]
+    8fe0:	f9401ba0 	ldr	x0, [x29, #48]
+    8fe4:	f100001f 	cmp	x0, #0x0
+    8fe8:	540000a0 	b.eq	8ffc <decode_BeaconInfo_from_json@@Base+0x11c>  // b.none
+    8fec:	f9401ba0 	ldr	x0, [x29, #48]
+    8ff0:	97ffef64 	bl	4d80 <cJSON_IsString@plt>
+    8ff4:	7100001f 	cmp	w0, #0x0
+    8ff8:	54000081 	b.ne	9008 <decode_BeaconInfo_from_json@@Base+0x128>  // b.any
+    8ffc:	12800000 	mov	w0, #0xffffffff            	// #-1
+    9000:	b9002fa0 	str	w0, [x29, #44]
+    9004:	14000009 	b	9028 <decode_BeaconInfo_from_json@@Base+0x148>
+    9008:	f9400ba0 	ldr	x0, [x29, #16]
+    900c:	9100c803 	add	x3, x0, #0x32
+    9010:	f9401ba0 	ldr	x0, [x29, #48]
+    9014:	f9401000 	ldr	x0, [x0, #32]
+    9018:	d28003e2 	mov	x2, #0x1f                  	// #31
+    901c:	aa0003e1 	mov	x1, x0
+    9020:	aa0303e0 	mov	x0, x3
+    9024:	97ffeed3 	bl	4b70 <strncpy@plt>
+    9028:	f0000040 	adrp	x0, 14000 <_fini@@Base+0xee8>
+    902c:	91288000 	add	x0, x0, #0xa20
+    9030:	aa0003e1 	mov	x1, x0
+    9034:	f9400fa0 	ldr	x0, [x29, #24]
+    9038:	97ffef9a 	bl	4ea0 <cJSON_GetObjectItemCaseSensitive@plt>
+    903c:	f9001ba0 	str	x0, [x29, #48]

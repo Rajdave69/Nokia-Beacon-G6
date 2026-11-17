@@ -1,0 +1,72 @@
+0004f58c: 63a00891  add x3, x3, #0x228
+0004f590: 425f8452  mov w2, #0x22fa
+0004f594: d6ffff17  b #0x4f4ec
+0004f598: a0435b39  ldrb w0, [x29, #0x6d0]
+0004f59c: 20010034  cbz w0, #0x4f5c0
+0004f5a0: a04f7339  ldrb w0, [x29, #0xcd3]
+0004f5a4: e0000034  cbz w0, #0x4f5c0
+0004f5a8: a0475f39  ldrb w0, [x29, #0x7d1]
+0004f5ac: a0000034  cbz w0, #0x4f5c0
+0004f5b0: a0ab5639  ldrb w0, [x29, #0x5aa]
+0004f5b4: 60000034  cbz w0, #0x4f5c0
+0004f5b8: a0a34239  ldrb w0, [x29, #0xa8]
+0004f5bc: c0000035  cbnz w0, #0x4f5d4
+0004f5c0: c2130090  adrp x2, #0x2c7000
+0004f5c4: e10313aa  mov x1, x19
+0004f5c8: e00314aa  mov x0, x20
+0004f5cc: 426840f9  ldr x2, [x2, #0xd0]
+0004f5d0: 40003fd6  blr x2 ; heuristic 0x4f1f4 {"x2": 324084}
+0004f5d4: a14b6339  ldrb w1, [x29, #0x8d2]
+0004f5d8: a0a74639  ldrb w0, [x29, #0x1a9]
+0004f5dc: e1040034  cbz w1, #0x4f678
+0004f5e0: 830e00d0  adrp x3, #0x221000
+0004f5e4: 881300d0  adrp x8, #0x2c1000
+0004f5e8: b7130090  adrp x23, #0x2c3000
+0004f5ec: c0020034  cbz w0, #0x4f644
+0004f5f0: 085546f9  ldr x8, [x8, #0xca8]
+0004f5f4: 60820091  add x0, x19, #0x20
+0004f5f8: e00b00f9  str x0, [sp, #0x10]
+0004f5fc: 608a1491  add x0, x19, #0x522
+0004f600: 73860491  add x19, x19, #0x121
+0004f604: f30300a9  stp x19, x0, [sp]
+0004f608: 840e00d0  adrp x4, #0x221000
+0004f60c: 841c0991  add x4, x4, #0x247
+0004f610: 820e00d0  adrp x2, #0x221000
+0004f614: 42a40991  add x2, x2, #0x269
+0004f618: 87860491  add x7, x20, #0x121
+0004f61c: 868e1891  add x6, x20, #0x623
+0004f620: 858a0891  add x5, x20, #0x222
+0004f624: 634c0991  add x3, x3, #0x253
+0004f628: e1ff80d2  mov x1, #0x7ff
+0004f62c: e00315aa  mov x0, x21
+0004f630: 00013fd6  blr x8 ; heuristic @snprintf {"x1": 2047, "x2": "sh %s -o %s -l %s -u %s -p %s -m %s -q %s -t %s &", "x3": "/usr/exe/HomeAgent.sh", "x4": "Start_L1_L2"}
+0004f634: f7e646f9  ldr x23, [x23, #0xdc8]
+0004f638: e00315aa  mov x0, x21
+0004f63c: e0023fd6  blr x23 ; heuristic @_system {}
+0004f640: b3ffff17  b #0x4f50c
+0004f644: 085546f9  ldr x8, [x8, #0xca8]
+0004f648: 87860491  add x7, x20, #0x121
+0004f64c: 868e1891  add x6, x20, #0x623
+0004f650: 858a0891  add x5, x20, #0x222
+0004f654: 840e00d0  adrp x4, #0x221000
+0004f658: 846c0a91  add x4, x4, #0x29b
+0004f65c: 634c0991  add x3, x3, #0x253
+0004f660: 820e00d0  adrp x2, #0x221000
+0004f664: 42900a91  add x2, x2, #0x2a4
+0004f668: e1ff80d2  mov x1, #0x7ff
+0004f66c: e00315aa  mov x0, x21
+0004f670: 00013fd6  blr x8 ; heuristic unknown {"x1": 2047, "x2": "sh %s -o %s -l %s -u %s -p %s &", "x4": "Start_L1"}
+0004f674: f0ffff17  b #0x4f634
+0004f678: a0f4ff34  cbz w0, #0x4f50c
+0004f67c: 881300d0  adrp x8, #0x2c1000
+0004f680: 67820091  add x7, x19, #0x20
+0004f684: 668a1491  add x6, x19, #0x522
+0004f688: 65860491  add x5, x19, #0x121
+0004f68c: 085546f9  ldr x8, [x8, #0xca8]
+0004f690: e1ff80d2  mov x1, #0x7ff
+0004f694: e00315aa  mov x0, x21
+0004f698: 840e00d0  adrp x4, #0x221000
+0004f69c: 84100b91  add x4, x4, #0x2c4
+0004f6a0: 830e00d0  adrp x3, #0x221000
+0004f6a4: 634c0991  add x3, x3, #0x253
+0004f6a8: 820e00d0  adrp x2, #0x221000

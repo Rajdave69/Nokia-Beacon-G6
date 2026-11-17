@@ -104,7 +104,7 @@ There is also an ordinary retry-counter path with a threshold of eight. The two 
 
 One further detail matters: U-Boot clears the committed bits during ordinary boot selection too. Successful Linux boot completion re-commits the running image. Commit is therefore part of the boot-success protocol, not just a once-per-upgrade annotation.
 
-I checked the actual ARM64 selectors under QEMU with in-memory environment get/set/save operations, suppressed console output and a synthetic reset-status page. Both banks' steady state, activation, missing-commit fallback, simulated successful commitment and threshold/reset cases passed:20 cases across both original bootloaders. These tests execute selection code without U-Boot main, physical flash or hardware reset. The [source](../../webui/scripts/research/g6-slot-selection-probe.c) and [evidence](../../knowledgebases/firmware-slot-rollback-evidence.json) retain the exact boundaries.
+I checked the actual ARM64 selectors under QEMU with in-memory environment get/set/save operations, suppressed console output and a synthetic reset-status page. Both banks' steady state, activation, missing-commit fallback, simulated successful commitment and threshold/reset cases passed:20 cases across both original bootloaders. These tests execute selection code without U-Boot main, physical flash or hardware reset. The [source](../../writeups/firmware-slot-rollback/resources/g6-slot-selection-probe.c) and [evidence](../../knowledgebases/firmware-slot-rollback-evidence.json) retain the exact boundaries.
 
 ## What switching banks does not restore
 
@@ -135,7 +135,7 @@ For the two known builds, the practical procedure is to migrate to the common la
 
 The confirmed procedure is therefore stock shell activation of an existing valid image, followed by reboot and stock boot-completion/commit handling. This finding does not establish a WebUI rollback endpoint or a successful live downgrade. The [LLM context](../../knowledgebases/firmware-slot-rollback.md) records the same distinction.
 
-The [fourth G6 capture](../fourth-g6-comparison/README.md) independently repeats
+The [fourth G6 capture](../comparing-other-g6-routers/README.md) independently repeats
 the second unit's IJL-bank0/HJL-bank1 payloads and selected bank1/`0x72` state,
 while its SSB matches the first and third units. Its generic `img_active`,
 `img_commit` and `img_executed` values remain zero; the actual kernel command

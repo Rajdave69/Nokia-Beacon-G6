@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "qemu-aarch64",
+    "-L",
+    "/usr/aarch64-linux-gnu",
+    "-E",
+    "LD_LIBRARY_PATH=private-source://PROFILE-ONT-KJL/usr/lib:project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/native-probe-compat",
+    "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/factory-parser-probe",
+    "private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so",
+    "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/factory-SECURITY-record.bin",
+    "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/factory-decoded-native.json"
+  ],
+  "returncode": 0,
+  "stdout": "parsed_fields=8; command/network operations blocked; output private\n",
+  "stderr": "",
+  "scope": "Original factory parser only, command/network imports blocked; crypt import replaced by aborting stub (exit91 if called); no SE database init, firmware boot, router/server contact or extfs operation.",
+  "prior_attempts": [
+    "dlopen failed because cross-toolchain sysroot lacks libcrypt.so.1.",
+    "Stock libcrypt2.27 requires GLIBC_PRIVATE __snprintf incompatible with newer cross-toolchain libc.",
+    "Unused crypt consumer dependency replaced with explicit aborting stub; this is not a crypt/hash-password test."
+  ]
+}

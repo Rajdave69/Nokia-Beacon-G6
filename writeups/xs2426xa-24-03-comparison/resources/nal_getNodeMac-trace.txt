@@ -1,0 +1,99 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/lib/libnal.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000021ae4 <nal_getNodeMac@@Base>:
+   21ae4:	d12c43ff 	sub	sp, sp, #0xb10
+   21ae8:	a9007bfd 	stp	x29, x30, [sp]
+   21aec:	910003fd 	mov	x29, sp
+   21af0:	a90153f3 	stp	x19, x20, [sp, #16]
+   21af4:	d0000333 	adrp	x19, 87000 <_fini@@Base+0x28dd8>
+   21af8:	a9025bf5 	stp	x21, x22, [sp, #32]
+   21afc:	aa0003f5 	mov	x21, x0
+   21b00:	f9420660 	ldr	x0, [x19, #1032]  ; GOT __stack_chk_guard@GLIBC_2.17
+   21b04:	a9047fbf 	stp	xzr, xzr, [x29, #64]
+   21b08:	f9400001 	ldr	x1, [x0]
+   21b0c:	f90587a1 	str	x1, [x29, #2824]
+   21b10:	d2800001 	mov	x1, #0x0                   	// #0
+   21b14:	f9002bbf 	str	xzr, [x29, #80]
+   21b18:	b9005bbf 	str	wzr, [x29, #88]
+   21b1c:	f9001bf7 	str	x23, [sp, #48]
+   21b20:	b5000275 	cbnz	x21, 21b6c <nal_getNodeMac@@Base+0x88>
+   21b24:	d0000323 	adrp	x3, 87000 <_fini@@Base+0x28dd8>
+   21b28:	f00001e0 	adrp	x0, 60000 <_fini@@Base+0x1dd8>
+   21b2c:	913b4000 	add	x0, x0, #0xed0  ; 'getvlanBindedPvid'
+   21b30:	f9424c63 	ldr	x3, [x3, #1176]  ; GOT nalLogError
+   21b34:	f0000202 	adrp	x2, 64000 <_fini@@Base+0x5dd8>
+   21b38:	91345842 	add	x2, x2, #0xd16  ; 'Invalid mac memory\n'
+   21b3c:	528145c1 	mov	w1, #0xa2e                 	// #2606
+   21b40:	9120e000 	add	x0, x0, #0x838  ; 'nal_getNodeMac'
+   21b44:	d63f0060 	blr	x3
+   21b48:	12800000 	mov	w0, #0xffffffff            	// #-1
+   21b4c:	f9420673 	ldr	x19, [x19, #1032]  ; GOT __stack_chk_guard@GLIBC_2.17
+   21b50:	f94587a2 	ldr	x2, [x29, #2824]
+   21b54:	f9400261 	ldr	x1, [x19]
+   21b58:	ca010041 	eor	x1, x2, x1
+   21b5c:	b40006e1 	cbz	x1, 21c38 <nal_getNodeMac@@Base+0x154>
+   21b60:	d0000320 	adrp	x0, 87000 <_fini@@Base+0x28dd8>
+   21b64:	f9449c00 	ldr	x0, [x0, #2360]  ; GOT __stack_chk_fail@GLIBC_2.17
+   21b68:	d63f0000 	blr	x0
+   21b6c:	90000381 	adrp	x1, 91000 <whwAppInitDataList@@Base+0x290>
+   21b70:	9136c020 	add	x0, x1, #0xdb0
+   21b74:	91302017 	add	x23, x0, #0xc08
+   21b78:	aa0103f6 	mov	x22, x1
+   21b7c:	39702000 	ldrb	w0, [x0, #3080]
+   21b80:	350004a0 	cbnz	w0, 21c14 <nal_getNodeMac@@Base+0x130>
+   21b84:	528022e0 	mov	w0, #0x117                 	// #279
+   21b88:	b90063a0 	str	w0, [x29, #96]
+   21b8c:	52800020 	mov	w0, #0x1                   	// #1
+   21b90:	910193a2 	add	x2, x29, #0x64
+   21b94:	390103a0 	strb	w0, [x29, #64]
+   21b98:	d0000323 	adrp	x3, 87000 <_fini@@Base+0x28dd8>
+   21b9c:	52800020 	mov	w0, #0x1                   	// #1
+   21ba0:	b90047a0 	str	w0, [x29, #68]
+   21ba4:	f947f463 	ldr	x3, [x3, #4072]  ; GOT cfg_getObj
+   21ba8:	910183b4 	add	x20, x29, #0x60
+   21bac:	a94407a0 	ldp	x0, x1, [x29, #64]
+   21bb0:	a9000440 	stp	x0, x1, [x2]
+   21bb4:	f80743bf 	stur	xzr, [x29, #116]
+   21bb8:	52800002 	mov	w2, #0x0                   	// #0
+   21bbc:	b9007fbf 	str	wzr, [x29, #124]
+   21bc0:	528154c1 	mov	w1, #0xaa6                 	// #2726
+   21bc4:	aa1403e0 	mov	x0, x20
+   21bc8:	d63f0060 	blr	x3
+   21bcc:	34000180 	cbz	w0, 21bfc <nal_getNodeMac@@Base+0x118>
+   21bd0:	d0000324 	adrp	x4, 87000 <_fini@@Base+0x28dd8>
+   21bd4:	2a0003e3 	mov	w3, w0
+   21bd8:	f00001e0 	adrp	x0, 60000 <_fini@@Base+0x1dd8>
+   21bdc:	913b4000 	add	x0, x0, #0xed0  ; 'getvlanBindedPvid'
+   21be0:	f9424c84 	ldr	x4, [x4, #1176]  ; GOT nalLogError
+   21be4:	f0000202 	adrp	x2, 64000 <_fini@@Base+0x5dd8>
+   21be8:	9134a842 	add	x2, x2, #0xd2a  ; 'Failed to get LANHostConfigManagementObject, ret=%d\n'
+   21bec:	52814761 	mov	w1, #0xa3b                 	// #2619
+   21bf0:	9120e000 	add	x0, x0, #0x838  ; 'nal_getNodeMac'
+   21bf4:	d63f0080 	blr	x4
+   21bf8:	17ffffd4 	b	21b48 <nal_getNodeMac@@Base+0x64>
+   21bfc:	d0000323 	adrp	x3, 87000 <_fini@@Base+0x28dd8>
+   21c00:	d2800402 	mov	x2, #0x20                  	// #32
+   21c04:	91187681 	add	x1, x20, #0x61d
+   21c08:	aa1703e0 	mov	x0, x23
+   21c0c:	f9426063 	ldr	x3, [x3, #1216]  ; GOT strncpy@GLIBC_2.17
+   21c10:	d63f0060 	blr	x3
+   21c14:	d0000323 	adrp	x3, 87000 <_fini@@Base+0x28dd8>
+   21c18:	9136c2c1 	add	x1, x22, #0xdb0
+   21c1c:	d2800402 	mov	x2, #0x20                  	// #32
+   21c20:	91302021 	add	x1, x1, #0xc08
+   21c24:	f9426063 	ldr	x3, [x3, #1216]  ; GOT strncpy@GLIBC_2.17
+   21c28:	aa1503e0 	mov	x0, x21
+   21c2c:	d63f0060 	blr	x3
+   21c30:	52800000 	mov	w0, #0x0                   	// #0
+   21c34:	17ffffc6 	b	21b4c <nal_getNodeMac@@Base+0x68>
+   21c38:	a9407bfd 	ldp	x29, x30, [sp]
+   21c3c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   21c40:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   21c44:	f9401bf7 	ldr	x23, [sp, #48]
+   21c48:	912c43ff 	add	sp, sp, #0xb10
+   21c4c:	d65f03c0 	ret

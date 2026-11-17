@@ -85,4 +85,4 @@ Before changing or generating any credential, ask two questions: which program a
 
 ## Second-unit comparison
 
-The [two-G6 comparison](../two-g6-key-comparison/README.md) separates unit-specific factory records and Password2 messages from shared current-build ONTUSER calculations, root templates and configuration key7_2. It also traces the older IJL.J03 slot. A shared key or account name still does not merge these credential paths.
+The [two-G6 comparison](../comparing-other-g6-routers/README.md) separates unit-specific factory records and Password2 messages from shared current-build ONTUSER calculations, root templates and configuration key7_2. It also traces the older IJL.J03 slot. A shared key or account name still does not merge these credential paths.

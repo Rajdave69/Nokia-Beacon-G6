@@ -240,6 +240,8 @@ For a port, get a verified CPU packet path working before adding acceleration. T
 acceleration both cold and warm. A successful `iptables` invocation, SDK result or Linux counter cannot 
 establish that every hardware-forwarded packet traverses that hook.
 
+The [offload and QoS follow-up](../cortina-offload-and-qos/README.md) distinguishes the vendor conntrack hooks, Linux flow-table modules, and separate QoS backends. It also records the live HJL threshold and queue drop mode.
+
 ## QoS, shaping and counters
 
 Cortina provides eight-queue SDK definitions, scheduling, port/queue shapers, policers, WRED/ECN and 
@@ -294,7 +296,7 @@ of a standard isolated IOMMU domain.
 
 The saved `analysis/beacon-g6-stock.dtb` was independently compared with the original FIT. Only 
 `/memory/reg` and `/chosen/bootargs` differ; hardware resources discussed here match the original. The memory
-change matters for a port, as explained in the [hardware writeup](../hardware/README.md).
+change matters for a port, as explained in the [hardware writeup](../hardware-beacon-g6/README.md).
 
 | Control            | Original DT/driver description                                                   | Porting consequence                                                                              |
 |--------------------|----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
@@ -348,3 +350,7 @@ Remaining work is specific: physical port/PHY mapping, complete DMA descriptor/p
 The [resource guide](resources/README.md) indexes scripts, source hashes, command/dispatch catalogues, structure accessors, comparison and disassembly. The [knowledgebase](../../knowledgebases/cortina-hardware-controls.md) retains the complete continuation and original script context.
 
 Offline checks exercised **36 original getters × three statuses × two builds = 216 cases**, plus both original transports under mocks. Every saved instruction byte was compared with its original ELF section; callback mappings and the original FIT DTB were independently checked. These validate the recovered interfaces. They did not test physical links, forwarding, isolation, acceleration, reboot behavior or hardware setters.
+
+## Diagnostics and recovery follow-up, 2026-11-10
+
+The [diagnostics and recovery investigation](../diagnostics-and-recovery/README.md) now maps the independent PCD/procd/diagnosis recovery layers, stock kernel core/panic settings and watchdog feeding controls. In the examined G6 procd, `stop: true` cancels feeding; device magic-close is a separate setting, so this is not by itself proof that hardware is disarmed. The work is offline and does not add a live hardware or custom-rootfs recovery test to this subject's results.

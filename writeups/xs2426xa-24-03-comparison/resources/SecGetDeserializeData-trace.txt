@@ -1,0 +1,52 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000001aaac <SecGetDeserializeData@@Base>:
+   1aaac:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   1aab0:	90000161 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   1aab4:	910003fd 	mov	x29, sp
+   1aab8:	f942c022 	ldr	x2, [x1, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   1aabc:	a90153f3 	stp	x19, x20, [sp, #16]
+   1aac0:	aa0103f4 	mov	x20, x1
+   1aac4:	f9400043 	ldr	x3, [x2]
+   1aac8:	f90017a3 	str	x3, [x29, #40]
+   1aacc:	d2800003 	mov	x3, #0x0                   	// #0
+   1aad0:	b5000140 	cbnz	x0, 1aaf8 <SecGetDeserializeData@@Base+0x4c>
+   1aad4:	12800000 	mov	w0, #0xffffffff            	// #-1
+   1aad8:	f942c281 	ldr	x1, [x20, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   1aadc:	f94017a2 	ldr	x2, [x29, #40]
+   1aae0:	f9400021 	ldr	x1, [x1]
+   1aae4:	ca010041 	eor	x1, x2, x1
+   1aae8:	b4000341 	cbz	x1, 1ab50 <SecGetDeserializeData@@Base+0xa4>
+   1aaec:	90000160 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   1aaf0:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   1aaf4:	d63f0000 	blr	x0
+   1aaf8:	f9402001 	ldr	x1, [x0, #64]
+   1aafc:	aa0003f3 	mov	x19, x0
+   1ab00:	b50001a1 	cbnz	x1, 1ab34 <SecGetDeserializeData@@Base+0x88>
+   1ab04:	f9402661 	ldr	x1, [x19, #72]
+   1ab08:	b50001c1 	cbnz	x1, 1ab40 <SecGetDeserializeData@@Base+0x94>
+   1ab0c:	aa1303e0 	mov	x0, x19
+   1ab10:	97fffeb2 	bl	1a5d8 <SecGenSerializeData@@Base+0x264>
+   1ab14:	35fffe00 	cbnz	w0, 1aad4 <SecGetDeserializeData@@Base+0x28>
+   1ab18:	f9402a61 	ldr	x1, [x19, #80]
+   1ab1c:	b4fffde1 	cbz	x1, 1aad8 <SecGetDeserializeData@@Base+0x2c>
+   1ab20:	aa1303e0 	mov	x0, x19
+   1ab24:	d63f0020 	blr	x1
+   1ab28:	7100001f 	cmp	w0, #0x0
+   1ab2c:	5a9f03e0 	csetm	w0, ne	// ne = any
+   1ab30:	17ffffea 	b	1aad8 <SecGetDeserializeData@@Base+0x2c>
+   1ab34:	d63f0020 	blr	x1
+   1ab38:	34fffe60 	cbz	w0, 1ab04 <SecGetDeserializeData@@Base+0x58>
+   1ab3c:	17ffffe6 	b	1aad4 <SecGetDeserializeData@@Base+0x28>
+   1ab40:	aa1303e0 	mov	x0, x19
+   1ab44:	d63f0020 	blr	x1
+   1ab48:	34fffe20 	cbz	w0, 1ab0c <SecGetDeserializeData@@Base+0x60>
+   1ab4c:	17ffffe2 	b	1aad4 <SecGetDeserializeData@@Base+0x28>
+   1ab50:	a94153f3 	ldp	x19, x20, [sp, #16]
+   1ab54:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   1ab58:	d65f03c0 	ret

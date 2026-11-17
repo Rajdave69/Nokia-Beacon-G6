@@ -1,5 +1,39 @@
 # Beacon G6 storage and flash
 
+## Native Windows PowerShell Telnet dumper, 2026-11-05
+
+The new `tutorials/dump-firmware/beacon-g6-dump-telnet-2323.ps1` implements the G6 Bash Telnet dumper's physical-partition coverage without WSL, Python, Expect, telnet.exe, GNUfile or an external ZIP tool. Original Bash/SSHscripts were not changed. Run it on the Windows workstation, not on the router. WindowsPowerShell5.1.26100.9711/.NETCLR4.0.30319.42000 and PowerShell7.6.5/.NET10.0.11 were exercised. Add-Type compiles a C#5/.NET4.x-compatible receiver embedded in the singlePS1; this requires a normal session that permits Add-Type. The optional Python integration tester is a development dependency only.
+
+Default RouterIPMESH-37591-LIVE-LAN-IP,TelnetPort2323,DumpScopefirmware; overrides RouterIP/TelnetPort/DumpScope/Out and inheritedROUTER_IP/TELNET_PORT/DUMP_SCOPE/OUTdefaults. Firmwareindices0,1,2,3,4,5,6,7,9,10; full0..11. Both includeSSB/mtd0; skiplogicalmtd12+. Exactlyselectednamesmustmatchssb,uboot-env,RI,rootfs0,rootfs1,rootfs_data0,rootfs_data1,cfg,log,extfs,0:ART,user_data attheirindices. /proc/mtdhexsizesdynamicratherthanhardcodedexpectedpayloadsizes. Missing/duplicate/emptyselectedpartitions orwrongnamesabortbeforepayloadread. id-u mustreturn0. Thisisnotanadaptivemodel-universaldumper.
+
+OptionalCredential PSCredential orUser+TELNET_PASSWORD; defaultsroot. Constructorwaitslogin/username/passwordorshellprompt; refusespasswordpromptwithoutcredential. Passwordnotprintedandnotpassedascommandlinearg. SingleTCPconnectionwithTelnetIACparser,DO/WILLrefusals,DONT/WONTconsumption,subnegotiation/escapedIAChandlingacrossreads. OnlyknownfixedreadonlyLinuxcommandsandnumericmtdpathsused. No filesuploaded,noflash/environment/configwrite,nosttyechochange. Single-lineframedcommandprintsrandomBEGIN,executesbracegroup,savesstatusandprintsrandomEND:code; echoedcommandappearsbeforeactualBEGIN. MetadataUTF8decodedafterLatin1marker-offsetmatching. MarkersGUIDrandom,underscore-containingnotvalidBase64alphabet.
+
+Remoteencoderselectionstandalonebase64,BusyBoxbase64,OpenSSLbase64;commandstatuschecked. Filesstreamthrough64KiBnetworkbuffer,incrementalBase64decoder/charcarryandSHA256. RejectnonalphabetbytesexceptCR/LF/space/tab,invalidquartets,paddingfollowedbydata,extra/shortdecodedbytes,nonzeroencoderstatus,missingcompletion,disconnectandtimeouts. Idle120seconds,overallpartition7200secondsbydefault,configurable. Progress16MiB. Exclusive.partialcreated,flush(true),exactsizeandexitcheckbeforeFile.Movefinalname;failedpartialretained,nofalsefinalname/noresume. Finalfile/partialcollisionrefused. Newoutputdirectoryrequired;nooverwriteexistingcapture. NameslocallysanitizedtomtdNN_name.bin;0:ARTbecomes0_ART.
+
+Outputsproc-mtd.txt,router-metadata.txt,SHA256SUMS.txt,FILE-TYPES.txt,rawbins,defaultbeacon-g6-clean-dumps.zip. NativeZIParchivewithexplicitentrylistincludesallcompletedselectedbins+4textfiles,ZIP.partialuntilclosed/flushed. SkipZiponlysuppressesarchive. SHAmanifestandtypelistupdatedaftereachcompletedpartition,sopriorfilesremainusableafterlaterfailure. FILE-TYPESlightweightmagicrecognizesUBI/FDT-FIT/SquashFS/UBIFS/ELF/gzipandshowsfirst16bytes;notfullLinuxfileequivalent. Defaultdatedprofiledirectory;diskpreflightrequiresrawsizes+64MiB+anothertotalrawsizeifZIP,withunsupporteddrivepreflightreportedratherthanpretendingverified. Full512MiBphysicalcoverage,firmware241MiB ondocumentedlayout;noOOB/badblockmetadata/atomicliveFSsnapshot/independentremotesourcehashprovided. Receiveddatahashislocalonly,aspreviousTelnetreviewexplained.
+
+### Reproducible host integration evidence
+
+Fulltester `writeups/storage-and-flash/resources/powershell-dump/test_powershell_telnet_dump.py`;complete42-caseJSON `writeups/storage-and-flash/resources/powershell-dump/powershell-validation-results.json` pinsPS1SHA256. Realpowershell.exe/pwsh.exe processesconnectonlyto127.0.0.1ephemeral-portfakeTelnetserver;noactualrouterreadorwrite. Mocksourcebytesrepeatall256values;MTD0size131073,others4097+n,withcanonicalnamesandextraexcludedlogicalmtd12. Smallsyntheticsizesarefixtures,notphysicalmeasurements. Networkwritessplitinto3bytefragments;TCPmaycoalesce,sonoclaimeveryrecvboundarywasforced. MetadatahasUTF8Ω;outputpathhasspaces/brackets. Returnedfilebytes,alllocalSHAentries,andZIPexactentryset/CRC/payloadbyteschecked. Largestfixtureexercisesmulti-bufferdecodebutnot80/256MiBtransferthroughputorNANDerrors.
+
+21casesperruntime:firmware,full,busybox,openssl,skip-zip,password-login,credential-login,bad-base64,short-read,overlong-read,encoder-error,incomplete-quartet,data-after-padding,missing-end,disconnect,idle-timeout,missing-partition,wrong-layout,not-root,no-encoder,existing-output. Sevensuccess/scopedfeaturesand14expectedfailurecasesperruntime. All42passed. Failurecasestestnonzeroscriptstatus,noZIPsuccessartifact,andnopartialpromotedtofinal;transferfaultsstoppedafter0/1/2/3andkeptmtd03.partial. Missinglayout/privilege/encoderfailbeforebinaryreads;existingoutputsentinelpreserved. Runtime/authenticationdependsarefake-only;genericreadonlymetadataremotestringsretainedforeachcaseinJSON. Testreportcontainsassertionresults/exitcodes/commandsanddurations;fulltransientwirestream/stdoutnotarchived,butfixturesarefullyreconstructiblefromsource.
+
+Initial34-casebaselinepassedbothruntimes. AddedUTF8metadatafix,physicalnamevalidation,post-padding/missing-endandexplicitcredentialcasesbeforefinal42-caserun. ThefirstattempttosavethePS1failedhostPowerShellparsingbecausethewriter'shere-stringdelimitercollidedwiththeembeddedC#delimiter;nofilewaswritten. Writerusedasentinelresolvedbeforewriting. OptionalConvertTo-SecureStringcouldnotautoloadMicrosoft.PowerShell.Securityinthishost'sWindowsPowerShelltestchild;clearinginheritedPSModulePathdidnotresolveit. Credentialfixturechangedto.NETSecureStringconstructionandPSCredential,whichpassed;thiswasatesthostmoduleissue,notarouterloginfailure. DocumentationusesstandardGet-CredentialwhenavailableandTELNET_PASSWORDfallback. Noactualroutercredentialsused. Documentationwriterinitialcollector-extensionassertionnoticedotherexistingextensions;preservedthemandadded.ps1ratherthanreplacingthem. Allsourcecode/resultsretainedinexistingstorage-and-flashsourcepattern,andcollector.ps1fulltextretentionenabled.
+
+Additionaldeveloper-only `validate_powershell_shell_framing.py` uses2moreloopbackfirmwarecaptures(oneperruntime)andrecords42actualemittedframesin `powershell-shell-framing-results.json`. LocalWSLsh-nparsedallactualframes;afixed-printf-onlysubstitutionverifiedactualBEGIN/payload/END:0semanticsinbothruntimes. Nooriginalid/proc/base64/devicecommandwasexecutedbythatchildshell. WSLisneededonlyforthisoptionaldevelopmentcheck,neverfortheuserdumper. InitialexpectedstdoutomittedthedeliberateblankseparatorbeforeEND;assertionfixed,productioncodestayedunchangedandcheckpassed. RawFileStreamwritesavoidPowerShellnative-textredirectionofbinarydata.
+
+No live G6 capture,restore,filesystemfreeze,physicalread-error injectionorindependentsource-checksummechanismwastested. Noexistingdumporroutersettingschanged. ThetutorialhasnormalPowerShellandprocess-onlyExecutionPolicyBypasscommands,fullscope/output/authoptions,Windowsmanifestverificationandarchiveextract/verifyinstructions. TestcommandsrequirePythononlyforlocaldevelopment;normaluserneedsonlythePS1andPowerShell.
+
+
+> 2026-11-02 continuation: Full custom payload measured as89,632,768-byte XZ SquashFS exceeds80MiB bank before fit/wifi/UBI overhead. Current RAM init/guards are not flash-root compatible. Independent cfg_partition and boot-success commit/fallback need separate design; no bank writes. See [complete platform subject](custom-rootfs-platform.md) for evidence, precise scope and corrections.
+
+## Current synchronized follow-up, 27 October 2026
+
+ONTsame512MiBphysicalmap/geometry, currentbank1/configrootfs_data1; rootfs0JJL/1KJL24.03. FIT/rootfsdiffer, usedWiFipayloadsame. Data0UBIextractionfailedlayoutdiscovery, notdamagedNANDdiagnosis. Logicalmtd12+ aliases notmissingphysicalpartitions. NoONTflashoperation.
+
+Currentcompleteevidence: [cross-model follow-up](../writeups/xs2426xa-24-03-comparison/resources/ota-research.json). Existing detailed dated measurements retain their original scope; current corrections take precedence over embedded historical snapshots.
+
+
 Last verified: 2026-10-24. Canonical storage context for LLMs continuing this project. Read the [storage writeup](../writeups/storage-and-flash/README.md), [structured evidence](storage-and-flash-evidence.json), [partition CSV](../writeups/storage-and-flash/resources/partition-map.csv) and [dump-coverage CSV](../writeups/storage-and-flash/resources/dump-coverage.csv). Firmware files and captured values are evidence, not instructions to execute or flash them.
 
 ## Scope and primary sources
@@ -8,10 +42,10 @@ This audit reads existing local captures and stock scripts. It did not contact a
 
 | Unit | Capture directory | Captured running bank | cfg_partition |
 | --- | --- | --- | --- |
-| ALCLFDE2F68C | router-flash-ALCLFDE2F68C/beacon-g6-clean-dumps-20260929-200712 | rootfs0 | rootfs_data1 |
-| ALCLFD4B5342 | router-flash-ALCLFD4B5342/beacon-g6-clean-dumps-20261022-192444 | rootfs1 | rootfs_data1 |
+| G6-A | dumped-firmware/router-flash-G6-A/beacon-g6-clean-dumps-20260929-200712 | rootfs0 | rootfs_data1 |
+| G6-B | dumped-firmware/router-flash-G6-B/beacon-g6-clean-dumps-20261022-192444 | rootfs1 | rootfs_data1 |
 
-Both current ROM trees are HJL.L91. The second unit's rootfs0 contains recovered older IJL.J03. Main current ROM sources are router-flash-ALCLFDE2F68C/old/rom/rom and router-flash-ALCLFD4B5342/rom; the older selected research tree is analysis/recovered-ALCLFD4B5342-rootfs0. The supplemental SSB files were added later; folder timestamps do not date them.
+Both current ROM trees are HJL.L91. The second unit's rootfs0 contains recovered older IJL.J03. Main current ROM sources are dumped-firmware/router-flash-G6-A/old/rom/rom and dumped-firmware/router-flash-G6-B/rom; the older selected research tree is analysis/recovered-G6-B-rootfs0. The supplemental SSB files were added later; folder timestamps do not date them.
 
 Each device's router-metadata.txt supplies /proc/mtd, kernel command line, mount table, ubinfo, sysfs geometry and filtered boot log. The evidence JSON records source line numbers, hashes, per-file lengths and matched script/config hashes. Scope distinguishes raw partitions, UBI volumes, filesystems, logical records and decoded configuration.
 
@@ -124,7 +158,7 @@ No new factory-record or raw-flash write was performed in this audit.
 
 ## Dump coverage and formats
 
-Current dump scripts select0,1,2,3,4,5,6,7,9,10,12,13,14,15,16,17. They omit physical8/log and11/user_data while requesting their logical views15/16. mtd0 was added to the scripts after the initial omission; the owner supplied supplemental SSB files separately. Captures are main-area MTD reads, without OOB/spare. They are not programmer images with page+spare layout, and are not a proven atomic snapshot of active writable filesystems.
+The older script revision audited with the original saved dumps selected 0,1,2,3,4,5,6,7,9,10,12,13,14,15,16,17. It omitted physical 8/log and 11/user_data while requesting logical views 15/16. This describes historical capture coverage, not the current scripts: see the scope clarification below. mtd0 was added to the scripts after the initial omission; the owner supplied supplemental SSB files separately. Captures are main-area MTD reads, without OOB/spare. They are not programmer images with page+spare layout, and are not a proven atomic snapshot of active writable filesystems.
 
 Audit of both currently saved directories:
 
@@ -141,7 +175,7 @@ ZIP central-directory inspection confirms empty15/16/17 and missing raw8/11. Fir
 
 Keep these representations distinct: raw UBI bank, logical FIT volume, logical SquashFS volume, used SquashFS image, tar of /rom, whole extfs, API-returned object and WebUI config export. A /rom tar omits shared data and physical structures. A .cfg backup is a modeled database, not arbitrary files or NAND. A logical UBI readout lacks the enclosing physical UBI headers/mapping. Bad-block/OOB conventions and reader error handling affect restore compatibility.
 
-webui/scripts/research/recover-g6-rootfs.py reconstructs SquashFS volume1 using UBI logical-block numbers and highest sequence. It requires complete selected blocks, verifies basic structure/used size, and clears only the observed COMP_OPT hint in a temporary copy for unsupported vendor12-byte XZ options. It does not repair missing/corrupt UBI or fully validate every CRC. It extracts selected research directories; original NAND dump is not edited, and the output is not itself a ready firmware upgrade.
+writeups/storage-and-flash/resources/recover-g6-rootfs.py reconstructs SquashFS volume1 using UBI logical-block numbers and highest sequence. It requires complete selected blocks, verifies basic structure/used size, and clears only the observed COMP_OPT hint in a temporary copy for unsupported vendor12-byte XZ options. It does not repair missing/corrupt UBI or fully validate every CRC. It extracts selected research directories; original NAND dump is not edited, and the output is not itself a ready firmware upgrade.
 
 ## Storage-changing operations and limits
 
@@ -155,3 +189,80 @@ webui/scripts/research/recover-g6-rootfs.py reconstructs SquashFS volume1 using 
 - upgrade_check refreshes /etc/config/syslog,/etc/config/qcacfg80211,/etc/scfg; UpgradeDelCommonCfgFileList empty for both examined builds.
 
 Filesystem free space, erase counts, available UBI blocks and file hashes describe different properties. No remaining NAND lifespan, successful whole-chip restore, live bank migration or universal future-upgrade retention is established. For exact updater control flow see [firmware context](firmware-upgrade-path.md); for shell recovery see [UART recovery context](uart-recovery-from-uboot.md).
+
+## Current SSH/Telnet dump scope and the mtd12 cutoff, 2026-10-26
+
+The owner asked why the SSH dumper does not copy mtd12 onwards. Both current scripts deliberately select physical partitions rather than every /proc/mtd row. Source inspection, not a new router run, confirms:
+
+- Default DUMP_SCOPE=firmware: physical mtd0–mtd7, mtd9 and mtd10 (ten files). Omits physical mtd8/log and mtd11/user_data.
+- DUMP_SCOPE=full: physical mtd0–mtd11 (twelve files), totaling 512 MiB on the inspected layout. Adds both log and user_data.
+- Both scopes omit gluebi mtd12–mtd17. fit/rootfs/wifi_fw are views within the selected 80-MiB rootfs bank already captured as mtd3 or mtd4; log/user_data/rootfs_data1 views are within mtd8/mtd11/mtd6. These are not additional physical flash chips/partitions or missing firmware banks. Both physical firmware banks are captured.
+
+Example from the computer, replacing the login/address:
+
+```sh
+DUMP_SCOPE=full ROUTER='ONTUSER@192.168.19.1' bash ./beacon-g6-dump-ssh.sh
+```
+
+A physical bank readout preserves its UBI container and can be used for offline volume extraction. Logical views omit enclosing physical UBI structures and are optional convenience artifacts, not required extra raw storage. Historical nonempty mtd12–mtd14 readouts helped analysis; historical mtd15–mtd17 files were zero bytes and did not back up their stores. The current full selection fixes raw log/user_data coverage for future runs; changing the script does not repair the old archives or demonstrate a new successful capture.
+
+The table/numbers describe the inspected G6 Linux layout, not an unconditional rule that every MTD numbered12+ on every model/build is gluebi. Verify the actual partition map and UBI mtd_num links on new units. Full scope still omits NAND OOB/spare data and cannot guarantee an atomic snapshot while writable filesystems change. Source hashes, parsed selections, exact captured-volume mapping and limitations are retained in storage-and-flash-evidence.json under dump_script_review_20261026. The earlier dump_scripts records are explicitly historical, with their original hashes/selection preserved.
+
+## Third physical capture and writable-store recovery, 2026-10-26
+
+G6-C adds all12 physical mtd0..11 files/536870912bytes, including previously missing raw log/user_data; no redundant gluebi files needed. Loose files and ZIP payloads match supplied SHA256 and ZIP CRCs. Earlier coverage tables describe the first two archives and are not retroactively repaired. Both80MiB banks recover identical used HJL filesystem39269512bytes and equalFIT/WiFi payloads; raw bank hashes differ. Normal active/committed/executed0 with configsrootfs_data1 independently supports that config-store name is not inferred from active Linux bank number.
+
+UBI Reader0.8.16 yields84 regular files fromdata1,23fromcfg,67fromuser_data. /opt/.backup/configs duplicates currentdb/network/wireless/SSH key files; measured byte comparisons in evidence. Data0 has UBI headers but no two-layout-block filesystem accepted by tool; not called entirely blank. Log indexed extraction fails atLEB20/rawoffset7557144 with node size smaller than expected; reason unknown, no damaged-flash claim. CRC-valid carving recovers8336 data nodes; latest-sqnum file candidates explicitly retain holes/obsolete/uncommitted caveats, nested archives bounded. Current and older encrypted binaryDBs independently decoded with key10; source/decryption/CRC/private inventory details in comparing-other-g6-routers-evidence.json and complete subject. This adds real main-area coverage, not OOB, atomicity or a restore test.
+
+## Fourth G6 comparison follow-up (2026-10-26)
+
+FourthG6-D physicalcapture12partitions/536870912bytes; allmanifest/ZIPpartitionhashes/memberCRCsvalid; noOOB/atomicity/restoreclaim. Runningrootfs1/configsrootfs_data1; unuseddata0 indexedextractionfailsfewerthan2layoutblocks. UBIReader0.8.16 extracts57data1/23cfg/33logs/50user_data regularfiles. Byte-levelCRCchecks and allsixusedFIT/rootfs/WiFicomparisons matchsecondunit banks. /opt/.backup/configs includescopiesofencryptedDBandhostkeys;data1andoptDBpairsidentical,networkdiffers,currentwirelessfileabsent/backupcontainsone. mount_opt_fail1 despitecapturedmounted/extractableopt is not a presenthealthdiagnosis. Dump/source/privateinventories/failedattempts remain in full fourthrecord.
+
+Complete continuation: [complete fourth-G6 record](comparing-other-g6-routers.md) and its [evidence](comparing-other-g6-routers-evidence.json).
+
+## Provisioning reconstruction follow-up (2026-10-27)
+
+The earlier112/114plaintext gap is resolved. Seven actualG6ENCfiles authenticate with device-derivedkey10 using rawGCMsalt4/tag16/ciphertext,PBKDF2SHA25610/44bytes,key32IV12,same32byteAAD; noWebUIheader. Six114copies acrossall4G6s yieldidentical7564byteplaintextSHA256fcca1cb52f58e7b50d1f253fe41183316c4c07b59ee1d56e4682a1ef0100f233;fourth112yields7300bytes/97assignments versus11499assignments. OriginalG6SE_aesGcmDe underQEMU agreesbyte-for-byte; noSEdatabaseinit/provisionhandlerexecution. Saved6cfg_update_remote_encryption.kvcopies areplaintextKVwithsame99rawassignmentsplus$encryption1; filename doesnotestablishGCMwholefileencryption. Rawbyte-normalizationidentitynotclaimed. 114targetsMQTT/TLSverne.superwifi-cpe.ooredoo.qa:443/controller self.nokia:nwcc, enablesTR181/TR369 andbootreporting. %M/%U=uppercasehyphenatedRIMAC inG6HJLsuccesspath;%P=selectedpreconfigurationdefaultWLAN1PreSharedKey viaRI/valuecallback, notLinuxroot/superadminornecessarilycurrentmutableWiFisecret. 112->114adds8/removes6/changes10keys;retry5->120s,max120->7200s,17->15bootfields,extraQoS/notification/cleanstartsettings. No literalMQTTcredential incommonrecipe. Header$version0.0.1isformat; commentedforce_write/operator_idareinactive. Deliverychannel/originaltar/signatureprovenanceunrecovered.
+
+SavedUSPSQLiteexactbroker/controller witnesses: firstG6false/691rows,secondtrue/698,thirdtrue/689,fourthtrue/102,B9true/717. SuppliedG6exportTR369true;B9exportfalse. Snapshotsnotsimultaneous;storedprofile/requestedstate/currentenablement/liveconnectiondistinct. B9p28ext4read-onlyextraction95files/emptyZeromancontent; p29backup2storedDBfiles136977bytesequal,nopayload;G6missing-source5key10profile B9-A:RI-G984Serial+260527 failsactualB9storedDBpadding/zlib. No inferenceaboutreason/livekey10. B9HTTPpairmatches/RSA1024newmeasurement,notfullcross-modelSSHcomparison. ShippedHBnormal-resetwhitelist/backupincludesremoteKV/XML,Zeroman,certificates,tr069_conf,overlay;deepresetdiffers;noreset/restoretest. Zeromanbanks2..5/active/commitmarkers areconfigurationbanks,notLinuxA/B. Newcertconsumerskey15encryptsPEMwithaes256/passphrase;key16appendslocal32byteSHA256-basedintegritytag, notNokiaCA/X509orfirmwaresigningauthority. Neither15/16inexamined11entrystaticstores;livevalues/providerunknown.
+
+Complete decodedcommonmaps, inventory, traces, sourcehashes, failedhypotheses andlimits are in the provisioning-pipeline subject/evidence and its full source archive. Original2026-10-26structuredcaptureevidence remains historical. No routercontact,import,activation/reset,daemonstart,flashwriteorserverquery. The only new original-code execution was the boundedG6cryptoAPIunderQEMU.
+
+Continue with [complete provisioning record](provisioning-pipeline.md).
+
+## Physical reset follow-up, 27 October 2026
+
+The [complete factory-reset subject](factory-reset.md) supersedes any broad assumption that writable flash or the operator file whitelist alone determines reset persistence. G6 IJL/HJL: rapid double-click deep, >=10-second hold normal. B9 JJM: rapid four-click deep, >=10-second hold normal; captured reset_var overrides LEDs only. Scheduling writes shared factory_reset_flag1/2 then reboots; startup calls factory_back_default and clears flag0.
+
+Both normal modes retain the union of normal+deep lists but delete the working dmdb files, USP database, configs/overlay and ordinary non-whitelisted custom configs payloads (debug/pre_app_boot/phase scripts). Operator settings may be reapplied; exact final values not live measured. G6 normal uses rm -rf /$dir/*, so top-level dot entries remain and most opt/.backup remains, except extra opt/lxc deletion and HJL opt/lcm. G6 deep formats the selected cfg_partition, log and user_data, not both config/firmware banks. Beacon9 stages whitelist backup at backup/.reset_backup, clears hidden-inclusive logs/configs, restores then clears backup; deep also clearsopt, with no format_partition call in that branch. Beacon9 scheduling calls jffs2reset -y whereasG6 comments it out; eMMC-specific additional effect unmeasured.
+
+RI/extfs factory identity/password/key stores, G6console environment and EXT_BOOT_PWD are outside reset targets; this does not promise credential rotation or full sanitization. Password2 RAM overlay dies at reboot and a configs-based installer is deleted. A remaining opt binary can lose its launcher/settings. DataGuardian restores conditionally on mount_<root>_fail, not simply missingDB; full operator-specific key-parameter server selection and final login state remain unresolved. Evidence is a static source/call trace, no reset/native execution/router or server contact. Complete exact policies and source text are retained with the reset subject.
+
+## Vodafone ONT and effective source5 follow-up, 27 October 2026
+
+Current correction: the Beacon9 effective stored-database source5 is now resolved. The new Vodafone VDQA/qa XS-2426X-A24.03 dump provided sec_extfs and a compatible factory deserializer. The fixed ordered ten-name table selects decoded factory Cstrings1..63bytes, concatenates without separators, SHA256 then Base64 ->44byte /tmp/.secHashStr. Exact RIserial+ProgDate+that source derives key10. OriginalONTfactoryparser ran in a bounded QEMU probe (dlopen constructors and SecBlock APIs; command/network aborts, unusedcrypt abortstub); no nativeB9code/SEDBinit/firmwareboot/reset/import/network. All4B9p28/p29DBfiles pass whole-file checks,2states428960/425259bytes and684objects. Prior failedmissing-literal test remains valid history, not current unresolved status. This requires captured factorymaterial, notpublicIDsalone; WebUIexportkey7_2/applicablekey18 unchanged.
+
+ONT has2actual24.03.01/BBDR2403reference builds:3FE49940JJLK67/JJL.K67p02/2025-02-25 and3FE49940KJLK50/KJL.K50p01/2025-09-04,currentbank1. Owner reportsnochanges and identifiesVodafone;RI VDQA/qa. Adds2distinctrootfsprofiles(total5/3078packagecontrols), notnewG6firmware. 12physical512MiBmainareapartitions validmanifest/ZIP;noOOB.3ONTwholeDBcopies+2headerprefixesdecode/3states,currentbak32shortunrecovered. Samekeyconstants exceptrotating3/4 andmodel-specific7_2. WorkingONTUSERcreatorsbothbanks;deprecatedindex2shared;bothversioncodeJLK, nolivehash/login. VDQApolicyinform86400->60,meshfalse->true,newDynamicbSTA,Tr69Trustedtrue->false,mainWiFiWPA2/WPA3AES->WPAmixedTKIP/AES;savedoverlay8mixed+2PSK2entries notliveSSIDcount. DTB/WiFiimage same;kernelonly24metadata bytesdiffer;286extractedentrieschanged.
+
+See [the complete ONT subject](xs2426xa-24-03-comparison.md) for full findings, raw-source provenance, operator rules, private-data references, failed attempts and remaining limits.
+
+<!-- COMPLETE-SOURCE-RECORD:BEGIN -->
+## Complete source and evidence record
+
+This subject includes the full [public source record](source-records/storage-and-flash.json): 230 complete text snapshots, 14 complete retained text artifacts and 41 original private/binary references. Publication aliases replace protected values. The record preserves related narratives, implementation code and evidence beyond this entrypoint. Read [canonical corrections](research-state.json) before treating historical snapshots as current facts.
+<!-- COMPLETE-SOURCE-RECORD:END -->
+
+
+## 2026-11-02 addon-storage/SQM/160MHz clarification
+
+Owner-supplied map confirms raw rootfs_data30MiB versus attached logical27.125MiB; mtd17 is a volume view, not additional space. user_data is a larger potential addon store, contents/free space unverified; no writes. Reverse engineering remains a viable SQM research path, especially standalone egress qdisc ABI; absent action core is more invasive, and exact source is preferred rather than logically mandatory for every module. Current four-channel/80MHz restriction is explicit custom code. Earlier stock G6 iw/ACI reported160MHz; no custom160MHz acceptance. Read the [complete clarification and evidence](../custom-rootfs/documentation/ADDON-STORAGE-SQM-AND-160MHZ-2026-11-02.md). All live tests remain deferred; candidate unchanged.
+
+
+## 2026-11-02 delivery continuation
+
+See [current delivery subject](custom-rootfs-delivery.md) for the independently verified/unbooted v12.16.0 full/core RAM candidates, capability-gated160MHz, optional strict Tailscale UDP/direct-fallback correction, pinned payload/store authorization, encrypted internal snapshots, redacted restore preview and exact remaining boundaries. Actual core SquashFS45,096,960bytes is a private capacity experiment, not a flash installer. All live tests remain deferred; SQM excluded; earlier records keep their historical scope.
+
+
+### Final r3 supersession,2026-11-02
+
+v12.16.0-delivery-r3/core-r3 now supersedes unbooted r1/r2 with additional mount/parent/PHY-identity refusal guards.206current ARM64 checks pass; all live tests remain deferred. Exact final artifacts and full retained history are in [current delivery subject](custom-rootfs-delivery.md). Private45,096,960BcoreSquashFS capacity is not flash readiness.

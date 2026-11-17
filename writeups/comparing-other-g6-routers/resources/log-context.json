@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "scope": "Offline bounded interpretation of retained saved log/settings artifacts; no execution, downloads, server queries, rootfs install or actual time validation.",
+  "reboot_history": {
+    "source": {
+      "source": "project://Nokia-Beacon-G6/config-private/fourth-g6-analysis-20261026/ubifs-mtd08_log/768919401/log/reboot.log",
+      "bytes": 38736,
+      "sha256": "82e5cda9c15d1229ff0313896ffb71a8af0d0f04d30b9923f87a0de7ccdfef02"
+    },
+    "IMAGEVERSION_buildinfo_counts": {
+      "3FE49996IJLJ03": 6,
+      "3FE49996HJLL91": 26
+    },
+    "factory_default_reset_all_command_occurrences": 4,
+    "2020_clock_tokens_present": true,
+    "interpretation": "The reboot-history buildinfo records support earlier IJL and later HJL operation on this unit; they do not establish original shipping firmware or reliable event dates. No owner modifications reported; reset commands may predate ownership or come from provisioning."
+  },
+  "upgrade_status_logs": [
+    {
+      "input": {
+        "source": "project://Nokia-Beacon-G6/config-private/fourth-g6-analysis-20261026/ubifs-mtd08_log/768919401/log/.upgrade.bak",
+        "bytes": 46789,
+        "sha256": "2f01957f33392bedbaa810f94125cebfb3a7bb98f9dab7436df9b073be35bbec"
+      },
+      "recorded_flag_counts": {
+        "0x32": 48,
+        "0x72": 93
+      },
+      "limit": "Saved image-status queries, not by themselves evidence of a firmware download or successful flash."
+    },
+    {
+      "input": {
+        "source": "project://Nokia-Beacon-G6/config-private/fourth-g6-analysis-20261026/ubifs-mtd08_log/768919401/log/.upgrade.log",
+        "bytes": 24991,
+        "sha256": "07b82263ec7eaa4339d6fe5c69050ddc83c427eae2f9c1d9efdf057d487f98a3"
+      },
+      "recorded_flag_counts": {
+        "0x32": 48,
+        "0x72": 27
+      },
+      "limit": "Saved image-status queries, not by themselves evidence of a firmware download or successful flash."
+    }
+  ],
+  "pstore": {
+    "source": {
+      "source": "project://Nokia-Beacon-G6/config-private/fourth-g6-analysis-20261026/ubifs-mtd08_log/768919401/log/pstore/console-ramoops-0",
+      "bytes": 34449,
+      "sha256": "1a97ab4ce9ad19d39ac4c294c4558bfd7743ae80c090f85dc3d5bba96504a5fb"
+    },
+    "regulatory_init_call_trace_present": true,
+    "continued_boot_lines_after_trace": true,
+    "corrupted_characters_observed": true,
+    "limit": "No complete intelligible panic diagnosis established. Do not infer current hardware/NAND failure or a reproducible crash from this noisy saved fragment."
+  },
+  "LCM": {
+    "cthulhu_log": {
+      "source": "project://Nokia-Beacon-G6/config-private/fourth-g6-analysis-20261026/ubifs-mtd08_log/768919401/log/cthulhu.log",
+      "bytes": 25542,
+      "sha256": "f67b3d930581e792ec44e7f1c5722261aab3e14fd757ec2be94b85f124c3cef1"
+    },
+    "generic_sandbox_start_recorded": true,
+    "storage_size_1048576_recorded": true,
+    "persisted_generic_image": [
+      {
+        "source": "project://Nokia-Beacon-G6/config-private/fourth-g6-analysis-20261026/ubifs-mtd11_user_data/339895509/user_data/lcm/usr/share/cthulhu/data/images/generic",
+        "bytes": 1048576,
+        "sha256": "3782184cfd6aef1e7f4f39b543c9b6ed722a2ddf361eef388301a6b41f726171"
+      }
+    ],
+    "limit": "Evidence of vendor lifecycle/sandbox use and retained storage; not evidence of an owner-installed service, active remote control or a newly discovered firmware build."
+  },
+  "operator_packages": [
+    {
+      "device": "third",
+      "source": "private-source://SOURCE-036/ENC_CFGBOQA114.org",
+      "bytes": 7584,
+      "sha256": "DIGEST-018"
+    },
+    {
+      "device": "third",
+      "source": "private-source://SOURCE-037/ENC_CFGBOQA114.org",
+      "bytes": 7584,
+      "sha256": "DIGEST-018"
+    },
+    {
+      "device": "fourth",
+      "source": "private-source://SOURCE-010/ENC_CFGBOQA114.org",
+      "bytes": 7584,
+      "sha256": "DIGEST-019"
+    },
+    {
+      "device": "fourth",
+      "source": "private-source://SOURCE-011/ENC_CFGBOQA112",
+      "bytes": 7320,
+      "sha256": "DIGEST-017"
+    },
+    {
+      "device": "fourth",
+      "source": "private-source://SOURCE-012/ENC_CFGBOQA114.org",
+      "bytes": 7584,
+      "sha256": "DIGEST-036"
+    }
+  ],
+  "operator_package_limits": "112/114 are observed provisioning filenames, not Linux firmware-version identifiers. Different ciphertext hashes do not prove different plaintext. No new decoder/decrypted package comparison was performed.",
+  "old_cfg": {
+    "source": {
+      "source": "private-source://SOURCE-123/se.conf",
+      "bytes": 669,
+      "sha256": "4e4b0b558fab0282fd4850c60e951d124f7023699a5624939f82346d2097afc9"
+    },
+    "keysrc0": "3TN00121LJJJ37",
+    "limit": "Retained configuration/security metadata; no matching complete rootfs recovered and no new product mapping established."
+  },
+  "environment_crosscheck": {
+    "kernel_mtd": "rootfs1",
+    "active_part": "1",
+    "cfg_partition": "rootfs_data1",
+    "sb_flag_hex": "0x72",
+    "swug_status_model": {
+      "Active": 1,
+      "Committed": 1,
+      "Next_Active": 1
+    },
+    "img_active_img_commit_img_executed": "All remain zero; do not use them instead of the traced sb_flag/actual cmdline path.",
+    "mount_opt_fail": "Saved value1 despite captured mounted /opt and successful private extraction; not a stand-alone diagnosis of present mount/flash failure."
+  }
+}

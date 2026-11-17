@@ -1,0 +1,41 @@
+{
+  "scope": "Offline existing G6 key10 profile against actual saved ONT databases; no native SE lookup or import.",
+  "inputs": {
+    "RI_G984Serial": "ONT-A:RI-G984Serial",
+    "RI_ProgDate": "250910",
+    "source5": "invalid_key_src5_str"
+  },
+  "files": [
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd06_rootfs_data1/555792398/rootfs_data1/dmdb_encryption.cfg",
+      "success": false,
+      "error": "CBC padding/zlib validation failed: wrong sources or altered data"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd06_rootfs_data1/555792398/rootfs_data1/dmdb_encryption.cfg.bak",
+      "success": false,
+      "error": "stored database length/bound mismatch"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd07_cfg/519173170/cfg/dmdb_encryption.cfg",
+      "success": false,
+      "error": "CBC padding/zlib validation failed: wrong sources or altered data"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd07_cfg/519173170/cfg/dmdb_encryption.cfg.bak",
+      "success": false,
+      "error": "CBC padding/zlib validation failed: wrong sources or altered data"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd11_user_data/83955945/user_data/.backup/configs/dmdb_encryption.cfg",
+      "success": false,
+      "error": "stored database length/bound mismatch"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd11_user_data/83955945/user_data/.backup/configs/dmdb_encryption.cfg.bak",
+      "success": false,
+      "error": "stored database length/bound mismatch"
+    }
+  ],
+  "limit": "Real stored-database success is not WebUI import/export validation; CRC/padding/zlib/schema is not AEAD authentication."
+}

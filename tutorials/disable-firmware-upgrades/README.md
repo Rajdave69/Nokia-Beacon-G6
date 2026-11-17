@@ -55,7 +55,7 @@ Inspect the current state:
 ```sh
 cat /etc/buildinfo
 cat /proc/cmdline
-swug -d
+/usr/exe/swug -d
 fw_printenv -n active_part
 fw_printenv -n sb_flag
 fw_printenv -n cfg_partition

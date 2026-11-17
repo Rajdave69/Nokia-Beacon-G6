@@ -1,0 +1,155 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/bin/cfgmgr:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000084a2c <cfgRpc_socketRead@@Base+0xff10>:
+   84a2c:	d2800001 	mov	x1, #0x0                   	// #0
+   84a30:	f90023f9 	str	x25, [sp, #64]
+   84a34:	a905ffbf 	stp	xzr, xzr, [x29, #88]
+   84a38:	52800801 	mov	w1, #0x40                  	// #64
+   84a3c:	a906ffbf 	stp	xzr, xzr, [x29, #104]
+   84a40:	aa1603e0 	mov	x0, x22
+   84a44:	a907ffbf 	stp	xzr, xzr, [x29, #120]
+   84a48:	a908ffbf 	stp	xzr, xzr, [x29, #136]
+   84a4c:	d63f0040 	blr	x2
+   84a50:	34000220 	cbz	w0, 84a94 <cfgRpc_socketRead@@Base+0xff78>
+   84a54:	f0001404 	adrp	x4, 307000 <sal_hgu_qos_delete_classify>
+   84a58:	90000f43 	adrp	x3, 26c000 <_fini@@Base+0x23d98>
+   84a5c:	911a6463 	add	x3, x3, #0x699  ; 'gen debug user pass fail\n'
+   84a60:	f9467884 	ldr	x4, [x4, #3312]  ; GOT log_log
+   84a64:	5280e5c2 	mov	w2, #0x72e                 	// #1838
+   84a68:	9109c261 	add	x1, x19, #0x270
+   84a6c:	528000a0 	mov	w0, #0x5                   	// #5
+   84a70:	d63f0080 	blr	x4
+   84a74:	f94592f7 	ldr	x23, [x23, #2848]
+   84a78:	f9410fa1 	ldr	x1, [x29, #536]
+   84a7c:	f94002e0 	ldr	x0, [x23]
+   84a80:	ca000020 	eor	x0, x1, x0
+   84a84:	b4000cc0 	cbz	x0, 84c1c <cfgRpc_socketRead@@Base+0x10100>
+   84a88:	90001420 	adrp	x0, 308000 <_fini@@Base+0xbfd98>
+   84a8c:	f9424000 	ldr	x0, [x0, #1152]  ; GOT __stack_chk_fail@GLIBC_2.17
+   84a90:	d63f0000 	blr	x0
+   84a94:	f0001403 	adrp	x3, 307000 <sal_hgu_qos_delete_classify>
+   84a98:	9109c274 	add	x20, x19, #0x270
+   84a9c:	90000f59 	adrp	x25, 26c000 <_fini@@Base+0x23d98>
+   84aa0:	910b0f38 	add	x24, x25, #0x2c3  ; 'ONTUSER'
+   84aa4:	f9455463 	ldr	x3, [x3, #2728]
+   84aa8:	5280e642 	mov	w2, #0x732                 	// #1842
+   84aac:	aa1403e1 	mov	x1, x20
+   84ab0:	aa1803e0 	mov	x0, x24
+   84ab4:	d63f0060 	blr	x3
+   84ab8:	b0001404 	adrp	x4, 305000 <_fini@@Base+0xbcd98>
+   84abc:	5280e663 	mov	w3, #0x733                 	// #1843
+   84ac0:	aa1403e2 	mov	x2, x20
+   84ac4:	aa1603e1 	mov	x1, x22
+   84ac8:	f9478884 	ldr	x4, [x4, #3856]
+   84acc:	aa1803e0 	mov	x0, x24
+   84ad0:	d63f0080 	blr	x4
+   84ad4:	34fffd15 	cbz	w21, 84a74 <cfgRpc_socketRead@@Base+0xff58>
+   84ad8:	aa1403e1 	mov	x1, x20
+   84adc:	f0001414 	adrp	x20, 307000 <sal_hgu_qos_delete_classify>
+   84ae0:	d00013f5 	adrp	x21, 302000 <get_radio_previous_channel>
+   84ae4:	5280e6c2 	mov	w2, #0x736                 	// #1846
+   84ae8:	f9467a94 	ldr	x20, [x20, #3312]  ; GOT log_log
+   84aec:	528000a0 	mov	w0, #0x5                   	// #5
+   84af0:	90000f43 	adrp	x3, 26c000 <_fini@@Base+0x23d98>
+   84af4:	911acc63 	add	x3, x3, #0x6b3  ; 'upt debug pwd in ext'
+   84af8:	910263b8 	add	x24, x29, #0x98
+   84afc:	d63f0280 	blr	x20
+   84b00:	f947f6a3 	ldr	x3, [x21, #4072]  ; GOT memset@GLIBC_2.17
+   84b04:	d2801002 	mov	x2, #0x80                  	// #128
+   84b08:	52800001 	mov	w1, #0x0                   	// #0
+   84b0c:	aa1803e0 	mov	x0, x24
+   84b10:	d63f0060 	blr	x3
+   84b14:	aa1803e0 	mov	x0, x24
+   84b18:	97ffed09 	bl	7ff3c <cfgRpc_socketRead@@Base+0xb420>
+   84b1c:	35000700 	cbnz	w0, 84bfc <cfgRpc_socketRead@@Base+0x100e0>
+   84b20:	394263a0 	ldrb	w0, [x29, #152]
+   84b24:	35000100 	cbnz	w0, 84b44 <cfgRpc_socketRead@@Base+0x10028>
+   84b28:	90000f43 	adrp	x3, 26c000 <_fini@@Base+0x23d98>
+   84b2c:	911b2063 	add	x3, x3, #0x6c8  ; 'no debug pwd in ext'
+   84b30:	5280e242 	mov	w2, #0x712                 	// #1810
+   84b34:	910a2261 	add	x1, x19, #0x288
+   84b38:	528000a0 	mov	w0, #0x5                   	// #5
+   84b3c:	d63f0280 	blr	x20
+   84b40:	17ffffcd 	b	84a74 <cfgRpc_socketRead@@Base+0xff58>
+   84b44:	f00013f6 	adrp	x22, 303000 <nwa_notifyCloudProfile>
+   84b48:	90000f41 	adrp	x1, 26c000 <_fini@@Base+0x23d98>
+   84b4c:	911b7021 	add	x1, x1, #0x6dc  ; '$1$'
+   84b50:	f945f6d6 	ldr	x22, [x22, #3048]  ; GOT strstr@GLIBC_2.17
+   84b54:	aa1803e0 	mov	x0, x24
+   84b58:	d63f02c0 	blr	x22
+   84b5c:	b5000160 	cbnz	x0, 84b88 <cfgRpc_socketRead@@Base+0x1006c>
+   84b60:	90000f41 	adrp	x1, 26c000 <_fini@@Base+0x23d98>
+   84b64:	911b8021 	add	x1, x1, #0x6e0  ; '$5$'
+   84b68:	aa1803e0 	mov	x0, x24
+   84b6c:	d63f02c0 	blr	x22
+   84b70:	b50000c0 	cbnz	x0, 84b88 <cfgRpc_socketRead@@Base+0x1006c>
+   84b74:	90000f41 	adrp	x1, 26c000 <_fini@@Base+0x23d98>
+   84b78:	911b9021 	add	x1, x1, #0x6e4  ; '$6$'
+   84b7c:	aa1803e0 	mov	x0, x24
+   84b80:	d63f02c0 	blr	x22
+   84b84:	b40002c0 	cbz	x0, 84bdc <cfgRpc_socketRead@@Base+0x100c0>
+   84b88:	f947f6b5 	ldr	x21, [x21, #4072]  ; GOT memset@GLIBC_2.17
+   84b8c:	910463b3 	add	x19, x29, #0x118
+   84b90:	d2802002 	mov	x2, #0x100                 	// #256
+   84b94:	52800001 	mov	w1, #0x0                   	// #0
+   84b98:	aa1303e0 	mov	x0, x19
+   84b9c:	d63f02a0 	blr	x21
+   84ba0:	d00013e6 	adrp	x6, 302000 <get_radio_previous_channel>
+   84ba4:	910b0f24 	add	x4, x25, #0x2c3  ; 'ONTUSER'
+   84ba8:	aa1803e5 	mov	x5, x24
+   84bac:	aa0403e3 	mov	x3, x4
+   84bb0:	f942d4c6 	ldr	x6, [x6, #1448]  ; GOT snprintf@GLIBC_2.17
+   84bb4:	d2802001 	mov	x1, #0x100                 	// #256
+   84bb8:	aa1303e0 	mov	x0, x19
+   84bbc:	90000f42 	adrp	x2, 26c000 <_fini@@Base+0x23d98>
+   84bc0:	911ba042 	add	x2, x2, #0x6e8  ; "sed -r -i 's#^%s:[^:]*#%s:%s#' /tmp/shadow"
+   84bc4:	d63f00c0 	blr	x6
+   84bc8:	90001401 	adrp	x1, 304000 <_fini@@Base+0xbbd98>
+   84bcc:	aa1303e0 	mov	x0, x19
+   84bd0:	f944b021 	ldr	x1, [x1, #2400]  ; GOT _system
+   84bd4:	d63f0020 	blr	x1
+   84bd8:	17ffffa7 	b	84a74 <cfgRpc_socketRead@@Base+0xff58>
+   84bdc:	aa1803e4 	mov	x4, x24
+   84be0:	90000f43 	adrp	x3, 26c000 <_fini@@Base+0x23d98>
+   84be4:	911c4c63 	add	x3, x3, #0x713  ; 'debug pwd format error(%s)'
+   84be8:	5280e3e2 	mov	w2, #0x71f                 	// #1823
+   84bec:	910a2261 	add	x1, x19, #0x288
+   84bf0:	52800060 	mov	w0, #0x3                   	// #3
+   84bf4:	d63f0280 	blr	x20
+   84bf8:	17ffff9f 	b	84a74 <cfgRpc_socketRead@@Base+0xff58>
+   84bfc:	2a0003e4 	mov	w4, w0
+   84c00:	90000f43 	adrp	x3, 26c000 <_fini@@Base+0x23d98>
+   84c04:	911cb863 	add	x3, x3, #0x72e  ; 'ret(%d) cannot get debug pwd in ext'
+   84c08:	5280e4a2 	mov	w2, #0x725                 	// #1829
+   84c0c:	910a2261 	add	x1, x19, #0x288
+   84c10:	528000a0 	mov	w0, #0x5                   	// #5
+   84c14:	d63f0280 	blr	x20
+   84c18:	17ffff97 	b	84a74 <cfgRpc_socketRead@@Base+0xff58>
+   84c1c:	a9407bfd 	ldp	x29, x30, [sp]
+   84c20:	a94153f3 	ldp	x19, x20, [sp, #16]
+   84c24:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   84c28:	a94363f7 	ldp	x23, x24, [sp, #48]
+   84c2c:	f94023f9 	ldr	x25, [sp, #64]
+   84c30:	910883ff 	add	sp, sp, #0x220
+   84c34:	d65f03c0 	ret
+   84c38:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   84c3c:	f0001401 	adrp	x1, 307000 <sal_hgu_qos_delete_classify>
+   84c40:	529afbe4 	mov	w4, #0xd7df                	// #55263
+   84c44:	910003fd 	mov	x29, sp
+   84c48:	f9459022 	ldr	x2, [x1, #2848]  ; GOT __stack_chk_guard@GLIBC_2.17
+   84c4c:	f9400043 	ldr	x3, [x2]
+   84c50:	f9000fa3 	str	x3, [x29, #24]
+   84c54:	d2800003 	mov	x3, #0x0                   	// #0
+   84c58:	aa0103e2 	mov	x2, x1
+   84c5c:	39400001 	ldrb	w1, [x0]
+   84c60:	35000141 	cbnz	w1, 84c88 <cfgRpc_socketRead@@Base+0x1016c>
+   84c64:	52800000 	mov	w0, #0x0                   	// #0
+   84c68:	f9459041 	ldr	x1, [x2, #2848]  ; GOT __stack_chk_guard@GLIBC_2.17
+   84c6c:	f9400fa2 	ldr	x2, [x29, #24]
+   84c70:	f9400021 	ldr	x1, [x1]
+   84c74:	ca010041 	eor	x1, x2, x1

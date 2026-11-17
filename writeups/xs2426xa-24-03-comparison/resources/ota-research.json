@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "device": "XS-2426X-A ONT-A",
+  "operator": "Vodafone owner-confirmed /VDQA /qa",
+  "scope": "Static ONT updater traces plus bounded in-memory native saved-datamodel parser underQEMU; two explicitly approved workstation OTA POSTs to Nokia. No router contact, OTA daemon start, status PUT, provisioning, reboot, firmware installation, bank switch or flash write.",
+  "authorization": {
+    "current": "Owner explicitly approved exact profile transmission and offered-image download.",
+    "archived": "Owner separately explicitly approved reporting its actual inactive-bank3FE49940JJLK67 and downloading any resulting offer.",
+    "automatic_review_rejections": 2,
+    "rejected_requests_started": 0,
+    "rejections_resolved_by": "Explicit user replies, same intended actions retried without workaround."
+  },
+  "native_saved_settings": [
+    {
+      "uri": "InternetGatewayDevice.DeviceInfo.ModelName",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 10,
+      "value": "XS-2426X-A"
+    },
+    {
+      "uri": "InternetGatewayDevice.DeviceInfo.SerialNumber",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 12
+    },
+    {
+      "uri": "InternetGatewayDevice.DeviceInfo.SoftwareVersion",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 14,
+      "value": "3FE49940KJLK50"
+    },
+    {
+      "uri": "InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.MACAddress",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 17
+    },
+    {
+      "uri": "InternetGatewayDevice.X_ALU-COM_Wifi.OperatorUniqueID",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 0,
+      "value": ""
+    },
+    {
+      "uri": "InternetGatewayDevice.X_ASB_COM_PreConfig.X_ASB_COM_WlanRegion",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 2,
+      "value": "qa"
+    },
+    {
+      "uri": "InternetGatewayDevice.X_ASB_COM_PreConfig.X_ASB_COM_WlanRegionWithHighPriority",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 4,
+      "value": "true"
+    },
+    {
+      "uri": "InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Client_Auth_Key",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 76
+    },
+    {
+      "uri": "InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Polling_URL",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 28,
+      "value": "https://swupd.wifi.nokia.com"
+    },
+    {
+      "uri": "InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Enable",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 5,
+      "value": "false"
+    },
+    {
+      "uri": "InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Polling_Time",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 9,
+      "value": "0 2 * * *"
+    },
+    {
+      "uri": "InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_PrefActivation_Time",
+      "found": true,
+      "read_status": 1,
+      "string_bytes": 8,
+      "value": "03:00:00"
+    },
+    {
+      "uri": "InternetGatewayDevice.ThisParameterDoesNotExist",
+      "found": false,
+      "read_status": 0,
+      "string_bytes": 0
+    }
+  ],
+  "native_probe": {
+    "module": {
+      "source": "private-source://PROFILE-ONT-KJL/usr/lib/libdmdb.so",
+      "bytes": 120576,
+      "sha256": "adff3dfd145a98890a1ee20e1d85797c651cefc319fbd72f30e1208c67661730"
+    },
+    "input": {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/decoded-09086db521e8276ef42ba21a60c2d6753ce7369554113f4c5f453f878d9fd42e.bin",
+      "bytes": 368473,
+      "sha256": "ffb08996e4a9c594bce3924aef0e7b33bf433ae0db4625fa3891c845aa7fff25"
+    },
+    "source": {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-settings-probe.c",
+      "bytes": 3263,
+      "sha256": "8e12ac352dfe042ae67ff296bf6209999d91ac41fef189fec59148399376782b"
+    },
+    "binary_private": {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-settings-probe",
+      "bytes": 71784,
+      "sha256": "0d71160666d2a15397ef6a84bfc418714a4d863f30133cf5431d91be29fc61ee"
+    },
+    "output_private": {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-settings-current-private.json",
+      "bytes": 2231,
+      "sha256": "eb22dfa3df6f51e60a154e1d90141362976603cf6b7738a9605e66443c44b58a"
+    },
+    "exit": 0,
+    "API": "dm_db_open_memory(raw,size,NULL);dm_db_get_node;dm_node_get_value;dm_value_to_string;dm_value_unset;dm_db_close. dlopen constructors run. Fixed12existingURIallowlist+1nonexistent control; no account/passwordURI requested.",
+    "intercepts": "system,_system,popen,socket,connect,execve abort90; no full cfgmgr/cfgInit/securityDB init. Ordinary file access not globally intercepted; explicit input private DB and output O_EXCL0600.",
+    "compatibility": "Missinglibubox fixed by copying exact stocklibubox into isolated dependency directory, preserving crosssysrootlibc. Initialmissingstring.h compile fixed.",
+    "negative_control": "Nonexistent URI returns foundfalse/readstatus0; existing12returnstatus1."
+  },
+  "request_profile": {
+    "model": "XS-2426X-A",
+    "version": "3FE49940KJLK50",
+    "serial_and_mac": "Exact native saved fields independently agree with redundant RI; values private.",
+    "operator": "Empty saved OUID -> factoryVDQA.",
+    "country": "Saved high-priorityWLANregiontrue/qa; factoryCountryIDalsoqa.",
+    "isopctl": "N literal verified in swmgnt at0xfde8.",
+    "url": "https://swupd.wifi.nokia.com",
+    "saved_OTA_Enable": false,
+    "API_key_source": "Own packaged GENERIC preconfiguration default,41bytes, equal earlierG6/B9captured key. Actual saved raw value remains individually wrapped76byteBase64/57decodedbytes/ff-salt8-CBCshape. No unverifiedciphertext sent as API key; no claim default proven equal to effective live plaintext.",
+    "private_profile": {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/xs-ota-profile.json",
+      "bytes": 283,
+      "sha256": "a312950e56873d413d39de38f4743858235af4c2942ebe8ae6ebf48f93a40524"
+    },
+    "profile_provenance": {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/xs-ota-profile-provenance.json",
+      "bytes": 671,
+      "sha256": "72fa0bc6dd2d2b211aa53285de22bf82f2580c54c8c59020fe61d7ae23b9e4df"
+    }
+  },
+  "binary_sources": {
+    "XS_JJL": {
+      "usr/bin/swmgnt": {
+        "source": "private-source://PROFILE-ONT-JJL/usr/bin/swmgnt",
+        "bytes": 98840,
+        "sha256": "20ed20bc629f5ee627ae0a0ed6ef8a36cd48f41ba57d32c309a168f2fe1b2edb"
+      },
+      "usr/lib/libotaSwAgent.so": {
+        "source": "private-source://PROFILE-ONT-JJL/usr/lib/libotaSwAgent.so",
+        "bytes": 112312,
+        "sha256": "224d90e3e4e5225266545531557d430c961162431b577b020ac52bdb2b5f1148"
+      },
+      "lib/libnal.so": {
+        "source": "private-source://PROFILE-ONT-JJL/lib/libnal.so",
+        "bytes": 521248,
+        "sha256": "78034d18ff5ae547968dd90d5bd50da696dbea7392cf9140d7fcd4aefd2495f4"
+      },
+      "usr/lib/libdmdb.so": {
+        "source": "private-source://PROFILE-ONT-JJL/usr/lib/libdmdb.so",
+        "bytes": 116480,
+        "sha256": "21811c4212e1c551c0dd900b74f402f7468944daf524ff2c81dd962ac1421301"
+      },
+      "usr/lib/libsec_engine.so": {
+        "source": "private-source://PROFILE-ONT-JJL/usr/lib/libsec_engine.so",
+        "bytes": 229008,
+        "sha256": "32df444607cd4d3ddf967797ddc621895d8a0a72d47afacdd033464d475bda9b"
+      }
+    },
+    "XS_KJL": {
+      "usr/bin/swmgnt": {
+        "source": "private-source://PROFILE-ONT-KJL/usr/bin/swmgnt",
+        "bytes": 98840,
+        "sha256": "20ed20bc629f5ee627ae0a0ed6ef8a36cd48f41ba57d32c309a168f2fe1b2edb"
+      },
+      "usr/lib/libotaSwAgent.so": {
+        "source": "private-source://PROFILE-ONT-KJL/usr/lib/libotaSwAgent.so",
+        "bytes": 112312,
+        "sha256": "224d90e3e4e5225266545531557d430c961162431b577b020ac52bdb2b5f1148"
+      },
+      "lib/libnal.so": {
+        "source": "private-source://PROFILE-ONT-KJL/lib/libnal.so",
+        "bytes": 533536,
+        "sha256": "a4c00b452a46ab8773b78a3edb0d4665936fff0574eb248b9fbe186d57fc005a"
+      },
+      "usr/lib/libdmdb.so": {
+        "source": "private-source://PROFILE-ONT-KJL/usr/lib/libdmdb.so",
+        "bytes": 120576,
+        "sha256": "adff3dfd145a98890a1ee20e1d85797c651cefc319fbd72f30e1208c67661730"
+      },
+      "usr/lib/libsec_engine.so": {
+        "source": "private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so",
+        "bytes": 229008,
+        "sha256": "32df444607cd4d3ddf967797ddc621895d8a0a72d47afacdd033464d475bda9b"
+      }
+    }
+  },
+  "code_locations": {
+    "swmgnt_request_builder": "0x4e40; x-api-key/operator/current-version/serial/country/isopctl headers; normal endpoint switches to nokia-sbell forcn.",
+    "swmgnt_payload_builder": "0x8108:rootmodel+0,version+0xd2,MAC+0xa0,serial+0xb2; cJSONarray.",
+    "swmgnt_config_getter": "0x8c60 ->nal_getSwAutoUpgradeInfo call0x8d0c",
+    "swmgnt_operator": "resolver0x63b8; OUIDgettercall0x6410,factoryfallback observed",
+    "libnal": "getNodeInfo0x1c0a8/652bytes;getNodeMac0x21ae4/364;getSwAutoUpgradeInfo0x166dc/596;getOperatorUniqueID0x251e8/272.",
+    "dmdb": "open_memory0xa554/656bytes;get_node0x1145c/556;node_get_value0xdc48/448;value_to_string0x18b1c/420."
+  },
+  "queries": [
+    {
+      "queried_at_utc": "2026-10-27T17:03:35.404397+00:00",
+      "method": "POST",
+      "endpoint": "https://swupd.wifi.nokia.com",
+      "reported_version": "3FE49940KJLK50",
+      "reported_version_override": false,
+      "gateway_version": "3FE49940KJLK50",
+      "gateway_version_override": false,
+      "countrycode": "qa",
+      "profile_countrycode": "qa",
+      "country_override": false,
+      "operatorcode": "VDQA",
+      "router_contact": false,
+      "installation": false,
+      "redirects": "refused",
+      "http_status": 200,
+      "bytes": 240,
+      "content_type": "application/octet-stream",
+      "offers": [
+        {
+          "model": "XS-2426X-A",
+          "currentVersion": "3FE49940KJLK50",
+          "nxtMSVersion": null,
+          "checksum": null,
+          "has_download_url": false
+        }
+      ],
+      "responseCode": 200,
+      "raw_offer": {
+        "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-current-offer/offer.json",
+        "bytes": 240,
+        "sha256": "84b1aae800f7012a3643cfd13b69e13b6b2061ee7ee8a4046ed3e79cb273a133"
+      },
+      "private_result": {
+        "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-current-offer/query-result.json",
+        "bytes": 758,
+        "sha256": "e924aaa84fec02e843c767cbfe632cd80ee03421a3ba0bf3a47d86586997798a"
+      }
+    },
+    {
+      "queried_at_utc": "2026-10-27T17:04:46.564539+00:00",
+      "method": "POST",
+      "endpoint": "https://swupd.wifi.nokia.com",
+      "reported_version": "3FE49940JJLK67",
+      "reported_version_override": true,
+      "gateway_version": "3FE49940JJLK67",
+      "gateway_version_override": false,
+      "countrycode": "qa",
+      "profile_countrycode": "qa",
+      "country_override": false,
+      "operatorcode": "VDQA",
+      "router_contact": false,
+      "installation": false,
+      "redirects": "refused",
+      "http_status": 200,
+      "bytes": 240,
+      "content_type": "application/octet-stream",
+      "offers": [
+        {
+          "model": "XS-2426X-A",
+          "currentVersion": "3FE49940JJLK67",
+          "nxtMSVersion": null,
+          "checksum": null,
+          "has_download_url": false
+        }
+      ],
+      "responseCode": 200,
+      "raw_offer": {
+        "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-archived-bank-offer/offer.json",
+        "bytes": 240,
+        "sha256": "486478528edf45baa8103455561e32465d5db1d7c24830aa9769f5fdab9a207a"
+      },
+      "private_result": {
+        "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ota-archived-bank-offer/query-result.json",
+        "bytes": 757,
+        "sha256": "e2741418b3c71777d448a2b9f775c766cd5507807137964f939d67241cbe70d9"
+      }
+    }
+  ],
+  "new_metadata_POSTs": 2,
+  "new_downloads": 0,
+  "cumulative_device_OTA_POSTs": 104,
+  "cumulative_firmware_CDN_GETs": 1,
+  "documentation_metadata_POSTs_separate": 77,
+  "result": "No next version, checksum or URL for either actual current or actual archived ONT version. Nothing offered to download. No global-latest or Vodafone other-channel availability conclusion.",
+  "failed_credential_attempts": {
+    "bounded_key9_key10_CBC": [
+      {
+        "key": "key9",
+        "rounds": 10,
+        "padding_pass": false
+      },
+      {
+        "key": "key9",
+        "rounds": 100,
+        "padding_pass": false
+      },
+      {
+        "key": "key10",
+        "rounds": 10,
+        "padding_pass": false
+      },
+      {
+        "key": "key10",
+        "rounds": 100,
+        "padding_pass": false
+      }
+    ],
+    "legacy_probe_source": {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ota-credential-probe.c",
+      "bytes": 2403,
+      "sha256": "df0511e45c44a9002c332f20798cb563be0960a54b1ad481050da9ca1fede1f4"
+    },
+    "legacy_probe_exit": 8,
+    "CS_crypt_status": 24,
+    "legacy_scheme": "mapperdecryptNodeValue callsCS_crypt type2/action0; isolated probes returned24, including interceptedstatickeylookup attempt; SE_getKeyByName interposer not reached. Error meaning not established; no plaintext output. No evidence the saved currentAPIcredential uses this legacy caller.",
+    "redaction_correction": "One local diagnostic printed the packaged default before v-attribute redaction was corrected. Raw credential excluded from all saved public text; private reports retain source.",
+    "wrong_entrypoint_attempt": "Initial4e40..58xx library trace targetedlibotaSwAgent PLT; correctheaderbuilder is swmgnt. Both traces retained with this distinction; no target code executed by disassembly.",
+    "legacy_probe_source_previous_sha256": "992b09f948518685066d83e630ea816fda2bb6b2abdc52ae27d9ffdbf5e41e94",
+    "source_note": "After the failed probe, only its comment was corrected to explicitly label the experiment unsuccessful."
+  },
+  "limits": [
+    "HTTP200JSONnooffer does not prove global newest release, exact saved per-setting plaintext, live OTA enablement or availability throughACS/OMCI/operatorportal.",
+    "Current-snapshot scalar extraction does not establish generic mutable innerDB editing/account/login behavior.",
+    "No ONTWebUIexport, livekey18lookup, signaturecheck or upgrade tested."
+  ],
+  "offline_profile_reproducer": {
+    "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/prepare-ont-ota-profile.py",
+    "bytes": 3386,
+    "sha256": "4ab38232aa5ca736dbed663d235d2fd17f8e3d1e789d81e0170b0ec9799e3605"
+  }
+}

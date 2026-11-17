@@ -1,0 +1,92 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libcfgdb.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000005c6c <cfg_db_export_keyvalues@@Base>:
+    5c6c:	d109c3ff 	sub	sp, sp, #0x270
+    5c70:	a9007bfd 	stp	x29, x30, [sp]
+    5c74:	910003fd 	mov	x29, sp
+    5c78:	a9025bf5 	stp	x21, x22, [sp, #32]
+    5c7c:	d0000096 	adrp	x22, 17000 <_fini@@Base+0x10848>
+    5c80:	a90363f7 	stp	x23, x24, [sp, #48]
+    5c84:	aa0003f7 	mov	x23, x0
+    5c88:	f94746d6 	ldr	x22, [x22, #3720]  ; GOT __stack_chk_guard@GLIBC_2.17
+    5c8c:	9101a3b5 	add	x21, x29, #0x68
+    5c90:	a90153f3 	stp	x19, x20, [sp, #16]
+    5c94:	910163b4 	add	x20, x29, #0x58
+    5c98:	f94002c0 	ldr	x0, [x22]
+    5c9c:	f90137a0 	str	x0, [x29, #616]
+    5ca0:	d2800000 	mov	x0, #0x0                   	// #0
+    5ca4:	d0000093 	adrp	x19, 17000 <_fini@@Base+0x10848>
+    5ca8:	f94002e0 	ldr	x0, [x23]
+    5cac:	f90023f9 	str	x25, [sp, #64]
+    5cb0:	aa0103f9 	mov	x25, x1
+    5cb4:	d0000081 	adrp	x1, 17000 <_fini@@Base+0x10848>
+    5cb8:	f9470421 	ldr	x1, [x1, #3592]  ; GOT dm_db_root_node
+    5cbc:	d63f0020 	blr	x1
+    5cc0:	aa0003f8 	mov	x24, x0
+    5cc4:	d0000081 	adrp	x1, 17000 <_fini@@Base+0x10848>
+    5cc8:	aa1403e0 	mov	x0, x20
+    5ccc:	f9478021 	ldr	x1, [x1, #3840]  ; GOT dm_buffer_init
+    5cd0:	d63f0020 	blr	x1
+    5cd4:	d0000083 	adrp	x3, 17000 <_fini@@Base+0x10848>
+    5cd8:	d2804002 	mov	x2, #0x200                 	// #512
+    5cdc:	52800001 	mov	w1, #0x0                   	// #0
+    5ce0:	aa1503e0 	mov	x0, x21
+    5ce4:	f9470863 	ldr	x3, [x3, #3600]  ; GOT memset@GLIBC_2.17
+    5ce8:	d63f0060 	blr	x3
+    5cec:	d0000083 	adrp	x3, 17000 <_fini@@Base+0x10848>
+    5cf0:	aa1503e1 	mov	x1, x21
+    5cf4:	52804002 	mov	w2, #0x200                 	// #512
+    5cf8:	aa1803e0 	mov	x0, x24
+    5cfc:	f9479863 	ldr	x3, [x3, #3888]  ; GOT dm_node_get_path
+    5d00:	d63f0060 	blr	x3
+    5d04:	f9476273 	ldr	x19, [x19, #3776]  ; GOT dm_buffer_push_bin
+    5d08:	52800022 	mov	w2, #0x1                   	// #1
+    5d0c:	d0000001 	adrp	x1, 7000 <_fini@@Base+0x848>
+    5d10:	910c0c21 	add	x1, x1, #0x303
+    5d14:	aa1403e0 	mov	x0, x20
+    5d18:	d63f0260 	blr	x19
+    5d1c:	d0000081 	adrp	x1, 17000 <_fini@@Base+0x10848>
+    5d20:	aa1503e0 	mov	x0, x21
+    5d24:	f9468821 	ldr	x1, [x1, #3344]  ; GOT strlen@GLIBC_2.17
+    5d28:	d63f0020 	blr	x1
+    5d2c:	2a0003e2 	mov	w2, w0
+    5d30:	aa1503e1 	mov	x1, x21
+    5d34:	b0000015 	adrp	x21, 6000 <cfg_db_import_keyvalues@@Base+0x244>
+    5d38:	911f42b5 	add	x21, x21, #0x7d0  ; 'db_load_file'
+    5d3c:	91028eb5 	add	x21, x21, #0xa3
+    5d40:	aa1403e0 	mov	x0, x20
+    5d44:	d63f0260 	blr	x19
+    5d48:	52800022 	mov	w2, #0x1                   	// #1
+    5d4c:	aa1503e1 	mov	x1, x21
+    5d50:	aa1403e0 	mov	x0, x20
+    5d54:	d63f0260 	blr	x19
+    5d58:	aa1403e2 	mov	x2, x20
+    5d5c:	aa1803e1 	mov	x1, x24
+    5d60:	aa1703e0 	mov	x0, x23
+    5d64:	97fff598 	bl	33c4 <__gmon_start__@plt+0xf74>
+    5d68:	52800022 	mov	w2, #0x1                   	// #1
+    5d6c:	aa1503e1 	mov	x1, x21
+    5d70:	aa1403e0 	mov	x0, x20
+    5d74:	d63f0260 	blr	x19
+    5d78:	f94033a0 	ldr	x0, [x29, #96]
+    5d7c:	f9000320 	str	x0, [x25]
+    5d80:	b9405fa0 	ldr	w0, [x29, #92]
+    5d84:	f94137a2 	ldr	x2, [x29, #616]
+    5d88:	f94002c1 	ldr	x1, [x22]
+    5d8c:	ca010041 	eor	x1, x2, x1
+    5d90:	b4000081 	cbz	x1, 5da0 <cfg_db_export_keyvalues@@Base+0x134>
+    5d94:	d0000080 	adrp	x0, 17000 <_fini@@Base+0x10848>
+    5d98:	f9473000 	ldr	x0, [x0, #3680]  ; GOT __stack_chk_fail@GLIBC_2.17
+    5d9c:	d63f0000 	blr	x0
+    5da0:	a9407bfd 	ldp	x29, x30, [sp]
+    5da4:	a94153f3 	ldp	x19, x20, [sp, #16]
+    5da8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    5dac:	a94363f7 	ldp	x23, x24, [sp, #48]
+    5db0:	f94023f9 	ldr	x25, [sp, #64]
+    5db4:	9109c3ff 	add	sp, sp, #0x270
+    5db8:	d65f03c0 	ret

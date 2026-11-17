@@ -1,0 +1,31 @@
+
+nwa_local_rrm_contrl:
+000010f8: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+000010fc: e20300aa  mov x2, x0
+00001100: fd030091  mov x29, sp
+00001104: f30b00f9  str x19, [sp, #0x10]
+00001108: 93000090  adrp x19, #0x11000
+0000110c: 60f247f9  ldr x0, [x19, #0xfe0]
+00001110: 010040f9  ldr x1, [x0]
+00001114: a11700f9  str x1, [x29, #0x28]
+00001118: 010080d2  mov x1, #0
+0000111c: 220200b4  cbz x2, #0x1160
+00001120: 01000090  adrp x1, #0x1000
+00001124: 00000090  adrp x0, #0x1000
+00001128: 23008052  mov w3, #1
+0000112c: 21200991  add x1, x1, #0x248
+00001130: 00800991  add x0, x0, #0x260
+00001134: e3feff97  bl #0xcc0 ; heuristic ndbusSendSignal@plt {"x0": "nokia.ai", "x1": "enableAutoChannel", "x3": 1}
+00001138: 1f000071  cmp w0, #0
+0000113c: e0039f5a  csetm w0, ne
+00001140: 73f247f9  ldr x19, [x19, #0xfe0]
+00001144: a21740f9  ldr x2, [x29, #0x28]
+00001148: 610240f9  ldr x1, [x19]
+0000114c: 410001ca  eor x1, x2, x1
+00001150: c10000b5  cbnz x1, #0x1168
+00001154: f30b40f9  ldr x19, [sp, #0x10]
+00001158: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0000115c: c0035fd6  ret 
+00001160: 00008012  mov w0, #-1
+00001164: f7ffff17  b #0x1140
+00001168: aafeff97  bl #0xc10 ; heuristic __stack_chk_fail@plt {"x0": -1}

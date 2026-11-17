@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-26",
+  "all_passed": true,
+  "scope": "Offline two real stored databases plus wrong serial/date/source5/ciphertext and existing-export-parser boundary. No firmware execution, import, router operation or network request.",
+  "decoder": {
+    "source": "project://Nokia-Beacon-G6/writeups/configuration-import-export/resources/stored-database/decrypt-stored-config.py",
+    "bytes": 4287,
+    "sha256": "8cd37b22aebf3e72538a17458e82a2ee83cbe4cbfc49d091a6ca1f303a12f69f"
+  },
+  "cases": [
+    {
+      "case": "ubifs-mtd06_rootfs_data1",
+      "passed": true,
+      "source": "project://Nokia-Beacon-G6/config-private/third-g6-analysis-20261026/ubifs-mtd06_rootfs_data1/810887185/rootfs_data1/dmdb_encryption.cfg",
+      "bytes": 134017,
+      "sha256": "5fbaf426dd0bd6f21d40ebacbfef77b6c33f56cfcf553e49eb9f61d1e81bbf4a",
+      "magic": "0x124126",
+      "encrypted_bytes": 133977,
+      "decompressed_bytes": 399490,
+      "header_version": "0x48256b91",
+      "database_object_count": 669,
+      "plaintext_sha256": "d49ee0d1092c0ce6a8d7665f29c05122b364885c9b40fb39ab184c576b2b8360",
+      "validation": "CRC32, PKCS7, zlib checksum/end/length and binary schema bounds; CBC format has no verified MAC/AEAD authentication."
+    },
+    {
+      "case": "ubifs-mtd06_rootfs_data1_wrong_serial",
+      "rejected": true
+    },
+    {
+      "case": "ubifs-mtd06_rootfs_data1_wrong_date",
+      "rejected": true
+    },
+    {
+      "case": "ubifs-mtd06_rootfs_data1_wrong_source5",
+      "rejected": true
+    },
+    {
+      "case": "ubifs-mtd06_rootfs_data1_altered_payload",
+      "rejected": true,
+      "stage": "CRC32"
+    },
+    {
+      "case": "ubifs-mtd06_rootfs_data1_backup_equal",
+      "passed": true
+    },
+    {
+      "case": "ubifs-mtd07_cfg",
+      "passed": true,
+      "source": "project://Nokia-Beacon-G6/config-private/third-g6-analysis-20261026/ubifs-mtd07_cfg/215195954/cfg/dmdb_encryption.cfg",
+      "bytes": 116049,
+      "sha256": "8e67759b714ced04f840676e1143663dcf79a81d412d4424edaf7556bd9cdbf2",
+      "magic": "0x124126",
+      "encrypted_bytes": 116009,
+      "decompressed_bytes": 323370,
+      "header_version": "0x4c252937",
+      "database_object_count": 634,
+      "plaintext_sha256": "0e5c6148598ace1957a17c1846f2947f617d459070681fbe68c4a63b54b6ea37",
+      "validation": "CRC32, PKCS7, zlib checksum/end/length and binary schema bounds; CBC format has no verified MAC/AEAD authentication."
+    },
+    {
+      "case": "ubifs-mtd07_cfg_wrong_serial",
+      "rejected": true
+    },
+    {
+      "case": "ubifs-mtd07_cfg_wrong_date",
+      "rejected": true
+    },
+    {
+      "case": "ubifs-mtd07_cfg_wrong_source5",
+      "rejected": true
+    },
+    {
+      "case": "ubifs-mtd07_cfg_altered_payload",
+      "rejected": true,
+      "stage": "CRC32"
+    },
+    {
+      "case": "ubifs-mtd07_cfg_backup_equal",
+      "passed": true
+    },
+    {
+      "case": "existing_export_parser_keeps_format_boundary",
+      "rejected": true
+    }
+  ],
+  "case_count": 13
+}

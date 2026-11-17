@@ -1,0 +1,137 @@
+0003a22c: 492fff17  b #0x5f50
+0003a230: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+0003a234: fd030091  mov x29, sp
+0003a238: f30b00f9  str x19, [sp, #0x10]
+0003a23c: 33010090  adrp x19, #0x5e000
+0003a240: 73a245f9  ldr x19, [x19, #0xb40]
+0003a244: 600240f9  ldr x0, [x19]
+0003a248: a01700f9  str x0, [x29, #0x28]
+0003a24c: 000080d2  mov x0, #0
+0003a250: 800000d0  adrp x0, #0x4c000
+0003a254: 00580491  add x0, x0, #0x116
+0003a258: 8e2fff97  bl #0x6090 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.ai_engine',member='AI_ICS_Done'"}
+0003a25c: 800000d0  adrp x0, #0x4c000
+0003a260: 00540591  add x0, x0, #0x155
+0003a264: 8b2fff97  bl #0x6090 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.cfgmgr',member='aiCfgmgrSignal'"}
+0003a268: 800000d0  adrp x0, #0x4c000
+0003a26c: 00500691  add x0, x0, #0x194
+0003a270: 882fff97  bl #0x6090 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.ai',member='enableAutoChannel'"}
+0003a274: 800000d0  adrp x0, #0x4c000
+0003a278: 00480791  add x0, x0, #0x1d2
+0003a27c: 852fff97  bl #0x6090 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.ecd',member='avaliableChannelList'"}
+0003a280: 800000d0  adrp x0, #0x4c000
+0003a284: 00500891  add x0, x0, #0x214
+0003a288: 822fff97  bl #0x6090 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.ai',member='radioAutoChannelStatus'"}
+0003a28c: 800000d0  adrp x0, #0x4c000
+0003a290: 005c0991  add x0, x0, #0x257
+0003a294: 7f2fff97  bl #0x6090 ; heuristic ndbusRemoveMatch@plt {"x0": "type='signal',interface='nokia.ai',member='radioInfoUpdate'"}
+0003a298: a11740f9  ldr x1, [x29, #0x28]
+0003a29c: 600240f9  ldr x0, [x19]
+0003a2a0: 200000ca  eor x0, x1, x0
+0003a2a4: 400000b4  cbz x0, #0x3a2ac
+0003a2a8: 522dff97  bl #0x57f0 ; heuristic __stack_chk_fail@plt {}
+0003a2ac: f30b40f9  ldr x19, [sp, #0x10]
+0003a2b0: fd7bc3a8  ldp x29, x30, [sp], #0x30
+0003a2b4: 800000d0  adrp x0, #0x4c000
+0003a2b8: 004c0a91  add x0, x0, #0x293
+0003a2bc: 752fff17  b #0x6090
+0003a2c0: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+0003a2c4: fd030091  mov x29, sp
+0003a2c8: f35301a9  stp x19, x20, [sp, #0x10]
+0003a2cc: 34010090  adrp x20, #0x5e000
+0003a2d0: f55b02a9  stp x21, x22, [sp, #0x20]
+0003a2d4: 950000d0  adrp x21, #0x4c000
+0003a2d8: 96a245f9  ldr x22, [x20, #0xb40]
+0003a2dc: b5560b91  add x21, x21, #0x2d5
+0003a2e0: c00240f9  ldr x0, [x22]
+0003a2e4: a01f00f9  str x0, [x29, #0x38]
+0003a2e8: 000080d2  mov x0, #0
+0003a2ec: e00315aa  mov x0, x21
+0003a2f0: 742eff97  bl #0x5cc0 ; heuristic ndbusOwnName@plt {"x0": "nokia.ai_engine"}
+0003a2f4: 00020034  cbz w0, #0x3a334
+0003a2f8: 810000b0  adrp x1, #0x4b000
+0003a2fc: 21c03c91  add x1, x1, #0xf30
+0003a300: 820000d0  adrp x2, #0x4c000
+0003a304: 21800091  add x1, x1, #0x20
+0003a308: 42940b91  add x2, x2, #0x2e5
+0003a30c: f303002a  mov w19, w0
+0003a310: a02d8052  mov w0, #0x16d
+0003a314: ab2dff97  bl #0x59c0 ; heuristic ndbusLogFatalReal@plt {"x0": 365, "x1": "register_ai_engine_service", "x2": "failed to request bus name for ai_engine service\n"}
+0003a318: 94a245f9  ldr x20, [x20, #0xb40]
+0003a31c: e003132a  mov w0, w19
+0003a320: a21f40f9  ldr x2, [x29, #0x38]
+0003a324: 810240f9  ldr x1, [x20]
+0003a328: 410001ca  eor x1, x2, x1
+0003a32c: 810b00b4  cbz x1, #0x3a49c
+0003a330: 302dff97  bl #0x57f0 ; heuristic __stack_chk_fail@plt {}
+0003a334: 001780d2  mov x0, #0xb8
+0003a338: 1e2fff97  bl #0x5fb0 ; heuristic malloc@plt {"x0": 184}
+0003a33c: c00900b4  cbz x0, #0x3a474
+0003a340: 22010090  adrp x2, #0x5e000
+0003a344: 428446f9  ldr x2, [x2, #0xd08]
+0003a348: 020800f9  str x2, [x0, #0x10]
+0003a34c: 22010090  adrp x2, #0x5e000
+0003a350: 424047f9  ldr x2, [x2, #0xe80]
+0003a354: 020c00f9  str x2, [x0, #0x18]
+0003a358: 22010090  adrp x2, #0x5e000
+0003a35c: 42f846f9  ldr x2, [x2, #0xdf0]
+0003a360: 021000f9  str x2, [x0, #0x20]
+0003a364: 22010090  adrp x2, #0x5e000
+0003a368: 42e845f9  ldr x2, [x2, #0xbd0]
+0003a36c: 021400f9  str x2, [x0, #0x28]
+0003a370: 22010090  adrp x2, #0x5e000
+0003a374: 42e446f9  ldr x2, [x2, #0xdc8]
+0003a378: 021800f9  str x2, [x0, #0x30]
+0003a37c: 22010090  adrp x2, #0x5e000
+0003a380: 42f045f9  ldr x2, [x2, #0xbe0]
+0003a384: 021c00f9  str x2, [x0, #0x38]
+0003a388: 22010090  adrp x2, #0x5e000
+0003a38c: 42b046f9  ldr x2, [x2, #0xd60]
+0003a390: 022000f9  str x2, [x0, #0x40]
+0003a394: 22010090  adrp x2, #0x5e000
+0003a398: 42e847f9  ldr x2, [x2, #0xfd0]
+0003a39c: 022400f9  str x2, [x0, #0x48]
+0003a3a0: 22010090  adrp x2, #0x5e000
+0003a3a4: 423447f9  ldr x2, [x2, #0xe68]
+0003a3a8: 022800f9  str x2, [x0, #0x50]
+0003a3ac: 22010090  adrp x2, #0x5e000
+0003a3b0: 429447f9  ldr x2, [x2, #0xf28]
+0003a3b4: 022c00f9  str x2, [x0, #0x58]
+0003a3b8: 22010090  adrp x2, #0x5e000
+0003a3bc: 42f046f9  ldr x2, [x2, #0xde0]
+0003a3c0: 023000f9  str x2, [x0, #0x60]
+0003a3c4: 22010090  adrp x2, #0x5e000
+0003a3c8: 423045f9  ldr x2, [x2, #0xa60]
+0003a3cc: 023400f9  str x2, [x0, #0x68]
+0003a3d0: 22010090  adrp x2, #0x5e000
+0003a3d4: 423845f9  ldr x2, [x2, #0xa70]
+0003a3d8: 023800f9  str x2, [x0, #0x70]
+0003a3dc: 22010090  adrp x2, #0x5e000
+0003a3e0: 42fc45f9  ldr x2, [x2, #0xbf8]
+0003a3e4: 023c00f9  str x2, [x0, #0x78]
+0003a3e8: 22010090  adrp x2, #0x5e000
+0003a3ec: 427447f9  ldr x2, [x2, #0xee8]
+0003a3f0: 024000f9  str x2, [x0, #0x80]
+0003a3f4: 22010090  adrp x2, #0x5e000
+0003a3f8: 426846f9  ldr x2, [x2, #0xcd0]
+0003a3fc: 024400f9  str x2, [x0, #0x88]
+0003a400: 22010090  adrp x2, #0x5e000
+0003a404: 426446f9  ldr x2, [x2, #0xcc8]
+0003a408: 024800f9  str x2, [x0, #0x90]
+0003a40c: 22010090  adrp x2, #0x5e000
+0003a410: 150000f9  str x21, [x0]
+0003a414: 423c47f9  ldr x2, [x2, #0xe78]
+0003a418: 024c00f9  str x2, [x0, #0x98]
+0003a41c: 22010090  adrp x2, #0x5e000
+0003a420: 42c847f9  ldr x2, [x2, #0xf90]
+0003a424: 025000f9  str x2, [x0, #0xa0]
+0003a428: 22010090  adrp x2, #0x5e000
+0003a42c: 423047f9  ldr x2, [x2, #0xe60]
+0003a430: 025400f9  str x2, [x0, #0xa8]
+0003a434: 22010090  adrp x2, #0x5e000
+0003a438: 426845f9  ldr x2, [x2, #0xad0]
+0003a43c: 025800f9  str x2, [x0, #0xb0]
+0003a440: 02000090  adrp x2, #0x3a000
+0003a444: 42100391  add x2, x2, #0xc4
+0003a448: 020400f9  str x2, [x0, #8]
+0003a44c: ed2dff97  bl #0x5c00 ; heuristic ndbusRegisterService@plt {"x2": 237764}

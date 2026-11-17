@@ -1,0 +1,1048 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/bin/swmgnt:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000008000 <get_uptime@@Base+0x26c0>:
+    8000:	2a0503e1 	mov	w1, w5
+    8004:	910b4000 	add	x0, x0, #0x2d0
+    8008:	aa1303f7 	mov	x23, x19
+    800c:	97ffefd9 	bl	3f70 <nalLogNotice@plt>
+    8010:	f9400bb3 	ldr	x19, [x29, #16]
+    8014:	f94017b6 	ldr	x22, [x29, #40]
+    8018:	f9401fb8 	ldr	x24, [x29, #56]
+    801c:	f94027ba 	ldr	x26, [x29, #72]
+    8020:	17ffffe4 	b	7fb0 <get_uptime@@Base+0x2670>
+    8024:	90000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    8028:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    802c:	52808345 	mov	w5, #0x41a                 	// #1050
+    8030:	910ac004 	add	x4, x0, #0x2b0  ; 'swmgnt_findMatrixByModel'
+    8034:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    8038:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    803c:	52800006 	mov	w6, #0x0                   	// #0
+    8040:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    8044:	910ea042 	add	x2, x2, #0x3a8  ; 'swmgnt: [%s %s:%d] gmatrix.init=%d,matrix is empty.'
+    8048:	2a0503e1 	mov	w1, w5
+    804c:	910b4000 	add	x0, x0, #0x2d0  ; 'swmgnt_findMatrixByModel'
+    8050:	d2800017 	mov	x23, #0x0                   	// #0
+    8054:	97ffefc7 	bl	3f70 <nalLogNotice@plt>
+    8058:	17ffffd6 	b	7fb0 <get_uptime@@Base+0x2670>
+    805c:	f9000bb3 	str	x19, [x29, #16]
+    8060:	f90017b6 	str	x22, [x29, #40]
+    8064:	f9001fb8 	str	x24, [x29, #56]
+    8068:	f90027ba 	str	x26, [x29, #72]
+    806c:	97ffee4d 	bl	39a0 <__stack_chk_fail@plt>
+    8070:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    8074:	910003fd 	mov	x29, sp
+    8078:	f9001bf7 	str	x23, [sp, #48]
+    807c:	d00000f7 	adrp	x23, 26000 <_fini@@Base+0x1697c>
+    8080:	a9025bf5 	stp	x21, x22, [sp, #32]
+    8084:	d0000216 	adrp	x22, 4a000 <_fini@@Base+0x3a97c>
+    8088:	f947bee1 	ldr	x1, [x23, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    808c:	aa0003f5 	mov	x21, x0
+    8090:	b94a32c0 	ldr	w0, [x22, #2608]
+    8094:	f9400022 	ldr	x2, [x1]
+    8098:	f90027a2 	str	x2, [x29, #72]
+    809c:	d2800002 	mov	x2, #0x0                   	// #0
+    80a0:	7100001f 	cmp	w0, #0x0
+    80a4:	540001cd 	b.le	80dc <get_uptime@@Base+0x279c>
+    80a8:	a90153b3 	stp	x19, x20, [x29, #16]
+    80ac:	d0000213 	adrp	x19, 4a000 <_fini@@Base+0x3a97c>
+    80b0:	9128d273 	add	x19, x19, #0xa34
+    80b4:	52800034 	mov	w20, #0x1                   	// #1
+    80b8:	b4000075 	cbz	x21, 80c4 <get_uptime@@Base+0x2784>
+    80bc:	aa1303e0 	mov	x0, x19
+    80c0:	d63f02a0 	blr	x21
+    80c4:	b94a32c0 	ldr	w0, [x22, #2608]
+    80c8:	11000694 	add	w20, w20, #0x1
+    80cc:	9104c273 	add	x19, x19, #0x130
+    80d0:	6b14001f 	cmp	w0, w20
+    80d4:	54ffff2a 	b.ge	80b8 <get_uptime@@Base+0x2778>  // b.tcont
+    80d8:	a94153b3 	ldp	x19, x20, [x29, #16]
+    80dc:	f947bef7 	ldr	x23, [x23, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    80e0:	f94027a1 	ldr	x1, [x29, #72]
+    80e4:	f94002e0 	ldr	x0, [x23]
+    80e8:	ca000020 	eor	x0, x1, x0
+    80ec:	b50000a0 	cbnz	x0, 8100 <get_uptime@@Base+0x27c0>
+    80f0:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    80f4:	f9401bf7 	ldr	x23, [sp, #48]
+    80f8:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    80fc:	d65f03c0 	ret
+    8100:	a90153b3 	stp	x19, x20, [x29, #16]
+    8104:	97ffee27 	bl	39a0 <__stack_chk_fail@plt>
+    8108:	a9b87bfd 	stp	x29, x30, [sp, #-128]!
+    810c:	910003fd 	mov	x29, sp
+    8110:	f90017f6 	str	x22, [sp, #40]
+    8114:	d00000f6 	adrp	x22, 26000 <_fini@@Base+0x1697c>
+    8118:	f9002ffc 	str	x28, [sp, #88]
+    811c:	aa0003fc 	mov	x28, x0
+    8120:	f947bec0 	ldr	x0, [x22, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8124:	b9006fa1 	str	w1, [x29, #108]
+    8128:	f9400001 	ldr	x1, [x0]
+    812c:	f9003fa1 	str	x1, [x29, #120]
+    8130:	d2800001 	mov	x1, #0x0                   	// #0
+    8134:	97fff90b 	bl	6560 <get_uptime@@Base+0xc20>
+    8138:	b4000e40 	cbz	x0, 8300 <get_uptime@@Base+0x29c0>
+    813c:	f9000bb3 	str	x19, [x29, #16]
+    8140:	aa0003f3 	mov	x19, x0
+    8144:	f9001bb7 	str	x23, [x29, #48]
+    8148:	97ffefe2 	bl	40d0 <cJSON_CreateArray@plt>
+    814c:	aa0003f7 	mov	x23, x0
+    8150:	b4000d40 	cbz	x0, 82f8 <get_uptime@@Base+0x29b8>
+    8154:	f9000fb4 	str	x20, [x29, #24]
+    8158:	f90027ba 	str	x26, [x29, #72]
+    815c:	97ffee39 	bl	3a40 <cJSON_CreateObject@plt>
+    8160:	aa0003f4 	mov	x20, x0
+    8164:	b4000280 	cbz	x0, 81b4 <get_uptime@@Base+0x2874>
+    8168:	aa1303e2 	mov	x2, x19
+    816c:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8170:	91116021 	add	x1, x1, #0x458  ; 'model'
+    8174:	97ffee2b 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8178:	91034a62 	add	x2, x19, #0xd2
+    817c:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8180:	aa1403e0 	mov	x0, x20
+    8184:	91118021 	add	x1, x1, #0x460  ; 'curswversion'
+    8188:	97ffee26 	bl	3a20 <cJSON_AddStringToObject@plt>
+    818c:	91028262 	add	x2, x19, #0xa0
+    8190:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8194:	aa1403e0 	mov	x0, x20
+    8198:	9111c021 	add	x1, x1, #0x470  ; 'mac'
+    819c:	97ffee21 	bl	3a20 <cJSON_AddStringToObject@plt>
+    81a0:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    81a4:	9102ca62 	add	x2, x19, #0xb2
+    81a8:	aa1403e0 	mov	x0, x20
+    81ac:	9111e021 	add	x1, x1, #0x478
+    81b0:	97ffee1c 	bl	3a20 <cJSON_AddStringToObject@plt>
+    81b4:	d000021a 	adrp	x26, 4a000 <_fini@@Base+0x3a97c>
+    81b8:	aa1703e0 	mov	x0, x23
+    81bc:	aa1403e1 	mov	x1, x20
+    81c0:	97ffef58 	bl	3f20 <cJSON_AddItemToArray@plt>
+    81c4:	b94a3340 	ldr	w0, [x26, #2608]
+    81c8:	7100001f 	cmp	w0, #0x0
+    81cc:	5400054d 	b.le	8274 <get_uptime@@Base+0x2934>
+    81d0:	a903e7b8 	stp	x24, x25, [x29, #56]
+    81d4:	d0000213 	adrp	x19, 4a000 <_fini@@Base+0x3a97c>
+    81d8:	b0000059 	adrp	x25, 11000 <_fini@@Base+0x197c>
+    81dc:	b0000058 	adrp	x24, 11000 <_fini@@Base+0x197c>
+    81e0:	91299a73 	add	x19, x19, #0xa66
+    81e4:	91116339 	add	x25, x25, #0x458  ; 'model'
+    81e8:	91118318 	add	x24, x24, #0x460  ; 'curswversion'
+    81ec:	f90013b5 	str	x21, [x29, #32]
+    81f0:	f9002bbb 	str	x27, [x29, #80]
+    81f4:	52800035 	mov	w21, #0x1                   	// #1
+    81f8:	b000005b 	adrp	x27, 11000 <_fini@@Base+0x197c>
+    81fc:	97ffee11 	bl	3a40 <cJSON_CreateObject@plt>
+    8200:	aa0003f4 	mov	x20, x0
+    8204:	b4000220 	cbz	x0, 8248 <get_uptime@@Base+0x2908>
+    8208:	aa1303e2 	mov	x2, x19
+    820c:	aa1903e1 	mov	x1, x25
+    8210:	97ffee04 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8214:	91010262 	add	x2, x19, #0x40
+    8218:	aa1803e1 	mov	x1, x24
+    821c:	aa1403e0 	mov	x0, x20
+    8220:	97ffee00 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8224:	d100ca62 	sub	x2, x19, #0x32
+    8228:	9111c361 	add	x1, x27, #0x470  ; 'mac'
+    822c:	aa1403e0 	mov	x0, x20
+    8230:	97ffedfc 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8234:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8238:	91008262 	add	x2, x19, #0x20
+    823c:	aa1403e0 	mov	x0, x20
+    8240:	9111e021 	add	x1, x1, #0x478
+    8244:	97ffedf7 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8248:	aa1703e0 	mov	x0, x23
+    824c:	aa1403e1 	mov	x1, x20
+    8250:	97ffef34 	bl	3f20 <cJSON_AddItemToArray@plt>
+    8254:	110006b5 	add	w21, w21, #0x1
+    8258:	b94a3340 	ldr	w0, [x26, #2608]
+    825c:	9104c273 	add	x19, x19, #0x130
+    8260:	6b15001f 	cmp	w0, w21
+    8264:	54fffcca 	b.ge	81fc <get_uptime@@Base+0x28bc>  // b.tcont
+    8268:	a943e7b8 	ldp	x24, x25, [x29, #56]
+    826c:	f94013b5 	ldr	x21, [x29, #32]
+    8270:	f9402bbb 	ldr	x27, [x29, #80]
+    8274:	b9406fa2 	ldr	w2, [x29, #108]
+    8278:	aa1c03e1 	mov	x1, x28
+    827c:	52800023 	mov	w3, #0x1                   	// #1
+    8280:	aa1703e0 	mov	x0, x23
+    8284:	97ffee9f 	bl	3d00 <cJSON_PrintPreallocated@plt>
+    8288:	aa1703e0 	mov	x0, x23
+    828c:	97ffef69 	bl	4030 <cJSON_PrintUnformatted@plt>
+    8290:	aa0003f3 	mov	x19, x0
+    8294:	90000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    8298:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    829c:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    82a0:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    82a4:	52808dc5 	mov	w5, #0x46e                 	// #1134
+    82a8:	910bc004 	add	x4, x0, #0x2f0  ; 'swmgnt_createPostPayLoad'
+    82ac:	aa1303e6 	mov	x6, x19
+    82b0:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    82b4:	910e2042 	add	x2, x2, #0x388  ; 'swmgnt: [%s %s:%d] json_body=%s'
+    82b8:	2a0503e1 	mov	w1, w5
+    82bc:	910c4000 	add	x0, x0, #0x310  ; 'swmgnt_createPostPayLoad'
+    82c0:	97ffef2c 	bl	3f70 <nalLogNotice@plt>
+    82c4:	b4000073 	cbz	x19, 82d0 <get_uptime@@Base+0x2990>
+    82c8:	aa1303e0 	mov	x0, x19
+    82cc:	97ffeea1 	bl	3d50 <cJSON_free@plt>
+    82d0:	aa1703e0 	mov	x0, x23
+    82d4:	97ffedd7 	bl	3a30 <cJSON_Delete@plt>
+    82d8:	aa1c03e0 	mov	x0, x28
+    82dc:	97ffeda9 	bl	3980 <strlen@plt>
+    82e0:	a94153b3 	ldp	x19, x20, [x29, #16]
+    82e4:	11000400 	add	w0, w0, #0x1
+    82e8:	f9401bb7 	ldr	x23, [x29, #48]
+    82ec:	f94027ba 	ldr	x26, [x29, #72]
+    82f0:	14000005 	b	8304 <get_uptime@@Base+0x29c4>
+    82f4:	d503201f 	nop
+    82f8:	f9400bb3 	ldr	x19, [x29, #16]
+    82fc:	f9401bb7 	ldr	x23, [x29, #48]
+    8300:	52800000 	mov	w0, #0x0                   	// #0
+    8304:	f947bed6 	ldr	x22, [x22, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8308:	f9403fa2 	ldr	x2, [x29, #120]
+    830c:	f94002c1 	ldr	x1, [x22]
+    8310:	ca010041 	eor	x1, x2, x1
+    8314:	b50000a1 	cbnz	x1, 8328 <get_uptime@@Base+0x29e8>
+    8318:	f94017f6 	ldr	x22, [sp, #40]
+    831c:	f9402ffc 	ldr	x28, [sp, #88]
+    8320:	a8c87bfd 	ldp	x29, x30, [sp], #128
+    8324:	d65f03c0 	ret
+    8328:	a90153b3 	stp	x19, x20, [x29, #16]
+    832c:	a90363b7 	stp	x23, x24, [x29, #48]
+    8330:	a9046bb9 	stp	x25, x26, [x29, #64]
+    8334:	f90013b5 	str	x21, [x29, #32]
+    8338:	f9002bbb 	str	x27, [x29, #80]
+    833c:	97ffed99 	bl	39a0 <__stack_chk_fail@plt>
+    8340:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    8344:	d00000e2 	adrp	x2, 26000 <_fini@@Base+0x1697c>
+    8348:	910003fd 	mov	x29, sp
+    834c:	f947bc42 	ldr	x2, [x2, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8350:	f9400043 	ldr	x3, [x2]
+    8354:	f9000fa3 	str	x3, [x29, #24]
+    8358:	d2800003 	mov	x3, #0x0                   	// #0
+    835c:	f9400fa3 	ldr	x3, [x29, #24]
+    8360:	f9400042 	ldr	x2, [x2]
+    8364:	ca020062 	eor	x2, x3, x2
+    8368:	b5000062 	cbnz	x2, 8374 <get_uptime@@Base+0x2a34>
+    836c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    8370:	17fffe5c 	b	7ce0 <get_uptime@@Base+0x23a0>
+    8374:	97ffed8b 	bl	39a0 <__stack_chk_fail@plt>
+    8378:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    837c:	d00000e0 	adrp	x0, 26000 <_fini@@Base+0x1697c>
+    8380:	f00000e1 	adrp	x1, 27000 <_fini@@Base+0x1797c>
+    8384:	910003fd 	mov	x29, sp
+    8388:	f947bc00 	ldr	x0, [x0, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    838c:	b90a983f 	str	wzr, [x1, #2712]
+    8390:	f9400001 	ldr	x1, [x0]
+    8394:	f9000fa1 	str	x1, [x29, #24]
+    8398:	d2800001 	mov	x1, #0x0                   	// #0
+    839c:	f9400fa1 	ldr	x1, [x29, #24]
+    83a0:	f9400000 	ldr	x0, [x0]
+    83a4:	ca000020 	eor	x0, x1, x0
+    83a8:	b5000060 	cbnz	x0, 83b4 <get_uptime@@Base+0x2a74>
+    83ac:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    83b0:	d65f03c0 	ret
+    83b4:	97ffed7b 	bl	39a0 <__stack_chk_fail@plt>
+    83b8:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    83bc:	d00000e1 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    83c0:	f00000e2 	adrp	x2, 27000 <_fini@@Base+0x1797c>
+    83c4:	910003fd 	mov	x29, sp
+    83c8:	f947bc23 	ldr	x3, [x1, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    83cc:	b94a9840 	ldr	w0, [x2, #2712]
+    83d0:	f9400064 	ldr	x4, [x3]
+    83d4:	f9000fa4 	str	x4, [x29, #24]
+    83d8:	d2800004 	mov	x4, #0x0                   	// #0
+    83dc:	37f80260 	tbnz	w0, #31, 8428 <get_uptime@@Base+0x2ae8>
+    83e0:	d0000203 	adrp	x3, 4a000 <_fini@@Base+0x3a97c>
+    83e4:	9128c064 	add	x4, x3, #0xa30
+    83e8:	b94a3063 	ldr	w3, [x3, #2608]
+    83ec:	6b03001f 	cmp	w0, w3
+    83f0:	540001ca 	b.ge	8428 <get_uptime@@Base+0x2ae8>  // b.tcont
+    83f4:	52802603 	mov	w3, #0x130                 	// #304
+    83f8:	11000405 	add	w5, w0, #0x1
+    83fc:	b90a9845 	str	w5, [x2, #2712]
+    8400:	9b231000 	smaddl	x0, w0, w3, x4
+    8404:	91001000 	add	x0, x0, #0x4
+    8408:	f947bc21 	ldr	x1, [x1, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    840c:	f9400fa2 	ldr	x2, [x29, #24]
+    8410:	f9400021 	ldr	x1, [x1]
+    8414:	ca010041 	eor	x1, x2, x1
+    8418:	b50000c1 	cbnz	x1, 8430 <get_uptime@@Base+0x2af0>
+    841c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    8420:	d65f03c0 	ret
+    8424:	d503201f 	nop
+    8428:	d2800000 	mov	x0, #0x0                   	// #0
+    842c:	17fffff7 	b	8408 <get_uptime@@Base+0x2ac8>
+    8430:	97ffed5c 	bl	39a0 <__stack_chk_fail@plt>
+    8434:	d503201f 	nop
+    8438:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    843c:	d00000e0 	adrp	x0, 26000 <_fini@@Base+0x1697c>
+    8440:	d00000e1 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    8444:	910003fd 	mov	x29, sp
+    8448:	f947bc00 	ldr	x0, [x0, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    844c:	f947b421 	ldr	x1, [x1, #3944]
+    8450:	f9400002 	ldr	x2, [x0]
+    8454:	f9000fa2 	str	x2, [x29, #24]
+    8458:	d2800002 	mov	x2, #0x0                   	// #0
+    845c:	f9400fa3 	ldr	x3, [x29, #24]
+    8460:	f9400002 	ldr	x2, [x0]
+    8464:	ca020062 	eor	x2, x3, x2
+    8468:	b9400020 	ldr	w0, [x1]
+    846c:	b5000062 	cbnz	x2, 8478 <get_uptime@@Base+0x2b38>
+    8470:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    8474:	d65f03c0 	ret
+    8478:	97ffed4a 	bl	39a0 <__stack_chk_fail@plt>
+    847c:	d503201f 	nop
+    8480:	a9a77bfd 	stp	x29, x30, [sp, #-400]!
+    8484:	910003fd 	mov	x29, sp
+    8488:	a90363f7 	stp	x23, x24, [sp, #48]
+    848c:	d00000f7 	adrp	x23, 26000 <_fini@@Base+0x1697c>
+    8490:	aa0003f8 	mov	x24, x0
+    8494:	f90023f9 	str	x25, [sp, #64]
+    8498:	f947bee0 	ldr	x0, [x23, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    849c:	2a0103f9 	mov	w25, w1
+    84a0:	f9400001 	ldr	x1, [x0]
+    84a4:	f900c7a1 	str	x1, [x29, #392]
+    84a8:	d2800001 	mov	x1, #0x0                   	// #0
+    84ac:	97ffef09 	bl	40d0 <cJSON_CreateArray@plt>
+    84b0:	b4000b40 	cbz	x0, 8618 <get_uptime@@Base+0x2cd8>
+    84b4:	a9025bb5 	stp	x21, x22, [x29, #32]
+    84b8:	d0000216 	adrp	x22, 4a000 <_fini@@Base+0x3a97c>
+    84bc:	aa0003f5 	mov	x21, x0
+    84c0:	a90153b3 	stp	x19, x20, [x29, #16]
+    84c4:	b94a32c0 	ldr	w0, [x22, #2608]
+    84c8:	7100001f 	cmp	w0, #0x0
+    84cc:	540001cd 	b.le	8504 <get_uptime@@Base+0x2bc4>
+    84d0:	d0000213 	adrp	x19, 4a000 <_fini@@Base+0x3a97c>
+    84d4:	9128d273 	add	x19, x19, #0xa34
+    84d8:	52800034 	mov	w20, #0x1                   	// #1
+    84dc:	aa1303e0 	mov	x0, x19
+    84e0:	97ffeea8 	bl	3f80 <encode_BeaconInfo_to_json@plt>
+    84e4:	aa0003e1 	mov	x1, x0
+    84e8:	aa1503e0 	mov	x0, x21
+    84ec:	97ffee8d 	bl	3f20 <cJSON_AddItemToArray@plt>
+    84f0:	11000694 	add	w20, w20, #0x1
+    84f4:	b94a32c0 	ldr	w0, [x22, #2608]
+    84f8:	9104c273 	add	x19, x19, #0x130
+    84fc:	6b14001f 	cmp	w0, w20
+    8500:	54fffeea 	b.ge	84dc <get_uptime@@Base+0x2b9c>  // b.tcont
+    8504:	97fff817 	bl	6560 <get_uptime@@Base+0xc20>
+    8508:	aa0003f4 	mov	x20, x0
+    850c:	b40003c0 	cbz	x0, 8584 <get_uptime@@Base+0x2c44>
+    8510:	910163b3 	add	x19, x29, #0x58
+    8514:	d2802602 	mov	x2, #0x130                 	// #304
+    8518:	52800001 	mov	w1, #0x0                   	// #0
+    851c:	aa1303e0 	mov	x0, x19
+    8520:	97ffed80 	bl	3b20 <memset@plt>
+    8524:	d2800222 	mov	x2, #0x11                  	// #17
+    8528:	91028281 	add	x1, x20, #0xa0
+    852c:	aa1303e0 	mov	x0, x19
+    8530:	97ffedec 	bl	3ce0 <strncpy@plt>
+    8534:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8538:	9102ca81 	add	x1, x20, #0xb2
+    853c:	91014a60 	add	x0, x19, #0x52
+    8540:	97ffede8 	bl	3ce0 <strncpy@plt>
+    8544:	d28007e2 	mov	x2, #0x3f                  	// #63
+    8548:	91034a81 	add	x1, x20, #0xd2
+    854c:	9101ca60 	add	x0, x19, #0x72
+    8550:	97ffede4 	bl	3ce0 <strncpy@plt>
+    8554:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8558:	91120021 	add	x1, x1, #0x480  ; 'NOKIA'
+    855c:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8560:	91004a60 	add	x0, x19, #0x12
+    8564:	97ffeddf 	bl	3ce0 <strncpy@plt>
+    8568:	b9411680 	ldr	w0, [x20, #276]
+    856c:	b90187a0 	str	w0, [x29, #388]
+    8570:	aa1303e0 	mov	x0, x19
+    8574:	97ffee83 	bl	3f80 <encode_BeaconInfo_to_json@plt>
+    8578:	aa0003e1 	mov	x1, x0
+    857c:	aa1503e0 	mov	x0, x21
+    8580:	97ffee68 	bl	3f20 <cJSON_AddItemToArray@plt>
+    8584:	2a1903e2 	mov	w2, w25
+    8588:	aa1803e1 	mov	x1, x24
+    858c:	52800023 	mov	w3, #0x1                   	// #1
+    8590:	aa1503e0 	mov	x0, x21
+    8594:	97ffeddb 	bl	3d00 <cJSON_PrintPreallocated@plt>
+    8598:	aa1503e0 	mov	x0, x21
+    859c:	97ffeea5 	bl	4030 <cJSON_PrintUnformatted@plt>
+    85a0:	aa0003f3 	mov	x19, x0
+    85a4:	90000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    85a8:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    85ac:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    85b0:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    85b4:	52809605 	mov	w5, #0x4b0                 	// #1200
+    85b8:	910cc004 	add	x4, x0, #0x330  ; 'swmgnt_show_beacons'
+    85bc:	aa1303e6 	mov	x6, x19
+    85c0:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    85c4:	910e2042 	add	x2, x2, #0x388  ; 'swmgnt: [%s %s:%d] json_body=%s'
+    85c8:	2a0503e1 	mov	w1, w5
+    85cc:	910d2000 	add	x0, x0, #0x348  ; 'swmgnt_show_beacons'
+    85d0:	97ffee68 	bl	3f70 <nalLogNotice@plt>
+    85d4:	b4000073 	cbz	x19, 85e0 <get_uptime@@Base+0x2ca0>
+    85d8:	aa1303e0 	mov	x0, x19
+    85dc:	97ffeddd 	bl	3d50 <cJSON_free@plt>
+    85e0:	aa1503e0 	mov	x0, x21
+    85e4:	97ffed13 	bl	3a30 <cJSON_Delete@plt>
+    85e8:	a94153b3 	ldp	x19, x20, [x29, #16]
+    85ec:	52800000 	mov	w0, #0x0                   	// #0
+    85f0:	a9425bb5 	ldp	x21, x22, [x29, #32]
+    85f4:	f947bef7 	ldr	x23, [x23, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    85f8:	f940c7a2 	ldr	x2, [x29, #392]
+    85fc:	f94002e1 	ldr	x1, [x23]
+    8600:	ca010041 	eor	x1, x2, x1
+    8604:	b50000e1 	cbnz	x1, 8620 <get_uptime@@Base+0x2ce0>
+    8608:	a94363f7 	ldp	x23, x24, [sp, #48]
+    860c:	f94023f9 	ldr	x25, [sp, #64]
+    8610:	a8d97bfd 	ldp	x29, x30, [sp], #400
+    8614:	d65f03c0 	ret
+    8618:	12800000 	mov	w0, #0xffffffff            	// #-1
+    861c:	17fffff6 	b	85f4 <get_uptime@@Base+0x2cb4>
+    8620:	a90153b3 	stp	x19, x20, [x29, #16]
+    8624:	a9025bb5 	stp	x21, x22, [x29, #32]
+    8628:	97ffecde 	bl	39a0 <__stack_chk_fail@plt>
+    862c:	d503201f 	nop
+    8630:	d2820c10 	mov	x16, #0x1060                	// #4192
+    8634:	cb3063ff 	sub	sp, sp, x16
+    8638:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x1a97c>
+    863c:	a9007bfd 	stp	x29, x30, [sp]
+    8640:	910003fd 	mov	x29, sp
+    8644:	f90023f9 	str	x25, [sp, #64]
+    8648:	d00000f9 	adrp	x25, 26000 <_fini@@Base+0x1697c>
+    864c:	f90017f6 	str	x22, [sp, #40]
+    8650:	9103a016 	add	x22, x0, #0xe8
+    8654:	f947bf21 	ldr	x1, [x25, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8658:	b940e800 	ldr	w0, [x0, #232]
+    865c:	f9400022 	ldr	x2, [x1]
+    8660:	f9082fa2 	str	x2, [x29, #4184]
+    8664:	d2800002 	mov	x2, #0x0                   	// #0
+    8668:	34000800 	cbz	w0, 8768 <get_uptime@@Base+0x2e28>
+    866c:	a90363b7 	stp	x23, x24, [x29, #48]
+    8670:	914082d6 	add	x22, x22, #0x20, lsl #12
+    8674:	90000058 	adrp	x24, 10000 <_fini@@Base+0x97c>
+    8678:	91024318 	add	x24, x24, #0x90  ; 'swmgnt_getStatusString'
+    867c:	a90153b3 	stp	x19, x20, [x29, #16]
+    8680:	912512d6 	add	x22, x22, #0x944
+    8684:	d0000113 	adrp	x19, 2a000 <_fini@@Base+0x1a97c>
+    8688:	f90027ba 	str	x26, [x29, #72]
+    868c:	9103b273 	add	x19, x19, #0xec
+    8690:	910163b7 	add	x23, x29, #0x58
+    8694:	910d831a 	add	x26, x24, #0x360  ; 'swmgnt_show_matrix'
+    8698:	f90013b5 	str	x21, [x29, #32]
+    869c:	aa1303e0 	mov	x0, x19
+    86a0:	97ffed94 	bl	3cf0 <encode_MatrixItem_to_json@plt>
+    86a4:	aa0003f4 	mov	x20, x0
+    86a8:	b4000380 	cbz	x0, 8718 <get_uptime@@Base+0x2dd8>
+    86ac:	d2820002 	mov	x2, #0x1000                	// #4096
+    86b0:	52800001 	mov	w1, #0x0                   	// #0
+    86b4:	aa1703e0 	mov	x0, x23
+    86b8:	97ffed1a 	bl	3b20 <memset@plt>
+    86bc:	aa1703e1 	mov	x1, x23
+    86c0:	52800023 	mov	w3, #0x1                   	// #1
+    86c4:	5281ffe2 	mov	w2, #0xfff                 	// #4095
+    86c8:	aa1403e0 	mov	x0, x20
+    86cc:	97ffed8d 	bl	3d00 <cJSON_PrintPreallocated@plt>
+    86d0:	aa1403e0 	mov	x0, x20
+    86d4:	97ffee57 	bl	4030 <cJSON_PrintUnformatted@plt>
+    86d8:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    86dc:	aa0003f5 	mov	x21, x0
+    86e0:	90000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    86e4:	528099e5 	mov	w5, #0x4cf                 	// #1231
+    86e8:	aa0003e6 	mov	x6, x0
+    86ec:	aa1a03e4 	mov	x4, x26
+    86f0:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    86f4:	91268042 	add	x2, x2, #0x9a0  ; 'swmgnt: [%s %s:%d] %s'
+    86f8:	2a0503e1 	mov	w1, w5
+    86fc:	910de300 	add	x0, x24, #0x378  ; 'swmgnt_show_matrix'
+    8700:	97ffee1c 	bl	3f70 <nalLogNotice@plt>
+    8704:	b4000075 	cbz	x21, 8710 <get_uptime@@Base+0x2dd0>
+    8708:	aa1503e0 	mov	x0, x21
+    870c:	97ffed91 	bl	3d50 <cJSON_free@plt>
+    8710:	aa1403e0 	mov	x0, x20
+    8714:	97ffecc7 	bl	3a30 <cJSON_Delete@plt>
+    8718:	d2841280 	mov	x0, #0x2094                	// #8340
+    871c:	8b000273 	add	x19, x19, x0
+    8720:	eb1302df 	cmp	x22, x19
+    8724:	54fffbc1 	b.ne	869c <get_uptime@@Base+0x2d5c>  // b.any
+    8728:	a94153b3 	ldp	x19, x20, [x29, #16]
+    872c:	a94363b7 	ldp	x23, x24, [x29, #48]
+    8730:	f94013b5 	ldr	x21, [x29, #32]
+    8734:	f94027ba 	ldr	x26, [x29, #72]
+    8738:	f947bf39 	ldr	x25, [x25, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    873c:	f9482fa1 	ldr	x1, [x29, #4184]
+    8740:	f9400320 	ldr	x0, [x25]
+    8744:	ca000020 	eor	x0, x1, x0
+    8748:	b5000280 	cbnz	x0, 8798 <get_uptime@@Base+0x2e58>
+    874c:	a9407bfd 	ldp	x29, x30, [sp]
+    8750:	d2820c10 	mov	x16, #0x1060                	// #4192
+    8754:	f94017f6 	ldr	x22, [sp, #40]
+    8758:	f94023f9 	ldr	x25, [sp, #64]
+    875c:	8b3063ff 	add	sp, sp, x16
+    8760:	d65f03c0 	ret
+    8764:	d503201f 	nop
+    8768:	90000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    876c:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    8770:	528097e5 	mov	w5, #0x4bf                 	// #1215
+    8774:	910d8004 	add	x4, x0, #0x360  ; 'swmgnt_show_matrix'
+    8778:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    877c:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8780:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    8784:	91122042 	add	x2, x2, #0x488  ; 'swmgnt: [%s %s:%d] matrix is empty'
+    8788:	2a0503e1 	mov	w1, w5
+    878c:	910de000 	add	x0, x0, #0x378  ; 'swmgnt_show_matrix'
+    8790:	97ffedf8 	bl	3f70 <nalLogNotice@plt>
+    8794:	17ffffe9 	b	8738 <get_uptime@@Base+0x2df8>
+    8798:	a90153b3 	stp	x19, x20, [x29, #16]
+    879c:	a90363b7 	stp	x23, x24, [x29, #48]
+    87a0:	f90013b5 	str	x21, [x29, #32]
+    87a4:	f90027ba 	str	x26, [x29, #72]
+    87a8:	97ffec7e 	bl	39a0 <__stack_chk_fail@plt>
+    87ac:	d503201f 	nop
+    87b0:	d2820610 	mov	x16, #0x1030                	// #4144
+    87b4:	cb3063ff 	sub	sp, sp, x16
+    87b8:	d2820002 	mov	x2, #0x1000                	// #4096
+    87bc:	52800001 	mov	w1, #0x0                   	// #0
+    87c0:	a9007bfd 	stp	x29, x30, [sp]
+    87c4:	910003fd 	mov	x29, sp
+    87c8:	a90153f3 	stp	x19, x20, [sp, #16]
+    87cc:	d00000f3 	adrp	x19, 26000 <_fini@@Base+0x1697c>
+    87d0:	9100a3b4 	add	x20, x29, #0x28
+    87d4:	f947be63 	ldr	x3, [x19, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    87d8:	aa1403e0 	mov	x0, x20
+    87dc:	f9400064 	ldr	x4, [x3]
+    87e0:	f90817a4 	str	x4, [x29, #4136]
+    87e4:	d2800004 	mov	x4, #0x0                   	// #0
+    87e8:	97ffecce 	bl	3b20 <memset@plt>
+    87ec:	5281ffe1 	mov	w1, #0xfff                 	// #4095
+    87f0:	aa1403e0 	mov	x0, x20
+    87f4:	97fffd3b 	bl	7ce0 <get_uptime@@Base+0x23a0>
+    87f8:	3100041f 	cmn	w0, #0x1
+    87fc:	540001a0 	b.eq	8830 <get_uptime@@Base+0x2ef0>  // b.none
+    8800:	90000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    8804:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    8808:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    880c:	90000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    8810:	52809be5 	mov	w5, #0x4df                 	// #1247
+    8814:	910e4004 	add	x4, x0, #0x390  ; 'swmgnt_show_upgrade_status'
+    8818:	aa1403e6 	mov	x6, x20
+    881c:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    8820:	91268042 	add	x2, x2, #0x9a0  ; 'swmgnt: [%s %s:%d] %s'
+    8824:	2a0503e1 	mov	w1, w5
+    8828:	910ec000 	add	x0, x0, #0x3b0  ; 'swmgnt_show_upgrade_status'
+    882c:	97ffedd1 	bl	3f70 <nalLogNotice@plt>
+    8830:	f947be73 	ldr	x19, [x19, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8834:	f94817a1 	ldr	x1, [x29, #4136]
+    8838:	f9400260 	ldr	x0, [x19]
+    883c:	ca000020 	eor	x0, x1, x0
+    8840:	b50000c0 	cbnz	x0, 8858 <get_uptime@@Base+0x2f18>
+    8844:	a94153f3 	ldp	x19, x20, [sp, #16]
+    8848:	d2820610 	mov	x16, #0x1030                	// #4144
+    884c:	a9407bfd 	ldp	x29, x30, [sp]
+    8850:	8b3063ff 	add	sp, sp, x16
+    8854:	d65f03c0 	ret
+    8858:	97ffec52 	bl	39a0 <__stack_chk_fail@plt>
+    885c:	d503201f 	nop
+    8860:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    8864:	d00000e1 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    8868:	910003fd 	mov	x29, sp
+    886c:	b9012c1f 	str	wzr, [x0, #300]
+    8870:	f947bc20 	ldr	x0, [x1, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8874:	f9400001 	ldr	x1, [x0]
+    8878:	f9000fa1 	str	x1, [x29, #24]
+    887c:	d2800001 	mov	x1, #0x0                   	// #0
+    8880:	f9400fa1 	ldr	x1, [x29, #24]
+    8884:	f9400000 	ldr	x0, [x0]
+    8888:	ca000020 	eor	x0, x1, x0
+    888c:	b5000060 	cbnz	x0, 8898 <get_uptime@@Base+0x2f58>
+    8890:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    8894:	d65f03c0 	ret
+    8898:	97ffec42 	bl	39a0 <__stack_chk_fail@plt>
+    889c:	d503201f 	nop
+    88a0:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+    88a4:	910003fd 	mov	x29, sp
+    88a8:	f9000bf3 	str	x19, [sp, #16]
+    88ac:	d00000f3 	adrp	x19, 26000 <_fini@@Base+0x1697c>
+    88b0:	f947be73 	ldr	x19, [x19, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    88b4:	f9400260 	ldr	x0, [x19]
+    88b8:	f90017a0 	str	x0, [x29, #40]
+    88bc:	d2800000 	mov	x0, #0x0                   	// #0
+    88c0:	97fff728 	bl	6560 <get_uptime@@Base+0xc20>
+    88c4:	b40001a0 	cbz	x0, 88f8 <get_uptime@@Base+0x2fb8>
+    88c8:	52800021 	mov	w1, #0x1                   	// #1
+    88cc:	b9011401 	str	w1, [x0, #276]
+    88d0:	f94017a1 	ldr	x1, [x29, #40]
+    88d4:	f9400260 	ldr	x0, [x19]
+    88d8:	ca000020 	eor	x0, x1, x0
+    88dc:	b50001c0 	cbnz	x0, 8914 <get_uptime@@Base+0x2fd4>
+    88e0:	d00000e0 	adrp	x0, 26000 <_fini@@Base+0x1697c>
+    88e4:	f9400bf3 	ldr	x19, [sp, #16]
+    88e8:	f947b800 	ldr	x0, [x0, #3952]
+    88ec:	a8c37bfd 	ldp	x29, x30, [sp], #48
+    88f0:	17fffde0 	b	8070 <get_uptime@@Base+0x2730>
+    88f4:	d503201f 	nop
+    88f8:	f94017a1 	ldr	x1, [x29, #40]
+    88fc:	f9400260 	ldr	x0, [x19]
+    8900:	ca000020 	eor	x0, x1, x0
+    8904:	b5000080 	cbnz	x0, 8914 <get_uptime@@Base+0x2fd4>
+    8908:	f9400bf3 	ldr	x19, [sp, #16]
+    890c:	a8c37bfd 	ldp	x29, x30, [sp], #48
+    8910:	d65f03c0 	ret
+    8914:	97ffec23 	bl	39a0 <__stack_chk_fail@plt>
+    8918:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    891c:	d00000e1 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    8920:	910003fd 	mov	x29, sp
+    8924:	f947bc21 	ldr	x1, [x1, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8928:	f9400022 	ldr	x2, [x1]
+    892c:	f9000fa2 	str	x2, [x29, #24]
+    8930:	d2800002 	mov	x2, #0x0                   	// #0
+    8934:	f9400fa2 	ldr	x2, [x29, #24]
+    8938:	f9400021 	ldr	x1, [x1]
+    893c:	ca010041 	eor	x1, x2, x1
+    8940:	b5000061 	cbnz	x1, 894c <get_uptime@@Base+0x300c>
+    8944:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    8948:	17fff3d4 	b	5898 <main@@Base+0x16a8>
+    894c:	97ffec15 	bl	39a0 <__stack_chk_fail@plt>
+    8950:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    8954:	d00000e1 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    8958:	910003fd 	mov	x29, sp
+    895c:	f947bc21 	ldr	x1, [x1, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8960:	f9400022 	ldr	x2, [x1]
+    8964:	f9000fa2 	str	x2, [x29, #24]
+    8968:	d2800002 	mov	x2, #0x0                   	// #0
+    896c:	f9400fa2 	ldr	x2, [x29, #24]
+    8970:	f9400021 	ldr	x1, [x1]
+    8974:	ca010041 	eor	x1, x2, x1
+    8978:	b5000061 	cbnz	x1, 8984 <get_uptime@@Base+0x3044>
+    897c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    8980:	17ffffb8 	b	8860 <get_uptime@@Base+0x2f20>
+    8984:	97ffec07 	bl	39a0 <__stack_chk_fail@plt>
+    8988:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    898c:	d0000201 	adrp	x1, 4a000 <_fini@@Base+0x3a97c>
+    8990:	910003fd 	mov	x29, sp
+    8994:	f9001bf7 	str	x23, [sp, #48]
+    8998:	d00000f7 	adrp	x23, 26000 <_fini@@Base+0x1697c>
+    899c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    89a0:	aa0003f6 	mov	x22, x0
+    89a4:	f947bee0 	ldr	x0, [x23, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    89a8:	b94a3035 	ldr	w21, [x1, #2608]
+    89ac:	f9400001 	ldr	x1, [x0]
+    89b0:	f90027a1 	str	x1, [x29, #72]
+    89b4:	d2800001 	mov	x1, #0x0                   	// #0
+    89b8:	f9000bf3 	str	x19, [sp, #16]
+    89bc:	710002bf 	cmp	w21, #0x0
+    89c0:	540003cd 	b.le	8a38 <get_uptime@@Base+0x30f8>
+    89c4:	d0000213 	adrp	x19, 4a000 <_fini@@Base+0x3a97c>
+    89c8:	f9000fb4 	str	x20, [x29, #24]
+    89cc:	9128d273 	add	x19, x19, #0xa34
+    89d0:	52800034 	mov	w20, #0x1                   	// #1
+    89d4:	14000005 	b	89e8 <get_uptime@@Base+0x30a8>
+    89d8:	11000694 	add	w20, w20, #0x1
+    89dc:	9104c273 	add	x19, x19, #0x130
+    89e0:	6b15029f 	cmp	w20, w21
+    89e4:	5400022c 	b.gt	8a28 <get_uptime@@Base+0x30e8>
+    89e8:	aa1603e1 	mov	x1, x22
+    89ec:	aa1303e0 	mov	x0, x19
+    89f0:	97ffed78 	bl	3fd0 <strcasecmp@plt>
+    89f4:	35ffff20 	cbnz	w0, 89d8 <get_uptime@@Base+0x3098>
+    89f8:	f9400fb4 	ldr	x20, [x29, #24]
+    89fc:	f947bef7 	ldr	x23, [x23, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8a00:	aa1303e0 	mov	x0, x19
+    8a04:	f94027a2 	ldr	x2, [x29, #72]
+    8a08:	f94002e1 	ldr	x1, [x23]
+    8a0c:	ca010041 	eor	x1, x2, x1
+    8a10:	b5000181 	cbnz	x1, 8a40 <get_uptime@@Base+0x3100>
+    8a14:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    8a18:	f9400bf3 	ldr	x19, [sp, #16]
+    8a1c:	f9401bf7 	ldr	x23, [sp, #48]
+    8a20:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    8a24:	d65f03c0 	ret
+    8a28:	d2800013 	mov	x19, #0x0                   	// #0
+    8a2c:	f9400fb4 	ldr	x20, [x29, #24]
+    8a30:	17fffff3 	b	89fc <get_uptime@@Base+0x30bc>
+    8a34:	d503201f 	nop
+    8a38:	d2800013 	mov	x19, #0x0                   	// #0
+    8a3c:	17fffff0 	b	89fc <get_uptime@@Base+0x30bc>
+    8a40:	f9000fb4 	str	x20, [x29, #24]
+    8a44:	97ffebd7 	bl	39a0 <__stack_chk_fail@plt>
+    8a48:	a9b97bfd 	stp	x29, x30, [sp, #-112]!
+    8a4c:	910003fd 	mov	x29, sp
+    8a50:	f90017f6 	str	x22, [sp, #40]
+    8a54:	d00000f6 	adrp	x22, 26000 <_fini@@Base+0x1697c>
+    8a58:	f9000ff4 	str	x20, [sp, #24]
+    8a5c:	2a0003f4 	mov	w20, w0
+    8a60:	f947bec0 	ldr	x0, [x22, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8a64:	f9400001 	ldr	x1, [x0]
+    8a68:	f90037a1 	str	x1, [x29, #104]
+    8a6c:	d2800001 	mov	x1, #0x0                   	// #0
+    8a70:	97fff6bc 	bl	6560 <get_uptime@@Base+0xc20>
+    8a74:	b4000ba0 	cbz	x0, 8be8 <get_uptime@@Base+0x32a8>
+    8a78:	a90363b7 	stp	x23, x24, [x29, #48]
+    8a7c:	5280a3c5 	mov	w5, #0x51e                 	// #1310
+    8a80:	f9000bb3 	str	x19, [x29, #16]
+    8a84:	90000053 	adrp	x19, 10000 <_fini@@Base+0x97c>
+    8a88:	91024278 	add	x24, x19, #0x90  ; 'swmgnt_getStatusString'
+    8a8c:	a9046bb9 	stp	x25, x26, [x29, #64]
+    8a90:	f90013b5 	str	x21, [x29, #32]
+    8a94:	910f431a 	add	x26, x24, #0x3d0  ; 'swmgnt_getRandomInterval'
+    8a98:	f9002bbb 	str	x27, [x29, #80]
+    8a9c:	910fc318 	add	x24, x24, #0x3f0  ; 'swmgnt_getRandomInterval'
+    8aa0:	90000055 	adrp	x21, 10000 <_fini@@Base+0x97c>
+    8aa4:	911842bb 	add	x27, x21, #0x610  ; 'swmgnt_util.c'
+    8aa8:	2a0503e1 	mov	w1, w5
+    8aac:	9102dc17 	add	x23, x0, #0xb7
+    8ab0:	aa1a03e4 	mov	x4, x26
+    8ab4:	aa1b03e3 	mov	x3, x27
+    8ab8:	aa1803e0 	mov	x0, x24
+    8abc:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8ac0:	9113a042 	add	x2, x2, #0x4e8  ; 'swmgnt: [%s %s:%d] calculate random time from last 5 digits of SN.'
+    8ac4:	97ffed2b 	bl	3f70 <nalLogNotice@plt>
+    8ac8:	aa1703e6 	mov	x6, x23
+    8acc:	aa1a03e4 	mov	x4, x26
+    8ad0:	aa1b03e3 	mov	x3, x27
+    8ad4:	5280a3e5 	mov	w5, #0x51f                 	// #1311
+    8ad8:	aa1803e0 	mov	x0, x24
+    8adc:	2a0503e1 	mov	w1, w5
+    8ae0:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8ae4:	9114c042 	add	x2, x2, #0x530  ; 'swmgnt: [%s %s:%d] sn=%s'
+    8ae8:	97ffed22 	bl	3f70 <nalLogNotice@plt>
+    8aec:	52800202 	mov	w2, #0x10                  	// #16
+    8af0:	d2800001 	mov	x1, #0x0                   	// #0
+    8af4:	aa1703e0 	mov	x0, x23
+    8af8:	97ffebee 	bl	3ab0 <strtol@plt>
+    8afc:	2a0003f9 	mov	w25, w0
+    8b00:	97ffecb8 	bl	3de0 <__errno_location@plt>
+    8b04:	b9400006 	ldr	w6, [x0]
+    8b08:	710058df 	cmp	w6, #0x16
+    8b0c:	540008a0 	b.eq	8c20 <get_uptime@@Base+0x32e0>  // b.none
+    8b10:	91024273 	add	x19, x19, #0x90  ; 'swmgnt_getStatusString'
+    8b14:	911842b5 	add	x21, x21, #0x610  ; 'swmgnt_util.c'
+    8b18:	910f4277 	add	x23, x19, #0x3d0  ; 'swmgnt_getRandomInterval'
+    8b1c:	910fc273 	add	x19, x19, #0x3f0  ; 'swmgnt_getRandomInterval'
+    8b20:	5280a5a5 	mov	w5, #0x52d                 	// #1325
+    8b24:	2a1903e6 	mov	w6, w25
+    8b28:	2a0503e1 	mov	w1, w5
+    8b2c:	aa1703e4 	mov	x4, x23
+    8b30:	aa1503e3 	mov	x3, x21
+    8b34:	aa1303e0 	mov	x0, x19
+    8b38:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8b3c:	91160042 	add	x2, x2, #0x580  ; 'swmgnt: [%s %s:%d] seed 1 is %d\n'
+    8b40:	97ffed0c 	bl	3f70 <nalLogNotice@plt>
+    8b44:	97fff37f 	bl	5940 <get_uptime@@Base>
+    8b48:	2a0003e6 	mov	w6, w0
+    8b4c:	5280a625 	mov	w5, #0x531                 	// #1329
+    8b50:	aa1703e4 	mov	x4, x23
+    8b54:	2a0503e1 	mov	w1, w5
+    8b58:	aa1503e3 	mov	x3, x21
+    8b5c:	2a0003f8 	mov	w24, w0
+    8b60:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8b64:	aa1303e0 	mov	x0, x19
+    8b68:	9116a042 	add	x2, x2, #0x5a8  ; 'swmgnt: [%s %s:%d] seed 2 is uptime %d\n'
+    8b6c:	97ffed01 	bl	3f70 <nalLogNotice@plt>
+    8b70:	0b190300 	add	w0, w24, w25
+    8b74:	97ffeb3f 	bl	3870 <srandom@plt>
+    8b78:	97ffed72 	bl	4140 <random@plt>
+    8b7c:	93407e86 	sxtw	x6, w20
+    8b80:	5280a7c5 	mov	w5, #0x53e                 	// #1342
+    8b84:	aa1703e4 	mov	x4, x23
+    8b88:	aa1503e3 	mov	x3, x21
+    8b8c:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8b90:	2a0503e1 	mov	w1, w5
+    8b94:	9ac60c07 	sdiv	x7, x0, x6
+    8b98:	91174042 	add	x2, x2, #0x5d0  ; 'swmgnt: [%s %s:%d]  final value returned is %d\n'
+    8b9c:	9b0680e6 	msub	x6, x7, x6, x0
+    8ba0:	aa1303e0 	mov	x0, x19
+    8ba4:	2a0603f4 	mov	w20, w6
+    8ba8:	97ffecf2 	bl	3f70 <nalLogNotice@plt>
+    8bac:	f9400bb3 	ldr	x19, [x29, #16]
+    8bb0:	a94363b7 	ldp	x23, x24, [x29, #48]
+    8bb4:	a9446bb9 	ldp	x25, x26, [x29, #64]
+    8bb8:	f94013b5 	ldr	x21, [x29, #32]
+    8bbc:	f9402bbb 	ldr	x27, [x29, #80]
+    8bc0:	f947bed6 	ldr	x22, [x22, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8bc4:	2a1403e0 	mov	w0, w20
+    8bc8:	f94037a2 	ldr	x2, [x29, #104]
+    8bcc:	f94002c1 	ldr	x1, [x22]
+    8bd0:	ca010041 	eor	x1, x2, x1
+    8bd4:	b50003a1 	cbnz	x1, 8c48 <get_uptime@@Base+0x3308>
+    8bd8:	f9400ff4 	ldr	x20, [sp, #24]
+    8bdc:	f94017f6 	ldr	x22, [sp, #40]
+    8be0:	a8c77bfd 	ldp	x29, x30, [sp], #112
+    8be4:	d65f03c0 	ret
+    8be8:	90000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    8bec:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    8bf0:	5280a265 	mov	w5, #0x513                 	// #1299
+    8bf4:	910f4004 	add	x4, x0, #0x3d0  ; 'swmgnt_getRandomInterval'
+    8bf8:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    8bfc:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8c00:	d2800006 	mov	x6, #0x0                   	// #0
+    8c04:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    8c08:	9112c042 	add	x2, x2, #0x4b0  ; 'swmgnt: [%s %s:%d] info=%p, fail to get root info.'
+    8c0c:	2a0503e1 	mov	w1, w5
+    8c10:	910fc000 	add	x0, x0, #0x3f0  ; 'swmgnt_getRandomInterval'
+    8c14:	97ffeccf 	bl	3f50 <nalLogError@plt>
+    8c18:	17ffffea 	b	8bc0 <get_uptime@@Base+0x3280>
+    8c1c:	d503201f 	nop
+    8c20:	5280a545 	mov	w5, #0x52a                 	// #1322
+    8c24:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8c28:	2a1403f9 	mov	w25, w20
+    8c2c:	aa1a03e4 	mov	x4, x26
+    8c30:	aa1b03e3 	mov	x3, x27
+    8c34:	91154042 	add	x2, x2, #0x550  ; 'swmgnt: [%s %s:%d] errno=%d,strtol error.'
+    8c38:	2a0503e1 	mov	w1, w5
+    8c3c:	aa1803e0 	mov	x0, x24
+    8c40:	97ffecc4 	bl	3f50 <nalLogError@plt>
+    8c44:	17ffffb3 	b	8b10 <get_uptime@@Base+0x31d0>
+    8c48:	a90363b7 	stp	x23, x24, [x29, #48]
+    8c4c:	a9046bb9 	stp	x25, x26, [x29, #64]
+    8c50:	f9000bb3 	str	x19, [x29, #16]
+    8c54:	f90013b5 	str	x21, [x29, #32]
+    8c58:	f9002bbb 	str	x27, [x29, #80]
+    8c5c:	97ffeb51 	bl	39a0 <__stack_chk_fail@plt>
+    8c60:	d12583ff 	sub	sp, sp, #0x960
+    8c64:	a9007bfd 	stp	x29, x30, [sp]
+    8c68:	910003fd 	mov	x29, sp
+    8c6c:	a90153f3 	stp	x19, x20, [sp, #16]
+    8c70:	d00000f4 	adrp	x20, 26000 <_fini@@Base+0x1697c>
+    8c74:	f00000f3 	adrp	x19, 27000 <_fini@@Base+0x1797c>
+    8c78:	f947be81 	ldr	x1, [x20, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8c7c:	f9400022 	ldr	x2, [x1]
+    8c80:	f904afa2 	str	x2, [x29, #2392]
+    8c84:	d2800002 	mov	x2, #0x0                   	// #0
+    8c88:	f90013f5 	str	x21, [sp, #32]
+    8c8c:	f00000f5 	adrp	x21, 27000 <_fini@@Base+0x1797c>
+    8c90:	912a62b5 	add	x21, x21, #0xa98
+    8c94:	f9001ff8 	str	x24, [sp, #56]
+    8c98:	aa0003f8 	mov	x24, x0
+    8c9c:	b941eaa0 	ldr	w0, [x21, #488]
+    8ca0:	34000280 	cbz	w0, 8cf0 <get_uptime@@Base+0x33b0>
+    8ca4:	9132a260 	add	x0, x19, #0xca8
+    8ca8:	b40000d8 	cbz	x24, 8cc0 <get_uptime@@Base+0x3380>
+    8cac:	aa0003e1 	mov	x1, x0
+    8cb0:	d2848802 	mov	x2, #0x2440                	// #9280
+    8cb4:	aa1803e0 	mov	x0, x24
+    8cb8:	97ffeaf6 	bl	3890 <memcpy@plt>
+    8cbc:	aa1803e0 	mov	x0, x24
+    8cc0:	f947be94 	ldr	x20, [x20, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8cc4:	f944afa2 	ldr	x2, [x29, #2392]
+    8cc8:	f9400281 	ldr	x1, [x20]
+    8ccc:	ca010041 	eor	x1, x2, x1
+    8cd0:	b5001141 	cbnz	x1, 8ef8 <get_uptime@@Base+0x35b8>
+    8cd4:	a94153f3 	ldp	x19, x20, [sp, #16]
+    8cd8:	a9407bfd 	ldp	x29, x30, [sp]
+    8cdc:	f94013f5 	ldr	x21, [sp, #32]
+    8ce0:	f9401ff8 	ldr	x24, [sp, #56]
+    8ce4:	912583ff 	add	sp, sp, #0x960
+    8ce8:	d65f03c0 	ret
+    8cec:	d503201f 	nop
+    8cf0:	f9001bb7 	str	x23, [x29, #48]
+    8cf4:	d28114a2 	mov	x2, #0x8a5                 	// #2213
+    8cf8:	9101c3b7 	add	x23, x29, #0x70
+    8cfc:	52800001 	mov	w1, #0x0                   	// #0
+    8d00:	aa1703e0 	mov	x0, x23
+    8d04:	97ffeb87 	bl	3b20 <memset@plt>
+    8d08:	aa1703e0 	mov	x0, x23
+    8d0c:	97ffeba1 	bl	3b90 <nal_getSwAutoUpgradeInfo@plt>
+    8d10:	35000d80 	cbnz	w0, 8ec0 <get_uptime@@Base+0x3580>
+    8d14:	9132a263 	add	x3, x19, #0xca8
+    8d18:	a9046bb9 	stp	x25, x26, [x29, #64]
+    8d1c:	a90573bb 	stp	x27, x28, [x29, #80]
+    8d20:	910006e1 	add	x1, x23, #0x1  ; 'wmgnt_getRandomInterval'
+    8d24:	f90017b6 	str	x22, [x29, #40]
+    8d28:	d283ffe2 	mov	x2, #0x1fff                	// #8191
+    8d2c:	aa0303e0 	mov	x0, x3
+    8d30:	97ffebec 	bl	3ce0 <strncpy@plt>
+    8d34:	91400403 	add	x3, x0, #0x1, lsl #12
+    8d38:	b0000119 	adrp	x25, 29000 <_fini@@Base+0x1997c>
+    8d3c:	9132a339 	add	x25, x25, #0xca8
+    8d40:	91100ae1 	add	x1, x23, #0x402  ; 'on.'
+    8d44:	d2807fe2 	mov	x2, #0x3ff                 	// #1023
+    8d48:	aa1903e0 	mov	x0, x25
+    8d4c:	393ffc7f 	strb	wzr, [x3, #4095]
+    8d50:	90000056 	adrp	x22, 10000 <_fini@@Base+0x97c>
+    8d54:	97ffebe3 	bl	3ce0 <strncpy@plt>
+    8d58:	910242d6 	add	x22, x22, #0x90  ; 'swmgnt_getStatusString'
+    8d5c:	91200efa 	add	x26, x23, #0x803  ; 'ID of crontab'
+    8d60:	911042c8 	add	x8, x22, #0x410  ; 'swmgnt_getCfg'
+    8d64:	9000005b 	adrp	x27, 10000 <_fini@@Base+0x97c>
+    8d68:	9118437b 	add	x27, x27, #0x610  ; 'swmgnt_util.c'
+    8d6c:	aa1a03e6 	mov	x6, x26
+    8d70:	aa0803e4 	mov	x4, x8
+    8d74:	aa1b03e3 	mov	x3, x27
+    8d78:	52803cc5 	mov	w5, #0x1e6                 	// #486
+    8d7c:	911082d6 	add	x22, x22, #0x420  ; 'swmgnt_getCfg'
+    8d80:	2a0503e1 	mov	w1, w5
+    8d84:	f90037a8 	str	x8, [x29, #104]
+    8d88:	9107c2bc 	add	x28, x21, #0x1f0
+    8d8c:	aa1603e0 	mov	x0, x22
+    8d90:	390fff3f 	strb	wzr, [x25, #1023]
+    8d94:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8d98:	9118e042 	add	x2, x2, #0x638  ; 'swmgnt: [%s %s:%d] original activatin time is = %s\n'
+    8d9c:	97ffec75 	bl	3f70 <nalLogNotice@plt>
+    8da0:	912092f7 	add	x23, x23, #0x824  ; 'cronprocess_check'
+    8da4:	aa1a03e1 	mov	x1, x26
+    8da8:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8dac:	aa1c03e0 	mov	x0, x28
+    8db0:	97ffebcc 	bl	3ce0 <strncpy@plt>
+    8db4:	912463a9 	add	x9, x29, #0x918
+    8db8:	39083ebf 	strb	wzr, [x21, #527]
+    8dbc:	f90033a9 	str	x9, [x29, #96]
+    8dc0:	52838400 	mov	w0, #0x1c20                	// #7200
+    8dc4:	97ffff21 	bl	8a48 <get_uptime@@Base+0x3108>
+    8dc8:	2a0003e1 	mov	w1, w0
+    8dcc:	aa1a03e0 	mov	x0, x26
+    8dd0:	94000cca 	bl	c0f8 <get_uptime@@Base+0x67b8>
+    8dd4:	f94037a8 	ldr	x8, [x29, #104]
+    8dd8:	52803f45 	mov	w5, #0x1fa                 	// #506
+    8ddc:	aa1a03e6 	mov	x6, x26
+    8de0:	2a0503e1 	mov	w1, w5
+    8de4:	aa0803e4 	mov	x4, x8
+    8de8:	aa1b03e3 	mov	x3, x27
+    8dec:	aa1603e0 	mov	x0, x22
+    8df0:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8df4:	9119c042 	add	x2, x2, #0x670  ; 'swmgnt: [%s %s:%d] Adjusted activatin time is = %s\n'
+    8df8:	97ffec5e 	bl	3f70 <nalLogNotice@plt>
+    8dfc:	f94033a9 	ldr	x9, [x29, #96]
+    8e00:	912843a0 	add	x0, x29, #0xa10
+    8e04:	d2800803 	mov	x3, #0x40                  	// #64
+    8e08:	aa1a03e6 	mov	x6, x26
+    8e0c:	aa0303e1 	mov	x1, x3
+    8e10:	aa1c03e5 	mov	x5, x28
+    8e14:	b0000047 	adrp	x7, 11000 <_fini@@Base+0x197c>
+    8e18:	b0000044 	adrp	x4, 11000 <_fini@@Base+0x197c>
+    8e1c:	911aa0e7 	add	x7, x7, #0x6a8  ; '/tmp/ota_acttime'
+    8e20:	911b0084 	add	x4, x4, #0x6c0  ; 'echo %s:%s >> %s'
+    8e24:	52800022 	mov	w2, #0x1                   	// #1
+    8e28:	aa0903fc 	mov	x28, x9
+    8e2c:	a930fc1f 	stp	xzr, xzr, [x0, #-248]
+    8e30:	a931fc1f 	stp	xzr, xzr, [x0, #-232]
+    8e34:	a932fc1f 	stp	xzr, xzr, [x0, #-216]
+    8e38:	a933fc1f 	stp	xzr, xzr, [x0, #-200]
+    8e3c:	aa0903e0 	mov	x0, x9
+    8e40:	97ffeb50 	bl	3b80 <__snprintf_chk@plt>
+    8e44:	aa1c03e0 	mov	x0, x28
+    8e48:	97ffebfa 	bl	3e30 <system@plt>
+    8e4c:	aa1a03e1 	mov	x1, x26
+    8e50:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8e54:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x1a97c>
+    8e58:	9102a000 	add	x0, x0, #0xa8
+    8e5c:	97ffeba1 	bl	3ce0 <strncpy@plt>
+    8e60:	39107f3f 	strb	wzr, [x25, #1055]
+    8e64:	f94037a8 	ldr	x8, [x29, #104]
+    8e68:	aa1703e6 	mov	x6, x23
+    8e6c:	aa1b03e3 	mov	x3, x27
+    8e70:	528040a5 	mov	w5, #0x205                 	// #517
+    8e74:	aa0803e4 	mov	x4, x8
+    8e78:	aa1603e0 	mov	x0, x22
+    8e7c:	2a0503e1 	mov	w1, w5
+    8e80:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8e84:	911b6042 	add	x2, x2, #0x6d8  ; 'swmgnt: [%s %s:%d] Polling time %d'
+    8e88:	97ffec3a 	bl	3f70 <nalLogNotice@plt>
+    8e8c:	aa1703e1 	mov	x1, x23
+    8e90:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8e94:	d0000100 	adrp	x0, 2a000 <_fini@@Base+0x1a97c>
+    8e98:	91032000 	add	x0, x0, #0xc8
+    8e9c:	97ffeb91 	bl	3ce0 <strncpy@plt>
+    8ea0:	3910ff3f 	strb	wzr, [x25, #1087]
+    8ea4:	52800020 	mov	w0, #0x1                   	// #1
+    8ea8:	b901eaa0 	str	w0, [x21, #488]
+    8eac:	a942dfb6 	ldp	x22, x23, [x29, #40]
+    8eb0:	a9446bb9 	ldp	x25, x26, [x29, #64]
+    8eb4:	a94573bb 	ldp	x27, x28, [x29, #80]
+    8eb8:	17ffff7b 	b	8ca4 <get_uptime@@Base+0x3364>
+    8ebc:	d503201f 	nop
+    8ec0:	90000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    8ec4:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    8ec8:	52803ba5 	mov	w5, #0x1dd                 	// #477
+    8ecc:	91104004 	add	x4, x0, #0x410  ; 'swmgnt_getCfg'
+    8ed0:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    8ed4:	91108000 	add	x0, x0, #0x420  ; 'swmgnt_getCfg'
+    8ed8:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8edc:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    8ee0:	91180042 	add	x2, x2, #0x600  ; 'swmgnt: [%s %s:%d] swmgnt node in DB is not getted'
+    8ee4:	2a0503e1 	mov	w1, w5
+    8ee8:	97ffec1a 	bl	3f50 <nalLogError@plt>
+    8eec:	f9401bb7 	ldr	x23, [x29, #48]
+    8ef0:	d2800000 	mov	x0, #0x0                   	// #0
+    8ef4:	17ffff73 	b	8cc0 <get_uptime@@Base+0x3380>
+    8ef8:	a902dfb6 	stp	x22, x23, [x29, #40]
+    8efc:	a9046bb9 	stp	x25, x26, [x29, #64]
+    8f00:	a90573bb 	stp	x27, x28, [x29, #80]
+    8f04:	97ffeaa7 	bl	39a0 <__stack_chk_fail@plt>
+    8f08:	d2849c10 	mov	x16, #0x24e0                	// #9440
+    8f0c:	cb3063ff 	sub	sp, sp, x16
+    8f10:	d2848802 	mov	x2, #0x2440                	// #9280
+    8f14:	52800001 	mov	w1, #0x0                   	// #0
+    8f18:	a9007bfd 	stp	x29, x30, [sp]
+    8f1c:	910003fd 	mov	x29, sp
+    8f20:	a9025bf5 	stp	x21, x22, [sp, #32]
+    8f24:	d00000f5 	adrp	x21, 26000 <_fini@@Base+0x1697c>
+    8f28:	910163b6 	add	x22, x29, #0x58
+    8f2c:	f947bea3 	ldr	x3, [x21, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8f30:	f9400064 	ldr	x4, [x3]
+    8f34:	f9126fa4 	str	x4, [x29, #9432]
+    8f38:	d2800004 	mov	x4, #0x0                   	// #0
+    8f3c:	f9000bf3 	str	x19, [sp, #16]
+    8f40:	f9001bf7 	str	x23, [sp, #48]
+    8f44:	aa0003f3 	mov	x19, x0
+    8f48:	aa1603e0 	mov	x0, x22
+    8f4c:	97ffeaf5 	bl	3b20 <memset@plt>
+    8f50:	aa1603e1 	mov	x1, x22
+    8f54:	aa1303e0 	mov	x0, x19
+    8f58:	97ffeb26 	bl	3bf0 <parse_SwmgntCfg_from_json@plt>
+    8f5c:	35000d60 	cbnz	w0, 9108 <get_uptime@@Base+0x37c8>
+    8f60:	f00000f3 	adrp	x19, 27000 <_fini@@Base+0x1797c>
+    8f64:	d2848009 	mov	x9, #0x2400                	// #9216
+    8f68:	912a6273 	add	x19, x19, #0xa98
+    8f6c:	8b0902d7 	add	x23, x22, x9
+    8f70:	9107c273 	add	x19, x19, #0x1f0
+    8f74:	aa1703e1 	mov	x1, x23
+    8f78:	aa1303e0 	mov	x0, x19
+    8f7c:	97ffebd9 	bl	3ee0 <strcmp@plt>
+    8f80:	34000b40 	cbz	w0, 90e8 <get_uptime@@Base+0x37a8>
+    8f84:	f9000fb4 	str	x20, [x29, #24]
+    8f88:	90000054 	adrp	x20, 10000 <_fini@@Base+0x97c>
+    8f8c:	91024294 	add	x20, x20, #0x90  ; 'swmgnt_getStatusString'
+    8f90:	a903e7b8 	stp	x24, x25, [x29, #56]
+    8f94:	f90027ba 	str	x26, [x29, #72]
+    8f98:	d2849300 	mov	x0, #0x2498                	// #9368
+    8f9c:	9110c29a 	add	x26, x20, #0x430  ; 'swmgnt_setCfg'
+    8fa0:	90000059 	adrp	x25, 10000 <_fini@@Base+0x97c>
+    8fa4:	91110294 	add	x20, x20, #0x440  ; 'swmgnt_setCfg'
+    8fa8:	91184339 	add	x25, x25, #0x610  ; 'swmgnt_util.c'
+    8fac:	52805f45 	mov	w5, #0x2fa                 	// #762
+    8fb0:	aa1903e3 	mov	x3, x25
+    8fb4:	2a0503e1 	mov	w1, w5
+    8fb8:	aa1a03e4 	mov	x4, x26
+    8fbc:	aa1703e6 	mov	x6, x23
+    8fc0:	8b0003b8 	add	x24, x29, x0
+    8fc4:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    8fc8:	aa1403e0 	mov	x0, x20
+    8fcc:	911d0042 	add	x2, x2, #0x740  ; 'swmgnt: [%s %s:%d] CDP activatin time is = %s\n'
+    8fd0:	97ffebe8 	bl	3f70 <nalLogNotice@plt>
+    8fd4:	aa1703e1 	mov	x1, x23
+    8fd8:	d28003e2 	mov	x2, #0x1f                  	// #31
+    8fdc:	aa1303e0 	mov	x0, x19
+    8fe0:	97ffeb40 	bl	3ce0 <strncpy@plt>
+    8fe4:	52838400 	mov	w0, #0x1c20                	// #7200
+    8fe8:	39007e7f 	strb	wzr, [x19, #31]
+    8fec:	97fffe97 	bl	8a48 <get_uptime@@Base+0x3108>
+    8ff0:	2a0003e1 	mov	w1, w0
+    8ff4:	aa1703e0 	mov	x0, x23
+    8ff8:	94000c40 	bl	c0f8 <get_uptime@@Base+0x67b8>
+    8ffc:	528061e5 	mov	w5, #0x30f                 	// #783
+    9000:	aa1a03e4 	mov	x4, x26
+    9004:	aa1903e3 	mov	x3, x25
+    9008:	2a0503e1 	mov	w1, w5
+    900c:	aa1403e0 	mov	x0, x20
+    9010:	aa1703e6 	mov	x6, x23
+    9014:	90000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    9018:	9119c042 	add	x2, x2, #0x670  ; 'swmgnt: [%s %s:%d] Adjusted activatin time is = %s\n'
+    901c:	97ffebd5 	bl	3f70 <nalLogNotice@plt>
+    9020:	d2848008 	mov	x8, #0x2400                	// #9216
+    9024:	8b0803a0 	add	x0, x29, x8
+    9028:	d2800803 	mov	x3, #0x40                  	// #64
+    902c:	aa1703e6 	mov	x6, x23
+    9030:	aa1303e5 	mov	x5, x19
+    9034:	aa0303e1 	mov	x1, x3
+    9038:	90000047 	adrp	x7, 11000 <_fini@@Base+0x197c>
+    903c:	90000044 	adrp	x4, 11000 <_fini@@Base+0x197c>

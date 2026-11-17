@@ -1,0 +1,59 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000025d80 <SE_encStr2Str@@Base>:
+   25d80:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   25d84:	910003fd 	mov	x29, sp
+   25d88:	a90153f3 	stp	x19, x20, [sp, #16]
+   25d8c:	b0000113 	adrp	x19, 46000 <_fini@@Base+0x18828>
+   25d90:	2a0003f4 	mov	w20, w0
+   25d94:	a9025bf5 	stp	x21, x22, [sp, #32]
+   25d98:	f942c260 	ldr	x0, [x19, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   25d9c:	aa0103f5 	mov	x21, x1
+   25da0:	aa0203f6 	mov	x22, x2
+   25da4:	f9400001 	ldr	x1, [x0]
+   25da8:	f90027a1 	str	x1, [x29, #72]
+   25dac:	d2800001 	mov	x1, #0x0                   	// #0
+   25db0:	b0000100 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   25db4:	f9001bf7 	str	x23, [sp, #48]
+   25db8:	910143b7 	add	x23, x29, #0x50
+   25dbc:	f9466000 	ldr	x0, [x0, #3264]  ; GOT SE_Init
+   25dc0:	f81f0eff 	str	xzr, [x23, #-16]!
+   25dc4:	d63f0000 	blr	x0
+   25dc8:	b0000102 	adrp	x2, 46000 <_fini@@Base+0x18828>
+   25dcc:	d0000060 	adrp	x0, 33000 <_fini@@Base+0x5828>
+   25dd0:	912d3400 	add	x0, x0, #0xb4d  ; 'key5'
+   25dd4:	f942e842 	ldr	x2, [x2, #1488]  ; GOT SE_getKeyByName
+   25dd8:	aa1703e1 	mov	x1, x23
+   25ddc:	d63f0040 	blr	x2
+   25de0:	350001c0 	cbnz	w0, 25e18 <SE_encStr2Str@@Base+0x98>
+   25de4:	b0000101 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   25de8:	f94023b7 	ldr	x23, [x29, #64]
+   25dec:	f9424421 	ldr	x1, [x1, #1160]  ; GOT strlen@GLIBC_2.17
+   25df0:	aa1703e0 	mov	x0, x23
+   25df4:	d63f0020 	blr	x1
+   25df8:	2a0003e3 	mov	w3, w0
+   25dfc:	b0000105 	adrp	x5, 46000 <_fini@@Base+0x18828>
+   25e00:	aa1603e4 	mov	x4, x22
+   25e04:	aa1703e2 	mov	x2, x23
+   25e08:	aa1503e1 	mov	x1, x21
+   25e0c:	f943d8a5 	ldr	x5, [x5, #1968]  ; GOT SE_encStr2StrEx
+   25e10:	2a1403e0 	mov	w0, w20
+   25e14:	d63f00a0 	blr	x5
+   25e18:	f942c273 	ldr	x19, [x19, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   25e1c:	f94027a2 	ldr	x2, [x29, #72]
+   25e20:	f9400261 	ldr	x1, [x19]
+   25e24:	ca010041 	eor	x1, x2, x1
+   25e28:	b4000081 	cbz	x1, 25e38 <SE_encStr2Str@@Base+0xb8>
+   25e2c:	b0000100 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   25e30:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   25e34:	d63f0000 	blr	x0
+   25e38:	a94153f3 	ldp	x19, x20, [sp, #16]
+   25e3c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   25e40:	f9401bf7 	ldr	x23, [sp, #48]
+   25e44:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   25e48:	d65f03c0 	ret

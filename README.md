@@ -20,8 +20,7 @@ In this project, I dive into the WebUI and open ports/services of the Nokia Beac
 2. (✅) Get root shell 
 
 This project is very dear to me. While being my first real experience with offensive cybersecurity, 
-I ended up finding an RCE, now CVE-2026-101323, and got my name into the 
-[Nokia Hall of Fame](https://www.nokia.com/we-are-nokia/security/products/cvd/hall-of-fame/).
+I ended up finding an RCE, and got my name into the [Nokia Hall of Fame](https://www.nokia.com/we-are-nokia/security/products/cvd/hall-of-fame/).
 
 
 

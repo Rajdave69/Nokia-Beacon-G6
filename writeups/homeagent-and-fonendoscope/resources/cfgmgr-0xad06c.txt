@@ -1,0 +1,72 @@
+000acfec: c0fe45f9  ldr x0, [x22, #0xbf8]
+000acff0: b71000f0  adrp x23, #0x2c3000
+000acff4: f80302aa  mov x24, x2
+000acff8: f50301aa  mov x21, x1
+000acffc: 020081d2  mov x2, #0x800
+000ad000: 010040f9  ldr x1, [x0]
+000ad004: a12704f9  str x1, [x29, #0x848]
+000ad008: 010080d2  mov x1, #0
+000ad00c: e00314aa  mov x0, x20
+000ad010: 60003fd6  blr x3 ; heuristic unknown {"x1": 0, "x2": 2048}
+000ad014: e29e40f9  ldr x2, [x23, #0x138]
+000ad018: c10c00d0  adrp x1, #0x247000
+000ad01c: 21203b91  add x1, x1, #0xec8
+000ad020: e00318aa  mov x0, x24
+000ad024: 40003fd6  blr x2 ; heuristic @strstr {"x1": "L1", "x2": "@strstr"}
+000ad028: e00500b4  cbz x0, #0xad0e4
+000ad02c: d30500b4  cbz x19, #0xad0e4
+000ad030: 608a4839  ldrb w0, [x19, #0x222]
+000ad034: a0090034  cbz w0, #0xad168
+000ad038: 60824039  ldrb w0, [x19, #0x20]
+000ad03c: 60090034  cbz w0, #0xad168
+000ad040: 608e5839  ldrb w0, [x19, #0x623]
+000ad044: 20090034  cbz w0, #0xad168
+000ad048: 60864439  ldrb w0, [x19, #0x121]
+000ad04c: e0080034  cbz w0, #0xad168
+000ad050: a8100090  adrp x8, #0x2c1000
+000ad054: 658a0891  add x5, x19, #0x222
+000ad058: e40318aa  mov x4, x24
+000ad05c: 67860491  add x7, x19, #0x121
+000ad060: 085546f9  ldr x8, [x8, #0xca8]
+000ad064: 668e1891  add x6, x19, #0x623
+000ad068: a30b0090  adrp x3, #0x221000
+000ad06c: 634c0991  add x3, x3, #0x253
+000ad070: a20b0090  adrp x2, #0x221000
+000ad074: 42900a91  add x2, x2, #0x2a4
+000ad078: e1ff80d2  mov x1, #0x7ff
+000ad07c: e00314aa  mov x0, x20
+000ad080: 00013fd6  blr x8 ; heuristic @snprintf {"x1": 2047, "x2": "sh %s -o %s -l %s -u %s -p %s &", "x3": "/usr/exe/HomeAgent.sh"}
+000ad084: c40c00d0  adrp x4, #0x247000
+000ad088: a30f00f0  adrp x3, #0x2a4000
+000ad08c: 63cc2791  add x3, x3, #0x9f3
+000ad090: e50314aa  mov x5, x20
+000ad094: 84003791  add x4, x4, #0xdc0
+000ad098: c2068052  mov w2, #0x36
+000ad09c: c61000b0  adrp x6, #0x2c6000
+000ad0a0: e10304aa  mov x1, x4
+000ad0a4: e0008052  mov w0, #7
+000ad0a8: c6c846f9  ldr x6, [x6, #0xd90]
+000ad0ac: c0003fd6  blr x6 ; heuristic @log_log {"x0": 7, "x1": "start_home_agent", "x2": 54, "x3": "%s: %s\n", "x4": "start_home_agent", "x6": "@log_log"}
+000ad0b0: a11000d0  adrp x1, #0x2c3000
+000ad0b4: e00314aa  mov x0, x20
+000ad0b8: 21e446f9  ldr x1, [x1, #0xdc8]
+000ad0bc: 20003fd6  blr x1 ; heuristic @_system {"x1": "@_system"}
+000ad0c0: 00008052  mov w0, #0
+000ad0c4: d6fe45f9  ldr x22, [x22, #0xbf8]
+000ad0c8: a22744f9  ldr x2, [x29, #0x848]
+000ad0cc: c10240f9  ldr x1, [x22]
+000ad0d0: 410001ca  eor x1, x2, x1
+000ad0d4: e10400b4  cbz x1, #0xad170
+000ad0d8: c01000d0  adrp x0, #0x2c7000
+000ad0dc: 006442f9  ldr x0, [x0, #0x4c8]
+000ad0e0: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+000ad0e4: f79e40f9  ldr x23, [x23, #0x138]
+000ad0e8: a10b0090  adrp x1, #0x221000
+000ad0ec: 21400991  add x1, x1, #0x250
+000ad0f0: e00318aa  mov x0, x24
+000ad0f4: e0023fd6  blr x23 ; heuristic @strstr {"x1": "L2"}
+000ad0f8: 800300b4  cbz x0, #0xad168
+000ad0fc: 750300b4  cbz x21, #0xad168
+000ad100: a0864439  ldrb w0, [x21, #0x121]
+000ad104: 20030034  cbz w0, #0xad168
+000ad108: a08a5439  ldrb w0, [x21, #0x522]

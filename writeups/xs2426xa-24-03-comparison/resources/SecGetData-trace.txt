@@ -1,0 +1,45 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000001ab5c <SecGetData@@Base>:
+   1ab5c:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   1ab60:	90000162 	adrp	x2, 46000 <_fini@@Base+0x18828>
+   1ab64:	f100001f 	cmp	x0, #0x0
+   1ab68:	910003fd 	mov	x29, sp
+   1ab6c:	f942c043 	ldr	x3, [x2, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   1ab70:	fa401824 	ccmp	x1, #0x0, #0x4, ne	// ne = any
+   1ab74:	a90153f3 	stp	x19, x20, [sp, #16]
+   1ab78:	aa0203f3 	mov	x19, x2
+   1ab7c:	f9400064 	ldr	x4, [x3]
+   1ab80:	f90017a4 	str	x4, [x29, #40]
+   1ab84:	d2800004 	mov	x4, #0x0                   	// #0
+   1ab88:	54000141 	b.ne	1abb0 <SecGetData@@Base+0x54>  // b.any
+   1ab8c:	d2800000 	mov	x0, #0x0                   	// #0
+   1ab90:	f942c262 	ldr	x2, [x19, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   1ab94:	f94017a3 	ldr	x3, [x29, #40]
+   1ab98:	f9400041 	ldr	x1, [x2]
+   1ab9c:	ca010061 	eor	x1, x3, x1
+   1aba0:	b4000221 	cbz	x1, 1abe4 <SecGetData@@Base+0x88>
+   1aba4:	90000160 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   1aba8:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   1abac:	d63f0000 	blr	x0
+   1abb0:	90000162 	adrp	x2, 46000 <_fini@@Base+0x18828>
+   1abb4:	aa0003f4 	mov	x20, x0
+   1abb8:	f9456042 	ldr	x2, [x2, #2752]  ; GOT SecSetInputKey
+   1abbc:	d63f0040 	blr	x2
+   1abc0:	90000161 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   1abc4:	aa1403e0 	mov	x0, x20
+   1abc8:	f943dc21 	ldr	x1, [x1, #1976]  ; GOT SecGetDeserializeData
+   1abcc:	d63f0020 	blr	x1
+   1abd0:	3100041f 	cmn	w0, #0x1
+   1abd4:	54fffdc0 	b.eq	1ab8c <SecGetData@@Base+0x30>  // b.none
+   1abd8:	f9401680 	ldr	x0, [x20, #40]
+   1abdc:	f9400400 	ldr	x0, [x0, #8]
+   1abe0:	17ffffec 	b	1ab90 <SecGetData@@Base+0x34>
+   1abe4:	a94153f3 	ldp	x19, x20, [sp, #16]
+   1abe8:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   1abec:	d65f03c0 	ret

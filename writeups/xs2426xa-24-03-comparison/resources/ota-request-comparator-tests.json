@@ -1,0 +1,69 @@
+{
+  "scope": "Synthetic local cfg_getObj stub only, not a live ONT observation. Stock SHA256 library loaded. Exact object ID, size and flags asserted in stub. No real config IPC or network.",
+  "cases": [
+    {
+      "case": "match",
+      "exit": 0,
+      "result": {
+        "cfg_getObj_status": 0,
+        "key_bytes": 41,
+        "key_matches_requested_default": true,
+        "url_matches_requested_profile": true,
+        "OTA_enabled": false
+      },
+      "stderr_empty": true
+    },
+    {
+      "case": "changed_key",
+      "exit": 0,
+      "result": {
+        "cfg_getObj_status": 0,
+        "key_bytes": 41,
+        "key_matches_requested_default": false,
+        "url_matches_requested_profile": true,
+        "OTA_enabled": false
+      },
+      "stderr_empty": true
+    },
+    {
+      "case": "changed_url",
+      "exit": 0,
+      "result": {
+        "cfg_getObj_status": 0,
+        "key_bytes": 41,
+        "key_matches_requested_default": true,
+        "url_matches_requested_profile": false,
+        "OTA_enabled": false
+      },
+      "stderr_empty": true
+    },
+    {
+      "case": "unterminated",
+      "exit": 1,
+      "result": {
+        "probe_error": "unterminated_stock_field"
+      },
+      "stderr_empty": true
+    },
+    {
+      "case": "getter_failure",
+      "exit": 1,
+      "result": {
+        "cfg_getObj_status": 9002,
+        "key_matches_requested_default": null,
+        "url_matches_requested_profile": null
+      },
+      "stderr_empty": true
+    },
+    {
+      "case": "remote_socket",
+      "exit": 90,
+      "result": {
+        "probe_error": "blocked_nonlocal_or_process_operation"
+      },
+      "stderr_empty": true
+    }
+  ],
+  "GLIBC_requirement": "GLIBC_2.17 only",
+  "live_result_received": false
+}

@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 """Collect nonsecret provisioning relationships, actual decoded diffs and witnesses."""
+from pathlib import Path as _PublicationPath
+import json as _publication_json
+import re as _publication_re
+
+def _publication_input(alias):
+    project = next(p for p in _PublicationPath(__file__).resolve().parents
+                   if (p / 'writeups').is_dir())
+    registry = (project / 'writeups/README.private.md').read_text(encoding='utf-8')
+    payload = _publication_re.search(r'```json\s*\n(.*?)\n```', registry, _publication_re.S)
+    return _publication_json.loads(payload[1])['private_values'][alias]
+
 import argparse,collections,hashlib,importlib.util,json,re,sqlite3,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3];B9=ROOT.parent/'Nokia-Beacon-9';RES=Path(__file__).resolve().parent
@@ -65,7 +76,7 @@ def main():
    if not p.is_file() or p.is_symlink():continue
    if p.name in ('cfg_update_remote_encryption.kv','cfg_update_remote_avalible','cfg_update_remote_file_name','custom.cfg','se.conf','usp.db','tr181.db','tr.conf','tr181.conf','default_scfg.txt','scfg.txt','http_privkey.pem','http_pubkey.pem') or p.name.startswith('ENC_CFG'):inventory.append(fp(p))
  b9root=B9/'config-private/provisioning-analysis-20261027/configs-p28';b9parts=B9/'stock-firmware/router-emmc-20261014-033951/partitions'
- decoder=module(ROOT/'webui/scripts/decrypt-stored-config.py','stored');negative={}
+ decoder=module(ROOT/'writeups/configuration-import-export/resources/stored-database/decrypt-stored-config.py','stored');negative={}
  try:decoder.decrypt_stored((b9root/'dmdb_encryption.cfg').read_bytes(),decoder.derive_key10(private_value('B9-A:RI-G984Serial').encode(),private_value('PROGDATE-D').encode()))
  except ValueError as e:negative={'input':fp(b9root/'dmdb_encryption.cfg'),'serial_source':'B9-A:RI-G984Serial','ProgDate_source':'PROGDATE-D','source5':'invalid_key_src5_str','result':'failed','error':str(e),'limit':'This exact G6 missing-source5 profile failed; no proof of why or a universal B9 decryptability claim.'}
  else:raise AssertionError('Earlier negative result changed')
@@ -74,7 +85,7 @@ def main():
  b9keys={'private':fp(b9root/'http_privkey.pem'),'public':fp(b9root/'http_pubkey.pem'),'pair_matches':True,'RSA_bits':public.key_size,'SPKI_sha256':hashlib.sha256(encode(public)).hexdigest()}
  # New direct source bindings are kept separately from earlier immutable records.
  stock=[]
- for label,rom in [('G6_IJL',Path('/tmp/g6-old-slot-review-20261025-by5iaikl/old')),('G6_HJL',Path('/tmp/g6-old-slot-review-20261025-by5iaikl/new')),('Beacon9',Path('/tmp/beacon9-stock-root'))]:
+ for label,rom in [('G6_IJL',Path(_publication_input('RESEARCH-INPUT-A401F244A177'))),('G6_HJL',Path(_publication_input('RESEARCH-INPUT-03F256D23A59'))),('Beacon9',Path(_publication_input('RESEARCH-INPUT-6D58EDFEFE71')))]:
   for rel in ('usr/lib/libzeroman.so','usr/lib/libdbgen.so','usr/lib/libsec_engine.so','usr/lib/libcfg.so','usr/bin/cfgmgr','usr/bin/dbgen_bin','etc/HB_Config.json','etc/preconfiguration_global.xml','usr/bin/system_init.sh'):
    p=rom/rel
    if p.is_file():stock.append({'profile':label,'relative':rel,**fp(p)})

@@ -191,7 +191,7 @@ A boot-time script can also lock an owner out by changing authentication, networ
 
 ## The older IJL.J03 slot answers the hook question
 
-The [second-G6 comparison](../two-g6-key-comparison/README.md) recovers IJL.J03 from the inactive slot and checks its scripts directly. That wifi_fw_mount lacks the replace_with_test.sh hook present in HJL.L91. Both commit_image scripts are byte-identical and retain pre_app_boot.sh. Tutorials using the early hook must therefore be adapted on IJL.J03; both devices run HJL.L91 and the owner reports installing the persistence script on both. That does not change the recovered stock IJL.J03 call sites; switching to that inactive image would require checking its persistence mechanism separately.
+The [second-G6 comparison](../comparing-other-g6-routers/README.md) recovers IJL.J03 from the inactive slot and checks its scripts directly. That wifi_fw_mount lacks the replace_with_test.sh hook present in HJL.L91. Both commit_image scripts are byte-identical and retain pre_app_boot.sh. Tutorials using the early hook must therefore be adapted on IJL.J03; both devices run HJL.L91 and the owner reports installing the persistence script on both. That does not change the recovered stock IJL.J03 call sites; switching to that inactive image would require checking its persistence mechanism separately.
 
 ## From reboot persistence to bank persistence
 
@@ -208,8 +208,6 @@ The normal root upper layer remains RAM. `/lib/preinit/80_mount_root` calls ramo
 The stock persistent-path mechanism offers an alternative to replacing a security binary on every boot. `/etc/dropbear` and `/etc/config` are both in the persistent list. The current Dropbear binary references `/etc/dropbear/authorized_keys`; its init script supports RootLogin, PasswordAuth, RootPasswordAuth, Interface and Port. Keeping a root-owned authorized_keys file and appropriate service configuration in those mapped paths is a candidate for ordinary key-authenticated management access without depending on replace_with_test.sh.
 
 That establishes where the files can persist. It does not establish that Nokia's management daemons will leave the listener enabled, that a future image will retain Dropbear, or that the account/host-key/firewall configuration permits a connection. Check the resolved file targets, daemon arguments, key authentication and reachability on each bank. The stock upgrade list also deliberately refreshes `/etc/config/syslog`, `/etc/config/qcacfg80211` and `/etc/scfg`; its delete-common-config list is empty in these two builds. No blanket preservation rule follows for other images.
-
-The native ONTUSER path is another recovery option that does not require our custom hook: both inspected G6 builds retain the account writer and local debug-password generator. The build release input changes from JLL to JLJ between these images. The second current live account matched that generator; an actual older-slot login has not been tested. Account policy and an enabled login service still matter. See the [credential comparison](../two-g6-key-comparison/README.md), rather than assuming one password remains correct through every version.
 
 For production management, use authenticated access restricted to the management network. Reusing the lab's unauthenticated Telnet payload preserves that payload's original exposure; changing its launcher does not change its access control.
 
@@ -244,3 +242,14 @@ leaving existing shell payloads alone. fw3 sources the include, so its wrapper
 starts the payload in a separate shell. It still depends on retained configs
 and successful firewall startup; the isolated tests do not replace a live boot
 check. This caller is separate from the mount/app/driver saferun dispatcher.
+
+
+## Keeping a development listener alive during startup
+
+On the XS-2426X-A ONT, the owner found that the persistent Telnet script worked when run manually after boot, while its boot-launched port-2323 listener later disappeared. The old log reported a listener at the 60-second check; a subsequent process and socket listing showed only the stock authenticated port-23 daemon. This rules out interpreting the launcher's success as proof that access remained available. The hook already set PATH and used `/usr/sbin/telnetd` explicitly.
+
+The stock ONT `/etc/init.d/telnet` has a broader stop action than its start action: it starts port 23, but stops with `killall telnetd`. That can also terminate a development instance on port 2323. It is a plausible explanation for the observed boot interaction, although neither the supplied logs nor `logread` identified the actual terminating component. The owner subsequently clarified that the entire hook, not just the daemon command, works when run manually.
+
+The [Telnet payload](../../tutorials/setup-persistent-unauthenticated-telnet/replace_with_test.sh) now launches a separate shell watchdog rather than making one delayed check. It checks every five seconds, validates recorded process identities, recreates a missing firewall rule and restarts a missing listener. The stock daemon and its port are left alone. A daemon restart disconnects existing clients; it restores the ability to connect afterward. `--stop` stops recovery as well as the managed listener. Runtime diagnostics stay in RAM.
+
+This is runtime recovery, not a new persistence boundary. The same hook, filesystem, reset and upgrade limits still apply; killing the supervisor itself prevents recovery until the hook is invoked again. Local intercepted tests and their exact scope are retained in [the watchdog test resources](resources/telnet-watchdog-tests/README.md). A reboot with this revised payload has not yet been verified on the ONT.

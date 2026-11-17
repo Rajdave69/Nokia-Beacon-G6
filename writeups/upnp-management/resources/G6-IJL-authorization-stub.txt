@@ -1,0 +1,18 @@
+0000aa90: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0000aa94: 41010090  adrp x1, #0x32000
+0000aa98: fd030091  mov x29, sp
+0000aa9c: 21d444f9  ldr x1, [x1, #0x9a8]
+0000aaa0: 220040f9  ldr x2, [x1]
+0000aaa4: a20f00f9  str x2, [x29, #0x18]
+0000aaa8: 020080d2  mov x2, #0
+0000aaac: a20f40f9  ldr x2, [x29, #0x18]
+0000aab0: 210040f9  ldr x1, [x1]
+0000aab4: 410001ca  eor x1, x2, x1
+0000aab8: 810000b5  cbnz x1, #0xaac8
+0000aabc: 00008052  mov w0, #0
+0000aac0: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0000aac4: c0035fd6  ret 
+0000aac8: 40010090  adrp x0, #0x32000
+0000aacc: 00a844f9  ldr x0, [x0, #0x950]
+0000aad0: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+

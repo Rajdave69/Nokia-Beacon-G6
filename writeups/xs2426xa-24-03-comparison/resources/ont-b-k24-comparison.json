@@ -1,0 +1,676 @@
+{
+  "date": "2026-11-13",
+  "device": "ONT-B",
+  "source": "private-source://CAPTURE-ONT-B",
+  "scope": "Offline comparison of the two supplied bank dumps. Reconstructed and hash-checked the used UBI payload bytes. No firmware execution, router or network access, signature verification, or live account/service testing.",
+  "capture": {
+    "manifest_matches": 10,
+    "zip_crc_passed": true,
+    "banks": {
+      "0": {
+        "build": {
+          "IMAGEVERSION": "3FE49940JJLK24",
+          "SOFTWAREVERSION": "JJL.K24p02",
+          "DOTDIGITVERSION": "1.2403.524",
+          "HOMEOSVERSION": "24.03.01",
+          "BUILDDATE": "20241115",
+          "REPO": "BBDR2403OpenWrtBA",
+          "SDKVERSION": "cortina_venus.R1.1.1.6",
+          "SIGN": "y",
+          "ENCRYPT": "n"
+        },
+        "volumes": {
+          "0": {
+            "used_bytes": 4964662,
+            "sha256": "d4aba03f6382f81b0fc83f16cd217fe4ee3dd39b09233dc3ec127e49790b8b9b",
+            "format": "FIT/FDT",
+            "logical_blocks": 20
+          },
+          "1": {
+            "used_bytes": 43960973,
+            "sha256": "e718d9ee4762805b8f680bcf699d1b0b913436b6284d3bbc5c28373d26f918b6",
+            "format": "SquashFS",
+            "logical_blocks": 174
+          },
+          "3": {
+            "used_bytes": 1837236,
+            "sha256": "1ea2ac665651e697136812b6440c6a61ae7fffedad39c51196591ae49aa97ad5",
+            "format": "SquashFS",
+            "logical_blocks": 8
+          }
+        },
+        "matches_prior_ont_banks_by_volume": {
+          "0": [],
+          "1": [],
+          "3": []
+        },
+        "extract_copy_flag_cleared": true
+      },
+      "1": {
+        "build": {
+          "IMAGEVERSION": "3FE49940KJLK50",
+          "SOFTWAREVERSION": "KJL.K50p01",
+          "DOTDIGITVERSION": "1.2403.650",
+          "HOMEOSVERSION": "24.03.01",
+          "BUILDDATE": "20250904",
+          "REPO": "BBDR2403OpenWrtBA",
+          "SDKVERSION": "cortina_venus.R1.1.1.6",
+          "SIGN": "y",
+          "ENCRYPT": "n"
+        },
+        "volumes": {
+          "0": {
+            "used_bytes": 4964658,
+            "sha256": "305eae5f5706c9321e6640c5da9336a76757eb89f4c5ab0abdab99c505cbb95c",
+            "format": "FIT/FDT",
+            "logical_blocks": 20
+          },
+          "1": {
+            "used_bytes": 44029269,
+            "sha256": "20c6cdfada094a0d442635222f3e1fdf9dd1b9d2394897da197b7bbe75264f76",
+            "format": "SquashFS",
+            "logical_blocks": 174
+          },
+          "3": {
+            "used_bytes": 1839340,
+            "sha256": "e05b693fac5fbc590d682cff7a03f844795d691c60a3579578c98616a9ab9275",
+            "format": "SquashFS",
+            "logical_blocks": 8
+          }
+        },
+        "matches_prior_ont_banks_by_volume": {
+          "0": [
+            1
+          ],
+          "1": [
+            1
+          ],
+          "3": [
+            0,
+            1
+          ]
+        },
+        "extract_copy_flag_cleared": true
+      }
+    },
+    "metadata_root_selectors": [
+      "ubi.mtd=rootfs1"
+    ],
+    "ssb_matches_prior_ont": true
+  },
+  "comparison": {
+    "package_counts": {
+      "K24": 597,
+      "K50_new": 597,
+      "K67": 597,
+      "K50": 597
+    },
+    "selected_package_versions": {
+      "kernel": {
+        "K24": "4.14.275-1-715b0e26caebba99e5e877ae0487ad57",
+        "K67": "4.14.275-1-715b0e26caebba99e5e877ae0487ad57",
+        "K50": "4.14.275-1-715b0e26caebba99e5e877ae0487ad57"
+      },
+      "busybox": {
+        "K24": "1.34.1",
+        "K67": "1.34.1",
+        "K50": "1.34.1"
+      },
+      "libc": {
+        "K24": "2.27-2",
+        "K67": "2.27-2",
+        "K50": "2.27-2"
+      },
+      "cfgmgr_bin": {
+        "K24": "1.2.0",
+        "K67": "1.2.0",
+        "K50": "1.2.0"
+      },
+      "easymesh": {
+        "K24": "1.15.25a",
+        "K67": "1.15.25d",
+        "K50": "1.15.25dh"
+      },
+      "localrrm": {
+        "K24": "2.0.30i",
+        "K67": "2.0.30u",
+        "K50": "2.0.30uo"
+      },
+      "ussa": {
+        "K24": "4.3.31",
+        "K67": "4.3.33",
+        "K50": "4.3.45"
+      },
+      "obuspa": {
+        "K24": "24.03.06",
+        "K67": "24.03.06",
+        "K50": "24.03.06"
+      },
+      "nuspd": {
+        "K24": "24.03.16",
+        "K67": "24.03.16",
+        "K50": "24.03.16"
+      },
+      "libopenssl3": {
+        "K24": "3.0.14-1",
+        "K67": "3.0.14-1",
+        "K50": "3.0.14-1"
+      },
+      "curl": {
+        "K24": "8.9.1-1",
+        "K67": "8.9.1-1",
+        "K50": "8.9.1-1"
+      },
+      "lxc5": {
+        "K24": "5.0.1",
+        "K67": "5.0.1",
+        "K50": "5.0.1"
+      },
+      "rlyeh": {
+        "K24": "v2.3.2-1",
+        "K67": "v2.3.2-1",
+        "K50": "v2.3.2-1"
+      },
+      "timingila": {
+        "K24": "v2.0.2-1",
+        "K67": "v2.0.2-1",
+        "K50": "v2.0.2-1"
+      },
+      "cthulhu": {
+        "K24": "v3.7.5-1",
+        "K67": "v3.7.5-1",
+        "K50": "v3.7.5-1"
+      }
+    },
+    "comparisons": {
+      "K67": {
+        "file_entries_added": 1,
+        "file_entries_removed": 0,
+        "file_entries_changed": 150,
+        "package_names_added": [],
+        "package_names_removed": [],
+        "package_versions_changed": {
+          "athtestcmd-lith": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "cnssdiag": [
+            "g8e813aa-dirty",
+            "ga3f6cde-dirty"
+          ],
+          "easymesh": [
+            "1.15.25a",
+            "1.15.25d"
+          ],
+          "ftm": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "kmod-qca-wifi-unified-profile": [
+            "4.14.275+g8e813aa-dirty-1",
+            "4.14.275+ga3f6cde-dirty-1"
+          ],
+          "libtcmd": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "localrrm": [
+            "2.0.30i",
+            "2.0.30u"
+          ],
+          "qca-acfg": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-cfg80211": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-cfg80211tool": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-cnss-daemon": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-diag": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-hostap": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-hostapd-cli": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-icm": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-qmi-framework": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-qrtr": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-spectral": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-wpa-cli": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-wpa-supplicant": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qca-wrapd": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qcmbr-10.4": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "qmsct_client": [
+            "g8e813aa-dirty-1",
+            "ga3f6cde-dirty-1"
+          ],
+          "ussa": [
+            "4.3.31",
+            "4.3.33"
+          ]
+        },
+        "changed_path_groups": {
+          "etc/HB_Config.json": 1,
+          "etc/buildinfo": 1,
+          "etc/datamodel.db": 1,
+          "etc/edge-controller_version.txt": 1,
+          "etc/hotplug.d": 1,
+          "etc/init.d": 1,
+          "etc/nokia-value-added-agent_version.txt": 1,
+          "etc/nokia_wifi_smart_link_version.txt": 1,
+          "etc/preconfiguration_global.xml": 1,
+          "lib/libcgi.so": 1,
+          "lib/libnal.so": 1,
+          "lib/libndk_rgwd_sal.so": 1,
+          "lib/libndk_utils.so": 1,
+          "lib/libwldrv.so": 1,
+          "lib/modules": 9,
+          "lib/wifi": 1,
+          "sbin/ndk_appsd": 1,
+          "sbin/ndk_wand": 1,
+          "usr/bin": 20,
+          "usr/cfg": 1,
+          "usr/etc": 6,
+          "usr/lib": 93,
+          "usr/libexec": 2,
+          "usr/sbin": 1,
+          "webs/libcgi.so": 1
+        }
+      },
+      "K50": {
+        "file_entries_added": 14,
+        "file_entries_removed": 14,
+        "file_entries_changed": 291,
+        "package_names_added": [
+          "libsmi"
+        ],
+        "package_names_removed": [
+          "uspCfgUpdate"
+        ],
+        "package_versions_changed": {
+          "athtestcmd-lith": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "cnssdiag": [
+            "g8e813aa-dirty",
+            "g7d835ea-dirty"
+          ],
+          "easymesh": [
+            "1.15.25a",
+            "1.15.25dh"
+          ],
+          "ftm": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "kmod-qca-wifi-unified-profile": [
+            "4.14.275+g8e813aa-dirty-1",
+            "4.14.275+g7d835ea-dirty-1"
+          ],
+          "libtcmd": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "localrrm": [
+            "2.0.30i",
+            "2.0.30uo"
+          ],
+          "qca-acfg": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-cfg80211": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-cfg80211tool": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-cnss-daemon": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-diag": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-hostap": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-hostapd-cli": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-icm": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-qmi-framework": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-qrtr": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-spectral": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-wpa-cli": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-wpa-supplicant": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qca-wrapd": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qcmbr-10.4": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "qmsct_client": [
+            "g8e813aa-dirty-1",
+            "g7d835ea-dirty-1"
+          ],
+          "ussa": [
+            "4.3.31",
+            "4.3.45"
+          ]
+        },
+        "changed_path_groups": {
+          "etc/HB_Config.json": 1,
+          "etc/buildinfo": 1,
+          "etc/configs": 72,
+          "etc/datamodel.db": 1,
+          "etc/edge-controller_version.txt": 1,
+          "etc/hotplug.d": 1,
+          "etc/init.d": 3,
+          "etc/nokia-value-added-agent_version.txt": 1,
+          "etc/nokia_wifi_smart_link_version.txt": 1,
+          "etc/preconfiguration_global.xml": 1,
+          "etc/syslog-ng.conf": 1,
+          "lib/libcgi.so": 1,
+          "lib/libcs_util.so": 1,
+          "lib/libnal.so": 1,
+          "lib/libndk_rgwd_sal.so": 1,
+          "lib/libndk_wand_sal.so": 1,
+          "lib/libwldrv.so": 1,
+          "lib/modules": 11,
+          "lib/wifi": 1,
+          "sbin/ndk_appsd": 1,
+          "sbin/ndk_wand": 1,
+          "sbin/nuspd": 1,
+          "sbin/obuspa": 1,
+          "usr/bin": 30,
+          "usr/cfg": 1,
+          "usr/etc": 8,
+          "usr/exe": 1,
+          "usr/lib": 110,
+          "usr/libexec": 2,
+          "usr/sbin": 9,
+          "webs/capabilities_status_web_app.cgi": 1,
+          "webs/check_expire_web_app.cgi": 1,
+          "webs/dashboard_ntwtopo_status_web_app.cgi": 1,
+          "webs/dashboard_status_web_app.cgi": 1,
+          "webs/get_devmap_cap_status_app.cgi": 1,
+          "webs/libcgi.so": 1,
+          "webs/main_web_app.cgi": 1,
+          "webs/mesh_status_web_app.cgi": 1,
+          "webs/mesh_web_app.cgi": 1,
+          "webs/wan_internet_status_web_app.cgi": 1,
+          "webs/web_whw": 8,
+          "webs/whw_beacon_mode_app.cgi": 1,
+          "webs/whw_beacon_mode_app_status_web_app.cgi": 1,
+          "webs/whw_beacon_mode_app_web_app.cgi": 1,
+          "webs/whw_onboarding_app.cgi": 1,
+          "webs/whw_ota_agent_status_app.cgi": 1,
+          "webs/wlan_config_web_app.cgi": 1
+        }
+      }
+    },
+    "selected_file_fingerprints": {
+      "etc/init.d/secInit": {
+        "K24": "5017487ddd813279fea09f33fc63e875f49aa72cce0c8fd9c00c54d6f92913ee",
+        "K67": "5017487ddd813279fea09f33fc63e875f49aa72cce0c8fd9c00c54d6f92913ee",
+        "K50": "5017487ddd813279fea09f33fc63e875f49aa72cce0c8fd9c00c54d6f92913ee"
+      },
+      "etc/init.d/pcd": {
+        "K24": "ab5612cd0836490564e88e3f13d6e911d2bbab99795e8cb92b907f317acbc3e3",
+        "K67": "ab5612cd0836490564e88e3f13d6e911d2bbab99795e8cb92b907f317acbc3e3",
+        "K50": "ab5612cd0836490564e88e3f13d6e911d2bbab99795e8cb92b907f317acbc3e3"
+      },
+      "usr/lib/libcfg.so": {
+        "K24": "ba799770cc1c67f75e54ba68a94da018e101bf7e495486fc59e85479bc89338a",
+        "K67": "ba799770cc1c67f75e54ba68a94da018e101bf7e495486fc59e85479bc89338a",
+        "K50": "ba799770cc1c67f75e54ba68a94da018e101bf7e495486fc59e85479bc89338a"
+      },
+      "usr/lib/libdmdb.so": {
+        "K24": "21811c4212e1c551c0dd900b74f402f7468944daf524ff2c81dd962ac1421301",
+        "K67": "21811c4212e1c551c0dd900b74f402f7468944daf524ff2c81dd962ac1421301",
+        "K50": "adff3dfd145a98890a1ee20e1d85797c651cefc319fbd72f30e1208c67661730"
+      },
+      "usr/lib/libsec_engine.so": {
+        "K24": "32df444607cd4d3ddf967797ddc621895d8a0a72d47afacdd033464d475bda9b",
+        "K67": "32df444607cd4d3ddf967797ddc621895d8a0a72d47afacdd033464d475bda9b",
+        "K50": "32df444607cd4d3ddf967797ddc621895d8a0a72d47afacdd033464d475bda9b"
+      },
+      "usr/lib/libwebsocket.so": {
+        "K24": "58e4c319e536c6906df98713ad9c02f64f1c2d8227ba5da0ef930514bf93fb82",
+        "K67": "58e4c319e536c6906df98713ad9c02f64f1c2d8227ba5da0ef930514bf93fb82",
+        "K50": "58e4c319e536c6906df98713ad9c02f64f1c2d8227ba5da0ef930514bf93fb82"
+      },
+      "usr/bin/websocket": {
+        "K24": "7b9351ab0339c475ff885b8664ef7360c14a41af86e8ecc5cf290aab74bd5f3f",
+        "K67": "7b9351ab0339c475ff885b8664ef7360c14a41af86e8ecc5cf290aab74bd5f3f",
+        "K50": "7b9351ab0339c475ff885b8664ef7360c14a41af86e8ecc5cf290aab74bd5f3f"
+      },
+      "usr/bin/ai_controller": {
+        "K24": "25b9e7ef76539590da71b60f692b0bece852094c83bb1abe6e85e64ba40d4d73",
+        "K67": "12f02777a21002b941f228d29bfdc6517827ab253c841d83c5b32bda35869173",
+        "K50": "d2c64cd2901a0b8d88a1c1ca81743bfe387ed8ca4aef28b173d0980ea89aa9fd"
+      },
+      "usr/bin/timingila": {
+        "K24": "amxrt",
+        "K67": "amxrt",
+        "K50": "amxrt"
+      },
+      "usr/bin/rlyeh": {
+        "K24": "amxrt",
+        "K67": "amxrt",
+        "K50": "amxrt"
+      },
+      "usr/bin/cthulhu": {
+        "K24": "amxrt",
+        "K67": "amxrt",
+        "K50": "amxrt"
+      },
+      "usr/etc/ecc_pub.pem": {
+        "K24": "2dacc599955de62e2d6e4fef19e998dd9b81679e78e776f5c404a2b263e2a738",
+        "K67": "2dacc599955de62e2d6e4fef19e998dd9b81679e78e776f5c404a2b263e2a738",
+        "K50": "2dacc599955de62e2d6e4fef19e998dd9b81679e78e776f5c404a2b263e2a738"
+      },
+      "sbin/secmulti": {
+        "K24": "e640546f6576bf9c32a26040054141518838906cb7c73b170ae0c23df8c21cca",
+        "K67": "e640546f6576bf9c32a26040054141518838906cb7c73b170ae0c23df8c21cca",
+        "K50": "e640546f6576bf9c32a26040054141518838906cb7c73b170ae0c23df8c21cca"
+      }
+    }
+  },
+  "additional": {
+    "fit_components": {
+      "K24": {
+        "kernel@1": {
+          "bytes": 4923586,
+          "sha256": "f27fea82dcf9e6f0430001dea6c1736a002d459b459bb0d8cc647e2890007e57"
+        },
+        "fdt@xs2426xa.dtb": {
+          "bytes": 38932,
+          "sha256": "bcc45bcbac6e405fec749ef33b29a79bbb6683ac11053777b6246d8eb6f7b666"
+        },
+        "uncompressed_kernel": {
+          "bytes": 11755528,
+          "sha256": "3b4b63871d55c306ad7db000e56dacddf628db945be3e0fadb5feeaef48b1bfa"
+        }
+      },
+      "K67": {
+        "kernel@1": {
+          "bytes": 4923586,
+          "sha256": "74fd038205086a7aa38fc737757a92b2bd1115c1e7a676f4757e6d161efd55d5"
+        },
+        "fdt@xs2426xa.dtb": {
+          "bytes": 38932,
+          "sha256": "bcc45bcbac6e405fec749ef33b29a79bbb6683ac11053777b6246d8eb6f7b666"
+        },
+        "uncompressed_kernel": {
+          "bytes": 11755528,
+          "sha256": "6b97152409c418fa7367b0bf43baf76fa66d9f401b984a2e6076b42999450266"
+        }
+      },
+      "K50": {
+        "kernel@1": {
+          "bytes": 4923582,
+          "sha256": "8bbbc9b98672912e29db14d8ca4cc8f39d9032eb6e46fb9503bac4b28aae5a62"
+        },
+        "fdt@xs2426xa.dtb": {
+          "bytes": 38932,
+          "sha256": "bcc45bcbac6e405fec749ef33b29a79bbb6683ac11053777b6246d8eb6f7b666"
+        },
+        "uncompressed_kernel": {
+          "bytes": 11755528,
+          "sha256": "bdb06b4f24924483adaeeade310d21141adbd63bf0ed130980b54998d51e1b76"
+        }
+      }
+    },
+    "selected_file_hashes": {
+      "K24": {
+        "usr/sbin/sec_extfs": "85fc0ce8ebdbebf518ad23eee85461e59467a47934fa05180ef51c72353d7252",
+        "usr/bin/cfgmgr": "2a50c1e01af70cde2915855e99efbf3e00678e12a964f68ea167ce414f5c3504",
+        "usr/bin/pcd": "154eb57d96956353b3c6c6fcedcecb15fdb344b9bb5d293edfb211eb8aa1d3e5",
+        "usr/lib/libdbgen.so": "b9628331c21546fc45f1208db6f66b33d0db1c1d75569b7ba246f5b7827bf740",
+        "usr/etc/sec.key": "495a3e93d03d267b26bb70d12a04613752906af31294b351fb902e1f57059fbc",
+        "etc/openwrt_release": "477e01080c212d8c041f3a9de03f1c274a5be7e136dd03eb0d1ff6bb00651f2d"
+      },
+      "K67": {
+        "usr/sbin/sec_extfs": "85fc0ce8ebdbebf518ad23eee85461e59467a47934fa05180ef51c72353d7252",
+        "usr/bin/cfgmgr": "df21dd349190e5fe3577d2855a52ce4a24017c73e5635fd54b9ce0d299008e16",
+        "usr/bin/pcd": "154eb57d96956353b3c6c6fcedcecb15fdb344b9bb5d293edfb211eb8aa1d3e5",
+        "usr/lib/libdbgen.so": "b9628331c21546fc45f1208db6f66b33d0db1c1d75569b7ba246f5b7827bf740",
+        "usr/etc/sec.key": "3a4fb939115d0ed265d80eae1bc2d383d9bf2d0d746d3c2dc55aa2cdb1a43e97",
+        "etc/openwrt_release": "477e01080c212d8c041f3a9de03f1c274a5be7e136dd03eb0d1ff6bb00651f2d"
+      },
+      "K50": {
+        "usr/sbin/sec_extfs": "85fc0ce8ebdbebf518ad23eee85461e59467a47934fa05180ef51c72353d7252",
+        "usr/bin/cfgmgr": "fc3d7f2f596a3d3ba12faf08d99ee1bb030a32b25fc10c51b81b0a5564efb0c1",
+        "usr/bin/pcd": "154eb57d96956353b3c6c6fcedcecb15fdb344b9bb5d293edfb211eb8aa1d3e5",
+        "usr/lib/libdbgen.so": "e5a6e96de5f9c2f0887170dcc6aed877b14f18865942d459a41b0b208f478f5d",
+        "usr/etc/sec.key": "7c837f835eee065d992d7a1a7d87171e1e632323755a72b2c465cfbff8685272",
+        "etc/openwrt_release": "477e01080c212d8c041f3a9de03f1c274a5be7e136dd03eb0d1ff6bb00651f2d"
+      }
+    },
+    "environment": [
+      {
+        "crc_valid": true,
+        "active_part": "1",
+        "cfg_partition": "rootfs_data1",
+        "secboot": "2",
+        "sb_flag": "114"
+      },
+      {
+        "crc_valid": true,
+        "active_part": "1",
+        "cfg_partition": "rootfs_data1",
+        "secboot": "2",
+        "sb_flag": "114"
+      }
+    ]
+  },
+  "wifi_and_packaged_table": {
+    "factory_ri_allowlisted": {
+      "OperatorID": "VDQA",
+      "CountryID": "eu",
+      "distinct_ri_serial_from_ont_a": true
+    },
+    "wifi_regular_files": {
+      "K24": 38,
+      "K67": 40
+    },
+    "wifi_changed_file_fingerprints": {
+      "qcn9000/bdwlan.ba0_qa": [
+        null,
+        "7a1903a04510ddfee5883df79efa9fa399ab6587a0a8d1a6b56f2c72e20bef94"
+      ],
+      "qcn9000/bdwlan.ba1_qa": [
+        null,
+        "26138167318f48f483f0526ea94049b632bd13284e5968d27b062611cf766d5e"
+      ]
+    },
+    "packaged_security_table": {
+      "keys_count": {
+        "K24": 11,
+        "K67": 11,
+        "K50": 11
+      },
+      "changed_vs_K24": {
+        "K67": [
+          "key3",
+          "key4"
+        ],
+        "K50": [
+          "key3",
+          "key4"
+        ]
+      }
+    }
+  },
+  "absent_physical_partitions": [
+    "mtd08 log",
+    "mtd11 user_data"
+  ],
+  "oob_present": false
+}

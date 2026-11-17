@@ -1,0 +1,49 @@
+0000599c: 00003fd6  blr x0 ; heuristic unknown {}
+000059a0: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+000059a4: 610100b0  adrp x1, #0x32000
+000059a8: fd030091  mov x29, sp
+000059ac: f35301a9  stp x19, x20, [sp, #0x10]
+000059b0: 730100b0  adrp x19, #0x32000
+000059b4: f40300aa  mov x20, x0
+000059b8: 218c45f9  ldr x1, [x1, #0xb18]
+000059bc: 628a44f9  ldr x2, [x19, #0x910]
+000059c0: 00e041f9  ldr x0, [x0, #0x3c0]
+000059c4: 430040f9  ldr x3, [x2]
+000059c8: a31700f9  str x3, [x29, #0x28]
+000059cc: 030080d2  mov x3, #0
+000059d0: 20003fd6  blr x1 ; heuristic 0xfc40 {"x1": 64576, "x2": "@__stack_chk_guard", "x3": 0}
+000059d4: a0020035  cbnz w0, #0x5a28
+000059d8: 640100b0  adrp x4, #0x32000
+000059dc: 620100b0  adrp x2, #0x32000
+000059e0: e00314aa  mov x0, x20
+000059e4: a10000d0  adrp x1, #0x1b000
+000059e8: 846c47f9  ldr x4, [x4, #0xed8]
+000059ec: 21202491  add x1, x1, #0x908
+000059f0: 42cc44f9  ldr x2, [x2, #0x998]
+000059f4: 43100491  add x3, x2, #0x104
+000059f8: 42100391  add x2, x2, #0xc4
+000059fc: 80003fd6  blr x4 ; heuristic 0xfa90 {"x1": "<NewWANAccessType>Cable</NewWANAccessType>\n<NewLayer1UpstreamMaxBitRate>%s</NewLayer1UpstreamMaxBitRate>\n<NewLayer1DownstreamMaxBitRate>%s</NewLayer1DownstreamMaxBitRate>\n<NewPhysicalLinkStatus>Up</NewPhysicalLinkStatus>\n", "x2": 212804, "x3": 212868, "x4": 64144}
+00005a00: 800240b9  ldr w0, [x20]
+00005a04: 738a44f9  ldr x19, [x19, #0x910]
+00005a08: a21740f9  ldr x2, [x29, #0x28]
+00005a0c: 610240f9  ldr x1, [x19]
+00005a10: 410001ca  eor x1, x2, x1
+00005a14: 810200b5  cbnz x1, #0x5a64
+00005a18: f35341a9  ldp x19, x20, [sp, #0x10]
+00005a1c: fd7bc3a8  ldp x29, x30, [sp], #0x30
+00005a20: c0035fd6  ret 
+00005a24: 1f2003d5  nop 
+00005a28: 620100b0  adrp x2, #0x32000
+00005a2c: 20008052  mov w0, #1
+00005a30: a10000d0  adrp x1, #0x1b000
+00005a34: 21002391  add x1, x1, #0x8c0
+00005a38: 42b845f9  ldr x2, [x2, #0xb70]
+00005a3c: 40003fd6  blr x2 ; heuristic 0xf300 {"x0": 1, "x1": "GetCommonLinkProperties invalid number of parameters", "x2": 62208}
+00005a40: 630100b0  adrp x3, #0x32000
+00005a44: e00314aa  mov x0, x20
+00005a48: a20000d0  adrp x2, #0x1b000
+00005a4c: 42e02391  add x2, x2, #0x8f8
+00005a50: 632847f9  ldr x3, [x3, #0xe50]
+00005a54: 41328052  mov w1, #0x192
+00005a58: 60003fd6  blr x3 ; heuristic 0xf8c0 {"x1": 402, "x2": "Invalid Args", "x3": 63680}
+

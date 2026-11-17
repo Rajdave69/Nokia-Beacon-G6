@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-27",
+  "scope": "Cross-model offline test: ONT native factory parser decoded saved B9 factory record; reconstructed source5 then Python stored-file decoder. No native Beacon9 code, SE init, live helper or router/server contact.",
+  "factory_source": "project://Nokia-Beacon-9/stock-firmware/router-emmc-20261014-033951/partitions/mmcblk0p26.img",
+  "factory_record_sha256": "4ee62fe98b8d68b5552b85ee1712df441bcb63a1b6ba935aa9e5d4f35cd7dcde",
+  "selected_fields": [
+    {
+      "name": "EXT_WEB_PWD",
+      "bytes": 63
+    },
+    {
+      "name": "EXT_WEB_MGNT_PWD",
+      "bytes": 63
+    },
+    {
+      "name": "EXT_SSID1_PWD",
+      "bytes": 10
+    },
+    {
+      "name": "EXT_SSID5_PWD",
+      "bytes": 10
+    },
+    {
+      "name": "EXT_SSID9_PWD",
+      "bytes": 10
+    },
+    {
+      "name": "EXT_MD5_VAR",
+      "bytes": 20
+    },
+    {
+      "name": "EXT_SHA256_VAR",
+      "bytes": 20
+    },
+    {
+      "name": "EXT_SHA256CUS_VAR",
+      "bytes": 20
+    },
+    {
+      "name": "EXT_RANDOM_VAR",
+      "bytes": 20
+    }
+  ],
+  "parser_result": {
+    "status": 0,
+    "stdout": "parsed_fields=9; command/network operations blocked; output private\n"
+  },
+  "files": [
+    {
+      "source": "private-source://SOURCE-131/dmdb_encryption.cfg",
+      "success": true,
+      "metadata": {
+        "magic": "0x124126",
+        "encrypted_bytes": 137641,
+        "decompressed_bytes": 428960,
+        "header_version": "0x4a258a44",
+        "database_object_count": 684,
+        "plaintext_sha256": "c74f1bd9b7157f99b4da181e84b99254009e00316be0c3526ee555e3d662cfc3",
+        "validation": "CRC32, PKCS7, zlib checksum/end/length and binary schema bounds; CBC format has no verified MAC/AEAD authentication."
+      },
+      "private_decoded": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/B9-decoded-DIGEST-058.bin"
+    },
+    {
+      "source": "private-source://SOURCE-131/dmdb_encryption.cfg.bak",
+      "success": true,
+      "metadata": {
+        "magic": "0x124126",
+        "encrypted_bytes": 137641,
+        "decompressed_bytes": 428960,
+        "header_version": "0x4a258a44",
+        "database_object_count": 684,
+        "plaintext_sha256": "c74f1bd9b7157f99b4da181e84b99254009e00316be0c3526ee555e3d662cfc3",
+        "validation": "CRC32, PKCS7, zlib checksum/end/length and binary schema bounds; CBC format has no verified MAC/AEAD authentication."
+      },
+      "private_decoded": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/B9-decoded-DIGEST-058.bin"
+    }
+  ],
+  "limit": "B9 exact sec_extfs static field-order parity still needs checking separately; real file validation constrains correctness but is not a live source comparison.",
+  "subsequent_parity_result": "Verified exact order at tableVA0x15008 through PT_DYNAMICDT_RELA; see Beacon9-sec-extfs-parity.json. Four-file result supersedes this initial two-file subset."
+}

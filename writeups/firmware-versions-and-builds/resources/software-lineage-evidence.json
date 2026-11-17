@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "scope": "Synthesis of existing local evidence, no new firmware execution, router test, cloud query or documentation crawl. User proposes shared non-hardware differences as25.xx changes; recorded as working hypothesis with explicit counterexamples, not a proven universal rule.",
+  "captured_profile_count": 5,
+  "package_control_count": 3078,
+  "hypothesis": "Shared Nokia management/security/configuration lineage; investigate release/build-policy deltas before treating behavior as unique to Beacon9.",
+  "stronger_claim_unproven": "All non-hardware differences are caused by25.xx.",
+  "candidate_release_delta": "Dedicated ONTUSER creator implemented G6 24.02/24.04 and XS24.03; inactive B9 25.03. Missing same-model24vs25 control.",
+  "counterexamples": {
+    "source5": "sec_extfs supplied by XS24.03 and B9 25.03, absent examinedG6; already24.xx.",
+    "phase_hooks": "XS24.03/G6HJL24.04/B9 share dispatcher.",
+    "key3_key4": "Rotate within XS24.03 maintenance builds.",
+    "key7_2": "Stable withinXS/G6 pairs but cross-profile different; cannot assign cause to majortrain.",
+    "factory_policy": "Credentials and key18 provisioning plus VDQA/BOQA recipes are distinct axes."
+  },
+  "untested_controls": [
+    "G625.xx binary",
+    "B924.xx binary, if any",
+    "Same model/release across more operators"
+  ],
+  "evidence_sources": [
+    {
+      "source": "project://Nokia-Beacon-G6/knowledgebases/xs2426xa-analysis-evidence.json",
+      "bytes": 122514,
+      "sha256": "2d694532cc4c8f1009cffaaad069205f5aed528d943f1c92bedf6fb62873ca74"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/static-comparison.json",
+      "bytes": 549847,
+      "sha256": "8055e89b42b0af72da39dc1a26429e09f842bcaaf82ef6a2401c654c9b2eddeb"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/writeups/xs2426xa-24-03-comparison/resources/ONTUSER-generator-comparison.json",
+      "bytes": 1746,
+      "sha256": "424ae58256d3902737aadb55d54d980c72a33fb774ad514003ba5daf6d02c8de"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/knowledgebases/comparing-other-g6-routers-evidence.json",
+      "bytes": 72647,
+      "sha256": "d8a2771f61ed60b45bbb2b57888eb3fdbbf0e430b8aa9ce564e2f7620256fadc"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/knowledgebases/older-slot-startup-and-services-evidence.json",
+      "bytes": 25984,
+      "sha256": "6cfc3b4b970bf610f86a0e7eeeb30fde45bea260d5f3079955bfc7acc409e583"
+    }
+  ]
+}

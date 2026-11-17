@@ -1,0 +1,52 @@
+
+private-source://PROFILE-ONT-KJL/usr/bin/swmgnt:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000b660 <get_uptime@@Base+0x5d20>:
+    b660:	a906ffbf 	stp	xzr, xzr, [x29, #104]
+    b664:	d2820000 	mov	x0, #0x1000                	// #4096
+    b668:	a907ffbf 	stp	xzr, xzr, [x29, #120]
+    b66c:	f90047bf 	str	xzr, [x29, #136]
+    b670:	97ffe234 	bl	3f40 <malloc@plt>
+    b674:	f90033a0 	str	x0, [x29, #96]
+    b678:	aa0003f7 	mov	x23, x0
+    b67c:	b4000fc0 	cbz	x0, b874 <get_uptime@@Base+0x5f34>
+    b680:	d2820018 	mov	x24, #0x1000                	// #4096
+    b684:	d2a00200 	mov	x0, #0x100000              	// #1048576
+    b688:	f90037b8 	str	x24, [x29, #104]
+    b68c:	97ffe22d 	bl	3f40 <malloc@plt>
+    b690:	f9003fa0 	str	x0, [x29, #120]
+    b694:	b40018a0 	cbz	x0, b9a8 <get_uptime@@Base+0x6068>
+    b698:	d2a00202 	mov	x2, #0x100000              	// #1048576
+    b69c:	2a1803e1 	mov	w1, w24
+    b6a0:	aa1703e0 	mov	x0, x23
+    b6a4:	f90043a2 	str	x2, [x29, #128]
+    b6a8:	97fff298 	bl	8108 <get_uptime@@Base+0x27c8>
+    b6ac:	912582d9 	add	x25, x22, #0x960
+    b6b0:	a9460fa2 	ldp	x2, x3, [x29, #96]
+    b6b4:	9118c281 	add	x1, x20, #0x630
+    b6b8:	91054038 	add	x24, x1, #0x150
+    b6bc:	91058037 	add	x23, x1, #0x160
+    b6c0:	8b030042 	add	x2, x2, x3
+    b6c4:	2a0003e6 	mov	w6, w0
+    b6c8:	528043c5 	mov	w5, #0x21e                 	// #542
+    b6cc:	aa1803e4 	mov	x4, x24
+    b6d0:	2a0503e1 	mov	w1, w5
+    b6d4:	aa1903e3 	mov	x3, x25
+    b6d8:	381ff05f 	sturb	wzr, [x2, #-1]
+    b6dc:	aa1703e0 	mov	x0, x23
+    b6e0:	90000042 	adrp	x2, 13000 <_fini@@Base+0x397c>
+    b6e4:	91062042 	add	x2, x2, #0x188
+    b6e8:	f94033a7 	ldr	x7, [x29, #96]
+    b6ec:	97ffe221 	bl	3f70 <nalLogNotice@plt>
+    b6f0:	f94033a0 	ldr	x0, [x29, #96]
+    b6f4:	97ffe0a3 	bl	3980 <strlen@plt>
+    b6f8:	f90037a0 	str	x0, [x29, #104]
+    b6fc:	910163a2 	add	x2, x29, #0x58
+    b700:	9101e3a1 	add	x1, x29, #0x78
+    b704:	910183a0 	add	x0, x29, #0x60
+    b708:	97ffe840 	bl	5808 <main@@Base+0x1618>
+    b70c:	f9402fa6 	ldr	x6, [x29, #88]
+    b710:	f10320df 	cmp	x6, #0xc8

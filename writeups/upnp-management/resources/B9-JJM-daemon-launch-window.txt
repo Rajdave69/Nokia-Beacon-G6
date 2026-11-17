@@ -1,0 +1,165 @@
+000212b0: 60023fd6  blr x19 ; heuristic unknown {}
+000212b4: 020080d2  mov x2, #0
+000212b8: e10319aa  mov x1, x25
+000212bc: 60008052  mov w0, #3
+000212c0: 60023fd6  blr x19 ; heuristic unknown {"x0": 3, "x2": 0}
+000212c4: a13340f9  ldr x1, [x29, #0x60]
+000212c8: a07740b9  ldr w0, [x29, #0x74]
+000212cc: 21c843f9  ldr x1, [x1, #0x790]
+000212d0: a26f42f9  ldr x2, [x29, #0x4d8]
+000212d4: 210040f9  ldr x1, [x1]
+000212d8: 410001ca  eor x1, x2, x1
+000212dc: b60200b9  str w22, [x21]
+000212e0: 410c00b4  cbz x1, #0x21468
+000212e4: 200300f0  adrp x0, #0x88000
+000212e8: 00a847f9  ldr x0, [x0, #0xf50]
+000212ec: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+000212f0: b5030d91  add x21, x29, #0x340
+000212f4: bfa301f9  str xzr, [x29, #0x340]
+000212f8: a0220091  add x0, x21, #8
+000212fc: bfcb03b9  str wzr, [x29, #0x3c8]
+00021300: 00033fd6  blr x24 ; heuristic unknown {}
+00021304: a05741f9  ldr x0, [x29, #0x2a8]
+00021308: 1f0400f1  cmp x0, #1
+0002130c: a0000054  b.eq #0x21320
+00021310: 020080d2  mov x2, #0
+00021314: e10315aa  mov x1, x21
+00021318: 40008052  mov w0, #2
+0002131c: 60033fd6  blr x27 ; heuristic unknown {"x0": 2, "x2": 0}
+00021320: a00b41f9  ldr x0, [x29, #0x210]
+00021324: 1f0400f1  cmp x0, #1
+00021328: c0000054  b.eq #0x21340
+0002132c: 736647f9  ldr x19, [x19, #0xec8]
+00021330: 020080d2  mov x2, #0
+00021334: e10315aa  mov x1, x21
+00021338: 60008052  mov w0, #3
+0002133c: 60023fd6  blr x19 ; heuristic unknown {"x0": 3, "x2": 0}
+00021340: 945245f9  ldr x20, [x20, #0xaa0]
+00021344: 020080d2  mov x2, #0
+00021348: e10317aa  mov x1, x23
+0002134c: 40008052  mov w0, #2
+00021350: 80023fd6  blr x20 ; heuristic unknown {"x0": 2, "x2": 0}
+00021354: 200300f0  adrp x0, #0x88000
+00021358: 00d847f9  ldr x0, [x0, #0xfb0]
+0002135c: 00003fd6  blr x0 ; heuristic @getuid {"x0": "@getuid"}
+00021360: 00020035  cbnz w0, #0x213a0
+00021364: 210300f0  adrp x1, #0x88000
+00021368: 140200f0  adrp x20, #0x64000
+0002136c: 940e0691  add x20, x20, #0x183
+00021370: 21b442f9  ldr x1, [x1, #0x568]
+00021374: e00314aa  mov x0, x20
+00021378: 330300d0  adrp x19, #0x87000
+0002137c: 350300f0  adrp x21, #0x88000
+00021380: 20003fd6  blr x1 ; heuristic @getpwnam {"x0": "appService", "x1": "@getpwnam"}
+00021384: 800400b5  cbnz x0, #0x21414
+00021388: 737247f9  ldr x19, [x19, #0xee0]
+0002138c: 00008052  mov w0, #0
+00021390: 60023fd6  blr x19 ; heuristic @setuid {"x0": 0}
+00021394: b5f240f9  ldr x21, [x21, #0x1e0]
+00021398: 00008052  mov w0, #0
+0002139c: a0023fd6  blr x21 ; heuristic @setgid {"x0": 0}
+000213a0: 230300f0  adrp x3, #0x88000
+000213a4: b3630f91  add x19, x29, #0x3d8
+000213a8: 022080d2  mov x2, #0x100
+000213ac: 01008052  mov w1, #0
+000213b0: 63e840f9  ldr x3, [x3, #0x1d0]
+000213b4: e00313aa  mov x0, x19
+000213b8: 60003fd6  blr x3 ; heuristic @memset {"x1": 0, "x2": 256, "x3": "@memset"}
+000213bc: 240300f0  adrp x4, #0x88000
+000213c0: 54030090  adrp x20, #0x89000
+000213c4: 839a40f9  ldr x3, [x20, #0x130]
+000213c8: 844040f9  ldr x4, [x4, #0x80]
+000213cc: 012080d2  mov x1, #0x100
+000213d0: 020200f0  adrp x2, #0x64000
+000213d4: 42380691  add x2, x2, #0x18e
+000213d8: e00313aa  mov x0, x19
+000213dc: 80003fd6  blr x4 ; heuristic @snprintf {"x1": 256, "x2": "chmod o+rx %s", "x3": "/sbin/ndk_upnpd", "x4": "@snprintf"}
+000213e0: 210300f0  adrp x1, #0x88000
+000213e4: e00313aa  mov x0, x19
+000213e8: 219041f9  ldr x1, [x1, #0x320]
+000213ec: 20003fd6  blr x1 ; heuristic @system {"x1": "@system"}
+000213f0: 220300f0  adrp x2, #0x88000
+000213f4: 809a40f9  ldr x0, [x20, #0x130]
+000213f8: e1031caa  mov x1, x28
+000213fc: 423846f9  ldr x2, [x2, #0xc70]
+00021400: 40003fd6  blr x2 ; heuristic @execv {"x0": "/sbin/ndk_upnpd", "x2": "@execv"}
+00021404: 210300d0  adrp x1, #0x87000
+00021408: e00f8052  mov w0, #0x7f
+0002140c: 21b447f9  ldr x1, [x1, #0xf68]
+00021410: 20003fd6  blr x1 ; heuristic @_exit {"x0": 127, "x1": "@_exit"}
+00021414: 220300f0  adrp x2, #0x88000
+00021418: 010080d2  mov x1, #0
+0002141c: 165c4229  ldp w22, w23, [x0, #0x10]
+00021420: 000080d2  mov x0, #0
+00021424: 42c447f9  ldr x2, [x2, #0xf88]
+00021428: 40003fd6  blr x2 ; heuristic @setgroups {"x0": 0, "x1": 0, "x2": "@setgroups"}
+0002142c: e0faff37  tbnz w0, #0x1f, #0x21388
+00021430: a1f240f9  ldr x1, [x21, #0x1e0]
+00021434: e003172a  mov w0, w23
+00021438: 20003fd6  blr x1 ; heuristic unknown {}
+0002143c: 60faff37  tbnz w0, #0x1f, #0x21388
+00021440: 220300f0  adrp x2, #0x88000
+00021444: e103172a  mov w1, w23
+00021448: e00314aa  mov x0, x20
+0002144c: 422045f9  ldr x2, [x2, #0xa40]
+00021450: 40003fd6  blr x2 ; heuristic @initgroups {"x0": 561152, "x2": "@initgroups"}
+00021454: 617247f9  ldr x1, [x19, #0xee0]
+00021458: e003162a  mov w0, w22
+0002145c: 20003fd6  blr x1 ; heuristic unknown {}
+00021460: 00faff36  tbz w0, #0x1f, #0x213a0
+00021464: c9ffff17  b #0x21388
+00021468: fd7b40a9  ldp x29, x30, [sp]
+0002146c: f35341a9  ldp x19, x20, [sp, #0x10]
+00021470: f55b42a9  ldp x21, x22, [sp, #0x20]
+00021474: f76343a9  ldp x23, x24, [sp, #0x30]
+00021478: f96b44a9  ldp x25, x26, [sp, #0x40]
+0002147c: fb7345a9  ldp x27, x28, [sp, #0x50]
+00021480: ff831391  add sp, sp, #0x4e0
+00021484: c0035fd6  ret 
+00021488: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+0002148c: 210300f0  adrp x1, #0x88000
+00021490: fd030091  mov x29, sp
+00021494: f55b02a9  stp x21, x22, [sp, #0x20]
+00021498: 36c843f9  ldr x22, [x1, #0x790]
+0002149c: f35301a9  stp x19, x20, [sp, #0x10]
+000214a0: f40301aa  mov x20, x1
+000214a4: c20240f9  ldr x2, [x22]
+000214a8: a21f00f9  str x2, [x29, #0x38]
+000214ac: 020080d2  mov x2, #0
+000214b0: 02004039  ldrb w2, [x0]
+000214b4: 22040034  cbz w2, #0x21538
+000214b8: 530300d0  adrp x19, #0x8b000
+000214bc: 73823091  add x19, x19, #0xc20
+000214c0: 61064039  ldrb w1, [x19, #1]
+000214c4: a1030034  cbz w1, #0x21538
+000214c8: 220300f0  adrp x2, #0x88000
+000214cc: 73060091  add x19, x19, #1
+000214d0: f50300aa  mov x21, x0
+000214d4: e10313aa  mov x1, x19
+000214d8: 42a040f9  ldr x2, [x2, #0x140]
+000214dc: 40003fd6  blr x2 ; heuristic @strcmp {"x1": 572449, "x2": "@strcmp"}
+000214e0: c0020034  cbz w0, #0x21538
+000214e4: a11f40f9  ldr x1, [x29, #0x38]
+000214e8: c00240f9  ldr x0, [x22]
+000214ec: 200000ca  eor x0, x1, x0
+000214f0: 800000b4  cbz x0, #0x21500
+000214f4: 200300f0  adrp x0, #0x88000
+000214f8: 00a847f9  ldr x0, [x0, #0xf50]
+000214fc: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+00021500: 250300f0  adrp x5, #0x88000
+00021504: e40313aa  mov x4, x19
+00021508: e30315aa  mov x3, x21
+0002150c: 020200f0  adrp x2, #0x64000
+00021510: 427c0491  add x2, x2, #0x11f
+00021514: f35341a9  ldp x19, x20, [sp, #0x10]
+00021518: 010200f0  adrp x1, #0x64000
+0002151c: 21700691  add x1, x1, #0x19c
+00021520: f55b42a9  ldp x21, x22, [sp, #0x20]
+00021524: 000200f0  adrp x0, #0x64000
+00021528: 00e40591  add x0, x0, #0x179
+0002152c: a5dc44f9  ldr x5, [x5, #0x9b8]
+00021530: fd7bc4a8  ldp x29, x30, [sp], #0x40
+00021534: a0001fd6  br x5
+00021538: 81ca43f9  ldr x1, [x20, #0x790]
+0002153c: a21f40f9  ldr x2, [x29, #0x38]
+

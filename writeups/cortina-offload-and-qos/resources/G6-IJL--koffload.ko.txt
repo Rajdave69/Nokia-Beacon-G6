@@ -1,0 +1,203 @@
+create_wifi_offload_netlink_sock (0xce0, 168 bytes)
+Disassembly of section .text:
+
+0000000000000ce0 <create_wifi_offload_netlink_sock>:
+     ce0:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+     ce4:	910003fd 	mov	x29, sp
+     ce8:	a90153f3 	stp	x19, x20, [sp, #16]
+     cec:	aa1e03e0 	mov	x0, x30
+     cf0:	94000000 	bl	0 <_mcount>
+			cf0: R_AARCH64_CALL26	_mcount
+     cf4:	90000002 	adrp	x2, b68 <dhcp_offload_nl_data>
+			cf4: R_AARCH64_ADR_PREL_PG_HI21	dhcp_offload_nl_data
+     cf8:	91000042 	add	x2, x2, #0x0
+			cf8: R_AARCH64_ADD_ABS_LO12_NC	dhcp_offload_nl_data
+     cfc:	a9027fbf 	stp	xzr, xzr, [x29, #32]
+     d00:	52800361 	mov	w1, #0x1b                  	// #27
+     d04:	f90017a2 	str	x2, [x29, #40]
+     d08:	90000000 	adrp	x0, 0 <is_dhcpv4_packet-0xc0>
+			d08: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x698
+     d0c:	a9037fbf 	stp	xzr, xzr, [x29, #48]
+     d10:	91000000 	add	x0, x0, #0x0
+			d10: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x698
+     d14:	a9047fbf 	stp	xzr, xzr, [x29, #64]
+     d18:	94000000 	bl	0 <printk>
+			d18: R_AARCH64_CALL26	printk
+     d1c:	910083a3 	add	x3, x29, #0x20
+     d20:	90000002 	adrp	x2, 0 <is_dhcpv4_packet-0xc0>
+			d20: R_AARCH64_ADR_PREL_PG_HI21	__this_module
+     d24:	91000042 	add	x2, x2, #0x0
+			d24: R_AARCH64_ADD_ABS_LO12_NC	__this_module
+     d28:	90000013 	adrp	x19, 0 <is_dhcpv4_packet-0xc0>
+			d28: R_AARCH64_ADR_PREL_PG_HI21	.bss
+     d2c:	52800361 	mov	w1, #0x1b                  	// #27
+     d30:	90000000 	adrp	x0, 0 <init_net>
+			d30: R_AARCH64_ADR_PREL_PG_HI21	init_net
+     d34:	91000000 	add	x0, x0, #0x0
+			d34: R_AARCH64_ADD_ABS_LO12_NC	init_net
+     d38:	94000000 	bl	0 <__netlink_kernel_create>
+			d38: R_AARCH64_CALL26	__netlink_kernel_create
+     d3c:	90000001 	adrp	x1, 0 <is_dhcpv4_packet-0xc0>
+			d3c: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x10
+     d40:	91000021 	add	x1, x1, #0x0
+			d40: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x10
+     d44:	f9000260 	str	x0, [x19]
+			d44: R_AARCH64_LDST64_ABS_LO12_NC	.bss
+     d48:	91006021 	add	x1, x1, #0x18
+     d4c:	91000274 	add	x20, x19, #0x0
+			d4c: R_AARCH64_ADD_ABS_LO12_NC	.bss
+     d50:	90000000 	adrp	x0, 0 <is_dhcpv4_packet-0xc0>
+			d50: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x6c8
+     d54:	91000000 	add	x0, x0, #0x0
+			d54: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x6c8
+     d58:	94000000 	bl	0 <printk>
+			d58: R_AARCH64_CALL26	printk
+     d5c:	f9400261 	ldr	x1, [x19]
+			d5c: R_AARCH64_LDST64_ABS_LO12_NC	.bss
+     d60:	52800000 	mov	w0, #0x0                   	// #0
+     d64:	b900129f 	str	wzr, [x20, #16]
+     d68:	b50000a1 	cbnz	x1, d7c <create_wifi_offload_netlink_sock+0x9c>
+     d6c:	90000000 	adrp	x0, 0 <is_dhcpv4_packet-0xc0>
+			d6c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x6d8
+     d70:	91000000 	add	x0, x0, #0x0
+			d70: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x6d8
+     d74:	94000000 	bl	0 <printk>
+			d74: R_AARCH64_CALL26	printk
+     d78:	12800120 	mov	w0, #0xfffffff6            	// #-10
+     d7c:	a94153f3 	ldp	x19, x20, [sp, #16]
+     d80:	a8c57bfd 	ldp	x29, x30, [sp], #80
+     d84:	d65f03c0 	ret
+
+offload_kernel_set_dhcp_trap (0x640, 272 bytes)
+Disassembly of section .text:
+
+0000000000000640 <offload_kernel_set_dhcp_trap>:
+     640:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+     644:	910003fd 	mov	x29, sp
+     648:	a90153f3 	stp	x19, x20, [sp, #16]
+     64c:	2a0003f3 	mov	w19, w0
+     650:	2a0103f4 	mov	w20, w1
+     654:	aa1e03e0 	mov	x0, x30
+     658:	94000000 	bl	0 <_mcount>
+			658: R_AARCH64_CALL26	_mcount
+     65c:	2a1303e2 	mov	w2, w19
+     660:	2a1403e1 	mov	w1, w20
+     664:	a9027fbf 	stp	xzr, xzr, [x29, #32]
+     668:	90000000 	adrp	x0, 0 <is_dhcpv4_packet-0xc0>
+			668: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x2c8
+     66c:	a9037fbf 	stp	xzr, xzr, [x29, #48]
+     670:	91000000 	add	x0, x0, #0x0
+			670: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x2c8
+     674:	94000000 	bl	0 <printk>
+			674: R_AARCH64_CALL26	printk
+     678:	394083a0 	ldrb	w0, [x29, #32]
+     67c:	52800021 	mov	w1, #0x1                   	// #1
+     680:	52800204 	mov	w4, #0x10                  	// #16
+     684:	390093a1 	strb	w1, [x29, #36]
+     688:	321f0000 	orr	w0, w0, #0x2
+     68c:	910083a6 	add	x6, x29, #0x20
+     690:	390083a0 	strb	w0, [x29, #32]
+     694:	528000c5 	mov	w5, #0x6                   	// #6
+     698:	72a00084 	movk	w4, #0x4, lsl #16
+     69c:	2a1403e3 	mov	w3, w20
+     6a0:	52800102 	mov	w2, #0x8                   	// #8
+     6a4:	2a1303e1 	mov	w1, w19
+     6a8:	52800000 	mov	w0, #0x0                   	// #0
+     6ac:	94000000 	bl	0 <ca_special_packet_set>
+			6ac: R_AARCH64_CALL26	ca_special_packet_set
+     6b0:	34000100 	cbz	w0, 6d0 <offload_kernel_set_dhcp_trap+0x90>
+     6b4:	90000002 	adrp	x2, 0 <is_dhcpv4_packet-0xc0>
+			6b4: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x2f0
+     6b8:	2a0003e1 	mov	w1, w0
+     6bc:	91000040 	add	x0, x2, #0x0
+			6bc: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x2f0
+     6c0:	94000000 	bl	0 <printk>
+			6c0: R_AARCH64_CALL26	printk
+     6c4:	12800000 	mov	w0, #0xffffffff            	// #-1
+     6c8:	1400001f 	b	744 <offload_kernel_set_dhcp_trap+0x104>
+     6cc:	d503201f 	nop
+     6d0:	52800202 	mov	w2, #0x10                  	// #16
+     6d4:	2a1303e1 	mov	w1, w19
+     6d8:	72a00082 	movk	w2, #0x4, lsl #16
+     6dc:	90000000 	adrp	x0, 0 <is_dhcpv4_packet-0xc0>
+			6dc: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x318
+     6e0:	91000000 	add	x0, x0, #0x0
+			6e0: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x318
+     6e4:	94000000 	bl	0 <printk>
+			6e4: R_AARCH64_CALL26	printk
+     6e8:	52800204 	mov	w4, #0x10                  	// #16
+     6ec:	910083a6 	add	x6, x29, #0x20
+     6f0:	528000c5 	mov	w5, #0x6                   	// #6
+     6f4:	72a00084 	movk	w4, #0x4, lsl #16
+     6f8:	2a1403e3 	mov	w3, w20
+     6fc:	52800122 	mov	w2, #0x9                   	// #9
+     700:	2a1303e1 	mov	w1, w19
+     704:	52800000 	mov	w0, #0x0                   	// #0
+     708:	94000000 	bl	0 <ca_special_packet_set>
+			708: R_AARCH64_CALL26	ca_special_packet_set
+     70c:	340000e0 	cbz	w0, 728 <offload_kernel_set_dhcp_trap+0xe8>
+     710:	90000002 	adrp	x2, 0 <is_dhcpv4_packet-0xc0>
+			710: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x358
+     714:	2a0003e1 	mov	w1, w0
+     718:	91000040 	add	x0, x2, #0x0
+			718: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x358
+     71c:	94000000 	bl	0 <printk>
+			71c: R_AARCH64_CALL26	printk
+     720:	12800000 	mov	w0, #0xffffffff            	// #-1
+     724:	14000008 	b	744 <offload_kernel_set_dhcp_trap+0x104>
+     728:	52800202 	mov	w2, #0x10                  	// #16
+     72c:	90000000 	adrp	x0, 0 <is_dhcpv4_packet-0xc0>
+			72c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x388
+     730:	72a00082 	movk	w2, #0x4, lsl #16
+     734:	2a1303e1 	mov	w1, w19
+     738:	91000000 	add	x0, x0, #0x0
+			738: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x388
+     73c:	94000000 	bl	0 <printk>
+			73c: R_AARCH64_CALL26	printk
+     740:	52800000 	mov	w0, #0x0                   	// #0
+     744:	a94153f3 	ldp	x19, x20, [sp, #16]
+     748:	a8c47bfd 	ldp	x29, x30, [sp], #64
+     74c:	d65f03c0 	ret
+
+offload_rx_callback_register (0x750, 108 bytes)
+Disassembly of section .text:
+
+0000000000000750 <offload_rx_callback_register>:
+     750:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+     754:	910003fd 	mov	x29, sp
+     758:	aa1e03e0 	mov	x0, x30
+     75c:	94000000 	bl	0 <_mcount>
+			75c: R_AARCH64_CALL26	_mcount
+     760:	528000e0 	mov	w0, #0x7                   	// #7
+     764:	52800021 	mov	w1, #0x1                   	// #1
+     768:	72a00060 	movk	w0, #0x3, lsl #16
+     76c:	94000000 	bl	640 <offload_kernel_set_dhcp_trap>
+			76c: R_AARCH64_CALL26	offload_kernel_set_dhcp_trap
+     770:	36f80080 	tbz	w0, #31, 780 <offload_rx_callback_register+0x30>
+     774:	90000000 	adrp	x0, 0 <is_dhcpv4_packet-0xc0>
+			774: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x3c8
+     778:	91000000 	add	x0, x0, #0x0
+			778: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x3c8
+     77c:	94000000 	bl	0 <printk>
+			77c: R_AARCH64_CALL26	printk
+     780:	90000002 	adrp	x2, 0 <is_dhcpv4_packet-0xc0>
+			780: R_AARCH64_ADR_PREL_PG_HI21	.text+0x550
+     784:	52800005 	mov	w5, #0x0                   	// #0
+     788:	d2800004 	mov	x4, #0x0                   	// #0
+     78c:	52800003 	mov	w3, #0x0                   	// #0
+     790:	91000042 	add	x2, x2, #0x0
+			790: R_AARCH64_ADD_ABS_LO12_NC	.text+0x550
+     794:	52800101 	mov	w1, #0x8                   	// #8
+     798:	52800000 	mov	w0, #0x0                   	// #0
+     79c:	94000000 	bl	0 <__ca_rx_register>
+			79c: R_AARCH64_CALL26	__ca_rx_register
+     7a0:	340000a0 	cbz	w0, 7b4 <offload_rx_callback_register+0x64>
+     7a4:	90000002 	adrp	x2, 0 <is_dhcpv4_packet-0xc0>
+			7a4: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x3f0
+     7a8:	2a0003e1 	mov	w1, w0
+     7ac:	91000040 	add	x0, x2, #0x0
+			7ac: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x3f0
+     7b0:	94000000 	bl	0 <printk>
+			7b0: R_AARCH64_CALL26	printk
+     7b4:	a8c17bfd 	ldp	x29, x30, [sp], #16
+     7b8:	d65f03c0 	ret

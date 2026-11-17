@@ -1,0 +1,47 @@
+
+ndbusInvokeMethodCall:
+000045d8: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+000045dc: fd030091  mov x29, sp
+000045e0: f35301a9  stp x19, x20, [sp, #0x10]
+000045e4: b30000b0  adrp x19, #0x19000
+000045e8: f40300aa  mov x20, x0
+000045ec: f55b02a9  stp x21, x22, [sp, #0x20]
+000045f0: 73fa47f9  ldr x19, [x19, #0xff0]
+000045f4: f50301aa  mov x21, x1
+000045f8: f603022a  mov w22, w2
+000045fc: 600240f9  ldr x0, [x19]
+00004600: a01f00f9  str x0, [x29, #0x38]
+00004604: 000080d2  mov x0, #0
+00004608: d2fbff97  bl #0x3550 ; heuristic ndbusGetInstance@plt {"x0": 0}
+0000460c: e00100b4  cbz x0, #0x4648
+00004610: a11f40f9  ldr x1, [x29, #0x38]
+00004614: 600240f9  ldr x0, [x19]
+00004618: 200000ca  eor x0, x1, x0
+0000461c: 600300b5  cbnz x0, #0x4688
+00004620: a20000d0  adrp x2, #0x1a000
+00004624: e303162a  mov w3, w22
+00004628: e10315aa  mov x1, x21
+0000462c: e00314aa  mov x0, x20
+00004630: 421840f9  ldr x2, [x2, #0x30]
+00004634: f35341a9  ldp x19, x20, [sp, #0x10]
+00004638: f55b42a9  ldp x21, x22, [sp, #0x20]
+0000463c: 420040f9  ldr x2, [x2]
+00004640: fd7bc4a8  ldp x29, x30, [sp], #0x40
+00004644: 47fbff17  b #0x3360
+00004648: 010000f0  adrp x1, #0x7000
+0000464c: 21a03791  add x1, x1, #0xde8
+00004650: e0268052  mov w0, #0x137
+00004654: 21e00191  add x1, x1, #0x78
+00004658: 020000f0  adrp x2, #0x7000
+0000465c: 42a03e91  add x2, x2, #0xfa8
+00004660: c8fcff97  bl #0x3980 ; heuristic ndbusLogFatalReal@plt {"x0": 311, "x1": "ndbusInvokeMethodCall", "x2": "falied to get connection instance\n"}
+00004664: a01f40f9  ldr x0, [x29, #0x38]
+00004668: 610240f9  ldr x1, [x19]
+0000466c: 010001ca  eor x1, x0, x1
+00004670: 20008052  mov w0, #1
+00004674: a10000b5  cbnz x1, #0x4688
+00004678: f35341a9  ldp x19, x20, [sp, #0x10]
+0000467c: f55b42a9  ldp x21, x22, [sp, #0x20]
+00004680: fd7bc4a8  ldp x29, x30, [sp], #0x40
+00004684: c0035fd6  ret 
+00004688: e2fbff97  bl #0x3610 ; heuristic __stack_chk_fail@plt {}

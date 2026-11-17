@@ -1,0 +1,157 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/lib/libnal.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000166dc <nal_getSwAutoUpgradeInfo@@Base>:
+   166dc:	d12503ff 	sub	sp, sp, #0x940
+   166e0:	b0000383 	adrp	x3, 87000 <_fini@@Base+0x28dd8>
+   166e4:	d28118a2 	mov	x2, #0x8c5                 	// #2245
+   166e8:	a9007bfd 	stp	x29, x30, [sp]
+   166ec:	910003fd 	mov	x29, sp
+   166f0:	f947e863 	ldr	x3, [x3, #4048]  ; GOT memset@GLIBC_2.17
+   166f4:	a90153f3 	stp	x19, x20, [sp, #16]
+   166f8:	b0000393 	adrp	x19, 87000 <_fini@@Base+0x28dd8>
+   166fc:	a9025bf5 	stp	x21, x22, [sp, #32]
+   16700:	aa0003f6 	mov	x22, x0
+   16704:	a90363f7 	stp	x23, x24, [sp, #48]
+   16708:	9101c3b5 	add	x21, x29, #0x70
+   1670c:	f9420660 	ldr	x0, [x19, #1032]  ; GOT __stack_chk_guard@GLIBC_2.17
+   16710:	b0000394 	adrp	x20, 87000 <_fini@@Base+0x28dd8>
+   16714:	a9046bf9 	stp	x25, x26, [sp, #64]
+   16718:	a90573fb 	stp	x27, x28, [sp, #80]
+   1671c:	f9400001 	ldr	x1, [x0]
+   16720:	f9049fa1 	str	x1, [x29, #2360]
+   16724:	d2800001 	mov	x1, #0x0                   	// #0
+   16728:	aa1503e0 	mov	x0, x21
+   1672c:	d63f0060 	blr	x3
+   16730:	f90033b3 	str	x19, [x29, #96]
+   16734:	52804ae0 	mov	w0, #0x257                 	// #599
+   16738:	b90073a0 	str	w0, [x29, #112]
+   1673c:	b0000253 	adrp	x19, 5f000 <_fini@@Base+0xdd8>
+   16740:	b5000156 	cbnz	x22, 16768 <nal_getSwAutoUpgradeInfo@@Base+0x8c>
+   16744:	f9424e94 	ldr	x20, [x20, #1176]  ; GOT nalLogError
+   16748:	91314260 	add	x0, x19, #0xc50  ; 'nal_getWorkRole'
+   1674c:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   16750:	9101bc42 	add	x2, x2, #0x6f  ; 'Invalid memory\n'
+   16754:	52803021 	mov	w1, #0x181                 	// #385
+   16758:	9106a000 	add	x0, x0, #0x1a8  ; 'nal_getSwAutoUpgradeInfo'
+   1675c:	d63f0280 	blr	x20
+   16760:	12800000 	mov	w0, #0xffffffff            	// #-1
+   16764:	14000058 	b	168c4 <nal_getSwAutoUpgradeInfo@@Base+0x1e8>
+   16768:	b0000383 	adrp	x3, 87000 <_fini@@Base+0x28dd8>
+   1676c:	52820002 	mov	w2, #0x1000                	// #4096
+   16770:	528118a1 	mov	w1, #0x8c5                 	// #2245
+   16774:	aa1503e0 	mov	x0, x21
+   16778:	f947f463 	ldr	x3, [x3, #4072]  ; GOT cfg_getObj
+   1677c:	d63f0060 	blr	x3
+   16780:	35000b40 	cbnz	w0, 168e8 <nal_getSwAutoUpgradeInfo@@Base+0x20c>
+   16784:	395247a0 	ldrb	w0, [x29, #1169]
+   16788:	b0000397 	adrp	x23, 87000 <_fini@@Base+0x28dd8>
+   1678c:	aa1603f8 	mov	x24, x22
+   16790:	b9006fa0 	str	w0, [x29, #108]
+   16794:	f94262f7 	ldr	x23, [x23, #1216]  ; GOT strncpy@GLIBC_2.17
+   16798:	91128ebc 	add	x28, x21, #0x4a3
+   1679c:	3941b3a0 	ldrb	w0, [x29, #108]
+   167a0:	d2808002 	mov	x2, #0x400                 	// #1024
+   167a4:	38001700 	strb	w0, [x24], #1
+   167a8:	aa1c03e1 	mov	x1, x28
+   167ac:	912292bb 	add	x27, x21, #0x8a4
+   167b0:	91200eda 	add	x26, x22, #0x803
+   167b4:	aa1803e0 	mov	x0, x24
+   167b8:	d63f02e0 	blr	x23
+   167bc:	910082a1 	add	x1, x21, #0x20
+   167c0:	d2808002 	mov	x2, #0x400                 	// #1024
+   167c4:	91100ac0 	add	x0, x22, #0x402
+   167c8:	d63f02e0 	blr	x23
+   167cc:	912092d9 	add	x25, x22, #0x824
+   167d0:	d2800402 	mov	x2, #0x20                  	// #32
+   167d4:	aa1b03e1 	mov	x1, x27
+   167d8:	91108ab5 	add	x21, x21, #0x422
+   167dc:	aa1a03e0 	mov	x0, x26
+   167e0:	d63f02e0 	blr	x23
+   167e4:	d2801002 	mov	x2, #0x80                  	// #128
+   167e8:	aa1503e1 	mov	x1, x21
+   167ec:	aa1903e0 	mov	x0, x25
+   167f0:	d63f02e0 	blr	x23
+   167f4:	b9406fa3 	ldr	w3, [x29, #108]
+   167f8:	91314273 	add	x19, x19, #0xc50  ; 'nal_getWorkRole'
+   167fc:	f9424e94 	ldr	x20, [x20, #1176]
+   16800:	9106a273 	add	x19, x19, #0x1a8  ; 'nal_getSwAutoUpgradeInfo'
+   16804:	52803181 	mov	w1, #0x18c                 	// #396
+   16808:	aa1303e0 	mov	x0, x19
+   1680c:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   16810:	91178842 	add	x2, x2, #0x5e2  ; 'nal_getSwAutoUpgradeInfo: SwMgntObj.X_ALU_COM_Enable = %d\n'
+   16814:	d63f0280 	blr	x20
+   16818:	aa1c03e3 	mov	x3, x28
+   1681c:	528031a1 	mov	w1, #0x18d                 	// #397
+   16820:	aa1303e0 	mov	x0, x19
+   16824:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   16828:	91187442 	add	x2, x2, #0x61d  ; 'nal_getSwAutoUpgradeInfo: SwMgntObj.X_ALU_COM_Polling_URL = %s\n'
+   1682c:	d63f0280 	blr	x20
+   16830:	aa1b03e3 	mov	x3, x27
+   16834:	528031c1 	mov	w1, #0x18e                 	// #398
+   16838:	aa1303e0 	mov	x0, x19
+   1683c:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   16840:	91197442 	add	x2, x2, #0x65d  ; 'nal_getSwAutoUpgradeInfo: SwMgntObj.X_ALU_COM_PrefActivation_Time = %s\n'
+   16844:	d63f0280 	blr	x20
+   16848:	aa1503e3 	mov	x3, x21
+   1684c:	528031e1 	mov	w1, #0x18f                 	// #399
+   16850:	aa1303e0 	mov	x0, x19
+   16854:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   16858:	911a9442 	add	x2, x2, #0x6a5  ; 'nal_getSwAutoUpgradeInfo: SwMgntObj.X_ALU_COM_Polling_Time = %s\n'
+   1685c:	d63f0280 	blr	x20
+   16860:	394002c3 	ldrb	w3, [x22]
+   16864:	52803221 	mov	w1, #0x191                 	// #401
+   16868:	aa1303e0 	mov	x0, x19
+   1686c:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   16870:	911b9842 	add	x2, x2, #0x6e6  ; 'nal_getSwAutoUpgradeInfo: SwAutoUpgradeInfo->enable  = %d\n'
+   16874:	d63f0280 	blr	x20
+   16878:	aa1803e3 	mov	x3, x24
+   1687c:	52803241 	mov	w1, #0x192                 	// #402
+   16880:	aa1303e0 	mov	x0, x19
+   16884:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   16888:	911c8442 	add	x2, x2, #0x721  ; 'nal_getSwAutoUpgradeInfo: SwAutoUpgradeInfo->url = %s\n'
+   1688c:	d63f0280 	blr	x20
+   16890:	aa1a03e3 	mov	x3, x26
+   16894:	52803261 	mov	w1, #0x193                 	// #403
+   16898:	aa1303e0 	mov	x0, x19
+   1689c:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   168a0:	911d6042 	add	x2, x2, #0x758  ; 'nal_getSwAutoUpgradeInfo: SwAutoUpgradeInfo->activationTime = %s\n'
+   168a4:	d63f0280 	blr	x20
+   168a8:	aa1303e0 	mov	x0, x19
+   168ac:	aa1903e3 	mov	x3, x25
+   168b0:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   168b4:	911e6842 	add	x2, x2, #0x79a  ; 'nal_getSwAutoUpgradeInfo: SwAutoUpgradeInfo->pollingTime = %s\n'
+   168b8:	52803281 	mov	w1, #0x194                 	// #404
+   168bc:	d63f0280 	blr	x20
+   168c0:	52800000 	mov	w0, #0x0                   	// #0
+   168c4:	f94033a1 	ldr	x1, [x29, #96]
+   168c8:	f9420421 	ldr	x1, [x1, #1032]
+   168cc:	f9449fa2 	ldr	x2, [x29, #2360]
+   168d0:	f9400021 	ldr	x1, [x1]
+   168d4:	ca010041 	eor	x1, x2, x1
+   168d8:	b40001c1 	cbz	x1, 16910 <nal_getSwAutoUpgradeInfo@@Base+0x234>
+   168dc:	b0000380 	adrp	x0, 87000 <_fini@@Base+0x28dd8>
+   168e0:	f9449c00 	ldr	x0, [x0, #2360]  ; GOT __stack_chk_fail@GLIBC_2.17
+   168e4:	d63f0000 	blr	x0
+   168e8:	f9424e94 	ldr	x20, [x20, #1176]
+   168ec:	91314260 	add	x0, x19, #0xc50  ; 'icsObject Failed!'
+   168f0:	52803324 	mov	w4, #0x199                 	// #409
+   168f4:	91072003 	add	x3, x0, #0x1c8  ; 'st for mac [%s] with friendlyname [%s] is failed'
+   168f8:	d0000242 	adrp	x2, 60000 <_fini@@Base+0x1dd8>
+   168fc:	911f6442 	add	x2, x2, #0x7d9  ; '[%s] line %d: Get SwMgntObject Failed!\n'
+   16900:	2a0403e1 	mov	w1, w4
+   16904:	9106a000 	add	x0, x0, #0x1a8  ; 'et object for DeviceMapObject list for mac [%s] with friendlyname [%s] is failed'
+   16908:	d63f0280 	blr	x20
+   1690c:	17ffff95 	b	16760 <nal_getSwAutoUpgradeInfo@@Base+0x84>
+   16910:	a9407bfd 	ldp	x29, x30, [sp]
+   16914:	a94153f3 	ldp	x19, x20, [sp, #16]
+   16918:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   1691c:	a94363f7 	ldp	x23, x24, [sp, #48]
+   16920:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   16924:	a94573fb 	ldp	x27, x28, [sp, #80]
+   16928:	912503ff 	add	sp, sp, #0x940
+   1692c:	d65f03c0 	ret

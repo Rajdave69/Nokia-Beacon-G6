@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "scope": "Saved three-profile comparison, exact native traces,28inert host-QEMU CLI cases, and owner-authorized live read-only G6queries. No live setters, daemon launch/restart, scan request, file transfer, reboot or persistent configuration edit.",
+  "private_source_root": "private-source://ACI-ANALYSIS",
+  "physical_device_alias": "Not supplied; do not infer G6-A/B/C/D from LAN address",
+  "build": {
+    "IMAGEVERSION": "3FE49996HJLL91",
+    "SOFTWAREVERSION": "HJL.L91p01",
+    "HOMEOSVERSION": "24.04.00",
+    "BUILDDATE": "20241227",
+    "controller_version": "2.1.19"
+  },
+  "live_hashes_match_saved_profile": [
+    "usr/bin/aci",
+    "usr/bin/ai_controller",
+    "usr/lib/libnillocalRRM.so",
+    "usr/lib/libnilnva.so",
+    "usr/lib/libndbus.so"
+  ],
+  "artifacts": {
+    "profiles": "profile-comparison.json",
+    "catalog": "command-catalog.json",
+    "native_traces": "trace-index.json",
+    "mock_parser": "parser-validation.json",
+    "runtime_values": "runtime-parameters.json",
+    "complete_normalized_live": "live-captures.json",
+    "private_inventory": "retained-evidence.json"
+  },
+  "source_counts": {
+    "profiles": 3,
+    "fingerprinted_source_files": 21,
+    "native_ranges": 15,
+    "native_instructions": 12881,
+    "parser_cases": 28,
+    "private_files": 73,
+    "normalized_live_records": 18
+  },
+  "major_findings": [
+    "Local systemD-Bus API, separate from37591TCP",
+    "Forced-channel callback stub in allthree saved builds",
+    "G6dump_configno-op; B9addsgetDumpConfig",
+    "G6per-bandauto setter rejects24/6 through unsigned<=5guard",
+    "Getter-looking optimize_wifi invokes activeoperation",
+    "Fourthreshold/timer callbacks store RAM; values read from exact livecontroller addresses only",
+    "CLIexit0/domainlabels/actionprinting do not reliably represent backend success"
+  ],
+  "live": {
+    "root_UID": 0,
+    "controller_PID_before_after": 19096,
+    "agent_PID_before_after": 19065,
+    "auto24": {
+      "enable": 1,
+      "bandwidth": 20
+    },
+    "auto5": {
+      "enable": 1,
+      "bandwidth": 160
+    },
+    "cached_node_ID": 1,
+    "cached_channel5": 108,
+    "cached_bandwidth5": 160,
+    "score24_rows": 0,
+    "score5_rows": 69,
+    "align5_rows": 69,
+    "radio_ath0_ath1": "Both returned-1; no conclusion about radio absence",
+    "cached_metadata_caveats": "Node labels chipsetMEDIATEK, includes6GHzplaceholder and1970times; cachedlocationlabelsDFSNo for108. Do not use these to establish hardware, regulatory classification or fresh RF measurements.",
+    "config_sha256_before_after_and_stock": "c2c1a1c70e7ef140eb65aca7ecb3e2c9deb4924475aa5846136bf07c72ba4dfc",
+    "config_matches_stock_template": true,
+    "saved_vs_runtime": "SavedENABLE0/5Gwidth80 versus runningcontroller/autoenabled/width160. File alone is not a runtime restore point."
+  },
+  "failed_attempts_and_corrections": [
+    "Initial pointer-at0x84b10 interpretation rejected: it was GOT, not service table; heap service object and constructor verified for exactcallbackmap.",
+    "First mock run corrected action ABI from(node,band,width,channel)to(node,channel,band,width); alignment failure returnsprintfcount35. Actionmock output zeroed176bytes to avoid nondeterministic stack rendering. Initialfailedreport/source retained privately.",
+    "br0sysfs MAC source absent; observedbr-lan used next.",
+    "Standalonebase64/od/hexdump/timeout/dbus-send/gdbus/strace unavailable through testedPATH; BusyBox--listreported-list appletnotfound. Firstparameterformattingattempt exit127; binaryTelnetcapturethenreadexact16bytes withdd, nohelpertransfer.",
+    "G6radioath0/ath1readfailures retained; internalname/ABIresolution unproven."
+  ],
+  "untested": [
+    "Any live setter/RFbehavior",
+    "Reboot or persistent setter semantics",
+    "Exact score/reward weights and cache freshness",
+    "Unprivileged D-Bus policy or nonroot access",
+    "B9liveACI behavior andaddedcommand effects",
+    "Correct internal radio-name/response ABI",
+    "Network controller or WebUI bridge to ACI"
+  ],
+  "router_transfer_and_cleanup": {
+    "helpers_or_scripts_copied": 0,
+    "live_setters": 0,
+    "deliberate_router_files_created": 0,
+    "permanent_changes": 0,
+    "cleanup_required": false,
+    "note": "Commands streamed to existing shell withcd/tmp; normal daemon logging/cache activity is not a byte-identical filesystem rollback guarantee."
+  }
+}

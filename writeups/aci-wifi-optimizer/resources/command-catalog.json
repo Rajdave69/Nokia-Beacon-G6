@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "profile": "G6-HJL unless explicitly compared",
+  "D_Bus": {
+    "bus": "system D-Bus; root only tested",
+    "destination": "nokia.ai_engine",
+    "path": "/nokia/ai_engine",
+    "interface": "nokia.ai_engine",
+    "timeout_ms": 5000,
+    "representation": "D-Bus scalar/string arguments and fixed-byte-array ABI payloads; ndbus Pointer functions serialize/copy data, not remote process pointers. Byte count exact and build dependent.",
+    "method_count_in_HJL_dispatch": 27,
+    "methods": [
+      {
+        "method": "getChannelScore",
+        "dispatch_test": "0x5c4f4"
+      },
+      {
+        "method": "getNeighbhorAlignScore",
+        "dispatch_test": "0x5c568"
+      },
+      {
+        "method": "setAutoChannelStatus",
+        "dispatch_test": "0x5c5d0"
+      },
+      {
+        "method": "getAutoChannelStatus",
+        "dispatch_test": "0x5c628"
+      },
+      {
+        "method": "getAvaliableChannelList",
+        "dispatch_test": "0x5c65c"
+      },
+      {
+        "method": "setAvaliableChannelList",
+        "dispatch_test": "0x5c6b4"
+      },
+      {
+        "method": "setForceChannel",
+        "dispatch_test": "0x5c724"
+      },
+      {
+        "method": "setLogLevel",
+        "dispatch_test": "0x5c788"
+      },
+      {
+        "method": "enableAutoChannel",
+        "dispatch_test": "0x5c7d0"
+      },
+      {
+        "method": "getActionInfo",
+        "dispatch_test": "0x5c808"
+      },
+      {
+        "method": "getActionInfo6",
+        "dispatch_test": "0x5c88c"
+      },
+      {
+        "method": "getAllActionInfo",
+        "dispatch_test": "0x5c8e4"
+      },
+      {
+        "method": "logBlockedChannels",
+        "dispatch_test": "0x5c91c"
+      },
+      {
+        "method": "getRadioInfo",
+        "dispatch_test": "0x5c944"
+      },
+      {
+        "method": "getChannelLocationInfo",
+        "dispatch_test": "0x5c9a8"
+      },
+      {
+        "method": "getLinkInfo",
+        "dispatch_test": "0x5ca10"
+      },
+      {
+        "method": "getStationInfo",
+        "dispatch_test": "0x5ca74"
+      },
+      {
+        "method": "getNodeInfo",
+        "dispatch_test": "0x5cacc"
+      },
+      {
+        "method": "setUtilizationThreshold",
+        "dispatch_test": "0x5cb24"
+      },
+      {
+        "method": "setMinInterferenceThreshold",
+        "dispatch_test": "0x5cb54"
+      },
+      {
+        "method": "setSensingPeriod",
+        "dispatch_test": "0x5cb84"
+      },
+      {
+        "method": "setExplorationPeriod",
+        "dispatch_test": "0x5cbb4"
+      },
+      {
+        "method": "getDomainInfo",
+        "dispatch_test": "0x5cbe4"
+      },
+      {
+        "method": "setRadioStatus",
+        "dispatch_test": "0x5cc08"
+      },
+      {
+        "method": "optimizeWifi",
+        "dispatch_test": "0x5cc50"
+      },
+      {
+        "method": "retrive_domaininfo",
+        "dispatch_test": "0x5cc98"
+      },
+      {
+        "method": "get_version_info",
+        "dispatch_test": "0x5cd5c"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "name": "version",
+      "syntax": "aci",
+      "class": "read",
+      "backend": "get_version_info",
+      "observed_or_traced_behavior": "Version2.1.19/ai_controller on live G6",
+      "live_tested": true
+    },
+    {
+      "name": "help",
+      "syntax": "aci -h",
+      "class": "local",
+      "backend": "usage printer",
+      "observed_or_traced_behavior": "No backend call on matched G6 parser",
+      "live_tested": true
+    },
+    {
+      "name": "dump_config",
+      "syntax": "aci dump_config",
+      "class": "stub on G6",
+      "backend": "none on G6; getDumpConfig on B9",
+      "observed_or_traced_behavior": "G6 argc2 branch prefix-compares first3bytes then returns; no dump requested. B9 adds backend call.",
+      "live_tested": true
+    },
+    {
+      "name": "auto-status",
+      "syntax": "aci -g auto -b BAND",
+      "class": "read",
+      "backend": "getAutoChannelStatus(u32)->status,u8[3]",
+      "observed_or_traced_behavior": "Band byte, enable byte, bandwidth byte; G6 getter recognizes24,36,5,6. Live24/5 only.",
+      "live_tested": true
+    },
+    {
+      "name": "available-channels",
+      "syntax": "aci -g channel_list -b BAND",
+      "class": "read",
+      "backend": "getAvaliableChannelList(u32)->status,776bytes",
+      "observed_or_traced_behavior": "Six bandwidth rows20/40/80/160/320_a/320_b; empty rows do not imply hardware support.",
+      "live_tested": true
+    },
+    {
+      "name": "node",
+      "syntax": "aci -g node -m NODE_MAC",
+      "class": "read cached model",
+      "backend": "getNodeInfo(string)->status,10480bytes",
+      "observed_or_traced_behavior": "Live bridge is br-lan, not br0; internal node/caches do not prove physical chipset or current RF measurements.",
+      "live_tested": true
+    },
+    {
+      "name": "radio",
+      "syntax": "aci -g radio -m NODE_MAC -r RADIO_NAME",
+      "class": "read",
+      "backend": "getRadioInfo(string,string)",
+      "observed_or_traced_behavior": "Live ath0/ath1 bothfailed-1. Name binding unresolved; client expects224bytes while inspected controller response path copies448bytes.",
+      "live_tested": true
+    },
+    {
+      "name": "station",
+      "syntax": "aci -g station -m STATION_MAC",
+      "class": "read",
+      "backend": "getStationInfo(string)->status,744bytes",
+      "observed_or_traced_behavior": "Compiled query; not run against a client.",
+      "live_tested": false
+    },
+    {
+      "name": "link",
+      "syntax": "aci -g link -m SOURCE_MAC -d DEST_MAC",
+      "class": "read",
+      "backend": "getLinkInfo(string,string)->status,608bytes",
+      "observed_or_traced_behavior": "Compiled WDS link query; not live tested.",
+      "live_tested": false
+    },
+    {
+      "name": "scores",
+      "syntax": "aci -g score -m NODE_MAC -b BAND",
+      "class": "read cached model",
+      "backend": "getChannelScore(string,u32)->status,15004bytes",
+      "observed_or_traced_behavior": "Count plus up to750records of20bytes; printschannel,bw,totalutil,util,score. Live24empty/5populated.",
+      "live_tested": true
+    },
+    {
+      "name": "alignment-scores",
+      "syntax": "aci -g align_score -m NODE_MAC -b BAND",
+      "class": "read cached model",
+      "backend": "getNeighbhorAlignScore(string,u32)->status,21004bytes",
+      "observed_or_traced_behavior": "Count plus up to750records of28bytes; channel/bw/bonding/combined,power,neighbour,OBSSscores. Failure path can return printf character count.",
+      "live_tested": true
+    },
+    {
+      "name": "location",
+      "syntax": "aci -g location -m NODE_MAC -c CHANNEL",
+      "class": "read cached model",
+      "backend": "getChannelLocationInfo(string,u32)->status,448bytes",
+      "observed_or_traced_behavior": "Live108returned utilization/activity/noise/DFSlabel/cachefields; label not regulatory proof.",
+      "live_tested": true
+    },
+    {
+      "name": "domain",
+      "syntax": "aci -g domain",
+      "class": "read with misleading printer",
+      "backend": "getDomainInfo()->u32",
+      "observed_or_traced_behavior": "CLI printsFCCfor0,ETSIforanynonzero, including syntheticerror-7; no independent regulatory validation.",
+      "live_tested": true
+    },
+    {
+      "name": "action",
+      "syntax": "aci -g action -i NODE_ID -b BAND -w WIDTH_ARG -c CHANNEL",
+      "class": "read",
+      "backend": "getActionInfo/getActionInfo6(u32 node,u32 channel,u32 band,u32 width)->status,176bytes",
+      "observed_or_traced_behavior": "Selects6variantforband6; CLI prints output even when mock backend returnsfailure. Width is rawargument, not establishedMHz enum.",
+      "live_tested": false
+    },
+    {
+      "name": "all-actions",
+      "syntax": "aci -g all_actions -i NODE_ID",
+      "class": "diagnostic dump",
+      "backend": "getAllActionInfo(u32)",
+      "observed_or_traced_behavior": "Controller writes /tmp/actions.txt; not a pure stdout getter. Not run live.",
+      "live_tested": false
+    },
+    {
+      "name": "blocked-channels",
+      "syntax": "aci -g blocked_channels",
+      "class": "diagnostic dump",
+      "backend": "logBlockedChannels()",
+      "observed_or_traced_behavior": "Controller writes /tmp/blocked_channels.txt. Not run live.",
+      "live_tested": false
+    },
+    {
+      "name": "start",
+      "syntax": "aci start",
+      "class": "process startup",
+      "backend": "nwa_startLocalRRM",
+      "observed_or_traced_behavior": "Calls product AIEngine gate then system /usr/bin/run_localrrm.sh &: not a status query.",
+      "live_tested": false
+    },
+    {
+      "name": "global-enable-disable",
+      "syntax": "aci enable / aci disable",
+      "class": "runtime control signal",
+      "backend": "libnilnva -> nokia.ai.enableAutoChannel",
+      "observed_or_traced_behavior": "Broadcast bool payload; effects traced but neither command run live.",
+      "live_tested": false
+    },
+    {
+      "name": "per-band-auto",
+      "syntax": "aci -s auto -b BAND -e BOOL",
+      "class": "runtime control signal",
+      "backend": "nokia.ai.radioAutoChannelStatus",
+      "observed_or_traced_behavior": "G6CLI unsignedband<=5guard silently skips24and6; band5 reaches signal. Do not interpret help example24asworking.",
+      "live_tested": false
+    },
+    {
+      "name": "set-channel-list",
+      "syntax": "aci -s channel_list -b BAND -v 'list20;list40;list80;list160;list320a;list320b'",
+      "class": "runtime candidate control",
+      "backend": "setAvaliableChannelList(u32,string)",
+      "observed_or_traced_behavior": "Parser and candidate-list update path present; persistence/RF consequences not live tested. Quote semicolons.",
+      "live_tested": false
+    },
+    {
+      "name": "force-channel",
+      "syntax": "aci -s channel -i NODE_ID -b BAND -c CHANNEL -w WIDTH_ARG",
+      "class": "success-returning stub",
+      "backend": "setForceChannel(u32 node,u32 band,u32 channel,u32 width)",
+      "observed_or_traced_behavior": "Controller callback returns0withoutusinginputs in G6IJL/G6HJL/B9JJM. CLI success is not a channel switch.",
+      "live_tested": false
+    },
+    {
+      "name": "utilization_threshold",
+      "syntax": "aci -s utilization_threshold -i VALUE",
+      "class": "runtime parameter write",
+      "backend": "setUtilizationThreshold(u32)",
+      "observed_or_traced_behavior": "Callback stores uint32 in a global and returns0; no file-save or timer-restart call in callback. Live read-only current value=80. No live setter test.",
+      "live_tested": false
+    },
+    {
+      "name": "interference_threshold",
+      "syntax": "aci -s interference_threshold -i VALUE",
+      "class": "runtime parameter write",
+      "backend": "setMinInterferenceThreshold(u32)",
+      "observed_or_traced_behavior": "Callback stores float converted from uint32 in a global and returns0; no file-save or timer-restart call in callback. Live read-only current value=70.0. No live setter test.",
+      "live_tested": false
+    },
+    {
+      "name": "sensing_period",
+      "syntax": "aci -s sensing_period -i VALUE",
+      "class": "runtime parameter write",
+      "backend": "setSensingPeriod(u32)",
+      "observed_or_traced_behavior": "Callback stores uint32 in a global and returns0; no file-save or timer-restart call in callback. Live read-only current value=30. No live setter test.",
+      "live_tested": false
+    },
+    {
+      "name": "exploration_period",
+      "syntax": "aci -s exploration_period -i VALUE",
+      "class": "runtime parameter write",
+      "backend": "setExplorationPeriod(u32)",
+      "observed_or_traced_behavior": "Callback stores uint32 in a global and returns0; no file-save or timer-restart call in callback. Live read-only current value=900. No live setter test.",
+      "live_tested": false
+    },
+    {
+      "name": "logging",
+      "syntax": "aci -s log -o DESTINATION -l LEVEL",
+      "class": "runtime logging control",
+      "backend": "setLogLevel(u32,u32)",
+      "observed_or_traced_behavior": "Calls cslibLog_setDestination/Level; not live tested.",
+      "live_tested": false
+    },
+    {
+      "name": "optimize-get",
+      "syntax": "aci -g optimize_wifi",
+      "class": "active operation despite -g",
+      "backend": "nwa_local_rrm_enable_optimize_wifi -> optimizeWifi",
+      "observed_or_traced_behavior": "Do not include in read-only collectors; not run live.",
+      "live_tested": false
+    },
+    {
+      "name": "optimize-set",
+      "syntax": "aci -s optimize_wifi",
+      "class": "mislabeled domain query",
+      "backend": "nwa_retrieve_domain_info_from_localRRM -> retrive_domaininfo",
+      "observed_or_traced_behavior": "G6 parser routes setter-looking name to domain-retrieval helper; not run live.",
+      "live_tested": false
+    }
+  ]
+}

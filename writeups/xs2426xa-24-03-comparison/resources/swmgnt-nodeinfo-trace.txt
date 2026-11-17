@@ -1,0 +1,288 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/bin/swmgnt:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000006560 <get_uptime@@Base+0xc20>:
+    6560:	d10d03ff 	sub	sp, sp, #0x340
+    6564:	a9007bfd 	stp	x29, x30, [sp]
+    6568:	910003fd 	mov	x29, sp
+    656c:	910883a1 	add	x1, x29, #0x220
+    6570:	a90153f3 	stp	x19, x20, [sp, #16]
+    6574:	90000114 	adrp	x20, 26000 <_fini@@Base+0x1697c>
+    6578:	b0000113 	adrp	x19, 27000 <_fini@@Base+0x1797c>
+    657c:	912a6260 	add	x0, x19, #0xa98
+    6580:	f947be82 	ldr	x2, [x20, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    6584:	91002000 	add	x0, x0, #0x8
+    6588:	a90dfc3f 	stp	xzr, xzr, [x1, #216]
+    658c:	f9400043 	ldr	x3, [x2]
+    6590:	f9019fa3 	str	x3, [x29, #824]
+    6594:	d2800003 	mov	x3, #0x0                   	// #0
+    6598:	910883a2 	add	x2, x29, #0x220
+    659c:	a908fc3f 	stp	xzr, xzr, [x1, #136]
+    65a0:	a909fc3f 	stp	xzr, xzr, [x1, #152]
+    65a4:	a90efc5f 	stp	xzr, xzr, [x2, #232]
+    65a8:	a90ffc5f 	stp	xzr, xzr, [x2, #248]
+    65ac:	911083a2 	add	x2, x29, #0x420
+    65b0:	b941d801 	ldr	w1, [x0, #472]
+    65b4:	390b23bf 	strb	wzr, [x29, #712]
+    65b8:	a930fc5f 	stp	xzr, xzr, [x2, #-248]
+    65bc:	34000161 	cbz	w1, 65e8 <get_uptime@@Base+0xca8>
+    65c0:	f947be94 	ldr	x20, [x20, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    65c4:	f9419fa2 	ldr	x2, [x29, #824]
+    65c8:	f9400281 	ldr	x1, [x20]
+    65cc:	ca010041 	eor	x1, x2, x1
+    65d0:	b50025a1 	cbnz	x1, 6a84 <get_uptime@@Base+0x1144>
+    65d4:	a94153f3 	ldp	x19, x20, [sp, #16]
+    65d8:	a9407bfd 	ldp	x29, x30, [sp]
+    65dc:	910d03ff 	add	sp, sp, #0x340
+    65e0:	d65f03c0 	ret
+    65e4:	d503201f 	nop
+    65e8:	d2803b02 	mov	x2, #0x1d8                 	// #472
+    65ec:	a9025bb5 	stp	x21, x22, [x29, #32]
+    65f0:	a90363b7 	stp	x23, x24, [x29, #48]
+    65f4:	910aa3b7 	add	x23, x29, #0x2a8
+    65f8:	f90023b9 	str	x25, [x29, #64]
+    65fc:	d0000055 	adrp	x21, 10000 <_fini@@Base+0x97c>
+    6600:	f9002fbc 	str	x28, [x29, #88]
+    6604:	97fff547 	bl	3b20 <memset@plt>
+    6608:	d0000056 	adrp	x22, 10000 <_fini@@Base+0x97c>
+    660c:	aa1703e0 	mov	x0, x23
+    6610:	97fff5fc 	bl	3e00 <nal_getNodeMac@plt>
+    6614:	35001ca0 	cbnz	w0, 69a8 <get_uptime@@Base+0x1068>
+    6618:	912a6279 	add	x25, x19, #0xa98
+    661c:	aa1703e1 	mov	x1, x23
+    6620:	9100233c 	add	x28, x25, #0x8
+    6624:	d2800222 	mov	x2, #0x11                  	// #17
+    6628:	9102a320 	add	x0, x25, #0xa8
+    662c:	910203b8 	add	x24, x29, #0x80
+    6630:	97fff5ac 	bl	3ce0 <strncpy@plt>
+    6634:	aa1803e0 	mov	x0, x24
+    6638:	3902c79f 	strb	wzr, [x28, #177]
+    663c:	97fff695 	bl	4090 <nal_getNodeInfo@plt>
+    6640:	35002040 	cbnz	w0, 6a48 <get_uptime@@Base+0x1108>
+    6644:	91025307 	add	x7, x24, #0x94
+    6648:	d0000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    664c:	91268008 	add	x8, x0, #0x9a0  ; 'swmgnt: [%s %s:%d] %s'
+    6650:	910242b7 	add	x23, x21, #0x90  ; 'swmgnt_getStatusString'
+    6654:	a904efba 	stp	x26, x27, [x29, #72]
+    6658:	910442fb 	add	x27, x23, #0x110  ; 'swmgnt_getRGWInfo'
+    665c:	911842da 	add	x26, x22, #0x610  ; 'swmgnt_util.c'
+    6660:	9104a2f7 	add	x23, x23, #0x128  ; 'swmgnt_getRGWInfo'
+    6664:	aa0703e6 	mov	x6, x7
+    6668:	52802de5 	mov	w5, #0x16f                 	// #367
+    666c:	aa0803e2 	mov	x2, x8
+    6670:	2a0503e1 	mov	w1, w5
+    6674:	a906a3a7 	stp	x7, x8, [x29, #104]
+    6678:	aa1b03e4 	mov	x4, x27
+    667c:	aa1a03e3 	mov	x3, x26
+    6680:	aa1703e0 	mov	x0, x23
+    6684:	97fff63b 	bl	3f70 <nalLogNotice@plt>
+    6688:	f94037a7 	ldr	x7, [x29, #104]
+    668c:	9107e703 	add	x3, x24, #0x1f9
+    6690:	d28003e2 	mov	x2, #0x1f                  	// #31
+    6694:	f9003fa3 	str	x3, [x29, #120]
+    6698:	aa0703e1 	mov	x1, x7
+    669c:	aa1c03e0 	mov	x0, x28
+    66a0:	97fff590 	bl	3ce0 <strncpy@plt>
+    66a4:	d28003e2 	mov	x2, #0x1f                  	// #31
+    66a8:	91014f01 	add	x1, x24, #0x53
+    66ac:	9102eb20 	add	x0, x25, #0xba
+    66b0:	97fff58c 	bl	3ce0 <strncpy@plt>
+    66b4:	a9470fa8 	ldp	x8, x3, [x29, #112]
+    66b8:	aa1b03e4 	mov	x4, x27
+    66bc:	52802e65 	mov	w5, #0x173                 	// #371
+    66c0:	aa1703e0 	mov	x0, x23
+    66c4:	aa0303e6 	mov	x6, x3
+    66c8:	aa0303fc 	mov	x28, x3
+    66cc:	aa1a03e3 	mov	x3, x26
+    66d0:	2a0503e1 	mov	w1, w5
+    66d4:	aa0803e2 	mov	x2, x8
+    66d8:	97fff626 	bl	3f70 <nalLogNotice@plt>
+    66dc:	91058320 	add	x0, x25, #0x160
+    66e0:	aa1c03e1 	mov	x1, x28
+    66e4:	d2800fe2 	mov	x2, #0x7f                  	// #127
+    66e8:	97fff57e 	bl	3ce0 <strncpy@plt>
+    66ec:	910883a0 	add	x0, x29, #0x220
+    66f0:	910b43b9 	add	x25, x29, #0x2d0
+    66f4:	a90b7c1f 	stp	xzr, xzr, [x0, #176]
+    66f8:	a90c7c1f 	stp	xzr, xzr, [x0, #192]
+    66fc:	aa1903e0 	mov	x0, x25
+    6700:	390bc3bf 	strb	wzr, [x29, #752]
+    6704:	97fff5af 	bl	3dc0 <nal_getOperatorUniqueID@plt>
+    6708:	350018c0 	cbnz	w0, 6a20 <get_uptime@@Base+0x10e0>
+    670c:	394b43a0 	ldrb	w0, [x29, #720]
+    6710:	35001000 	cbnz	w0, 6910 <get_uptime@@Base+0xfd0>
+    6714:	91076317 	add	x23, x24, #0x1d8
+    6718:	910242a0 	add	x0, x21, #0x90  ; 'swmgnt_getStatusString'
+    671c:	aa1703e6 	mov	x6, x23
+    6720:	91044004 	add	x4, x0, #0x110  ; 'swmgnt_getRGWInfo'
+    6724:	528030a5 	mov	w5, #0x185                 	// #389
+    6728:	911842c3 	add	x3, x22, #0x610  ; 'swmgnt_util.c'
+    672c:	2a0503e1 	mov	w1, w5
+    6730:	9104a000 	add	x0, x0, #0x128  ; 'swmgnt_getRGWInfo'
+    6734:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    6738:	91248042 	add	x2, x2, #0x920  ; 'swmgnt: [%s %s:%d] OperatorID: %s'
+    673c:	97fff60d 	bl	3f70 <nalLogNotice@plt>
+    6740:	aa1703e1 	mov	x1, x23
+    6744:	912a6260 	add	x0, x19, #0xa98
+    6748:	d2801002 	mov	x2, #0x80                  	// #128
+    674c:	9100a000 	add	x0, x0, #0x28
+    6750:	910be3b7 	add	x23, x29, #0x2f8
+    6754:	97fff563 	bl	3ce0 <strncpy@plt>
+    6758:	aa1703e0 	mov	x0, x23
+    675c:	97fff4e1 	bl	3ae0 <nal_getCurSwVersion@plt>
+    6760:	34000fe0 	cbz	w0, 695c <get_uptime@@Base+0x101c>
+    6764:	910242a0 	add	x0, x21, #0x90  ; 'swmgnt_getStatusString'
+    6768:	911842c3 	add	x3, x22, #0x610  ; 'swmgnt_util.c'
+    676c:	91044004 	add	x4, x0, #0x110  ; 'swmgnt_getRGWInfo'
+    6770:	52803305 	mov	w5, #0x198                 	// #408
+    6774:	9104a000 	add	x0, x0, #0x128  ; 'swmgnt_getRGWInfo'
+    6778:	2a0503e1 	mov	w1, w5
+    677c:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    6780:	9126e042 	add	x2, x2, #0x9b8  ; 'swmgnt: [%s %s:%d] nal_get_current_version failed'
+    6784:	97fff5f3 	bl	3f50 <nalLogError@plt>
+    6788:	912a6260 	add	x0, x19, #0xa98
+    678c:	d2800802 	mov	x2, #0x40                  	// #64
+    6790:	91055b01 	add	x1, x24, #0x156
+    6794:	91036800 	add	x0, x0, #0xda
+    6798:	97fff552 	bl	3ce0 <strncpy@plt>
+    679c:	910242b8 	add	x24, x21, #0x90  ; 'swmgnt_getStatusString'
+    67a0:	912a6267 	add	x7, x19, #0xa98
+    67a4:	9104431a 	add	x26, x24, #0x110  ; 'swmgnt_getRGWInfo'
+    67a8:	911842d9 	add	x25, x22, #0x610  ; 'swmgnt_util.c'
+    67ac:	52803425 	mov	w5, #0x1a1                 	// #417
+    67b0:	910368e6 	add	x6, x7, #0xda
+    67b4:	aa1a03e4 	mov	x4, x26
+    67b8:	aa1903e3 	mov	x3, x25
+    67bc:	d0000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    67c0:	2a0503e1 	mov	w1, w5
+    67c4:	91268002 	add	x2, x0, #0x9a0  ; 'swmgnt: [%s %s:%d] %s'
+    67c8:	9104a318 	add	x24, x24, #0x128  ; 'swmgnt_getRGWInfo'
+    67cc:	910480f7 	add	x23, x7, #0x120
+    67d0:	390464ff 	strb	wzr, [x7, #281]
+    67d4:	aa1803e0 	mov	x0, x24
+    67d8:	97fff5e6 	bl	3f70 <nalLogNotice@plt>
+    67dc:	aa1703e0 	mov	x0, x23
+    67e0:	97fff904 	bl	4bf0 <main@@Base+0xa00>
+    67e4:	7100041f 	cmp	w0, #0x1
+    67e8:	54001080 	b.eq	69f8 <get_uptime@@Base+0x10b8>  // b.none
+    67ec:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    67f0:	52803525 	mov	w5, #0x1a9                 	// #425
+    67f4:	aa1a03e4 	mov	x4, x26
+    67f8:	aa1903e3 	mov	x3, x25
+    67fc:	91286042 	add	x2, x2, #0xa18  ; 'swmgnt: [%s %s:%d] nal_getWorkMode / nal_getWorkRole Failed!\n'
+    6800:	2a0503e1 	mov	w1, w5
+    6804:	aa1803e0 	mov	x0, x24
+    6808:	97fff5d2 	bl	3f50 <nalLogError@plt>
+    680c:	912a6277 	add	x23, x19, #0xa98
+    6810:	910502f7 	add	x23, x23, #0x140
+    6814:	aa1703e0 	mov	x0, x23
+    6818:	97fff8ce 	bl	4b50 <main@@Base+0x960>
+    681c:	7100041f 	cmp	w0, #0x1
+    6820:	910242a0 	add	x0, x21, #0x90  ; 'swmgnt_getStatusString'
+    6824:	54000d60 	b.eq	69d0 <get_uptime@@Base+0x1090>  // b.none
+    6828:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    682c:	52803645 	mov	w5, #0x1b2                 	// #434
+    6830:	91044004 	add	x4, x0, #0x110  ; 'swmgnt_getRGWInfo'
+    6834:	911842c3 	add	x3, x22, #0x610  ; 'swmgnt_util.c'
+    6838:	91286042 	add	x2, x2, #0xa18  ; 'swmgnt: [%s %s:%d] nal_getWorkMode / nal_getWorkRole Failed!\n'
+    683c:	2a0503e1 	mov	w1, w5
+    6840:	9104a000 	add	x0, x0, #0x128  ; 'swmgnt_getRGWInfo'
+    6844:	97fff5c3 	bl	3f50 <nalLogError@plt>
+    6848:	90000117 	adrp	x23, 26000 <_fini@@Base+0x1697c>
+    684c:	f947cef8 	ldr	x24, [x23, #3992]
+    6850:	91001300 	add	x0, x24, #0x4
+    6854:	97fff637 	bl	4130 <nal_getRootOnBoardingStatus@plt>
+    6858:	35000900 	cbnz	w0, 6978 <get_uptime@@Base+0x1038>
+    685c:	b9400706 	ldr	w6, [x24, #4]
+    6860:	910242a0 	add	x0, x21, #0x90  ; 'swmgnt_getStatusString'
+    6864:	528036e5 	mov	w5, #0x1b7                 	// #439
+    6868:	91044004 	add	x4, x0, #0x110  ; 'swmgnt_getRGWInfo'
+    686c:	d0000058 	adrp	x24, 10000 <_fini@@Base+0x97c>
+    6870:	911842c3 	add	x3, x22, #0x610  ; 'swmgnt_util.c'
+    6874:	2a0503e1 	mov	w1, w5
+    6878:	9104a000 	add	x0, x0, #0x128  ; 'swmgnt_getRGWInfo'
+    687c:	912a0302 	add	x2, x24, #0xa80  ; 'swmgnt: [%s %s:%d] initial_obardingStatus = %d'
+    6880:	97fff5bc 	bl	3f70 <nalLogNotice@plt>
+    6884:	910242b5 	add	x21, x21, #0x90  ; 'swmgnt_getStatusString'
+    6888:	912a6273 	add	x19, x19, #0xa98
+    688c:	910442ba 	add	x26, x21, #0x110  ; 'swmgnt_getRGWInfo'
+    6890:	911842d6 	add	x22, x22, #0x610  ; 'swmgnt_util.c'
+    6894:	9104a2b5 	add	x21, x21, #0x128  ; 'swmgnt_getRGWInfo'
+    6898:	528037a5 	mov	w5, #0x1bd                 	// #445
+    689c:	aa1a03e4 	mov	x4, x26
+    68a0:	2a0503e1 	mov	w1, w5
+    68a4:	aa1603e3 	mov	x3, x22
+    68a8:	aa1503e0 	mov	x0, x21
+    68ac:	91050267 	add	x7, x19, #0x140
+    68b0:	91048266 	add	x6, x19, #0x120
+    68b4:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    68b8:	912ba042 	add	x2, x2, #0xae8  ; 'swmgnt: [%s %s:%d] rgw.workMode = %s, workRole = %s'
+    68bc:	97fff5ad 	bl	3f70 <nalLogNotice@plt>
+    68c0:	f947cef7 	ldr	x23, [x23, #3992]
+    68c4:	91002279 	add	x25, x19, #0x8
+    68c8:	aa1503e0 	mov	x0, x21
+    68cc:	528037c5 	mov	w5, #0x1be                 	// #446
+    68d0:	aa1a03e4 	mov	x4, x26
+    68d4:	aa1603e3 	mov	x3, x22
+    68d8:	912a0302 	add	x2, x24, #0xa80  ; 'swmgnt: [%s %s:%d] initial_obardingStatus = %d'
+    68dc:	b94006e6 	ldr	w6, [x23, #4]
+    68e0:	2a0503e1 	mov	w1, w5
+    68e4:	97fff5a3 	bl	3f70 <nalLogNotice@plt>
+    68e8:	39007f3f 	strb	wzr, [x25, #31]
+    68ec:	52800021 	mov	w1, #0x1                   	// #1
+    68f0:	aa1903e0 	mov	x0, x25
+    68f4:	a9425bb5 	ldp	x21, x22, [x29, #32]
+    68f8:	b901e261 	str	w1, [x19, #480]
+    68fc:	a94363b7 	ldp	x23, x24, [x29, #48]
+    6900:	a94573bb 	ldp	x27, x28, [x29, #80]
+    6904:	b9011721 	str	w1, [x25, #276]
+    6908:	a9446bb9 	ldp	x25, x26, [x29, #64]
+    690c:	17ffff2d 	b	65c0 <get_uptime@@Base+0xc80>
+    6910:	910242a0 	add	x0, x21, #0x90
+    6914:	52803005 	mov	w5, #0x180                 	// #384
+    6918:	91044004 	add	x4, x0, #0x110
+    691c:	2a0503e1 	mov	w1, w5
+    6920:	aa1903e6 	mov	x6, x25
+    6924:	911842c3 	add	x3, x22, #0x610  ; 'd to kill process with PID %d'
+    6928:	9104a000 	add	x0, x0, #0x128  ; 'xByModel'
+    692c:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    6930:	9123e042 	add	x2, x2, #0x8f8  ; 'swmgnt: [%s %s:%d] OperatorUniqueID: %s'
+    6934:	97fff58f 	bl	3f70 <nalLogNotice@plt>
+    6938:	aa1903e1 	mov	x1, x25
+    693c:	912a6260 	add	x0, x19, #0xa98
+    6940:	d2801002 	mov	x2, #0x80                  	// #128
+    6944:	9100a000 	add	x0, x0, #0x28
+    6948:	910be3b7 	add	x23, x29, #0x2f8
+    694c:	97fff4e5 	bl	3ce0 <strncpy@plt>
+    6950:	aa1703e0 	mov	x0, x23
+    6954:	97fff463 	bl	3ae0 <nal_getCurSwVersion@plt>
+    6958:	35fff060 	cbnz	w0, 6764 <get_uptime@@Base+0xe24>
+    695c:	912a6260 	add	x0, x19, #0xa98
+    6960:	d2800802 	mov	x2, #0x40                  	// #64
+    6964:	aa1703e1 	mov	x1, x23
+    6968:	91036800 	add	x0, x0, #0xda
+    696c:	97fff4dd 	bl	3ce0 <strncpy@plt>
+    6970:	17ffff8b 	b	679c <get_uptime@@Base+0xe5c>
+    6974:	d503201f 	nop
+    6978:	910242a0 	add	x0, x21, #0x90
+    697c:	52803765 	mov	w5, #0x1bb                 	// #443
+    6980:	91044004 	add	x4, x0, #0x110
+    6984:	d0000058 	adrp	x24, 10000 <_fini@@Base+0x97c>
+    6988:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    698c:	911842c3 	add	x3, x22, #0x610  ; 'd to kill process with PID %d'
+    6990:	912ac042 	add	x2, x2, #0xab0  ; 'swmgnt: [%s %s:%d] nal_getOnBoardStatus Failed!\n'
+    6994:	2a0503e1 	mov	w1, w5
+    6998:	9104a000 	add	x0, x0, #0x128  ; 'xByModel'
+    699c:	97fff56d 	bl	3f50 <nalLogError@plt>
+    69a0:	17ffffb9 	b	6884 <get_uptime@@Base+0xf44>
+    69a4:	d503201f 	nop
+    69a8:	910242a0 	add	x0, x21, #0x90
+    69ac:	52802c65 	mov	w5, #0x163                 	// #355
+    69b0:	91044004 	add	x4, x0, #0x110
+    69b4:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    69b8:	911842c3 	add	x3, x22, #0x610  ; 'd to kill process with PID %d'
+    69bc:	91252042 	add	x2, x2, #0x948  ; "swmgnt: [%s %s:%d] This ODU doesn't has bridge interface so the MAC will be NULL \r\n"

@@ -1,0 +1,46 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000196a0 <SecSetSerializedStr@@Base>:
+   196a0:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+   196a4:	910003fd 	mov	x29, sp
+   196a8:	a90153f3 	stp	x19, x20, [sp, #16]
+   196ac:	aa0003f4 	mov	x20, x0
+   196b0:	b0000160 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   196b4:	f90013f5 	str	x21, [sp, #32]
+   196b8:	aa0103f5 	mov	x21, x1
+   196bc:	aa0003f3 	mov	x19, x0
+   196c0:	f942c001 	ldr	x1, [x0, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   196c4:	f9400022 	ldr	x2, [x1]
+   196c8:	f9001fa2 	str	x2, [x29, #56]
+   196cc:	d2800002 	mov	x2, #0x0                   	// #0
+   196d0:	b4000295 	cbz	x21, 19720 <SecSetSerializedStr@@Base+0x80>
+   196d4:	f9401280 	ldr	x0, [x20, #32]
+   196d8:	b4000080 	cbz	x0, 196e8 <SecSetSerializedStr@@Base+0x48>
+   196dc:	b0000161 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   196e0:	f9432c21 	ldr	x1, [x1, #1624]  ; GOT free@GLIBC_2.17
+   196e4:	d63f0020 	blr	x1
+   196e8:	b0000161 	adrp	x1, 46000 <_fini@@Base+0x18828>
+   196ec:	aa1503e0 	mov	x0, x21
+   196f0:	f9434821 	ldr	x1, [x1, #1680]  ; GOT strdup@GLIBC_2.17
+   196f4:	d63f0020 	blr	x1
+   196f8:	f9001280 	str	x0, [x20, #32]
+   196fc:	52800000 	mov	w0, #0x0                   	// #0
+   19700:	f942c273 	ldr	x19, [x19, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   19704:	f9401fa2 	ldr	x2, [x29, #56]
+   19708:	f9400261 	ldr	x1, [x19]
+   1970c:	ca010041 	eor	x1, x2, x1
+   19710:	b40000c1 	cbz	x1, 19728 <SecSetSerializedStr@@Base+0x88>
+   19714:	b0000160 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   19718:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   1971c:	d63f0000 	blr	x0
+   19720:	12800000 	mov	w0, #0xffffffff            	// #-1
+   19724:	17fffff7 	b	19700 <SecSetSerializedStr@@Base+0x60>
+   19728:	a94153f3 	ldp	x19, x20, [sp, #16]
+   1972c:	f94013f5 	ldr	x21, [sp, #32]
+   19730:	a8c47bfd 	ldp	x29, x30, [sp], #64
+   19734:	d65f03c0 	ret

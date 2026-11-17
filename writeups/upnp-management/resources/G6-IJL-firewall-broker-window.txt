@@ -1,0 +1,105 @@
+0000cff0: b61740f9  ldr x22, [x29, #0x28]
+0000cff4: 73d644f9  ldr x19, [x19, #0x9a8]
+0000cff8: a1a740f9  ldr x1, [x29, #0x148]
+0000cffc: 600240f9  ldr x0, [x19]
+0000d000: 200000ca  eor x0, x1, x0
+0000d004: 000500b5  cbnz x0, #0xd0a4
+0000d008: f35341a9  ldp x19, x20, [sp, #0x10]
+0000d00c: f51340f9  ldr x21, [sp, #0x20]
+0000d010: fd7bd5a8  ldp x29, x30, [sp], #0x150
+0000d014: c0035fd6  ret 
+0000d018: b71b00f9  str x23, [x29, #0x30]
+0000d01c: 370100b0  adrp x23, #0x32000
+0000d020: e00315aa  mov x0, x21
+0000d024: f7ca46f9  ldr x23, [x23, #0xd90]
+0000d028: e0023fd6  blr x23 ; heuristic @system {}
+0000d02c: e0000034  cbz w0, #0xd048
+0000d030: e003162a  mov w0, w22
+0000d034: 810000b0  adrp x1, #0x1e000
+0000d038: 21c01591  add x1, x1, #0x570
+0000d03c: 80023fd6  blr x20 ; heuristic unknown {"x1": "pmlist_AddIptablesRule--failed"}
+0000d040: b6df42a9  ldp x22, x23, [x29, #0x28]
+0000d044: ecffff17  b #0xcff4
+0000d048: 40008052  mov w0, #2
+0000d04c: 810000b0  adrp x1, #0x1e000
+0000d050: 21401691  add x1, x1, #0x590
+0000d054: 80023fd6  blr x20 ; heuristic unknown {"x0": 2, "x1": "pmlist_AddIptablesRule--sucess"}
+0000d058: 230100b0  adrp x3, #0x32000
+0000d05c: b4230191  add x20, x29, #0x48
+0000d060: 022080d2  mov x2, #0x100
+0000d064: 01008052  mov w1, #0
+0000d068: 632045f9  ldr x3, [x3, #0xa40]
+0000d06c: e00314aa  mov x0, x20
+0000d070: 60003fd6  blr x3 ; heuristic @memset {"x1": 0, "x2": 256, "x3": "@memset"}
+0000d074: 240100b0  adrp x4, #0x32000
+0000d078: e30315aa  mov x3, x21
+0000d07c: 820000b0  adrp x2, #0x1e000
+0000d080: 42c01691  add x2, x2, #0x5b0
+0000d084: 846846f9  ldr x4, [x4, #0xcd0]
+0000d088: 012080d2  mov x1, #0x100
+0000d08c: e00314aa  mov x0, x20
+0000d090: 80003fd6  blr x4 ; heuristic @snprintf {"x1": 256, "x2": "ubus send ndk.xipt '{\"cmd_single\":\"%s\"}'", "x4": "@snprintf"}
+0000d094: e00314aa  mov x0, x20
+0000d098: e0023fd6  blr x23 ; heuristic unknown {}
+0000d09c: b6df42a9  ldp x22, x23, [x29, #0x28]
+0000d0a0: d5ffff17  b #0xcff4
+0000d0a4: 200100b0  adrp x0, #0x32000
+0000d0a8: b6df02a9  stp x22, x23, [x29, #0x28]
+0000d0ac: 00a844f9  ldr x0, [x0, #0x950]
+0000d0b0: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+0000d0b4: 1f2003d5  nop 
+0000d0b8: 1f2003d5  nop 
+0000d0bc: 1f2003d5  nop 
+0000d0c0: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+0000d0c4: fd030091  mov x29, sp
+0000d0c8: f35301a9  stp x19, x20, [sp, #0x10]
+0000d0cc: 330100b0  adrp x19, #0x32000
+0000d0d0: 340100b0  adrp x20, #0x32000
+0000d0d4: f76303a9  stp x23, x24, [sp, #0x30]
+0000d0d8: 63d644f9  ldr x3, [x19, #0x9a8]
+0000d0dc: f703022a  mov w23, w2
+0000d0e0: 82a645f9  ldr x2, [x20, #0xb48]
+0000d0e4: 640040f9  ldr x4, [x3]
+0000d0e8: a42700f9  str x4, [x29, #0x48]
+0000d0ec: 040080d2  mov x4, #0
+0000d0f0: f55b02a9  stp x21, x22, [sp, #0x20]
+0000d0f4: f603012a  mov w22, w1
+0000d0f8: 15008052  mov w21, #0
+0000d0fc: 980000b0  adrp x24, #0x1e000
+0000d100: 01431891  add x1, x24, #0x610
+0000d104: 40003fd6  blr x2 ; heuristic @strtok {"x1": ":", "x2": "@strtok", "x3": "@__stack_chk_guard", "x4": 0}
+0000d108: e00000b4  cbz x0, #0xd124
+0000d10c: 230100b0  adrp x3, #0x32000
+0000d110: 42018052  mov w2, #0xa
+0000d114: 010080d2  mov x1, #0
+0000d118: 63f844f9  ldr x3, [x3, #0x9f0]
+0000d11c: 60003fd6  blr x3 ; heuristic @strtol {"x1": 0, "x2": 10, "x3": "@strtol"}
+0000d120: f503002a  mov w21, w0
+0000d124: 94a645f9  ldr x20, [x20, #0xb48]
+0000d128: 01431891  add x1, x24, #0x610
+0000d12c: 000080d2  mov x0, #0
+0000d130: 80023fd6  blr x20 ; heuristic @strtok {"x0": 0, "x1": ":"}
+0000d134: 03008052  mov w3, #0
+0000d138: e00000b4  cbz x0, #0xd154
+0000d13c: 230100b0  adrp x3, #0x32000
+0000d140: 42018052  mov w2, #0xa
+0000d144: 010080d2  mov x1, #0
+0000d148: 63f844f9  ldr x3, [x3, #0x9f0]
+0000d14c: 60003fd6  blr x3 ; heuristic @strtol {"x1": 0, "x2": 10, "x3": "@strtol"}
+0000d150: e303002a  mov w3, w0
+0000d154: 7f00166b  cmp w3, w22
+0000d158: e1b79f1a  cset w1, ge
+0000d15c: bf02166b  cmp w21, w22
+0000d160: e0c79f1a  cset w0, le
+0000d164: 3f00006a  tst w1, w0
+0000d168: 41030054  b.ne #0xd1d0
+0000d16c: bf02176b  cmp w21, w23
+0000d170: e0c79f1a  cset w0, le
+0000d174: 7f00176b  cmp w3, w23
+0000d178: e2b79f1a  cset w2, ge
+0000d17c: 1f00026a  tst w0, w2
+0000d180: 81020054  b.ne #0xd1d0
+0000d184: bf02166b  cmp w21, w22
+0000d188: e2b79f1a  cset w2, ge
+0000d18c: 1f00026a  tst w0, w2
+

@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-29",
+  "live_device_alias": "G6-A",
+  "identity_provenance": "Actual serialNumber field returned by /gatedesc.xml matches existing private G6-A mapping; not inferred solely from LAN IP.",
+  "build": "3FE49996HJLL91/HJL.L91p01/20241227/HOMEOS24.04.00",
+  "live_hash_matches": 5,
+  "native_selector_count_per_profile": 42,
+  "xml_records": 57,
+  "malformed_xml_records": 6,
+  "source_records": 151,
+  "native_windows": 25,
+  "live_soap": [
+    {
+      "action": "GetCommonLinkProperties",
+      "http_status": 200,
+      "fields": {
+        "NewWANAccessType": "Cable",
+        "NewLayer1UpstreamMaxBitRate": "512000",
+        "NewLayer1DownstreamMaxBitRate": "512000",
+        "NewPhysicalLinkStatus": "Up"
+      }
+    },
+    {
+      "action": "GetStatusInfo",
+      "http_status": 200,
+      "fields": {
+        "NewConnectionStatus": "Connected",
+        "NewLastConnectionError": "ERROR_NONE",
+        "NewUptime": "88251"
+      }
+    },
+    {
+      "action": "GetNATRSIPStatus",
+      "http_status": 200,
+      "fields": {
+        "NewRSIPAvailable": "0",
+        "NewNATEnabled": "1"
+      }
+    },
+    {
+      "action": "GetExternalIPAddress",
+      "http_status": 200,
+      "fields": {
+        "NewExternalIPAddress": "MESH-37591-LIVE-LAN-IP"
+      }
+    },
+    {
+      "action": "GetFirewallStatus",
+      "http_status": 200,
+      "fields": {
+        "FirewallEnabled": "1",
+        "InboundPinholeAllowed": "1"
+      }
+    },
+    {
+      "action": "GetGenericPortMappingEntry",
+      "http_status": 500,
+      "fields": {
+        "faultcode": "s:Client",
+        "faultstring": "UPnPError",
+        "errorCode": "713",
+        "errorDescription": "SpecifiedArrayIndexInvalid"
+      }
+    }
+  ],
+  "server_header": "Linux/4.14.275, UPnP/1.0, Portable SDK for UPnP devices/1.6.20",
+  "SSDP_replies": 1,
+  "process_unchanged": true,
+  "uid": 1100,
+  "effective_capabilities": "0000000000000000",
+  "miniupnpd_B9_packaged_enabled": false,
+  "limits": [
+    "No mapping add/delete/range operations, pinhole writes, connection controls, event subscriptions, malformed-request probes or configuration changes.",
+    "Two read-only shell scripts, four description GETs, one unicast M-SEARCH and six SOAP getters. No router file transfer.",
+    "No WAN/guest/IPv6 reachability probe or B9 live request.",
+    "NAT/Cable/Up reporting includes constants; no proof of operational Internet connectivity or actual line rate.",
+    "XML action description, native selector and live result are separate layers.",
+    "Mutation correctness, per-caller ownership, low-port behavior, leases/reboot/reset/bank persistence and hardware forwarding remain untested.",
+    "AuthorizeControlPoint identification uses matching upstream signature/call shape and native constant-return bodies; not whole-source/binary equivalence.",
+    "Selected UPnP NAT chain empty at final read; mapping index0 returned713. No added mapping used as a test."
+  ]
+}

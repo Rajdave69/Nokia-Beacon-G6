@@ -1,0 +1,644 @@
+0000afe0: fd7bbaa9  stp x29, x30, [sp, #-0x60]!
+0000afe4: 41010090  adrp x1, #0x32000
+0000afe8: fd030091  mov x29, sp
+0000afec: f35301a9  stp x19, x20, [sp, #0x10]
+0000aff0: 53010090  adrp x19, #0x32000
+0000aff4: 219444f9  ldr x1, [x1, #0x928]
+0000aff8: 62d644f9  ldr x2, [x19, #0x9a8]
+0000affc: f55b02a9  stp x21, x22, [sp, #0x20]
+0000b000: f50300aa  mov x21, x0
+0000b004: 430040f9  ldr x3, [x2]
+0000b008: a32f00f9  str x3, [x29, #0x58]
+0000b00c: 030080d2  mov x3, #0
+0000b010: f71b00f9  str x23, [sp, #0x30]
+0000b014: 57010090  adrp x23, #0x33000
+0000b018: e0422d91  add x0, x23, #0xb50
+0000b01c: 20003fd6  blr x1 ; heuristic @pthread_mutex_lock {"x0": 211792, "x1": "@pthread_mutex_lock", "x2": "@__stack_chk_guard", "x3": 0}
+0000b020: 200100f0  adrp x0, #0x32000
+0000b024: 008445f9  ldr x0, [x0, #0xb08]
+0000b028: 010040f9  ldr x1, [x0]
+0000b02c: 210700b4  cbz x1, #0xb110
+0000b030: 360100f0  adrp x22, #0x32000
+0000b034: a0f20691  add x0, x21, #0x1bc
+0000b038: d6f246f9  ldr x22, [x22, #0xde0]
+0000b03c: c0023fd6  blr x22 ; heuristic @strcmp {}
+0000b040: f403002a  mov w20, w0
+0000b044: 60060035  cbnz w0, #0xb110
+0000b048: 81000090  adrp x1, #0x1b000
+0000b04c: 21a03791  add x1, x1, #0xde8
+0000b050: a0f20a91  add x0, x21, #0x2bc
+0000b054: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "urn:upnp-org:serviceId:WANCommonIFC1"}
+0000b058: c0030035  cbnz w0, #0xb0d0
+0000b05c: b4f20291  add x20, x21, #0xbc
+0000b060: 810000f0  adrp x1, #0x1e000
+0000b064: 21000291  add x1, x1, #0x80
+0000b068: e00314aa  mov x0, x20
+0000b06c: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetTotalBytesSent"}
+0000b070: 40210034  cbz w0, #0xb498
+0000b074: 810000f0  adrp x1, #0x1e000
+0000b078: 21600291  add x1, x1, #0x98
+0000b07c: e00314aa  mov x0, x20
+0000b080: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetTotalBytesReceived"}
+0000b084: a0260034  cbz w0, #0xb558
+0000b088: 810000f0  adrp x1, #0x1e000
+0000b08c: 21c00291  add x1, x1, #0xb0
+0000b090: e00314aa  mov x0, x20
+0000b094: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetTotalPacketsSent"}
+0000b098: c0280034  cbz w0, #0xb5b0
+0000b09c: 810000f0  adrp x1, #0x1e000
+0000b0a0: 21200391  add x1, x1, #0xc8
+0000b0a4: e00314aa  mov x0, x20
+0000b0a8: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetTotalPacketsReceived"}
+0000b0ac: 20240034  cbz w0, #0xb530
+0000b0b0: 810000f0  adrp x1, #0x1e000
+0000b0b4: 21800391  add x1, x1, #0xe0
+0000b0b8: e00314aa  mov x0, x20
+0000b0bc: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetCommonLinkProperties"}
+0000b0c0: 40310035  cbnz w0, #0xb6e8
+0000b0c4: e00315aa  mov x0, x21
+0000b0c8: baeaff97  bl #0x5bb0 ; heuristic 0x5bb0 {}
+0000b0cc: f403002a  mov w20, w0
+0000b0d0: 210100f0  adrp x1, #0x32000
+0000b0d4: e0422d91  add x0, x23, #0xb50
+0000b0d8: 215045f9  ldr x1, [x1, #0xaa0]
+0000b0dc: 20003fd6  blr x1 ; heuristic @pthread_mutex_unlock {"x0": 211792, "x1": "@pthread_mutex_unlock"}
+0000b0e0: 73d644f9  ldr x19, [x19, #0x9a8]
+0000b0e4: e003142a  mov w0, w20
+0000b0e8: a22f40f9  ldr x2, [x29, #0x58]
+0000b0ec: 610240f9  ldr x1, [x19]
+0000b0f0: 410001ca  eor x1, x2, x1
+0000b0f4: a14200b5  cbnz x1, #0xb948
+0000b0f8: f35341a9  ldp x19, x20, [sp, #0x10]
+0000b0fc: f55b42a9  ldp x21, x22, [sp, #0x20]
+0000b100: f71b40f9  ldr x23, [sp, #0x30]
+0000b104: fd7bc6a8  ldp x29, x30, [sp], #0x60
+0000b108: c0035fd6  ret 
+0000b10c: 1f2003d5  nop 
+0000b110: 200100f0  adrp x0, #0x32000
+0000b114: 007c47f9  ldr x0, [x0, #0xef8]
+0000b118: 010040f9  ldr x1, [x0]
+0000b11c: 011100b4  cbz x1, #0xb33c
+0000b120: b92300f9  str x25, [x29, #0x40]
+0000b124: 390100f0  adrp x25, #0x32000
+0000b128: a0f20691  add x0, x21, #0x1bc
+0000b12c: 36f346f9  ldr x22, [x25, #0xde0]
+0000b130: c0023fd6  blr x22 ; heuristic @strcmp {}
+0000b134: f403002a  mov w20, w0
+0000b138: 00100035  cbnz w0, #0xb338
+0000b13c: b81f00f9  str x24, [x29, #0x38]
+0000b140: b8f20a91  add x24, x21, #0x2bc
+0000b144: 81000090  adrp x1, #0x1b000
+0000b148: 21202f91  add x1, x1, #0xbc8
+0000b14c: e00318aa  mov x0, x24
+0000b150: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "urn:upnp-org:serviceId:WANIPConn1"}
+0000b154: e0160035  cbnz w0, #0xb430
+0000b158: 34f346f9  ldr x20, [x25, #0xde0]
+0000b15c: b6f20291  add x22, x21, #0xbc
+0000b160: 810000f0  adrp x1, #0x1e000
+0000b164: 21000591  add x1, x1, #0x140
+0000b168: e00316aa  mov x0, x22
+0000b16c: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetConnectionTypeInfo"}
+0000b170: c01b0034  cbz w0, #0xb4e8
+0000b174: 810000f0  adrp x1, #0x1e000
+0000b178: 21600591  add x1, x1, #0x158
+0000b17c: e00316aa  mov x0, x22
+0000b180: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetNATRSIPStatus"}
+0000b184: e01f0034  cbz w0, #0xb580
+0000b188: 810000f0  adrp x1, #0x1e000
+0000b18c: 21c00591  add x1, x1, #0x170
+0000b190: e00316aa  mov x0, x22
+0000b194: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetLinkLayerMaxBitRates"}
+0000b198: 00200034  cbz w0, #0xb598
+0000b19c: 810000f0  adrp x1, #0x1e000
+0000b1a0: 21200691  add x1, x1, #0x188
+0000b1a4: e00316aa  mov x0, x22
+0000b1a8: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "SetConnectionType"}
+0000b1ac: a01a0034  cbz w0, #0xb500
+0000b1b0: 810000f0  adrp x1, #0x1e000
+0000b1b4: 21800691  add x1, x1, #0x1a0
+0000b1b8: e00316aa  mov x0, x22
+0000b1bc: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "RequestConnection"}
+0000b1c0: 80210034  cbz w0, #0xb5f0
+0000b1c4: 810000f0  adrp x1, #0x1e000
+0000b1c8: 21e00691  add x1, x1, #0x1b8
+0000b1cc: e00316aa  mov x0, x22
+0000b1d0: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "AddPortMapping"}
+0000b1d4: 202b0034  cbz w0, #0xb738
+0000b1d8: 810000f0  adrp x1, #0x1e000
+0000b1dc: 21200791  add x1, x1, #0x1c8
+0000b1e0: e00316aa  mov x0, x22
+0000b1e4: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetGenericPortMappingEntry"}
+0000b1e8: e02b0034  cbz w0, #0xb764
+0000b1ec: 810000f0  adrp x1, #0x1e000
+0000b1f0: 21a00791  add x1, x1, #0x1e8
+0000b1f4: e00316aa  mov x0, x22
+0000b1f8: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetSpecificPortMappingEntry"}
+0000b1fc: e02c0034  cbz w0, #0xb798
+0000b200: 810000f0  adrp x1, #0x1e000
+0000b204: 21200891  add x1, x1, #0x208
+0000b208: e00316aa  mov x0, x22
+0000b20c: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetExternalIPAddress"}
+0000b210: 20300034  cbz w0, #0xb814
+0000b214: 810000f0  adrp x1, #0x1e000
+0000b218: 21800891  add x1, x1, #0x220
+0000b21c: e00316aa  mov x0, x22
+0000b220: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "DeletePortMapping"}
+0000b224: c0300034  cbz w0, #0xb83c
+0000b228: 34f346f9  ldr x20, [x25, #0xde0]
+0000b22c: 810000f0  adrp x1, #0x1e000
+0000b230: 21e00891  add x1, x1, #0x238
+0000b234: e00316aa  mov x0, x22
+0000b238: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetStatusInfo"}
+0000b23c: 80310034  cbz w0, #0xb86c
+0000b240: 810000f0  adrp x1, #0x1e000
+0000b244: 21200991  add x1, x1, #0x248
+0000b248: e00316aa  mov x0, x22
+0000b24c: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "DeletePortMappingRange"}
+0000b250: 60320034  cbz w0, #0xb89c
+0000b254: 810000f0  adrp x1, #0x1e000
+0000b258: 21800991  add x1, x1, #0x260
+0000b25c: e00316aa  mov x0, x22
+0000b260: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "AddAnyPortMapping"}
+0000b264: 40330034  cbz w0, #0xb8cc
+0000b268: 810000f0  adrp x1, #0x1e000
+0000b26c: 21e00991  add x1, x1, #0x278
+0000b270: e00316aa  mov x0, x22
+0000b274: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetListOfPortMappings"}
+0000b278: 00350034  cbz w0, #0xb918
+0000b27c: 810000f0  adrp x1, #0x1e000
+0000b280: 21400a91  add x1, x1, #0x290
+0000b284: e00316aa  mov x0, x22
+0000b288: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "ForceTermination"}
+0000b28c: 60360034  cbz w0, #0xb958
+0000b290: 810000f0  adrp x1, #0x1e000
+0000b294: 21a00a91  add x1, x1, #0x2a8
+0000b298: e00316aa  mov x0, x22
+0000b29c: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "RequestTermination"}
+0000b2a0: 60360034  cbz w0, #0xb96c
+0000b2a4: 810000f0  adrp x1, #0x1e000
+0000b2a8: 21000b91  add x1, x1, #0x2c0
+0000b2ac: e00316aa  mov x0, x22
+0000b2b0: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "SetAutoDisconnectTime"}
+0000b2b4: 00370034  cbz w0, #0xb994
+0000b2b8: 810000f0  adrp x1, #0x1e000
+0000b2bc: 21600b91  add x1, x1, #0x2d8
+0000b2c0: e00316aa  mov x0, x22
+0000b2c4: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "SetIdleDisconnectTime"}
+0000b2c8: c0350034  cbz w0, #0xb980
+0000b2cc: 810000f0  adrp x1, #0x1e000
+0000b2d0: 21c00b91  add x1, x1, #0x2f0
+0000b2d4: e00316aa  mov x0, x22
+0000b2d8: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "SetWarnDisconnectDelay"}
+0000b2dc: a0370034  cbz w0, #0xb9d0
+0000b2e0: 810000f0  adrp x1, #0x1e000
+0000b2e4: 21200c91  add x1, x1, #0x308
+0000b2e8: e00316aa  mov x0, x22
+0000b2ec: 80023fd6  blr x20 ; heuristic @strcmp {"x1": "GetAutoDisconnectTime"}
+0000b2f0: 60360034  cbz w0, #0xb9bc
+0000b2f4: 39f346f9  ldr x25, [x25, #0xde0]
+0000b2f8: 810000f0  adrp x1, #0x1e000
+0000b2fc: 21800c91  add x1, x1, #0x320
+0000b300: e00316aa  mov x0, x22
+0000b304: 20033fd6  blr x25 ; heuristic @strcmp {"x1": "GetIdleDisconnectTime"}
+0000b308: 00350034  cbz w0, #0xb9a8
+0000b30c: 810000f0  adrp x1, #0x1e000
+0000b310: 21e00c91  add x1, x1, #0x338
+0000b314: e00316aa  mov x0, x22
+0000b318: 20033fd6  blr x25 ; heuristic @strcmp {"x1": "GetWarnDisconnectDelay"}
+0000b31c: 60250035  cbnz w0, #0xb7c8
+0000b320: e00315aa  mov x0, x21
+0000b324: dfecff97  bl #0x66a0 ; heuristic 0x66a0 {}
+0000b328: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b32c: f403002a  mov w20, w0
+0000b330: 68ffff17  b #0xb0d0
+0000b334: 1f2003d5  nop 
+0000b338: b92340f9  ldr x25, [x29, #0x40]
+0000b33c: 200100f0  adrp x0, #0x32000
+0000b340: 14008052  mov w20, #0
+0000b344: 007445f9  ldr x0, [x0, #0xae8]
+0000b348: 010040f9  ldr x1, [x0]
+0000b34c: 21ecffb4  cbz x1, #0xb0d0
+0000b350: 360100f0  adrp x22, #0x32000
+0000b354: a0f20691  add x0, x21, #0x1bc
+0000b358: d6f246f9  ldr x22, [x22, #0xde0]
+0000b35c: c0023fd6  blr x22 ; heuristic @strcmp {}
+0000b360: f403002a  mov w20, w0
+0000b364: 20060035  cbnz w0, #0xb428
+0000b368: 810000f0  adrp x1, #0x1e000
+0000b36c: 21600491  add x1, x1, #0x118
+0000b370: a0f20a91  add x0, x21, #0x2bc
+0000b374: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "urn:upnp-org:serviceId:LANHostConfig1"}
+0000b378: c0eaff35  cbnz w0, #0xb0d0
+0000b37c: b4f20291  add x20, x21, #0xbc
+0000b380: 810000f0  adrp x1, #0x1e000
+0000b384: 21001091  add x1, x1, #0x400
+0000b388: e00314aa  mov x0, x20
+0000b38c: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetDHCPServerConfigurable"}
+0000b390: 40120034  cbz w0, #0xb5d8
+0000b394: 810000f0  adrp x1, #0x1e000
+0000b398: 21801091  add x1, x1, #0x420
+0000b39c: e00314aa  mov x0, x20
+0000b3a0: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetDHCPRelay"}
+0000b3a4: a00b0034  cbz w0, #0xb518
+0000b3a8: 810000f0  adrp x1, #0x1e000
+0000b3ac: 21c01091  add x1, x1, #0x430
+0000b3b0: e00314aa  mov x0, x20
+0000b3b4: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetSubnetMask"}
+0000b3b8: c0180034  cbz w0, #0xb6d0
+0000b3bc: 810000f0  adrp x1, #0x1e000
+0000b3c0: 21001191  add x1, x1, #0x440
+0000b3c4: e00314aa  mov x0, x20
+0000b3c8: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetIPRoutersList"}
+0000b3cc: 001c0034  cbz w0, #0xb74c
+0000b3d0: 810000f0  adrp x1, #0x1e000
+0000b3d4: 21601191  add x1, x1, #0x458
+0000b3d8: e00314aa  mov x0, x20
+0000b3dc: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetDomainName"}
+0000b3e0: c01c0034  cbz w0, #0xb778
+0000b3e4: 810000f0  adrp x1, #0x1e000
+0000b3e8: 21a01191  add x1, x1, #0x468
+0000b3ec: e00314aa  mov x0, x20
+0000b3f0: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetAddressRange"}
+0000b3f4: 40200034  cbz w0, #0xb7fc
+0000b3f8: 810000f0  adrp x1, #0x1e000
+0000b3fc: 21e01191  add x1, x1, #0x478
+0000b400: e00314aa  mov x0, x20
+0000b404: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetDNSServers"}
+0000b408: 00210035  cbnz w0, #0xb828
+0000b40c: 210100f0  adrp x1, #0x32000
+0000b410: e00315aa  mov x0, x21
+0000b414: 212c45f9  ldr x1, [x1, #0xa58]
+0000b418: 20003fd6  blr x1 ; heuristic 0x156c0 {"x1": 87744}
+0000b41c: f403002a  mov w20, w0
+0000b420: 2cffff17  b #0xb0d0
+0000b424: 1f2003d5  nop 
+0000b428: 14008052  mov w20, #0
+0000b42c: 29ffff17  b #0xb0d0
+0000b430: 81000090  adrp x1, #0x1b000
+0000b434: 21c02f91  add x1, x1, #0xbf0
+0000b438: e00318aa  mov x0, x24
+0000b43c: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "urn:upnp-org:serviceId:WANPPPConn1"}
+0000b440: c0e8ff34  cbz w0, #0xb158
+0000b444: 810000f0  adrp x1, #0x1e000
+0000b448: 21600491  add x1, x1, #0x118
+0000b44c: e00318aa  mov x0, x24
+0000b450: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "urn:upnp-org:serviceId:LANHostConfig1"}
+0000b454: 20e8ff34  cbz w0, #0xb158
+0000b458: 81000090  adrp x1, #0x1b000
+0000b45c: 21403b91  add x1, x1, #0xed0
+0000b460: e00318aa  mov x0, x24
+0000b464: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "urn:upnp-org:serviceId:WANEthLinkC1"}
+0000b468: 000d0035  cbnz w0, #0xb608
+0000b46c: b4f20291  add x20, x21, #0xbc
+0000b470: 810000f0  adrp x1, #0x1e000
+0000b474: 21400d91  add x1, x1, #0x350
+0000b478: e00314aa  mov x0, x20
+0000b47c: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetEthernetLinkStatus"}
+0000b480: 60190035  cbnz w0, #0xb7ac
+0000b484: e00315aa  mov x0, x21
+0000b488: 66f2ff97  bl #0x7e20 ; heuristic 0x7e20 {}
+0000b48c: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b490: f403002a  mov w20, w0
+0000b494: 0fffff17  b #0xb0d0
+0000b498: 210100f0  adrp x1, #0x32000
+0000b49c: a0e241f9  ldr x0, [x21, #0x3c0]
+0000b4a0: 21a447f9  ldr x1, [x1, #0xf48]
+0000b4a4: 20003fd6  blr x1 ; heuristic 0xff60 {"x1": 65376}
+0000b4a8: c0000035  cbnz w0, #0xb4c0
+0000b4ac: 01008052  mov w1, #0
+0000b4b0: e00315aa  mov x0, x21
+0000b4b4: f3e9ff97  bl #0x5c80 ; heuristic 0x5c80 {"x1": 0}
+0000b4b8: f403002a  mov w20, w0
+0000b4bc: 05ffff17  b #0xb0d0
+0000b4c0: 230100f0  adrp x3, #0x32000
+0000b4c4: 820000b0  adrp x2, #0x1c000
+0000b4c8: 42600191  add x2, x2, #0x58
+0000b4cc: 634445f9  ldr x3, [x3, #0xa88]
+0000b4d0: 41328052  mov w1, #0x192
+0000b4d4: e00315aa  mov x0, x21
+0000b4d8: 14008052  mov w20, #0
+0000b4dc: 60003fd6  blr x3 ; heuristic 0xfbe0 {"x1": 402, "x2": "Invalid Args", "x3": 64480}
+0000b4e0: fcfeff17  b #0xb0d0
+0000b4e4: 1f2003d5  nop 
+0000b4e8: e00315aa  mov x0, x21
+0000b4ec: 69eaff97  bl #0x5e90 ; heuristic 0x5e90 {}
+0000b4f0: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b4f4: f403002a  mov w20, w0
+0000b4f8: f6feff17  b #0xb0d0
+0000b4fc: 1f2003d5  nop 
+0000b500: e00315aa  mov x0, x21
+0000b504: f7eaff97  bl #0x60e0 ; heuristic 0x60e0 {}
+0000b508: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b50c: f403002a  mov w20, w0
+0000b510: f0feff17  b #0xb0d0
+0000b514: 1f2003d5  nop 
+0000b518: 210100f0  adrp x1, #0x32000
+0000b51c: e00315aa  mov x0, x21
+0000b520: 215c46f9  ldr x1, [x1, #0xcb8]
+0000b524: 20003fd6  blr x1 ; heuristic 0x12d60 {"x1": 77152}
+0000b528: f403002a  mov w20, w0
+0000b52c: e9feff17  b #0xb0d0
+0000b530: 210100f0  adrp x1, #0x32000
+0000b534: a0e241f9  ldr x0, [x21, #0x3c0]
+0000b538: 21a447f9  ldr x1, [x1, #0xf48]
+0000b53c: 20003fd6  blr x1 ; heuristic 0xff60 {"x1": 65376}
+0000b540: 00fcff35  cbnz w0, #0xb4c0
+0000b544: 61008052  mov w1, #3
+0000b548: e00315aa  mov x0, x21
+0000b54c: cde9ff97  bl #0x5c80 ; heuristic 0x5c80 {"x1": 3}
+0000b550: f403002a  mov w20, w0
+0000b554: dffeff17  b #0xb0d0
+0000b558: 210100f0  adrp x1, #0x32000
+0000b55c: a0e241f9  ldr x0, [x21, #0x3c0]
+0000b560: 21a447f9  ldr x1, [x1, #0xf48]
+0000b564: 20003fd6  blr x1 ; heuristic 0xff60 {"x1": 65376}
+0000b568: c0faff35  cbnz w0, #0xb4c0
+0000b56c: 21008052  mov w1, #1
+0000b570: e00315aa  mov x0, x21
+0000b574: c3e9ff97  bl #0x5c80 ; heuristic 0x5c80 {"x1": 1}
+0000b578: f403002a  mov w20, w0
+0000b57c: d5feff17  b #0xb0d0
+0000b580: e00315aa  mov x0, x21
+0000b584: 73eaff97  bl #0x5f50 ; heuristic 0x5f50 {}
+0000b588: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b58c: f403002a  mov w20, w0
+0000b590: d0feff17  b #0xb0d0
+0000b594: 1f2003d5  nop 
+0000b598: e00315aa  mov x0, x21
+0000b59c: 9deaff97  bl #0x6010 ; heuristic 0x6010 {}
+0000b5a0: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b5a4: f403002a  mov w20, w0
+0000b5a8: cafeff17  b #0xb0d0
+0000b5ac: 1f2003d5  nop 
+0000b5b0: 210100f0  adrp x1, #0x32000
+0000b5b4: a0e241f9  ldr x0, [x21, #0x3c0]
+0000b5b8: 21a447f9  ldr x1, [x1, #0xf48]
+0000b5bc: 20003fd6  blr x1 ; heuristic 0xff60 {"x1": 65376}
+0000b5c0: 00f8ff35  cbnz w0, #0xb4c0
+0000b5c4: 41008052  mov w1, #2
+0000b5c8: e00315aa  mov x0, x21
+0000b5cc: ade9ff97  bl #0x5c80 ; heuristic 0x5c80 {"x1": 2}
+0000b5d0: f403002a  mov w20, w0
+0000b5d4: bffeff17  b #0xb0d0
+0000b5d8: 210100f0  adrp x1, #0x32000
+0000b5dc: e00315aa  mov x0, x21
+0000b5e0: 213046f9  ldr x1, [x1, #0xc60]
+0000b5e4: 20003fd6  blr x1 ; heuristic 0x12a70 {"x1": 76400}
+0000b5e8: f403002a  mov w20, w0
+0000b5ec: b9feff17  b #0xb0d0
+0000b5f0: e00315aa  mov x0, x21
+0000b5f4: 37f3ff97  bl #0x82d0 ; heuristic 0x82d0 {}
+0000b5f8: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b5fc: f403002a  mov w20, w0
+0000b600: b4feff17  b #0xb0d0
+0000b604: 1f2003d5  nop 
+0000b608: 81000090  adrp x1, #0x1b000
+0000b60c: 21003d91  add x1, x1, #0xf40
+0000b610: e00318aa  mov x0, x24
+0000b614: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "urn:upnp-org:serviceId:WANIPv6FwCtrl1"}
+0000b618: c00b0035  cbnz w0, #0xb790
+0000b61c: b8f20291  add x24, x21, #0xbc
+0000b620: 810000f0  adrp x1, #0x1e000
+0000b624: 21a00d91  add x1, x1, #0x368
+0000b628: e00318aa  mov x0, x24
+0000b62c: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetFirewallStatus"}
+0000b630: 00110034  cbz w0, #0xb850
+0000b634: 810000f0  adrp x1, #0x1e000
+0000b638: 21000e91  add x1, x1, #0x380
+0000b63c: e00318aa  mov x0, x24
+0000b640: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "GetOutboundPinholeTimeout"}
+0000b644: e0110034  cbz w0, #0xb880
+0000b648: 810000f0  adrp x1, #0x1e000
+0000b64c: 21800e91  add x1, x1, #0x3a0
+0000b650: e00318aa  mov x0, x24
+0000b654: c0023fd6  blr x22 ; heuristic @strcmp {"x1": "AddPinhole"}
+0000b658: c0120034  cbz w0, #0xb8b0
+0000b65c: 39f346f9  ldr x25, [x25, #0xde0]
+0000b660: 810000f0  adrp x1, #0x1e000
+0000b664: 21c00e91  add x1, x1, #0x3b0
+0000b668: e00318aa  mov x0, x24
+0000b66c: 20033fd6  blr x25 ; heuristic unknown {"x1": "UpdatePinhole"}
+0000b670: 80130034  cbz w0, #0xb8e0
+0000b674: 810000f0  adrp x1, #0x1e000
+0000b678: 21000f91  add x1, x1, #0x3c0
+0000b67c: e00318aa  mov x0, x24
+0000b680: 20033fd6  blr x25 ; heuristic unknown {"x1": "DeletePinhole"}
+0000b684: c0130034  cbz w0, #0xb8fc
+0000b688: 810000f0  adrp x1, #0x1e000
+0000b68c: 21400f91  add x1, x1, #0x3d0
+0000b690: e00318aa  mov x0, x24
+0000b694: 20033fd6  blr x25 ; heuristic unknown {"x1": "GetPinholePackets"}
+0000b698: a0140034  cbz w0, #0xb92c
+0000b69c: 810000f0  adrp x1, #0x1e000
+0000b6a0: 21a00f91  add x1, x1, #0x3e8
+0000b6a4: e00318aa  mov x0, x24
+0000b6a8: 20033fd6  blr x25 ; heuristic unknown {"x1": "CheckPinholeWorking"}
+0000b6ac: e0080035  cbnz w0, #0xb7c8
+0000b6b0: 210100f0  adrp x1, #0x32000
+0000b6b4: e00315aa  mov x0, x21
+0000b6b8: 213045f9  ldr x1, [x1, #0xa60]
+0000b6bc: 20003fd6  blr x1 ; heuristic 0x19790 {"x1": 104336}
+0000b6c0: f403002a  mov w20, w0
+0000b6c4: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b6c8: 82feff17  b #0xb0d0
+0000b6cc: 1f2003d5  nop 
+0000b6d0: 210100f0  adrp x1, #0x32000
+0000b6d4: e00315aa  mov x0, x21
+0000b6d8: 217444f9  ldr x1, [x1, #0x8e8]
+0000b6dc: 20003fd6  blr x1 ; heuristic 0x13080 {"x1": 77952}
+0000b6e0: f403002a  mov w20, w0
+0000b6e4: 7bfeff17  b #0xb0d0
+0000b6e8: 810000f0  adrp x1, #0x1e000
+0000b6ec: e20314aa  mov x2, x20
+0000b6f0: 21e00391  add x1, x1, #0xf8
+0000b6f4: 230100f0  adrp x3, #0x32000
+0000b6f8: 633445f9  ldr x3, [x3, #0xa68]
+0000b6fc: 20008052  mov w0, #1
+0000b700: 60003fd6  blr x3 ; heuristic 0xf5d0 {"x0": 1, "x1": "Invalid Action Request : %s", "x3": 62928}
+0000b704: e10315aa  mov x1, x21
+0000b708: 800000b0  adrp x0, #0x1c000
+0000b70c: 00400091  add x0, x0, #0x10
+0000b710: 22328052  mov w2, #0x191
+0000b714: f403022a  mov w20, w2
+0000b718: 228400b8  str w2, [x1], #8
+0000b71c: 020040f9  ldr x2, [x0]
+0000b720: a20600f9  str x2, [x21, #8]
+0000b724: 007040f8  ldur x0, [x0, #7]
+0000b728: 207000f8  stur x0, [x1, #7]
+0000b72c: bfe601f9  str xzr, [x21, #0x3c8]
+0000b730: 68feff17  b #0xb0d0
+0000b734: 1f2003d5  nop 
+0000b738: e00315aa  mov x0, x21
+0000b73c: 19f9ff97  bl #0x9ba0 ; heuristic 0x9ba0 {"x2": 2334106421097295433}
+0000b740: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b744: f403002a  mov w20, w0
+0000b748: 62feff17  b #0xb0d0
+0000b74c: 210100f0  adrp x1, #0x32000
+0000b750: e00315aa  mov x0, x21
+0000b754: 211445f9  ldr x1, [x1, #0xa28]
+0000b758: 20003fd6  blr x1 ; heuristic 0x135e0 {"x1": 79328}
+0000b75c: f403002a  mov w20, w0
+0000b760: 5cfeff17  b #0xb0d0
+0000b764: e00315aa  mov x0, x21
+0000b768: 02ecff97  bl #0x6770 ; heuristic 0x6770 {}
+0000b76c: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b770: f403002a  mov w20, w0
+0000b774: 57feff17  b #0xb0d0
+0000b778: 210100f0  adrp x1, #0x32000
+0000b77c: e00315aa  mov x0, x21
+0000b780: 217c46f9  ldr x1, [x1, #0xcf8]
+0000b784: 20003fd6  blr x1 ; heuristic 0x13980 {"x1": 80256}
+0000b788: f403002a  mov w20, w0
+0000b78c: 51feff17  b #0xb0d0
+0000b790: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b794: 4ffeff17  b #0xb0d0
+0000b798: e00315aa  mov x0, x21
+0000b79c: 85ecff97  bl #0x69b0 ; heuristic 0x69b0 {}
+0000b7a0: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b7a4: f403002a  mov w20, w0
+0000b7a8: 4afeff17  b #0xb0d0
+0000b7ac: 230100f0  adrp x3, #0x32000
+0000b7b0: 810000f0  adrp x1, #0x1e000
+0000b7b4: e20314aa  mov x2, x20
+0000b7b8: 21e00391  add x1, x1, #0xf8
+0000b7bc: 633445f9  ldr x3, [x3, #0xa68]
+0000b7c0: 20008052  mov w0, #1
+0000b7c4: 60003fd6  blr x3 ; heuristic 0xf5d0 {"x0": 1, "x1": "Invalid Action Request : %s", "x3": 62928}
+0000b7c8: e10315aa  mov x1, x21
+0000b7cc: 800000b0  adrp x0, #0x1c000
+0000b7d0: 00400091  add x0, x0, #0x10
+0000b7d4: 22328052  mov w2, #0x191
+0000b7d8: f403022a  mov w20, w2
+0000b7dc: 228400b8  str w2, [x1], #8
+0000b7e0: 020040f9  ldr x2, [x0]
+0000b7e4: a20600f9  str x2, [x21, #8]
+0000b7e8: 007040f8  ldur x0, [x0, #7]
+0000b7ec: 207000f8  stur x0, [x1, #7]
+0000b7f0: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b7f4: bfe601f9  str xzr, [x21, #0x3c8]
+0000b7f8: 36feff17  b #0xb0d0
+0000b7fc: 210100f0  adrp x1, #0x32000
+0000b800: e00315aa  mov x0, x21
+0000b804: 21a046f9  ldr x1, [x1, #0xd40]
+0000b808: 20003fd6  blr x1 ; heuristic 0x14110 {"x1": 82192, "x2": 2334106421097295433}
+0000b80c: f403002a  mov w20, w0
+0000b810: 30feff17  b #0xb0d0
+0000b814: e00315aa  mov x0, x21
+0000b818: 32edff97  bl #0x6ce0 ; heuristic 0x6ce0 {}
+0000b81c: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b820: f403002a  mov w20, w0
+0000b824: 2bfeff17  b #0xb0d0
+0000b828: 810000f0  adrp x1, #0x1e000
+0000b82c: 230100f0  adrp x3, #0x32000
+0000b830: e20314aa  mov x2, x20
+0000b834: 21201291  add x1, x1, #0x488
+0000b838: b0ffff17  b #0xb6f8
+0000b83c: e00315aa  mov x0, x21
+0000b840: 9cedff97  bl #0x6eb0 ; heuristic 0x6eb0 {"x1": "Action not supported: %s", "x3": 204800}
+0000b844: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b848: f403002a  mov w20, w0
+0000b84c: 21feff17  b #0xb0d0
+0000b850: 210100f0  adrp x1, #0x32000
+0000b854: e00315aa  mov x0, x21
+0000b858: 216445f9  ldr x1, [x1, #0xac8]
+0000b85c: 20003fd6  blr x1 ; heuristic 0x18120 {"x1": 98592}
+0000b860: f403002a  mov w20, w0
+0000b864: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b868: 1afeff17  b #0xb0d0
+0000b86c: e00315aa  mov x0, x21
+0000b870: 40e9ff97  bl #0x5d70 ; heuristic 0x5d70 {}
+0000b874: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b878: f403002a  mov w20, w0
+0000b87c: 15feff17  b #0xb0d0
+0000b880: 210100f0  adrp x1, #0x32000
+0000b884: e00315aa  mov x0, x21
+0000b888: 21e044f9  ldr x1, [x1, #0x9c0]
+0000b88c: 20003fd6  blr x1 ; heuristic 0x181f0 {"x1": 98800}
+0000b890: f403002a  mov w20, w0
+0000b894: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b898: 0efeff17  b #0xb0d0
+0000b89c: e00315aa  mov x0, x21
+0000b8a0: 7ceeff97  bl #0x7290 ; heuristic 0x7290 {}
+0000b8a4: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b8a8: f403002a  mov w20, w0
+0000b8ac: 09feff17  b #0xb0d0
+0000b8b0: 210100f0  adrp x1, #0x32000
+0000b8b4: e00315aa  mov x0, x21
+0000b8b8: 21b846f9  ldr x1, [x1, #0xd70]
+0000b8bc: 20003fd6  blr x1 ; heuristic 0x18810 {"x1": 100368}
+0000b8c0: f403002a  mov w20, w0
+0000b8c4: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b8c8: 02feff17  b #0xb0d0
+0000b8cc: e00315aa  mov x0, x21
+0000b8d0: 60faff97  bl #0xa250 ; heuristic 0xa250 {}
+0000b8d4: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b8d8: f403002a  mov w20, w0
+0000b8dc: fdfdff17  b #0xb0d0
+0000b8e0: 210100f0  adrp x1, #0x32000
+0000b8e4: e00315aa  mov x0, x21
+0000b8e8: 21f445f9  ldr x1, [x1, #0xbe8]
+0000b8ec: 20003fd6  blr x1 ; heuristic 0x18f20 {"x1": 102176}
+0000b8f0: f403002a  mov w20, w0
+0000b8f4: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b8f8: f6fdff17  b #0xb0d0
+0000b8fc: 210100f0  adrp x1, #0x32000
+0000b900: e00315aa  mov x0, x21
+0000b904: 211c45f9  ldr x1, [x1, #0xa38]
+0000b908: 20003fd6  blr x1 ; heuristic 0x19230 {"x1": 102960}
+0000b90c: f403002a  mov w20, w0
+0000b910: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b914: effdff17  b #0xb0d0
+0000b918: e00315aa  mov x0, x21
+0000b91c: c1efff97  bl #0x7820 ; heuristic 0x7820 {}
+0000b920: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b924: f403002a  mov w20, w0
+0000b928: eafdff17  b #0xb0d0
+0000b92c: 210100f0  adrp x1, #0x32000
+0000b930: e00315aa  mov x0, x21
+0000b934: 21cc47f9  ldr x1, [x1, #0xf98]
+0000b938: 20003fd6  blr x1 ; heuristic 0x194d0 {"x1": 103632}
+0000b93c: f403002a  mov w20, w0
+0000b940: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b944: e3fdff17  b #0xb0d0
+0000b948: 200100f0  adrp x0, #0x32000
+0000b94c: b8e703a9  stp x24, x25, [x29, #0x38]
+0000b950: 00a844f9  ldr x0, [x0, #0x950]
+0000b954: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+0000b958: e00315aa  mov x0, x21
+0000b95c: e1fcff97  bl #0xace0 ; heuristic 0xace0 {}
+0000b960: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b964: f403002a  mov w20, w0
+0000b968: dafdff17  b #0xb0d0
+0000b96c: e00315aa  mov x0, x21
+0000b970: 2cfdff97  bl #0xae20 ; heuristic 0xae20 {}
+0000b974: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b978: f403002a  mov w20, w0
+0000b97c: d5fdff17  b #0xb0d0
+0000b980: e00315aa  mov x0, x21
+0000b984: 0feaff97  bl #0x61c0 ; heuristic 0x61c0 {}
+0000b988: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b98c: f403002a  mov w20, w0
+0000b990: d0fdff17  b #0xb0d0
+0000b994: e00315aa  mov x0, x21
+0000b998: d2f1ff97  bl #0x80e0 ; heuristic 0x80e0 {}
+0000b99c: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b9a0: f403002a  mov w20, w0
+0000b9a4: cbfdff17  b #0xb0d0
+0000b9a8: e00315aa  mov x0, x21
+0000b9ac: 09ebff97  bl #0x65d0 ; heuristic 0x65d0 {}
+0000b9b0: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b9b4: f403002a  mov w20, w0
+0000b9b8: c6fdff17  b #0xb0d0
+0000b9bc: e00315aa  mov x0, x21
+0000b9c0: d0eaff97  bl #0x6500 ; heuristic 0x6500 {}
+0000b9c4: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b9c8: f403002a  mov w20, w0
+0000b9cc: c1fdff17  b #0xb0d0
+0000b9d0: e00315aa  mov x0, x21
+0000b9d4: 63eaff97  bl #0x6360 ; heuristic 0x6360 {}
+0000b9d8: b8e743a9  ldp x24, x25, [x29, #0x38]
+0000b9dc: f403002a  mov w20, w0
+0000b9e0: bcfdff17  b #0xb0d0
+0000b9e4: 1f2003d5  nop 
+0000b9e8: 1f2003d5  nop 
+

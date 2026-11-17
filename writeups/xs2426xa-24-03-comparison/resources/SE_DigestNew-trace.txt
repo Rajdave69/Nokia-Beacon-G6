@@ -1,0 +1,24 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000028bd4 <SE_DigestNew@@Base>:
+   28bd4:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   28bd8:	d00000e0 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   28bdc:	910003fd 	mov	x29, sp
+   28be0:	f942c000 	ldr	x0, [x0, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   28be4:	f9400001 	ldr	x1, [x0]
+   28be8:	f9000fa1 	str	x1, [x29, #24]
+   28bec:	d2800001 	mov	x1, #0x0                   	// #0
+   28bf0:	f9400fa1 	ldr	x1, [x29, #24]
+   28bf4:	f9400000 	ldr	x0, [x0]
+   28bf8:	ca000020 	eor	x0, x1, x0
+   28bfc:	b4000080 	cbz	x0, 28c0c <SE_DigestNew@@Base+0x38>
+   28c00:	d00000e0 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   28c04:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   28c08:	d63f0000 	blr	x0
+   28c0c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   28c10:	17ffffc7 	b	28b2c <SE_sha256CtxNew@@Base>

@@ -244,7 +244,7 @@ python scripts/ota-firmware-download.py inspect --offer config-private/g6-writeu
 If it offers a file, download that exact object to a new destination:
 
 ```sh
-python scripts/ota-firmware-download.py download --offer config-private/g6-writeup-offer/offer.json --out config-private/downloaded-firmware/g6-writeup-copy.bin
+python scripts/ota-firmware-download.py download --offer config-private/g6-writeup-offer/offer.json --out dumped-firmware/downloaded-firmware/g6-writeup-copy.bin
 ```
 
 The helper's input is an already-decrypted flat JSON export. It does not accept

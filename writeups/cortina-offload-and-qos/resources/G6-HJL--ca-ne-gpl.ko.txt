@@ -1,0 +1,3133 @@
+ca_kernel_hook_init (0x425f0, 1000 bytes)
+Disassembly of section .text:
+
+00000000000425f0 <ca_kernel_hook_init>:
+   425f0:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+   425f4:	910003fd 	mov	x29, sp
+   425f8:	a90153f3 	stp	x19, x20, [sp, #16]
+   425fc:	a9025bf5 	stp	x21, x22, [sp, #32]
+   42600:	90000014 	adrp	x20, 0 <ca_ni_get_wan_port_id>
+			42600: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x37a8
+   42604:	91000294 	add	x20, x20, #0x0
+			42604: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x37a8
+   42608:	aa1e03e0 	mov	x0, x30
+   4260c:	91012295 	add	x21, x20, #0x48
+   42610:	94000000 	bl	0 <_mcount>
+			42610: R_AARCH64_CALL26	_mcount
+   42614:	90000016 	adrp	x22, 0 <ca_kernel_hook_ops>
+			42614: R_AARCH64_ADR_PREL_PG_HI21	ca_kernel_hook_ops
+   42618:	aa1503e1 	mov	x1, x21
+   4261c:	910002d3 	add	x19, x22, #0x0
+			4261c: R_AARCH64_ADD_ABS_LO12_NC	ca_kernel_hook_ops
+   42620:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			42620: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x17438
+   42624:	91000000 	add	x0, x0, #0x0
+			42624: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x17438
+   42628:	94000000 	bl	0 <printk>
+			42628: R_AARCH64_CALL26	printk
+   4262c:	d2805302 	mov	x2, #0x298                 	// #664
+   42630:	52800001 	mov	w1, #0x0                   	// #0
+   42634:	aa1303e0 	mov	x0, x19
+   42638:	94000000 	bl	0 <memset>
+			42638: R_AARCH64_CALL26	memset
+   4263c:	90000001 	adrp	x1, 48548 <ca_kh_l3_intf_add>
+			4263c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_intf_add
+   42640:	90000000 	adrp	x0, 476b8 <ca_kh_l3_intf_update_ip_addr>
+			42640: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_intf_update_ip_addr
+   42644:	91000021 	add	x1, x1, #0x0
+			42644: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_intf_add
+   42648:	91000000 	add	x0, x0, #0x0
+			42648: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_intf_update_ip_addr
+   4264c:	f90002c1 	str	x1, [x22]
+			4264c: R_AARCH64_LDST64_ABS_LO12_NC	ca_kernel_hook_ops
+   42650:	90000001 	adrp	x1, 476d8 <ca_kh_l3_intf_update_mtu>
+			42650: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_intf_update_mtu
+   42654:	91000021 	add	x1, x1, #0x0
+			42654: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_intf_update_mtu
+   42658:	a9008660 	stp	x0, x1, [x19, #8]
+   4265c:	90000000 	adrp	x0, 47950 <ca_kh_l3_intf_update_mac_addr>
+			4265c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_intf_update_mac_addr
+   42660:	91000000 	add	x0, x0, #0x0
+			42660: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_intf_update_mac_addr
+   42664:	90000001 	adrp	x1, 47e50 <ca_kh_l3_intf_delete>
+			42664: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_intf_delete
+   42668:	91000021 	add	x1, x1, #0x0
+			42668: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_intf_delete
+   4266c:	a9018660 	stp	x0, x1, [x19, #24]
+   42670:	90000000 	adrp	x0, 54270 <ca_kh_l3_route_add_ipv4_static>
+			42670: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_route_add_ipv4_static
+   42674:	91000000 	add	x0, x0, #0x0
+			42674: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_route_add_ipv4_static
+   42678:	90000001 	adrp	x1, 54798 <ca_kh_l3_route_del_ipv4_ifdown>
+			42678: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_route_del_ipv4_ifdown
+   4267c:	91000021 	add	x1, x1, #0x0
+			4267c: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_route_del_ipv4_ifdown
+   42680:	a9028660 	stp	x0, x1, [x19, #40]
+   42684:	90000000 	adrp	x0, 54ee8 <ca_kh_l3_route_del_ipv4_static>
+			42684: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_route_del_ipv4_static
+   42688:	91000000 	add	x0, x0, #0x0
+			42688: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_route_del_ipv4_static
+   4268c:	90000001 	adrp	x1, 55100 <ca_kh_l3_route_add_ipv6_static>
+			4268c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_route_add_ipv6_static
+   42690:	91000021 	add	x1, x1, #0x0
+			42690: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_route_add_ipv6_static
+   42694:	a9038660 	stp	x0, x1, [x19, #56]
+   42698:	90000000 	adrp	x0, 55690 <ca_kh_l3_route_del_ipv6_static>
+			42698: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_route_del_ipv6_static
+   4269c:	91000000 	add	x0, x0, #0x0
+			4269c: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_route_del_ipv6_static
+   426a0:	90000001 	adrp	x1, 55900 <ca_kh_l3_route_del_ipv6_ifdown>
+			426a0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_route_del_ipv6_ifdown
+   426a4:	91000021 	add	x1, x1, #0x0
+			426a4: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_route_del_ipv6_ifdown
+   426a8:	a9048660 	stp	x0, x1, [x19, #72]
+   426ac:	90000000 	adrp	x0, 55b28 <ca_kh_l3_nexthop_aging_timer_set>
+			426ac: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_nexthop_aging_timer_set
+   426b0:	91000000 	add	x0, x0, #0x0
+			426b0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_nexthop_aging_timer_set
+   426b4:	90000001 	adrp	x1, 42bf8 <ca_kh_neigh_add>
+			426b4: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_neigh_add
+   426b8:	91000021 	add	x1, x1, #0x0
+			426b8: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_neigh_add
+   426bc:	a9058660 	stp	x0, x1, [x19, #88]
+   426c0:	90000000 	adrp	x0, 42f90 <ca_kh_neigh_delete>
+			426c0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_neigh_delete
+   426c4:	91000000 	add	x0, x0, #0x0
+			426c4: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_neigh_delete
+   426c8:	90000001 	adrp	x1, 432a8 <ca_kh_neigh_update>
+			426c8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_neigh_update
+   426cc:	91000021 	add	x1, x1, #0x0
+			426cc: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_neigh_update
+   426d0:	a9068660 	stp	x0, x1, [x19, #104]
+   426d4:	90000000 	adrp	x0, 43cd0 <ca_kh_neigh_update_neighbour>
+			426d4: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_neigh_update_neighbour
+   426d8:	91000000 	add	x0, x0, #0x0
+			426d8: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_neigh_update_neighbour
+   426dc:	90000001 	adrp	x1, 4ca48 <ca_kh_nat_entry_add>
+			426dc: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_nat_entry_add
+   426e0:	91000021 	add	x1, x1, #0x0
+			426e0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_nat_entry_add
+   426e4:	a9078660 	stp	x0, x1, [x19, #120]
+   426e8:	90000000 	adrp	x0, 4d2d8 <ca_kh_nat_entry_delete>
+			426e8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_nat_entry_delete
+   426ec:	91000000 	add	x0, x0, #0x0
+			426ec: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_nat_entry_delete
+   426f0:	90000001 	adrp	x1, 4d500 <ca_kh_nat_entry_session_delete>
+			426f0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_nat_entry_session_delete
+   426f4:	91000021 	add	x1, x1, #0x0
+			426f4: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_nat_entry_session_delete
+   426f8:	a9088660 	stp	x0, x1, [x19, #136]
+   426fc:	90000000 	adrp	x0, 4d7a0 <ca_kh_nat_entry_session_delete_force>
+			426fc: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_nat_entry_session_delete_force
+   42700:	91000000 	add	x0, x0, #0x0
+			42700: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_nat_entry_session_delete_force
+   42704:	90000001 	adrp	x1, 4db88 <ca_kh_nat_entry_delete_by_port>
+			42704: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_nat_entry_delete_by_port
+   42708:	91000021 	add	x1, x1, #0x0
+			42708: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_nat_entry_delete_by_port
+   4270c:	a9098660 	stp	x0, x1, [x19, #152]
+   42710:	90000000 	adrp	x0, 4de90 <ca_kh_nat_entry_timer_refresh>
+			42710: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_nat_entry_timer_refresh
+   42714:	91000000 	add	x0, x0, #0x0
+			42714: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_nat_entry_timer_refresh
+   42718:	90000001 	adrp	x1, 4ce50 <ca_kh_nat6_entry_add>
+			42718: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_nat6_entry_add
+   4271c:	91000021 	add	x1, x1, #0x0
+			4271c: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_nat6_entry_add
+   42720:	a90a8660 	stp	x0, x1, [x19, #168]
+   42724:	90000000 	adrp	x0, 4d378 <ca_kh_nat6_entry_delete>
+			42724: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_nat6_entry_delete
+   42728:	91000000 	add	x0, x0, #0x0
+			42728: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_nat6_entry_delete
+   4272c:	90000001 	adrp	x1, 44370 <ca_kh_dslite_add>
+			4272c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_dslite_add
+   42730:	91000021 	add	x1, x1, #0x0
+			42730: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_dslite_add
+   42734:	a90b8660 	stp	x0, x1, [x19, #184]
+   42738:	90000000 	adrp	x0, 44d70 <ca_kh_dslite_delete>
+			42738: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_dslite_delete
+   4273c:	91000000 	add	x0, x0, #0x0
+			4273c: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_dslite_delete
+   42740:	90000001 	adrp	x1, 44b40 <ca_kh_dslite_delete_intf_only>
+			42740: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_dslite_delete_intf_only
+   42744:	91000021 	add	x1, x1, #0x0
+			42744: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_dslite_delete_intf_only
+   42748:	a90c8660 	stp	x0, x1, [x19, #200]
+   4274c:	90000000 	adrp	x0, 61778 <ca_kh_6rd_add>
+			4274c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_6rd_add
+   42750:	91000000 	add	x0, x0, #0x0
+			42750: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_6rd_add
+   42754:	90000001 	adrp	x1, 62678 <ca_kh_6rd_delete>
+			42754: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_6rd_delete
+   42758:	91000021 	add	x1, x1, #0x0
+			42758: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_6rd_delete
+   4275c:	a90d8660 	stp	x0, x1, [x19, #216]
+   42760:	90000000 	adrp	x0, 61de0 <ca_kh_6rd_update>
+			42760: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_6rd_update
+   42764:	91000000 	add	x0, x0, #0x0
+			42764: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_6rd_update
+   42768:	f9007660 	str	x0, [x19, #232]
+   4276c:	90000000 	adrp	x0, 64380 <ca_kh_v4gre_delete>
+			4276c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_v4gre_delete
+   42770:	91000000 	add	x0, x0, #0x0
+			42770: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_v4gre_delete
+   42774:	90000001 	adrp	x1, 63b80 <ca_kh_v4gre_add>
+			42774: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_v4gre_add
+   42778:	f9008260 	str	x0, [x19, #256]
+   4277c:	91000021 	add	x1, x1, #0x0
+			4277c: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_v4gre_add
+   42780:	90000000 	adrp	x0, 45078 <ca_kh_map_e_add>
+			42780: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_map_e_add
+   42784:	f9007e61 	str	x1, [x19, #248]
+   42788:	91000000 	add	x0, x0, #0x0
+			42788: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_map_e_add
+   4278c:	90000001 	adrp	x1, 45a28 <ca_kh_map_e_delete>
+			4278c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_map_e_delete
+   42790:	91000021 	add	x1, x1, #0x0
+			42790: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_map_e_delete
+   42794:	a9118660 	stp	x0, x1, [x19, #280]
+   42798:	90000000 	adrp	x0, 457f8 <ca_kh_map_e_delete_intf_only>
+			42798: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_map_e_delete_intf_only
+   4279c:	91000000 	add	x0, x0, #0x0
+			4279c: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_map_e_delete_intf_only
+   427a0:	90000001 	adrp	x1, 63668 <ca_kh_l2tp_add>
+			427a0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2tp_add
+   427a4:	91000021 	add	x1, x1, #0x0
+			427a4: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2tp_add
+   427a8:	a9128660 	stp	x0, x1, [x19, #296]
+   427ac:	90000000 	adrp	x0, 638e0 <ca_kh_l2tp_delete>
+			427ac: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2tp_delete
+   427b0:	91000000 	add	x0, x0, #0x0
+			427b0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2tp_delete
+   427b4:	90000001 	adrp	x1, 4ab40 <ca_kh_l2_mcast_member_add>
+			427b4: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2_mcast_member_add
+   427b8:	f9009e60 	str	x0, [x19, #312]
+   427bc:	91000021 	add	x1, x1, #0x0
+			427bc: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2_mcast_member_add
+   427c0:	90000000 	adrp	x0, 4abc0 <ca_kh_l2_mcast_member_delete>
+			427c0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2_mcast_member_delete
+   427c4:	91000000 	add	x0, x0, #0x0
+			427c4: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2_mcast_member_delete
+   427c8:	f900da61 	str	x1, [x19, #432]
+   427cc:	90000001 	adrp	x1, 4a288 <ca_kh_mcast_set_max_group_number>
+			427cc: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_mcast_set_max_group_number
+   427d0:	91000021 	add	x1, x1, #0x0
+			427d0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_mcast_set_max_group_number
+   427d4:	a91b8660 	stp	x0, x1, [x19, #440]
+   427d8:	90000000 	adrp	x0, 4a8d0 <ca_kh_mcast_get_max_group_number>
+			427d8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_mcast_get_max_group_number
+   427dc:	91000000 	add	x0, x0, #0x0
+			427dc: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_mcast_get_max_group_number
+   427e0:	90000001 	adrp	x1, 4a9d0 <ca_kh_mcast_set_multicast_snooping>
+			427e0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_mcast_set_multicast_snooping
+   427e4:	91000021 	add	x1, x1, #0x0
+			427e4: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_mcast_set_multicast_snooping
+   427e8:	a91c8660 	stp	x0, x1, [x19, #456]
+   427ec:	90000000 	adrp	x0, 4aa28 <ca_kh_mcast_get_multicast_snooping>
+			427ec: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_mcast_get_multicast_snooping
+   427f0:	91000000 	add	x0, x0, #0x0
+			427f0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_mcast_get_multicast_snooping
+   427f4:	90000001 	adrp	x1, 4aa88 <ca_kh_mcast_set_multicast_fastleave>
+			427f4: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_mcast_set_multicast_fastleave
+   427f8:	91000021 	add	x1, x1, #0x0
+			427f8: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_mcast_set_multicast_fastleave
+   427fc:	a91d8660 	stp	x0, x1, [x19, #472]
+   42800:	90000000 	adrp	x0, 4aae0 <ca_kh_mcast_get_multicast_fastleave>
+			42800: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_mcast_get_multicast_fastleave
+   42804:	91000000 	add	x0, x0, #0x0
+			42804: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_mcast_get_multicast_fastleave
+   42808:	90000001 	adrp	x1, 4e870 <ca_kh_pppoe_add>
+			42808: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_pppoe_add
+   4280c:	f900f660 	str	x0, [x19, #488]
+   42810:	91000021 	add	x1, x1, #0x0
+			42810: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_pppoe_add
+   42814:	90000000 	adrp	x0, 4f360 <ca_kh_pppoe_delete>
+			42814: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_pppoe_delete
+   42818:	91000000 	add	x0, x0, #0x0
+			42818: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_pppoe_delete
+   4281c:	f900c261 	str	x1, [x19, #384]
+   42820:	90000001 	adrp	x1, 4eeb8 <ca_kh_pppoe_update>
+			42820: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_pppoe_update
+   42824:	91000021 	add	x1, x1, #0x0
+			42824: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_pppoe_update
+   42828:	a9188660 	stp	x0, x1, [x19, #392]
+   4282c:	90000000 	adrp	x0, 56bb0 <ca_kh_ipsec_add>
+			4282c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipsec_add
+   42830:	91000000 	add	x0, x0, #0x0
+			42830: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipsec_add
+   42834:	90000001 	adrp	x1, 57a30 <ca_kh_ipsec_delete>
+			42834: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipsec_delete
+   42838:	91000021 	add	x1, x1, #0x0
+			42838: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipsec_delete
+   4283c:	a9198660 	stp	x0, x1, [x19, #408]
+   42840:	90000000 	adrp	x0, 57e90 <ca_kh_ipsec_redirect_to_pe>
+			42840: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipsec_redirect_to_pe
+   42844:	91000000 	add	x0, x0, #0x0
+			42844: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipsec_redirect_to_pe
+   42848:	90000001 	adrp	x1, 58c58 <ca_kh_l2_vlan_add>
+			42848: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2_vlan_add
+   4284c:	f900d660 	str	x0, [x19, #424]
+   42850:	91000021 	add	x1, x1, #0x0
+			42850: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2_vlan_add
+   42854:	90000000 	adrp	x0, 58c78 <ca_kh_l2_vlan_delete>
+			42854: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2_vlan_delete
+   42858:	91000000 	add	x0, x0, #0x0
+			42858: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2_vlan_delete
+   4285c:	f9012261 	str	x1, [x19, #576]
+   42860:	90000001 	adrp	x1, 591a0 <ca_kh_l2_br_add_del_if>
+			42860: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2_br_add_del_if
+   42864:	f9012660 	str	x0, [x19, #584]
+   42868:	91000021 	add	x1, x1, #0x0
+			42868: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2_br_add_del_if
+   4286c:	90000000 	adrp	x0, 4fb18 <ca_kh_bypass_tcp_portlist_add>
+			4286c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_bypass_tcp_portlist_add
+   42870:	91000000 	add	x0, x0, #0x0
+			42870: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_bypass_tcp_portlist_add
+   42874:	f9012a61 	str	x1, [x19, #592]
+   42878:	90000001 	adrp	x1, 4fb48 <ca_kh_bypass_tcp_portlist_delete>
+			42878: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_bypass_tcp_portlist_delete
+   4287c:	91000021 	add	x1, x1, #0x0
+			4287c: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_bypass_tcp_portlist_delete
+   42880:	a91f0660 	stp	x0, x1, [x19, #496]
+   42884:	90000000 	adrp	x0, 4fb78 <ca_kh_bypass_tcp_portlist_dump>
+			42884: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_bypass_tcp_portlist_dump
+   42888:	91000000 	add	x0, x0, #0x0
+			42888: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_bypass_tcp_portlist_dump
+   4288c:	f9010260 	str	x0, [x19, #512]
+   42890:	90000000 	adrp	x0, 4fc00 <ca_kh_bypass_udp_portlist_add>
+			42890: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_bypass_udp_portlist_add
+   42894:	91000000 	add	x0, x0, #0x0
+			42894: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_bypass_udp_portlist_add
+   42898:	90000001 	adrp	x1, 4fb98 <ca_kh_bypass_tcp_portlist_exist>
+			42898: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_bypass_tcp_portlist_exist
+   4289c:	f9010a60 	str	x0, [x19, #528]
+   428a0:	91000021 	add	x1, x1, #0x0
+			428a0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_bypass_tcp_portlist_exist
+   428a4:	90000000 	adrp	x0, 4fc60 <ca_kh_bypass_udp_portlist_dump>
+			428a4: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_bypass_udp_portlist_dump
+   428a8:	91000000 	add	x0, x0, #0x0
+			428a8: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_bypass_udp_portlist_dump
+   428ac:	f9010661 	str	x1, [x19, #520]
+   428b0:	90000001 	adrp	x1, 4fc30 <ca_kh_bypass_udp_portlist_delete>
+			428b0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_bypass_udp_portlist_delete
+   428b4:	f9011260 	str	x0, [x19, #544]
+   428b8:	91000021 	add	x1, x1, #0x0
+			428b8: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_bypass_udp_portlist_delete
+   428bc:	90000000 	adrp	x0, 593e0 <ca_kh_offload_permit>
+			428bc: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_offload_permit
+   428c0:	91000000 	add	x0, x0, #0x0
+			428c0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_offload_permit
+   428c4:	f9010e61 	str	x1, [x19, #536]
+   428c8:	90000001 	adrp	x1, 4fc80 <ca_kh_bypass_udp_portlist_exist>
+			428c8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_bypass_udp_portlist_exist
+   428cc:	f9012e60 	str	x0, [x19, #600]
+   428d0:	91000021 	add	x1, x1, #0x0
+			428d0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_bypass_udp_portlist_exist
+   428d4:	90000000 	adrp	x0, 5a360 <ca_kh_offload_udp>
+			428d4: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_offload_udp
+   428d8:	91000000 	add	x0, x0, #0x0
+			428d8: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_offload_udp
+   428dc:	f9011661 	str	x1, [x19, #552]
+   428e0:	90000001 	adrp	x1, 59560 <ca_kh_offload_tcp>
+			428e0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_offload_tcp
+   428e4:	f9013660 	str	x0, [x19, #616]
+   428e8:	91000021 	add	x1, x1, #0x0
+			428e8: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_offload_tcp
+   428ec:	90000000 	adrp	x0, 5af70 <ca_kh_offload_generic>
+			428ec: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_offload_generic
+   428f0:	f9013261 	str	x1, [x19, #608]
+   428f4:	91000000 	add	x0, x0, #0x0
+			428f4: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_offload_generic
+   428f8:	90000001 	adrp	x1, 4b528 <ca_kh_l2_mcast_group_add>
+			428f8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2_mcast_group_add
+   428fc:	f9013a60 	str	x0, [x19, #624]
+   42900:	91000021 	add	x1, x1, #0x0
+			42900: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2_mcast_group_add
+   42904:	90000000 	adrp	x0, 4bdb0 <ca_kh_l3_mcast_group_add>
+			42904: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_mcast_group_add
+   42908:	91000000 	add	x0, x0, #0x0
+			42908: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_mcast_group_add
+   4290c:	f9013e61 	str	x1, [x19, #632]
+   42910:	90000001 	adrp	x1, 4c278 <ca_kh_l2_mcast_group_delete>
+			42910: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l2_mcast_group_delete
+   42914:	f9014260 	str	x0, [x19, #640]
+   42918:	91000021 	add	x1, x1, #0x0
+			42918: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l2_mcast_group_delete
+   4291c:	90000000 	adrp	x0, 4c370 <ca_kh_l3_mcast_group_delete>
+			4291c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_l3_mcast_group_delete
+   42920:	91000000 	add	x0, x0, #0x0
+			42920: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_l3_mcast_group_delete
+   42924:	f9014661 	str	x1, [x19, #648]
+   42928:	f9014a60 	str	x0, [x19, #656]
+   4292c:	94000000 	bl	4e458 <ca_kh_pppoe_init>
+			4292c: R_AARCH64_CALL26	ca_kh_pppoe_init
+   42930:	94000000 	bl	4fbc8 <ca_kh_bypass_tcp_portlist_init>
+			42930: R_AARCH64_CALL26	ca_kh_bypass_tcp_portlist_init
+   42934:	94000000 	bl	4fcb0 <ca_kh_bypass_udp_portlist_init>
+			42934: R_AARCH64_CALL26	ca_kh_bypass_udp_portlist_init
+   42938:	910103a3 	add	x3, x29, #0x40
+   4293c:	d2902000 	mov	x0, #0x8100                	// #33024
+   42940:	f2d11500 	movk	x0, #0x88a8, lsl #32
+   42944:	52800044 	mov	w4, #0x2                   	// #2
+   42948:	f9001ba0 	str	x0, [x29, #48]
+   4294c:	2a0403e2 	mov	w2, w4
+   42950:	f81f8c60 	str	x0, [x3, #-8]!
+   42954:	9100c3a1 	add	x1, x29, #0x30
+   42958:	52800000 	mov	w0, #0x0                   	// #0
+   4295c:	94000000 	bl	0 <ca_l2_vlan_tpid_set>
+			4295c: R_AARCH64_CALL26	ca_l2_vlan_tpid_set
+   42960:	34000140 	cbz	w0, 42988 <ca_kernel_hook_init+0x398>
+   42964:	2a0003e2 	mov	w2, w0
+   42968:	91018281 	add	x1, x20, #0x60
+   4296c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4296c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x17468
+   42970:	91000000 	add	x0, x0, #0x0
+			42970: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x17468
+   42974:	94000000 	bl	0 <printk>
+			42974: R_AARCH64_CALL26	printk
+   42978:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			42978: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x17498
+   4297c:	aa1503e1 	mov	x1, x21
+   42980:	91000000 	add	x0, x0, #0x0
+			42980: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x17498
+   42984:	94000000 	bl	0 <printk>
+			42984: R_AARCH64_CALL26	printk
+   42988:	d290a002 	mov	x2, #0x8500                	// #34048
+   4298c:	52800001 	mov	w1, #0x0                   	// #0
+   42990:	f2a00042 	movk	x2, #0x2, lsl #16
+   42994:	90000000 	adrp	x0, e85f8 <ca_kh_ipv4_nexthop_table>
+			42994: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipv4_nexthop_table
+   42998:	91000000 	add	x0, x0, #0x0
+			42998: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv4_nexthop_table
+   4299c:	94000000 	bl	0 <memset>
+			4299c: R_AARCH64_CALL26	memset
+   429a0:	d290a002 	mov	x2, #0x8500                	// #34048
+   429a4:	52800001 	mov	w1, #0x0                   	// #0
+   429a8:	f2a00042 	movk	x2, #0x2, lsl #16
+   429ac:	90000000 	adrp	x0, c00f8 <ca_kh_ipv6_nexthop_table>
+			429ac: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipv6_nexthop_table
+   429b0:	91000000 	add	x0, x0, #0x0
+			429b0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv6_nexthop_table
+   429b4:	94000000 	bl	0 <memset>
+			429b4: R_AARCH64_CALL26	memset
+   429b8:	94000000 	bl	4b3a8 <ca_kh_mcast_init>
+			429b8: R_AARCH64_CALL26	ca_kh_mcast_init
+   429bc:	94000000 	bl	52060 <ca_kernel_hook_proc_init_module>
+			429bc: R_AARCH64_CALL26	ca_kernel_hook_proc_init_module
+   429c0:	94000000 	bl	42598 <ca_kernel_hook_set_event_notifier>
+			429c0: R_AARCH64_CALL26	ca_kernel_hook_set_event_notifier
+   429c4:	52800000 	mov	w0, #0x0                   	// #0
+   429c8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   429cc:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   429d0:	a8c47bfd 	ldp	x29, x30, [sp], #64
+   429d4:	d65f03c0 	ret
+
+ca_kernel_hook_set_event_notifier (0x42598, 84 bytes)
+Disassembly of section .text:
+
+0000000000042598 <ca_kernel_hook_set_event_notifier>:
+   42598:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   4259c:	910003fd 	mov	x29, sp
+   425a0:	f9000bf3 	str	x19, [sp, #16]
+   425a4:	aa1e03e0 	mov	x0, x30
+   425a8:	94000000 	bl	0 <_mcount>
+			425a8: R_AARCH64_CALL26	_mcount
+   425ac:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			425ac: R_AARCH64_ADR_PREL_PG_HI21	.data+0xc30
+   425b0:	91000000 	add	x0, x0, #0x0
+			425b0: R_AARCH64_ADD_ABS_LO12_NC	.data+0xc30
+   425b4:	94000000 	bl	0 <register_netdevice_notifier>
+			425b4: R_AARCH64_CALL26	register_netdevice_notifier
+   425b8:	2a0003f3 	mov	w19, w0
+   425bc:	34000100 	cbz	w0, 425dc <ca_kernel_hook_set_event_notifier+0x44>
+   425c0:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			425c0: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x37a8
+   425c4:	91000021 	add	x1, x1, #0x0
+			425c4: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x37a8
+   425c8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			425c8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x17400
+   425cc:	2a1303e2 	mov	w2, w19
+   425d0:	91008021 	add	x1, x1, #0x20
+   425d4:	91000000 	add	x0, x0, #0x0
+			425d4: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x17400
+   425d8:	94000000 	bl	0 <printk>
+			425d8: R_AARCH64_CALL26	printk
+   425dc:	2a1303e0 	mov	w0, w19
+   425e0:	f9400bf3 	ldr	x19, [sp, #16]
+   425e4:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   425e8:	d65f03c0 	ret
+
+ca_kh_nat6_entry_add (0x4ce50, 1156 bytes)
+Disassembly of section .text:
+
+000000000004ce50 <ca_kh_nat6_entry_add>:
+   4ce50:	a9b07bfd 	stp	x29, x30, [sp, #-256]!
+   4ce54:	910003fd 	mov	x29, sp
+   4ce58:	a90153f3 	stp	x19, x20, [sp, #16]
+   4ce5c:	a9025bf5 	stp	x21, x22, [sp, #32]
+   4ce60:	a90363f7 	stp	x23, x24, [sp, #48]
+   4ce64:	f90023f9 	str	x25, [sp, #64]
+   4ce68:	f9002ffc 	str	x28, [sp, #88]
+   4ce6c:	90000013 	adrp	x19, 0 <ca_kh_debug>
+			4ce6c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   4ce70:	aa1e03e0 	mov	x0, x30
+   4ce74:	12001c36 	and	w22, w1, #0xff
+   4ce78:	2a0203f9 	mov	w25, w2
+   4ce7c:	12003cf5 	and	w21, w7, #0xffff
+   4ce80:	794203b8 	ldrh	w24, [x29, #256]
+   4ce84:	794213b4 	ldrh	w20, [x29, #264]
+   4ce88:	794223b7 	ldrh	w23, [x29, #272]
+   4ce8c:	a90617a6 	stp	x6, x5, [x29, #96]
+   4ce90:	a9070fa4 	stp	x4, x3, [x29, #112]
+   4ce94:	94000000 	bl	0 <_mcount>
+			4ce94: R_AARCH64_CALL26	_mcount
+   4ce98:	b9400260 	ldr	w0, [x19]
+			4ce98: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4ce9c:	36180400 	tbz	w0, #3, 4cf1c <ca_kh_nat6_entry_add+0xcc>
+   4cea0:	f90027ba 	str	x26, [x29, #72]
+   4cea4:	9000001a 	adrp	x26, 0 <ca_ni_get_wan_port_id>
+			4cea4: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4cea8:	9100035a 	add	x26, x26, #0x0
+			4cea8: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4ceac:	2a1903e3 	mov	w3, w25
+   4ceb0:	9100635a 	add	x26, x26, #0x18
+   4ceb4:	2a1603e2 	mov	w2, w22
+   4ceb8:	aa1a03e1 	mov	x1, x26
+   4cebc:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cebc: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1a920
+   4cec0:	91000000 	add	x0, x0, #0x0
+			4cec0: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1a920
+   4cec4:	94000000 	bl	0 <printk>
+			4cec4: R_AARCH64_CALL26	printk
+   4cec8:	5ac00685 	rev16	w5, w20
+   4cecc:	5ac006a3 	rev16	w3, w21
+   4ced0:	aa1a03e1 	mov	x1, x26
+   4ced4:	12003ca5 	and	w5, w5, #0xffff
+   4ced8:	9101a3a4 	add	x4, x29, #0x68
+   4cedc:	12003c63 	and	w3, w3, #0xffff
+   4cee0:	9101e3a2 	add	x2, x29, #0x78
+   4cee4:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cee4: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1aa98
+   4cee8:	91000000 	add	x0, x0, #0x0
+			4cee8: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1aa98
+   4ceec:	94000000 	bl	0 <printk>
+			4ceec: R_AARCH64_CALL26	printk
+   4cef0:	5ac006e5 	rev16	w5, w23
+   4cef4:	5ac00703 	rev16	w3, w24
+   4cef8:	aa1a03e1 	mov	x1, x26
+   4cefc:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cefc: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1aac8
+   4cf00:	12003ca5 	and	w5, w5, #0xffff
+   4cf04:	910183a4 	add	x4, x29, #0x60
+   4cf08:	12003c63 	and	w3, w3, #0xffff
+   4cf0c:	9101c3a2 	add	x2, x29, #0x70
+   4cf10:	91000000 	add	x0, x0, #0x0
+			4cf10: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1aac8
+   4cf14:	94000000 	bl	0 <printk>
+			4cf14: R_AARCH64_CALL26	printk
+   4cf18:	f94027ba 	ldr	x26, [x29, #72]
+   4cf1c:	f9403fa0 	ldr	x0, [x29, #120]
+   4cf20:	97fffe94 	bl	4c970 <ca_kh_l3_mcast_group_delete+0x600>
+   4cf24:	7100041f 	cmp	w0, #0x1
+   4cf28:	540000c1 	b.ne	4cf40 <ca_kh_nat6_entry_add+0xf0>  // b.any
+   4cf2c:	b9400260 	ldr	w0, [x19]
+			4cf2c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4cf30:	37180120 	tbnz	w0, #3, 4cf54 <ca_kh_nat6_entry_add+0x104>
+   4cf34:	528000fc 	mov	w28, #0x7                   	// #7
+   4cf38:	140000df 	b	4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4cf3c:	d503201f 	nop
+   4cf40:	f94033a0 	ldr	x0, [x29, #96]
+   4cf44:	97fffe8b 	bl	4c970 <ca_kh_l3_mcast_group_delete+0x600>
+   4cf48:	7100041f 	cmp	w0, #0x1
+   4cf4c:	540001a1 	b.ne	4cf80 <ca_kh_nat6_entry_add+0x130>  // b.any
+   4cf50:	17fffff7 	b	4cf2c <ca_kh_nat6_entry_add+0xdc>
+   4cf54:	f94033a3 	ldr	x3, [x29, #96]
+   4cf58:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4cf58: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4cf5c:	f9403fa2 	ldr	x2, [x29, #120]
+   4cf60:	91000021 	add	x1, x1, #0x0
+			4cf60: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4cf64:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cf64: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1aaf8
+   4cf68:	91006021 	add	x1, x1, #0x18
+   4cf6c:	528000fc 	mov	w28, #0x7                   	// #7
+   4cf70:	91000000 	add	x0, x0, #0x0
+			4cf70: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1aaf8
+   4cf74:	94000000 	bl	0 <printk>
+			4cf74: R_AARCH64_CALL26	printk
+   4cf78:	140000cf 	b	4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4cf7c:	d503201f 	nop
+   4cf80:	5ac006b5 	rev16	w21, w21
+   4cf84:	5ac00694 	rev16	w20, w20
+   4cf88:	2a1403e2 	mov	w2, w20
+   4cf8c:	2a1503e1 	mov	w1, w21
+   4cf90:	2a1603e0 	mov	w0, w22
+   4cf94:	94000000 	bl	4f9e0 <ca_l4_port_bypass_is_needed>
+			4cf94: R_AARCH64_CALL26	ca_l4_port_bypass_is_needed
+   4cf98:	34000180 	cbz	w0, 4cfc8 <ca_kh_nat6_entry_add+0x178>
+   4cf9c:	b9400260 	ldr	w0, [x19]
+			4cf9c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4cfa0:	1280001c 	mov	w28, #0xffffffff            	// #-1
+   4cfa4:	36181880 	tbz	w0, #3, 4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4cfa8:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4cfa8: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4cfac:	91000021 	add	x1, x1, #0x0
+			4cfac: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4cfb0:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cfb0: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1a9e8
+   4cfb4:	91006021 	add	x1, x1, #0x18
+   4cfb8:	91000000 	add	x0, x0, #0x0
+			4cfb8: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1a9e8
+   4cfbc:	94000000 	bl	0 <printk>
+			4cfbc: R_AARCH64_CALL26	printk
+   4cfc0:	140000bd 	b	4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4cfc4:	d503201f 	nop
+   4cfc8:	f9408fa0 	ldr	x0, [x29, #280]
+   4cfcc:	52800021 	mov	w1, #0x1                   	// #1
+   4cfd0:	a9087fbf 	stp	xzr, xzr, [x29, #128]
+   4cfd4:	52802583 	mov	w3, #0x12c                 	// #300
+   4cfd8:	a90d7fbf 	stp	xzr, xzr, [x29, #208]
+   4cfdc:	a90f7fbf 	stp	xzr, xzr, [x29, #240]
+   4cfe0:	39448002 	ldrb	w2, [x0, #288]
+   4cfe4:	12800fe0 	mov	w0, #0xffffff80            	// #-128
+   4cfe8:	a9097fbf 	stp	xzr, xzr, [x29, #144]
+   4cfec:	a90a7fbf 	stp	xzr, xzr, [x29, #160]
+   4cff0:	a90b7fbf 	stp	xzr, xzr, [x29, #176]
+   4cff4:	a90c7fbf 	stp	xzr, xzr, [x29, #192]
+   4cff8:	a90e7fbf 	stp	xzr, xzr, [x29, #224]
+   4cffc:	390203b6 	strb	w22, [x29, #128]
+   4d000:	390263a0 	strb	w0, [x29, #152]
+   4d004:	3902d3a0 	strb	w0, [x29, #180]
+   4d008:	390353a0 	strb	w0, [x29, #212]
+   4d00c:	3903c3a0 	strb	w0, [x29, #240]
+   4d010:	b90087a1 	str	w1, [x29, #132]
+   4d014:	b900a3a1 	str	w1, [x29, #160]
+   4d018:	b900c3a1 	str	w1, [x29, #192]
+   4d01c:	b900dfa1 	str	w1, [x29, #220]
+   4d020:	b900fba3 	str	w3, [x29, #248]
+   4d024:	34000762 	cbz	w2, 4d110 <ca_kh_nat6_entry_add+0x2c0>
+   4d028:	f9408fa1 	ldr	x1, [x29, #280]
+   4d02c:	b9400260 	ldr	w0, [x19]
+			4d02c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4d030:	a904efba 	stp	x26, x27, [x29, #72]
+   4d034:	9104a03b 	add	x27, x1, #0x128
+   4d038:	b941243a 	ldr	w26, [x1, #292]
+   4d03c:	36180160 	tbz	w0, #3, 4d068 <ca_kh_nat6_entry_add+0x218>
+   4d040:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4d040: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4d044:	91000021 	add	x1, x1, #0x0
+			4d044: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4d048:	2a1a03e3 	mov	w3, w26
+   4d04c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4d04c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1ab48
+   4d050:	aa1b03e2 	mov	x2, x27
+   4d054:	91006021 	add	x1, x1, #0x18
+   4d058:	91000000 	add	x0, x0, #0x0
+			4d058: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1ab48
+   4d05c:	94000000 	bl	0 <printk>
+			4d05c: R_AARCH64_CALL26	printk
+   4d060:	f9408fa0 	ldr	x0, [x29, #280]
+   4d064:	b941241a 	ldr	w26, [x0, #292]
+   4d068:	5280007c 	mov	w28, #0x3                   	// #3
+   4d06c:	b400123b 	cbz	x27, 4d2b0 <ca_kh_nat6_entry_add+0x460>
+   4d070:	9000001c 	adrp	x28, b6dd8 <ca_kh_ipv6_nh_lock>
+			4d070: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipv6_nh_lock
+   4d074:	91000380 	add	x0, x28, #0x0
+			4d074: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv6_nh_lock
+   4d078:	94000000 	bl	0 <_raw_spin_lock_bh>
+			4d078: R_AARCH64_CALL26	_raw_spin_lock_bh
+   4d07c:	90000006 	adrp	x6, c00f8 <ca_kh_ipv6_nexthop_table>
+			4d07c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipv6_nexthop_table
+   4d080:	910000c0 	add	x0, x6, #0x0
+			4d080: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv6_nexthop_table
+   4d084:	52800001 	mov	w1, #0x0                   	// #0
+   4d088:	52820403 	mov	w3, #0x1020                	// #4128
+   4d08c:	79400002 	ldrh	w2, [x0]
+   4d090:	340002c2 	cbz	w2, 4d0e8 <ca_kh_nat6_entry_add+0x298>
+   4d094:	b9402002 	ldr	w2, [x0, #32]
+   4d098:	6b02035f 	cmp	w26, w2
+   4d09c:	54000261 	b.ne	4d0e8 <ca_kh_nat6_entry_add+0x298>  // b.any
+   4d0a0:	f840c002 	ldur	x2, [x0, #12]
+   4d0a4:	f9400364 	ldr	x4, [x27]
+   4d0a8:	eb02009f 	cmp	x4, x2
+   4d0ac:	540001e1 	b.ne	4d0e8 <ca_kh_nat6_entry_add+0x298>  // b.any
+   4d0b0:	f8414002 	ldur	x2, [x0, #20]
+   4d0b4:	f9400764 	ldr	x4, [x27, #8]
+   4d0b8:	eb02009f 	cmp	x4, x2
+   4d0bc:	54000161 	b.ne	4d0e8 <ca_kh_nat6_entry_add+0x298>  // b.any
+   4d0c0:	93407c21 	sxtw	x1, w1
+   4d0c4:	910000c6 	add	x6, x6, #0x0
+			4d0c4: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv6_nexthop_table
+   4d0c8:	8b010821 	add	x1, x1, x1, lsl #2
+   4d0cc:	91000380 	add	x0, x28, #0x0
+			4d0cc: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv6_nh_lock
+   4d0d0:	8b010cc1 	add	x1, x6, x1, lsl #3
+   4d0d4:	79404821 	ldrh	w1, [x1, #36]
+   4d0d8:	7901fba1 	strh	w1, [x29, #252]
+   4d0dc:	94000000 	bl	0 <_raw_spin_unlock_bh>
+			4d0dc: R_AARCH64_CALL26	_raw_spin_unlock_bh
+   4d0e0:	a944efba 	ldp	x26, x27, [x29, #72]
+   4d0e4:	1400000d 	b	4d118 <ca_kh_nat6_entry_add+0x2c8>
+   4d0e8:	11000421 	add	w1, w1, #0x1
+   4d0ec:	9100a000 	add	x0, x0, #0x28
+   4d0f0:	6b03003f 	cmp	w1, w3
+   4d0f4:	54fffcc1 	b.ne	4d08c <ca_kh_nat6_entry_add+0x23c>  // b.any
+   4d0f8:	91000380 	add	x0, x28, #0x0
+			4d0f8: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv6_nh_lock
+   4d0fc:	5280007c 	mov	w28, #0x3                   	// #3
+   4d100:	94000000 	bl	0 <_raw_spin_unlock_bh>
+			4d100: R_AARCH64_CALL26	_raw_spin_unlock_bh
+   4d104:	a944efba 	ldp	x26, x27, [x29, #72]
+   4d108:	1400006b 	b	4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4d10c:	d503201f 	nop
+   4d110:	12800000 	mov	w0, #0xffffffff            	// #-1
+   4d114:	7901fba0 	strh	w0, [x29, #252]
+   4d118:	35000099 	cbnz	w25, 4d128 <ca_kh_nat6_entry_add+0x2d8>
+   4d11c:	52800040 	mov	w0, #0x2                   	// #2
+   4d120:	b900bfa0 	str	w0, [x29, #188]
+   4d124:	14000019 	b	4d188 <ca_kh_nat6_entry_add+0x338>
+   4d128:	7100073f 	cmp	w25, #0x1
+   4d12c:	54000061 	b.ne	4d138 <ca_kh_nat6_entry_add+0x2e8>  // b.any
+   4d130:	b900bfb9 	str	w25, [x29, #188]
+   4d134:	14000015 	b	4d188 <ca_kh_nat6_entry_add+0x338>
+   4d138:	71000b3f 	cmp	w25, #0x2
+   4d13c:	540000a1 	b.ne	4d150 <ca_kh_nat6_entry_add+0x300>  // b.any
+   4d140:	52800060 	mov	w0, #0x3                   	// #3
+   4d144:	b900bfa0 	str	w0, [x29, #188]
+   4d148:	14000010 	b	4d188 <ca_kh_nat6_entry_add+0x338>
+   4d14c:	d503201f 	nop
+   4d150:	b9400260 	ldr	w0, [x19]
+			4d150: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4d154:	37180060 	tbnz	w0, #3, 4d160 <ca_kh_nat6_entry_add+0x310>
+   4d158:	5280001c 	mov	w28, #0x0                   	// #0
+   4d15c:	14000056 	b	4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4d160:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4d160: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4d164:	91000021 	add	x1, x1, #0x0
+			4d164: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4d168:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4d168: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1aa48
+   4d16c:	2a1903e2 	mov	w2, w25
+   4d170:	91006021 	add	x1, x1, #0x18
+   4d174:	5280001c 	mov	w28, #0x0                   	// #0
+   4d178:	91000000 	add	x0, x0, #0x0
+			4d178: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1aa48
+   4d17c:	94000000 	bl	0 <printk>
+			4d17c: R_AARCH64_CALL26	printk
+   4d180:	1400004d 	b	4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4d184:	d503201f 	nop
+   4d188:	a9470fa1 	ldp	x1, x3, [x29, #112]
+   4d18c:	5ac00718 	rev16	w24, w24
+   4d190:	a9460ba0 	ldp	x0, x2, [x29, #96]
+   4d194:	5ac006f7 	rev16	w23, w23
+   4d198:	b9400064 	ldr	w4, [x3]
+   4d19c:	71001adf 	cmp	w22, #0x6
+   4d1a0:	b9008ba4 	str	w4, [x29, #136]
+   4d1a4:	7a511ac4 	ccmp	w22, #0x11, #0x4, ne	// ne = any
+   4d1a8:	b9400464 	ldr	w4, [x3, #4]
+   4d1ac:	b9008fa4 	str	w4, [x29, #140]
+   4d1b0:	b9400864 	ldr	w4, [x3, #8]
+   4d1b4:	b90093a4 	str	w4, [x29, #144]
+   4d1b8:	b9400c63 	ldr	w3, [x3, #12]
+   4d1bc:	b90097a3 	str	w3, [x29, #148]
+   4d1c0:	79013bb5 	strh	w21, [x29, #156]
+   4d1c4:	b9400043 	ldr	w3, [x2]
+   4d1c8:	b900a7a3 	str	w3, [x29, #164]
+   4d1cc:	b9400443 	ldr	w3, [x2, #4]
+   4d1d0:	b900aba3 	str	w3, [x29, #168]
+   4d1d4:	b9400843 	ldr	w3, [x2, #8]
+   4d1d8:	b900afa3 	str	w3, [x29, #172]
+   4d1dc:	b9400c42 	ldr	w2, [x2, #12]
+   4d1e0:	b900b3a2 	str	w2, [x29, #176]
+   4d1e4:	790173b4 	strh	w20, [x29, #184]
+   4d1e8:	b9400022 	ldr	w2, [x1]
+   4d1ec:	b900c7a2 	str	w2, [x29, #196]
+   4d1f0:	b9400422 	ldr	w2, [x1, #4]
+   4d1f4:	b900cba2 	str	w2, [x29, #200]
+   4d1f8:	b9400822 	ldr	w2, [x1, #8]
+   4d1fc:	b900cfa2 	str	w2, [x29, #204]
+   4d200:	b9400c21 	ldr	w1, [x1, #12]
+   4d204:	b900d3a1 	str	w1, [x29, #208]
+   4d208:	7901b3b8 	strh	w24, [x29, #216]
+   4d20c:	b9400001 	ldr	w1, [x0]
+   4d210:	b900e3a1 	str	w1, [x29, #224]
+   4d214:	b9400401 	ldr	w1, [x0, #4]
+   4d218:	b900e7a1 	str	w1, [x29, #228]
+   4d21c:	b9400801 	ldr	w1, [x0, #8]
+   4d220:	b900eba1 	str	w1, [x29, #232]
+   4d224:	b9400c00 	ldr	w0, [x0, #12]
+   4d228:	b900efa0 	str	w0, [x29, #236]
+   4d22c:	7901ebb7 	strh	w23, [x29, #244]
+   4d230:	54000081 	b.ne	4d240 <ca_kh_nat6_entry_add+0x3f0>  // b.any
+   4d234:	b940bfa0 	ldr	w0, [x29, #188]
+   4d238:	321e0000 	orr	w0, w0, #0x4
+   4d23c:	b900bfa0 	str	w0, [x29, #188]
+   4d240:	910213a1 	add	x1, x29, #0x84
+   4d244:	aa0103e0 	mov	x0, x1
+   4d248:	94000000 	bl	58b80 <ca_kh_ip_address_ntohl>
+			4d248: R_AARCH64_CALL26	ca_kh_ip_address_ntohl
+   4d24c:	910283a1 	add	x1, x29, #0xa0
+   4d250:	aa0103e0 	mov	x0, x1
+   4d254:	94000000 	bl	58b80 <ca_kh_ip_address_ntohl>
+			4d254: R_AARCH64_CALL26	ca_kh_ip_address_ntohl
+   4d258:	910303a1 	add	x1, x29, #0xc0
+   4d25c:	aa0103e0 	mov	x0, x1
+   4d260:	94000000 	bl	58b80 <ca_kh_ip_address_ntohl>
+			4d260: R_AARCH64_CALL26	ca_kh_ip_address_ntohl
+   4d264:	910373a1 	add	x1, x29, #0xdc
+   4d268:	aa0103e0 	mov	x0, x1
+   4d26c:	94000000 	bl	58b80 <ca_kh_ip_address_ntohl>
+			4d26c: R_AARCH64_CALL26	ca_kh_ip_address_ntohl
+   4d270:	910203a1 	add	x1, x29, #0x80
+   4d274:	52800000 	mov	w0, #0x0                   	// #0
+   4d278:	94000000 	bl	0 <ca_nat_entry_add>
+			4d278: R_AARCH64_CALL26	ca_nat_entry_add
+   4d27c:	2a0003fc 	mov	w28, w0
+   4d280:	34fff6c0 	cbz	w0, 4d158 <ca_kh_nat6_entry_add+0x308>
+   4d284:	b9400260 	ldr	w0, [x19]
+			4d284: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4d288:	36180160 	tbz	w0, #3, 4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4d28c:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4d28c: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4d290:	91000021 	add	x1, x1, #0x0
+			4d290: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4d294:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4d294: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1aa68
+   4d298:	2a1c03e2 	mov	w2, w28
+   4d29c:	91006021 	add	x1, x1, #0x18
+   4d2a0:	91000000 	add	x0, x0, #0x0
+			4d2a0: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1aa68
+   4d2a4:	94000000 	bl	0 <printk>
+			4d2a4: R_AARCH64_CALL26	printk
+   4d2a8:	14000003 	b	4d2b4 <ca_kh_nat6_entry_add+0x464>
+   4d2ac:	d503201f 	nop
+   4d2b0:	a944efba 	ldp	x26, x27, [x29, #72]
+   4d2b4:	2a1c03e0 	mov	w0, w28
+   4d2b8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   4d2bc:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   4d2c0:	a94363f7 	ldp	x23, x24, [sp, #48]
+   4d2c4:	f94023f9 	ldr	x25, [sp, #64]
+   4d2c8:	f9402ffc 	ldr	x28, [sp, #88]
+   4d2cc:	a8d07bfd 	ldp	x29, x30, [sp], #256
+   4d2d0:	d65f03c0 	ret
+
+ca_kh_nat_entry_add (0x4ca48, 1032 bytes)
+Disassembly of section .text:
+
+000000000004ca48 <ca_kh_nat_entry_add>:
+   4ca48:	a9b17bfd 	stp	x29, x30, [sp, #-240]!
+   4ca4c:	910003fd 	mov	x29, sp
+   4ca50:	a90153f3 	stp	x19, x20, [sp, #16]
+   4ca54:	a9025bf5 	stp	x21, x22, [sp, #32]
+   4ca58:	a90363f7 	stp	x23, x24, [sp, #48]
+   4ca5c:	f90023f9 	str	x25, [sp, #64]
+   4ca60:	f9002bfb 	str	x27, [sp, #80]
+   4ca64:	90000013 	adrp	x19, 0 <ca_kh_debug>
+			4ca64: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   4ca68:	aa1e03e0 	mov	x0, x30
+   4ca6c:	12001c36 	and	w22, w1, #0xff
+   4ca70:	2a0203f9 	mov	w25, w2
+   4ca74:	12003cf4 	and	w20, w7, #0xffff
+   4ca78:	7941e3b7 	ldrh	w23, [x29, #240]
+   4ca7c:	7941f3b5 	ldrh	w21, [x29, #248]
+   4ca80:	794203b8 	ldrh	w24, [x29, #256]
+   4ca84:	290c17a6 	stp	w6, w5, [x29, #96]
+   4ca88:	290d0fa4 	stp	w4, w3, [x29, #104]
+   4ca8c:	94000000 	bl	0 <_mcount>
+			4ca8c: R_AARCH64_CALL26	_mcount
+   4ca90:	b9400260 	ldr	w0, [x19]
+			4ca90: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4ca94:	36181b20 	tbz	w0, #3, 4cdf8 <ca_kh_nat_entry_add+0x3b0>
+   4ca98:	f90027ba 	str	x26, [x29, #72]
+   4ca9c:	9000001b 	adrp	x27, 0 <ca_ni_get_wan_port_id>
+			4ca9c: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4caa0:	9100037a 	add	x26, x27, #0x0
+			4caa0: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4caa4:	2a1903e3 	mov	w3, w25
+   4caa8:	2a1603e2 	mov	w2, w22
+   4caac:	aa1a03e1 	mov	x1, x26
+   4cab0:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cab0: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1a920
+   4cab4:	5ac006b5 	rev16	w21, w21
+   4cab8:	91000000 	add	x0, x0, #0x0
+			4cab8: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1a920
+   4cabc:	5ac00694 	rev16	w20, w20
+   4cac0:	94000000 	bl	0 <printk>
+			4cac0: R_AARCH64_CALL26	printk
+   4cac4:	12003ea5 	and	w5, w21, #0xffff
+   4cac8:	910193a4 	add	x4, x29, #0x64
+   4cacc:	12003e83 	and	w3, w20, #0xffff
+   4cad0:	9101b3a2 	add	x2, x29, #0x6c
+   4cad4:	aa1a03e1 	mov	x1, x26
+   4cad8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cad8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1a948
+   4cadc:	91000000 	add	x0, x0, #0x0
+			4cadc: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1a948
+   4cae0:	94000000 	bl	0 <printk>
+			4cae0: R_AARCH64_CALL26	printk
+   4cae4:	5ac00705 	rev16	w5, w24
+   4cae8:	5ac006e3 	rev16	w3, w23
+   4caec:	12003ca5 	and	w5, w5, #0xffff
+   4caf0:	910183a4 	add	x4, x29, #0x60
+   4caf4:	12003c63 	and	w3, w3, #0xffff
+   4caf8:	9101a3a2 	add	x2, x29, #0x68
+   4cafc:	aa1a03e1 	mov	x1, x26
+   4cb00:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cb00: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1a970
+   4cb04:	91000000 	add	x0, x0, #0x0
+			4cb04: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1a970
+   4cb08:	94000000 	bl	0 <printk>
+			4cb08: R_AARCH64_CALL26	printk
+   4cb0c:	b9406fa0 	ldr	w0, [x29, #108]
+   4cb10:	97ffff6e 	bl	4c8c8 <ca_kh_l3_mcast_group_delete+0x558>
+   4cb14:	7100041f 	cmp	w0, #0x1
+   4cb18:	540000a1 	b.ne	4cb2c <ca_kh_nat_entry_add+0xe4>  // b.any
+   4cb1c:	b9400260 	ldr	w0, [x19]
+			4cb1c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4cb20:	37180140 	tbnz	w0, #3, 4cb48 <ca_kh_nat_entry_add+0x100>
+   4cb24:	f94027ba 	ldr	x26, [x29, #72]
+   4cb28:	14000006 	b	4cb40 <ca_kh_nat_entry_add+0xf8>
+   4cb2c:	b94063a0 	ldr	w0, [x29, #96]
+   4cb30:	97ffff66 	bl	4c8c8 <ca_kh_l3_mcast_group_delete+0x558>
+   4cb34:	7100041f 	cmp	w0, #0x1
+   4cb38:	540001a1 	b.ne	4cb6c <ca_kh_nat_entry_add+0x124>  // b.any
+   4cb3c:	17fffff8 	b	4cb1c <ca_kh_nat_entry_add+0xd4>
+   4cb40:	528000fb 	mov	w27, #0x7                   	// #7
+   4cb44:	140000bb 	b	4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4cb48:	91000361 	add	x1, x27, #0x0
+			4cb48: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4cb4c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cb4c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1a998
+   4cb50:	910183a3 	add	x3, x29, #0x60
+   4cb54:	9101b3a2 	add	x2, x29, #0x6c
+   4cb58:	91000000 	add	x0, x0, #0x0
+			4cb58: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1a998
+   4cb5c:	528000fb 	mov	w27, #0x7                   	// #7
+   4cb60:	94000000 	bl	0 <printk>
+			4cb60: R_AARCH64_CALL26	printk
+   4cb64:	f94027ba 	ldr	x26, [x29, #72]
+   4cb68:	140000b2 	b	4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4cb6c:	f94027ba 	ldr	x26, [x29, #72]
+   4cb70:	2a1503e2 	mov	w2, w21
+   4cb74:	2a1403e1 	mov	w1, w20
+   4cb78:	2a1603e0 	mov	w0, w22
+   4cb7c:	94000000 	bl	4f9e0 <ca_l4_port_bypass_is_needed>
+			4cb7c: R_AARCH64_CALL26	ca_l4_port_bypass_is_needed
+   4cb80:	34000140 	cbz	w0, 4cba8 <ca_kh_nat_entry_add+0x160>
+   4cb84:	b9400260 	ldr	w0, [x19]
+			4cb84: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4cb88:	1280001b 	mov	w27, #0xffffffff            	// #-1
+   4cb8c:	36181520 	tbz	w0, #3, 4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4cb90:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4cb90: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4cb94:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cb94: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1a9e8
+   4cb98:	91000021 	add	x1, x1, #0x0
+			4cb98: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4cb9c:	91000000 	add	x0, x0, #0x0
+			4cb9c: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1a9e8
+   4cba0:	94000000 	bl	0 <printk>
+			4cba0: R_AARCH64_CALL26	printk
+   4cba4:	140000a3 	b	4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4cba8:	f94087a0 	ldr	x0, [x29, #264]
+   4cbac:	52802582 	mov	w2, #0x12c                 	// #300
+   4cbb0:	a90e7fbf 	stp	xzr, xzr, [x29, #224]
+   4cbb4:	a9077fbf 	stp	xzr, xzr, [x29, #112]
+   4cbb8:	a9087fbf 	stp	xzr, xzr, [x29, #128]
+   4cbbc:	39448001 	ldrb	w1, [x0, #288]
+   4cbc0:	52800400 	mov	w0, #0x20                  	// #32
+   4cbc4:	a90a7fbf 	stp	xzr, xzr, [x29, #160]
+   4cbc8:	a90c7fbf 	stp	xzr, xzr, [x29, #192]
+   4cbcc:	a9097fbf 	stp	xzr, xzr, [x29, #144]
+   4cbd0:	a90b7fbf 	stp	xzr, xzr, [x29, #176]
+   4cbd4:	a90d7fbf 	stp	xzr, xzr, [x29, #208]
+   4cbd8:	3901c3b6 	strb	w22, [x29, #112]
+   4cbdc:	390223a0 	strb	w0, [x29, #136]
+   4cbe0:	390293a0 	strb	w0, [x29, #164]
+   4cbe4:	390313a0 	strb	w0, [x29, #196]
+   4cbe8:	390383a0 	strb	w0, [x29, #224]
+   4cbec:	b900eba2 	str	w2, [x29, #232]
+   4cbf0:	34000741 	cbz	w1, 4ccd8 <ca_kh_nat_entry_add+0x290>
+   4cbf4:	f94087a1 	ldr	x1, [x29, #264]
+   4cbf8:	b9400260 	ldr	w0, [x19]
+			4cbf8: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4cbfc:	f9002fbc 	str	x28, [x29, #88]
+   4cc00:	9104a03c 	add	x28, x1, #0x128
+   4cc04:	f90027ba 	str	x26, [x29, #72]
+   4cc08:	b941243a 	ldr	w26, [x1, #292]
+   4cc0c:	36180140 	tbz	w0, #3, 4cc34 <ca_kh_nat_entry_add+0x1ec>
+   4cc10:	2a1a03e3 	mov	w3, w26
+   4cc14:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4cc14: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4cc18:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cc18: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1aa10
+   4cc1c:	aa1c03e2 	mov	x2, x28
+   4cc20:	91000021 	add	x1, x1, #0x0
+			4cc20: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4cc24:	91000000 	add	x0, x0, #0x0
+			4cc24: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1aa10
+   4cc28:	94000000 	bl	0 <printk>
+			4cc28: R_AARCH64_CALL26	printk
+   4cc2c:	f94087a0 	ldr	x0, [x29, #264]
+   4cc30:	b941241a 	ldr	w26, [x0, #292]
+   4cc34:	5280007b 	mov	w27, #0x3                   	// #3
+   4cc38:	b4000f9c 	cbz	x28, 4ce28 <ca_kh_nat_entry_add+0x3e0>
+   4cc3c:	f94087a0 	ldr	x0, [x29, #264]
+   4cc40:	9000001c 	adrp	x28, b6de0 <ca_kh_ipv4_nh_lock>
+			4cc40: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipv4_nh_lock
+   4cc44:	b941281b 	ldr	w27, [x0, #296]
+   4cc48:	91000380 	add	x0, x28, #0x0
+			4cc48: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv4_nh_lock
+   4cc4c:	94000000 	bl	0 <_raw_spin_lock_bh>
+			4cc4c: R_AARCH64_CALL26	_raw_spin_lock_bh
+   4cc50:	90000004 	adrp	x4, e85f8 <ca_kh_ipv4_nexthop_table>
+			4cc50: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_ipv4_nexthop_table
+   4cc54:	5ac00b7b 	rev	w27, w27
+   4cc58:	91000080 	add	x0, x4, #0x0
+			4cc58: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv4_nexthop_table
+   4cc5c:	52800001 	mov	w1, #0x0                   	// #0
+   4cc60:	52820403 	mov	w3, #0x1020                	// #4128
+   4cc64:	79400002 	ldrh	w2, [x0]
+   4cc68:	34000242 	cbz	w2, 4ccb0 <ca_kh_nat_entry_add+0x268>
+   4cc6c:	b9402002 	ldr	w2, [x0, #32]
+   4cc70:	6b1a005f 	cmp	w2, w26
+   4cc74:	540001e1 	b.ne	4ccb0 <ca_kh_nat_entry_add+0x268>  // b.any
+   4cc78:	b9400c02 	ldr	w2, [x0, #12]
+   4cc7c:	6b02037f 	cmp	w27, w2
+   4cc80:	54000181 	b.ne	4ccb0 <ca_kh_nat_entry_add+0x268>  // b.any
+   4cc84:	93407c21 	sxtw	x1, w1
+   4cc88:	91000084 	add	x4, x4, #0x0
+			4cc88: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv4_nexthop_table
+   4cc8c:	8b010821 	add	x1, x1, x1, lsl #2
+   4cc90:	91000380 	add	x0, x28, #0x0
+			4cc90: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv4_nh_lock
+   4cc94:	8b010c81 	add	x1, x4, x1, lsl #3
+   4cc98:	79404821 	ldrh	w1, [x1, #36]
+   4cc9c:	7901dba1 	strh	w1, [x29, #236]
+   4cca0:	94000000 	bl	0 <_raw_spin_unlock_bh>
+			4cca0: R_AARCH64_CALL26	_raw_spin_unlock_bh
+   4cca4:	f94027ba 	ldr	x26, [x29, #72]
+   4cca8:	f9402fbc 	ldr	x28, [x29, #88]
+   4ccac:	1400000d 	b	4cce0 <ca_kh_nat_entry_add+0x298>
+   4ccb0:	11000421 	add	w1, w1, #0x1
+   4ccb4:	9100a000 	add	x0, x0, #0x28
+   4ccb8:	6b03003f 	cmp	w1, w3
+   4ccbc:	54fffd41 	b.ne	4cc64 <ca_kh_nat_entry_add+0x21c>  // b.any
+   4ccc0:	91000380 	add	x0, x28, #0x0
+			4ccc0: R_AARCH64_ADD_ABS_LO12_NC	ca_kh_ipv4_nh_lock
+   4ccc4:	5280007b 	mov	w27, #0x3                   	// #3
+   4ccc8:	94000000 	bl	0 <_raw_spin_unlock_bh>
+			4ccc8: R_AARCH64_CALL26	_raw_spin_unlock_bh
+   4cccc:	f94027ba 	ldr	x26, [x29, #72]
+   4ccd0:	f9402fbc 	ldr	x28, [x29, #88]
+   4ccd4:	14000057 	b	4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4ccd8:	12800000 	mov	w0, #0xffffffff            	// #-1
+   4ccdc:	7901dba0 	strh	w0, [x29, #236]
+   4cce0:	35000099 	cbnz	w25, 4ccf0 <ca_kh_nat_entry_add+0x2a8>
+   4cce4:	52800040 	mov	w0, #0x2                   	// #2
+   4cce8:	b900afa0 	str	w0, [x29, #172]
+   4ccec:	14000017 	b	4cd48 <ca_kh_nat_entry_add+0x300>
+   4ccf0:	7100073f 	cmp	w25, #0x1
+   4ccf4:	54000061 	b.ne	4cd00 <ca_kh_nat_entry_add+0x2b8>  // b.any
+   4ccf8:	b900afb9 	str	w25, [x29, #172]
+   4ccfc:	14000013 	b	4cd48 <ca_kh_nat_entry_add+0x300>
+   4cd00:	71000b3f 	cmp	w25, #0x2
+   4cd04:	540000a1 	b.ne	4cd18 <ca_kh_nat_entry_add+0x2d0>  // b.any
+   4cd08:	52800060 	mov	w0, #0x3                   	// #3
+   4cd0c:	b900afa0 	str	w0, [x29, #172]
+   4cd10:	1400000e 	b	4cd48 <ca_kh_nat_entry_add+0x300>
+   4cd14:	d503201f 	nop
+   4cd18:	b9400260 	ldr	w0, [x19]
+			4cd18: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4cd1c:	37180060 	tbnz	w0, #3, 4cd28 <ca_kh_nat_entry_add+0x2e0>
+   4cd20:	5280001b 	mov	w27, #0x0                   	// #0
+   4cd24:	14000043 	b	4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4cd28:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4cd28: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4cd2c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cd2c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1aa48
+   4cd30:	2a1903e2 	mov	w2, w25
+   4cd34:	91000021 	add	x1, x1, #0x0
+			4cd34: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4cd38:	5280001b 	mov	w27, #0x0                   	// #0
+   4cd3c:	91000000 	add	x0, x0, #0x0
+			4cd3c: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1aa48
+   4cd40:	94000000 	bl	0 <printk>
+			4cd40: R_AARCH64_CALL26	printk
+   4cd44:	1400003b 	b	4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4cd48:	294c0ba0 	ldp	w0, w2, [x29, #96]
+   4cd4c:	5ac006f7 	rev16	w23, w23
+   4cd50:	294d0fa1 	ldp	w1, w3, [x29, #104]
+   4cd54:	5ac00718 	rev16	w24, w24
+   4cd58:	79011bb4 	strh	w20, [x29, #140]
+   4cd5c:	71001adf 	cmp	w22, #0x6
+   4cd60:	790153b5 	strh	w21, [x29, #168]
+   4cd64:	7a511ac4 	ccmp	w22, #0x11, #0x4, ne	// ne = any
+   4cd68:	790193b7 	strh	w23, [x29, #200]
+   4cd6c:	7901cbb8 	strh	w24, [x29, #228]
+   4cd70:	b9007ba3 	str	w3, [x29, #120]
+   4cd74:	b90097a2 	str	w2, [x29, #148]
+   4cd78:	b900b7a1 	str	w1, [x29, #180]
+   4cd7c:	b900d3a0 	str	w0, [x29, #208]
+   4cd80:	54000081 	b.ne	4cd90 <ca_kh_nat_entry_add+0x348>  // b.any
+   4cd84:	b940afa0 	ldr	w0, [x29, #172]
+   4cd88:	321e0000 	orr	w0, w0, #0x4
+   4cd8c:	b900afa0 	str	w0, [x29, #172]
+   4cd90:	9101d3a1 	add	x1, x29, #0x74
+   4cd94:	aa0103e0 	mov	x0, x1
+   4cd98:	94000000 	bl	58b80 <ca_kh_ip_address_ntohl>
+			4cd98: R_AARCH64_CALL26	ca_kh_ip_address_ntohl
+   4cd9c:	910243a1 	add	x1, x29, #0x90
+   4cda0:	aa0103e0 	mov	x0, x1
+   4cda4:	94000000 	bl	58b80 <ca_kh_ip_address_ntohl>
+			4cda4: R_AARCH64_CALL26	ca_kh_ip_address_ntohl
+   4cda8:	9102c3a1 	add	x1, x29, #0xb0
+   4cdac:	aa0103e0 	mov	x0, x1
+   4cdb0:	94000000 	bl	58b80 <ca_kh_ip_address_ntohl>
+			4cdb0: R_AARCH64_CALL26	ca_kh_ip_address_ntohl
+   4cdb4:	910333a1 	add	x1, x29, #0xcc
+   4cdb8:	aa0103e0 	mov	x0, x1
+   4cdbc:	94000000 	bl	58b80 <ca_kh_ip_address_ntohl>
+			4cdbc: R_AARCH64_CALL26	ca_kh_ip_address_ntohl
+   4cdc0:	9101c3a1 	add	x1, x29, #0x70
+   4cdc4:	52800000 	mov	w0, #0x0                   	// #0
+   4cdc8:	94000000 	bl	0 <ca_nat_entry_add>
+			4cdc8: R_AARCH64_CALL26	ca_nat_entry_add
+   4cdcc:	2a0003fb 	mov	w27, w0
+   4cdd0:	34fffa80 	cbz	w0, 4cd20 <ca_kh_nat_entry_add+0x2d8>
+   4cdd4:	b9400260 	ldr	w0, [x19]
+			4cdd4: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   4cdd8:	361802c0 	tbz	w0, #3, 4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4cddc:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			4cddc: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x3ed0
+   4cde0:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			4cde0: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x1aa68
+   4cde4:	2a1b03e2 	mov	w2, w27
+   4cde8:	91000021 	add	x1, x1, #0x0
+			4cde8: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x3ed0
+   4cdec:	91000000 	add	x0, x0, #0x0
+			4cdec: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x1aa68
+   4cdf0:	94000000 	bl	0 <printk>
+			4cdf0: R_AARCH64_CALL26	printk
+   4cdf4:	1400000f 	b	4ce30 <ca_kh_nat_entry_add+0x3e8>
+   4cdf8:	b9406fa0 	ldr	w0, [x29, #108]
+   4cdfc:	97fffeb3 	bl	4c8c8 <ca_kh_l3_mcast_group_delete+0x558>
+   4ce00:	7100041f 	cmp	w0, #0x1
+   4ce04:	54ffe9e0 	b.eq	4cb40 <ca_kh_nat_entry_add+0xf8>  // b.none
+   4ce08:	b94063a0 	ldr	w0, [x29, #96]
+   4ce0c:	97fffeaf 	bl	4c8c8 <ca_kh_l3_mcast_group_delete+0x558>
+   4ce10:	7100041f 	cmp	w0, #0x1
+   4ce14:	54ffe960 	b.eq	4cb40 <ca_kh_nat_entry_add+0xf8>  // b.none
+   4ce18:	5ac006b5 	rev16	w21, w21
+   4ce1c:	5ac00694 	rev16	w20, w20
+   4ce20:	17ffff54 	b	4cb70 <ca_kh_nat_entry_add+0x128>
+   4ce24:	d503201f 	nop
+   4ce28:	f94027ba 	ldr	x26, [x29, #72]
+   4ce2c:	f9402fbc 	ldr	x28, [x29, #88]
+   4ce30:	2a1b03e0 	mov	w0, w27
+   4ce34:	f94023f9 	ldr	x25, [sp, #64]
+   4ce38:	a94153f3 	ldp	x19, x20, [sp, #16]
+   4ce3c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   4ce40:	a94363f7 	ldp	x23, x24, [sp, #48]
+   4ce44:	f9402bfb 	ldr	x27, [sp, #80]
+   4ce48:	a8cf7bfd 	ldp	x29, x30, [sp], #240
+   4ce4c:	d65f03c0 	ret
+
+ca_kh_offload_permit_by_packet_count (0x59438, 292 bytes)
+Disassembly of section .text:
+
+0000000000059438 <ca_kh_offload_permit_by_packet_count>:
+   59438:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   5943c:	910003fd 	mov	x29, sp
+   59440:	f9000ff4 	str	x20, [sp, #24]
+   59444:	aa0103f4 	mov	x20, x1
+   59448:	aa1e03e0 	mov	x0, x30
+   5944c:	94000000 	bl	0 <_mcount>
+			5944c: R_AARCH64_CALL26	_mcount
+   59450:	f9403a80 	ldr	x0, [x20, #112]
+   59454:	f27df000 	ands	x0, x0, #0xfffffffffffffff8
+   59458:	54000181 	b.ne	59488 <ca_kh_offload_permit_by_packet_count+0x50>  // b.any
+   5945c:	39454280 	ldrb	w0, [x20, #336]
+   59460:	350000c0 	cbnz	w0, 59478 <ca_kh_offload_permit_by_packet_count+0x40>
+   59464:	14000003 	b	59470 <ca_kh_offload_permit_by_packet_count+0x38>
+   59468:	a9425bb5 	ldp	x21, x22, [x29, #32]
+   5946c:	f9400bb3 	ldr	x19, [x29, #16]
+   59470:	52800000 	mov	w0, #0x0                   	// #0
+   59474:	14000037 	b	59550 <ca_kh_offload_permit_by_packet_count+0x118>
+   59478:	f9000bb3 	str	x19, [x29, #16]
+   5947c:	f940a680 	ldr	x0, [x20, #328]
+   59480:	14000003 	b	5948c <ca_kh_offload_permit_by_packet_count+0x54>
+   59484:	d503201f 	nop
+   59488:	f9000bb3 	str	x19, [x29, #16]
+   5948c:	f9405c13 	ldr	x19, [x0, #184]
+   59490:	b50000d3 	cbnz	x19, 594a8 <ca_kh_offload_permit_by_packet_count+0x70>
+   59494:	14000002 	b	5949c <ca_kh_offload_permit_by_packet_count+0x64>
+   59498:	a9425bb5 	ldp	x21, x22, [x29, #32]
+   5949c:	52800020 	mov	w0, #0x1                   	// #1
+   594a0:	f9400bb3 	ldr	x19, [x29, #16]
+   594a4:	1400002b 	b	59550 <ca_kh_offload_permit_by_packet_count+0x118>
+   594a8:	f90013b5 	str	x21, [x29, #32]
+   594ac:	39404e75 	ldrb	w21, [x19, #19]
+   594b0:	35000455 	cbnz	w21, 59538 <ca_kh_offload_permit_by_packet_count+0x100>
+   594b4:	f94013b5 	ldr	x21, [x29, #32]
+   594b8:	17fffff9 	b	5949c <ca_kh_offload_permit_by_packet_count+0x64>
+   594bc:	d503201f 	nop
+   594c0:	90000000 	adrp	x0, 0 <ca_kh_debug>
+			594c0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   594c4:	b9400000 	ldr	w0, [x0]
+			594c4: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   594c8:	36180100 	tbz	w0, #3, 594e8 <ca_kh_offload_permit_by_packet_count+0xb0>
+   594cc:	f8756a62 	ldr	x2, [x19, x21]
+   594d0:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			594d0: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   594d4:	f9400ac3 	ldr	x3, [x22, #16]
+   594d8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			594d8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x222f8
+   594dc:	91000021 	add	x1, x1, #0x0
+			594dc: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   594e0:	91000000 	add	x0, x0, #0x0
+			594e0: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x222f8
+   594e4:	94000000 	bl	0 <printk>
+			594e4: R_AARCH64_CALL26	printk
+   594e8:	f8756a60 	ldr	x0, [x19, x21]
+   594ec:	90000001 	adrp	x1, 110af8 <ca_offload_after_n_pkts>
+			594ec: R_AARCH64_ADR_PREL_PG_HI21	ca_offload_after_n_pkts
+   594f0:	f9400ac2 	ldr	x2, [x22, #16]
+   594f4:	f9400021 	ldr	x1, [x1]
+			594f4: R_AARCH64_LDST64_ABS_LO12_NC	ca_offload_after_n_pkts
+   594f8:	8b020000 	add	x0, x0, x2
+   594fc:	eb01001f 	cmp	x0, x1
+   59500:	54fffcc2 	b.cs	59498 <ca_kh_offload_permit_by_packet_count+0x60>  // b.hs, b.nlast
+   59504:	b4fffb34 	cbz	x20, 59468 <ca_kh_offload_permit_by_packet_count+0x30>
+   59508:	b940ca81 	ldr	w1, [x20, #200]
+   5950c:	529e01a0 	mov	w0, #0xf00d                	// #61453
+   59510:	72a1a0c0 	movk	w0, #0xd06, lsl #16
+   59514:	6b00003f 	cmp	w1, w0
+   59518:	54fffa81 	b.ne	59468 <ca_kh_offload_permit_by_packet_count+0x30>  // b.any
+   5951c:	52800021 	mov	w1, #0x1                   	// #1
+   59520:	3904e281 	strb	w1, [x20, #312]
+   59524:	52800000 	mov	w0, #0x0                   	// #0
+   59528:	a9425bb5 	ldp	x21, x22, [x29, #32]
+   5952c:	f9400bb3 	ldr	x19, [x29, #16]
+   59530:	14000008 	b	59550 <ca_kh_offload_permit_by_packet_count+0x118>
+   59534:	d503201f 	nop
+   59538:	f90017b6 	str	x22, [x29, #40]
+   5953c:	92401eb5 	and	x21, x21, #0xff
+   59540:	ab150276 	adds	x22, x19, x21
+   59544:	54fffbe1 	b.ne	594c0 <ca_kh_offload_permit_by_packet_count+0x88>  // b.any
+   59548:	17ffffd4 	b	59498 <ca_kh_offload_permit_by_packet_count+0x60>
+   5954c:	d503201f 	nop
+   59550:	f9400ff4 	ldr	x20, [sp, #24]
+   59554:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   59558:	d65f03c0 	ret
+
+ca_kh_offload_tcp (0x59560, 3584 bytes)
+Disassembly of section .text:
+
+0000000000059560 <ca_kh_offload_tcp>:
+   59560:	d10243ff 	sub	sp, sp, #0x90
+   59564:	a9027bfd 	stp	x29, x30, [sp, #32]
+   59568:	910083fd 	add	x29, sp, #0x20
+   5956c:	a903d7f4 	stp	x20, x21, [sp, #56]
+   59570:	f90033f9 	str	x25, [sp, #96]
+   59574:	12001c54 	and	w20, w2, #0xff
+   59578:	aa0103f5 	mov	x21, x1
+   5957c:	aa1e03e0 	mov	x0, x30
+   59580:	94000000 	bl	0 <_mcount>
+			59580: R_AARCH64_CALL26	_mcount
+   59584:	71000a9f 	cmp	w20, #0x2
+   59588:	54000101 	b.ne	595a8 <ca_kh_offload_tcp+0x48>  // b.any
+   5958c:	90000019 	adrp	x25, 0 <ca_kh_hook>
+			5958c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   59590:	b9400320 	ldr	w0, [x25]
+			59590: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   59594:	37000140 	tbnz	w0, #0, 595bc <ca_kh_offload_tcp+0x5c>
+   59598:	52800020 	mov	w0, #0x1                   	// #1
+   5959c:	3904e2a0 	strb	w0, [x21, #312]
+   595a0:	1400036a 	b	5a348 <ca_kh_offload_tcp+0xde8>
+   595a4:	d503201f 	nop
+   595a8:	71002a9f 	cmp	w20, #0xa
+   595ac:	54000081 	b.ne	595bc <ca_kh_offload_tcp+0x5c>  // b.any
+   595b0:	90000019 	adrp	x25, 0 <ca_kh_hook>
+			595b0: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   595b4:	b9400320 	ldr	w0, [x25]
+			595b4: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   595b8:	360fff00 	tbz	w0, #1, 59598 <ca_kh_offload_tcp+0x38>
+   595bc:	f9000bb3 	str	x19, [x29, #16]
+   595c0:	f9403ab3 	ldr	x19, [x21, #112]
+   595c4:	12000a79 	and	w25, w19, #0x7
+   595c8:	f27df273 	ands	x19, x19, #0xfffffffffffffff8
+   595cc:	54000121 	b.ne	595f0 <ca_kh_offload_tcp+0x90>  // b.any
+   595d0:	394542a0 	ldrb	w0, [x21, #336]
+   595d4:	34006ae0 	cbz	w0, 5a330 <ca_kh_offload_tcp+0xdd0>
+   595d8:	a902dfb6 	stp	x22, x23, [x29, #40]
+   595dc:	a904efba 	stp	x26, x27, [x29, #72]
+   595e0:	f9001fb8 	str	x24, [x29, #56]
+   595e4:	f940a6b3 	ldr	x19, [x21, #328]
+   595e8:	14000005 	b	595fc <ca_kh_offload_tcp+0x9c>
+   595ec:	d503201f 	nop
+   595f0:	a902dfb6 	stp	x22, x23, [x29, #40]
+   595f4:	a904efba 	stp	x26, x27, [x29, #72]
+   595f8:	f9001fb8 	str	x24, [x29, #56]
+   595fc:	3943a260 	ldrb	w0, [x19, #232]
+   59600:	91008276 	add	x22, x19, #0x20
+   59604:	91016277 	add	x23, x19, #0x58
+   59608:	71000c1f 	cmp	w0, #0x3
+   5960c:	54001ae8 	b.hi	59968 <ca_kh_offload_tcp+0x408>  // b.pmore
+   59610:	f9404261 	ldr	x1, [x19, #128]
+   59614:	721e003f 	tst	w1, #0x4
+   59618:	54001a80 	b.eq	59968 <ca_kh_offload_tcp+0x408>  // b.none
+   5961c:	71000a9f 	cmp	w20, #0x2
+   59620:	54000a41 	b.ne	59768 <ca_kh_offload_tcp+0x208>  // b.any
+   59624:	b940caa2 	ldr	w2, [x21, #200]
+   59628:	529e01a1 	mov	w1, #0xf00d                	// #61453
+   5962c:	72a1a0c1 	movk	w1, #0xd06, lsl #16
+   59630:	f940c2ba 	ldr	x26, [x21, #384]
+   59634:	6b01005f 	cmp	w2, w1
+   59638:	54000101 	b.ne	59658 <ca_kh_offload_tcp+0xf8>  // b.any
+   5963c:	f94076a1 	ldr	x1, [x21, #232]
+   59640:	f2683c3f 	tst	x1, #0xffff000000
+   59644:	54000040 	b.eq	5964c <ca_kh_offload_tcp+0xec>  // b.none
+   59648:	14000004 	b	59658 <ca_kh_offload_tcp+0xf8>
+   5964c:	79419ea1 	ldrh	w1, [x21, #206]
+   59650:	8b01035a 	add	x26, x26, x1
+   59654:	14000003 	b	59660 <ca_kh_offload_tcp+0x100>
+   59658:	7941f6a1 	ldrh	w1, [x21, #250]
+   5965c:	8b01035a 	add	x26, x26, x1
+   59660:	b94016e2 	ldr	w2, [x23, #20]
+   59664:	b9400f41 	ldr	w1, [x26, #12]
+   59668:	6b02003f 	cmp	w1, w2
+   5966c:	540000a1 	b.ne	59680 <ca_kh_offload_tcp+0x120>  // b.any
+   59670:	b9405a62 	ldr	w2, [x19, #88]
+   59674:	b9401343 	ldr	w3, [x26, #16]
+   59678:	6b02007f 	cmp	w3, w2
+   5967c:	54001660 	b.eq	59948 <ca_kh_offload_tcp+0x3e8>  // b.none
+   59680:	b94016c2 	ldr	w2, [x22, #20]
+   59684:	6b02003f 	cmp	w1, w2
+   59688:	540000a1 	b.ne	5969c <ca_kh_offload_tcp+0x13c>  // b.any
+   5968c:	b9402261 	ldr	w1, [x19, #32]
+   59690:	b9401342 	ldr	w2, [x26, #16]
+   59694:	6b01005f 	cmp	w2, w1
+   59698:	54001600 	b.eq	59958 <ca_kh_offload_tcp+0x3f8>  // b.none
+   5969c:	90000018 	adrp	x24, 0 <ca_kh_debug>
+			5969c: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   596a0:	b9400301 	ldr	w1, [x24]
+			596a0: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   596a4:	36182e61 	tbz	w1, #3, 59c70 <ca_kh_offload_tcp+0x710>
+   596a8:	9000001b 	adrp	x27, 0 <ca_ni_get_wan_port_id>
+			596a8: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   596ac:	9100037b 	add	x27, x27, #0x0
+			596ac: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   596b0:	9100a37b 	add	x27, x27, #0x28
+   596b4:	52801842 	mov	w2, #0xc2                  	// #194
+   596b8:	aa1b03e1 	mov	x1, x27
+   596bc:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			596bc: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22328
+   596c0:	91000000 	add	x0, x0, #0x0
+			596c0: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22328
+   596c4:	94000000 	bl	0 <printk>
+			596c4: R_AARCH64_CALL26	printk
+   596c8:	79404ac4 	ldrh	w4, [x22, #36]
+   596cc:	aa1b03e1 	mov	x1, x27
+   596d0:	794022c0 	ldrh	w0, [x22, #16]
+   596d4:	9100d265 	add	x5, x19, #0x34
+   596d8:	aa1603e3 	mov	x3, x22
+   596dc:	528018a2 	mov	w2, #0xc5                  	// #197
+   596e0:	53087c87 	lsr	w7, w4, #8
+   596e4:	53087c06 	lsr	w6, w0, #8
+   596e8:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   596ec:	2a0020c0 	orr	w0, w6, w0, lsl #8
+   596f0:	12003c86 	and	w6, w4, #0xffff
+   596f4:	12003c04 	and	w4, w0, #0xffff
+   596f8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			596f8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22358
+   596fc:	91000000 	add	x0, x0, #0x0
+			596fc: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22358
+   59700:	94000000 	bl	0 <printk>
+			59700: R_AARCH64_CALL26	printk
+   59704:	79404ae4 	ldrh	w4, [x23, #36]
+   59708:	9101b265 	add	x5, x19, #0x6c
+   5970c:	794022e0 	ldrh	w0, [x23, #16]
+   59710:	aa1b03e1 	mov	x1, x27
+   59714:	aa1703e3 	mov	x3, x23
+   59718:	52801902 	mov	w2, #0xc8                  	// #200
+   5971c:	53087c86 	lsr	w6, w4, #8
+   59720:	53087c07 	lsr	w7, w0, #8
+   59724:	2a0420c6 	orr	w6, w6, w4, lsl #8
+   59728:	12003cc6 	and	w6, w6, #0xffff
+   5972c:	2a0020e0 	orr	w0, w7, w0, lsl #8
+   59730:	12003c04 	and	w4, w0, #0xffff
+   59734:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59734: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22388
+   59738:	91000000 	add	x0, x0, #0x0
+			59738: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22388
+   5973c:	94000000 	bl	0 <printk>
+			5973c: R_AARCH64_CALL26	printk
+   59740:	91004344 	add	x4, x26, #0x10
+   59744:	91003343 	add	x3, x26, #0xc
+   59748:	aa1b03e1 	mov	x1, x27
+   5974c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5974c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x223b8
+   59750:	52801922 	mov	w2, #0xc9                  	// #201
+   59754:	91000000 	add	x0, x0, #0x0
+			59754: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x223b8
+   59758:	5280001b 	mov	w27, #0x0                   	// #0
+   5975c:	94000000 	bl	0 <printk>
+			5975c: R_AARCH64_CALL26	printk
+   59760:	5280001a 	mov	w26, #0x0                   	// #0
+   59764:	14000084 	b	59974 <ca_kh_offload_tcp+0x414>
+   59768:	71002a9f 	cmp	w20, #0xa
+   5976c:	54000fe1 	b.ne	59968 <ca_kh_offload_tcp+0x408>  // b.any
+   59770:	f9002fbc 	str	x28, [x29, #88]
+   59774:	529e01a0 	mov	w0, #0xf00d                	// #61453
+   59778:	72a1a0c0 	movk	w0, #0xd06, lsl #16
+   5977c:	b940caa1 	ldr	w1, [x21, #200]
+   59780:	f940c2bb 	ldr	x27, [x21, #384]
+   59784:	6b00003f 	cmp	w1, w0
+   59788:	54000101 	b.ne	597a8 <ca_kh_offload_tcp+0x248>  // b.any
+   5978c:	f94076a0 	ldr	x0, [x21, #232]
+   59790:	f2683c1f 	tst	x0, #0xffff000000
+   59794:	540000a0 	b.eq	597a8 <ca_kh_offload_tcp+0x248>  // b.none
+   59798:	7941f6a0 	ldrh	w0, [x21, #250]
+   5979c:	8b00037b 	add	x27, x27, x0
+   597a0:	14000004 	b	597b0 <ca_kh_offload_tcp+0x250>
+   597a4:	d503201f 	nop
+   597a8:	79419ea0 	ldrh	w0, [x21, #206]
+   597ac:	8b00037b 	add	x27, x27, x0
+   597b0:	f846c260 	ldur	x0, [x19, #108]
+   597b4:	9100237c 	add	x28, x27, #0x8
+   597b8:	f9400761 	ldr	x1, [x27, #8]
+   597bc:	9101b27a 	add	x26, x19, #0x6c
+   597c0:	eb00003f 	cmp	x1, x0
+   597c4:	54000261 	b.ne	59810 <ca_kh_offload_tcp+0x2b0>  // b.any
+   597c8:	f9400740 	ldr	x0, [x26, #8]
+   597cc:	f9400781 	ldr	x1, [x28, #8]
+   597d0:	eb00003f 	cmp	x1, x0
+   597d4:	540001e1 	b.ne	59810 <ca_kh_offload_tcp+0x2b0>  // b.any
+   597d8:	f94002e1 	ldr	x1, [x23]
+   597dc:	f9400f62 	ldr	x2, [x27, #24]
+   597e0:	eb01005f 	cmp	x2, x1
+   597e4:	54000161 	b.ne	59810 <ca_kh_offload_tcp+0x2b0>  // b.any
+   597e8:	f94006e0 	ldr	x0, [x23, #8]
+   597ec:	f9401361 	ldr	x1, [x27, #32]
+   597f0:	eb00003f 	cmp	x1, x0
+   597f4:	540000e1 	b.ne	59810 <ca_kh_offload_tcp+0x2b0>  // b.any
+   597f8:	5280001b 	mov	w27, #0x0                   	// #0
+   597fc:	5280003a 	mov	w26, #0x1                   	// #1
+   59800:	90000018 	adrp	x24, 0 <ca_kh_debug>
+			59800: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   59804:	f9402fbc 	ldr	x28, [x29, #88]
+   59808:	1400005b 	b	59974 <ca_kh_offload_tcp+0x414>
+   5980c:	d503201f 	nop
+   59810:	9100d262 	add	x2, x19, #0x34
+   59814:	f8434260 	ldur	x0, [x19, #52]
+   59818:	f9400381 	ldr	x1, [x28]
+   5981c:	f90037a2 	str	x2, [x29, #104]
+   59820:	eb00003f 	cmp	x1, x0
+   59824:	54000261 	b.ne	59870 <ca_kh_offload_tcp+0x310>  // b.any
+   59828:	f9400440 	ldr	x0, [x2, #8]
+   5982c:	f9400781 	ldr	x1, [x28, #8]
+   59830:	eb00003f 	cmp	x1, x0
+   59834:	540001e1 	b.ne	59870 <ca_kh_offload_tcp+0x310>  // b.any
+   59838:	f94002c1 	ldr	x1, [x22]
+   5983c:	f9400f62 	ldr	x2, [x27, #24]
+   59840:	eb01005f 	cmp	x2, x1
+   59844:	54000161 	b.ne	59870 <ca_kh_offload_tcp+0x310>  // b.any
+   59848:	f94006c0 	ldr	x0, [x22, #8]
+   5984c:	f9401361 	ldr	x1, [x27, #32]
+   59850:	eb00003f 	cmp	x1, x0
+   59854:	540000e1 	b.ne	59870 <ca_kh_offload_tcp+0x310>  // b.any
+   59858:	5280003b 	mov	w27, #0x1                   	// #1
+   5985c:	5280001a 	mov	w26, #0x0                   	// #0
+   59860:	90000018 	adrp	x24, 0 <ca_kh_debug>
+			59860: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   59864:	f9402fbc 	ldr	x28, [x29, #88]
+   59868:	14000043 	b	59974 <ca_kh_offload_tcp+0x414>
+   5986c:	d503201f 	nop
+   59870:	90000018 	adrp	x24, 0 <ca_kh_debug>
+			59870: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   59874:	b9400300 	ldr	w0, [x24]
+			59874: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   59878:	36184580 	tbz	w0, #3, 5a128 <ca_kh_offload_tcp+0xbc8>
+   5987c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5987c: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   59880:	91000000 	add	x0, x0, #0x0
+			59880: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   59884:	9100a000 	add	x0, x0, #0x28
+   59888:	52801ba2 	mov	w2, #0xdd                  	// #221
+   5988c:	aa0003e1 	mov	x1, x0
+   59890:	f90037a0 	str	x0, [x29, #104]
+   59894:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59894: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x223e8
+   59898:	91000000 	add	x0, x0, #0x0
+			59898: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x223e8
+   5989c:	94000000 	bl	0 <printk>
+			5989c: R_AARCH64_CALL26	printk
+   598a0:	79404ac4 	ldrh	w4, [x22, #36]
+   598a4:	9100d265 	add	x5, x19, #0x34
+   598a8:	794022c0 	ldrh	w0, [x22, #16]
+   598ac:	aa1603e3 	mov	x3, x22
+   598b0:	f94037a1 	ldr	x1, [x29, #104]
+   598b4:	52801c02 	mov	w2, #0xe0                  	// #224
+   598b8:	53087c87 	lsr	w7, w4, #8
+   598bc:	53087c06 	lsr	w6, w0, #8
+   598c0:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   598c4:	2a0020c0 	orr	w0, w6, w0, lsl #8
+   598c8:	12003c86 	and	w6, w4, #0xffff
+   598cc:	12003c04 	and	w4, w0, #0xffff
+   598d0:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			598d0: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22418
+   598d4:	91000000 	add	x0, x0, #0x0
+			598d4: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22418
+   598d8:	94000000 	bl	0 <printk>
+			598d8: R_AARCH64_CALL26	printk
+   598dc:	79404ae4 	ldrh	w4, [x23, #36]
+   598e0:	aa1a03e5 	mov	x5, x26
+   598e4:	794022e0 	ldrh	w0, [x23, #16]
+   598e8:	aa1703e3 	mov	x3, x23
+   598ec:	f94037ba 	ldr	x26, [x29, #104]
+   598f0:	52801c62 	mov	w2, #0xe3                  	// #227
+   598f4:	53087c86 	lsr	w6, w4, #8
+   598f8:	53087c07 	lsr	w7, w0, #8
+   598fc:	2a0420c6 	orr	w6, w6, w4, lsl #8
+   59900:	12003cc6 	and	w6, w6, #0xffff
+   59904:	2a0020e0 	orr	w0, w7, w0, lsl #8
+   59908:	12003c04 	and	w4, w0, #0xffff
+   5990c:	aa1a03e1 	mov	x1, x26
+   59910:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59910: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22450
+   59914:	91000000 	add	x0, x0, #0x0
+			59914: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22450
+   59918:	94000000 	bl	0 <printk>
+			59918: R_AARCH64_CALL26	printk
+   5991c:	91006364 	add	x4, x27, #0x18
+   59920:	aa1c03e3 	mov	x3, x28
+   59924:	aa1a03e1 	mov	x1, x26
+   59928:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59928: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22488
+   5992c:	52801c82 	mov	w2, #0xe4                  	// #228
+   59930:	91000000 	add	x0, x0, #0x0
+			59930: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22488
+   59934:	5280001b 	mov	w27, #0x0                   	// #0
+   59938:	94000000 	bl	0 <printk>
+			59938: R_AARCH64_CALL26	printk
+   5993c:	5280001a 	mov	w26, #0x0                   	// #0
+   59940:	f9402fbc 	ldr	x28, [x29, #88]
+   59944:	1400000c 	b	59974 <ca_kh_offload_tcp+0x414>
+   59948:	5280001b 	mov	w27, #0x0                   	// #0
+   5994c:	5280003a 	mov	w26, #0x1                   	// #1
+   59950:	90000018 	adrp	x24, 0 <ca_kh_debug>
+			59950: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   59954:	14000008 	b	59974 <ca_kh_offload_tcp+0x414>
+   59958:	5280003b 	mov	w27, #0x1                   	// #1
+   5995c:	5280001a 	mov	w26, #0x0                   	// #0
+   59960:	90000018 	adrp	x24, 0 <ca_kh_debug>
+			59960: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   59964:	14000004 	b	59974 <ca_kh_offload_tcp+0x414>
+   59968:	5280001b 	mov	w27, #0x0                   	// #0
+   5996c:	5280001a 	mov	w26, #0x0                   	// #0
+   59970:	90000018 	adrp	x24, 0 <ca_kh_debug>
+			59970: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   59974:	b9400300 	ldr	w0, [x24]
+			59974: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   59978:	361802c0 	tbz	w0, #3, 599d0 <ca_kh_offload_tcp+0x470>
+   5997c:	f9002fbc 	str	x28, [x29, #88]
+   59980:	2a1903e7 	mov	w7, w25
+   59984:	2a1403e5 	mov	w5, w20
+   59988:	9000001c 	adrp	x28, 0 <ca_ni_get_wan_port_id>
+			59988: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5998c:	3943a266 	ldrb	w6, [x19, #232]
+   59990:	9100039c 	add	x28, x28, #0x0
+			59990: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   59994:	f9404263 	ldr	x3, [x19, #128]
+   59998:	9100a39c 	add	x28, x28, #0x28
+   5999c:	f9400aa4 	ldr	x4, [x21, #16]
+   599a0:	aa1c03e1 	mov	x1, x28
+   599a4:	aa1303e2 	mov	x2, x19
+   599a8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			599a8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x224b8
+   599ac:	91000000 	add	x0, x0, #0x0
+			599ac: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x224b8
+   599b0:	94000000 	bl	0 <printk>
+			599b0: R_AARCH64_CALL26	printk
+   599b4:	aa1c03e1 	mov	x1, x28
+   599b8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			599b8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22508
+   599bc:	2a1b03e3 	mov	w3, w27
+   599c0:	2a1a03e2 	mov	w2, w26
+   599c4:	91000000 	add	x0, x0, #0x0
+			599c4: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22508
+   599c8:	94000000 	bl	0 <printk>
+			599c8: R_AARCH64_CALL26	printk
+   599cc:	f9402fbc 	ldr	x28, [x29, #88]
+   599d0:	71000a9f 	cmp	w20, #0x2
+   599d4:	540019a1 	b.ne	59d08 <ca_kh_offload_tcp+0x7a8>  // b.any
+   599d8:	90000019 	adrp	x25, 0 <ca_kh_hook>
+			599d8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   599dc:	340049ba 	cbz	w26, 5a310 <ca_kh_offload_tcp+0xdb0>
+   599e0:	b9400320 	ldr	w0, [x25]
+			599e0: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   599e4:	36004aa0 	tbz	w0, #0, 5a338 <ca_kh_offload_tcp+0xdd8>
+   599e8:	b9400301 	ldr	w1, [x24]
+			599e8: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   599ec:	794022c7 	ldrh	w7, [x22, #16]
+   599f0:	79404ac0 	ldrh	w0, [x22, #36]
+   599f4:	36180441 	tbz	w1, #3, 59a7c <ca_kh_offload_tcp+0x51c>
+   599f8:	53087ce4 	lsr	w4, w7, #8
+   599fc:	53087c01 	lsr	w1, w0, #8
+   59a00:	90000014 	adrp	x20, 0 <ca_ni_get_wan_port_id>
+			59a00: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   59a04:	91000294 	add	x20, x20, #0x0
+			59a04: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   59a08:	2a002020 	orr	w0, w1, w0, lsl #8
+   59a0c:	2a072084 	orr	w4, w4, w7, lsl #8
+   59a10:	9100a294 	add	x20, x20, #0x28
+   59a14:	12003c06 	and	w6, w0, #0xffff
+   59a18:	9100d265 	add	x5, x19, #0x34
+   59a1c:	12003c84 	and	w4, w4, #0xffff
+   59a20:	aa1603e3 	mov	x3, x22
+   59a24:	52801ea2 	mov	w2, #0xf5                  	// #245
+   59a28:	aa1403e1 	mov	x1, x20
+   59a2c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59a2c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22358
+   59a30:	91000000 	add	x0, x0, #0x0
+			59a30: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22358
+   59a34:	94000000 	bl	0 <printk>
+			59a34: R_AARCH64_CALL26	printk
+   59a38:	79404ae4 	ldrh	w4, [x23, #36]
+   59a3c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59a3c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22388
+   59a40:	794022e1 	ldrh	w1, [x23, #16]
+   59a44:	9101b265 	add	x5, x19, #0x6c
+   59a48:	aa1703e3 	mov	x3, x23
+   59a4c:	52801f02 	mov	w2, #0xf8                  	// #248
+   59a50:	53087c87 	lsr	w7, w4, #8
+   59a54:	91000000 	add	x0, x0, #0x0
+			59a54: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22388
+   59a58:	53087c26 	lsr	w6, w1, #8
+   59a5c:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   59a60:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   59a64:	12003c86 	and	w6, w4, #0xffff
+   59a68:	12003c24 	and	w4, w1, #0xffff
+   59a6c:	aa1403e1 	mov	x1, x20
+   59a70:	94000000 	bl	0 <printk>
+			59a70: R_AARCH64_CALL26	printk
+   59a74:	794022c7 	ldrh	w7, [x22, #16]
+   59a78:	79404ac0 	ldrh	w0, [x22, #36]
+   59a7c:	b9405a66 	ldr	w6, [x19, #88]
+   59a80:	b94016c5 	ldr	w5, [x22, #20]
+   59a84:	79404ae2 	ldrh	w2, [x23, #36]
+   59a88:	794022e1 	ldrh	w1, [x23, #16]
+   59a8c:	6b0600bf 	cmp	w5, w6
+   59a90:	b9402263 	ldr	w3, [x19, #32]
+   59a94:	b94016e4 	ldr	w4, [x23, #20]
+   59a98:	54004241 	b.ne	5a2e0 <ca_kh_offload_tcp+0xd80>  // b.any
+   59a9c:	6b03009f 	cmp	w4, w3
+   59aa0:	540002c0 	b.eq	59af8 <ca_kh_offload_tcp+0x598>  // b.none
+   59aa4:	790023e1 	strh	w1, [sp, #16]
+   59aa8:	2a0503e6 	mov	w6, w5
+   59aac:	790013e0 	strh	w0, [sp, #8]
+   59ab0:	528000c1 	mov	w1, #0x6                   	// #6
+   59ab4:	790003e2 	strh	w2, [sp]
+   59ab8:	52800000 	mov	w0, #0x0                   	// #0
+   59abc:	f9000ff5 	str	x21, [sp, #24]
+   59ac0:	52800022 	mov	w2, #0x1                   	// #1
+   59ac4:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			59ac4: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   59ac8:	14000014 	b	59b18 <ca_kh_offload_tcp+0x5b8>
+   59acc:	790023e1 	strh	w1, [sp, #16]
+   59ad0:	2a0403e3 	mov	w3, w4
+   59ad4:	790013e0 	strh	w0, [sp, #8]
+   59ad8:	528000c1 	mov	w1, #0x6                   	// #6
+   59adc:	790003e2 	strh	w2, [sp]
+   59ae0:	52800000 	mov	w0, #0x0                   	// #0
+   59ae4:	f9000ff5 	str	x21, [sp, #24]
+   59ae8:	52800002 	mov	w2, #0x0                   	// #0
+   59aec:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			59aec: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   59af0:	1400000a 	b	59b18 <ca_kh_offload_tcp+0x5b8>
+   59af4:	d503201f 	nop
+   59af8:	790023e1 	strh	w1, [sp, #16]
+   59afc:	528000c1 	mov	w1, #0x6                   	// #6
+   59b00:	790013e0 	strh	w0, [sp, #8]
+   59b04:	52800000 	mov	w0, #0x0                   	// #0
+   59b08:	790003e2 	strh	w2, [sp]
+   59b0c:	52800042 	mov	w2, #0x2                   	// #2
+   59b10:	f9000ff5 	str	x21, [sp, #24]
+   59b14:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			59b14: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   59b18:	39434661 	ldrb	w1, [x19, #209]
+   59b1c:	39439660 	ldrb	w0, [x19, #229]
+   59b20:	321d0021 	orr	w1, w1, #0x8
+   59b24:	39034661 	strb	w1, [x19, #209]
+   59b28:	321d0000 	orr	w0, w0, #0x8
+   59b2c:	39039660 	strb	w0, [x19, #229]
+   59b30:	3400405b 	cbz	w27, 5a338 <ca_kh_offload_tcp+0xdd8>
+   59b34:	b9400320 	ldr	w0, [x25]
+			59b34: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   59b38:	36004000 	tbz	w0, #0, 5a338 <ca_kh_offload_tcp+0xdd8>
+   59b3c:	b9400302 	ldr	w2, [x24]
+			59b3c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   59b40:	794022c0 	ldrh	w0, [x22, #16]
+   59b44:	79404ac1 	ldrh	w1, [x22, #36]
+   59b48:	36180442 	tbz	w2, #3, 59bd0 <ca_kh_offload_tcp+0x670>
+   59b4c:	53087c23 	lsr	w3, w1, #8
+   59b50:	53087c02 	lsr	w2, w0, #8
+   59b54:	90000014 	adrp	x20, 0 <ca_ni_get_wan_port_id>
+			59b54: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   59b58:	91000294 	add	x20, x20, #0x0
+			59b58: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   59b5c:	2a012061 	orr	w1, w3, w1, lsl #8
+   59b60:	2a002040 	orr	w0, w2, w0, lsl #8
+   59b64:	9100a294 	add	x20, x20, #0x28
+   59b68:	12003c26 	and	w6, w1, #0xffff
+   59b6c:	12003c04 	and	w4, w0, #0xffff
+   59b70:	9100d265 	add	x5, x19, #0x34
+   59b74:	aa1603e3 	mov	x3, x22
+   59b78:	528023c2 	mov	w2, #0x11e                 	// #286
+   59b7c:	aa1403e1 	mov	x1, x20
+   59b80:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59b80: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22358
+   59b84:	91000000 	add	x0, x0, #0x0
+			59b84: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22358
+   59b88:	94000000 	bl	0 <printk>
+			59b88: R_AARCH64_CALL26	printk
+   59b8c:	79404ae4 	ldrh	w4, [x23, #36]
+   59b90:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59b90: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22388
+   59b94:	794022e1 	ldrh	w1, [x23, #16]
+   59b98:	9101b265 	add	x5, x19, #0x6c
+   59b9c:	aa1703e3 	mov	x3, x23
+   59ba0:	52802422 	mov	w2, #0x121                 	// #289
+   59ba4:	53087c87 	lsr	w7, w4, #8
+   59ba8:	91000000 	add	x0, x0, #0x0
+			59ba8: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22388
+   59bac:	53087c26 	lsr	w6, w1, #8
+   59bb0:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   59bb4:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   59bb8:	12003c86 	and	w6, w4, #0xffff
+   59bbc:	12003c24 	and	w4, w1, #0xffff
+   59bc0:	aa1403e1 	mov	x1, x20
+   59bc4:	94000000 	bl	0 <printk>
+			59bc4: R_AARCH64_CALL26	printk
+   59bc8:	79404ac1 	ldrh	w1, [x22, #36]
+   59bcc:	794022c0 	ldrh	w0, [x22, #16]
+   59bd0:	b9405a63 	ldr	w3, [x19, #88]
+   59bd4:	b94016c4 	ldr	w4, [x22, #20]
+   59bd8:	794022e7 	ldrh	w7, [x23, #16]
+   59bdc:	79404ae2 	ldrh	w2, [x23, #36]
+   59be0:	6b03009f 	cmp	w4, w3
+   59be4:	b9402266 	ldr	w6, [x19, #32]
+   59be8:	b94016e5 	ldr	w5, [x23, #20]
+   59bec:	54003821 	b.ne	5a2f0 <ca_kh_offload_tcp+0xd90>  // b.any
+   59bf0:	6b0500df 	cmp	w6, w5
+   59bf4:	540002a0 	b.eq	59c48 <ca_kh_offload_tcp+0x6e8>  // b.none
+   59bf8:	790023e0 	strh	w0, [sp, #16]
+   59bfc:	2a0403e3 	mov	w3, w4
+   59c00:	790013e2 	strh	w2, [sp, #8]
+   59c04:	52800000 	mov	w0, #0x0                   	// #0
+   59c08:	790003e1 	strh	w1, [sp]
+   59c0c:	52800002 	mov	w2, #0x0                   	// #0
+   59c10:	f9000ff5 	str	x21, [sp, #24]
+   59c14:	528000c1 	mov	w1, #0x6                   	// #6
+   59c18:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			59c18: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   59c1c:	14000137 	b	5a0f8 <ca_kh_offload_tcp+0xb98>
+   59c20:	790023e0 	strh	w0, [sp, #16]
+   59c24:	2a0603e5 	mov	w5, w6
+   59c28:	790013e2 	strh	w2, [sp, #8]
+   59c2c:	52800000 	mov	w0, #0x0                   	// #0
+   59c30:	790003e1 	strh	w1, [sp]
+   59c34:	52800022 	mov	w2, #0x1                   	// #1
+   59c38:	f9000ff5 	str	x21, [sp, #24]
+   59c3c:	528000c1 	mov	w1, #0x6                   	// #6
+   59c40:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			59c40: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   59c44:	1400012d 	b	5a0f8 <ca_kh_offload_tcp+0xb98>
+   59c48:	790023e0 	strh	w0, [sp, #16]
+   59c4c:	52800000 	mov	w0, #0x0                   	// #0
+   59c50:	790013e2 	strh	w2, [sp, #8]
+   59c54:	52800042 	mov	w2, #0x2                   	// #2
+   59c58:	790003e1 	strh	w1, [sp]
+   59c5c:	528000c1 	mov	w1, #0x6                   	// #6
+   59c60:	f9000ff5 	str	x21, [sp, #24]
+   59c64:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			59c64: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   59c68:	14000124 	b	5a0f8 <ca_kh_offload_tcp+0xb98>
+   59c6c:	d503201f 	nop
+   59c70:	71000c1f 	cmp	w0, #0x3
+   59c74:	54003629 	b.ls	5a338 <ca_kh_offload_tcp+0xdd8>  // b.plast
+   59c78:	b9400300 	ldr	w0, [x24]
+			59c78: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   59c7c:	361831a0 	tbz	w0, #3, 5a2b0 <ca_kh_offload_tcp+0xd50>
+   59c80:	794022c0 	ldrh	w0, [x22, #16]
+   59c84:	90000014 	adrp	x20, 0 <ca_ni_get_wan_port_id>
+			59c84: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   59c88:	79404ac1 	ldrh	w1, [x22, #36]
+   59c8c:	91000294 	add	x20, x20, #0x0
+			59c8c: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   59c90:	9100a294 	add	x20, x20, #0x28
+   59c94:	9100d265 	add	x5, x19, #0x34
+   59c98:	53087c02 	lsr	w2, w0, #8
+   59c9c:	53087c23 	lsr	w3, w1, #8
+   59ca0:	2a002040 	orr	w0, w2, w0, lsl #8
+   59ca4:	2a012061 	orr	w1, w3, w1, lsl #8
+   59ca8:	12003c04 	and	w4, w0, #0xffff
+   59cac:	12003c26 	and	w6, w1, #0xffff
+   59cb0:	aa1603e3 	mov	x3, x22
+   59cb4:	aa1403e1 	mov	x1, x20
+   59cb8:	528028e2 	mov	w2, #0x147                 	// #327
+   59cbc:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59cbc: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22358
+   59cc0:	91000000 	add	x0, x0, #0x0
+			59cc0: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22358
+   59cc4:	94000000 	bl	0 <printk>
+			59cc4: R_AARCH64_CALL26	printk
+   59cc8:	79404ae4 	ldrh	w4, [x23, #36]
+   59ccc:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59ccc: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22388
+   59cd0:	794022e1 	ldrh	w1, [x23, #16]
+   59cd4:	9101b265 	add	x5, x19, #0x6c
+   59cd8:	aa1703e3 	mov	x3, x23
+   59cdc:	52802942 	mov	w2, #0x14a                 	// #330
+   59ce0:	53087c87 	lsr	w7, w4, #8
+   59ce4:	91000000 	add	x0, x0, #0x0
+			59ce4: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22388
+   59ce8:	53087c26 	lsr	w6, w1, #8
+   59cec:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   59cf0:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   59cf4:	12003c86 	and	w6, w4, #0xffff
+   59cf8:	12003c24 	and	w4, w1, #0xffff
+   59cfc:	aa1403e1 	mov	x1, x20
+   59d00:	94000000 	bl	0 <printk>
+			59d00: R_AARCH64_CALL26	printk
+   59d04:	1400016b 	b	5a2b0 <ca_kh_offload_tcp+0xd50>
+   59d08:	71002a9f 	cmp	w20, #0xa
+   59d0c:	54003161 	b.ne	5a338 <ca_kh_offload_tcp+0xdd8>  // b.any
+   59d10:	3400309a 	cbz	w26, 5a320 <ca_kh_offload_tcp+0xdc0>
+   59d14:	90000019 	adrp	x25, 0 <ca_kh_hook>
+			59d14: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   59d18:	b9400320 	ldr	w0, [x25]
+			59d18: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   59d1c:	360830e0 	tbz	w0, #1, 5a338 <ca_kh_offload_tcp+0xdd8>
+   59d20:	3943aaa0 	ldrb	w0, [x21, #234]
+   59d24:	9100d274 	add	x20, x19, #0x34
+   59d28:	9101b27a 	add	x26, x19, #0x6c
+   59d2c:	34000380 	cbz	w0, 59d9c <ca_kh_offload_tcp+0x83c>
+   59d30:	79419ea1 	ldrh	w1, [x21, #206]
+   59d34:	f940c2a0 	ldr	x0, [x21, #384]
+   59d38:	f94002c2 	ldr	x2, [x22]
+   59d3c:	8b010000 	add	x0, x0, x1
+   59d40:	f9400401 	ldr	x1, [x0, #8]
+   59d44:	eb01005f 	cmp	x2, x1
+   59d48:	54000281 	b.ne	59d98 <ca_kh_offload_tcp+0x838>  // b.any
+   59d4c:	f9400801 	ldr	x1, [x0, #16]
+   59d50:	f94006c2 	ldr	x2, [x22, #8]
+   59d54:	eb01005f 	cmp	x2, x1
+   59d58:	54000201 	b.ne	59d98 <ca_kh_offload_tcp+0x838>  // b.any
+   59d5c:	f9400c02 	ldr	x2, [x0, #24]
+   59d60:	91006001 	add	x1, x0, #0x18
+   59d64:	f9400283 	ldr	x3, [x20]
+   59d68:	eb02007f 	cmp	x3, x2
+   59d6c:	54000161 	b.ne	59d98 <ca_kh_offload_tcp+0x838>  // b.any
+   59d70:	f9400421 	ldr	x1, [x1, #8]
+   59d74:	f9400682 	ldr	x2, [x20, #8]
+   59d78:	eb01005f 	cmp	x2, x1
+   59d7c:	540000e1 	b.ne	59d98 <ca_kh_offload_tcp+0x838>  // b.any
+   59d80:	a9408c02 	ldp	x2, x3, [x0, #8]
+   59d84:	a9000f42 	stp	x2, x3, [x26]
+   59d88:	a9418400 	ldp	x0, x1, [x0, #24]
+   59d8c:	a9058660 	stp	x0, x1, [x19, #88]
+   59d90:	14000003 	b	59d9c <ca_kh_offload_tcp+0x83c>
+   59d94:	d503201f 	nop
+   59d98:	9101b27a 	add	x26, x19, #0x6c
+   59d9c:	b9400301 	ldr	w1, [x24]
+			59d9c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   59da0:	794022c7 	ldrh	w7, [x22, #16]
+   59da4:	79404ac0 	ldrh	w0, [x22, #36]
+   59da8:	36180481 	tbz	w1, #3, 59e38 <ca_kh_offload_tcp+0x8d8>
+   59dac:	53087ce4 	lsr	w4, w7, #8
+   59db0:	f9002fbc 	str	x28, [x29, #88]
+   59db4:	53087c01 	lsr	w1, w0, #8
+   59db8:	9000001c 	adrp	x28, 0 <ca_ni_get_wan_port_id>
+			59db8: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   59dbc:	9100039c 	add	x28, x28, #0x0
+			59dbc: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   59dc0:	2a002020 	orr	w0, w1, w0, lsl #8
+   59dc4:	2a072084 	orr	w4, w4, w7, lsl #8
+   59dc8:	9100a39c 	add	x28, x28, #0x28
+   59dcc:	12003c06 	and	w6, w0, #0xffff
+   59dd0:	aa1c03e1 	mov	x1, x28
+   59dd4:	aa1403e5 	mov	x5, x20
+   59dd8:	12003c84 	and	w4, w4, #0xffff
+   59ddc:	aa1603e3 	mov	x3, x22
+   59de0:	52802c02 	mov	w2, #0x160                 	// #352
+   59de4:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59de4: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22418
+   59de8:	91000000 	add	x0, x0, #0x0
+			59de8: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22418
+   59dec:	94000000 	bl	0 <printk>
+			59dec: R_AARCH64_CALL26	printk
+   59df0:	79404ae4 	ldrh	w4, [x23, #36]
+   59df4:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59df4: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22450
+   59df8:	794022e1 	ldrh	w1, [x23, #16]
+   59dfc:	aa1a03e5 	mov	x5, x26
+   59e00:	aa1703e3 	mov	x3, x23
+   59e04:	52802c62 	mov	w2, #0x163                 	// #355
+   59e08:	53087c87 	lsr	w7, w4, #8
+   59e0c:	91000000 	add	x0, x0, #0x0
+			59e0c: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22450
+   59e10:	53087c26 	lsr	w6, w1, #8
+   59e14:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   59e18:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   59e1c:	12003c86 	and	w6, w4, #0xffff
+   59e20:	12003c24 	and	w4, w1, #0xffff
+   59e24:	aa1c03e1 	mov	x1, x28
+   59e28:	94000000 	bl	0 <printk>
+			59e28: R_AARCH64_CALL26	printk
+   59e2c:	f9402fbc 	ldr	x28, [x29, #88]
+   59e30:	794022c7 	ldrh	w7, [x22, #16]
+   59e34:	79404ac0 	ldrh	w0, [x22, #36]
+   59e38:	f9400282 	ldr	x2, [x20]
+   59e3c:	f94002e1 	ldr	x1, [x23]
+   59e40:	eb01005f 	cmp	x2, x1
+   59e44:	540000e1 	b.ne	59e60 <ca_kh_offload_tcp+0x900>  // b.any
+   59e48:	f9400682 	ldr	x2, [x20, #8]
+   59e4c:	f94006e1 	ldr	x1, [x23, #8]
+   59e50:	eb01005f 	cmp	x2, x1
+   59e54:	54000061 	b.ne	59e60 <ca_kh_offload_tcp+0x900>  // b.any
+   59e58:	52800001 	mov	w1, #0x0                   	// #0
+   59e5c:	14000002 	b	59e64 <ca_kh_offload_tcp+0x904>
+   59e60:	52800021 	mov	w1, #0x1                   	// #1
+   59e64:	f94002c3 	ldr	x3, [x22]
+   59e68:	f9400342 	ldr	x2, [x26]
+   59e6c:	eb02007f 	cmp	x3, x2
+   59e70:	540000c1 	b.ne	59e88 <ca_kh_offload_tcp+0x928>  // b.any
+   59e74:	f94006c3 	ldr	x3, [x22, #8]
+   59e78:	52800004 	mov	w4, #0x0                   	// #0
+   59e7c:	f9400742 	ldr	x2, [x26, #8]
+   59e80:	eb02007f 	cmp	x3, x2
+   59e84:	54000040 	b.eq	59e8c <ca_kh_offload_tcp+0x92c>  // b.none
+   59e88:	52800024 	mov	w4, #0x1                   	// #1
+   59e8c:	79404ae3 	ldrh	w3, [x23, #36]
+   59e90:	794022e2 	ldrh	w2, [x23, #16]
+   59e94:	35002361 	cbnz	w1, 5a300 <ca_kh_offload_tcp+0xda0>
+   59e98:	34000384 	cbz	w4, 59f08 <ca_kh_offload_tcp+0x9a8>
+   59e9c:	790023e2 	strh	w2, [sp, #16]
+   59ea0:	aa1703e6 	mov	x6, x23
+   59ea4:	790013e0 	strh	w0, [sp, #8]
+   59ea8:	aa1403e5 	mov	x5, x20
+   59eac:	790003e3 	strh	w3, [sp]
+   59eb0:	aa1a03e4 	mov	x4, x26
+   59eb4:	f9000ff5 	str	x21, [sp, #24]
+   59eb8:	aa1603e3 	mov	x3, x22
+   59ebc:	52800022 	mov	w2, #0x1                   	// #1
+   59ec0:	528000c1 	mov	w1, #0x6                   	// #6
+   59ec4:	52800000 	mov	w0, #0x0                   	// #0
+   59ec8:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			59ec8: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   59ecc:	1400001b 	b	59f38 <ca_kh_offload_tcp+0x9d8>
+   59ed0:	790023e2 	strh	w2, [sp, #16]
+   59ed4:	aa1703e6 	mov	x6, x23
+   59ed8:	790013e0 	strh	w0, [sp, #8]
+   59edc:	aa1403e5 	mov	x5, x20
+   59ee0:	790003e3 	strh	w3, [sp]
+   59ee4:	aa1a03e4 	mov	x4, x26
+   59ee8:	f9000ff5 	str	x21, [sp, #24]
+   59eec:	aa1603e3 	mov	x3, x22
+   59ef0:	52800002 	mov	w2, #0x0                   	// #0
+   59ef4:	528000c1 	mov	w1, #0x6                   	// #6
+   59ef8:	52800000 	mov	w0, #0x0                   	// #0
+   59efc:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			59efc: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   59f00:	1400000e 	b	59f38 <ca_kh_offload_tcp+0x9d8>
+   59f04:	d503201f 	nop
+   59f08:	790023e2 	strh	w2, [sp, #16]
+   59f0c:	aa1703e6 	mov	x6, x23
+   59f10:	790013e0 	strh	w0, [sp, #8]
+   59f14:	aa1403e5 	mov	x5, x20
+   59f18:	790003e3 	strh	w3, [sp]
+   59f1c:	aa1a03e4 	mov	x4, x26
+   59f20:	f9000ff5 	str	x21, [sp, #24]
+   59f24:	aa1603e3 	mov	x3, x22
+   59f28:	52800042 	mov	w2, #0x2                   	// #2
+   59f2c:	528000c1 	mov	w1, #0x6                   	// #6
+   59f30:	52800000 	mov	w0, #0x0                   	// #0
+   59f34:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			59f34: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   59f38:	39434661 	ldrb	w1, [x19, #209]
+   59f3c:	39439660 	ldrb	w0, [x19, #229]
+   59f40:	321d0021 	orr	w1, w1, #0x8
+   59f44:	39034661 	strb	w1, [x19, #209]
+   59f48:	321d0000 	orr	w0, w0, #0x8
+   59f4c:	39039660 	strb	w0, [x19, #229]
+   59f50:	34001f5b 	cbz	w27, 5a338 <ca_kh_offload_tcp+0xdd8>
+   59f54:	b9400320 	ldr	w0, [x25]
+			59f54: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   59f58:	36081f00 	tbz	w0, #1, 5a338 <ca_kh_offload_tcp+0xdd8>
+   59f5c:	b9400302 	ldr	w2, [x24]
+			59f5c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   59f60:	9101b274 	add	x20, x19, #0x6c
+   59f64:	9100d278 	add	x24, x19, #0x34
+   59f68:	794022c0 	ldrh	w0, [x22, #16]
+   59f6c:	79404ac1 	ldrh	w1, [x22, #36]
+   59f70:	36180442 	tbz	w2, #3, 59ff8 <ca_kh_offload_tcp+0xa98>
+   59f74:	53087c23 	lsr	w3, w1, #8
+   59f78:	53087c02 	lsr	w2, w0, #8
+   59f7c:	90000019 	adrp	x25, 0 <ca_ni_get_wan_port_id>
+			59f7c: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   59f80:	91000339 	add	x25, x25, #0x0
+			59f80: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   59f84:	2a012061 	orr	w1, w3, w1, lsl #8
+   59f88:	2a002040 	orr	w0, w2, w0, lsl #8
+   59f8c:	9100a339 	add	x25, x25, #0x28
+   59f90:	12003c26 	and	w6, w1, #0xffff
+   59f94:	12003c04 	and	w4, w0, #0xffff
+   59f98:	aa1803e5 	mov	x5, x24
+   59f9c:	aa1603e3 	mov	x3, x22
+   59fa0:	528032e2 	mov	w2, #0x197                 	// #407
+   59fa4:	aa1903e1 	mov	x1, x25
+   59fa8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59fa8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22418
+   59fac:	91000000 	add	x0, x0, #0x0
+			59fac: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22418
+   59fb0:	94000000 	bl	0 <printk>
+			59fb0: R_AARCH64_CALL26	printk
+   59fb4:	79404ae4 	ldrh	w4, [x23, #36]
+   59fb8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			59fb8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22450
+   59fbc:	794022e1 	ldrh	w1, [x23, #16]
+   59fc0:	aa1403e5 	mov	x5, x20
+   59fc4:	aa1703e3 	mov	x3, x23
+   59fc8:	52803342 	mov	w2, #0x19a                 	// #410
+   59fcc:	53087c87 	lsr	w7, w4, #8
+   59fd0:	91000000 	add	x0, x0, #0x0
+			59fd0: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22450
+   59fd4:	53087c26 	lsr	w6, w1, #8
+   59fd8:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   59fdc:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   59fe0:	12003c86 	and	w6, w4, #0xffff
+   59fe4:	12003c24 	and	w4, w1, #0xffff
+   59fe8:	aa1903e1 	mov	x1, x25
+   59fec:	94000000 	bl	0 <printk>
+			59fec: R_AARCH64_CALL26	printk
+   59ff0:	79404ac1 	ldrh	w1, [x22, #36]
+   59ff4:	794022c0 	ldrh	w0, [x22, #16]
+   59ff8:	f94002e2 	ldr	x2, [x23]
+   59ffc:	f9400303 	ldr	x3, [x24]
+   5a000:	eb02007f 	cmp	x3, x2
+   5a004:	540000e1 	b.ne	5a020 <ca_kh_offload_tcp+0xac0>  // b.any
+   5a008:	f94006e2 	ldr	x2, [x23, #8]
+   5a00c:	f9400703 	ldr	x3, [x24, #8]
+   5a010:	eb02007f 	cmp	x3, x2
+   5a014:	54000061 	b.ne	5a020 <ca_kh_offload_tcp+0xac0>  // b.any
+   5a018:	52800002 	mov	w2, #0x0                   	// #0
+   5a01c:	14000002 	b	5a024 <ca_kh_offload_tcp+0xac4>
+   5a020:	52800022 	mov	w2, #0x1                   	// #1
+   5a024:	f9400283 	ldr	x3, [x20]
+   5a028:	f94002c4 	ldr	x4, [x22]
+   5a02c:	eb03009f 	cmp	x4, x3
+   5a030:	54000101 	b.ne	5a050 <ca_kh_offload_tcp+0xaf0>  // b.any
+   5a034:	f9400683 	ldr	x3, [x20, #8]
+   5a038:	f94006c4 	ldr	x4, [x22, #8]
+   5a03c:	eb03009f 	cmp	x4, x3
+   5a040:	54000081 	b.ne	5a050 <ca_kh_offload_tcp+0xaf0>  // b.any
+   5a044:	52800004 	mov	w4, #0x0                   	// #0
+   5a048:	14000003 	b	5a054 <ca_kh_offload_tcp+0xaf4>
+   5a04c:	d503201f 	nop
+   5a050:	52800024 	mov	w4, #0x1                   	// #1
+   5a054:	794022e7 	ldrh	w7, [x23, #16]
+   5a058:	79404ae3 	ldrh	w3, [x23, #36]
+   5a05c:	35001562 	cbnz	w2, 5a308 <ca_kh_offload_tcp+0xda8>
+   5a060:	34000344 	cbz	w4, 5a0c8 <ca_kh_offload_tcp+0xb68>
+   5a064:	790023e0 	strh	w0, [sp, #16]
+   5a068:	aa1603e6 	mov	x6, x22
+   5a06c:	790013e3 	strh	w3, [sp, #8]
+   5a070:	aa1403e5 	mov	x5, x20
+   5a074:	790003e1 	strh	w1, [sp]
+   5a078:	aa1803e4 	mov	x4, x24
+   5a07c:	f9000ff5 	str	x21, [sp, #24]
+   5a080:	aa1703e3 	mov	x3, x23
+   5a084:	528000c1 	mov	w1, #0x6                   	// #6
+   5a088:	52800000 	mov	w0, #0x0                   	// #0
+   5a08c:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5a08c: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5a090:	1400001a 	b	5a0f8 <ca_kh_offload_tcp+0xb98>
+   5a094:	790023e0 	strh	w0, [sp, #16]
+   5a098:	aa1603e6 	mov	x6, x22
+   5a09c:	790013e3 	strh	w3, [sp, #8]
+   5a0a0:	aa1403e5 	mov	x5, x20
+   5a0a4:	790003e1 	strh	w1, [sp]
+   5a0a8:	aa1803e4 	mov	x4, x24
+   5a0ac:	f9000ff5 	str	x21, [sp, #24]
+   5a0b0:	aa1703e3 	mov	x3, x23
+   5a0b4:	52800022 	mov	w2, #0x1                   	// #1
+   5a0b8:	528000c1 	mov	w1, #0x6                   	// #6
+   5a0bc:	52800000 	mov	w0, #0x0                   	// #0
+   5a0c0:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5a0c0: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5a0c4:	1400000d 	b	5a0f8 <ca_kh_offload_tcp+0xb98>
+   5a0c8:	790023e0 	strh	w0, [sp, #16]
+   5a0cc:	aa1603e6 	mov	x6, x22
+   5a0d0:	790013e3 	strh	w3, [sp, #8]
+   5a0d4:	aa1403e5 	mov	x5, x20
+   5a0d8:	790003e1 	strh	w1, [sp]
+   5a0dc:	aa1803e4 	mov	x4, x24
+   5a0e0:	f9000ff5 	str	x21, [sp, #24]
+   5a0e4:	aa1703e3 	mov	x3, x23
+   5a0e8:	52800042 	mov	w2, #0x2                   	// #2
+   5a0ec:	528000c1 	mov	w1, #0x6                   	// #6
+   5a0f0:	52800000 	mov	w0, #0x0                   	// #0
+   5a0f4:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5a0f4: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5a0f8:	39434661 	ldrb	w1, [x19, #209]
+   5a0fc:	39439660 	ldrb	w0, [x19, #229]
+   5a100:	321d0021 	orr	w1, w1, #0x8
+   5a104:	39034661 	strb	w1, [x19, #209]
+   5a108:	321d0000 	orr	w0, w0, #0x8
+   5a10c:	39039660 	strb	w0, [x19, #229]
+   5a110:	a942dfb6 	ldp	x22, x23, [x29, #40]
+   5a114:	a944efba 	ldp	x26, x27, [x29, #72]
+   5a118:	f9400bb3 	ldr	x19, [x29, #16]
+   5a11c:	f9401fb8 	ldr	x24, [x29, #56]
+   5a120:	1400008a 	b	5a348 <ca_kh_offload_tcp+0xde8>
+   5a124:	d503201f 	nop
+   5a128:	f9402fbc 	ldr	x28, [x29, #88]
+   5a12c:	35000739 	cbnz	w25, 5a210 <ca_kh_offload_tcp+0xcb0>
+   5a130:	3943a260 	ldrb	w0, [x19, #232]
+   5a134:	71000c1f 	cmp	w0, #0x3
+   5a138:	54001009 	b.ls	5a338 <ca_kh_offload_tcp+0xdd8>  // b.plast
+   5a13c:	3943aaa0 	ldrb	w0, [x21, #234]
+   5a140:	34000320 	cbz	w0, 5a1a4 <ca_kh_offload_tcp+0xc44>
+   5a144:	79419ea1 	ldrh	w1, [x21, #206]
+   5a148:	f940c2a0 	ldr	x0, [x21, #384]
+   5a14c:	f94002c2 	ldr	x2, [x22]
+   5a150:	8b010000 	add	x0, x0, x1
+   5a154:	f9400401 	ldr	x1, [x0, #8]
+   5a158:	eb01005f 	cmp	x2, x1
+   5a15c:	54000241 	b.ne	5a1a4 <ca_kh_offload_tcp+0xc44>  // b.any
+   5a160:	f9400801 	ldr	x1, [x0, #16]
+   5a164:	f94006c2 	ldr	x2, [x22, #8]
+   5a168:	eb01005f 	cmp	x2, x1
+   5a16c:	540001c1 	b.ne	5a1a4 <ca_kh_offload_tcp+0xc44>  // b.any
+   5a170:	f9400c03 	ldr	x3, [x0, #24]
+   5a174:	f8434264 	ldur	x4, [x19, #52]
+   5a178:	eb03009f 	cmp	x4, x3
+   5a17c:	54000141 	b.ne	5a1a4 <ca_kh_offload_tcp+0xc44>  // b.any
+   5a180:	f9401001 	ldr	x1, [x0, #32]
+   5a184:	f843c262 	ldur	x2, [x19, #60]
+   5a188:	eb01005f 	cmp	x2, x1
+   5a18c:	540000c1 	b.ne	5a1a4 <ca_kh_offload_tcp+0xc44>  // b.any
+   5a190:	9101b261 	add	x1, x19, #0x6c
+   5a194:	a9408c02 	ldp	x2, x3, [x0, #8]
+   5a198:	a9000c22 	stp	x2, x3, [x1]
+   5a19c:	a9418400 	ldp	x0, x1, [x0, #24]
+   5a1a0:	a9058660 	stp	x0, x1, [x19, #88]
+   5a1a4:	b9400300 	ldr	w0, [x24]
+			5a1a4: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   5a1a8:	36180840 	tbz	w0, #3, 5a2b0 <ca_kh_offload_tcp+0xd50>
+   5a1ac:	794022c0 	ldrh	w0, [x22, #16]
+   5a1b0:	90000014 	adrp	x20, 0 <ca_ni_get_wan_port_id>
+			5a1b0: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5a1b4:	79404ac1 	ldrh	w1, [x22, #36]
+   5a1b8:	91000294 	add	x20, x20, #0x0
+			5a1b8: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5a1bc:	9100a294 	add	x20, x20, #0x28
+   5a1c0:	9100d265 	add	x5, x19, #0x34
+   5a1c4:	53087c02 	lsr	w2, w0, #8
+   5a1c8:	53087c23 	lsr	w3, w1, #8
+   5a1cc:	2a002040 	orr	w0, w2, w0, lsl #8
+   5a1d0:	2a012061 	orr	w1, w3, w1, lsl #8
+   5a1d4:	12003c04 	and	w4, w0, #0xffff
+   5a1d8:	12003c26 	and	w6, w1, #0xffff
+   5a1dc:	aa1603e3 	mov	x3, x22
+   5a1e0:	52803962 	mov	w2, #0x1cb                 	// #459
+   5a1e4:	aa1403e1 	mov	x1, x20
+   5a1e8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a1e8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22418
+   5a1ec:	91000000 	add	x0, x0, #0x0
+			5a1ec: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22418
+   5a1f0:	94000000 	bl	0 <printk>
+			5a1f0: R_AARCH64_CALL26	printk
+   5a1f4:	794022e1 	ldrh	w1, [x23, #16]
+   5a1f8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a1f8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22450
+   5a1fc:	79404ae4 	ldrh	w4, [x23, #36]
+   5a200:	9101b265 	add	x5, x19, #0x6c
+   5a204:	aa1703e3 	mov	x3, x23
+   5a208:	528039c2 	mov	w2, #0x1ce                 	// #462
+   5a20c:	14000020 	b	5a28c <ca_kh_offload_tcp+0xd2c>
+   5a210:	71000b3f 	cmp	w25, #0x2
+   5a214:	54000929 	b.ls	5a338 <ca_kh_offload_tcp+0xdd8>  // b.plast
+   5a218:	3943a260 	ldrb	w0, [x19, #232]
+   5a21c:	71000c1f 	cmp	w0, #0x3
+   5a220:	540008c9 	b.ls	5a338 <ca_kh_offload_tcp+0xdd8>  // b.plast
+   5a224:	b9400300 	ldr	w0, [x24]
+			5a224: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   5a228:	36180440 	tbz	w0, #3, 5a2b0 <ca_kh_offload_tcp+0xd50>
+   5a22c:	794022c0 	ldrh	w0, [x22, #16]
+   5a230:	90000014 	adrp	x20, 0 <ca_ni_get_wan_port_id>
+			5a230: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5a234:	79404ac1 	ldrh	w1, [x22, #36]
+   5a238:	91000294 	add	x20, x20, #0x0
+			5a238: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5a23c:	9100a294 	add	x20, x20, #0x28
+   5a240:	9100d265 	add	x5, x19, #0x34
+   5a244:	53087c02 	lsr	w2, w0, #8
+   5a248:	53087c23 	lsr	w3, w1, #8
+   5a24c:	2a002040 	orr	w0, w2, w0, lsl #8
+   5a250:	2a012061 	orr	w1, w3, w1, lsl #8
+   5a254:	12003c04 	and	w4, w0, #0xffff
+   5a258:	12003c26 	and	w6, w1, #0xffff
+   5a25c:	aa1603e3 	mov	x3, x22
+   5a260:	52803c62 	mov	w2, #0x1e3                 	// #483
+   5a264:	aa1403e1 	mov	x1, x20
+   5a268:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a268: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22418
+   5a26c:	91000000 	add	x0, x0, #0x0
+			5a26c: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22418
+   5a270:	94000000 	bl	0 <printk>
+			5a270: R_AARCH64_CALL26	printk
+   5a274:	794022e1 	ldrh	w1, [x23, #16]
+   5a278:	9101b265 	add	x5, x19, #0x6c
+   5a27c:	79404ae4 	ldrh	w4, [x23, #36]
+   5a280:	aa1703e3 	mov	x3, x23
+   5a284:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a284: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22450
+   5a288:	52803cc2 	mov	w2, #0x1e6                 	// #486
+   5a28c:	53087c87 	lsr	w7, w4, #8
+   5a290:	53087c26 	lsr	w6, w1, #8
+   5a294:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   5a298:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   5a29c:	12003c86 	and	w6, w4, #0xffff
+   5a2a0:	91000000 	add	x0, x0, #0x0
+			5a2a0: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22450
+   5a2a4:	12003c24 	and	w4, w1, #0xffff
+   5a2a8:	aa1403e1 	mov	x1, x20
+   5a2ac:	94000000 	bl	0 <printk>
+			5a2ac: R_AARCH64_CALL26	printk
+   5a2b0:	aa1603e1 	mov	x1, x22
+   5a2b4:	52800000 	mov	w0, #0x0                   	// #0
+   5a2b8:	94000000 	bl	4d7a0 <ca_kh_nat_entry_session_delete_force>
+			5a2b8: R_AARCH64_CALL26	ca_kh_nat_entry_session_delete_force
+   5a2bc:	aa1703e1 	mov	x1, x23
+   5a2c0:	52800000 	mov	w0, #0x0                   	// #0
+   5a2c4:	94000000 	bl	4d7a0 <ca_kh_nat_entry_session_delete_force>
+			5a2c4: R_AARCH64_CALL26	ca_kh_nat_entry_session_delete_force
+   5a2c8:	f9400bb3 	ldr	x19, [x29, #16]
+   5a2cc:	a942dfb6 	ldp	x22, x23, [x29, #40]
+   5a2d0:	a944efba 	ldp	x26, x27, [x29, #72]
+   5a2d4:	f9401fb8 	ldr	x24, [x29, #56]
+   5a2d8:	1400001c 	b	5a348 <ca_kh_offload_tcp+0xde8>
+   5a2dc:	d503201f 	nop
+   5a2e0:	6b03009f 	cmp	w4, w3
+   5a2e4:	54ffc0a1 	b.ne	59af8 <ca_kh_offload_tcp+0x598>  // b.any
+   5a2e8:	17fffdf9 	b	59acc <ca_kh_offload_tcp+0x56c>
+   5a2ec:	d503201f 	nop
+   5a2f0:	6b0500df 	cmp	w6, w5
+   5a2f4:	54ffcaa1 	b.ne	59c48 <ca_kh_offload_tcp+0x6e8>  // b.any
+   5a2f8:	17fffe4a 	b	59c20 <ca_kh_offload_tcp+0x6c0>
+   5a2fc:	d503201f 	nop
+   5a300:	35ffe044 	cbnz	w4, 59f08 <ca_kh_offload_tcp+0x9a8>
+   5a304:	17fffef3 	b	59ed0 <ca_kh_offload_tcp+0x970>
+   5a308:	35ffee04 	cbnz	w4, 5a0c8 <ca_kh_offload_tcp+0xb68>
+   5a30c:	17ffff62 	b	5a094 <ca_kh_offload_tcp+0xb34>
+   5a310:	35ffc13b 	cbnz	w27, 59b34 <ca_kh_offload_tcp+0x5d4>
+   5a314:	3943a260 	ldrb	w0, [x19, #232]
+   5a318:	17fffe56 	b	59c70 <ca_kh_offload_tcp+0x710>
+   5a31c:	d503201f 	nop
+   5a320:	34fff07b 	cbz	w27, 5a12c <ca_kh_offload_tcp+0xbcc>
+   5a324:	90000019 	adrp	x25, 0 <ca_kh_hook>
+			5a324: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   5a328:	17ffff0b 	b	59f54 <ca_kh_offload_tcp+0x9f4>
+   5a32c:	d503201f 	nop
+   5a330:	f9400bb3 	ldr	x19, [x29, #16]
+   5a334:	14000005 	b	5a348 <ca_kh_offload_tcp+0xde8>
+   5a338:	a942dfb6 	ldp	x22, x23, [x29, #40]
+   5a33c:	a944efba 	ldp	x26, x27, [x29, #72]
+   5a340:	f9400bb3 	ldr	x19, [x29, #16]
+   5a344:	f9401fb8 	ldr	x24, [x29, #56]
+   5a348:	a943d7f4 	ldp	x20, x21, [sp, #56]
+   5a34c:	52800000 	mov	w0, #0x0                   	// #0
+   5a350:	a9427bfd 	ldp	x29, x30, [sp, #32]
+   5a354:	f94033f9 	ldr	x25, [sp, #96]
+   5a358:	910243ff 	add	sp, sp, #0x90
+   5a35c:	d65f03c0 	ret
+
+ca_kh_offload_udp (0x5a360, 3084 bytes)
+Disassembly of section .text:
+
+000000000005a360 <ca_kh_offload_udp>:
+   5a360:	d10243ff 	sub	sp, sp, #0x90
+   5a364:	a9027bfd 	stp	x29, x30, [sp, #32]
+   5a368:	910083fd 	add	x29, sp, #0x20
+   5a36c:	a903d7f4 	stp	x20, x21, [sp, #56]
+   5a370:	12001c55 	and	w21, w2, #0xff
+   5a374:	aa0103f4 	mov	x20, x1
+   5a378:	aa1e03e0 	mov	x0, x30
+   5a37c:	94000000 	bl	0 <_mcount>
+			5a37c: R_AARCH64_CALL26	_mcount
+   5a380:	71000abf 	cmp	w21, #0x2
+   5a384:	540000e1 	b.ne	5a3a0 <ca_kh_offload_udp+0x40>  // b.any
+   5a388:	90000000 	adrp	x0, 0 <ca_kh_hook>
+			5a388: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   5a38c:	b9400000 	ldr	w0, [x0]
+			5a38c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   5a390:	37000120 	tbnz	w0, #0, 5a3b4 <ca_kh_offload_udp+0x54>
+   5a394:	52800020 	mov	w0, #0x1                   	// #1
+   5a398:	3904e280 	strb	w0, [x20, #312]
+   5a39c:	140002ef 	b	5af58 <ca_kh_offload_udp+0xbf8>
+   5a3a0:	71002abf 	cmp	w21, #0xa
+   5a3a4:	54000081 	b.ne	5a3b4 <ca_kh_offload_udp+0x54>  // b.any
+   5a3a8:	90000000 	adrp	x0, 0 <ca_kh_hook>
+			5a3a8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   5a3ac:	b9400000 	ldr	w0, [x0]
+			5a3ac: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   5a3b0:	360fff20 	tbz	w0, #1, 5a394 <ca_kh_offload_udp+0x34>
+   5a3b4:	f9001fb8 	str	x24, [x29, #56]
+   5a3b8:	f9000bb3 	str	x19, [x29, #16]
+   5a3bc:	f9403a93 	ldr	x19, [x20, #112]
+   5a3c0:	12000a78 	and	w24, w19, #0x7
+   5a3c4:	f27df273 	ands	x19, x19, #0xfffffffffffffff8
+   5a3c8:	54000101 	b.ne	5a3e8 <ca_kh_offload_udp+0x88>  // b.any
+   5a3cc:	39454280 	ldrb	w0, [x20, #336]
+   5a3d0:	340059c0 	cbz	w0, 5af08 <ca_kh_offload_udp+0xba8>
+   5a3d4:	a902dfb6 	stp	x22, x23, [x29, #40]
+   5a3d8:	f90023b9 	str	x25, [x29, #64]
+   5a3dc:	f9002fbc 	str	x28, [x29, #88]
+   5a3e0:	f940a693 	ldr	x19, [x20, #328]
+   5a3e4:	14000004 	b	5a3f4 <ca_kh_offload_udp+0x94>
+   5a3e8:	a902dfb6 	stp	x22, x23, [x29, #40]
+   5a3ec:	f90023b9 	str	x25, [x29, #64]
+   5a3f0:	f9002fbc 	str	x28, [x29, #88]
+   5a3f4:	90000000 	adrp	x0, 0 <ca_kh_udp_offload_occasion>
+			5a3f4: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_udp_offload_occasion
+   5a3f8:	90000016 	adrp	x22, 0 <ca_kh_debug>
+			5a3f8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_debug
+   5a3fc:	f9400a82 	ldr	x2, [x20, #16]
+   5a400:	b9400001 	ldr	w1, [x0]
+			5a400: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_udp_offload_occasion
+   5a404:	b94002c0 	ldr	w0, [x22]
+			5a404: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   5a408:	f9428c59 	ldr	x25, [x2, #1304]
+   5a40c:	121d0000 	and	w0, w0, #0x8
+   5a410:	34000101 	cbz	w1, 5a430 <ca_kh_offload_udp+0xd0>
+   5a414:	5280001c 	mov	w28, #0x0                   	// #0
+   5a418:	52800017 	mov	w23, #0x0                   	// #0
+   5a41c:	7100043f 	cmp	w1, #0x1
+   5a420:	54001a61 	b.ne	5a76c <ca_kh_offload_udp+0x40c>  // b.any
+   5a424:	f9404261 	ldr	x1, [x19, #128]
+   5a428:	721e003f 	tst	w1, #0x4
+   5a42c:	540018e0 	b.eq	5a748 <ca_kh_offload_udp+0x3e8>  // b.none
+   5a430:	71000abf 	cmp	w21, #0x2
+   5a434:	54000a61 	b.ne	5a580 <ca_kh_offload_udp+0x220>  // b.any
+   5a438:	f9002bbb 	str	x27, [x29, #80]
+   5a43c:	529e01a1 	mov	w1, #0xf00d                	// #61453
+   5a440:	72a1a0c1 	movk	w1, #0xd06, lsl #16
+   5a444:	b940ca82 	ldr	w2, [x20, #200]
+   5a448:	f940c29b 	ldr	x27, [x20, #384]
+   5a44c:	6b01005f 	cmp	w2, w1
+   5a450:	54000141 	b.ne	5a478 <ca_kh_offload_udp+0x118>  // b.any
+   5a454:	f9407681 	ldr	x1, [x20, #232]
+   5a458:	f2683c3f 	tst	x1, #0xffff000000
+   5a45c:	54000060 	b.eq	5a468 <ca_kh_offload_udp+0x108>  // b.none
+   5a460:	14000006 	b	5a478 <ca_kh_offload_udp+0x118>
+   5a464:	d503201f 	nop
+   5a468:	79419e81 	ldrh	w1, [x20, #206]
+   5a46c:	8b01037b 	add	x27, x27, x1
+   5a470:	14000004 	b	5a480 <ca_kh_offload_udp+0x120>
+   5a474:	d503201f 	nop
+   5a478:	7941f681 	ldrh	w1, [x20, #250]
+   5a47c:	8b01037b 	add	x27, x27, x1
+   5a480:	91016277 	add	x23, x19, #0x58
+   5a484:	b9400f61 	ldr	w1, [x27, #12]
+   5a488:	b94016e2 	ldr	w2, [x23, #20]
+   5a48c:	6b02003f 	cmp	w1, w2
+   5a490:	540000a1 	b.ne	5a4a4 <ca_kh_offload_udp+0x144>  // b.any
+   5a494:	b9405a62 	ldr	w2, [x19, #88]
+   5a498:	b9401363 	ldr	w3, [x27, #16]
+   5a49c:	6b02007f 	cmp	w3, w2
+   5a4a0:	54001580 	b.eq	5a750 <ca_kh_offload_udp+0x3f0>  // b.none
+   5a4a4:	f90027ba 	str	x26, [x29, #72]
+   5a4a8:	9100827a 	add	x26, x19, #0x20
+   5a4ac:	b9401742 	ldr	w2, [x26, #20]
+   5a4b0:	6b02003f 	cmp	w1, w2
+   5a4b4:	540000a1 	b.ne	5a4c8 <ca_kh_offload_udp+0x168>  // b.any
+   5a4b8:	b9402261 	ldr	w1, [x19, #32]
+   5a4bc:	b9401362 	ldr	w2, [x27, #16]
+   5a4c0:	6b01005f 	cmp	w2, w1
+   5a4c4:	540014e0 	b.eq	5a760 <ca_kh_offload_udp+0x400>  // b.none
+   5a4c8:	34005280 	cbz	w0, 5af18 <ca_kh_offload_udp+0xbb8>
+   5a4cc:	9000001c 	adrp	x28, 0 <ca_ni_get_wan_port_id>
+			5a4cc: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5a4d0:	9100039c 	add	x28, x28, #0x0
+			5a4d0: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5a4d4:	9101039c 	add	x28, x28, #0x40
+   5a4d8:	52804b22 	mov	w2, #0x259                 	// #601
+   5a4dc:	aa1c03e1 	mov	x1, x28
+   5a4e0:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a4e0: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22328
+   5a4e4:	91000000 	add	x0, x0, #0x0
+			5a4e4: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22328
+   5a4e8:	94000000 	bl	0 <printk>
+			5a4e8: R_AARCH64_CALL26	printk
+   5a4ec:	79404b44 	ldrh	w4, [x26, #36]
+   5a4f0:	9100d265 	add	x5, x19, #0x34
+   5a4f4:	79402340 	ldrh	w0, [x26, #16]
+   5a4f8:	aa1a03e3 	mov	x3, x26
+   5a4fc:	52804b82 	mov	w2, #0x25c                 	// #604
+   5a500:	aa1c03e1 	mov	x1, x28
+   5a504:	53087c87 	lsr	w7, w4, #8
+   5a508:	53087c06 	lsr	w6, w0, #8
+   5a50c:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   5a510:	2a0020c0 	orr	w0, w6, w0, lsl #8
+   5a514:	12003c86 	and	w6, w4, #0xffff
+   5a518:	12003c04 	and	w4, w0, #0xffff
+   5a51c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a51c: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22358
+   5a520:	91000000 	add	x0, x0, #0x0
+			5a520: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22358
+   5a524:	94000000 	bl	0 <printk>
+			5a524: R_AARCH64_CALL26	printk
+   5a528:	794022e0 	ldrh	w0, [x23, #16]
+   5a52c:	aa1703e3 	mov	x3, x23
+   5a530:	79404ae4 	ldrh	w4, [x23, #36]
+   5a534:	52804be2 	mov	w2, #0x25f                 	// #607
+   5a538:	aa1c03e1 	mov	x1, x28
+   5a53c:	9101b265 	add	x5, x19, #0x6c
+   5a540:	53087c07 	lsr	w7, w0, #8
+   5a544:	53087c86 	lsr	w6, w4, #8
+   5a548:	2a0020e0 	orr	w0, w7, w0, lsl #8
+   5a54c:	2a0420c6 	orr	w6, w6, w4, lsl #8
+   5a550:	12003c04 	and	w4, w0, #0xffff
+   5a554:	12003cc6 	and	w6, w6, #0xffff
+   5a558:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a558: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22388
+   5a55c:	91000000 	add	x0, x0, #0x0
+			5a55c: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22388
+   5a560:	94000000 	bl	0 <printk>
+			5a560: R_AARCH64_CALL26	printk
+   5a564:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a564: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x223b8
+   5a568:	91004364 	add	x4, x27, #0x10
+   5a56c:	91003363 	add	x3, x27, #0xc
+   5a570:	52804c02 	mov	w2, #0x260                 	// #608
+   5a574:	aa1c03e1 	mov	x1, x28
+   5a578:	91000000 	add	x0, x0, #0x0
+			5a578: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x223b8
+   5a57c:	1400006b 	b	5a728 <ca_kh_offload_udp+0x3c8>
+   5a580:	71002abf 	cmp	w21, #0xa
+   5a584:	540049e1 	b.ne	5aec0 <ca_kh_offload_udp+0xb60>  // b.any
+   5a588:	a904efba 	stp	x26, x27, [x29, #72]
+   5a58c:	529e01a1 	mov	w1, #0xf00d                	// #61453
+   5a590:	72a1a0c1 	movk	w1, #0xd06, lsl #16
+   5a594:	b940ca82 	ldr	w2, [x20, #200]
+   5a598:	f940c29a 	ldr	x26, [x20, #384]
+   5a59c:	6b01005f 	cmp	w2, w1
+   5a5a0:	54000101 	b.ne	5a5c0 <ca_kh_offload_udp+0x260>  // b.any
+   5a5a4:	f9407681 	ldr	x1, [x20, #232]
+   5a5a8:	f2683c3f 	tst	x1, #0xffff000000
+   5a5ac:	540000a0 	b.eq	5a5c0 <ca_kh_offload_udp+0x260>  // b.none
+   5a5b0:	7941f681 	ldrh	w1, [x20, #250]
+   5a5b4:	8b01035a 	add	x26, x26, x1
+   5a5b8:	14000004 	b	5a5c8 <ca_kh_offload_udp+0x268>
+   5a5bc:	d503201f 	nop
+   5a5c0:	79419e81 	ldrh	w1, [x20, #206]
+   5a5c4:	8b01035a 	add	x26, x26, x1
+   5a5c8:	f846c261 	ldur	x1, [x19, #108]
+   5a5cc:	9100235c 	add	x28, x26, #0x8
+   5a5d0:	f9400742 	ldr	x2, [x26, #8]
+   5a5d4:	9101b27b 	add	x27, x19, #0x6c
+   5a5d8:	eb01005f 	cmp	x2, x1
+   5a5dc:	54000221 	b.ne	5a620 <ca_kh_offload_udp+0x2c0>  // b.any
+   5a5e0:	f9400761 	ldr	x1, [x27, #8]
+   5a5e4:	f9400782 	ldr	x2, [x28, #8]
+   5a5e8:	eb01005f 	cmp	x2, x1
+   5a5ec:	540001a1 	b.ne	5a620 <ca_kh_offload_udp+0x2c0>  // b.any
+   5a5f0:	f9402e62 	ldr	x2, [x19, #88]
+   5a5f4:	f9400f43 	ldr	x3, [x26, #24]
+   5a5f8:	eb02007f 	cmp	x3, x2
+   5a5fc:	54000121 	b.ne	5a620 <ca_kh_offload_udp+0x2c0>  // b.any
+   5a600:	f9403261 	ldr	x1, [x19, #96]
+   5a604:	f9401342 	ldr	x2, [x26, #32]
+   5a608:	eb01005f 	cmp	x2, x1
+   5a60c:	540000a1 	b.ne	5a620 <ca_kh_offload_udp+0x2c0>  // b.any
+   5a610:	5280001c 	mov	w28, #0x0                   	// #0
+   5a614:	52800037 	mov	w23, #0x1                   	// #1
+   5a618:	a944efba 	ldp	x26, x27, [x29, #72]
+   5a61c:	14000054 	b	5a76c <ca_kh_offload_udp+0x40c>
+   5a620:	f8434261 	ldur	x1, [x19, #52]
+   5a624:	9100d277 	add	x23, x19, #0x34
+   5a628:	f9400382 	ldr	x2, [x28]
+   5a62c:	eb01005f 	cmp	x2, x1
+   5a630:	540001c1 	b.ne	5a668 <ca_kh_offload_udp+0x308>  // b.any
+   5a634:	f94006e1 	ldr	x1, [x23, #8]
+   5a638:	f9400782 	ldr	x2, [x28, #8]
+   5a63c:	eb01005f 	cmp	x2, x1
+   5a640:	54000141 	b.ne	5a668 <ca_kh_offload_udp+0x308>  // b.any
+   5a644:	f9401263 	ldr	x3, [x19, #32]
+   5a648:	f9400f44 	ldr	x4, [x26, #24]
+   5a64c:	eb03009f 	cmp	x4, x3
+   5a650:	540000c1 	b.ne	5a668 <ca_kh_offload_udp+0x308>  // b.any
+   5a654:	f9401661 	ldr	x1, [x19, #40]
+   5a658:	f9401342 	ldr	x2, [x26, #32]
+   5a65c:	eb01005f 	cmp	x2, x1
+   5a660:	54000041 	b.ne	5a668 <ca_kh_offload_udp+0x308>  // b.any
+   5a664:	1400003f 	b	5a760 <ca_kh_offload_udp+0x400>
+   5a668:	34004580 	cbz	w0, 5af18 <ca_kh_offload_udp+0xbb8>
+   5a66c:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a66c: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5a670:	91000000 	add	x0, x0, #0x0
+			5a670: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5a674:	91010000 	add	x0, x0, #0x40
+   5a678:	52804e82 	mov	w2, #0x274                 	// #628
+   5a67c:	aa0003e1 	mov	x1, x0
+   5a680:	f90037a0 	str	x0, [x29, #104]
+   5a684:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a684: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x223e8
+   5a688:	91000000 	add	x0, x0, #0x0
+			5a688: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x223e8
+   5a68c:	94000000 	bl	0 <printk>
+			5a68c: R_AARCH64_CALL26	printk
+   5a690:	79406261 	ldrh	w1, [x19, #48]
+   5a694:	91008263 	add	x3, x19, #0x20
+   5a698:	79404860 	ldrh	w0, [x3, #36]
+   5a69c:	aa1703e5 	mov	x5, x23
+   5a6a0:	52804ee2 	mov	w2, #0x277                 	// #631
+   5a6a4:	53087c26 	lsr	w6, w1, #8
+   5a6a8:	91016277 	add	x23, x19, #0x58
+   5a6ac:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   5a6b0:	53087c04 	lsr	w4, w0, #8
+   5a6b4:	2a002080 	orr	w0, w4, w0, lsl #8
+   5a6b8:	12003c24 	and	w4, w1, #0xffff
+   5a6bc:	f94037a1 	ldr	x1, [x29, #104]
+   5a6c0:	12003c06 	and	w6, w0, #0xffff
+   5a6c4:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a6c4: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22418
+   5a6c8:	91000000 	add	x0, x0, #0x0
+			5a6c8: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22418
+   5a6cc:	94000000 	bl	0 <printk>
+			5a6cc: R_AARCH64_CALL26	printk
+   5a6d0:	7940d260 	ldrh	w0, [x19, #104]
+   5a6d4:	aa1703e3 	mov	x3, x23
+   5a6d8:	7940fa64 	ldrh	w4, [x19, #124]
+   5a6dc:	52804f42 	mov	w2, #0x27a                 	// #634
+   5a6e0:	f94037b7 	ldr	x23, [x29, #104]
+   5a6e4:	aa1b03e5 	mov	x5, x27
+   5a6e8:	53087c07 	lsr	w7, w0, #8
+   5a6ec:	53087c86 	lsr	w6, w4, #8
+   5a6f0:	2a0020e0 	orr	w0, w7, w0, lsl #8
+   5a6f4:	2a0420c6 	orr	w6, w6, w4, lsl #8
+   5a6f8:	aa1703e1 	mov	x1, x23
+   5a6fc:	12003c04 	and	w4, w0, #0xffff
+   5a700:	12003cc6 	and	w6, w6, #0xffff
+   5a704:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a704: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22450
+   5a708:	91000000 	add	x0, x0, #0x0
+			5a708: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22450
+   5a70c:	94000000 	bl	0 <printk>
+			5a70c: R_AARCH64_CALL26	printk
+   5a710:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a710: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22488
+   5a714:	91006344 	add	x4, x26, #0x18
+   5a718:	aa1c03e3 	mov	x3, x28
+   5a71c:	aa1703e1 	mov	x1, x23
+   5a720:	91000000 	add	x0, x0, #0x0
+			5a720: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22488
+   5a724:	52804f62 	mov	w2, #0x27b                 	// #635
+   5a728:	94000000 	bl	0 <printk>
+			5a728: R_AARCH64_CALL26	printk
+   5a72c:	5280001c 	mov	w28, #0x0                   	// #0
+   5a730:	b94002c0 	ldr	w0, [x22]
+			5a730: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   5a734:	52800017 	mov	w23, #0x0                   	// #0
+   5a738:	a944efba 	ldp	x26, x27, [x29, #72]
+   5a73c:	121d0000 	and	w0, w0, #0x8
+   5a740:	1400000b 	b	5a76c <ca_kh_offload_udp+0x40c>
+   5a744:	d503201f 	nop
+   5a748:	2a1703fc 	mov	w28, w23
+   5a74c:	14000008 	b	5a76c <ca_kh_offload_udp+0x40c>
+   5a750:	5280001c 	mov	w28, #0x0                   	// #0
+   5a754:	52800037 	mov	w23, #0x1                   	// #1
+   5a758:	f9402bbb 	ldr	x27, [x29, #80]
+   5a75c:	14000004 	b	5a76c <ca_kh_offload_udp+0x40c>
+   5a760:	a944efba 	ldp	x26, x27, [x29, #72]
+   5a764:	5280003c 	mov	w28, #0x1                   	// #1
+   5a768:	52800017 	mov	w23, #0x0                   	// #0
+   5a76c:	34000320 	cbz	w0, 5a7d0 <ca_kh_offload_udp+0x470>
+   5a770:	f90027ba 	str	x26, [x29, #72]
+   5a774:	14000004 	b	5a784 <ca_kh_offload_udp+0x424>
+   5a778:	5280001c 	mov	w28, #0x0                   	// #0
+   5a77c:	52800017 	mov	w23, #0x0                   	// #0
+   5a780:	f90027ba 	str	x26, [x29, #72]
+   5a784:	f9404263 	ldr	x3, [x19, #128]
+   5a788:	2a1803e6 	mov	w6, w24
+   5a78c:	f9400a84 	ldr	x4, [x20, #16]
+   5a790:	2a1503e5 	mov	w5, w21
+   5a794:	9000001a 	adrp	x26, 0 <ca_ni_get_wan_port_id>
+			5a794: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5a798:	9100035a 	add	x26, x26, #0x0
+			5a798: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5a79c:	9101035a 	add	x26, x26, #0x40
+   5a7a0:	aa1303e2 	mov	x2, x19
+   5a7a4:	aa1a03e1 	mov	x1, x26
+   5a7a8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a7a8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22540
+   5a7ac:	91000000 	add	x0, x0, #0x0
+			5a7ac: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22540
+   5a7b0:	94000000 	bl	0 <printk>
+			5a7b0: R_AARCH64_CALL26	printk
+   5a7b4:	aa1a03e1 	mov	x1, x26
+   5a7b8:	2a1c03e3 	mov	w3, w28
+   5a7bc:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a7bc: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22508
+   5a7c0:	2a1703e2 	mov	w2, w23
+   5a7c4:	91000000 	add	x0, x0, #0x0
+			5a7c4: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22508
+   5a7c8:	94000000 	bl	0 <printk>
+			5a7c8: R_AARCH64_CALL26	printk
+   5a7cc:	f94027ba 	ldr	x26, [x29, #72]
+   5a7d0:	71000abf 	cmp	w21, #0x2
+   5a7d4:	54001461 	b.ne	5aa60 <ca_kh_offload_udp+0x700>  // b.any
+   5a7d8:	90000000 	adrp	x0, 0 <ca_kh_hook>
+			5a7d8: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   5a7dc:	b9400000 	ldr	w0, [x0]
+			5a7dc: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   5a7e0:	36003b40 	tbz	w0, #0, 5af48 <ca_kh_offload_udp+0xbe8>
+   5a7e4:	f90027ba 	str	x26, [x29, #72]
+   5a7e8:	340009d7 	cbz	w23, 5a920 <ca_kh_offload_udp+0x5c0>
+   5a7ec:	b94002c1 	ldr	w1, [x22]
+			5a7ec: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   5a7f0:	9100827a 	add	x26, x19, #0x20
+   5a7f4:	91016277 	add	x23, x19, #0x58
+   5a7f8:	79402347 	ldrh	w7, [x26, #16]
+   5a7fc:	79404b40 	ldrh	w0, [x26, #36]
+   5a800:	36180441 	tbz	w1, #3, 5a888 <ca_kh_offload_udp+0x528>
+   5a804:	53087ce4 	lsr	w4, w7, #8
+   5a808:	53087c01 	lsr	w1, w0, #8
+   5a80c:	90000015 	adrp	x21, 0 <ca_ni_get_wan_port_id>
+			5a80c: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5a810:	910002b5 	add	x21, x21, #0x0
+			5a810: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5a814:	2a002020 	orr	w0, w1, w0, lsl #8
+   5a818:	2a072084 	orr	w4, w4, w7, lsl #8
+   5a81c:	910102b5 	add	x21, x21, #0x40
+   5a820:	12003c06 	and	w6, w0, #0xffff
+   5a824:	9100d265 	add	x5, x19, #0x34
+   5a828:	12003c84 	and	w4, w4, #0xffff
+   5a82c:	aa1a03e3 	mov	x3, x26
+   5a830:	52805162 	mov	w2, #0x28b                 	// #651
+   5a834:	aa1503e1 	mov	x1, x21
+   5a838:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a838: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22358
+   5a83c:	91000000 	add	x0, x0, #0x0
+			5a83c: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22358
+   5a840:	94000000 	bl	0 <printk>
+			5a840: R_AARCH64_CALL26	printk
+   5a844:	79404ae4 	ldrh	w4, [x23, #36]
+   5a848:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a848: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22388
+   5a84c:	794022e1 	ldrh	w1, [x23, #16]
+   5a850:	9101b265 	add	x5, x19, #0x6c
+   5a854:	aa1703e3 	mov	x3, x23
+   5a858:	528051c2 	mov	w2, #0x28e                 	// #654
+   5a85c:	53087c87 	lsr	w7, w4, #8
+   5a860:	91000000 	add	x0, x0, #0x0
+			5a860: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22388
+   5a864:	53087c26 	lsr	w6, w1, #8
+   5a868:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   5a86c:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   5a870:	12003c86 	and	w6, w4, #0xffff
+   5a874:	12003c24 	and	w4, w1, #0xffff
+   5a878:	aa1503e1 	mov	x1, x21
+   5a87c:	94000000 	bl	0 <printk>
+			5a87c: R_AARCH64_CALL26	printk
+   5a880:	79402347 	ldrh	w7, [x26, #16]
+   5a884:	79404b40 	ldrh	w0, [x26, #36]
+   5a888:	b9405a66 	ldr	w6, [x19, #88]
+   5a88c:	b9401745 	ldr	w5, [x26, #20]
+   5a890:	79404ae2 	ldrh	w2, [x23, #36]
+   5a894:	794022e1 	ldrh	w1, [x23, #16]
+   5a898:	6b0600bf 	cmp	w5, w6
+   5a89c:	b9402263 	ldr	w3, [x19, #32]
+   5a8a0:	b94016e4 	ldr	w4, [x23, #20]
+   5a8a4:	54003121 	b.ne	5aec8 <ca_kh_offload_udp+0xb68>  // b.any
+   5a8a8:	6b03009f 	cmp	w4, w3
+   5a8ac:	540002a0 	b.eq	5a900 <ca_kh_offload_udp+0x5a0>  // b.none
+   5a8b0:	790023e1 	strh	w1, [sp, #16]
+   5a8b4:	2a0503e6 	mov	w6, w5
+   5a8b8:	790013e0 	strh	w0, [sp, #8]
+   5a8bc:	52800221 	mov	w1, #0x11                  	// #17
+   5a8c0:	790003e2 	strh	w2, [sp]
+   5a8c4:	52800000 	mov	w0, #0x0                   	// #0
+   5a8c8:	f9000ff4 	str	x20, [sp, #24]
+   5a8cc:	52800022 	mov	w2, #0x1                   	// #1
+   5a8d0:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			5a8d0: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   5a8d4:	14000013 	b	5a920 <ca_kh_offload_udp+0x5c0>
+   5a8d8:	790023e1 	strh	w1, [sp, #16]
+   5a8dc:	2a0403e3 	mov	w3, w4
+   5a8e0:	790013e0 	strh	w0, [sp, #8]
+   5a8e4:	52800221 	mov	w1, #0x11                  	// #17
+   5a8e8:	790003e2 	strh	w2, [sp]
+   5a8ec:	52800000 	mov	w0, #0x0                   	// #0
+   5a8f0:	f9000ff4 	str	x20, [sp, #24]
+   5a8f4:	52800002 	mov	w2, #0x0                   	// #0
+   5a8f8:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			5a8f8: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   5a8fc:	14000009 	b	5a920 <ca_kh_offload_udp+0x5c0>
+   5a900:	790023e1 	strh	w1, [sp, #16]
+   5a904:	52800221 	mov	w1, #0x11                  	// #17
+   5a908:	790013e0 	strh	w0, [sp, #8]
+   5a90c:	52800000 	mov	w0, #0x0                   	// #0
+   5a910:	790003e2 	strh	w2, [sp]
+   5a914:	52800042 	mov	w2, #0x2                   	// #2
+   5a918:	f9000ff4 	str	x20, [sp, #24]
+   5a91c:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			5a91c: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   5a920:	3400309c 	cbz	w28, 5af30 <ca_kh_offload_udp+0xbd0>
+   5a924:	b94002c2 	ldr	w2, [x22]
+			5a924: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   5a928:	9100827a 	add	x26, x19, #0x20
+   5a92c:	91016277 	add	x23, x19, #0x58
+   5a930:	79402340 	ldrh	w0, [x26, #16]
+   5a934:	79404b41 	ldrh	w1, [x26, #36]
+   5a938:	36180442 	tbz	w2, #3, 5a9c0 <ca_kh_offload_udp+0x660>
+   5a93c:	53087c23 	lsr	w3, w1, #8
+   5a940:	53087c02 	lsr	w2, w0, #8
+   5a944:	90000015 	adrp	x21, 0 <ca_ni_get_wan_port_id>
+			5a944: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5a948:	910002b5 	add	x21, x21, #0x0
+			5a948: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5a94c:	2a012061 	orr	w1, w3, w1, lsl #8
+   5a950:	2a002040 	orr	w0, w2, w0, lsl #8
+   5a954:	910102b5 	add	x21, x21, #0x40
+   5a958:	12003c26 	and	w6, w1, #0xffff
+   5a95c:	12003c04 	and	w4, w0, #0xffff
+   5a960:	9100d265 	add	x5, x19, #0x34
+   5a964:	aa1a03e3 	mov	x3, x26
+   5a968:	528055c2 	mov	w2, #0x2ae                 	// #686
+   5a96c:	aa1503e1 	mov	x1, x21
+   5a970:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a970: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22358
+   5a974:	91000000 	add	x0, x0, #0x0
+			5a974: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22358
+   5a978:	94000000 	bl	0 <printk>
+			5a978: R_AARCH64_CALL26	printk
+   5a97c:	79404ae4 	ldrh	w4, [x23, #36]
+   5a980:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5a980: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22388
+   5a984:	794022e1 	ldrh	w1, [x23, #16]
+   5a988:	9101b265 	add	x5, x19, #0x6c
+   5a98c:	aa1703e3 	mov	x3, x23
+   5a990:	52805622 	mov	w2, #0x2b1                 	// #689
+   5a994:	53087c87 	lsr	w7, w4, #8
+   5a998:	91000000 	add	x0, x0, #0x0
+			5a998: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22388
+   5a99c:	53087c26 	lsr	w6, w1, #8
+   5a9a0:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   5a9a4:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   5a9a8:	12003c86 	and	w6, w4, #0xffff
+   5a9ac:	12003c24 	and	w4, w1, #0xffff
+   5a9b0:	aa1503e1 	mov	x1, x21
+   5a9b4:	94000000 	bl	0 <printk>
+			5a9b4: R_AARCH64_CALL26	printk
+   5a9b8:	79404b41 	ldrh	w1, [x26, #36]
+   5a9bc:	79402340 	ldrh	w0, [x26, #16]
+   5a9c0:	b9405a63 	ldr	w3, [x19, #88]
+   5a9c4:	b9401744 	ldr	w4, [x26, #20]
+   5a9c8:	794022e7 	ldrh	w7, [x23, #16]
+   5a9cc:	79404ae2 	ldrh	w2, [x23, #36]
+   5a9d0:	6b03009f 	cmp	w4, w3
+   5a9d4:	b9402266 	ldr	w6, [x19, #32]
+   5a9d8:	b94016e5 	ldr	w5, [x23, #20]
+   5a9dc:	540027e1 	b.ne	5aed8 <ca_kh_offload_udp+0xb78>  // b.any
+   5a9e0:	6b0600bf 	cmp	w5, w6
+   5a9e4:	540002a0 	b.eq	5aa38 <ca_kh_offload_udp+0x6d8>  // b.none
+   5a9e8:	790023e0 	strh	w0, [sp, #16]
+   5a9ec:	2a0403e3 	mov	w3, w4
+   5a9f0:	790013e2 	strh	w2, [sp, #8]
+   5a9f4:	52800000 	mov	w0, #0x0                   	// #0
+   5a9f8:	790003e1 	strh	w1, [sp]
+   5a9fc:	52800002 	mov	w2, #0x0                   	// #0
+   5aa00:	f9000ff4 	str	x20, [sp, #24]
+   5aa04:	52800221 	mov	w1, #0x11                  	// #17
+   5aa08:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			5aa08: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   5aa0c:	14000113 	b	5ae58 <ca_kh_offload_udp+0xaf8>
+   5aa10:	790023e0 	strh	w0, [sp, #16]
+   5aa14:	2a0503e6 	mov	w6, w5
+   5aa18:	790013e2 	strh	w2, [sp, #8]
+   5aa1c:	52800000 	mov	w0, #0x0                   	// #0
+   5aa20:	790003e1 	strh	w1, [sp]
+   5aa24:	52800022 	mov	w2, #0x1                   	// #1
+   5aa28:	f9000ff4 	str	x20, [sp, #24]
+   5aa2c:	52800221 	mov	w1, #0x11                  	// #17
+   5aa30:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			5aa30: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   5aa34:	14000109 	b	5ae58 <ca_kh_offload_udp+0xaf8>
+   5aa38:	790023e0 	strh	w0, [sp, #16]
+   5aa3c:	52800000 	mov	w0, #0x0                   	// #0
+   5aa40:	790013e2 	strh	w2, [sp, #8]
+   5aa44:	52800042 	mov	w2, #0x2                   	// #2
+   5aa48:	790003e1 	strh	w1, [sp]
+   5aa4c:	52800221 	mov	w1, #0x11                  	// #17
+   5aa50:	f9000ff4 	str	x20, [sp, #24]
+   5aa54:	94000000 	bl	4ca48 <ca_kh_nat_entry_add>
+			5aa54: R_AARCH64_CALL26	ca_kh_nat_entry_add
+   5aa58:	14000100 	b	5ae58 <ca_kh_offload_udp+0xaf8>
+   5aa5c:	d503201f 	nop
+   5aa60:	71002abf 	cmp	w21, #0xa
+   5aa64:	54002721 	b.ne	5af48 <ca_kh_offload_udp+0xbe8>  // b.any
+   5aa68:	90000000 	adrp	x0, 0 <ca_kh_hook>
+			5aa68: R_AARCH64_ADR_PREL_PG_HI21	ca_kh_hook
+   5aa6c:	b9400000 	ldr	w0, [x0]
+			5aa6c: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_hook
+   5aa70:	360826c0 	tbz	w0, #1, 5af48 <ca_kh_offload_udp+0xbe8>
+   5aa74:	f90027ba 	str	x26, [x29, #72]
+   5aa78:	34001137 	cbz	w23, 5ac9c <ca_kh_offload_udp+0x93c>
+   5aa7c:	f9002bbb 	str	x27, [x29, #80]
+   5aa80:	9100827a 	add	x26, x19, #0x20
+   5aa84:	9100d275 	add	x21, x19, #0x34
+   5aa88:	9101b27b 	add	x27, x19, #0x6c
+   5aa8c:	3943aa80 	ldrb	w0, [x20, #234]
+   5aa90:	34000360 	cbz	w0, 5aafc <ca_kh_offload_udp+0x79c>
+   5aa94:	79419e81 	ldrh	w1, [x20, #206]
+   5aa98:	f940c280 	ldr	x0, [x20, #384]
+   5aa9c:	f9401262 	ldr	x2, [x19, #32]
+   5aaa0:	8b010000 	add	x0, x0, x1
+   5aaa4:	f9400401 	ldr	x1, [x0, #8]
+   5aaa8:	eb01005f 	cmp	x2, x1
+   5aaac:	54000261 	b.ne	5aaf8 <ca_kh_offload_udp+0x798>  // b.any
+   5aab0:	f9400801 	ldr	x1, [x0, #16]
+   5aab4:	f9400742 	ldr	x2, [x26, #8]
+   5aab8:	eb01005f 	cmp	x2, x1
+   5aabc:	540001e1 	b.ne	5aaf8 <ca_kh_offload_udp+0x798>  // b.any
+   5aac0:	f9400c02 	ldr	x2, [x0, #24]
+   5aac4:	91006001 	add	x1, x0, #0x18
+   5aac8:	f94002a3 	ldr	x3, [x21]
+   5aacc:	eb02007f 	cmp	x3, x2
+   5aad0:	54000141 	b.ne	5aaf8 <ca_kh_offload_udp+0x798>  // b.any
+   5aad4:	f9400421 	ldr	x1, [x1, #8]
+   5aad8:	f94006a2 	ldr	x2, [x21, #8]
+   5aadc:	eb01005f 	cmp	x2, x1
+   5aae0:	540000c1 	b.ne	5aaf8 <ca_kh_offload_udp+0x798>  // b.any
+   5aae4:	a9408c02 	ldp	x2, x3, [x0, #8]
+   5aae8:	a9000f62 	stp	x2, x3, [x27]
+   5aaec:	a9418400 	ldp	x0, x1, [x0, #24]
+   5aaf0:	a9058660 	stp	x0, x1, [x19, #88]
+   5aaf4:	14000002 	b	5aafc <ca_kh_offload_udp+0x79c>
+   5aaf8:	9101b27b 	add	x27, x19, #0x6c
+   5aafc:	b94002c1 	ldr	w1, [x22]
+			5aafc: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   5ab00:	91016277 	add	x23, x19, #0x58
+   5ab04:	79402347 	ldrh	w7, [x26, #16]
+   5ab08:	79404b40 	ldrh	w0, [x26, #36]
+   5ab0c:	36180441 	tbz	w1, #3, 5ab94 <ca_kh_offload_udp+0x834>
+   5ab10:	53087ce4 	lsr	w4, w7, #8
+   5ab14:	53087c02 	lsr	w2, w0, #8
+   5ab18:	2a002040 	orr	w0, w2, w0, lsl #8
+   5ab1c:	2a072084 	orr	w4, w4, w7, lsl #8
+   5ab20:	90000001 	adrp	x1, 0 <ca_ni_get_wan_port_id>
+			5ab20: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5ab24:	91000021 	add	x1, x1, #0x0
+			5ab24: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5ab28:	91010021 	add	x1, x1, #0x40
+   5ab2c:	12003c06 	and	w6, w0, #0xffff
+   5ab30:	aa1503e5 	mov	x5, x21
+   5ab34:	12003c84 	and	w4, w4, #0xffff
+   5ab38:	aa1a03e3 	mov	x3, x26
+   5ab3c:	52805c42 	mov	w2, #0x2e2                 	// #738
+   5ab40:	f90037a1 	str	x1, [x29, #104]
+   5ab44:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5ab44: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22418
+   5ab48:	91000000 	add	x0, x0, #0x0
+			5ab48: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22418
+   5ab4c:	94000000 	bl	0 <printk>
+			5ab4c: R_AARCH64_CALL26	printk
+   5ab50:	794022e1 	ldrh	w1, [x23, #16]
+   5ab54:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5ab54: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22450
+   5ab58:	79404ae4 	ldrh	w4, [x23, #36]
+   5ab5c:	aa1b03e5 	mov	x5, x27
+   5ab60:	aa1703e3 	mov	x3, x23
+   5ab64:	52805ca2 	mov	w2, #0x2e5                 	// #741
+   5ab68:	53087c26 	lsr	w6, w1, #8
+   5ab6c:	91000000 	add	x0, x0, #0x0
+			5ab6c: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22450
+   5ab70:	53087c87 	lsr	w7, w4, #8
+   5ab74:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   5ab78:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   5ab7c:	12003c86 	and	w6, w4, #0xffff
+   5ab80:	12003c24 	and	w4, w1, #0xffff
+   5ab84:	f94037a1 	ldr	x1, [x29, #104]
+   5ab88:	94000000 	bl	0 <printk>
+			5ab88: R_AARCH64_CALL26	printk
+   5ab8c:	79402347 	ldrh	w7, [x26, #16]
+   5ab90:	79404b40 	ldrh	w0, [x26, #36]
+   5ab94:	f94002a2 	ldr	x2, [x21]
+   5ab98:	f94002e1 	ldr	x1, [x23]
+   5ab9c:	eb01005f 	cmp	x2, x1
+   5aba0:	540000c1 	b.ne	5abb8 <ca_kh_offload_udp+0x858>  // b.any
+   5aba4:	f94006a2 	ldr	x2, [x21, #8]
+   5aba8:	52800003 	mov	w3, #0x0                   	// #0
+   5abac:	f94006e1 	ldr	x1, [x23, #8]
+   5abb0:	eb01005f 	cmp	x2, x1
+   5abb4:	54000040 	b.eq	5abbc <ca_kh_offload_udp+0x85c>  // b.none
+   5abb8:	52800023 	mov	w3, #0x1                   	// #1
+   5abbc:	f9400342 	ldr	x2, [x26]
+   5abc0:	f9400361 	ldr	x1, [x27]
+   5abc4:	eb01005f 	cmp	x2, x1
+   5abc8:	540000c1 	b.ne	5abe0 <ca_kh_offload_udp+0x880>  // b.any
+   5abcc:	f9400742 	ldr	x2, [x26, #8]
+   5abd0:	52800004 	mov	w4, #0x0                   	// #0
+   5abd4:	f9400761 	ldr	x1, [x27, #8]
+   5abd8:	eb01005f 	cmp	x2, x1
+   5abdc:	54000040 	b.eq	5abe4 <ca_kh_offload_udp+0x884>  // b.none
+   5abe0:	52800024 	mov	w4, #0x1                   	// #1
+   5abe4:	79404ae2 	ldrh	w2, [x23, #36]
+   5abe8:	794022e1 	ldrh	w1, [x23, #16]
+   5abec:	350017e3 	cbnz	w3, 5aee8 <ca_kh_offload_udp+0xb88>
+   5abf0:	340003c4 	cbz	w4, 5ac68 <ca_kh_offload_udp+0x908>
+   5abf4:	790023e1 	strh	w1, [sp, #16]
+   5abf8:	aa1b03e4 	mov	x4, x27
+   5abfc:	790013e0 	strh	w0, [sp, #8]
+   5ac00:	aa1703e6 	mov	x6, x23
+   5ac04:	790003e2 	strh	w2, [sp]
+   5ac08:	aa1503e5 	mov	x5, x21
+   5ac0c:	f9000ff4 	str	x20, [sp, #24]
+   5ac10:	aa1a03e3 	mov	x3, x26
+   5ac14:	52800022 	mov	w2, #0x1                   	// #1
+   5ac18:	52800221 	mov	w1, #0x11                  	// #17
+   5ac1c:	52800000 	mov	w0, #0x0                   	// #0
+   5ac20:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5ac20: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5ac24:	f9402bbb 	ldr	x27, [x29, #80]
+   5ac28:	1400001d 	b	5ac9c <ca_kh_offload_udp+0x93c>
+   5ac2c:	d503201f 	nop
+   5ac30:	790023e1 	strh	w1, [sp, #16]
+   5ac34:	aa1b03e4 	mov	x4, x27
+   5ac38:	790013e0 	strh	w0, [sp, #8]
+   5ac3c:	aa1703e6 	mov	x6, x23
+   5ac40:	790003e2 	strh	w2, [sp]
+   5ac44:	aa1503e5 	mov	x5, x21
+   5ac48:	f9000ff4 	str	x20, [sp, #24]
+   5ac4c:	aa1a03e3 	mov	x3, x26
+   5ac50:	52800002 	mov	w2, #0x0                   	// #0
+   5ac54:	52800221 	mov	w1, #0x11                  	// #17
+   5ac58:	52800000 	mov	w0, #0x0                   	// #0
+   5ac5c:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5ac5c: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5ac60:	f9402bbb 	ldr	x27, [x29, #80]
+   5ac64:	1400000e 	b	5ac9c <ca_kh_offload_udp+0x93c>
+   5ac68:	790023e1 	strh	w1, [sp, #16]
+   5ac6c:	aa1b03e4 	mov	x4, x27
+   5ac70:	790013e0 	strh	w0, [sp, #8]
+   5ac74:	aa1703e6 	mov	x6, x23
+   5ac78:	790003e2 	strh	w2, [sp]
+   5ac7c:	aa1503e5 	mov	x5, x21
+   5ac80:	f9000ff4 	str	x20, [sp, #24]
+   5ac84:	aa1a03e3 	mov	x3, x26
+   5ac88:	52800042 	mov	w2, #0x2                   	// #2
+   5ac8c:	52800221 	mov	w1, #0x11                  	// #17
+   5ac90:	52800000 	mov	w0, #0x0                   	// #0
+   5ac94:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5ac94: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5ac98:	f9402bbb 	ldr	x27, [x29, #80]
+   5ac9c:	340014bc 	cbz	w28, 5af30 <ca_kh_offload_udp+0xbd0>
+   5aca0:	b94002c2 	ldr	w2, [x22]
+			5aca0: R_AARCH64_LDST32_ABS_LO12_NC	ca_kh_debug
+   5aca4:	91008275 	add	x21, x19, #0x20
+   5aca8:	91016277 	add	x23, x19, #0x58
+   5acac:	9101b276 	add	x22, x19, #0x6c
+   5acb0:	9100d27a 	add	x26, x19, #0x34
+   5acb4:	794022a1 	ldrh	w1, [x21, #16]
+   5acb8:	79404aa0 	ldrh	w0, [x21, #36]
+   5acbc:	36180482 	tbz	w2, #3, 5ad4c <ca_kh_offload_udp+0x9ec>
+   5acc0:	f9002bbb 	str	x27, [x29, #80]
+   5acc4:	53087c03 	lsr	w3, w0, #8
+   5acc8:	53087c22 	lsr	w2, w1, #8
+   5accc:	9000001b 	adrp	x27, 0 <ca_ni_get_wan_port_id>
+			5accc: R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x4c18
+   5acd0:	9100037b 	add	x27, x27, #0x0
+			5acd0: R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x4c18
+   5acd4:	2a002060 	orr	w0, w3, w0, lsl #8
+   5acd8:	2a012041 	orr	w1, w2, w1, lsl #8
+   5acdc:	9101037b 	add	x27, x27, #0x40
+   5ace0:	12003c06 	and	w6, w0, #0xffff
+   5ace4:	12003c24 	and	w4, w1, #0xffff
+   5ace8:	aa1a03e5 	mov	x5, x26
+   5acec:	aa1b03e1 	mov	x1, x27
+   5acf0:	aa1503e3 	mov	x3, x21
+   5acf4:	52806262 	mov	w2, #0x313                 	// #787
+   5acf8:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5acf8: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22418
+   5acfc:	91000000 	add	x0, x0, #0x0
+			5acfc: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22418
+   5ad00:	94000000 	bl	0 <printk>
+			5ad00: R_AARCH64_CALL26	printk
+   5ad04:	79404ae4 	ldrh	w4, [x23, #36]
+   5ad08:	90000000 	adrp	x0, 0 <ca_ni_get_wan_port_id>
+			5ad08: R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.8+0x22450
+   5ad0c:	794022e1 	ldrh	w1, [x23, #16]
+   5ad10:	aa1603e5 	mov	x5, x22
+   5ad14:	aa1703e3 	mov	x3, x23
+   5ad18:	528062c2 	mov	w2, #0x316                 	// #790
+   5ad1c:	53087c87 	lsr	w7, w4, #8
+   5ad20:	91000000 	add	x0, x0, #0x0
+			5ad20: R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.8+0x22450
+   5ad24:	53087c26 	lsr	w6, w1, #8
+   5ad28:	2a0420e4 	orr	w4, w7, w4, lsl #8
+   5ad2c:	2a0120c1 	orr	w1, w6, w1, lsl #8
+   5ad30:	12003c86 	and	w6, w4, #0xffff
+   5ad34:	12003c24 	and	w4, w1, #0xffff
+   5ad38:	aa1b03e1 	mov	x1, x27
+   5ad3c:	94000000 	bl	0 <printk>
+			5ad3c: R_AARCH64_CALL26	printk
+   5ad40:	f9402bbb 	ldr	x27, [x29, #80]
+   5ad44:	79404aa0 	ldrh	w0, [x21, #36]
+   5ad48:	794022a1 	ldrh	w1, [x21, #16]
+   5ad4c:	f94002e2 	ldr	x2, [x23]
+   5ad50:	f9400343 	ldr	x3, [x26]
+   5ad54:	eb02007f 	cmp	x3, x2
+   5ad58:	54000101 	b.ne	5ad78 <ca_kh_offload_udp+0xa18>  // b.any
+   5ad5c:	f94006e2 	ldr	x2, [x23, #8]
+   5ad60:	f9400743 	ldr	x3, [x26, #8]
+   5ad64:	eb02007f 	cmp	x3, x2
+   5ad68:	54000081 	b.ne	5ad78 <ca_kh_offload_udp+0xa18>  // b.any
+   5ad6c:	52800003 	mov	w3, #0x0                   	// #0
+   5ad70:	14000003 	b	5ad7c <ca_kh_offload_udp+0xa1c>
+   5ad74:	d503201f 	nop
+   5ad78:	52800023 	mov	w3, #0x1                   	// #1
+   5ad7c:	f94002a4 	ldr	x4, [x21]
+   5ad80:	f94002c2 	ldr	x2, [x22]
+   5ad84:	eb02009f 	cmp	x4, x2
+   5ad88:	54000101 	b.ne	5ada8 <ca_kh_offload_udp+0xa48>  // b.any
+   5ad8c:	f94006a4 	ldr	x4, [x21, #8]
+   5ad90:	f94006c2 	ldr	x2, [x22, #8]
+   5ad94:	eb02009f 	cmp	x4, x2
+   5ad98:	54000081 	b.ne	5ada8 <ca_kh_offload_udp+0xa48>  // b.any
+   5ad9c:	52800002 	mov	w2, #0x0                   	// #0
+   5ada0:	14000003 	b	5adac <ca_kh_offload_udp+0xa4c>
+   5ada4:	d503201f 	nop
+   5ada8:	52800022 	mov	w2, #0x1                   	// #1
+   5adac:	794022e7 	ldrh	w7, [x23, #16]
+   5adb0:	79404ae4 	ldrh	w4, [x23, #36]
+   5adb4:	350009e3 	cbnz	w3, 5aef0 <ca_kh_offload_udp+0xb90>
+   5adb8:	34000382 	cbz	w2, 5ae28 <ca_kh_offload_udp+0xac8>
+   5adbc:	790023e1 	strh	w1, [sp, #16]
+   5adc0:	aa1503e6 	mov	x6, x21
+   5adc4:	790013e4 	strh	w4, [sp, #8]
+   5adc8:	aa1603e5 	mov	x5, x22
+   5adcc:	790003e0 	strh	w0, [sp]
+   5add0:	aa1a03e4 	mov	x4, x26
+   5add4:	f9000ff4 	str	x20, [sp, #24]
+   5add8:	aa1703e3 	mov	x3, x23
+   5addc:	52800002 	mov	w2, #0x0                   	// #0
+   5ade0:	52800221 	mov	w1, #0x11                  	// #17
+   5ade4:	52800000 	mov	w0, #0x0                   	// #0
+   5ade8:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5ade8: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5adec:	1400001b 	b	5ae58 <ca_kh_offload_udp+0xaf8>
+   5adf0:	790023e1 	strh	w1, [sp, #16]
+   5adf4:	aa1503e6 	mov	x6, x21
+   5adf8:	790013e4 	strh	w4, [sp, #8]
+   5adfc:	aa1603e5 	mov	x5, x22
+   5ae00:	790003e0 	strh	w0, [sp]
+   5ae04:	aa1a03e4 	mov	x4, x26
+   5ae08:	f9000ff4 	str	x20, [sp, #24]
+   5ae0c:	aa1703e3 	mov	x3, x23
+   5ae10:	52800022 	mov	w2, #0x1                   	// #1
+   5ae14:	52800221 	mov	w1, #0x11                  	// #17
+   5ae18:	52800000 	mov	w0, #0x0                   	// #0
+   5ae1c:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5ae1c: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5ae20:	1400000e 	b	5ae58 <ca_kh_offload_udp+0xaf8>
+   5ae24:	d503201f 	nop
+   5ae28:	790023e1 	strh	w1, [sp, #16]
+   5ae2c:	aa1503e6 	mov	x6, x21
+   5ae30:	790013e4 	strh	w4, [sp, #8]
+   5ae34:	aa1603e5 	mov	x5, x22
+   5ae38:	790003e0 	strh	w0, [sp]
+   5ae3c:	aa1a03e4 	mov	x4, x26
+   5ae40:	f9000ff4 	str	x20, [sp, #24]
+   5ae44:	aa1703e3 	mov	x3, x23
+   5ae48:	52800042 	mov	w2, #0x2                   	// #2
+   5ae4c:	52800221 	mov	w1, #0x11                  	// #17
+   5ae50:	52800000 	mov	w0, #0x0                   	// #0
+   5ae54:	94000000 	bl	4ce50 <ca_kh_nat6_entry_add>
+			5ae54: R_AARCH64_CALL26	ca_kh_nat6_entry_add
+   5ae58:	91020275 	add	x21, x19, #0x80
+   5ae5c:	52800020 	mov	w0, #0x1                   	// #1
+   5ae60:	aa1503e1 	mov	x1, x21
+   5ae64:	94000000 	bl	0 <set_bit>
+			5ae64: R_AARCH64_CALL26	set_bit
+   5ae68:	b950e723 	ldr	w3, [x25, #4324]
+   5ae6c:	aa1403e2 	mov	x2, x20
+   5ae70:	52800024 	mov	w4, #0x1                   	// #1
+   5ae74:	aa1303e0 	mov	x0, x19
+   5ae78:	2a1803e1 	mov	w1, w24
+   5ae7c:	94000000 	bl	0 <__nf_ct_refresh_acct>
+			5ae7c: R_AARCH64_CALL26	__nf_ct_refresh_acct
+   5ae80:	aa1503e1 	mov	x1, x21
+   5ae84:	52800040 	mov	w0, #0x2                   	// #2
+   5ae88:	94000000 	bl	0 <test_and_set_bit>
+			5ae88: R_AARCH64_CALL26	test_and_set_bit
+   5ae8c:	35000520 	cbnz	w0, 5af30 <ca_kh_offload_udp+0xbd0>
+   5ae90:	f9404a60 	ldr	x0, [x19, #144]
+   5ae94:	f9481c00 	ldr	x0, [x0, #4152]
+   5ae98:	b40004c0 	cbz	x0, 5af30 <ca_kh_offload_udp+0xbd0>
+   5ae9c:	f9405e60 	ldr	x0, [x19, #184]
+   5aea0:	b4000480 	cbz	x0, 5af30 <ca_kh_offload_udp+0xbd0>
+   5aea4:	39405001 	ldrb	w1, [x0, #20]
+   5aea8:	35000281 	cbnz	w1, 5aef8 <ca_kh_offload_udp+0xb98>
+   5aeac:	14000021 	b	5af30 <ca_kh_offload_udp+0xbd0>
+   5aeb0:	52800080 	mov	w0, #0x4                   	// #4
+   5aeb4:	94000000 	bl	0 <set_bit>
+			5aeb4: R_AARCH64_CALL26	set_bit
+   5aeb8:	1400001e 	b	5af30 <ca_kh_offload_udp+0xbd0>
+   5aebc:	d503201f 	nop
+   5aec0:	34000440 	cbz	w0, 5af48 <ca_kh_offload_udp+0xbe8>
+   5aec4:	17fffe2d 	b	5a778 <ca_kh_offload_udp+0x418>
+   5aec8:	6b03009f 	cmp	w4, w3
+   5aecc:	54ffd1a1 	b.ne	5a900 <ca_kh_offload_udp+0x5a0>  // b.any
+   5aed0:	17fffe82 	b	5a8d8 <ca_kh_offload_udp+0x578>
+   5aed4:	d503201f 	nop
+   5aed8:	6b0600bf 	cmp	w5, w6
+   5aedc:	54ffdae1 	b.ne	5aa38 <ca_kh_offload_udp+0x6d8>  // b.any
+   5aee0:	17fffecc 	b	5aa10 <ca_kh_offload_udp+0x6b0>
+   5aee4:	d503201f 	nop
+   5aee8:	35ffec04 	cbnz	w4, 5ac68 <ca_kh_offload_udp+0x908>
+   5aeec:	17ffff51 	b	5ac30 <ca_kh_offload_udp+0x8d0>
+   5aef0:	35fff9c2 	cbnz	w2, 5ae28 <ca_kh_offload_udp+0xac8>
+   5aef4:	17ffffbf 	b	5adf0 <ca_kh_offload_udp+0xa90>
+   5aef8:	ab210001 	adds	x1, x0, w1, uxtb
+   5aefc:	54fffda1 	b.ne	5aeb0 <ca_kh_offload_udp+0xb50>  // b.any
+   5af00:	1400000c 	b	5af30 <ca_kh_offload_udp+0xbd0>
+   5af04:	d503201f 	nop
+   5af08:	f9400bb3 	ldr	x19, [x29, #16]
+   5af0c:	f9401fb8 	ldr	x24, [x29, #56]
+   5af10:	14000012 	b	5af58 <ca_kh_offload_udp+0xbf8>
+   5af14:	d503201f 	nop
+   5af18:	a942dfb6 	ldp	x22, x23, [x29, #40]
+   5af1c:	a943e7b8 	ldp	x24, x25, [x29, #56]
+   5af20:	a944efba 	ldp	x26, x27, [x29, #72]
+   5af24:	f9400bb3 	ldr	x19, [x29, #16]
+   5af28:	f9402fbc 	ldr	x28, [x29, #88]
+   5af2c:	1400000b 	b	5af58 <ca_kh_offload_udp+0xbf8>
+   5af30:	a942dfb6 	ldp	x22, x23, [x29, #40]
+   5af34:	a943e7b8 	ldp	x24, x25, [x29, #56]
+   5af38:	f9400bb3 	ldr	x19, [x29, #16]
+   5af3c:	f94027ba 	ldr	x26, [x29, #72]
+   5af40:	f9402fbc 	ldr	x28, [x29, #88]
+   5af44:	14000005 	b	5af58 <ca_kh_offload_udp+0xbf8>
+   5af48:	a942dfb6 	ldp	x22, x23, [x29, #40]
+   5af4c:	a943e7b8 	ldp	x24, x25, [x29, #56]
+   5af50:	f9400bb3 	ldr	x19, [x29, #16]
+   5af54:	f9402fbc 	ldr	x28, [x29, #88]
+   5af58:	a943d7f4 	ldp	x20, x21, [sp, #56]
+   5af5c:	52800000 	mov	w0, #0x0                   	// #0
+   5af60:	a9427bfd 	ldp	x29, x30, [sp, #32]
+   5af64:	910243ff 	add	sp, sp, #0x90
+   5af68:	d65f03c0 	ret

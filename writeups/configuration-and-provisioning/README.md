@@ -103,7 +103,7 @@ For the physical location of these records see [storage and flash](../storage-an
 
 ## What the second factory record established
 
-The [second-G6 comparison](../two-g6-key-comparison/README.md) verifies both factory admin hashes against their own label codes and finds different salted factory superadmin hashes. It also confirms the shared root template and shared key7_2/key14/key17 across the two current devices and older IJL.J03 firmware. The new sample supports the same source distinctions; it does not recover a factory superadmin plaintext generator.
+The [second-G6 comparison](../comparing-other-g6-routers/README.md) verifies both factory admin hashes against their own label codes and finds different salted factory superadmin hashes. It also confirms the shared root template and shared key7_2/key14/key17 across the two current devices and older IJL.J03 firmware. The new sample supports the same source distinctions; it does not recover a factory superadmin plaintext generator.
 
 ## Setter input and stored password format
 

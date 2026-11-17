@@ -1,0 +1,123 @@
+#!/bin/sh
+
+###########################################################################
+## this script define the behavior of reset button
+## one click:                  reboot system (OPID is not 0000)
+## double click:               deep factory default reset
+## press hold more than 10s:   factory default reset
+###########################################################################
+
+. /lib/functions/leds.sh
+. /lib/functions.sh
+. /usr/exe/varset.sh
+
+PRESS_HOLD_TIME=10
+RESET_FILE=/configs/fresetOriginator.txt
+
+CUR_HOLD_TIME=/tmp/btn_cur_hold_time
+LAST_HOLD_TIME=/tmp/btn_last_hold_time
+
+# INTERVAL TIME means last release to next press
+INTERVAL_TIME=/tmp/btn_interval_time
+BTN_ACTION=/tmp/btn_action
+
+opid=$(ritool get OperatorID | awk '{print $2}')
+
+led_ctrl()
+{
+    press_time=`date +%s`
+    while [ true ]
+    do
+    {
+        cur_time=`date +%s`
+        case "$(cat $BTN_ACTION)" in
+            "pressed")
+                hold_time=`expr $cur_time - $press_time`
+                if [ $hold_time -ge $PRESS_HOLD_TIME ];then
+                    ledtool allon
+                    sleep 3
+                    led_hold_time=`expr $PRESS_HOLD_TIME + 1`
+                    export ACTION="released"
+                    export SEEN="$led_hold_time"
+                    /etc/rc.button/reset
+                    exit 0
+                else
+                    ledtool allblink
+                fi
+            ;;
+            "released")
+            exit 0
+            ;;
+        esac
+    }
+    done
+}
+
+is_double_click()
+{
+    if [ $(cat $LAST_HOLD_TIME) -lt 1 -a $(cat $CUR_HOLD_TIME) -lt 1 -a $(cat $INTERVAL_TIME) -eq 0 ]
+    then
+        return 1
+    fi
+    return 0
+}
+
+one_click_check()
+{
+    release_time=`date +%s`
+    while [ true ]
+    do
+        cur_time=`date +%s`
+        # if INTERVAL_TIME is 0, means double click
+        if [ $(cat $INTERVAL_TIME) -eq 0 -o $(cat $BTN_ACTION) = "pressed" ];then exit 0; fi
+
+        # if no press action after release 1s, means one click
+        interval_time=`expr $cur_time - $release_time`
+        if [ $(cat $INTERVAL_TIME) -gt 0 -a $interval_time -gt 1 ];then
+            if [ "X$opid" = "X0000" ]; then
+                echo "[`date '+%F.%T%z'`]MSG: Reset button pressed" |tee -a /logs/${LOGDEFAULT} &>/dev/console
+            else
+                echo "[`date '+%F.%T%z'`]MSG: REBOOT due to reset button click" |tee -a /logs/${LOGDEFAULT} &>/dev/console
+                reboot
+            fi
+            exit 0
+        fi
+    done
+}
+
+deep_fac_reset()
+{
+    echo "[`date '+%F.%T%z'`]MSG: Deep factory default reset due to reset button double click" |tee -a /logs/${LOGDEFAULT} &>/dev/console
+    /usr/sbin/ledtool allblink
+    /usr/exe/factory-default-reset all
+}
+
+case "${ACTION}" in
+    "pressed")
+        [ -e $CUR_HOLD_TIME ] && cat $CUR_HOLD_TIME > $LAST_HOLD_TIME
+        echo $SEEN > $INTERVAL_TIME
+        echo "${ACTION}" > $BTN_ACTION
+        led_ctrl &
+    ;;
+    "released")
+        echo "${ACTION}" > $BTN_ACTION
+        echo $SEEN > $CUR_HOLD_TIME
+
+        is_double_click
+        if [ $? -eq 1 ];then deep_fac_reset; exit 0; fi
+
+        if [ $(cat $CUR_HOLD_TIME) -ge $PRESS_HOLD_TIME ]; then
+            if [ ! -f "$RESET_FILE" ]; then
+                touch $RESET_FILE
+                echo "LocalFactoryReset" > $RESET_FILE
+            fi
+            echo "[`date '+%F.%T%z'`]MSG: FACTORY RESET due to reset button click more than 10s" |tee -a /logs/${LOGDEFAULT} &>/dev/console
+            cfgcli backupkeyparam
+			/usr/exe/factory-default-reset
+        elif [ $(cat $CUR_HOLD_TIME) -lt 1 ];then
+            one_click_check &
+        else
+            reboot
+        fi
+    ;;
+esac

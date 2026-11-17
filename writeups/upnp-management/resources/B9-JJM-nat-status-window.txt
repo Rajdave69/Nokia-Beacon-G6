@@ -1,0 +1,53 @@
+00005d2c: 800240b9  ldr w0, [x20]
+00005d30: e9ffff17  b #0x5cd4
+00005d34: 600100b0  adrp x0, #0x32000
+00005d38: 00f045f9  ldr x0, [x0, #0xbe0]
+00005d3c: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+00005d40: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+00005d44: 610100b0  adrp x1, #0x32000
+00005d48: fd030091  mov x29, sp
+00005d4c: f35301a9  stp x19, x20, [sp, #0x10]
+00005d50: 730100b0  adrp x19, #0x32000
+00005d54: f40300aa  mov x20, x0
+00005d58: 218c45f9  ldr x1, [x1, #0xb18]
+00005d5c: 628a44f9  ldr x2, [x19, #0x910]
+00005d60: 00e041f9  ldr x0, [x0, #0x3c0]
+00005d64: 430040f9  ldr x3, [x2]
+00005d68: a31700f9  str x3, [x29, #0x28]
+00005d6c: 030080d2  mov x3, #0
+00005d70: 20003fd6  blr x1 ; heuristic 0xfc40 {"x1": 64576, "x2": "@__stack_chk_guard", "x3": 0}
+00005d74: 20020035  cbnz w0, #0x5db8
+00005d78: 620100b0  adrp x2, #0x32000
+00005d7c: e00314aa  mov x0, x20
+00005d80: a10000d0  adrp x1, #0x1b000
+00005d84: 21202f91  add x1, x1, #0xbc8
+00005d88: 426c47f9  ldr x2, [x2, #0xed8]
+00005d8c: 40003fd6  blr x2 ; heuristic 0xfa90 {"x1": "<NewRSIPAvailable>0</NewRSIPAvailable>\n<NewNATEnabled>1</NewNATEnabled>\n", "x2": 64144}
+00005d90: 800240b9  ldr w0, [x20]
+00005d94: 738a44f9  ldr x19, [x19, #0x910]
+00005d98: a21740f9  ldr x2, [x29, #0x28]
+00005d9c: 610240f9  ldr x1, [x19]
+00005da0: 410001ca  eor x1, x2, x1
+00005da4: 810200b5  cbnz x1, #0x5df4
+00005da8: f35341a9  ldp x19, x20, [sp, #0x10]
+00005dac: fd7bc3a8  ldp x29, x30, [sp], #0x30
+00005db0: c0035fd6  ret 
+00005db4: 1f2003d5  nop 
+00005db8: 620100b0  adrp x2, #0x32000
+00005dbc: 20008052  mov w0, #1
+00005dc0: a10000d0  adrp x1, #0x1b000
+00005dc4: 21602e91  add x1, x1, #0xb98
+00005dc8: 42b845f9  ldr x2, [x2, #0xb70]
+00005dcc: 40003fd6  blr x2 ; heuristic 0xf300 {"x0": 1, "x1": "GetNATRSIPStatus invalid number of parameters", "x2": 62208}
+00005dd0: 630100b0  adrp x3, #0x32000
+00005dd4: e00314aa  mov x0, x20
+00005dd8: a20000d0  adrp x2, #0x1b000
+00005ddc: 42e02391  add x2, x2, #0x8f8
+00005de0: 632847f9  ldr x3, [x3, #0xe50]
+00005de4: 41328052  mov w1, #0x192
+00005de8: 60003fd6  blr x3 ; heuristic 0xf8c0 {"x1": 402, "x2": "Invalid Args", "x3": 63680}
+00005dec: 800240b9  ldr w0, [x20]
+00005df0: e9ffff17  b #0x5d94
+00005df4: 600100b0  adrp x0, #0x32000
+00005df8: 00f045f9  ldr x0, [x0, #0xbe0]
+

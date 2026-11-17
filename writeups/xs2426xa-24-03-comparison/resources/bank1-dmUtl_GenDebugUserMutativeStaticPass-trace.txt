@@ -1,0 +1,110 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libdm_utility.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000008008 <dmUtl_GenDebugUserMutativeStaticPass@@Base>:
+    8008:	a9b37bfd 	stp	x29, x30, [sp, #-208]!
+    800c:	d0000083 	adrp	x3, 1a000 <_fini@@Base+0x11300>
+    8010:	d2801002 	mov	x2, #0x80                  	// #128
+    8014:	910003fd 	mov	x29, sp
+    8018:	a90153f3 	stp	x19, x20, [sp, #16]
+    801c:	d0000093 	adrp	x19, 1a000 <_fini@@Base+0x11300>
+    8020:	a9025bf5 	stp	x21, x22, [sp, #32]
+    8024:	aa0003f5 	mov	x21, x0
+    8028:	f9475a60 	ldr	x0, [x19, #3760]  ; GOT __stack_chk_guard@GLIBC_2.17
+    802c:	2a0103f6 	mov	w22, w1
+    8030:	f9471463 	ldr	x3, [x3, #3624]  ; GOT memset@GLIBC_2.17
+    8034:	910123b4 	add	x20, x29, #0x48
+    8038:	f9400001 	ldr	x1, [x0]
+    803c:	f90067a1 	str	x1, [x29, #200]
+    8040:	d2800001 	mov	x1, #0x0                   	// #0
+    8044:	d2820720 	mov	x0, #0x1039                	// #4153
+    8048:	f2a00ea0 	movk	x0, #0x75, lsl #16
+    804c:	f2c46960 	movk	x0, #0x234b, lsl #32
+    8050:	f2ee0da0 	movk	x0, #0x706d, lsl #48
+    8054:	a903ffa0 	stp	x0, xzr, [x29, #56]
+    8058:	aa1403e0 	mov	x0, x20
+    805c:	d63f0060 	blr	x3
+    8060:	71002edf 	cmp	w22, #0xb
+    8064:	5400028c 	b.gt	80b4 <dmUtl_GenDebugUserMutativeStaticPass@@Base+0xac>
+    8068:	b0000003 	adrp	x3, 9000 <_fini@@Base+0x300>
+    806c:	913e5063 	add	x3, x3, #0xf94  ; 'no enough space to store\n'
+    8070:	5280d3e2 	mov	w2, #0x69f                 	// #1695
+    8074:	d0000084 	adrp	x4, 1a000 <_fini@@Base+0x11300>
+    8078:	90000001 	adrp	x1, 8000 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x1a4>
+    807c:	91348021 	add	x1, x1, #0xd20  ; 'cfgUtlReadSWVersion'
+    8080:	f947dc84 	ldr	x4, [x4, #4024]  ; GOT log_log
+    8084:	911b2021 	add	x1, x1, #0x6c8  ; 'dmUtl_GenDebugUserMutativeStaticPass'
+    8088:	52800060 	mov	w0, #0x3                   	// #3
+    808c:	d63f0080 	blr	x4
+    8090:	52846520 	mov	w0, #0x2329                	// #9001
+    8094:	f9475a73 	ldr	x19, [x19, #3760]  ; GOT __stack_chk_guard@GLIBC_2.17
+    8098:	f94067a2 	ldr	x2, [x29, #200]
+    809c:	f9400261 	ldr	x1, [x19]
+    80a0:	ca010041 	eor	x1, x2, x1
+    80a4:	b4000761 	cbz	x1, 8190 <dmUtl_GenDebugUserMutativeStaticPass@@Base+0x188>
+    80a8:	d0000080 	adrp	x0, 1a000 <_fini@@Base+0x11300>
+    80ac:	f9474000 	ldr	x0, [x0, #3712]  ; GOT __stack_chk_fail@GLIBC_2.17
+    80b0:	d63f0000 	blr	x0
+    80b4:	d0000082 	adrp	x2, 1a000 <_fini@@Base+0x11300>
+    80b8:	52800101 	mov	w1, #0x8                   	// #8
+    80bc:	910103a0 	add	x0, x29, #0x40
+    80c0:	f9478042 	ldr	x2, [x2, #3840]  ; GOT dmUtl_GetReleaseVersionFromBuildinfo
+    80c4:	d63f0040 	blr	x2
+    80c8:	350000a0 	cbnz	w0, 80dc <dmUtl_GenDebugUserMutativeStaticPass@@Base+0xd4>
+    80cc:	b0000003 	adrp	x3, 9000 <_fini@@Base+0x300>
+    80d0:	913eb863 	add	x3, x3, #0xfae  ; 'get release ver failed\n'
+    80d4:	5280d482 	mov	w2, #0x6a4                 	// #1700
+    80d8:	17ffffe7 	b	8074 <dmUtl_GenDebugUserMutativeStaticPass@@Base+0x6c>
+    80dc:	d0000085 	adrp	x5, 1a000 <_fini@@Base+0x11300>
+    80e0:	9100e3a0 	add	x0, x29, #0x38
+    80e4:	794083a1 	ldrh	w1, [x29, #64]
+    80e8:	aa1403e4 	mov	x4, x20
+    80ec:	f946e0a5 	ldr	x5, [x5, #3520]  ; GOT CS_getSha256Str
+    80f0:	52800003 	mov	w3, #0x0                   	// #0
+    80f4:	7803b3a1 	sturh	w1, [x29, #59]
+    80f8:	d2800002 	mov	x2, #0x0                   	// #0
+    80fc:	39410ba1 	ldrb	w1, [x29, #66]
+    8100:	39001401 	strb	w1, [x0, #5]
+    8104:	52800101 	mov	w1, #0x8                   	// #8
+    8108:	d63f00a0 	blr	x5
+    810c:	340001a0 	cbz	w0, 8140 <dmUtl_GenDebugUserMutativeStaticPass@@Base+0x138>
+    8110:	b0000003 	adrp	x3, 9000 <_fini@@Base+0x300>
+    8114:	913f1863 	add	x3, x3, #0xfc6  ; 'gen hash failed [%d]\n'
+    8118:	2a0003e4 	mov	w4, w0
+    811c:	5280d542 	mov	w2, #0x6aa                 	// #1706
+    8120:	d0000085 	adrp	x5, 1a000 <_fini@@Base+0x11300>
+    8124:	90000001 	adrp	x1, 8000 <dmUtl_GetReleaseVersionFromBuildinfo@@Base+0x1a4>
+    8128:	91348021 	add	x1, x1, #0xd20  ; 'cfgUtlReadSWVersion'
+    812c:	f947dca5 	ldr	x5, [x5, #4024]  ; GOT log_log
+    8130:	911b2021 	add	x1, x1, #0x6c8  ; 'dmUtl_GenDebugUserMutativeStaticPass'
+    8134:	52800060 	mov	w0, #0x3                   	// #3
+    8138:	d63f00a0 	blr	x5
+    813c:	17ffffd5 	b	8090 <dmUtl_GenDebugUserMutativeStaticPass@@Base+0x88>
+    8140:	d0000081 	adrp	x1, 1a000 <_fini@@Base+0x11300>
+    8144:	aa1403e0 	mov	x0, x20
+    8148:	f9468c21 	ldr	x1, [x1, #3352]  ; GOT strlen@GLIBC_2.17
+    814c:	d63f0020 	blr	x1
+    8150:	71002c1f 	cmp	w0, #0xb
+    8154:	540000cc 	b.gt	816c <dmUtl_GenDebugUserMutativeStaticPass@@Base+0x164>
+    8158:	b0000003 	adrp	x3, 9000 <_fini@@Base+0x300>
+    815c:	913f7063 	add	x3, x3, #0xfdc  ; 'pass len is %d, too short\n'
+    8160:	2a1603e4 	mov	w4, w22
+    8164:	5280d602 	mov	w2, #0x6b0                 	// #1712
+    8168:	17ffffee 	b	8120 <dmUtl_GenDebugUserMutativeStaticPass@@Base+0x118>
+    816c:	d0000083 	adrp	x3, 1a000 <_fini@@Base+0x11300>
+    8170:	d2800182 	mov	x2, #0xc                   	// #12
+    8174:	aa1403e1 	mov	x1, x20
+    8178:	aa1503e0 	mov	x0, x21
+    817c:	f947c863 	ldr	x3, [x3, #3984]  ; GOT strncpy@GLIBC_2.17
+    8180:	d63f0060 	blr	x3
+    8184:	390032bf 	strb	wzr, [x21, #12]
+    8188:	52800000 	mov	w0, #0x0                   	// #0
+    818c:	17ffffc2 	b	8094 <dmUtl_GenDebugUserMutativeStaticPass@@Base+0x8c>
+    8190:	a94153f3 	ldp	x19, x20, [sp, #16]
+    8194:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    8198:	a8cd7bfd 	ldp	x29, x30, [sp], #208
+    819c:	d65f03c0 	ret

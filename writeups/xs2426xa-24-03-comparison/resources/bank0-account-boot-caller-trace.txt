@@ -1,0 +1,440 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-JJL/usr/bin/cfgmgr:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000005e5c0 <validateTonewithCDE@@Base+0x11f94>:
+   5e5c0:	52800001 	mov	w1, #0x0                   	// #0
+   5e5c4:	b9025ba0 	str	w0, [x29, #600]
+   5e5c8:	910213a0 	add	x0, x29, #0x84
+   5e5cc:	d63f0280 	blr	x20
+   5e5d0:	52801460 	mov	w0, #0xa3                  	// #163
+   5e5d4:	d2802202 	mov	x2, #0x110                 	// #272
+   5e5d8:	52800001 	mov	w1, #0x0                   	// #0
+   5e5dc:	b90083a0 	str	w0, [x29, #128]
+   5e5e0:	aa1a03e0 	mov	x0, x26
+   5e5e4:	d63f0280 	blr	x20
+   5e5e8:	d2801002 	mov	x2, #0x80                  	// #128
+   5e5ec:	52800001 	mov	w1, #0x0                   	// #0
+   5e5f0:	aa1803e0 	mov	x0, x24
+   5e5f4:	d63f0280 	blr	x20
+   5e5f8:	9118e720 	add	x0, x25, #0x639
+   5e5fc:	d2820409 	mov	x9, #0x1020                	// #4128
+   5e600:	d282226a 	mov	x10, #0x1113                	// #4371
+   5e604:	d2801ea2 	mov	x2, #0xf5                  	// #245
+   5e608:	f9400001 	ldr	x1, [x0]
+   5e60c:	f90887a1 	str	x1, [x29, #4360]
+   5e610:	8b0903a1 	add	x1, x29, x9
+   5e614:	b9464320 	ldr	w0, [x25, #1600]
+   5e618:	b80ef020 	stur	w0, [x1, #239]
+   5e61c:	8b0a03a0 	add	x0, x29, x10
+   5e620:	52800001 	mov	w1, #0x0                   	// #0
+   5e624:	d63f0280 	blr	x20
+   5e628:	f0001503 	adrp	x3, 301000 <_fini@@Base+0xb93b8>
+   5e62c:	52801002 	mov	w2, #0x80                  	// #128
+   5e630:	aa1803e1 	mov	x1, x24
+   5e634:	d0000f60 	adrp	x0, 24c000 <_fini@@Base+0x43b8>
+   5e638:	91053c00 	add	x0, x0, #0x14f  ; 'OperatorID'
+   5e63c:	f9478c63 	ldr	x3, [x3, #3864]  ; GOT scfg_get
+   5e640:	d63f0060 	blr	x3
+   5e644:	d0001523 	adrp	x3, 304000 <_fini@@Base+0xbc3b8>
+   5e648:	d2801002 	mov	x2, #0x80                  	// #128
+   5e64c:	f0000fc1 	adrp	x1, 259000 <_fini@@Base+0x113b8>
+   5e650:	9108e821 	add	x1, x1, #0x23a  ; '0000'
+   5e654:	f9407063 	ldr	x3, [x3, #224]  ; GOT strncmp@GLIBC_2.17
+   5e658:	aa1803e0 	mov	x0, x24
+   5e65c:	d63f0060 	blr	x3
+   5e660:	a9076fb7 	stp	x23, x27, [x29, #112]
+   5e664:	34000e60 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e668:	b0001557 	adrp	x23, 307000 <sal_hgu_qos_delete_classify>
+   5e66c:	d2822106 	mov	x6, #0x1108                	// #4360
+   5e670:	911d0339 	add	x25, x25, #0x740
+   5e674:	5281aa02 	mov	w2, #0xd50                 	// #3408
+   5e678:	f94556e3 	ldr	x3, [x23, #2728]
+   5e67c:	aa1903e1 	mov	x1, x25
+   5e680:	8b0603a0 	add	x0, x29, x6
+   5e684:	d0001554 	adrp	x20, 308000 <_fini@@Base+0xc03b8>
+   5e688:	d63f0060 	blr	x3
+   5e68c:	52800ac0 	mov	w0, #0x56                  	// #86
+   5e690:	b903bba0 	str	w0, [x29, #952]
+   5e694:	910ee3a0 	add	x0, x29, #0x3b8
+   5e698:	f9437282 	ldr	x2, [x20, #1760]
+   5e69c:	91001001 	add	x1, x0, #0x4
+   5e6a0:	a9007c3f 	stp	xzr, xzr, [x1]
+   5e6a4:	52800001 	mov	w1, #0x0                   	// #0
+   5e6a8:	f801401f 	stur	xzr, [x0, #20]
+   5e6ac:	b9001c1f 	str	wzr, [x0, #28]
+   5e6b0:	d63f0040 	blr	x2
+   5e6b4:	d0001521 	adrp	x1, 304000 <_fini@@Base+0xbc3b8>
+   5e6b8:	350008e0 	cbnz	w0, 5e7d4 <validateTonewithCDE@@Base+0x121a8>
+   5e6bc:	395367a2 	ldrb	w2, [x29, #1241]
+   5e6c0:	34000042 	cbz	w2, 5e6c8 <validateTonewithCDE@@Base+0x1209c>
+   5e6c4:	52800020 	mov	w0, #0x1                   	// #1
+   5e6c8:	f941b421 	ldr	x1, [x1, #872]
+   5e6cc:	d63f0020 	blr	x1
+   5e6d0:	f0001500 	adrp	x0, 301000 <_fini@@Base+0xb93b8>
+   5e6d4:	910203b9 	add	x25, x29, #0x80
+   5e6d8:	f9469000 	ldr	x0, [x0, #3360]
+   5e6dc:	d63f0000 	blr	x0
+   5e6e0:	d0001540 	adrp	x0, 308000 <_fini@@Base+0xc03b8>
+   5e6e4:	f941f400 	ldr	x0, [x0, #1000]
+   5e6e8:	d63f0000 	blr	x0
+   5e6ec:	f9437282 	ldr	x2, [x20, #1760]
+   5e6f0:	52800001 	mov	w1, #0x0                   	// #0
+   5e6f4:	aa1903e0 	mov	x0, x25
+   5e6f8:	d63f0040 	blr	x2
+   5e6fc:	350000e0 	cbnz	w0, 5e718 <validateTonewithCDE@@Base+0x120ec>
+   5e700:	394283a1 	ldrb	w1, [x29, #160]
+   5e704:	39438ba0 	ldrb	w0, [x29, #226]
+   5e708:	350007e1 	cbnz	w1, 5e804 <validateTonewithCDE@@Base+0x121d8>
+   5e70c:	35000920 	cbnz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e710:	394287a0 	ldrb	w0, [x29, #161]
+   5e714:	350008e0 	cbnz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e718:	b000153c 	adrp	x28, 303000 <memset@GLIBC_2.17>
+   5e71c:	d2820105 	mov	x5, #0x1008                	// #4104
+   5e720:	8b0503b9 	add	x25, x29, x5
+   5e724:	d0000f81 	adrp	x1, 250000 <_fini@@Base+0x83b8>
+   5e728:	913b0421 	add	x1, x1, #0xec1  ; 'InternetGatewayDevice.X_Authentication.WebAccount.Enable'
+   5e72c:	f9452382 	ldr	x2, [x28, #2624]  ; GOT strcpy@GLIBC_2.17
+   5e730:	aa1903e0 	mov	x0, x25
+   5e734:	d63f0040 	blr	x2
+   5e738:	90001543 	adrp	x3, 306000 <_fini@@Base+0xbe3b8>
+   5e73c:	aa1903e0 	mov	x0, x25
+   5e740:	d0001559 	adrp	x25, 308000 <_fini@@Base+0xc03b8>
+   5e744:	aa1a03e1 	mov	x1, x26
+   5e748:	f9446063 	ldr	x3, [x3, #2240]
+   5e74c:	52802202 	mov	w2, #0x110                 	// #272
+   5e750:	d63f0060 	blr	x3
+   5e754:	f941c33a 	ldr	x26, [x25, #896]  ; GOT strcasecmp@GLIBC_2.17
+   5e758:	aa0003fb 	mov	x27, x0
+   5e75c:	b0000f41 	adrp	x1, 247000 <changeASCIIToHex@@Base+0x18f9a8>
+   5e760:	913e2c21 	add	x1, x1, #0xf8b  ; 'VIET'
+   5e764:	aa1803e0 	mov	x0, x24
+   5e768:	d63f0340 	blr	x26
+   5e76c:	f90037bc 	str	x28, [x29, #104]
+   5e770:	35000740 	cbnz	w0, 5e858 <validateTonewithCDE@@Base+0x1222c>
+   5e774:	f9437294 	ldr	x20, [x20, #1760]
+   5e778:	52800001 	mov	w1, #0x0                   	// #0
+   5e77c:	aa1603e0 	mov	x0, x22
+   5e780:	d63f0280 	blr	x20
+   5e784:	35000560 	cbnz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e788:	90001542 	adrp	x2, 306000 <_fini@@Base+0xbe3b8>
+   5e78c:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5e790:	9105b821 	add	x1, x1, #0x16e  ; 'True'
+   5e794:	f9424442 	ldr	x2, [x2, #1160]  ; GOT strcmp@GLIBC_2.17
+   5e798:	aa1b03e0 	mov	x0, x27
+   5e79c:	d63f0040 	blr	x2
+   5e7a0:	350000e0 	cbnz	w0, 5e7bc <validateTonewithCDE@@Base+0x12190>
+   5e7a4:	d0001542 	adrp	x2, 308000 <_fini@@Base+0xc03b8>
+   5e7a8:	390627bf 	strb	wzr, [x29, #393]
+   5e7ac:	52800021 	mov	w1, #0x1                   	// #1
+   5e7b0:	aa1603e0 	mov	x0, x22
+   5e7b4:	f9400442 	ldr	x2, [x2, #8]
+   5e7b8:	d63f0040 	blr	x2
+   5e7bc:	913fe262 	add	x2, x19, #0xff8
+   5e7c0:	91018ac1 	add	x1, x22, #0x62
+   5e7c4:	911d0042 	add	x2, x2, #0x740
+   5e7c8:	5281b1a3 	mov	w3, #0xd8d                 	// #3469
+   5e7cc:	9103a2c0 	add	x0, x22, #0xe8
+   5e7d0:	14000015 	b	5e824 <validateTonewithCDE@@Base+0x121f8>
+   5e7d4:	f941b421 	ldr	x1, [x1, #872]
+   5e7d8:	52800000 	mov	w0, #0x0                   	// #0
+   5e7dc:	d63f0020 	blr	x1
+   5e7e0:	b0001544 	adrp	x4, 307000 <sal_hgu_qos_delete_classify>
+   5e7e4:	b0000fc3 	adrp	x3, 257000 <_fini@@Base+0xf3b8>
+   5e7e8:	91051063 	add	x3, x3, #0x144  ; 'cannot obtain object OID_CT_SERVICEMANAGE'
+   5e7ec:	f9467884 	ldr	x4, [x4, #3312]  ; GOT log_log
+   5e7f0:	5281ac62 	mov	w2, #0xd63                 	// #3427
+   5e7f4:	aa1903e1 	mov	x1, x25
+   5e7f8:	52800060 	mov	w0, #0x3                   	// #3
+   5e7fc:	d63f0080 	blr	x4
+   5e800:	17ffffb4 	b	5e6d0 <validateTonewithCDE@@Base+0x120a4>
+   5e804:	34000160 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e808:	394287a0 	ldrb	w0, [x29, #161]
+   5e80c:	34000120 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e810:	913fe262 	add	x2, x19, #0xff8
+   5e814:	91008721 	add	x1, x25, #0x21
+   5e818:	911d0042 	add	x2, x2, #0x740
+   5e81c:	91018b20 	add	x0, x25, #0x62
+   5e820:	5281af23 	mov	w3, #0xd79                 	// #3449
+   5e824:	f0001524 	adrp	x4, 305000 <ha_createL1Session>
+   5e828:	f9478884 	ldr	x4, [x4, #3856]
+   5e82c:	d63f0080 	blr	x4
+   5e830:	f9403fa1 	ldr	x1, [x29, #120]
+   5e834:	52800000 	mov	w0, #0x0                   	// #0
+   5e838:	f9459021 	ldr	x1, [x1, #2848]
+   5e83c:	f94a0fa2 	ldr	x2, [x29, #5144]
+   5e840:	f9400021 	ldr	x1, [x1]
+   5e844:	ca010041 	eor	x1, x2, x1
+   5e848:	b4001e41 	cbz	x1, 5ec10 <validateTonewithCDE@@Base+0x125e4>
+   5e84c:	d0001540 	adrp	x0, 308000 <_fini@@Base+0xc03b8>
+   5e850:	f9424000 	ldr	x0, [x0, #1152]  ; GOT __stack_chk_fail@GLIBC_2.17
+   5e854:	d63f0000 	blr	x0
+   5e858:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5e85c:	9105cc21 	add	x1, x1, #0x173  ; 'TLSF'
+   5e860:	aa1803e0 	mov	x0, x24
+   5e864:	d63f0340 	blr	x26
+   5e868:	35000920 	cbnz	w0, 5e98c <validateTonewithCDE@@Base+0x12360>
+   5e86c:	f9437282 	ldr	x2, [x20, #1760]
+   5e870:	52800001 	mov	w1, #0x0                   	// #0
+   5e874:	aa1603e0 	mov	x0, x22
+   5e878:	d63f0040 	blr	x2
+   5e87c:	35000520 	cbnz	w0, 5e920 <validateTonewithCDE@@Base+0x122f4>
+   5e880:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5e884:	9105b821 	add	x1, x1, #0x16e  ; 'True'
+   5e888:	aa1b03e0 	mov	x0, x27
+   5e88c:	d63f0340 	blr	x26
+   5e890:	35000480 	cbnz	w0, 5e920 <validateTonewithCDE@@Base+0x122f4>
+   5e894:	913fe278 	add	x24, x19, #0xff8
+   5e898:	d2820401 	mov	x1, #0x1020                	// #4128
+   5e89c:	8b0103a1 	add	x1, x29, x1
+   5e8a0:	d2824123 	mov	x3, #0x1209                	// #4617
+   5e8a4:	d2801fe2 	mov	x2, #0xff                  	// #255
+   5e8a8:	9103a2d9 	add	x25, x22, #0xe8
+   5e8ac:	3950cb00 	ldrb	w0, [x24, #1074]
+   5e8b0:	3907a020 	strb	w0, [x1, #488]
+   5e8b4:	8b0303a0 	add	x0, x29, x3
+   5e8b8:	f9403ba3 	ldr	x3, [x29, #112]
+   5e8bc:	52800001 	mov	w1, #0x0                   	// #0
+   5e8c0:	f9400063 	ldr	x3, [x3]
+   5e8c4:	d63f0060 	blr	x3
+   5e8c8:	f0001524 	adrp	x4, 305000 <ha_createL1Session>
+   5e8cc:	911d0302 	add	x2, x24, #0x740
+   5e8d0:	5281b2c3 	mov	w3, #0xd96                 	// #3478
+   5e8d4:	91028ec1 	add	x1, x22, #0xa3
+   5e8d8:	f9478884 	ldr	x4, [x4, #3856]
+   5e8dc:	aa1903e0 	mov	x0, x25
+   5e8e0:	d63f0080 	blr	x4
+   5e8e4:	f0001505 	adrp	x5, 301000 <_fini@@Base+0xb93b8>
+   5e8e8:	d2824104 	mov	x4, #0x1208                	// #4616
+   5e8ec:	8b0403b8 	add	x24, x29, x4
+   5e8f0:	52800001 	mov	w1, #0x0                   	// #0
+   5e8f4:	f9469ca5 	ldr	x5, [x5, #3384]  ; GOT __sprintf_chk@GLIBC_2.17
+   5e8f8:	aa1903e4 	mov	x4, x25
+   5e8fc:	b0000fc3 	adrp	x3, 257000 <_fini@@Base+0xf3b8>
+   5e900:	9105e063 	add	x3, x3, #0x178  ; 'deluser %s\n'
+   5e904:	d2802002 	mov	x2, #0x100                 	// #256
+   5e908:	aa1803e0 	mov	x0, x24
+   5e90c:	d63f00a0 	blr	x5
+   5e910:	d0001521 	adrp	x1, 304000 <_fini@@Base+0xbc3b8>
+   5e914:	aa1803e0 	mov	x0, x24
+   5e918:	f944b421 	ldr	x1, [x1, #2408]  ; GOT _system
+   5e91c:	d63f0020 	blr	x1
+   5e920:	f9437294 	ldr	x20, [x20, #1760]
+   5e924:	52800001 	mov	w1, #0x0                   	// #0
+   5e928:	aa1503e0 	mov	x0, x21
+   5e92c:	d63f0280 	blr	x20
+   5e930:	35fff800 	cbnz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e934:	394ae7a0 	ldrb	w0, [x29, #697]
+   5e938:	340000e0 	cbz	w0, 5e954 <validateTonewithCDE@@Base+0x12328>
+   5e93c:	913fe262 	add	x2, x19, #0xff8
+   5e940:	91020ea1 	add	x1, x21, #0x83
+   5e944:	911d0042 	add	x2, x2, #0x740
+   5e948:	5281b403 	mov	w3, #0xda0                 	// #3488
+   5e94c:	910426a0 	add	x0, x21, #0x109
+   5e950:	17ffffb5 	b	5e824 <validateTonewithCDE@@Base+0x121f8>
+   5e954:	394d87a0 	ldrb	w0, [x29, #865]
+   5e958:	34fff6c0 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e95c:	90001542 	adrp	x2, 306000 <_fini@@Base+0xbe3b8>
+   5e960:	910426b5 	add	x21, x21, #0x109
+   5e964:	9103a2c1 	add	x1, x22, #0xe8
+   5e968:	aa1503e0 	mov	x0, x21
+   5e96c:	f9424442 	ldr	x2, [x2, #1160]  ; GOT strcmp@GLIBC_2.17
+   5e970:	d63f0040 	blr	x2
+   5e974:	34fff5e0 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5e978:	913fe261 	add	x1, x19, #0xff8
+   5e97c:	5281b4c2 	mov	w2, #0xda6                 	// #3494
+   5e980:	911d0021 	add	x1, x1, #0x740
+   5e984:	aa1503e0 	mov	x0, x21
+   5e988:	1400006c 	b	5eb38 <validateTonewithCDE@@Base+0x1250c>
+   5e98c:	b0000fdc 	adrp	x28, 257000 <_fini@@Base+0xf3b8>
+   5e990:	91061381 	add	x1, x28, #0x184  ; 'BTGF'
+   5e994:	aa1803e0 	mov	x0, x24
+   5e998:	d63f0340 	blr	x26
+   5e99c:	340002a0 	cbz	w0, 5e9f0 <validateTonewithCDE@@Base+0x123c4>
+   5e9a0:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5e9a4:	91062421 	add	x1, x1, #0x189  ; 'PXSF'
+   5e9a8:	aa1803e0 	mov	x0, x24
+   5e9ac:	d63f0340 	blr	x26
+   5e9b0:	34000200 	cbz	w0, 5e9f0 <validateTonewithCDE@@Base+0x123c4>
+   5e9b4:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5e9b8:	91063821 	add	x1, x1, #0x18e  ; 'GDSL'
+   5e9bc:	aa1803e0 	mov	x0, x24
+   5e9c0:	d63f0340 	blr	x26
+   5e9c4:	34000160 	cbz	w0, 5e9f0 <validateTonewithCDE@@Base+0x123c4>
+   5e9c8:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5e9cc:	91064c21 	add	x1, x1, #0x193  ; 'XDSL'
+   5e9d0:	aa1803e0 	mov	x0, x24
+   5e9d4:	d63f0340 	blr	x26
+   5e9d8:	340000c0 	cbz	w0, 5e9f0 <validateTonewithCDE@@Base+0x123c4>
+   5e9dc:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5e9e0:	91066021 	add	x1, x1, #0x198  ; 'ATGF'
+   5e9e4:	aa1803e0 	mov	x0, x24
+   5e9e8:	d63f0340 	blr	x26
+   5e9ec:	35000740 	cbnz	w0, 5ead4 <validateTonewithCDE@@Base+0x124a8>
+   5e9f0:	f9437282 	ldr	x2, [x20, #1760]
+   5e9f4:	52800001 	mov	w1, #0x0                   	// #0
+   5e9f8:	aa1603e0 	mov	x0, x22
+   5e9fc:	d63f0040 	blr	x2
+   5ea00:	35000480 	cbnz	w0, 5ea90 <validateTonewithCDE@@Base+0x12464>
+   5ea04:	f941c339 	ldr	x25, [x25, #896]  ; GOT strcasecmp@GLIBC_2.17
+   5ea08:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5ea0c:	9105b821 	add	x1, x1, #0x16e  ; 'True'
+   5ea10:	aa1b03e0 	mov	x0, x27
+   5ea14:	d63f0320 	blr	x25
+   5ea18:	350003c0 	cbnz	w0, 5ea90 <validateTonewithCDE@@Base+0x12464>
+   5ea1c:	91061381 	add	x1, x28, #0x184  ; 'BTGF'
+   5ea20:	aa1803e0 	mov	x0, x24
+   5ea24:	d63f0320 	blr	x25
+   5ea28:	35000240 	cbnz	w0, 5ea70 <validateTonewithCDE@@Base+0x12444>
+   5ea2c:	39472fa0 	ldrb	w0, [x29, #459]
+   5ea30:	35000200 	cbnz	w0, 5ea70 <validateTonewithCDE@@Base+0x12444>
+   5ea34:	f94037a2 	ldr	x2, [x29, #104]
+   5ea38:	b0000fd8 	adrp	x24, 257000 <_fini@@Base+0xf3b8>
+   5ea3c:	91067718 	add	x24, x24, #0x19d  ; 'su73#68@ALUcpe'
+   5ea40:	aa1803e1 	mov	x1, x24
+   5ea44:	91028ec0 	add	x0, x22, #0xa3
+   5ea48:	f945205c 	ldr	x28, [x2, #2624]
+   5ea4c:	d63f0380 	blr	x28
+   5ea50:	b0001523 	adrp	x3, 303000 <memset@GLIBC_2.17>
+   5ea54:	d0000f61 	adrp	x1, 24c000 <_fini@@Base+0x43b8>
+   5ea58:	91109021 	add	x1, x1, #0x424
+   5ea5c:	f9425463 	ldr	x3, [x3, #1192]
+   5ea60:	d0000f40 	adrp	x0, 248000 <_fini@@Base+0x3b8>
+   5ea64:	911d3000 	add	x0, x0, #0x74c  ; 'InternetGatewayDevice.X_Authentication.WebAccount.PresetPassword'
+   5ea68:	aa1803e2 	mov	x2, x24
+   5ea6c:	d63f0060 	blr	x3
+   5ea70:	f0001524 	adrp	x4, 305000 <ha_createL1Session>
+   5ea74:	913fe262 	add	x2, x19, #0xff8
+   5ea78:	5281b763 	mov	w3, #0xdbb                 	// #3515
+   5ea7c:	911d0042 	add	x2, x2, #0x740  ; 'x=6 queue_cfg[0]={queue_id=6,drop_threshold=256}'
+   5ea80:	f9478884 	ldr	x4, [x4, #3856]
+   5ea84:	91028ec1 	add	x1, x22, #0xa3
+   5ea88:	9103a2c0 	add	x0, x22, #0xe8
+   5ea8c:	d63f0080 	blr	x4
+   5ea90:	f9437294 	ldr	x20, [x20, #1760]
+   5ea94:	52800001 	mov	w1, #0x0                   	// #0
+   5ea98:	aa1503e0 	mov	x0, x21
+   5ea9c:	d63f0280 	blr	x20
+   5eaa0:	35ffec80 	cbnz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5eaa4:	394d87a0 	ldrb	w0, [x29, #865]
+   5eaa8:	34ffec40 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5eaac:	90001542 	adrp	x2, 306000 <_fini@@Base+0xbe3b8>
+   5eab0:	910426b5 	add	x21, x21, #0x109
+   5eab4:	9103a2c1 	add	x1, x22, #0xe8
+   5eab8:	aa1503e0 	mov	x0, x21
+   5eabc:	f9424442 	ldr	x2, [x2, #1160]  ; GOT strcmp@GLIBC_2.17
+   5eac0:	d63f0040 	blr	x2
+   5eac4:	34ffeb60 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5eac8:	913fe261 	add	x1, x19, #0xff8
+   5eacc:	5281b842 	mov	w2, #0xdc2                 	// #3522
+   5ead0:	17ffffac 	b	5e980 <validateTonewithCDE@@Base+0x12354>
+   5ead4:	d0000f61 	adrp	x1, 24c000 <_fini@@Base+0x43b8>
+   5ead8:	91292c21 	add	x1, x1, #0xa4b  ; 'ITAX'
+   5eadc:	aa1803e0 	mov	x0, x24
+   5eae0:	d63f0340 	blr	x26
+   5eae4:	52800001 	mov	w1, #0x0                   	// #0
+   5eae8:	350002e0 	cbnz	w0, 5eb44 <validateTonewithCDE@@Base+0x12518>
+   5eaec:	f9437282 	ldr	x2, [x20, #1760]
+   5eaf0:	aa1603e0 	mov	x0, x22
+   5eaf4:	d63f0040 	blr	x2
+   5eaf8:	350000e0 	cbnz	w0, 5eb14 <validateTonewithCDE@@Base+0x124e8>
+   5eafc:	f94556e3 	ldr	x3, [x23, #2728]
+   5eb00:	913fe261 	add	x1, x19, #0xff8
+   5eb04:	5281b962 	mov	w2, #0xdcb                 	// #3531
+   5eb08:	911d0021 	add	x1, x1, #0x740  ; '=%s \n'
+   5eb0c:	9103a2c0 	add	x0, x22, #0xe8
+   5eb10:	d63f0060 	blr	x3
+   5eb14:	f9437294 	ldr	x20, [x20, #1760]
+   5eb18:	52800001 	mov	w1, #0x0                   	// #0
+   5eb1c:	aa1503e0 	mov	x0, x21
+   5eb20:	d63f0280 	blr	x20
+   5eb24:	35ffe860 	cbnz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5eb28:	913fe261 	add	x1, x19, #0xff8
+   5eb2c:	910426a0 	add	x0, x21, #0x109
+   5eb30:	911d0021 	add	x1, x1, #0x740  ; 'inkDetect=%d, voiceProtocol=%d'
+   5eb34:	5281ba02 	mov	w2, #0xdd0                 	// #3536
+   5eb38:	f94556f7 	ldr	x23, [x23, #2728]
+   5eb3c:	d63f02e0 	blr	x23
+   5eb40:	17ffff3c 	b	5e830 <validateTonewithCDE@@Base+0x12204>
+   5eb44:	f9437282 	ldr	x2, [x20, #1760]
+   5eb48:	aa1603e0 	mov	x0, x22
+   5eb4c:	d63f0040 	blr	x2
+   5eb50:	35000300 	cbnz	w0, 5ebb0 <validateTonewithCDE@@Base+0x12584>
+   5eb54:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5eb58:	9105b821 	add	x1, x1, #0x16e  ; 'True'
+   5eb5c:	aa1b03e0 	mov	x0, x27
+   5eb60:	d63f0340 	blr	x26
+   5eb64:	35000260 	cbnz	w0, 5ebb0 <validateTonewithCDE@@Base+0x12584>
+   5eb68:	f941c339 	ldr	x25, [x25, #896]
+   5eb6c:	b0000fc1 	adrp	x1, 257000 <_fini@@Base+0xf3b8>
+   5eb70:	9106b021 	add	x1, x1, #0x1ac  ; 'STXX'
+   5eb74:	aa1803e0 	mov	x0, x24
+   5eb78:	d63f0320 	blr	x25
+   5eb7c:	35000100 	cbnz	w0, 5eb9c <validateTonewithCDE@@Base+0x12570>
+   5eb80:	f94556f7 	ldr	x23, [x23, #2728]
+   5eb84:	913fe261 	add	x1, x19, #0xff8
+   5eb88:	d0001320 	adrp	x0, 2c4000 <_fini@@Base+0x7c3b8>
+   5eb8c:	91198800 	add	x0, x0, #0x662  ; 'root'
+   5eb90:	5281bb62 	mov	w2, #0xddb                 	// #3547
+   5eb94:	911d0021 	add	x1, x1, #0x740  ; ']={queue_id=6,drop_threshold=256}'
+   5eb98:	d63f02e0 	blr	x23
+   5eb9c:	913fe262 	add	x2, x19, #0xff8
+   5eba0:	5281bba3 	mov	w3, #0xddd                 	// #3549
+   5eba4:	911d0042 	add	x2, x2, #0x740
+   5eba8:	91028ec1 	add	x1, x22, #0xa3
+   5ebac:	17ffff08 	b	5e7cc <validateTonewithCDE@@Base+0x121a0>
+   5ebb0:	f9437294 	ldr	x20, [x20, #1760]
+   5ebb4:	52800001 	mov	w1, #0x0                   	// #0
+   5ebb8:	aa1503e0 	mov	x0, x21
+   5ebbc:	d63f0280 	blr	x20
+   5ebc0:	35ffe380 	cbnz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5ebc4:	394ae7a0 	ldrb	w0, [x29, #697]
+   5ebc8:	340000c0 	cbz	w0, 5ebe0 <validateTonewithCDE@@Base+0x125b4>
+   5ebcc:	913fe262 	add	x2, x19, #0xff8
+   5ebd0:	5281bca3 	mov	w3, #0xde5                 	// #3557
+   5ebd4:	911d0042 	add	x2, x2, #0x740
+   5ebd8:	91028ec1 	add	x1, x22, #0xa3
+   5ebdc:	17ffff5c 	b	5e94c <validateTonewithCDE@@Base+0x12320>
+   5ebe0:	394d87a0 	ldrb	w0, [x29, #865]
+   5ebe4:	34ffe260 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5ebe8:	90001542 	adrp	x2, 306000 <_fini@@Base+0xbe3b8>
+   5ebec:	910426b5 	add	x21, x21, #0x109
+   5ebf0:	9103a2c1 	add	x1, x22, #0xe8
+   5ebf4:	aa1503e0 	mov	x0, x21
+   5ebf8:	f9424442 	ldr	x2, [x2, #1160]  ; GOT strcmp@GLIBC_2.17
+   5ebfc:	d63f0040 	blr	x2
+   5ec00:	34ffe180 	cbz	w0, 5e830 <validateTonewithCDE@@Base+0x12204>
+   5ec04:	913fe261 	add	x1, x19, #0xff8
+   5ec08:	5281bd62 	mov	w2, #0xdeb                 	// #3563
+   5ec0c:	17ffff5d 	b	5e980 <validateTonewithCDE@@Base+0x12354>
+   5ec10:	a9407bfd 	ldp	x29, x30, [sp]
+   5ec14:	d2828410 	mov	x16, #0x1420                	// #5152
+   5ec18:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5ec1c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   5ec20:	a94363f7 	ldp	x23, x24, [sp, #48]
+   5ec24:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   5ec28:	a94573fb 	ldp	x27, x28, [sp, #80]
+   5ec2c:	8b3063ff 	add	sp, sp, x16
+   5ec30:	d65f03c0 	ret
+   5ec34:	d10b43ff 	sub	sp, sp, #0x2d0
+   5ec38:	d2802522 	mov	x2, #0x129                 	// #297
+   5ec3c:	a9007bfd 	stp	x29, x30, [sp]
+   5ec40:	910003fd 	mov	x29, sp
+   5ec44:	a90153f3 	stp	x19, x20, [sp, #16]
+   5ec48:	b0001534 	adrp	x20, 303000 <memset@GLIBC_2.17>
+   5ec4c:	b0001553 	adrp	x19, 307000 <sal_hgu_qos_delete_classify>
+   5ec50:	a9025bf5 	stp	x21, x22, [sp, #32]
+   5ec54:	f9400294 	ldr	x20, [x20]  ; GOT memset@GLIBC_2.17
+   5ec58:	9100e3b6 	add	x22, x29, #0x38
+   5ec5c:	f9459260 	ldr	x0, [x19, #2848]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5ec60:	9105a3b5 	add	x21, x29, #0x168
+   5ec64:	f9400001 	ldr	x1, [x0]
+   5ec68:	f90167a1 	str	x1, [x29, #712]
+   5ec6c:	d2800001 	mov	x1, #0x0                   	// #0
+   5ec70:	aa1603e0 	mov	x0, x22
+   5ec74:	d63f0280 	blr	x20
+   5ec78:	52801420 	mov	w0, #0xa1                  	// #161
+   5ec7c:	d2802b62 	mov	x2, #0x15b                 	// #347

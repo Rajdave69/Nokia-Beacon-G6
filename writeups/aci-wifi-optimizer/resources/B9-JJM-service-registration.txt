@@ -1,0 +1,137 @@
+0006ebe4: 9766fe17  b #0x8640
+0006ebe8: fd7bbca9  stp x29, x30, [sp, #-0x40]!
+0006ebec: fd030091  mov x29, sp
+0006ebf0: f35301a9  stp x19, x20, [sp, #0x10]
+0006ebf4: 740100d0  adrp x20, #0x9c000
+0006ebf8: f55b02a9  stp x21, x22, [sp, #0x20]
+0006ebfc: f5000090  adrp x21, #0x8a000
+0006ec00: 96d644f9  ldr x22, [x20, #0x9a8]
+0006ec04: b5420991  add x21, x21, #0x250
+0006ec08: c00240f9  ldr x0, [x22]
+0006ec0c: a01f00f9  str x0, [x29, #0x38]
+0006ec10: 000080d2  mov x0, #0
+0006ec14: e00315aa  mov x0, x21
+0006ec18: fa67fe97  bl #0x8c00 ; heuristic ndbusOwnName@plt {"x0": "nokia.ai_engine"}
+0006ec1c: 00020034  cbz w0, #0x6ec5c
+0006ec20: c10000f0  adrp x1, #0x89000
+0006ec24: 21603591  add x1, x1, #0xd58
+0006ec28: e2000090  adrp x2, #0x8a000
+0006ec2c: 21800091  add x1, x1, #0x20
+0006ec30: 42800991  add x2, x2, #0x260
+0006ec34: f303002a  mov w19, w0
+0006ec38: 80408052  mov w0, #0x204
+0006ec3c: e166fe97  bl #0x87c0 ; heuristic ndbusLogFatalReal@plt {"x0": 516, "x1": "register_ai_engine_service", "x2": "failed to request bus name for ai_engine service\n"}
+0006ec40: 94d644f9  ldr x20, [x20, #0x9a8]
+0006ec44: e003132a  mov w0, w19
+0006ec48: a21f40f9  ldr x2, [x29, #0x38]
+0006ec4c: 810240f9  ldr x1, [x20]
+0006ec50: 410001ca  eor x1, x2, x1
+0006ec54: 011000b4  cbz x1, #0x6ee54
+0006ec58: ce66fe97  bl #0x8790 ; heuristic __stack_chk_fail@plt {}
+0006ec5c: 002380d2  mov x0, #0x118
+0006ec60: d065fe97  bl #0x83a0 ; heuristic malloc@plt {"x0": 280}
+0006ec64: 400e00b4  cbz x0, #0x6ee2c
+0006ec68: 620100d0  adrp x2, #0x9c000
+0006ec6c: 429047f9  ldr x2, [x2, #0xf20]
+0006ec70: 020800f9  str x2, [x0, #0x10]
+0006ec74: 620100d0  adrp x2, #0x9c000
+0006ec78: 42d044f9  ldr x2, [x2, #0x9a0]
+0006ec7c: 020c00f9  str x2, [x0, #0x18]
+0006ec80: 620100d0  adrp x2, #0x9c000
+0006ec84: 429845f9  ldr x2, [x2, #0xb30]
+0006ec88: 021000f9  str x2, [x0, #0x20]
+0006ec8c: 620100d0  adrp x2, #0x9c000
+0006ec90: 429c47f9  ldr x2, [x2, #0xf38]
+0006ec94: 021400f9  str x2, [x0, #0x28]
+0006ec98: 620100d0  adrp x2, #0x9c000
+0006ec9c: 426045f9  ldr x2, [x2, #0xac0]
+0006eca0: 021800f9  str x2, [x0, #0x30]
+0006eca4: 620100d0  adrp x2, #0x9c000
+0006eca8: 42a046f9  ldr x2, [x2, #0xd40]
+0006ecac: 021c00f9  str x2, [x0, #0x38]
+0006ecb0: 620100d0  adrp x2, #0x9c000
+0006ecb4: 427c45f9  ldr x2, [x2, #0xaf8]
+0006ecb8: 022000f9  str x2, [x0, #0x40]
+0006ecbc: 620100d0  adrp x2, #0x9c000
+0006ecc0: 423c45f9  ldr x2, [x2, #0xa78]
+0006ecc4: 022400f9  str x2, [x0, #0x48]
+0006ecc8: 620100d0  adrp x2, #0x9c000
+0006eccc: 421847f9  ldr x2, [x2, #0xe30]
+0006ecd0: 022800f9  str x2, [x0, #0x50]
+0006ecd4: 620100d0  adrp x2, #0x9c000
+0006ecd8: 42dc45f9  ldr x2, [x2, #0xbb8]
+0006ecdc: 022c00f9  str x2, [x0, #0x58]
+0006ece0: 620100d0  adrp x2, #0x9c000
+0006ece4: 42b847f9  ldr x2, [x2, #0xf70]
+0006ece8: 023000f9  str x2, [x0, #0x60]
+0006ecec: 620100d0  adrp x2, #0x9c000
+0006ecf0: 420045f9  ldr x2, [x2, #0xa00]
+0006ecf4: 023400f9  str x2, [x0, #0x68]
+0006ecf8: 620100d0  adrp x2, #0x9c000
+0006ecfc: 422c45f9  ldr x2, [x2, #0xa58]
+0006ed00: 023800f9  str x2, [x0, #0x70]
+0006ed04: 620100d0  adrp x2, #0x9c000
+0006ed08: 42d844f9  ldr x2, [x2, #0x9b0]
+0006ed0c: 023c00f9  str x2, [x0, #0x78]
+0006ed10: 620100d0  adrp x2, #0x9c000
+0006ed14: 42fc47f9  ldr x2, [x2, #0xff8]
+0006ed18: 024000f9  str x2, [x0, #0x80]
+0006ed1c: 620100d0  adrp x2, #0x9c000
+0006ed20: 424c47f9  ldr x2, [x2, #0xe98]
+0006ed24: 024400f9  str x2, [x0, #0x88]
+0006ed28: 620100d0  adrp x2, #0x9c000
+0006ed2c: 421045f9  ldr x2, [x2, #0xa20]
+0006ed30: 024800f9  str x2, [x0, #0x90]
+0006ed34: 620100d0  adrp x2, #0x9c000
+0006ed38: 420046f9  ldr x2, [x2, #0xc00]
+0006ed3c: 024c00f9  str x2, [x0, #0x98]
+0006ed40: 620100d0  adrp x2, #0x9c000
+0006ed44: 42f444f9  ldr x2, [x2, #0x9e8]
+0006ed48: 025000f9  str x2, [x0, #0xa0]
+0006ed4c: 620100d0  adrp x2, #0x9c000
+0006ed50: 42c845f9  ldr x2, [x2, #0xb90]
+0006ed54: 025400f9  str x2, [x0, #0xa8]
+0006ed58: 620100d0  adrp x2, #0x9c000
+0006ed5c: 42a445f9  ldr x2, [x2, #0xb48]
+0006ed60: 025800f9  str x2, [x0, #0xb0]
+0006ed64: 620100d0  adrp x2, #0x9c000
+0006ed68: 42e046f9  ldr x2, [x2, #0xdc0]
+0006ed6c: 025c00f9  str x2, [x0, #0xb8]
+0006ed70: 620100d0  adrp x2, #0x9c000
+0006ed74: 422846f9  ldr x2, [x2, #0xc50]
+0006ed78: 026000f9  str x2, [x0, #0xc0]
+0006ed7c: 620100d0  adrp x2, #0x9c000
+0006ed80: 42a447f9  ldr x2, [x2, #0xf48]
+0006ed84: 026400f9  str x2, [x0, #0xc8]
+0006ed88: 620100d0  adrp x2, #0x9c000
+0006ed8c: 427c46f9  ldr x2, [x2, #0xcf8]
+0006ed90: 026800f9  str x2, [x0, #0xd0]
+0006ed94: 620100d0  adrp x2, #0x9c000
+0006ed98: 425847f9  ldr x2, [x2, #0xeb0]
+0006ed9c: 026c00f9  str x2, [x0, #0xd8]
+0006eda0: 620100d0  adrp x2, #0x9c000
+0006eda4: 42d046f9  ldr x2, [x2, #0xda0]
+0006eda8: 027000f9  str x2, [x0, #0xe0]
+0006edac: 620100d0  adrp x2, #0x9c000
+0006edb0: 427846f9  ldr x2, [x2, #0xcf0]
+0006edb4: 027400f9  str x2, [x0, #0xe8]
+0006edb8: 620100d0  adrp x2, #0x9c000
+0006edbc: 426446f9  ldr x2, [x2, #0xcc8]
+0006edc0: 027800f9  str x2, [x0, #0xf0]
+0006edc4: 620100d0  adrp x2, #0x9c000
+0006edc8: 42d045f9  ldr x2, [x2, #0xba0]
+0006edcc: 027c00f9  str x2, [x0, #0xf8]
+0006edd0: 620100d0  adrp x2, #0x9c000
+0006edd4: 42d447f9  ldr x2, [x2, #0xfa8]
+0006edd8: 028000f9  str x2, [x0, #0x100]
+0006eddc: 620100d0  adrp x2, #0x9c000
+0006ede0: 42e445f9  ldr x2, [x2, #0xbc8]
+0006ede4: 028400f9  str x2, [x0, #0x108]
+0006ede8: 620100d0  adrp x2, #0x9c000
+0006edec: 425c46f9  ldr x2, [x2, #0xcb8]
+0006edf0: 028800f9  str x2, [x0, #0x110]
+0006edf4: 02000090  adrp x2, #0x6e000
+0006edf8: 42902691  add x2, x2, #0x9a4
+0006edfc: 150000f9  str x21, [x0]
+0006ee00: 020400f9  str x2, [x0, #8]
+0006ee04: 5765fe97  bl #0x8360 ; heuristic ndbusRegisterService@plt {"x2": 453028}

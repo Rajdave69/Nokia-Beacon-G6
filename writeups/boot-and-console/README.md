@@ -106,7 +106,7 @@ The central lesson of this investigation is that the cable, the prompt, and the 
 
 ## Checking a second G6
 
-The [two-G6 follow-up](../two-g6-key-comparison/README.md) confirms the same Password2 public key and ordinary keysrc1 verifier in IJL.J03/HJL.L91, with different normal per-device messages. The second live ECC public key and secmulti hashes match stock HJL.L91. The captured boot verifiers differ, but the first is the owner's `OpenWrt2026!` override; this is not a comparison of two original factory boot values.
+The [two-G6 follow-up](../comparing-other-g6-routers/README.md) confirms the same Password2 public key and ordinary keysrc1 verifier in IJL.J03/HJL.L91, with different normal per-device messages. The second live ECC public key and secmulti hashes match stock HJL.L91. The captured boot verifiers differ, but the first is the owner's `OpenWrt2026!` override; this is not a comparison of two original factory boot values.
 
 The owner has now supplemented both dump directories with MTD0. Their BL2 and BL31 payloads are identical, while BL33/U-Boot and its certificate contents differ. The corresponding certificate public keys are unchanged. The two actual `en` verifiers retain the same factory-hash and serial-fallback paths;36 offline native cases pass with synthetic factory records and intercepted storage/SHA calls. This extends the first-unit trace to the supplied second bootloader, without a live gate login.
 
@@ -138,3 +138,7 @@ values; it does not newly trace the ONT bootloader verifier or recover its
 plaintext. Both ONT images share the public Password2 verification key and
 firmware trust certificate with the Beacons. No ONT UART unlock, recovery boot,
 watchdog command or live Password2 test has been performed. [Provenance](../xs2426xa-24-03-comparison/resources/writable-findings.json).
+
+## Secure-boot follow-up
+
+The [secure-boot writeup](../secure-boot/README.md) checks all four saved G6 SSB packages and records the fifth unit's owner-reported `ROTPK_Hash` status of `enabled`. It distinguishes the console gate, authenticated early stages, Linux FIT verification and the working external-initramfs route. The fifth status is not a serial-matched measurement of the four old captures.

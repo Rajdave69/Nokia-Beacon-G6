@@ -1,0 +1,712 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/bin/swmgnt:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000004df0 <main@@Base+0xc00>:
+    4df0:	b5000080 	cbnz	x0, 4e00 <main@@Base+0xc10>
+    4df4:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    4df8:	d2800060 	mov	x0, #0x3                   	// #3
+    4dfc:	17fffc41 	b	3f00 <curl_global_init@plt>
+    4e00:	97fffae8 	bl	39a0 <__stack_chk_fail@plt>
+    4e04:	d503201f 	nop
+    4e08:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    4e0c:	d0000100 	adrp	x0, 26000 <_fini@@Base+0x1697c>
+    4e10:	910003fd 	mov	x29, sp
+    4e14:	f947bc00 	ldr	x0, [x0, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4e18:	f9400001 	ldr	x1, [x0]
+    4e1c:	f9000fa1 	str	x1, [x29, #24]
+    4e20:	d2800001 	mov	x1, #0x0                   	// #0
+    4e24:	f9400fa1 	ldr	x1, [x29, #24]
+    4e28:	f9400000 	ldr	x0, [x0]
+    4e2c:	ca000020 	eor	x0, x1, x0
+    4e30:	b5000060 	cbnz	x0, 4e3c <main@@Base+0xc4c>
+    4e34:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    4e38:	17fffc92 	b	4080 <curl_global_cleanup@plt>
+    4e3c:	97fffad9 	bl	39a0 <__stack_chk_fail@plt>
+    4e40:	d2824a10 	mov	x16, #0x1250                	// #4688
+    4e44:	cb3063ff 	sub	sp, sp, x16
+    4e48:	f100003f 	cmp	x1, #0x0
+    4e4c:	fa401844 	ccmp	x2, #0x0, #0x4, ne	// ne = any
+    4e50:	a9017bfd 	stp	x29, x30, [sp, #16]
+    4e54:	910043fd 	add	x29, sp, #0x10
+    4e58:	f9002ffa 	str	x26, [sp, #88]
+    4e5c:	aa0103fa 	mov	x26, x1
+    4e60:	d0000101 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    4e64:	f90017f4 	str	x20, [sp, #40]
+    4e68:	2a0003f4 	mov	w20, w0
+    4e6c:	f90037a3 	str	x3, [x29, #104]
+    4e70:	f947bc21 	ldr	x1, [x1, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    4e74:	f9003fa2 	str	x2, [x29, #120]
+    4e78:	f9400020 	ldr	x0, [x1]
+    4e7c:	f9091fa0 	str	x0, [x29, #4664]
+    4e80:	d2800000 	mov	x0, #0x0                   	// #0
+    4e84:	54004560 	b.eq	5730 <main@@Base+0x1540>  // b.none
+    4e88:	f9000bb3 	str	x19, [x29, #16]
+    4e8c:	97ffffcf 	bl	4dc8 <main@@Base+0xbd8>
+    4e90:	97fffab4 	bl	3960 <curl_easy_init@plt>
+    4e94:	aa0003f3 	mov	x19, x0
+    4e98:	b40048e0 	cbz	x0, 57b4 <main@@Base+0x15c4>
+    4e9c:	a90363b7 	stp	x23, x24, [x29, #48]
+    4ea0:	940005b0 	bl	6560 <get_uptime@@Base+0xc20>
+    4ea4:	aa0003f7 	mov	x23, x0
+    4ea8:	d2800000 	mov	x0, #0x0                   	// #0
+    4eac:	94000f6d 	bl	8c60 <get_uptime@@Base+0x3320>
+    4eb0:	f100001f 	cmp	x0, #0x0
+    4eb4:	aa0003f8 	mov	x24, x0
+    4eb8:	fa401ae4 	ccmp	x23, #0x0, #0x4, ne	// ne = any
+    4ebc:	54004560 	b.eq	5768 <main@@Base+0x1578>  // b.none
+    4ec0:	a90573bb 	stp	x27, x28, [x29, #80]
+    4ec4:	f0000041 	adrp	x1, f000 <stopTimer@@Base+0x1bc0>
+    4ec8:	a9025bb5 	stp	x21, x22, [x29, #32]
+    4ecc:	910562fb 	add	x27, x23, #0x158
+    4ed0:	f90023b9 	str	x25, [x29, #64]
+    4ed4:	912a6021 	add	x1, x1, #0xa98  ; 'https://swupd.wifi.nokia.com'
+    4ed8:	97fffc02 	bl	3ee0 <strcmp@plt>
+    4edc:	35003520 	cbnz	w0, 5580 <main@@Base+0x1390>
+    4ee0:	f0000041 	adrp	x1, f000 <stopTimer@@Base+0x1bc0>
+    4ee4:	aa1b03e0 	mov	x0, x27
+    4ee8:	912ae021 	add	x1, x1, #0xab8
+    4eec:	f0000055 	adrp	x21, f000 <stopTimer@@Base+0x1bc0>
+    4ef0:	97fffbfc 	bl	3ee0 <strcmp@plt>
+    4ef4:	340029a0 	cbz	w0, 5428 <main@@Base+0x1238>
+    4ef8:	912762a7 	add	x7, x21, #0x9d8  ; '_build_http_request'
+    4efc:	f0000056 	adrp	x22, f000 <stopTimer@@Base+0x1bc0>
+    4f00:	912822c9 	add	x9, x22, #0xa08  ; 'swmgnt_cloud.c'
+    4f04:	910060fc 	add	x28, x7, #0x18  ; '_build_http_request'
+    4f08:	aa1803e6 	mov	x6, x24
+    4f0c:	52801145 	mov	w5, #0x8a                  	// #138
+    4f10:	aa0703e4 	mov	x4, x7
+    4f14:	2a0503e1 	mov	w1, w5
+    4f18:	aa0903e3 	mov	x3, x9
+    4f1c:	f90033a9 	str	x9, [x29, #96]
+    4f20:	f9003ba7 	str	x7, [x29, #112]
+    4f24:	aa1c03e0 	mov	x0, x28
+    4f28:	f0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    4f2c:	912d4042 	add	x2, x2, #0xb50  ; 'swmgnt: [%s %s:%d] country id is not cn we use URL= %s'
+    4f30:	97fffc10 	bl	3f70 <nalLogNotice@plt>
+    4f34:	910423b9 	add	x25, x29, #0x108
+    4f38:	aa1803e2 	mov	x2, x24
+    4f3c:	5284e241 	mov	w1, #0x2712                	// #10002
+    4f40:	aa1303e0 	mov	x0, x19
+    4f44:	97fffbd3 	bl	3e90 <curl_easy_setopt@plt>
+    4f48:	97fffaa6 	bl	39e0 <getHieCertPath@plt>
+    4f4c:	aa0003e1 	mov	x1, x0
+    4f50:	d2802562 	mov	x2, #0x12b                 	// #299
+    4f54:	aa1903e0 	mov	x0, x25
+    4f58:	97fffb62 	bl	3ce0 <strncpy@plt>
+    4f5c:	f90003f9 	str	x25, [sp]
+    4f60:	52802580 	mov	w0, #0x12c                 	// #300
+    4f64:	52801266 	mov	w6, #0x93                  	// #147
+    4f68:	b9000be0 	str	w0, [sp, #8]
+    4f6c:	f9403ba7 	ldr	x7, [x29, #112]
+    4f70:	2a0603e5 	mov	w5, w6
+    4f74:	f94033a9 	ldr	x9, [x29, #96]
+    4f78:	f0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    4f7c:	aa0703e4 	mov	x4, x7
+    4f80:	3908cfbf 	strb	wzr, [x29, #563]
+    4f84:	aa0903e3 	mov	x3, x9
+    4f88:	912c4042 	add	x2, x2, #0xb10  ; 'swmgnt: [%s %s:%d] [%d %s]ROOT_CA=%s SWMGNT_MAX_URL_LEN = %d'
+    4f8c:	2a0603e1 	mov	w1, w6
+    4f90:	aa1c03e0 	mov	x0, x28
+    4f94:	97fffbf7 	bl	3f70 <nalLogNotice@plt>
+    4f98:	f0000041 	adrp	x1, f000 <stopTimer@@Base+0x1bc0>
+    4f9c:	d28000a2 	mov	x2, #0x5                   	// #5
+    4fa0:	912ee021 	add	x1, x1, #0xbb8  ; 'https'
+    4fa4:	aa1803e0 	mov	x0, x24
+    4fa8:	97fffb4a 	bl	3cd0 <strncmp@plt>
+    4fac:	350000e0 	cbnz	w0, 4fc8 <main@@Base+0xdd8>
+    4fb0:	f0000059 	adrp	x25, f000 <stopTimer@@Base+0x1bc0>
+    4fb4:	912f0339 	add	x25, x25, #0xbc0  ; '/etc/ssl/certs/NokiaPrimaryCert.pem'
+    4fb8:	52800081 	mov	w1, #0x4                   	// #4
+    4fbc:	aa1903e0 	mov	x0, x25
+    4fc0:	97fffaf8 	bl	3ba0 <access@plt>
+    4fc4:	340035e0 	cbz	w0, 5680 <main@@Base+0x1490>
+    4fc8:	d2800002 	mov	x2, #0x0                   	// #0
+    4fcc:	52800801 	mov	w1, #0x40                  	// #64
+    4fd0:	aa1303e0 	mov	x0, x19
+    4fd4:	97fffbaf 	bl	3e90 <curl_easy_setopt@plt>
+    4fd8:	d2800002 	mov	x2, #0x0                   	// #0
+    4fdc:	52800a21 	mov	w1, #0x51                  	// #81
+    4fe0:	aa1303e0 	mov	x0, x19
+    4fe4:	97fffbab 	bl	3e90 <curl_easy_setopt@plt>
+    4fe8:	35003794 	cbnz	w20, 56d8 <main@@Base+0x14e8>
+    4fec:	52800022 	mov	w2, #0x1                   	// #1
+    4ff0:	528005e1 	mov	w1, #0x2f                  	// #47
+    4ff4:	aa1303e0 	mov	x0, x19
+    4ff8:	97fffba6 	bl	3e90 <curl_easy_setopt@plt>
+    4ffc:	d0000114 	adrp	x20, 26000 <_fini@@Base+0x1697c>
+    5000:	52800022 	mov	w2, #0x1                   	// #1
+    5004:	52800521 	mov	w1, #0x29                  	// #41
+    5008:	aa1303e0 	mov	x0, x19
+    500c:	97fffba1 	bl	3e90 <curl_easy_setopt@plt>
+    5010:	f947ce99 	ldr	x25, [x20, #3992]
+    5014:	b9401b26 	ldr	w6, [x25, #24]
+    5018:	35002506 	cbnz	w6, 54b8 <main@@Base+0x12c8>
+    501c:	d29755e2 	mov	x2, #0xbaaf                	// #47791
+    5020:	52801161 	mov	w1, #0x8b                  	// #139
+    5024:	aa1303e0 	mov	x0, x19
+    5028:	97fffb9a 	bl	3e90 <curl_easy_setopt@plt>
+    502c:	d2800202 	mov	x2, #0x10                  	// #16
+    5030:	52801181 	mov	w1, #0x8c                  	// #140
+    5034:	aa1303e0 	mov	x0, x19
+    5038:	97fffb96 	bl	3e90 <curl_easy_setopt@plt>
+    503c:	52802582 	mov	w2, #0x12c                 	// #300
+    5040:	528001a1 	mov	w1, #0xd                   	// #13
+    5044:	aa1303e0 	mov	x0, x19
+    5048:	97fffb92 	bl	3e90 <curl_easy_setopt@plt>
+    504c:	f947ce94 	ldr	x20, [x20, #3992]
+    5050:	39400280 	ldrb	w0, [x20]
+    5054:	340001e0 	cbz	w0, 5090 <main@@Base+0xea0>
+    5058:	b9401686 	ldr	w6, [x20, #20]
+    505c:	912762a4 	add	x4, x21, #0x9d8  ; '_build_http_request'
+    5060:	35002f86 	cbnz	w6, 5650 <main@@Base+0x1460>
+    5064:	912822c3 	add	x3, x22, #0xa08  ; 'swmgnt_cloud.c'
+    5068:	52801b85 	mov	w5, #0xdc                  	// #220
+    506c:	91006080 	add	x0, x4, #0x18  ; '_build_http_request'
+    5070:	2a0503e1 	mov	w1, w5
+    5074:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5078:	91316042 	add	x2, x2, #0xc58  ; 'swmgnt: [%s %s:%d] CURLOPT_CONNECTTIMEOUT value used 5 sec'
+    507c:	97fffbbd 	bl	3f70 <nalLogNotice@plt>
+    5080:	528000a2 	mov	w2, #0x5                   	// #5
+    5084:	528009c1 	mov	w1, #0x4e                  	// #78
+    5088:	aa1303e0 	mov	x0, x19
+    508c:	97fffb81 	bl	3e90 <curl_easy_setopt@plt>
+    5090:	9108e3b4 	add	x20, x29, #0x238
+    5094:	91400b05 	add	x5, x24, #0x2, lsl #12
+    5098:	d2820003 	mov	x3, #0x1000                	// #4096
+    509c:	52800022 	mov	w2, #0x1                   	// #1
+    50a0:	aa0303e1 	mov	x1, x3
+    50a4:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    50a8:	aa1403e0 	mov	x0, x20
+    50ac:	91336084 	add	x4, x4, #0xcd8  ; 'x-api-key: %s'
+    50b0:	97fffab4 	bl	3b80 <__snprintf_chk@plt>
+    50b4:	910223b8 	add	x24, x29, #0x88
+    50b8:	aa1403e1 	mov	x1, x20
+    50bc:	d2800000 	mov	x0, #0x0                   	// #0
+    50c0:	97fffa4c 	bl	39f0 <curl_slist_append@plt>
+    50c4:	aa0003f9 	mov	x25, x0
+    50c8:	aa1803e0 	mov	x0, x24
+    50cc:	940004bb 	bl	63b8 <get_uptime@@Base+0xa78>
+    50d0:	b4002980 	cbz	x0, 5600 <main@@Base+0x1410>
+    50d4:	aa1803e6 	mov	x6, x24
+    50d8:	912762a4 	add	x4, x21, #0x9d8  ; '_build_http_request'
+    50dc:	52801dc5 	mov	w5, #0xee                  	// #238
+    50e0:	91006080 	add	x0, x4, #0x18  ; '_build_http_request'
+    50e4:	2a0503e1 	mov	w1, w5
+    50e8:	912822c3 	add	x3, x22, #0xa08  ; 'swmgnt_cloud.c'
+    50ec:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    50f0:	9133a042 	add	x2, x2, #0xce8  ; 'swmgnt: [%s %s:%d] operatorcode / ouid=%s'
+    50f4:	97fffb9f 	bl	3f70 <nalLogNotice@plt>
+    50f8:	d2820003 	mov	x3, #0x1000                	// #4096
+    50fc:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    5100:	aa1803e5 	mov	x5, x24
+    5104:	91346084 	add	x4, x4, #0xd18  ; 'operatorcode: %s'
+    5108:	52800022 	mov	w2, #0x1                   	// #1
+    510c:	aa0303e1 	mov	x1, x3
+    5110:	aa1403e0 	mov	x0, x20
+    5114:	97fffa9b 	bl	3b80 <__snprintf_chk@plt>
+    5118:	aa1403e1 	mov	x1, x20
+    511c:	aa1903e0 	mov	x0, x25
+    5120:	97fffa34 	bl	39f0 <curl_slist_append@plt>
+    5124:	aa0003e8 	mov	x8, x0
+    5128:	91034af8 	add	x24, x23, #0xd2
+    512c:	912762bc 	add	x28, x21, #0x9d8  ; '_build_http_request'
+    5130:	912822d9 	add	x25, x22, #0xa08  ; 'swmgnt_cloud.c'
+    5134:	d2820003 	mov	x3, #0x1000                	// #4096
+    5138:	aa1803e5 	mov	x5, x24
+    513c:	aa0303e1 	mov	x1, x3
+    5140:	f9003ba8 	str	x8, [x29, #112]
+    5144:	52800022 	mov	w2, #0x1                   	// #1
+    5148:	aa1403e0 	mov	x0, x20
+    514c:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    5150:	9134c084 	add	x4, x4, #0xd30  ; 'current-rgw-swversion: %s'
+    5154:	97fffa8b 	bl	3b80 <__snprintf_chk@plt>
+    5158:	aa1803e6 	mov	x6, x24
+    515c:	aa1903e3 	mov	x3, x25
+    5160:	aa1903f8 	mov	x24, x25
+    5164:	91006399 	add	x25, x28, #0x18  ; '_build_http_request'
+    5168:	52801fc5 	mov	w5, #0xfe                  	// #254
+    516c:	aa1c03e4 	mov	x4, x28
+    5170:	2a0503e1 	mov	w1, w5
+    5174:	aa1903e0 	mov	x0, x25
+    5178:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    517c:	91354042 	add	x2, x2, #0xd50  ; 'swmgnt: [%s %s:%d] current-rgw-swversion=%s'
+    5180:	97fffb7c 	bl	3f70 <nalLogNotice@plt>
+    5184:	9102caf7 	add	x23, x23, #0xb2
+    5188:	f9403ba8 	ldr	x8, [x29, #112]
+    518c:	aa1403e1 	mov	x1, x20
+    5190:	aa0803e0 	mov	x0, x8
+    5194:	97fffa17 	bl	39f0 <curl_slist_append@plt>
+    5198:	aa0003e8 	mov	x8, x0
+    519c:	d2820003 	mov	x3, #0x1000                	// #4096
+    51a0:	aa1703e5 	mov	x5, x23
+    51a4:	aa0303e1 	mov	x1, x3
+    51a8:	f9003ba8 	str	x8, [x29, #112]
+    51ac:	52800022 	mov	w2, #0x1                   	// #1
+    51b0:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    51b4:	aa1403e0 	mov	x0, x20
+    51b8:	91360084 	add	x4, x4, #0xd80  ; 'rgw-sn: %s'
+    51bc:	97fffa71 	bl	3b80 <__snprintf_chk@plt>
+    51c0:	aa1703e6 	mov	x6, x23
+    51c4:	52802025 	mov	w5, #0x101                 	// #257
+    51c8:	aa1c03e4 	mov	x4, x28
+    51cc:	2a0503e1 	mov	w1, w5
+    51d0:	aa1803e3 	mov	x3, x24
+    51d4:	aa1903e0 	mov	x0, x25
+    51d8:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    51dc:	91364042 	add	x2, x2, #0xd90  ; 'swmgnt: [%s %s:%d] rgw-sn=%s'
+    51e0:	97fffb64 	bl	3f70 <nalLogNotice@plt>
+    51e4:	f9403ba8 	ldr	x8, [x29, #112]
+    51e8:	aa1403e1 	mov	x1, x20
+    51ec:	aa0803e0 	mov	x0, x8
+    51f0:	97fffa00 	bl	39f0 <curl_slist_append@plt>
+    51f4:	aa0003f7 	mov	x23, x0
+    51f8:	d2820003 	mov	x3, #0x1000                	// #4096
+    51fc:	aa1b03e5 	mov	x5, x27
+    5200:	aa0303e1 	mov	x1, x3
+    5204:	52800022 	mov	w2, #0x1                   	// #1
+    5208:	aa1403e0 	mov	x0, x20
+    520c:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    5210:	9136c084 	add	x4, x4, #0xdb0  ; 'countrycode: %s'
+    5214:	97fffa5b 	bl	3b80 <__snprintf_chk@plt>
+    5218:	aa1b03e6 	mov	x6, x27
+    521c:	aa1c03e4 	mov	x4, x28
+    5220:	aa1803e3 	mov	x3, x24
+    5224:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5228:	91370042 	add	x2, x2, #0xdc0  ; 'swmgnt: [%s %s:%d] countrycode=%s'
+    522c:	52802085 	mov	w5, #0x104                 	// #260
+    5230:	aa1903e0 	mov	x0, x25
+    5234:	2a0503e1 	mov	w1, w5
+    5238:	97fffb4e 	bl	3f70 <nalLogNotice@plt>
+    523c:	aa1403e1 	mov	x1, x20
+    5240:	aa1703e0 	mov	x0, x23
+    5244:	97fff9eb 	bl	39f0 <curl_slist_append@plt>
+    5248:	aa0003f7 	mov	x23, x0
+    524c:	d2820003 	mov	x3, #0x1000                	// #4096
+    5250:	52800022 	mov	w2, #0x1                   	// #1
+    5254:	aa0303e1 	mov	x1, x3
+    5258:	d0000045 	adrp	x5, f000 <stopTimer@@Base+0x1bc0>
+    525c:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    5260:	9137a0a5 	add	x5, x5, #0xde8
+    5264:	9137c084 	add	x4, x4, #0xdf0  ; 'isopctl: %s'
+    5268:	aa1403e0 	mov	x0, x20
+    526c:	97fffa45 	bl	3b80 <__snprintf_chk@plt>
+    5270:	aa1c03e4 	mov	x4, x28
+    5274:	aa1803e3 	mov	x3, x24
+    5278:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    527c:	91380042 	add	x2, x2, #0xe00  ; 'swmgnt: [%s %s:%d] isopctl=%d'
+    5280:	528021a5 	mov	w5, #0x10d                 	// #269
+    5284:	52800006 	mov	w6, #0x0                   	// #0
+    5288:	2a0503e1 	mov	w1, w5
+    528c:	aa1903e0 	mov	x0, x25
+    5290:	97fffb38 	bl	3f70 <nalLogNotice@plt>
+    5294:	aa1403e1 	mov	x1, x20
+    5298:	aa1703e0 	mov	x0, x23
+    529c:	97fff9d5 	bl	39f0 <curl_slist_append@plt>
+    52a0:	d0000041 	adrp	x1, f000 <stopTimer@@Base+0x1bc0>
+    52a4:	91388021 	add	x1, x1, #0xe20  ; 'Content-Type: Application/json'
+    52a8:	97fff9d2 	bl	39f0 <curl_slist_append@plt>
+    52ac:	aa0003f7 	mov	x23, x0
+    52b0:	aa1a03e2 	mov	x2, x26
+    52b4:	5284e321 	mov	w1, #0x2719                	// #10009
+    52b8:	aa1303e0 	mov	x0, x19
+    52bc:	97fffaf5 	bl	3e90 <curl_easy_setopt@plt>
+    52c0:	35001480 	cbnz	w0, 5550 <main@@Base+0x1360>
+    52c4:	b0000102 	adrp	x2, 26000 <_fini@@Base+0x1697c>
+    52c8:	5289c581 	mov	w1, #0x4e2c                	// #20012
+    52cc:	aa1303e0 	mov	x0, x19
+    52d0:	f947b042 	ldr	x2, [x2, #3936]
+    52d4:	97fffaef 	bl	3e90 <curl_easy_setopt@plt>
+    52d8:	35001240 	cbnz	w0, 5520 <main@@Base+0x1330>
+    52dc:	f9400340 	ldr	x0, [x26]
+    52e0:	912762b5 	add	x21, x21, #0x9d8  ; '_build_http_request'
+    52e4:	912822d6 	add	x22, x22, #0xa08  ; 'swmgnt_cloud.c'
+    52e8:	910062b8 	add	x24, x21, #0x18  ; '_build_http_request'
+    52ec:	97fff9a5 	bl	3980 <strlen@plt>
+    52f0:	aa0003e5 	mov	x5, x0
+    52f4:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    52f8:	913a2084 	add	x4, x4, #0xe88  ; 'Content-Length:%lu'
+    52fc:	d2820003 	mov	x3, #0x1000                	// #4096
+    5300:	52800022 	mov	w2, #0x1                   	// #1
+    5304:	aa0303e1 	mov	x1, x3
+    5308:	aa1403e0 	mov	x0, x20
+    530c:	97fffa1d 	bl	3b80 <__snprintf_chk@plt>
+    5310:	aa1403e1 	mov	x1, x20
+    5314:	aa1703e0 	mov	x0, x23
+    5318:	97fff9b6 	bl	39f0 <curl_slist_append@plt>
+    531c:	aa0003e2 	mov	x2, x0
+    5320:	5284e4e1 	mov	w1, #0x2727                	// #10023
+    5324:	aa0003f7 	mov	x23, x0
+    5328:	aa1303e0 	mov	x0, x19
+    532c:	97fffad9 	bl	3e90 <curl_easy_setopt@plt>
+    5330:	f9403fa2 	ldr	x2, [x29, #120]
+    5334:	5284e221 	mov	w1, #0x2711                	// #10001
+    5338:	aa1303e0 	mov	x0, x19
+    533c:	97fffad5 	bl	3e90 <curl_easy_setopt@plt>
+    5340:	5289c561 	mov	w1, #0x4e2b                	// #20011
+    5344:	f0ffffe2 	adrp	x2, 4000 <fgetc@plt>
+    5348:	aa1303e0 	mov	x0, x19
+    534c:	9132a042 	add	x2, x2, #0xca8
+    5350:	97fffad0 	bl	3e90 <curl_easy_setopt@plt>
+    5354:	528024a5 	mov	w5, #0x125                 	// #293
+    5358:	aa1503e4 	mov	x4, x21
+    535c:	aa1603e3 	mov	x3, x22
+    5360:	2a0503e1 	mov	w1, w5
+    5364:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5368:	913a8042 	add	x2, x2, #0xea0  ; 'swmgnt: [%s %s:%d] turn off iptables rules.'
+    536c:	aa1803e0 	mov	x0, x24
+    5370:	97fffb00 	bl	3f70 <nalLogNotice@plt>
+    5374:	d0000040 	adrp	x0, f000 <stopTimer@@Base+0x1bc0>
+    5378:	913b4000 	add	x0, x0, #0xed0  ; 'iptables -D INPUT_FW_LEVEL -p tcp -m tcp --sport 443 --dport 47791:47807 -j ACCEPT'
+    537c:	97fffaad 	bl	3e30 <system@plt>
+    5380:	d0000040 	adrp	x0, f000 <stopTimer@@Base+0x1bc0>
+    5384:	913ca000 	add	x0, x0, #0xf28  ; 'iptables -D INPUT_WAN_REMOTE_ACCESS -p tcp -m tcp --sport 443 --dport 47791:47807 -j ACCEPT'
+    5388:	97fffaaa 	bl	3e30 <system@plt>
+    538c:	d0000040 	adrp	x0, f000 <stopTimer@@Base+0x1bc0>
+    5390:	913e2000 	add	x0, x0, #0xf88  ; 'iptables -I INPUT_WAN_REMOTE_ACCESS -p tcp -m tcp --sport 443 --dport 47791:47807 -j ACCEPT'
+    5394:	97fffaa7 	bl	3e30 <system@plt>
+    5398:	d0000040 	adrp	x0, f000 <stopTimer@@Base+0x1bc0>
+    539c:	913fa000 	add	x0, x0, #0xfe8  ; 'iptables -I INPUT_FW_LEVEL -p tcp -m tcp --sport 443 --dport 47791:47807 -j ACCEPT'
+    53a0:	97fffaa4 	bl	3e30 <system@plt>
+    53a4:	aa1303e0 	mov	x0, x19
+    53a8:	97fff92a 	bl	3850 <curl_easy_perform@plt>
+    53ac:	35000a20 	cbnz	w0, 54f0 <main@@Base+0x1300>
+    53b0:	f94037a2 	ldr	x2, [x29, #104]
+    53b4:	52800041 	mov	w1, #0x2                   	// #2
+    53b8:	72a00401 	movk	w1, #0x20, lsl #16
+    53bc:	aa1303e0 	mov	x0, x19
+    53c0:	52800014 	mov	w20, #0x0                   	// #0
+    53c4:	97fff93b 	bl	38b0 <curl_easy_getinfo@plt>
+    53c8:	340019c0 	cbz	w0, 5700 <main@@Base+0x1510>
+    53cc:	aa1703e0 	mov	x0, x23
+    53d0:	97fffa70 	bl	3d90 <curl_slist_free_all@plt>
+    53d4:	aa1303e0 	mov	x0, x19
+    53d8:	97fffa36 	bl	3cb0 <curl_easy_cleanup@plt>
+    53dc:	97fffe8b 	bl	4e08 <main@@Base+0xc18>
+    53e0:	f9400bb3 	ldr	x19, [x29, #16]
+    53e4:	a9425bb5 	ldp	x21, x22, [x29, #32]
+    53e8:	a94363b7 	ldp	x23, x24, [x29, #48]
+    53ec:	a94573bb 	ldp	x27, x28, [x29, #80]
+    53f0:	f94023b9 	ldr	x25, [x29, #64]
+    53f4:	b0000100 	adrp	x0, 26000 <_fini@@Base+0x1697c>
+    53f8:	f947bc01 	ldr	x1, [x0, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    53fc:	2a1403e0 	mov	w0, w20
+    5400:	f9491fa2 	ldr	x2, [x29, #4664]
+    5404:	f9400021 	ldr	x1, [x1]
+    5408:	ca010041 	eor	x1, x2, x1
+    540c:	b5001f21 	cbnz	x1, 57f0 <main@@Base+0x1600>
+    5410:	a9417bfd 	ldp	x29, x30, [sp, #16]
+    5414:	d2824a10 	mov	x16, #0x1250                	// #4688
+    5418:	f94017f4 	ldr	x20, [sp, #40]
+    541c:	f9402ffa 	ldr	x26, [sp, #88]
+    5420:	8b3063ff 	add	sp, sp, x16
+    5424:	d65f03c0 	ret
+    5428:	912762a7 	add	x7, x21, #0x9d8  ; 'tPayLoad'
+    542c:	d0000056 	adrp	x22, f000 <stopTimer@@Base+0x1bc0>
+    5430:	912822c9 	add	x9, x22, #0xa08  ; 'swmgnt_cloud.c'
+    5434:	910060fc 	add	x28, x7, #0x18  ; 'how_beacons'
+    5438:	52800fa5 	mov	w5, #0x7d                  	// #125
+    543c:	aa0703e4 	mov	x4, x7
+    5440:	2a0503e1 	mov	w1, w5
+    5444:	aa0903e3 	mov	x3, x9
+    5448:	f90033a7 	str	x7, [x29, #96]
+    544c:	aa1c03e0 	mov	x0, x28
+    5450:	f9003ba9 	str	x9, [x29, #112]
+    5454:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5458:	912b0042 	add	x2, x2, #0xac0  ; 'swmgnt: [%s %s:%d] country id is cn use https://swupd.wifi.nokia-sbell.com'
+    545c:	97fffac5 	bl	3f70 <nalLogNotice@plt>
+    5460:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5464:	912ba042 	add	x2, x2, #0xae8  ; 'https://swupd.wifi.nokia-sbell.com'
+    5468:	5284e241 	mov	w1, #0x2712                	// #10002
+    546c:	aa1303e0 	mov	x0, x19
+    5470:	97fffa88 	bl	3e90 <curl_easy_setopt@plt>
+    5474:	910423b9 	add	x25, x29, #0x108
+    5478:	97fff95a 	bl	39e0 <getHieCertPath@plt>
+    547c:	aa0003e1 	mov	x1, x0
+    5480:	d2802562 	mov	x2, #0x12b                 	// #299
+    5484:	aa1903e0 	mov	x0, x25
+    5488:	97fffa16 	bl	3ce0 <strncpy@plt>
+    548c:	3908cfbf 	strb	wzr, [x29, #563]
+    5490:	f94033a7 	ldr	x7, [x29, #96]
+    5494:	52802580 	mov	w0, #0x12c                 	// #300
+    5498:	528010c6 	mov	w6, #0x86                  	// #134
+    549c:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    54a0:	2a0603e5 	mov	w5, w6
+    54a4:	f9403ba9 	ldr	x9, [x29, #112]
+    54a8:	aa0703e4 	mov	x4, x7
+    54ac:	f90003f9 	str	x25, [sp]
+    54b0:	b9000be0 	str	w0, [sp, #8]
+    54b4:	17fffeb4 	b	4f84 <main@@Base+0xd94>
+    54b8:	912762a4 	add	x4, x21, #0x9d8  ; 'tPayLoad'
+    54bc:	528019c5 	mov	w5, #0xce                  	// #206
+    54c0:	91006080 	add	x0, x4, #0x18  ; 'how_beacons'
+    54c4:	2a0503e1 	mov	w1, w5
+    54c8:	912822c3 	add	x3, x22, #0xa08  ; 'swmgnt_cloud.c'
+    54cc:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    54d0:	91308042 	add	x2, x2, #0xc20  ; 'swmgnt: [%s %s:%d] CURLOPT_LOCALPORT value used %d sec'
+    54d4:	97fffaa7 	bl	3f70 <nalLogNotice@plt>
+    54d8:	b9401b22 	ldr	w2, [x25, #24]
+    54dc:	52801161 	mov	w1, #0x8b                  	// #139
+    54e0:	aa1303e0 	mov	x0, x19
+    54e4:	97fffa6b 	bl	3e90 <curl_easy_setopt@plt>
+    54e8:	17fffed1 	b	502c <main@@Base+0xe3c>
+    54ec:	d503201f 	nop
+    54f0:	97fff934 	bl	39c0 <curl_easy_strerror@plt>
+    54f4:	52800034 	mov	w20, #0x1                   	// #1
+    54f8:	528026c5 	mov	w5, #0x136                 	// #310
+    54fc:	aa0003e6 	mov	x6, x0
+    5500:	f0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    5504:	aa1503e4 	mov	x4, x21
+    5508:	aa1603e3 	mov	x3, x22
+    550c:	9101a042 	add	x2, x2, #0x68  ; 'swmgnt: [%s %s:%d] string of res = %s'
+    5510:	2a0503e1 	mov	w1, w5
+    5514:	aa1803e0 	mov	x0, x24
+    5518:	97fffa8e 	bl	3f50 <nalLogError@plt>
+    551c:	17ffffac 	b	53cc <main@@Base+0x11dc>
+    5520:	b0000101 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    5524:	f947fc21 	ldr	x1, [x1, #4088]  ; GOT stderr@GLIBC_2.17
+    5528:	f9400038 	ldr	x24, [x1]
+    552c:	97fff925 	bl	39c0 <curl_easy_strerror@plt>
+    5530:	52800021 	mov	w1, #0x1                   	// #1
+    5534:	aa0003e3 	mov	x3, x0
+    5538:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    553c:	aa1803e0 	mov	x0, x24
+    5540:	91398042 	add	x2, x2, #0xe60  ; 'Failed to set READFUNCTION option: %s\n'
+    5544:	97fff983 	bl	3b50 <__fprintf_chk@plt>
+    5548:	17ffff65 	b	52dc <main@@Base+0x10ec>
+    554c:	d503201f 	nop
+    5550:	b0000101 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    5554:	f947fc21 	ldr	x1, [x1, #4088]  ; GOT stderr@GLIBC_2.17
+    5558:	f9400038 	ldr	x24, [x1]
+    555c:	97fff919 	bl	39c0 <curl_easy_strerror@plt>
+    5560:	52800021 	mov	w1, #0x1                   	// #1
+    5564:	aa0003e3 	mov	x3, x0
+    5568:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    556c:	aa1803e0 	mov	x0, x24
+    5570:	91390042 	add	x2, x2, #0xe40  ; 'curl_easy_setopt failed: %s\n'
+    5574:	97fff977 	bl	3b50 <__fprintf_chk@plt>
+    5578:	17ffff53 	b	52c4 <main@@Base+0x10d4>
+    557c:	d503201f 	nop
+    5580:	d0000055 	adrp	x21, f000 <stopTimer@@Base+0x1bc0>
+    5584:	d0000056 	adrp	x22, f000 <stopTimer@@Base+0x1bc0>
+    5588:	912762a7 	add	x7, x21, #0x9d8  ; '_build_http_request'
+    558c:	912822c9 	add	x9, x22, #0xa08  ; 'swmgnt_cloud.c'
+    5590:	910060fc 	add	x28, x7, #0x18  ; '_build_http_request'
+    5594:	aa1803e6 	mov	x6, x24
+    5598:	528013a5 	mov	w5, #0x9d                  	// #157
+    559c:	aa0703e4 	mov	x4, x7
+    55a0:	2a0503e1 	mov	w1, w5
+    55a4:	aa0903e3 	mov	x3, x9
+    55a8:	f90033a9 	str	x9, [x29, #96]
+    55ac:	aa1c03e0 	mov	x0, x28
+    55b0:	f9003ba7 	str	x7, [x29, #112]
+    55b4:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    55b8:	912e2042 	add	x2, x2, #0xb88  ; 'swmgnt: [%s %s:%d] ATBT users  we use URL= %s'
+    55bc:	97fffa6d 	bl	3f70 <nalLogNotice@plt>
+    55c0:	aa1803e2 	mov	x2, x24
+    55c4:	5284e241 	mov	w1, #0x2712                	// #10002
+    55c8:	aa1303e0 	mov	x0, x19
+    55cc:	97fffa31 	bl	3e90 <curl_easy_setopt@plt>
+    55d0:	910423b9 	add	x25, x29, #0x108
+    55d4:	97fff903 	bl	39e0 <getHieCertPath@plt>
+    55d8:	aa0003e1 	mov	x1, x0
+    55dc:	d2802562 	mov	x2, #0x12b                 	// #299
+    55e0:	aa1903e0 	mov	x0, x25
+    55e4:	97fff9bf 	bl	3ce0 <strncpy@plt>
+    55e8:	f90003f9 	str	x25, [sp]
+    55ec:	52802580 	mov	w0, #0x12c                 	// #300
+    55f0:	528014e6 	mov	w6, #0xa7                  	// #167
+    55f4:	b9000be0 	str	w0, [sp, #8]
+    55f8:	17fffe5d 	b	4f6c <main@@Base+0xd7c>
+    55fc:	d503201f 	nop
+    5600:	910082f8 	add	x24, x23, #0x20
+    5604:	d2820003 	mov	x3, #0x1000                	// #4096
+    5608:	aa1803e5 	mov	x5, x24
+    560c:	aa0303e1 	mov	x1, x3
+    5610:	52800022 	mov	w2, #0x1                   	// #1
+    5614:	aa1403e0 	mov	x0, x20
+    5618:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    561c:	91346084 	add	x4, x4, #0xd18  ; 'operatorcode: %s'
+    5620:	97fff958 	bl	3b80 <__snprintf_chk@plt>
+    5624:	912762a4 	add	x4, x21, #0x9d8  ; '_build_http_request'
+    5628:	52801ea5 	mov	w5, #0xf5                  	// #245
+    562c:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5630:	aa1803e6 	mov	x6, x24
+    5634:	912822c3 	add	x3, x22, #0xa08  ; 'swmgnt_cloud.c'
+    5638:	9133a042 	add	x2, x2, #0xce8  ; 'swmgnt: [%s %s:%d] operatorcode / ouid=%s'
+    563c:	2a0503e1 	mov	w1, w5
+    5640:	91006080 	add	x0, x4, #0x18  ; '_build_http_request'
+    5644:	97fffa4b 	bl	3f70 <nalLogNotice@plt>
+    5648:	17fffeb4 	b	5118 <main@@Base+0xf28>
+    564c:	d503201f 	nop
+    5650:	52801c25 	mov	w5, #0xe1                  	// #225
+    5654:	91006080 	add	x0, x4, #0x18  ; '_build_http_request'
+    5658:	2a0503e1 	mov	w1, w5
+    565c:	912822c3 	add	x3, x22, #0xa08  ; 'swmgnt_cloud.c'
+    5660:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5664:	91326042 	add	x2, x2, #0xc98  ; 'swmgnt: [%s %s:%d] CURLOPT_CONNECTTIMEOUT value used %d sec'
+    5668:	97fffa42 	bl	3f70 <nalLogNotice@plt>
+    566c:	b9401682 	ldr	w2, [x20, #20]
+    5670:	528009c1 	mov	w1, #0x4e                  	// #78
+    5674:	aa1303e0 	mov	x0, x19
+    5678:	97fffa06 	bl	3e90 <curl_easy_setopt@plt>
+    567c:	17fffe85 	b	5090 <main@@Base+0xea0>
+    5680:	912762a4 	add	x4, x21, #0x9d8  ; '_build_http_request'
+    5684:	aa1903e6 	mov	x6, x25
+    5688:	912822c3 	add	x3, x22, #0xa08  ; 'swmgnt_cloud.c'
+    568c:	52801665 	mov	w5, #0xb3                  	// #179
+    5690:	91006080 	add	x0, x4, #0x18  ; '_build_http_request'
+    5694:	2a0503e1 	mov	w1, w5
+    5698:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    569c:	912fa042 	add	x2, x2, #0xbe8  ; 'swmgnt: [%s %s:%d] cetification file is %s'
+    56a0:	97fffa34 	bl	3f70 <nalLogNotice@plt>
+    56a4:	d2800022 	mov	x2, #0x1                   	// #1
+    56a8:	52800801 	mov	w1, #0x40                  	// #64
+    56ac:	aa1303e0 	mov	x0, x19
+    56b0:	97fff9f8 	bl	3e90 <curl_easy_setopt@plt>
+    56b4:	52800a21 	mov	w1, #0x51                  	// #81
+    56b8:	d2800042 	mov	x2, #0x2                   	// #2
+    56bc:	aa1303e0 	mov	x0, x19
+    56c0:	97fff9f4 	bl	3e90 <curl_easy_setopt@plt>
+    56c4:	aa1903e2 	mov	x2, x25
+    56c8:	5284ea21 	mov	w1, #0x2751                	// #10065
+    56cc:	aa1303e0 	mov	x0, x19
+    56d0:	97fff9f0 	bl	3e90 <curl_easy_setopt@plt>
+    56d4:	34ffc8d4 	cbz	w20, 4fec <main@@Base+0xdfc>
+    56d8:	52800022 	mov	w2, #0x1                   	// #1
+    56dc:	528006c1 	mov	w1, #0x36                  	// #54
+    56e0:	aa1303e0 	mov	x0, x19
+    56e4:	97fff9eb 	bl	3e90 <curl_easy_setopt@plt>
+    56e8:	5284e681 	mov	w1, #0x2734                	// #10036
+    56ec:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    56f0:	aa1303e0 	mov	x0, x19
+    56f4:	91306042 	add	x2, x2, #0xc18  ; 'PUT'
+    56f8:	97fff9e6 	bl	3e90 <curl_easy_setopt@plt>
+    56fc:	17fffe40 	b	4ffc <main@@Base+0xe0c>
+    5700:	f94037a0 	ldr	x0, [x29, #104]
+    5704:	52802625 	mov	w5, #0x131                 	// #305
+    5708:	f0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    570c:	52800006 	mov	w6, #0x0                   	// #0
+    5710:	aa1503e4 	mov	x4, x21
+    5714:	aa1603e3 	mov	x3, x22
+    5718:	91010042 	add	x2, x2, #0x40  ; 'swmgnt: [%s %s:%d] res=%d,*response=%ld'
+    571c:	2a0503e1 	mov	w1, w5
+    5720:	f9400007 	ldr	x7, [x0]
+    5724:	aa1803e0 	mov	x0, x24
+    5728:	97fffa12 	bl	3f70 <nalLogNotice@plt>
+    572c:	17ffff28 	b	53cc <main@@Base+0x11dc>
+    5730:	f9403fa7 	ldr	x7, [x29, #120]
+    5734:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    5738:	91276084 	add	x4, x4, #0x9d8  ; '_build_http_request'
+    573c:	52800bc5 	mov	w5, #0x5e                  	// #94
+    5740:	d0000043 	adrp	x3, f000 <stopTimer@@Base+0x1bc0>
+    5744:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5748:	aa1a03e6 	mov	x6, x26
+    574c:	91282063 	add	x3, x3, #0xa08  ; 'swmgnt_cloud.c'
+    5750:	91286042 	add	x2, x2, #0xa18  ; 'swmgnt: [%s %s:%d] toCloudData=%p, fromCloudData=%p.'
+    5754:	2a0503e1 	mov	w1, w5
+    5758:	91006080 	add	x0, x4, #0x18  ; '_build_http_request'
+    575c:	12800014 	mov	w20, #0xffffffff            	// #-1
+    5760:	97fff9fc 	bl	3f50 <nalLogError@plt>
+    5764:	17ffff24 	b	53f4 <main@@Base+0x1204>
+    5768:	aa1303e0 	mov	x0, x19
+    576c:	97fff951 	bl	3cb0 <curl_easy_cleanup@plt>
+    5770:	12800014 	mov	w20, #0xffffffff            	// #-1
+    5774:	97fffda5 	bl	4e08 <main@@Base+0xc18>
+    5778:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    577c:	91276084 	add	x4, x4, #0x9d8  ; '_build_http_request'
+    5780:	52800de5 	mov	w5, #0x6f                  	// #111
+    5784:	aa1703e7 	mov	x7, x23
+    5788:	aa1803e6 	mov	x6, x24
+    578c:	d0000043 	adrp	x3, f000 <stopTimer@@Base+0x1bc0>
+    5790:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    5794:	91282063 	add	x3, x3, #0xa08  ; 'swmgnt_cloud.c'
+    5798:	9129c042 	add	x2, x2, #0xa70  ; 'swmgnt: [%s %s:%d] cfg=%p, info=%p.'
+    579c:	2a0503e1 	mov	w1, w5
+    57a0:	91006080 	add	x0, x4, #0x18  ; '_build_http_request'
+    57a4:	97fff9eb 	bl	3f50 <nalLogError@plt>
+    57a8:	a94363b7 	ldp	x23, x24, [x29, #48]
+    57ac:	f9400bb3 	ldr	x19, [x29, #16]
+    57b0:	17ffff11 	b	53f4 <main@@Base+0x1204>
+    57b4:	d0000044 	adrp	x4, f000 <stopTimer@@Base+0x1bc0>
+    57b8:	91276084 	add	x4, x4, #0x9d8  ; '_build_http_request'
+    57bc:	52800ca5 	mov	w5, #0x65                  	// #101
+    57c0:	91006080 	add	x0, x4, #0x18  ; '_build_http_request'
+    57c4:	2a0503e1 	mov	w1, w5
+    57c8:	d0000043 	adrp	x3, f000 <stopTimer@@Base+0x1bc0>
+    57cc:	d0000042 	adrp	x2, f000 <stopTimer@@Base+0x1bc0>
+    57d0:	91282063 	add	x3, x3, #0xa08  ; 'swmgnt_cloud.c'
+    57d4:	91294042 	add	x2, x2, #0xa50  ; 'swmgnt: [%s %s:%d] curl=%p.'
+    57d8:	d2800006 	mov	x6, #0x0                   	// #0
+    57dc:	12800014 	mov	w20, #0xffffffff            	// #-1
+    57e0:	97fff9dc 	bl	3f50 <nalLogError@plt>
+    57e4:	97fffd89 	bl	4e08 <main@@Base+0xc18>
+    57e8:	f9400bb3 	ldr	x19, [x29, #16]
+    57ec:	17ffff02 	b	53f4 <main@@Base+0x1204>
+    57f0:	a9025bb5 	stp	x21, x22, [x29, #32]
+    57f4:	a90363b7 	stp	x23, x24, [x29, #48]
+    57f8:	a90573bb 	stp	x27, x28, [x29, #80]
+    57fc:	f9000bb3 	str	x19, [x29, #16]
+    5800:	f90023b9 	str	x25, [x29, #64]
+    5804:	97fff867 	bl	39a0 <__stack_chk_fail@plt>
+    5808:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    580c:	b0000104 	adrp	x4, 26000 <_fini@@Base+0x1697c>
+    5810:	910003fd 	mov	x29, sp
+    5814:	f947bc84 	ldr	x4, [x4, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    5818:	f9400083 	ldr	x3, [x4]
+    581c:	f9000fa3 	str	x3, [x29, #24]
+    5820:	d2800003 	mov	x3, #0x0                   	// #0
+    5824:	f9400fa3 	ldr	x3, [x29, #24]
+    5828:	f9400084 	ldr	x4, [x4]
+    582c:	ca040064 	eor	x4, x3, x4
+    5830:	b50000e4 	cbnz	x4, 584c <main@@Base+0x165c>
+    5834:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    5838:	aa0203e3 	mov	x3, x2
+    583c:	aa0103e2 	mov	x2, x1
+    5840:	aa0003e1 	mov	x1, x0
+    5844:	52800000 	mov	w0, #0x0                   	// #0
+    5848:	17fffd7e 	b	4e40 <main@@Base+0xc50>
+    584c:	97fff855 	bl	39a0 <__stack_chk_fail@plt>
+    5850:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    5854:	b0000104 	adrp	x4, 26000 <_fini@@Base+0x1697c>
+    5858:	910003fd 	mov	x29, sp
+    585c:	f947bc84 	ldr	x4, [x4, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    5860:	f9400083 	ldr	x3, [x4]
+    5864:	f9000fa3 	str	x3, [x29, #24]
+    5868:	d2800003 	mov	x3, #0x0                   	// #0
+    586c:	f9400fa3 	ldr	x3, [x29, #24]
+    5870:	f9400084 	ldr	x4, [x4]
+    5874:	ca040064 	eor	x4, x3, x4
+    5878:	b50000e4 	cbnz	x4, 5894 <main@@Base+0x16a4>
+    587c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    5880:	aa0203e3 	mov	x3, x2
+    5884:	aa0103e2 	mov	x2, x1
+    5888:	aa0003e1 	mov	x1, x0
+    588c:	52800020 	mov	w0, #0x1                   	// #1
+    5890:	17fffd6c 	b	4e40 <main@@Base+0xc50>
+    5894:	97fff843 	bl	39a0 <__stack_chk_fail@plt>
+    5898:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    589c:	b0000101 	adrp	x1, 26000 <_fini@@Base+0x1697c>
+    58a0:	52800022 	mov	w2, #0x1                   	// #1
+    58a4:	910003fd 	mov	x29, sp
+    58a8:	b9012c02 	str	w2, [x0, #300]
+    58ac:	f947bc20 	ldr	x0, [x1, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    58b0:	f9400001 	ldr	x1, [x0]
+    58b4:	f9000fa1 	str	x1, [x29, #24]
+    58b8:	d2800001 	mov	x1, #0x0                   	// #0
+    58bc:	f9400fa1 	ldr	x1, [x29, #24]
+    58c0:	f9400000 	ldr	x0, [x0]
+    58c4:	ca000020 	eor	x0, x1, x0
+    58c8:	b5000060 	cbnz	x0, 58d4 <main@@Base+0x16e4>
+    58cc:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    58d0:	d65f03c0 	ret
+    58d4:	97fff833 	bl	39a0 <__stack_chk_fail@plt>
+    58d8:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+    58dc:	7100441f 	cmp	w0, #0x11
+    58e0:	910003fd 	mov	x29, sp
+    58e4:	f9000bf3 	str	x19, [sp, #16]
+    58e8:	b0000113 	adrp	x19, 26000 <_fini@@Base+0x1697c>
+    58ec:	f947be60 	ldr	x0, [x19, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17

@@ -1,0 +1,28 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000019218 <SecBlockInit@@Base>:
+   19218:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   1921c:	b0000160 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   19220:	910003fd 	mov	x29, sp
+   19224:	f942c000 	ldr	x0, [x0, #1408]  ; GOT __stack_chk_guard@GLIBC_2.17
+   19228:	f9400001 	ldr	x1, [x0]
+   1922c:	f9000fa1 	str	x1, [x29, #24]
+   19230:	d2800001 	mov	x1, #0x0                   	// #0
+   19234:	f9400fa1 	ldr	x1, [x29, #24]
+   19238:	f9400000 	ldr	x0, [x0]
+   1923c:	ca000020 	eor	x0, x1, x0
+   19240:	b4000080 	cbz	x0, 19250 <SecBlockInit@@Base+0x38>
+   19244:	b0000160 	adrp	x0, 46000 <_fini@@Base+0x18828>
+   19248:	f9425800 	ldr	x0, [x0, #1200]  ; GOT __stack_chk_fail@GLIBC_2.17
+   1924c:	d63f0000 	blr	x0
+   19250:	b0000162 	adrp	x2, 46000 <_fini@@Base+0x18828>
+   19254:	d2800021 	mov	x1, #0x1                   	// #1
+   19258:	d2800b00 	mov	x0, #0x58                  	// #88
+   1925c:	f9420c42 	ldr	x2, [x2, #1048]  ; GOT calloc@GLIBC_2.17
+   19260:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   19264:	d61f0040 	br	x2

@@ -1,0 +1,147 @@
+
+private-source://PROFILE-ONT-KJL/usr/bin/swmgnt:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000008108 <get_uptime@@Base+0x27c8>:
+    8108:	a9b87bfd 	stp	x29, x30, [sp, #-128]!
+    810c:	910003fd 	mov	x29, sp
+    8110:	f90017f6 	str	x22, [sp, #40]
+    8114:	d00000f6 	adrp	x22, 26000 <_fini@@Base+0x1697c>
+    8118:	f9002ffc 	str	x28, [sp, #88]
+    811c:	aa0003fc 	mov	x28, x0
+    8120:	f947bec0 	ldr	x0, [x22, #3960]
+    8124:	b9006fa1 	str	w1, [x29, #108]
+    8128:	f9400001 	ldr	x1, [x0]
+    812c:	f9003fa1 	str	x1, [x29, #120]
+    8130:	d2800001 	mov	x1, #0x0                   	// #0
+    8134:	97fff90b 	bl	6560 <get_uptime@@Base+0xc20>
+    8138:	b4000e40 	cbz	x0, 8300 <get_uptime@@Base+0x29c0>
+    813c:	f9000bb3 	str	x19, [x29, #16]
+    8140:	aa0003f3 	mov	x19, x0
+    8144:	f9001bb7 	str	x23, [x29, #48]
+    8148:	97ffefe2 	bl	40d0 <cJSON_CreateArray@plt>
+    814c:	aa0003f7 	mov	x23, x0
+    8150:	b4000d40 	cbz	x0, 82f8 <get_uptime@@Base+0x29b8>
+    8154:	f9000fb4 	str	x20, [x29, #24]
+    8158:	f90027ba 	str	x26, [x29, #72]
+    815c:	97ffee39 	bl	3a40 <cJSON_CreateObject@plt>
+    8160:	aa0003f4 	mov	x20, x0
+    8164:	b4000280 	cbz	x0, 81b4 <get_uptime@@Base+0x2874>
+    8168:	aa1303e2 	mov	x2, x19
+    816c:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8170:	91116021 	add	x1, x1, #0x458
+    8174:	97ffee2b 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8178:	91034a62 	add	x2, x19, #0xd2
+    817c:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8180:	aa1403e0 	mov	x0, x20
+    8184:	91118021 	add	x1, x1, #0x460
+    8188:	97ffee26 	bl	3a20 <cJSON_AddStringToObject@plt>
+    818c:	91028262 	add	x2, x19, #0xa0
+    8190:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8194:	aa1403e0 	mov	x0, x20
+    8198:	9111c021 	add	x1, x1, #0x470
+    819c:	97ffee21 	bl	3a20 <cJSON_AddStringToObject@plt>
+    81a0:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    81a4:	9102ca62 	add	x2, x19, #0xb2
+    81a8:	aa1403e0 	mov	x0, x20
+    81ac:	9111e021 	add	x1, x1, #0x478
+    81b0:	97ffee1c 	bl	3a20 <cJSON_AddStringToObject@plt>
+    81b4:	d000021a 	adrp	x26, 4a000 <_fini@@Base+0x3a97c>
+    81b8:	aa1703e0 	mov	x0, x23
+    81bc:	aa1403e1 	mov	x1, x20
+    81c0:	97ffef58 	bl	3f20 <cJSON_AddItemToArray@plt>
+    81c4:	b94a3340 	ldr	w0, [x26, #2608]
+    81c8:	7100001f 	cmp	w0, #0x0
+    81cc:	5400054d 	b.le	8274 <get_uptime@@Base+0x2934>
+    81d0:	a903e7b8 	stp	x24, x25, [x29, #56]
+    81d4:	d0000213 	adrp	x19, 4a000 <_fini@@Base+0x3a97c>
+    81d8:	b0000059 	adrp	x25, 11000 <_fini@@Base+0x197c>
+    81dc:	b0000058 	adrp	x24, 11000 <_fini@@Base+0x197c>
+    81e0:	91299a73 	add	x19, x19, #0xa66
+    81e4:	91116339 	add	x25, x25, #0x458
+    81e8:	91118318 	add	x24, x24, #0x460
+    81ec:	f90013b5 	str	x21, [x29, #32]
+    81f0:	f9002bbb 	str	x27, [x29, #80]
+    81f4:	52800035 	mov	w21, #0x1                   	// #1
+    81f8:	b000005b 	adrp	x27, 11000 <_fini@@Base+0x197c>
+    81fc:	97ffee11 	bl	3a40 <cJSON_CreateObject@plt>
+    8200:	aa0003f4 	mov	x20, x0
+    8204:	b4000220 	cbz	x0, 8248 <get_uptime@@Base+0x2908>
+    8208:	aa1303e2 	mov	x2, x19
+    820c:	aa1903e1 	mov	x1, x25
+    8210:	97ffee04 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8214:	91010262 	add	x2, x19, #0x40
+    8218:	aa1803e1 	mov	x1, x24
+    821c:	aa1403e0 	mov	x0, x20
+    8220:	97ffee00 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8224:	d100ca62 	sub	x2, x19, #0x32
+    8228:	9111c361 	add	x1, x27, #0x470
+    822c:	aa1403e0 	mov	x0, x20
+    8230:	97ffedfc 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8234:	b0000041 	adrp	x1, 11000 <_fini@@Base+0x197c>
+    8238:	91008262 	add	x2, x19, #0x20
+    823c:	aa1403e0 	mov	x0, x20
+    8240:	9111e021 	add	x1, x1, #0x478
+    8244:	97ffedf7 	bl	3a20 <cJSON_AddStringToObject@plt>
+    8248:	aa1703e0 	mov	x0, x23
+    824c:	aa1403e1 	mov	x1, x20
+    8250:	97ffef34 	bl	3f20 <cJSON_AddItemToArray@plt>
+    8254:	110006b5 	add	w21, w21, #0x1
+    8258:	b94a3340 	ldr	w0, [x26, #2608]
+    825c:	9104c273 	add	x19, x19, #0x130
+    8260:	6b15001f 	cmp	w0, w21
+    8264:	54fffcca 	b.ge	81fc <get_uptime@@Base+0x28bc>  // b.tcont
+    8268:	a943e7b8 	ldp	x24, x25, [x29, #56]
+    826c:	f94013b5 	ldr	x21, [x29, #32]
+    8270:	f9402bbb 	ldr	x27, [x29, #80]
+    8274:	b9406fa2 	ldr	w2, [x29, #108]
+    8278:	aa1c03e1 	mov	x1, x28
+    827c:	52800023 	mov	w3, #0x1                   	// #1
+    8280:	aa1703e0 	mov	x0, x23
+    8284:	97ffee9f 	bl	3d00 <cJSON_PrintPreallocated@plt>
+    8288:	aa1703e0 	mov	x0, x23
+    828c:	97ffef69 	bl	4030 <cJSON_PrintUnformatted@plt>
+    8290:	aa0003f3 	mov	x19, x0
+    8294:	90000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    8298:	91024000 	add	x0, x0, #0x90
+    829c:	90000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    82a0:	b0000042 	adrp	x2, 11000 <_fini@@Base+0x197c>
+    82a4:	52808dc5 	mov	w5, #0x46e                 	// #1134
+    82a8:	910bc004 	add	x4, x0, #0x2f0
+    82ac:	aa1303e6 	mov	x6, x19
+    82b0:	91184063 	add	x3, x3, #0x610
+    82b4:	910e2042 	add	x2, x2, #0x388
+    82b8:	2a0503e1 	mov	w1, w5
+    82bc:	910c4000 	add	x0, x0, #0x310
+    82c0:	97ffef2c 	bl	3f70 <nalLogNotice@plt>
+    82c4:	b4000073 	cbz	x19, 82d0 <get_uptime@@Base+0x2990>
+    82c8:	aa1303e0 	mov	x0, x19
+    82cc:	97ffeea1 	bl	3d50 <cJSON_free@plt>
+    82d0:	aa1703e0 	mov	x0, x23
+    82d4:	97ffedd7 	bl	3a30 <cJSON_Delete@plt>
+    82d8:	aa1c03e0 	mov	x0, x28
+    82dc:	97ffeda9 	bl	3980 <strlen@plt>
+    82e0:	a94153b3 	ldp	x19, x20, [x29, #16]
+    82e4:	11000400 	add	w0, w0, #0x1
+    82e8:	f9401bb7 	ldr	x23, [x29, #48]
+    82ec:	f94027ba 	ldr	x26, [x29, #72]
+    82f0:	14000005 	b	8304 <get_uptime@@Base+0x29c4>
+    82f4:	d503201f 	nop
+    82f8:	f9400bb3 	ldr	x19, [x29, #16]
+    82fc:	f9401bb7 	ldr	x23, [x29, #48]
+    8300:	52800000 	mov	w0, #0x0                   	// #0
+    8304:	f947bed6 	ldr	x22, [x22, #3960]
+    8308:	f9403fa2 	ldr	x2, [x29, #120]
+    830c:	f94002c1 	ldr	x1, [x22]
+    8310:	ca010041 	eor	x1, x2, x1
+    8314:	b50000a1 	cbnz	x1, 8328 <get_uptime@@Base+0x29e8>
+    8318:	f94017f6 	ldr	x22, [sp, #40]
+    831c:	f9402ffc 	ldr	x28, [sp, #88]
+    8320:	a8c87bfd 	ldp	x29, x30, [sp], #128
+    8324:	d65f03c0 	ret
+    8328:	a90153b3 	stp	x19, x20, [x29, #16]
+    832c:	a90363b7 	stp	x23, x24, [x29, #48]
+    8330:	a9046bb9 	stp	x25, x26, [x29, #64]
+    8334:	f90013b5 	str	x21, [x29, #32]

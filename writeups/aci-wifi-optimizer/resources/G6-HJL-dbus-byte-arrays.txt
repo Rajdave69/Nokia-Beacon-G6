@@ -1,0 +1,60 @@
+
+ndbusWriteParcelPointer:
+00005278: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0000527c: a3000090  adrp x3, #0x19000
+00005280: 040080d2  mov x4, #0
+00005284: fd030091  mov x29, sp
+00005288: 447c40b3  bfxil x4, x2, #0, #0x20
+0000528c: 62f847f9  ldr x2, [x3, #0xff0]
+00005290: 430040f9  ldr x3, [x2]
+00005294: a30f00f9  str x3, [x29, #0x18]
+00005298: 030080d2  mov x3, #0
+0000529c: a30f40f9  ldr x3, [x29, #0x18]
+000052a0: 420040f9  ldr x2, [x2]
+000052a4: 620002ca  eor x2, x3, x2
+000052a8: 820000b5  cbnz x2, #0x52b8
+000052ac: fd7bc2a8  ldp x29, x30, [sp], #0x20
+000052b0: e20304aa  mov x2, x4
+000052b4: 4bf8ff17  b #0x33e0
+000052b8: d6f8ff97  bl #0x3610 ; heuristic __stack_chk_fail@plt {}
+000052bc: 1f2003d5  nop 
+
+ndbusReadParcelPointer:
+000052c0: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+000052c4: fd030091  mov x29, sp
+000052c8: f35301a9  stp x19, x20, [sp, #0x10]
+000052cc: b3000090  adrp x19, #0x19000
+000052d0: f55b02a9  stp x21, x22, [sp, #0x20]
+000052d4: f503022a  mov w21, w2
+000052d8: 62fa47f9  ldr x2, [x19, #0xff0]
+000052dc: f60301aa  mov x22, x1
+000052e0: a11f00f9  str x1, [x29, #0x38]
+000052e4: a1e30091  add x1, x29, #0x38
+000052e8: 430040f9  ldr x3, [x2]
+000052ec: a32700f9  str x3, [x29, #0x48]
+000052f0: 030080d2  mov x3, #0
+000052f4: b54300b9  str w21, [x29, #0x40]
+000052f8: 46f9ff97  bl #0x3810 ; heuristic ndbusReadParcelFixedArray@plt {"x2": "@__stack_chk_guard", "x3": 0}
+000052fc: f403002a  mov w20, w0
+00005300: a0000035  cbnz w0, #0x5314
+00005304: a04340b9  ldr w0, [x29, #0x40]
+00005308: bf02006b  cmp w21, w0
+0000530c: a0010054  b.eq #0x5340
+00005310: 34008052  mov w20, #1
+00005314: 73fa47f9  ldr x19, [x19, #0xff0]
+00005318: e003142a  mov w0, w20
+0000531c: a22740f9  ldr x2, [x29, #0x48]
+00005320: 610240f9  ldr x1, [x19]
+00005324: 410001ca  eor x1, x2, x1
+00005328: 610100b5  cbnz x1, #0x5354
+0000532c: f35341a9  ldp x19, x20, [sp, #0x10]
+00005330: f55b42a9  ldp x21, x22, [sp, #0x20]
+00005334: fd7bc5a8  ldp x29, x30, [sp], #0x50
+00005338: c0035fd6  ret 
+0000533c: 1f2003d5  nop 
+00005340: a11f40f9  ldr x1, [x29, #0x38]
+00005344: a27e4093  sxtw x2, w21
+00005348: e00316aa  mov x0, x22
+0000534c: c5f7ff97  bl #0x3260 ; heuristic memcpy@plt {}
+00005350: f1ffff17  b #0x5314
+00005354: aff8ff97  bl #0x3610 ; heuristic __stack_chk_fail@plt {}

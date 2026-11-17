@@ -1,0 +1,897 @@
+hal_create_qmgmt_flow (0x48dbc, 3140 bytes)
+Disassembly of section .text:
+
+0000000000048dbc <hal_create_qmgmt_flow@@Base>:
+   48dbc:	d10a43ff 	sub	sp, sp, #0x290
+   48dc0:	a9027bfd 	stp	x29, x30, [sp, #32]
+   48dc4:	910083fd 	add	x29, sp, #0x20
+   48dc8:	a90353f3 	stp	x19, x20, [sp, #48]
+   48dcc:	d0000114 	adrp	x20, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48dd0:	a9045bf5 	stp	x21, x22, [sp, #64]
+   48dd4:	9117ae95 	add	x21, x20, #0x5eb
+   48dd8:	a90563f7 	stp	x23, x24, [sp, #80]
+   48ddc:	aa0103f3 	mov	x19, x1
+   48de0:	aa0003f7 	mov	x23, x0
+   48de4:	f9004fa3 	str	x3, [x29, #152]
+   48de8:	a9066bf9 	stp	x25, x26, [sp, #96]
+   48dec:	aa0203f6 	mov	x22, x2
+   48df0:	a90773fb 	stp	x27, x28, [sp, #112]
+   48df4:	528032a2 	mov	w2, #0x195                 	// #405
+   48df8:	aa1503e1 	mov	x1, x21
+   48dfc:	52801180 	mov	w0, #0x8c                  	// #140
+   48e00:	b900afbf 	str	wzr, [x29, #172]
+   48e04:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48e08:	911aac63 	add	x3, x3, #0x6ab
+   48e0c:	97fffed2 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48e10:	f10002ff 	cmp	x23, #0x0
+   48e14:	fa401a64 	ccmp	x19, #0x0, #0x4, ne	// ne = any
+   48e18:	540000a0 	b.eq	48e2c <hal_create_qmgmt_flow@@Base+0x70>  // b.none
+   48e1c:	f9404fa8 	ldr	x8, [x29, #152]
+   48e20:	f10002df 	cmp	x22, #0x0
+   48e24:	fa401904 	ccmp	x8, #0x0, #0x4, ne	// ne = any
+   48e28:	540001e1 	b.ne	48e64 <hal_create_qmgmt_flow@@Base+0xa8>  // b.any
+   48e2c:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48e30:	52803322 	mov	w2, #0x199                 	// #409
+   48e34:	911b3063 	add	x3, x3, #0x6cc
+   48e38:	9117ae81 	add	x1, x20, #0x5eb
+   48e3c:	52801fc0 	mov	w0, #0xfe                  	// #254
+   48e40:	97fffec5 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48e44:	a94353f3 	ldp	x19, x20, [sp, #48]
+   48e48:	a9445bf5 	ldp	x21, x22, [sp, #64]
+   48e4c:	a94563f7 	ldp	x23, x24, [sp, #80]
+   48e50:	a9466bf9 	ldp	x25, x26, [sp, #96]
+   48e54:	a94773fb 	ldp	x27, x28, [sp, #112]
+   48e58:	a9427bfd 	ldp	x29, x30, [sp, #32]
+   48e5c:	910a43ff 	add	sp, sp, #0x290
+   48e60:	d65f03c0 	ret
+   48e64:	29411ee6 	ldp	w6, w7, [x23, #8]
+   48e68:	aa1303f8 	mov	x24, x19
+   48e6c:	294016e4 	ldp	w4, w5, [x23]
+   48e70:	f90047a8 	str	x8, [x29, #136]
+   48e74:	528033c2 	mov	w2, #0x19e                 	// #414
+   48e78:	aa1503e1 	mov	x1, x21
+   48e7c:	52801180 	mov	w0, #0x8c                  	// #140
+   48e80:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48e84:	911b8063 	add	x3, x3, #0x6e0
+   48e88:	97fffeb3 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48e8c:	b8488704 	ldr	w4, [x24], #136
+   48e90:	9100227c 	add	x28, x19, #0x8
+   48e94:	b9400665 	ldr	w5, [x19, #4]
+   48e98:	aa1c03e6 	mov	x6, x28
+   48e9c:	528033e2 	mov	w2, #0x19f                 	// #415
+   48ea0:	aa1503e1 	mov	x1, x21
+   48ea4:	52801180 	mov	w0, #0x8c                  	// #140
+   48ea8:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48eac:	911c9063 	add	x3, x3, #0x724
+   48eb0:	9102e279 	add	x25, x19, #0xb8
+   48eb4:	97fffea8 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48eb8:	9104227b 	add	x27, x19, #0x108
+   48ebc:	29561a65 	ldp	w5, w6, [x19, #176]
+   48ec0:	aa1803e4 	mov	x4, x24
+   48ec4:	52803402 	mov	w2, #0x1a0                 	// #416
+   48ec8:	aa1503e1 	mov	x1, x21
+   48ecc:	52801180 	mov	w0, #0x8c                  	// #140
+   48ed0:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48ed4:	911db063 	add	x3, x3, #0x76c
+   48ed8:	97fffe9f 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48edc:	295c1a65 	ldp	w5, w6, [x19, #224]
+   48ee0:	aa1903e4 	mov	x4, x25
+   48ee4:	52803422 	mov	w2, #0x1a1                 	// #417
+   48ee8:	aa1503e1 	mov	x1, x21
+   48eec:	52801180 	mov	w0, #0x8c                  	// #140
+   48ef0:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48ef4:	911e5863 	add	x3, x3, #0x796
+   48ef8:	97fffe97 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48efc:	295d1664 	ldp	w4, w5, [x19, #232]
+   48f00:	52803442 	mov	w2, #0x1a2                 	// #418
+   48f04:	aa1503e1 	mov	x1, x21
+   48f08:	52801180 	mov	w0, #0x8c                  	// #140
+   48f0c:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48f10:	911f1863 	add	x3, x3, #0x7c6
+   48f14:	97fffe90 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48f18:	9105327a 	add	x26, x19, #0x14c
+   48f1c:	295e1664 	ldp	w4, w5, [x19, #240]
+   48f20:	52803462 	mov	w2, #0x1a3                 	// #419
+   48f24:	b940fa66 	ldr	w6, [x19, #248]
+   48f28:	aa1503e1 	mov	x1, x21
+   48f2c:	52801180 	mov	w0, #0x8c                  	// #140
+   48f30:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48f34:	911f9863 	add	x3, x3, #0x7e6
+   48f38:	97fffe87 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48f3c:	295f9664 	ldp	w4, w5, [x19, #252]
+   48f40:	52803482 	mov	w2, #0x1a4                 	// #420
+   48f44:	b9410666 	ldr	w6, [x19, #260]
+   48f48:	aa1503e1 	mov	x1, x21
+   48f4c:	52801180 	mov	w0, #0x8c                  	// #140
+   48f50:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48f54:	91207063 	add	x3, x3, #0x81c
+   48f58:	97fffe7f 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48f5c:	b9414a66 	ldr	w6, [x19, #328]
+   48f60:	9104a260 	add	x0, x19, #0x128
+   48f64:	aa0003e5 	mov	x5, x0
+   48f68:	aa1b03e4 	mov	x4, x27
+   48f6c:	528034a2 	mov	w2, #0x1a5                 	// #421
+   48f70:	aa1503e1 	mov	x1, x21
+   48f74:	f9004fa0 	str	x0, [x29, #152]
+   48f78:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48f7c:	52801180 	mov	w0, #0x8c                  	// #140
+   48f80:	91216063 	add	x3, x3, #0x858
+   48f84:	97fffe74 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48f88:	b9418e66 	ldr	w6, [x19, #396]
+   48f8c:	9105b260 	add	x0, x19, #0x16c
+   48f90:	aa0003e5 	mov	x5, x0
+   48f94:	aa1a03e4 	mov	x4, x26
+   48f98:	528034c2 	mov	w2, #0x1a6                 	// #422
+   48f9c:	aa1503e1 	mov	x1, x21
+   48fa0:	f9004ba0 	str	x0, [x29, #144]
+   48fa4:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48fa8:	52801180 	mov	w0, #0x8c                  	// #140
+   48fac:	91224863 	add	x3, x3, #0x892
+   48fb0:	97fffe69 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48fb4:	9104026b 	add	x11, x19, #0x100
+   48fb8:	528034e2 	mov	w2, #0x1a7                 	// #423
+   48fbc:	aa1503e1 	mov	x1, x21
+   48fc0:	52801180 	mov	w0, #0x8c                  	// #140
+   48fc4:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48fc8:	91231863 	add	x3, x3, #0x8c6
+   48fcc:	29521564 	ldp	w4, w5, [x11, #144]
+   48fd0:	29531d66 	ldp	w6, w7, [x11, #152]
+   48fd4:	97fffe60 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48fd8:	9104026c 	add	x12, x19, #0x100
+   48fdc:	52803502 	mov	w2, #0x1a8                 	// #424
+   48fe0:	aa1503e1 	mov	x1, x21
+   48fe4:	52801180 	mov	w0, #0x8c                  	// #140
+   48fe8:	d0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   48fec:	91241063 	add	x3, x3, #0x904
+   48ff0:	29541584 	ldp	w4, w5, [x12, #160]
+   48ff4:	29551d86 	ldp	w6, w7, [x12, #168]
+   48ff8:	97fffe57 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   48ffc:	29411ec6 	ldp	w6, w7, [x22, #8]
+   49000:	52803522 	mov	w2, #0x1a9                 	// #425
+   49004:	294016c4 	ldp	w4, w5, [x22]
+   49008:	aa1503e1 	mov	x1, x21
+   4900c:	52801180 	mov	w0, #0x8c                  	// #140
+   49010:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49014:	91256463 	add	x3, x3, #0x959
+   49018:	97fffe4f 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   4901c:	294216c4 	ldp	w4, w5, [x22, #16]
+   49020:	52803542 	mov	w2, #0x1aa                 	// #426
+   49024:	b9401ac6 	ldr	w6, [x22, #24]
+   49028:	aa1503e1 	mov	x1, x21
+   4902c:	52801180 	mov	w0, #0x8c                  	// #140
+   49030:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49034:	91268863 	add	x3, x3, #0x9a2
+   49038:	910523b6 	add	x22, x29, #0x148
+   4903c:	97fffe46 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49040:	f94047a8 	ldr	x8, [x29, #136]
+   49044:	52803562 	mov	w2, #0x1ab                 	// #427
+   49048:	aa1503e1 	mov	x1, x21
+   4904c:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49050:	91001105 	add	x5, x8, #0x4
+   49054:	91273463 	add	x3, x3, #0x9cd
+   49058:	b9401d00 	ldr	w0, [x8, #28]
+   4905c:	b90003e0 	str	w0, [sp]
+   49060:	52801180 	mov	w0, #0x8c                  	// #140
+   49064:	b9400104 	ldr	w4, [x8]
+   49068:	29429d06 	ldp	w6, w7, [x8, #20]
+   4906c:	97fffe3a 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49070:	90000263 	adrp	x3, 95000 <_ZTS14QosDsScheduler@@Base+0x25520>
+   49074:	b94002e0 	ldr	w0, [x23]
+   49078:	790293a0 	strh	w0, [x29, #328]
+   4907c:	aa1603e1 	mov	x1, x22
+   49080:	f9464062 	ldr	x2, [x3, #3200]
+   49084:	a9080ba3 	stp	x3, x2, [x29, #128]
+   49088:	aa0203e0 	mov	x0, x2
+   4908c:	97ff8155 	bl	295e0 <_ZNSt8_Rb_treeItSt4pairIKt13tQosFlowEntryESt10_Select1stIS3_ESt4lessItESaIS3_EE4findERS1_@plt>
+   49090:	a9480ba3 	ldp	x3, x2, [x29, #128]
+   49094:	f90047a3 	str	x3, [x29, #136]
+   49098:	91002042 	add	x2, x2, #0x8
+   4909c:	eb00005f 	cmp	x2, x0
+   490a0:	54000120 	b.eq	490c4 <hal_create_qmgmt_flow@@Base+0x308>  // b.none
+   490a4:	b94002e4 	ldr	w4, [x23]
+   490a8:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   490ac:	52803602 	mov	w2, #0x1b0                 	// #432
+   490b0:	91288c63 	add	x3, x3, #0xa23
+   490b4:	aa1503e1 	mov	x1, x21
+   490b8:	52801fc0 	mov	w0, #0xfe                  	// #254
+   490bc:	97fffe26 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   490c0:	17ffff61 	b	48e44 <hal_create_qmgmt_flow@@Base+0x88>
+   490c4:	d2802482 	mov	x2, #0x124                 	// #292
+   490c8:	52800001 	mov	w1, #0x0                   	// #0
+   490cc:	aa1603e0 	mov	x0, x22
+   490d0:	97ff8368 	bl	29e70 <memset@plt>
+   490d4:	910803a0 	add	x0, x29, #0x200
+   490d8:	a90dffbf 	stp	xzr, xzr, [x29, #216]
+   490dc:	a90effbf 	stp	xzr, xzr, [x29, #232]
+   490e0:	a90fffbf 	stp	xzr, xzr, [x29, #248]
+   490e4:	a930fc1f 	stp	xzr, xzr, [x0, #-248]
+   490e8:	a931fc1f 	stp	xzr, xzr, [x0, #-232]
+   490ec:	a932fc1f 	stp	xzr, xzr, [x0, #-216]
+   490f0:	a933fc1f 	stp	xzr, xzr, [x0, #-200]
+   490f4:	52800020 	mov	w0, #0x1                   	// #1
+   490f8:	39098ba0 	strb	w0, [x29, #610]
+   490fc:	52800060 	mov	w0, #0x3                   	// #3
+   49100:	390973a0 	strb	w0, [x29, #604]
+   49104:	52800320 	mov	w0, #0x19                  	// #25
+   49108:	72a00140 	movk	w0, #0xa, lsl #16
+   4910c:	a90c7fbf 	stp	xzr, xzr, [x29, #192]
+   49110:	b9014fa0 	str	w0, [x29, #332]
+   49114:	52800280 	mov	w0, #0x14                  	// #20
+   49118:	390307a0 	strb	w0, [x29, #193]
+   4911c:	52800040 	mov	w0, #0x2                   	// #2
+   49120:	390303a0 	strb	w0, [x29, #192]
+   49124:	39402260 	ldrb	w0, [x19, #8]
+   49128:	f9006bbf 	str	xzr, [x29, #208]
+   4912c:	34000300 	cbz	w0, 4918c <hal_create_qmgmt_flow@@Base+0x3d0>
+   49130:	f00000c1 	adrp	x1, 64000 <hal_itf_enable_host_statis@@Base+0x40>
+   49134:	aa1c03e0 	mov	x0, x28
+   49138:	912d0821 	add	x1, x1, #0xb42
+   4913c:	97ff80a1 	bl	293c0 <strstr@plt>
+   49140:	b40008a0 	cbz	x0, 49254 <hal_create_qmgmt_flow@@Base+0x498>
+   49144:	91002e60 	add	x0, x19, #0xb
+   49148:	b900b3bf 	str	wzr, [x29, #176]
+   4914c:	97ff8571 	bl	2a710 <atoi@plt>
+   49150:	9102c3a1 	add	x1, x29, #0xb0
+   49154:	97ff8a1f 	bl	2b9d0 <hal_convert_ethport_to_phyport@plt>
+   49158:	350001a0 	cbnz	w0, 4918c <hal_create_qmgmt_flow@@Base+0x3d0>
+   4915c:	394303a0 	ldrb	w0, [x29, #192]
+   49160:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49164:	794163a4 	ldrh	w4, [x29, #176]
+   49168:	9128f463 	add	x3, x3, #0xa3d
+   4916c:	aa1503e1 	mov	x1, x21
+   49170:	32000000 	orr	w0, w0, #0x1
+   49174:	32100484 	orr	w4, w4, #0x30000
+   49178:	390303a0 	strb	w0, [x29, #192]
+   4917c:	52803a02 	mov	w2, #0x1d0                 	// #464
+   49180:	b9014ba4 	str	w4, [x29, #328]
+   49184:	52801180 	mov	w0, #0x8c                  	// #140
+   49188:	97fffdf3 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   4918c:	39422260 	ldrb	w0, [x19, #136]
+   49190:	34000b80 	cbz	w0, 49300 <hal_create_qmgmt_flow@@Base+0x544>
+   49194:	b0000101 	adrp	x1, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49198:	aa1803e0 	mov	x0, x24
+   4919c:	91297421 	add	x1, x1, #0xa5d
+   491a0:	97ff89cc 	bl	2b8d0 <strcmp@plt>
+   491a4:	340011c0 	cbz	w0, 493dc <hal_create_qmgmt_flow@@Base+0x620>
+   491a8:	528005c1 	mov	w1, #0x2e                  	// #46
+   491ac:	aa1803e0 	mov	x0, x24
+   491b0:	97ff8350 	bl	29ef0 <strchr@plt>
+   491b4:	b4001140 	cbz	x0, 493dc <hal_create_qmgmt_flow@@Base+0x620>
+   491b8:	910292c1 	add	x1, x22, #0xa4
+   491bc:	aa1803e0 	mov	x0, x24
+   491c0:	97fffd70 	bl	48780 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x2e8>
+   491c4:	72001c1f 	tst	w0, #0xff
+   491c8:	54000fa0 	b.eq	493bc <hal_create_qmgmt_flow@@Base+0x600>  // b.none
+   491cc:	b940b265 	ldr	w5, [x19, #176]
+   491d0:	394303a1 	ldrb	w1, [x29, #192]
+   491d4:	394343a0 	ldrb	w0, [x29, #208]
+   491d8:	721a78bf 	tst	w5, #0xffffffdf
+   491dc:	b941f3a6 	ldr	w6, [x29, #496]
+   491e0:	540007a0 	b.eq	492d4 <hal_create_qmgmt_flow@@Base+0x518>  // b.none
+   491e4:	52800403 	mov	w3, #0x20                  	// #32
+   491e8:	32196000 	orr	w0, w0, #0xffffff80
+   491ec:	4b050062 	sub	w2, w3, w5
+   491f0:	390343a0 	strb	w0, [x29, #208]
+   491f4:	52800025 	mov	w5, #0x1                   	// #1
+   491f8:	394347a0 	ldrb	w0, [x29, #209]
+   491fc:	1ac220a5 	lsl	w5, w5, w2
+   49200:	390803a3 	strb	w3, [x29, #512]
+   49204:	4b0503e7 	neg	w7, w5
+   49208:	390863a3 	strb	w3, [x29, #536]
+   4920c:	510004a5 	sub	w5, w5, #0x1
+   49210:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49214:	91299463 	add	x3, x3, #0xa65
+   49218:	0a0700c4 	and	w4, w6, w7
+   4921c:	2a0600a5 	orr	w5, w5, w6
+   49220:	32196021 	orr	w1, w1, #0xffffff80
+   49224:	32000000 	orr	w0, w0, #0x1
+   49228:	390303a1 	strb	w1, [x29, #192]
+   4922c:	390347a0 	strb	w0, [x29, #209]
+   49230:	52803e02 	mov	w2, #0x1f0                 	// #496
+   49234:	b901efbf 	str	wzr, [x29, #492]
+   49238:	b901f3a4 	str	w4, [x29, #496]
+   4923c:	b90207bf 	str	wzr, [x29, #516]
+   49240:	b9020ba5 	str	w5, [x29, #520]
+   49244:	9117ae81 	add	x1, x20, #0x5eb
+   49248:	52801180 	mov	w0, #0x8c                  	// #140
+   4924c:	97fffdc2 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49250:	1400002c 	b	49300 <hal_create_qmgmt_flow@@Base+0x544>
+   49254:	f0000264 	adrp	x4, 98000 <wifi_port_info@@Base+0x4b8>
+   49258:	91046084 	add	x4, x4, #0x118
+   4925c:	91001086 	add	x6, x4, #0x4
+   49260:	d2800015 	mov	x21, #0x0                   	// #0
+   49264:	d2802085 	mov	x5, #0x104                 	// #260
+   49268:	9b051aa0 	madd	x0, x21, x5, x6
+   4926c:	f90037a4 	str	x4, [x29, #104]
+   49270:	a90797a6 	stp	x6, x5, [x29, #120]
+   49274:	d2802002 	mov	x2, #0x100                 	// #256
+   49278:	aa1c03e1 	mov	x1, x28
+   4927c:	b90077b5 	str	w21, [x29, #116]
+   49280:	97ff8658 	bl	2abe0 <strncmp@plt>
+   49284:	b94077a3 	ldr	w3, [x29, #116]
+   49288:	f94037a4 	ldr	x4, [x29, #104]
+   4928c:	a94797a6 	ldp	x6, x5, [x29, #120]
+   49290:	350001a0 	cbnz	w0, 492c4 <hal_create_qmgmt_flow@@Base+0x508>
+   49294:	93407c63 	sxtw	x3, w3
+   49298:	394303a0 	ldrb	w0, [x29, #192]
+   4929c:	52803b62 	mov	w2, #0x1db                 	// #475
+   492a0:	9117ae81 	add	x1, x20, #0x5eb
+   492a4:	32000000 	orr	w0, w0, #0x1
+   492a8:	390303a0 	strb	w0, [x29, #192]
+   492ac:	9b057c63 	mul	x3, x3, x5
+   492b0:	b8636884 	ldr	w4, [x4, x3]
+   492b4:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   492b8:	b9014ba4 	str	w4, [x29, #328]
+   492bc:	9128f463 	add	x3, x3, #0xa3d
+   492c0:	17ffffb1 	b	49184 <hal_create_qmgmt_flow@@Base+0x3c8>
+   492c4:	910006b5 	add	x21, x21, #0x1
+   492c8:	f10026bf 	cmp	x21, #0x9
+   492cc:	54fffce1 	b.ne	49268 <hal_create_qmgmt_flow@@Base+0x4ac>  // b.any
+   492d0:	17ffffaf 	b	4918c <hal_create_qmgmt_flow@@Base+0x3d0>
+   492d4:	32196021 	orr	w1, w1, #0xffffff80
+   492d8:	32196000 	orr	w0, w0, #0xffffff80
+   492dc:	390303a1 	strb	w1, [x29, #192]
+   492e0:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   492e4:	390343a0 	strb	w0, [x29, #208]
+   492e8:	2a0603e4 	mov	w4, w6
+   492ec:	912a8863 	add	x3, x3, #0xaa2
+   492f0:	52803ee2 	mov	w2, #0x1f7                 	// #503
+   492f4:	9117ae81 	add	x1, x20, #0x5eb
+   492f8:	52801180 	mov	w0, #0x8c                  	// #140
+   492fc:	97fffd96 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49300:	3942e260 	ldrb	w0, [x19, #184]
+   49304:	34001060 	cbz	w0, 49510 <hal_create_qmgmt_flow@@Base+0x754>
+   49308:	b0000101 	adrp	x1, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   4930c:	aa1903e0 	mov	x0, x25
+   49310:	91297421 	add	x1, x1, #0xa5d
+   49314:	97ff896f 	bl	2b8d0 <strcmp@plt>
+   49318:	34002d60 	cbz	w0, 498c4 <hal_create_qmgmt_flow@@Base+0xb08>
+   4931c:	528005c1 	mov	w1, #0x2e                  	// #46
+   49320:	aa1903e0 	mov	x0, x25
+   49324:	97ff82f3 	bl	29ef0 <strchr@plt>
+   49328:	b4002ce0 	cbz	x0, 498c4 <hal_create_qmgmt_flow@@Base+0xb08>
+   4932c:	9101d2c1 	add	x1, x22, #0x74
+   49330:	aa1903e0 	mov	x0, x25
+   49334:	97fffd13 	bl	48780 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x2e8>
+   49338:	72001c1f 	tst	w0, #0xff
+   4933c:	54002b40 	b.eq	498a4 <hal_create_qmgmt_flow@@Base+0xae8>  // b.none
+   49340:	b940e265 	ldr	w5, [x19, #224]
+   49344:	394303a1 	ldrb	w1, [x29, #192]
+   49348:	394343a0 	ldrb	w0, [x29, #208]
+   4934c:	721a78bf 	tst	w5, #0xffffffdf
+   49350:	b941c3a6 	ldr	w6, [x29, #448]
+   49354:	54000c80 	b.eq	494e4 <hal_create_qmgmt_flow@@Base+0x728>  // b.none
+   49358:	52800403 	mov	w3, #0x20                  	// #32
+   4935c:	4b050062 	sub	w2, w3, w5
+   49360:	52800025 	mov	w5, #0x1                   	// #1
+   49364:	390743a3 	strb	w3, [x29, #464]
+   49368:	1ac220a5 	lsl	w5, w5, w2
+   4936c:	3907a3a3 	strb	w3, [x29, #488]
+   49370:	4b0503e7 	neg	w7, w5
+   49374:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49378:	510004a5 	sub	w5, w5, #0x1
+   4937c:	912d7c63 	add	x3, x3, #0xb5f
+   49380:	0a0700c4 	and	w4, w6, w7
+   49384:	2a0600a5 	orr	w5, w5, w6
+   49388:	32196021 	orr	w1, w1, #0xffffff80
+   4938c:	321b0400 	orr	w0, w0, #0x60
+   49390:	390303a1 	strb	w1, [x29, #192]
+   49394:	52804522 	mov	w2, #0x229                 	// #553
+   49398:	390343a0 	strb	w0, [x29, #208]
+   4939c:	b901bfbf 	str	wzr, [x29, #444]
+   493a0:	b901c3a4 	str	w4, [x29, #448]
+   493a4:	b901d7bf 	str	wzr, [x29, #468]
+   493a8:	b901dba5 	str	w5, [x29, #472]
+   493ac:	9117ae81 	add	x1, x20, #0x5eb
+   493b0:	52801180 	mov	w0, #0x8c                  	// #140
+   493b4:	97fffd68 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   493b8:	14000056 	b	49510 <hal_create_qmgmt_flow@@Base+0x754>
+   493bc:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   493c0:	aa1803e4 	mov	x4, x24
+   493c4:	912adc63 	add	x3, x3, #0xab7
+   493c8:	52803f82 	mov	w2, #0x1fc                 	// #508
+   493cc:	9117ae81 	add	x1, x20, #0x5eb
+   493d0:	52801fc0 	mov	w0, #0xfe                  	// #254
+   493d4:	97fffd60 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   493d8:	17ffffca 	b	49300 <hal_create_qmgmt_flow@@Base+0x544>
+   493dc:	b0000101 	adrp	x1, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   493e0:	aa1803e0 	mov	x0, x24
+   493e4:	912b4021 	add	x1, x1, #0xad0
+   493e8:	97ff893a 	bl	2b8d0 <strcmp@plt>
+   493ec:	34fff8a0 	cbz	w0, 49300 <hal_create_qmgmt_flow@@Base+0x544>
+   493f0:	52800741 	mov	w1, #0x3a                  	// #58
+   493f4:	aa1803e0 	mov	x0, x24
+   493f8:	97ff82be 	bl	29ef0 <strchr@plt>
+   493fc:	b4fff820 	cbz	x0, 49300 <hal_create_qmgmt_flow@@Base+0x544>
+   49400:	910292d5 	add	x21, x22, #0xa4
+   49404:	aa1803e0 	mov	x0, x24
+   49408:	aa1503e1 	mov	x1, x21
+   4940c:	97fffcf2 	bl	487d4 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x33c>
+   49410:	72001c1f 	tst	w0, #0xff
+   49414:	540005e0 	b.eq	494d0 <hal_create_qmgmt_flow@@Base+0x714>  // b.none
+   49418:	b940b260 	ldr	w0, [x19, #176]
+   4941c:	7218781f 	tst	w0, #0xffffff7f
+   49420:	540003e0 	b.eq	4949c <hal_create_qmgmt_flow@@Base+0x6e0>  // b.none
+   49424:	9102f2c2 	add	x2, x22, #0xbc
+   49428:	aa1503e1 	mov	x1, x21
+   4942c:	97fffca4 	bl	486bc <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x224>
+   49430:	394303a0 	ldrb	w0, [x29, #192]
+   49434:	910403aa 	add	x10, x29, #0x100
+   49438:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   4943c:	52804162 	mov	w2, #0x20b                 	// #523
+   49440:	32196000 	orr	w0, w0, #0xffffff80
+   49444:	390303a0 	strb	w0, [x29, #192]
+   49448:	394343a0 	ldrb	w0, [x29, #208]
+   4944c:	912b4c63 	add	x3, x3, #0xad3
+   49450:	9117ae81 	add	x1, x20, #0x5eb
+   49454:	32196000 	orr	w0, w0, #0xffffff80
+   49458:	390343a0 	strb	w0, [x29, #208]
+   4945c:	394347a0 	ldrb	w0, [x29, #209]
+   49460:	32000000 	orr	w0, w0, #0x1
+   49464:	390347a0 	strb	w0, [x29, #209]
+   49468:	b94217a0 	ldr	w0, [x29, #532]
+   4946c:	b9001be0 	str	w0, [sp, #24]
+   49470:	b94213a0 	ldr	w0, [x29, #528]
+   49474:	b90013e0 	str	w0, [sp, #16]
+   49478:	295e1544 	ldp	w4, w5, [x10, #240]
+   4947c:	b9420fa0 	ldr	w0, [x29, #524]
+   49480:	295f1d46 	ldp	w6, w7, [x10, #248]
+   49484:	b9000be0 	str	w0, [sp, #8]
+   49488:	b9420ba0 	ldr	w0, [x29, #520]
+   4948c:	b90003e0 	str	w0, [sp]
+   49490:	52801180 	mov	w0, #0x8c                  	// #140
+   49494:	97fffd30 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49498:	17ffff9a 	b	49300 <hal_create_qmgmt_flow@@Base+0x544>
+   4949c:	394303a0 	ldrb	w0, [x29, #192]
+   494a0:	910403a9 	add	x9, x29, #0x100
+   494a4:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   494a8:	52804222 	mov	w2, #0x211                 	// #529
+   494ac:	32196000 	orr	w0, w0, #0xffffff80
+   494b0:	390303a0 	strb	w0, [x29, #192]
+   494b4:	394343a0 	ldrb	w0, [x29, #208]
+   494b8:	912c6063 	add	x3, x3, #0xb18
+   494bc:	32196000 	orr	w0, w0, #0xffffff80
+   494c0:	390343a0 	strb	w0, [x29, #208]
+   494c4:	295e1524 	ldp	w4, w5, [x9, #240]
+   494c8:	295f1d26 	ldp	w6, w7, [x9, #248]
+   494cc:	17ffff5e 	b	49244 <hal_create_qmgmt_flow@@Base+0x488>
+   494d0:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   494d4:	aa1803e4 	mov	x4, x24
+   494d8:	912d1063 	add	x3, x3, #0xb44
+   494dc:	528042c2 	mov	w2, #0x216                 	// #534
+   494e0:	17ffffbb 	b	493cc <hal_create_qmgmt_flow@@Base+0x610>
+   494e4:	32196021 	orr	w1, w1, #0xffffff80
+   494e8:	321b0000 	orr	w0, w0, #0x20
+   494ec:	390303a1 	strb	w1, [x29, #192]
+   494f0:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   494f4:	390343a0 	strb	w0, [x29, #208]
+   494f8:	2a0603e4 	mov	w4, w6
+   494fc:	912e7863 	add	x3, x3, #0xb9e
+   49500:	528045e2 	mov	w2, #0x22f                 	// #559
+   49504:	9117ae81 	add	x1, x20, #0x5eb
+   49508:	52801180 	mov	w0, #0x8c                  	// #140
+   4950c:	97fffd12 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49510:	b940f264 	ldr	w4, [x19, #240]
+   49514:	3100049f 	cmn	w4, #0x1
+   49518:	54000240 	b.eq	49560 <hal_create_qmgmt_flow@@Base+0x7a4>  // b.none
+   4951c:	394307a0 	ldrb	w0, [x29, #193]
+   49520:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49524:	b940f665 	ldr	w5, [x19, #244]
+   49528:	91318863 	add	x3, x3, #0xc62
+   4952c:	32000000 	orr	w0, w0, #0x1
+   49530:	390307a0 	strb	w0, [x29, #193]
+   49534:	310004bf 	cmn	w5, #0x1
+   49538:	394353a0 	ldrb	w0, [x29, #212]
+   4953c:	1a850085 	csel	w5, w4, w5, eq	// eq = none
+   49540:	52804c22 	mov	w2, #0x261                 	// #609
+   49544:	321e0000 	orr	w0, w0, #0x4
+   49548:	9117ae81 	add	x1, x20, #0x5eb
+   4954c:	390353a0 	strb	w0, [x29, #212]
+   49550:	52801180 	mov	w0, #0x8c                  	// #140
+   49554:	b90243a4 	str	w4, [x29, #576]
+   49558:	b90247a5 	str	w5, [x29, #580]
+   4955c:	97fffcfe 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49560:	b940fe64 	ldr	w4, [x19, #252]
+   49564:	3100049f 	cmn	w4, #0x1
+   49568:	54000240 	b.eq	495b0 <hal_create_qmgmt_flow@@Base+0x7f4>  // b.none
+   4956c:	394307a0 	ldrb	w0, [x29, #193]
+   49570:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49574:	b9410265 	ldr	w5, [x19, #256]
+   49578:	9131dc63 	add	x3, x3, #0xc77
+   4957c:	32000000 	orr	w0, w0, #0x1
+   49580:	390307a0 	strb	w0, [x29, #193]
+   49584:	310004bf 	cmn	w5, #0x1
+   49588:	394353a0 	ldrb	w0, [x29, #212]
+   4958c:	1a850085 	csel	w5, w4, w5, eq	// eq = none
+   49590:	52804e62 	mov	w2, #0x273                 	// #627
+   49594:	321f0000 	orr	w0, w0, #0x2
+   49598:	9117ae81 	add	x1, x20, #0x5eb
+   4959c:	390353a0 	strb	w0, [x29, #212]
+   495a0:	52801180 	mov	w0, #0x8c                  	// #140
+   495a4:	b9023ba4 	str	w4, [x29, #568]
+   495a8:	b9023fa5 	str	w5, [x29, #572]
+   495ac:	97fffcea 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   495b0:	b940ea64 	ldr	w4, [x19, #232]
+   495b4:	3100049f 	cmn	w4, #0x1
+   495b8:	540001e0 	b.eq	495f4 <hal_create_qmgmt_flow@@Base+0x838>  // b.none
+   495bc:	394303a0 	ldrb	w0, [x29, #192]
+   495c0:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   495c4:	3906e3a4 	strb	w4, [x29, #440]
+   495c8:	91323863 	add	x3, x3, #0xc8e
+   495cc:	32196000 	orr	w0, w0, #0xffffff80
+   495d0:	390303a0 	strb	w0, [x29, #192]
+   495d4:	394343a0 	ldrb	w0, [x29, #208]
+   495d8:	12001c84 	and	w4, w4, #0xff
+   495dc:	52804f82 	mov	w2, #0x27c                 	// #636
+   495e0:	9117ae81 	add	x1, x20, #0x5eb
+   495e4:	321e0000 	orr	w0, w0, #0x4
+   495e8:	390343a0 	strb	w0, [x29, #208]
+   495ec:	52801180 	mov	w0, #0x8c                  	// #140
+   495f0:	97fffcd9 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   495f4:	39442260 	ldrb	w0, [x19, #264]
+   495f8:	34000260 	cbz	w0, 49644 <hal_create_qmgmt_flow@@Base+0x888>
+   495fc:	f9404fa1 	ldr	x1, [x29, #152]
+   49600:	91008ac3 	add	x3, x22, #0x22
+   49604:	910072c2 	add	x2, x22, #0x1c
+   49608:	aa1b03e0 	mov	x0, x27
+   4960c:	97fffbf3 	bl	485d8 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x140>
+   49610:	394303a0 	ldrb	w0, [x29, #192]
+   49614:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49618:	aa1b03e4 	mov	x4, x27
+   4961c:	91327863 	add	x3, x3, #0xc9e
+   49620:	321a0000 	orr	w0, w0, #0x40
+   49624:	390303a0 	strb	w0, [x29, #192]
+   49628:	394313a0 	ldrb	w0, [x29, #196]
+   4962c:	52805102 	mov	w2, #0x288                 	// #648
+   49630:	9117ae81 	add	x1, x20, #0x5eb
+   49634:	321e0000 	orr	w0, w0, #0x4
+   49638:	390313a0 	strb	w0, [x29, #196]
+   4963c:	52801180 	mov	w0, #0x8c                  	// #140
+   49640:	97fffcc5 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49644:	39453260 	ldrb	w0, [x19, #332]
+   49648:	34000260 	cbz	w0, 49694 <hal_create_qmgmt_flow@@Base+0x8d8>
+   4964c:	f9404ba1 	ldr	x1, [x29, #144]
+   49650:	9100bac3 	add	x3, x22, #0x2e
+   49654:	9100a2c2 	add	x2, x22, #0x28
+   49658:	aa1a03e0 	mov	x0, x26
+   4965c:	97fffbdf 	bl	485d8 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x140>
+   49660:	394303a0 	ldrb	w0, [x29, #192]
+   49664:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49668:	aa1a03e4 	mov	x4, x26
+   4966c:	9132d863 	add	x3, x3, #0xcb6
+   49670:	321a0000 	orr	w0, w0, #0x40
+   49674:	390303a0 	strb	w0, [x29, #192]
+   49678:	394313a0 	ldrb	w0, [x29, #196]
+   4967c:	52805262 	mov	w2, #0x293                 	// #659
+   49680:	9117ae81 	add	x1, x20, #0x5eb
+   49684:	321d0000 	orr	w0, w0, #0x8
+   49688:	390313a0 	strb	w0, [x29, #196]
+   4968c:	52801180 	mov	w0, #0x8c                  	// #140
+   49690:	97fffcb1 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49694:	b9419264 	ldr	w4, [x19, #400]
+   49698:	7100009f 	cmp	w4, #0x0
+   4969c:	540001ed 	b.le	496d8 <hal_create_qmgmt_flow@@Base+0x91c>
+   496a0:	394303a0 	ldrb	w0, [x29, #192]
+   496a4:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   496a8:	7902c3a4 	strh	w4, [x29, #352]
+   496ac:	91333063 	add	x3, x3, #0xccc
+   496b0:	321a0000 	orr	w0, w0, #0x40
+   496b4:	390303a0 	strb	w0, [x29, #192]
+   496b8:	394313a0 	ldrb	w0, [x29, #196]
+   496bc:	12003c84 	and	w4, w4, #0xffff
+   496c0:	528053a2 	mov	w2, #0x29d                 	// #669
+   496c4:	9117ae81 	add	x1, x20, #0x5eb
+   496c8:	32000000 	orr	w0, w0, #0x1
+   496cc:	390313a0 	strb	w0, [x29, #196]
+   496d0:	52801180 	mov	w0, #0x8c                  	// #140
+   496d4:	97fffca0 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   496d8:	b9419a64 	ldr	w4, [x19, #408]
+   496dc:	3100049f 	cmn	w4, #0x1
+   496e0:	54000200 	b.eq	49720 <hal_create_qmgmt_flow@@Base+0x964>  // b.none
+   496e4:	394303a0 	ldrb	w0, [x29, #192]
+   496e8:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   496ec:	3906e7a4 	strb	w4, [x29, #441]
+   496f0:	91337463 	add	x3, x3, #0xcdd
+   496f4:	32196000 	orr	w0, w0, #0xffffff80
+   496f8:	390303a0 	strb	w0, [x29, #192]
+   496fc:	394343a0 	ldrb	w0, [x29, #208]
+   49700:	12001c84 	and	w4, w4, #0xff
+   49704:	3906ebbf 	strb	wzr, [x29, #442]
+   49708:	52805502 	mov	w2, #0x2a8                 	// #680
+   4970c:	321d0000 	orr	w0, w0, #0x8
+   49710:	9117ae81 	add	x1, x20, #0x5eb
+   49714:	390343a0 	strb	w0, [x29, #208]
+   49718:	52801180 	mov	w0, #0x8c                  	// #140
+   4971c:	97fffc8e 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49720:	b941a264 	ldr	w4, [x19, #416]
+   49724:	3100049f 	cmn	w4, #0x1
+   49728:	54000280 	b.eq	49778 <hal_create_qmgmt_flow@@Base+0x9bc>  // b.none
+   4972c:	12001c80 	and	w0, w4, #0xff
+   49730:	39060ba0 	strb	w0, [x29, #386]
+   49734:	390623a0 	strb	w0, [x29, #392]
+   49738:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   4973c:	394303a0 	ldrb	w0, [x29, #192]
+   49740:	12001c84 	and	w4, w4, #0xff
+   49744:	9133a463 	add	x3, x3, #0xce9
+   49748:	52805682 	mov	w2, #0x2b4                 	// #692
+   4974c:	321a0000 	orr	w0, w0, #0x40
+   49750:	390303a0 	strb	w0, [x29, #192]
+   49754:	394313a0 	ldrb	w0, [x29, #196]
+   49758:	9117ae81 	add	x1, x20, #0x5eb
+   4975c:	321c0000 	orr	w0, w0, #0x10
+   49760:	390313a0 	strb	w0, [x29, #196]
+   49764:	394323a0 	ldrb	w0, [x29, #200]
+   49768:	321d0000 	orr	w0, w0, #0x8
+   4976c:	390323a0 	strb	w0, [x29, #200]
+   49770:	52801180 	mov	w0, #0x8c                  	// #140
+   49774:	97fffc78 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49778:	b941aa64 	ldr	w4, [x19, #424]
+   4977c:	3100049f 	cmn	w4, #0x1
+   49780:	54000280 	b.eq	497d0 <hal_create_qmgmt_flow@@Base+0xa14>  // b.none
+   49784:	12003c80 	and	w0, w4, #0xffff
+   49788:	79030ba0 	strh	w0, [x29, #388]
+   4978c:	790317a0 	strh	w0, [x29, #394]
+   49790:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49794:	394303a0 	ldrb	w0, [x29, #192]
+   49798:	12003c84 	and	w4, w4, #0xffff
+   4979c:	91341863 	add	x3, x3, #0xd06
+   497a0:	52805802 	mov	w2, #0x2c0                 	// #704
+   497a4:	321a0000 	orr	w0, w0, #0x40
+   497a8:	390303a0 	strb	w0, [x29, #192]
+   497ac:	394313a0 	ldrb	w0, [x29, #196]
+   497b0:	9117ae81 	add	x1, x20, #0x5eb
+   497b4:	321c0000 	orr	w0, w0, #0x10
+   497b8:	390313a0 	strb	w0, [x29, #196]
+   497bc:	394323a0 	ldrb	w0, [x29, #200]
+   497c0:	321f0000 	orr	w0, w0, #0x2
+   497c4:	390323a0 	strb	w0, [x29, #200]
+   497c8:	52801180 	mov	w0, #0x8c                  	// #140
+   497cc:	97fffc62 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   497d0:	b9400ae4 	ldr	w4, [x23, #8]
+   497d4:	52800020 	mov	w0, #0x1                   	// #1
+   497d8:	b900dba0 	str	w0, [x29, #216]
+   497dc:	b900e3a0 	str	w0, [x29, #224]
+   497e0:	37f80184 	tbnz	w4, #31, 49810 <hal_create_qmgmt_flow@@Base+0xa54>
+   497e4:	394513a0 	ldrb	w0, [x29, #324]
+   497e8:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   497ec:	3903f7a4 	strb	w4, [x29, #253]
+   497f0:	91346463 	add	x3, x3, #0xd19
+   497f4:	321d0000 	orr	w0, w0, #0x8
+   497f8:	12001c84 	and	w4, w4, #0xff
+   497fc:	390513a0 	strb	w0, [x29, #324]
+   49800:	52805962 	mov	w2, #0x2cb                 	// #715
+   49804:	9117ae81 	add	x1, x20, #0x5eb
+   49808:	52801180 	mov	w0, #0x8c                  	// #140
+   4980c:	97fffc52 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49810:	b9400ee4 	ldr	w4, [x23, #12]
+   49814:	37f80264 	tbnz	w4, #31, 49860 <hal_create_qmgmt_flow@@Base+0xaa4>
+   49818:	394517a0 	ldrb	w0, [x29, #325]
+   4981c:	12003c85 	and	w5, w4, #0xffff
+   49820:	79022ba5 	strh	w5, [x29, #276]
+   49824:	110004a5 	add	w5, w5, #0x1
+   49828:	321e0000 	orr	w0, w0, #0x4
+   4982c:	390517a0 	strb	w0, [x29, #325]
+   49830:	39451ba0 	ldrb	w0, [x29, #326]
+   49834:	12003ca5 	and	w5, w5, #0xffff
+   49838:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   4983c:	79025fa5 	strh	w5, [x29, #302]
+   49840:	32000000 	orr	w0, w0, #0x1
+   49844:	12003c84 	and	w4, w4, #0xffff
+   49848:	39051ba0 	strb	w0, [x29, #326]
+   4984c:	91349463 	add	x3, x3, #0xd25
+   49850:	52805ba2 	mov	w2, #0x2dd                 	// #733
+   49854:	9117ae81 	add	x1, x20, #0x5eb
+   49858:	52801180 	mov	w0, #0x8c                  	// #140
+   4985c:	97fffc3e 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49860:	9102b3a5 	add	x5, x29, #0xac
+   49864:	910363a4 	add	x4, x29, #0xd8
+   49868:	910303a3 	add	x3, x29, #0xc0
+   4986c:	aa1603e2 	mov	x2, x22
+   49870:	52800001 	mov	w1, #0x0                   	// #0
+   49874:	52800000 	mov	w0, #0x0                   	// #0
+   49878:	97ff7fe2 	bl	29800 <ca_classifier_rule_add@plt>
+   4987c:	34000a20 	cbz	w0, 499c0 <hal_create_qmgmt_flow@@Base+0xc04>
+   49880:	b94002e5 	ldr	w5, [x23]
+   49884:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49888:	9117ae81 	add	x1, x20, #0x5eb
+   4988c:	91352863 	add	x3, x3, #0xd4a
+   49890:	2a0003e4 	mov	w4, w0
+   49894:	52805c62 	mov	w2, #0x2e3                 	// #739
+   49898:	52801fc0 	mov	w0, #0xfe                  	// #254
+   4989c:	97fffc2e 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   498a0:	17fffd69 	b	48e44 <hal_create_qmgmt_flow@@Base+0x88>
+   498a4:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   498a8:	aa1903e4 	mov	x4, x25
+   498ac:	912ed463 	add	x3, x3, #0xbb5
+   498b0:	52804682 	mov	w2, #0x234                 	// #564
+   498b4:	9117ae81 	add	x1, x20, #0x5eb
+   498b8:	52801fc0 	mov	w0, #0xfe                  	// #254
+   498bc:	97fffc26 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   498c0:	17ffff14 	b	49510 <hal_create_qmgmt_flow@@Base+0x754>
+   498c4:	b0000101 	adrp	x1, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   498c8:	aa1903e0 	mov	x0, x25
+   498cc:	912b4021 	add	x1, x1, #0xad0
+   498d0:	97ff8800 	bl	2b8d0 <strcmp@plt>
+   498d4:	34ffe1e0 	cbz	w0, 49510 <hal_create_qmgmt_flow@@Base+0x754>
+   498d8:	52800741 	mov	w1, #0x3a                  	// #58
+   498dc:	aa1903e0 	mov	x0, x25
+   498e0:	97ff8184 	bl	29ef0 <strchr@plt>
+   498e4:	b4ffe160 	cbz	x0, 49510 <hal_create_qmgmt_flow@@Base+0x754>
+   498e8:	9101d2d5 	add	x21, x22, #0x74
+   498ec:	aa1903e0 	mov	x0, x25
+   498f0:	aa1503e1 	mov	x1, x21
+   498f4:	97fffbb8 	bl	487d4 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x33c>
+   498f8:	72001c1f 	tst	w0, #0xff
+   498fc:	54000580 	b.eq	499ac <hal_create_qmgmt_flow@@Base+0xbf0>  // b.none
+   49900:	b940e260 	ldr	w0, [x19, #224]
+   49904:	7218781f 	tst	w0, #0xffffff7f
+   49908:	54000380 	b.eq	49978 <hal_create_qmgmt_flow@@Base+0xbbc>  // b.none
+   4990c:	910232c2 	add	x2, x22, #0x8c
+   49910:	aa1503e1 	mov	x1, x21
+   49914:	97fffb6a 	bl	486bc <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x224>
+   49918:	394303a0 	ldrb	w0, [x29, #192]
+   4991c:	910403a8 	add	x8, x29, #0x100
+   49920:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49924:	52804862 	mov	w2, #0x243                 	// #579
+   49928:	32196000 	orr	w0, w0, #0xffffff80
+   4992c:	390303a0 	strb	w0, [x29, #192]
+   49930:	394343a0 	ldrb	w0, [x29, #208]
+   49934:	912f4063 	add	x3, x3, #0xbd0
+   49938:	9117ae81 	add	x1, x20, #0x5eb
+   4993c:	321b0400 	orr	w0, w0, #0x60
+   49940:	390343a0 	strb	w0, [x29, #208]
+   49944:	b941e7a0 	ldr	w0, [x29, #484]
+   49948:	29581504 	ldp	w4, w5, [x8, #192]
+   4994c:	29591d06 	ldp	w6, w7, [x8, #200]
+   49950:	b9001be0 	str	w0, [sp, #24]
+   49954:	b941e3a0 	ldr	w0, [x29, #480]
+   49958:	b90013e0 	str	w0, [sp, #16]
+   4995c:	b941dfa0 	ldr	w0, [x29, #476]
+   49960:	b9000be0 	str	w0, [sp, #8]
+   49964:	b941dba0 	ldr	w0, [x29, #472]
+   49968:	b90003e0 	str	w0, [sp]
+   4996c:	52801180 	mov	w0, #0x8c                  	// #140
+   49970:	97fffbf9 	bl	48954 <_ZN19QosDsServiceFlowMgr6insertEP16QosDsServiceFlow@@Base+0x4bc>
+   49974:	17fffee7 	b	49510 <hal_create_qmgmt_flow@@Base+0x754>
+   49978:	394303a0 	ldrb	w0, [x29, #192]
+   4997c:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   49980:	52804922 	mov	w2, #0x249                 	// #585
+   49984:	91305c63 	add	x3, x3, #0xc17
+   49988:	32196000 	orr	w0, w0, #0xffffff80
+   4998c:	390303a0 	strb	w0, [x29, #192]
+   49990:	394343a0 	ldrb	w0, [x29, #208]
+   49994:	321b0000 	orr	w0, w0, #0x20
+   49998:	390343a0 	strb	w0, [x29, #208]
+   4999c:	910403a0 	add	x0, x29, #0x100
+   499a0:	29581404 	ldp	w4, w5, [x0, #192]
+   499a4:	29591c06 	ldp	w6, w7, [x0, #200]
+   499a8:	17fffe81 	b	493ac <hal_create_qmgmt_flow@@Base+0x5f0>
+   499ac:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   499b0:	aa1903e4 	mov	x4, x25
+   499b4:	91311463 	add	x3, x3, #0xc45
+   499b8:	528049c2 	mov	w2, #0x24e                 	// #590
+   499bc:	17ffffbe 	b	498b4 <hal_create_qmgmt_flow@@Base+0xaf8>
+   499c0:	b94002e0 	ldr	w0, [x23]
+   499c4:	9102c3a1 	add	x1, x29, #0xb0
+   499c8:	291603a0 	stp	w0, w0, [x29, #176]
+   499cc:	b940afa0 	ldr	w0, [x29, #172]
+   499d0:	b900bba0 	str	w0, [x29, #184]
+   499d4:	f94047a0 	ldr	x0, [x29, #136]
+   499d8:	f9464000 	ldr	x0, [x0, #3200]
+   499dc:	97ff8af9 	bl	2c5c0 <_ZNSt8_Rb_treeItSt4pairIKt13tQosFlowEntryESt10_Select1stIS3_ESt4lessItESaIS3_EE17_M_emplace_uniqueIJS0_IiS2_EEEES0_ISt17_Rb_tree_iteratorIS3_EbEDpOT_@plt>
+   499e0:	b0000103 	adrp	x3, 6a000 <_ZTS21VlanFlowUnmatchPerGem@@Base+0x280>
+   499e4:	52805d62 	mov	w2, #0x2eb                 	// #747
+   499e8:	9135a463 	add	x3, x3, #0xd69
+   499ec:	9117ae81 	add	x1, x20, #0x5eb
+   499f0:	52801180 	mov	w0, #0x8c                  	// #140
+   499f4:	b94002e4 	ldr	w4, [x23]
+   499f8:	b940afa5 	ldr	w5, [x29, #172]
+   499fc:	17ffffa8 	b	4989c <hal_create_qmgmt_flow@@Base+0xae0>
+
+hal_hgu_qos_config_overall_ratelimit (0x62204, 8 bytes)
+Disassembly of section .text:
+
+0000000000062204 <hal_hgu_qos_config_overall_ratelimit@@Base>:
+   62204:	52800000 	mov	w0, #0x0                   	// #0
+   62208:	d65f03c0 	ret
+
+hal_hgu_qos_config_queue_rate (0x62094, 8 bytes)
+Disassembly of section .text:
+
+0000000000062094 <hal_hgu_qos_config_queue_rate@@Base>:
+   62094:	52800000 	mov	w0, #0x0                   	// #0
+   62098:	d65f03c0 	ret
+
+hal_hgu_qos_create_classify (0x621f4, 8 bytes)
+Disassembly of section .text:
+
+00000000000621f4 <hal_hgu_qos_create_classify@@Base>:
+   621f4:	52800000 	mov	w0, #0x0                   	// #0
+   621f8:	d65f03c0 	ret
+
+hal_hgu_qos_create_classify_v6 (0x621fc, 8 bytes)
+Disassembly of section .text:
+
+00000000000621fc <hal_hgu_qos_create_classify_v6@@Base>:
+   621fc:	52800000 	mov	w0, #0x0                   	// #0
+   62200:	d65f03c0 	ret
+
+hal_hgu_qos_create_flow (0x621d4, 8 bytes)
+Disassembly of section .text:
+
+00000000000621d4 <hal_hgu_qos_create_flow@@Base>:
+   621d4:	52800000 	mov	w0, #0x0                   	// #0
+   621d8:	d65f03c0 	ret
+
+hal_hgu_qos_create_flow_v6 (0x621cc, 8 bytes)
+Disassembly of section .text:
+
+00000000000621cc <hal_hgu_qos_create_flow_v6@@Base>:
+   621cc:	52800000 	mov	w0, #0x0                   	// #0
+   621d0:	d65f03c0 	ret
+
+hal_hgu_qos_create_policer (0x621ec, 8 bytes)
+Disassembly of section .text:
+
+00000000000621ec <hal_hgu_qos_create_policer@@Base>:
+   621ec:	52800000 	mov	w0, #0x0                   	// #0
+   621f0:	d65f03c0 	ret
+
+hal_hgu_qos_delete_classify (0x621dc, 8 bytes)
+Disassembly of section .text:
+
+00000000000621dc <hal_hgu_qos_delete_classify@@Base>:
+   621dc:	52800000 	mov	w0, #0x0                   	// #0
+   621e0:	d65f03c0 	ret
+
+hal_hgu_qos_delete_flow_v6 (0x621e4, 8 bytes)
+Disassembly of section .text:
+
+00000000000621e4 <hal_hgu_qos_delete_flow_v6@@Base>:
+   621e4:	52800000 	mov	w0, #0x0                   	// #0
+   621e8:	d65f03c0 	ret
+
+hal_hgu_qos_delete_policer (0x621c4, 8 bytes)
+Disassembly of section .text:
+
+00000000000621c4 <hal_hgu_qos_delete_policer@@Base>:
+   621c4:	52800000 	mov	w0, #0x0                   	// #0
+   621c8:	d65f03c0 	ret
+
+_Z33hal_cortina_qos_config_set_for_dsv (0x326dc, 132 bytes)
+Disassembly of section .text:
+
+00000000000326dc <_Z33hal_cortina_qos_config_set_for_dsv@@Base>:
+   326dc:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+   326e0:	52800000 	mov	w0, #0x0                   	// #0
+   326e4:	910003fd 	mov	x29, sp
+   326e8:	a90153f3 	stp	x19, x20, [sp, #16]
+   326ec:	9100c3b3 	add	x19, x29, #0x30
+   326f0:	528000f4 	mov	w20, #0x7                   	// #7
+   326f4:	f90013f5 	str	x21, [sp, #32]
+   326f8:	72a00154 	movk	w20, #0xa, lsl #16
+   326fc:	aa1303e2 	mov	x2, x19
+   32700:	2a1403e1 	mov	w1, w20
+   32704:	97ffe46b 	bl	2b8b0 <ca_qos_config_get@plt>
+   32708:	52800055 	mov	w21, #0x2                   	// #2
+   3270c:	aa1303e2 	mov	x2, x19
+   32710:	2a1403e1 	mov	w1, w20
+   32714:	b9003bb5 	str	w21, [x29, #56]
+   32718:	52800000 	mov	w0, #0x0                   	// #0
+   3271c:	528000f4 	mov	w20, #0x7                   	// #7
+   32720:	97ffe28c 	bl	2b150 <ca_qos_config_set@plt>
+   32724:	72a00034 	movk	w20, #0x1, lsl #16
+   32728:	aa1303e2 	mov	x2, x19
+   3272c:	2a1403e1 	mov	w1, w20
+   32730:	52800000 	mov	w0, #0x0                   	// #0
+   32734:	97ffe45f 	bl	2b8b0 <ca_qos_config_get@plt>
+   32738:	aa1303e2 	mov	x2, x19
+   3273c:	2a1403e1 	mov	w1, w20
+   32740:	b9003bb5 	str	w21, [x29, #56]
+   32744:	52800000 	mov	w0, #0x0                   	// #0
+   32748:	97ffe282 	bl	2b150 <ca_qos_config_set@plt>
+   3274c:	f94013f5 	ldr	x21, [sp, #32]
+   32750:	a94153f3 	ldp	x19, x20, [sp, #16]
+   32754:	52800000 	mov	w0, #0x0                   	// #0
+   32758:	a8c47bfd 	ldp	x29, x30, [sp], #64
+   3275c:	d65f03c0 	ret

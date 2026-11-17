@@ -1,0 +1,385 @@
+{
+  "date": "2026-11-13",
+  "scope": "Saved HJL ELF and FIT, archived installed Linux rules and owner passive conntrack snapshot. No packet or hardware-counter test.",
+  "owner_hjl_conntrack": {
+    "entries": 69,
+    "offload_marker": 0,
+    "hw_offload_marker": 0
+  },
+  "kernel": {
+    "fit_path": "analysis/stock-fit.bin",
+    "fit": {
+      "bytes": 5005934,
+      "sha256": "26be8ef67f047c6a37105ba0e1622ef3a3a1874d80558a91aac969f586d7c4c9"
+    },
+    "fit_node": "kernel@1",
+    "uncompressed_image": {
+      "bytes": 11755528,
+      "sha256": "abf4cb1c411118ee7aae61f67401a46184d5f11528a6c5f21f2b829eba622212"
+    },
+    "literal_counts": {
+      "[ASSURED]": 1,
+      "[UNREPLIED]": 1,
+      "[OFFLOAD]": 1,
+      "[HW_OFFLOAD]": 0,
+      "ca_kernel_hook_ops": 1,
+      "ca_kh_hook": 1
+    }
+  },
+  "archived_rules": {
+    "path": "writeups/uplink-vlan-firewall/resources/live-captures.json",
+    "bytes": 175491,
+    "sha256": "0ced937bd5fb82052f458078cb9572caf36762f0251643534984a1597d63308b",
+    "record_index_zero_based": 0,
+    "ipv4_ipv6_excerpt": "-A QOS_PBIT -o ewan_u_0_1 -j CLASSIFY --set-class 0010:0001",
+    "occurrences": 2
+  },
+  "classification_chain": [
+    "cfgmgr -> sal_ndk_createQosClassification at 0xc7f7c",
+    "ndk_appsd rgw_createQosClassification -> config_class 0x4262a4 at 0x4287b0",
+    "enabled path -> native builder 0x420a0c at 0x426630",
+    "builder -> rgw_impl_create_hw_qmgmt_flow at 0x421484",
+    "libndk_rgw_impl 0x4f78 -> hal_create_qmgmt_flow, discarding HAL result",
+    "HAL -> ca_classifier_rule_add at 0x49878"
+  ],
+  "queue_rate_chain": [
+    "ndk_appsd adapter 0x4395bc",
+    "rgw_impl_config_queue_rate at 0x4395cc",
+    "libndk_rgw_impl 0x4cdc through GOT 0x16da0",
+    "hal_hgu_qos_config_queue_rate return-zero stub 0x62094"
+  ],
+  "software_flush": {
+    "conditions": [
+      "queue empty",
+      "processed count greater than nine",
+      "global flag 0x440c8 nonzero"
+    ],
+    "condition_window": "0x18a00..0x18a3c",
+    "calls": [
+      "0x18b5c",
+      "0x18b68"
+    ],
+    "hardware_entry_removal_measured": false
+  },
+  "shapers": {
+    "source": "private-source://PROFILE-G6-HJL/lib/modules/4.14.275/ca-ne.ko",
+    "bytes": 6651896,
+    "sha256": "17cfaf9eff404182f0cafef9ea4f1ac4c01d4ed6152ed76fcc8307f4dd0b409c",
+    "port": {
+      "symbol": "ca_port_shaper_set",
+      "address": "0x159590",
+      "rate_base": 1000
+    },
+    "queue": {
+      "symbol": "ca_queue_shaper_set",
+      "address": "0x1599a0",
+      "rate_base": 500
+    },
+    "narrowed_bits": {
+      "quotient": 16,
+      "remainder": 16,
+      "burst": 16
+    },
+    "objdump": "Disassembly of section .text:\n\n0000000000159590 <ca_port_shaper_set>:\n  159590:\ta9b87bfd \tstp\tx29, x30, [sp, #-128]!\n  159594:\t910003fd \tmov\tx29, sp\n  159598:\ta90153f3 \tstp\tx19, x20, [sp, #16]\n  15959c:\tf90017f6 \tstr\tx22, [sp, #40]\n  1595a0:\t12003c16 \tand\tw22, w0, #0xffff\n  1595a4:\t2a0103f3 \tmov\tw19, w1\n  1595a8:\taa1e03e0 \tmov\tx0, x30\n  1595ac:\taa0203f4 \tmov\tx20, x2\n  1595b0:\t94000000 \tbl\t0 <_mcount>\n\t\t\t1595b0: R_AARCH64_CALL26\t_mcount\n  1595b4:\t90000000 \tadrp\tx0, 192a <ca_pkt_parse+0xa62>\n\t\t\t1595b4: R_AARCH64_ADR_PREL_PG_HI21\tcfg_l3qm_buf_packing_size\n  1595b8:\t39400000 \tldrb\tw0, [x0]\n\t\t\t1595b8: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_l3qm_buf_packing_size\n  1595bc:\t340000e0 \tcbz\tw0, 1595d8 <ca_port_shaper_set+0x48>\n  1595c0:\t53107e60 \tlsr\tw0, w19, #16\n  1595c4:\t7100281f \tcmp\tw0, #0xa\n  1595c8:\t54000081 \tb.ne\t1595d8 <ca_port_shaper_set+0x48>  // b.any\n  1595cc:\tb9400681 \tldr\tw1, [x20, #4]\n  1595d0:\t528000e0 \tmov\tw0, #0x7                   \t// #7\n  1595d4:\t35001de1 \tcbnz\tw1, 159990 <ca_port_shaper_set+0x400>\n  1595d8:\tb50000d4 \tcbnz\tx20, 1595f0 <ca_port_shaper_set+0x60>\n  1595dc:\t14000003 \tb\t1595e8 <ca_port_shaper_set+0x58>\n  1595e0:\tf94013b5 \tldr\tx21, [x29, #32]\n  1595e4:\tf9401bb7 \tldr\tx23, [x29, #48]\n  1595e8:\t52800040 \tmov\tw0, #0x2                   \t// #2\n  1595ec:\t140000e9 \tb\t159990 <ca_port_shaper_set+0x400>\n  1595f0:\tf90013b5 \tstr\tx21, [x29, #32]\n  1595f4:\t90000015 \tadrp\tx21, 0 <__ca_skb_in>\n\t\t\t1595f4: R_AARCH64_ADR_PREL_PG_HI21\t.bss+0x804c0\n  1595f8:\tf9001bb7 \tstr\tx23, [x29, #48]\n  1595fc:\t910002b7 \tadd\tx23, x21, #0x0\n\t\t\t1595fc: R_AARCH64_ADD_ABS_LO12_NC\t.bss+0x804c0\n  159600:\tb949cae0 \tldr\tw0, [x23, #2504]\n  159604:\t35000180 \tcbnz\tw0, 159634 <ca_port_shaper_set+0xa4>\n  159608:\td2805802 \tmov\tx2, #0x2c0                 \t// #704\n  15960c:\t52800001 \tmov\tw1, #0x0                   \t// #0\n  159610:\t912742e0 \tadd\tx0, x23, #0x9d0\n  159614:\t94000000 \tbl\t0 <memset>\n\t\t\t159614: R_AARCH64_CALL26\tmemset\n  159618:\td282c002 \tmov\tx2, #0x1600                \t// #5632\n  15961c:\t90000000 \tadrp\tx0, 81178 <aal_l2_qos_dscp_map_set+0x30>\n\t\t\t15961c: R_AARCH64_ADR_PREL_PG_HI21\tg_voq_burst_size\n  159620:\t52800001 \tmov\tw1, #0x0                   \t// #0\n  159624:\t91000000 \tadd\tx0, x0, #0x0\n\t\t\t159624: R_AARCH64_ADD_ABS_LO12_NC\tg_voq_burst_size\n  159628:\t94000000 \tbl\t0 <memset>\n\t\t\t159628: R_AARCH64_CALL26\tmemset\n  15962c:\t52800020 \tmov\tw0, #0x1                   \t// #1\n  159630:\tb909cae0 \tstr\tw0, [x23, #2504]\n  159634:\t53107e62 \tlsr\tw2, w19, #16\n  159638:\t12003e73 \tand\tw19, w19, #0xffff\n  15963c:\t51000445 \tsub\tw5, w2, #0x1\n  159640:\t710004bf \tcmp\tw5, #0x1\n  159644:\t540000a8 \tb.hi\t159658 <ca_port_shaper_set+0xc8>  // b.pmore\n  159648:\t71001e7f \tcmp\tw19, #0x7\n  15964c:\t54000300 \tb.eq\t1596ac <ca_port_shaper_set+0x11c>  // b.none\n  159650:\t17ffffe4 \tb\t1595e0 <ca_port_shaper_set+0x50>\n  159654:\td503201f \tnop\n  159658:\t71000c5f \tcmp\tw2, #0x3\n  15965c:\t540000e1 \tb.ne\t159678 <ca_port_shaper_set+0xe8>  // b.any\n  159660:\t51006260 \tsub\tw0, w19, #0x18\n  159664:\t7100041f \tcmp\tw0, #0x1\n  159668:\t7a4f8a60 \tccmp\tw19, #0xf, #0x0, hi\t// hi = pmore\n  15966c:\t54000209 \tb.ls\t1596ac <ca_port_shaper_set+0x11c>  // b.plast\n  159670:\t17ffffdc \tb\t1595e0 <ca_port_shaper_set+0x50>\n  159674:\td503201f \tnop\n  159678:\t7100105f \tcmp\tw2, #0x4\n  15967c:\t540000a1 \tb.ne\t159690 <ca_port_shaper_set+0x100>  // b.any\n  159680:\t51004260 \tsub\tw0, w19, #0x10\n  159684:\t71001c1f \tcmp\tw0, #0x7\n  159688:\t54000129 \tb.ls\t1596ac <ca_port_shaper_set+0x11c>  // b.plast\n  15968c:\t17ffffd5 \tb\t1595e0 <ca_port_shaper_set+0x50>\n  159690:\t7100285f \tcmp\tw2, #0xa\n  159694:\t54fffa61 \tb.ne\t1595e0 <ca_port_shaper_set+0x50>  // b.any\n  159698:\t90000000 \tadrp\tx0, 2038 <api_wmc_flooding_proc_write+0xc8>\n\t\t\t159698: R_AARCH64_ADR_PREL_PG_HI21\tcfg_pon_upstream_use_deep_queue\n  15969c:\t39400000 \tldrb\tw0, [x0]\n\t\t\t15969c: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_pon_upstream_use_deep_queue\n  1596a0:\t7100001f \tcmp\tw0, #0x0\n  1596a4:\t7a470a64 \tccmp\tw19, #0x7, #0x4, eq\t// eq = none\n  1596a8:\t54fff9c1 \tb.ne\t1595e0 <ca_port_shaper_set+0x50>  // b.any\n  1596ac:\t29412e8a \tldp\tw10, w11, [x20, #8]\n  1596b0:\t5289ba60 \tmov\tw0, #0x4dd3                \t// #19923\n  1596b4:\t72a20c40 \tmovk\tw0, #0x1062, lsl #16\n  1596b8:\t91015ba9 \tadd\tx9, x29, #0x56\n  1596bc:\t29401281 \tldp\tw1, w4, [x20]\n  1596c0:\t9ba07d40 \tumull\tx0, w10, w0\n  1596c4:\t9101bba8 \tadd\tx8, x29, #0x6e\n  1596c8:\t52807d03 \tmov\tw3, #0x3e8                 \t// #1000\n  1596cc:\t7100009f \tcmp\tw4, #0x0\n  1596d0:\ta9007d3f \tstp\txzr, xzr, [x9]\n  1596d4:\td360fc00 \tlsr\tx0, x0, #32\n  1596d8:\t1a9f07e6 \tcset\tw6, ne\t// ne = any\n  1596dc:\t53067c00 \tlsr\tw0, w0, #6\n  1596e0:\t7100003f \tcmp\tw1, #0x0\n  1596e4:\t1a9f07e4 \tcset\tw4, ne\t// ne = any\n  1596e8:\ta9007d1f \tstp\txzr, xzr, [x8]\n  1596ec:\tb90043bf \tstr\twzr, [x29, #64]\n  1596f0:\t528003ec \tmov\tw12, #0x1f                  \t// #31\n  1596f4:\t1b03a803 \tmsub\tw3, w0, w3, w10\n  1596f8:\tb9004bbf \tstr\twzr, [x29, #72]\n  1596fc:\t12003d67 \tand\tw7, w11, #0xffff\n  159700:\t12003c00 \tand\tw0, w0, #0xffff\n  159704:\t531f7884 \tlsl\tw4, w4, #1\n  159708:\t12003c63 \tand\tw3, w3, #0xffff\n  15970c:\t7900213f \tstrh\twzr, [x9, #16]\n  159710:\t71000c5f \tcmp\tw2, #0x3\n  159714:\t7900211f \tstrh\twzr, [x8, #16]\n  159718:\t7900aba7 \tstrh\tw7, [x29, #84]\n  15971c:\t7900a3a3 \tstrh\tw3, [x29, #80]\n  159720:\t7900a7a0 \tstrh\tw0, [x29, #82]\n  159724:\t7900dba7 \tstrh\tw7, [x29, #108]\n  159728:\t7900d3a3 \tstrh\tw3, [x29, #104]\n  15972c:\t7900d7a0 \tstrh\tw0, [x29, #106]\n  159730:\t290b1ba4 \tstp\tw4, w6, [x29, #88]\n  159734:\t290e1ba4 \tstp\tw4, w6, [x29, #112]\n  159738:\t390103ac \tstrb\tw12, [x29, #64]\n  15973c:\t390123ac \tstrb\tw12, [x29, #72]\n  159740:\t54000ec0 \tb.eq\t159918 <ca_port_shaper_set+0x388>  // b.none\n  159744:\t540000e8 \tb.hi\t159760 <ca_port_shaper_set+0x1d0>  // b.pmore\n  159748:\t7100045f \tcmp\tw2, #0x1\n  15974c:\t54000b60 \tb.eq\t1598b8 <ca_port_shaper_set+0x328>  // b.none\n  159750:\t7100085f \tcmp\tw2, #0x2\n  159754:\t54000760 \tb.eq\t159840 <ca_port_shaper_set+0x2b0>  // b.none\n  159758:\t1400008a \tb\t159980 <ca_port_shaper_set+0x3f0>\n  15975c:\td503201f \tnop\n  159760:\t7100105f \tcmp\tw2, #0x4\n  159764:\t540000a0 \tb.eq\t159778 <ca_port_shaper_set+0x1e8>  // b.none\n  159768:\t7100285f \tcmp\tw2, #0xa\n  15976c:\t54000220 \tb.eq\t1597b0 <ca_port_shaper_set+0x220>  // b.none\n  159770:\t14000084 \tb\t159980 <ca_port_shaper_set+0x3f0>\n  159774:\td503201f \tnop\n  159778:\t51004273 \tsub\tw19, w19, #0x10\n  15977c:\t910002b5 \tadd\tx21, x21, #0x0\n\t\t\t15977c: R_AARCH64_ADD_ABS_LO12_NC\t.bss+0x804c0\n  159780:\tb9404ba2 \tldr\tw2, [x29, #72]\n  159784:\t8b334ab5 \tadd\tx21, x21, w19, uxtw #2\n  159788:\t9101a3a3 \tadd\tx3, x29, #0x68\n  15978c:\t2a1303e1 \tmov\tw1, w19\n  159790:\t2a1603e0 \tmov\tw0, w22\n  159794:\tb90ad2ab \tstr\tw11, [x21, #2768]\n  159798:\t94000000 \tbl\tafe90 <aal_l3_te_shaper_port_tbc_set>\n\t\t\t159798: R_AARCH64_CALL26\taal_l3_te_shaper_port_tbc_set\n  15979c:\t35000040 \tcbnz\tw0, 1597a4 <ca_port_shaper_set+0x214>\n  1597a0:\t1400003e \tb\t159898 <ca_port_shaper_set+0x308>\n  1597a4:\t90000000 \tadrp\tx0, 0 <__ca_skb_in>\n\t\t\t1597a4: R_AARCH64_ADR_PREL_PG_HI21\t.rodata.str1.8+0x36410\n  1597a8:\t52813962 \tmov\tw2, #0x9cb                 \t// #2507\n  1597ac:\t1400001d \tb\t159820 <ca_port_shaper_set+0x290>\n  1597b0:\t90000000 \tadrp\tx0, 14b0 <ca_pkt_parse+0x5e8>\n\t\t\t1597b0: R_AARCH64_ADR_PREL_PG_HI21\tcfg_ni_l3fe_demux+0x7\n  1597b4:\t39400000 \tldrb\tw0, [x0]\n\t\t\t1597b4: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_ni_l3fe_demux+0x7\n  1597b8:\t7100041f \tcmp\tw0, #0x1\n  1597bc:\t540001a1 \tb.ne\t1597f0 <ca_port_shaper_set+0x260>  // b.any\n  1597c0:\tb94043a2 \tldr\tw2, [x29, #64]\n  1597c4:\t910002b5 \tadd\tx21, x21, #0x0\n\t\t\t1597c4: R_AARCH64_ADD_ABS_LO12_NC\t.bss+0x804c0\n  1597c8:\t910143a3 \tadd\tx3, x29, #0x50\n  1597cc:\t528001a1 \tmov\tw1, #0xd                   \t// #13\n  1597d0:\t2a1603e0 \tmov\tw0, w22\n  1597d4:\tb90c86ab \tstr\tw11, [x21, #3204]\n  1597d8:\t94000000 \tbl\t73300 <aal_l2_te_shaper_port_tbc_set>\n\t\t\t1597d8: R_AARCH64_CALL26\taal_l2_te_shaper_port_tbc_set\n  1597dc:\t340005e0 \tcbz\tw0, 159898 <ca_port_shaper_set+0x308>\n  1597e0:\t90000000 \tadrp\tx0, 0 <__ca_skb_in>\n\t\t\t1597e0: R_AARCH64_ADR_PREL_PG_HI21\t.rodata.str1.8+0x36460\n  1597e4:\t52813b22 \tmov\tw2, #0x9d9                 \t// #2521\n  1597e8:\t528001a1 \tmov\tw1, #0xd                   \t// #13\n  1597ec:\t1400005e \tb\t159964 <ca_port_shaper_set+0x3d4>\n  1597f0:\t11002273 \tadd\tw19, w19, #0x8\n  1597f4:\t910002b5 \tadd\tx21, x21, #0x0\n\t\t\t1597f4: R_AARCH64_ADD_ABS_LO12_NC\t.bss+0x804c0\n  1597f8:\tb9404ba2 \tldr\tw2, [x29, #72]\n  1597fc:\t8b334ab5 \tadd\tx21, x21, w19, uxtw #2\n  159800:\t9101a3a3 \tadd\tx3, x29, #0x68\n  159804:\t2a1303e1 \tmov\tw1, w19\n  159808:\t2a1603e0 \tmov\tw0, w22\n  15980c:\tb90c52ab \tstr\tw11, [x21, #3152]\n  159810:\t94000000 \tbl\tafe90 <aal_l3_te_shaper_port_tbc_set>\n\t\t\t159810: R_AARCH64_CALL26\taal_l3_te_shaper_port_tbc_set\n  159814:\t34000420 \tcbz\tw0, 159898 <ca_port_shaper_set+0x308>\n  159818:\t90000000 \tadrp\tx0, 0 <__ca_skb_in>\n\t\t\t159818: R_AARCH64_ADR_PREL_PG_HI21\t.rodata.str1.8+0x36410\n  15981c:\t52813c62 \tmov\tw2, #0x9e3                 \t// #2531\n  159820:\t91000000 \tadd\tx0, x0, #0x0\n\t\t\t159820: R_AARCH64_ADD_ABS_LO12_NC\t.rodata.str1.8+0x36410\n  159824:\t2a1303e1 \tmov\tw1, w19\n  159828:\t94000000 \tbl\t0 <ca_printf>\n\t\t\t159828: R_AARCH64_CALL26\tca_printf\n  15982c:\tf94013b5 \tldr\tx21, [x29, #32]\n  159830:\t12800000 \tmov\tw0, #0xffffffff            \t// #-1\n  159834:\tf9401bb7 \tldr\tx23, [x29, #48]\n  159838:\t14000056 \tb\t159990 <ca_port_shaper_set+0x400>\n  15983c:\td503201f \tnop\n  159840:\t90000002 \tadrp\tx2, 2038 <api_wmc_flooding_proc_write+0xc8>\n\t\t\t159840: R_AARCH64_ADR_PREL_PG_HI21\tcfg_pon_upstream_use_deep_queue\n  159844:\t90000001 \tadrp\tx1, 24e1 <ca_api_proc_init+0x1c1>\n\t\t\t159844: R_AARCH64_ADR_PREL_PG_HI21\tcfg_l2_upstream_redirect_to_l3fe\n  159848:\t52800104 \tmov\tw4, #0x8                   \t// #8\n  15984c:\t528001a0 \tmov\tw0, #0xd                   \t// #13\n  159850:\t39400043 \tldrb\tw3, [x2]\n\t\t\t159850: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_pon_upstream_use_deep_queue\n  159854:\t910002b5 \tadd\tx21, x21, #0x0\n\t\t\t159854: R_AARCH64_ADD_ABS_LO12_NC\t.bss+0x804c0\n  159858:\t39400021 \tldrb\tw1, [x1]\n\t\t\t159858: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_l2_upstream_redirect_to_l3fe\n  15985c:\t7100007f \tcmp\tw3, #0x0\n  159860:\tb94043a2 \tldr\tw2, [x29, #64]\n  159864:\t1a840273 \tcsel\tw19, w19, w4, eq\t// eq = none\n  159868:\t7100003f \tcmp\tw1, #0x0\n  15986c:\t1a800273 \tcsel\tw19, w19, w0, eq\t// eq = none\n  159870:\t910143a3 \tadd\tx3, x29, #0x50\n  159874:\t8b334ab5 \tadd\tx21, x21, w19, uxtw #2\n  159878:\t2a1603e0 \tmov\tw0, w22\n  15987c:\t2a1303e1 \tmov\tw1, w19\n  159880:\tb90a52ab \tstr\tw11, [x21, #2640]\n  159884:\t94000000 \tbl\t73300 <aal_l2_te_shaper_port_tbc_set>\n\t\t\t159884: R_AARCH64_CALL26\taal_l2_te_shaper_port_tbc_set\n  159888:\t35000100 \tcbnz\tw0, 1598a8 <ca_port_shaper_set+0x318>\n  15988c:\tb9400281 \tldr\tw1, [x20]\n  159890:\t2a1603e0 \tmov\tw0, w22\n  159894:\t94000000 \tbl\t1594f0 <__adjust_us_shaper_profile>\n\t\t\t159894: R_AARCH64_CALL26\t__adjust_us_shaper_profile\n  159898:\t52800000 \tmov\tw0, #0x0                   \t// #0\n  15989c:\tf94013b5 \tldr\tx21, [x29, #32]\n  1598a0:\tf9401bb7 \tldr\tx23, [x29, #48]\n  1598a4:\t1400003b \tb\t159990 <ca_port_shaper_set+0x400>\n  1598a8:\t90000000 \tadrp\tx0, 0 <__ca_skb_in>\n\t\t\t1598a8: R_AARCH64_ADR_PREL_PG_HI21\t.rodata.str1.8+0x36460\n  1598ac:\t528140a2 \tmov\tw2, #0xa05                 \t// #2565\n  1598b0:\t1400002c \tb\t159960 <ca_port_shaper_set+0x3d0>\n  1598b4:\td503201f \tnop\n  1598b8:\t90000002 \tadrp\tx2, 2038 <api_wmc_flooding_proc_write+0xc8>\n\t\t\t1598b8: R_AARCH64_ADR_PREL_PG_HI21\tcfg_pon_upstream_use_deep_queue\n  1598bc:\t90000001 \tadrp\tx1, 24e1 <ca_api_proc_init+0x1c1>\n\t\t\t1598bc: R_AARCH64_ADR_PREL_PG_HI21\tcfg_l2_upstream_redirect_to_l3fe\n  1598c0:\t52800104 \tmov\tw4, #0x8                   \t// #8\n  1598c4:\t528001a0 \tmov\tw0, #0xd                   \t// #13\n  1598c8:\t39400043 \tldrb\tw3, [x2]\n\t\t\t1598c8: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_pon_upstream_use_deep_queue\n  1598cc:\t910002b5 \tadd\tx21, x21, #0x0\n\t\t\t1598cc: R_AARCH64_ADD_ABS_LO12_NC\t.bss+0x804c0\n  1598d0:\t39400021 \tldrb\tw1, [x1]\n\t\t\t1598d0: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_l2_upstream_redirect_to_l3fe\n  1598d4:\t7100007f \tcmp\tw3, #0x0\n  1598d8:\tb94043a2 \tldr\tw2, [x29, #64]\n  1598dc:\t1a840273 \tcsel\tw19, w19, w4, eq\t// eq = none\n  1598e0:\t7100003f \tcmp\tw1, #0x0\n  1598e4:\t1a800273 \tcsel\tw19, w19, w0, eq\t// eq = none\n  1598e8:\t910143a3 \tadd\tx3, x29, #0x50\n  1598ec:\t8b334ab5 \tadd\tx21, x21, w19, uxtw #2\n  1598f0:\t2a1603e0 \tmov\tw0, w22\n  1598f4:\t2a1303e1 \tmov\tw1, w19\n  1598f8:\tb90a12ab \tstr\tw11, [x21, #2576]\n  1598fc:\t94000000 \tbl\t73300 <aal_l2_te_shaper_port_tbc_set>\n\t\t\t1598fc: R_AARCH64_CALL26\taal_l2_te_shaper_port_tbc_set\n  159900:\t35000040 \tcbnz\tw0, 159908 <ca_port_shaper_set+0x378>\n  159904:\t17ffffe2 \tb\t15988c <ca_port_shaper_set+0x2fc>\n  159908:\t90000000 \tadrp\tx0, 0 <__ca_skb_in>\n\t\t\t159908: R_AARCH64_ADR_PREL_PG_HI21\t.rodata.str1.8+0x36460\n  15990c:\t52814362 \tmov\tw2, #0xa1b                 \t// #2587\n  159910:\t14000014 \tb\t159960 <ca_port_shaper_set+0x3d0>\n  159914:\td503201f \tnop\n  159918:\t7100627f \tcmp\tw19, #0x18\n  15991c:\t540000a0 \tb.eq\t159930 <ca_port_shaper_set+0x3a0>  // b.none\n  159920:\t7100667f \tcmp\tw19, #0x19\n  159924:\t528001a0 \tmov\tw0, #0xd                   \t// #13\n  159928:\t1a801273 \tcsel\tw19, w19, w0, ne\t// ne = any\n  15992c:\t14000002 \tb\t159934 <ca_port_shaper_set+0x3a4>\n  159930:\t52800153 \tmov\tw19, #0xa                   \t// #10\n  159934:\t910002b5 \tadd\tx21, x21, #0x0\n\t\t\t159934: R_AARCH64_ADD_ABS_LO12_NC\t.bss+0x804c0\n  159938:\tb94043a2 \tldr\tw2, [x29, #64]\n  15993c:\t8b334ab5 \tadd\tx21, x21, w19, uxtw #2\n  159940:\t910143a3 \tadd\tx3, x29, #0x50\n  159944:\t2a1303e1 \tmov\tw1, w19\n  159948:\t2a1603e0 \tmov\tw0, w22\n  15994c:\tb90a92ab \tstr\tw11, [x21, #2704]\n  159950:\t94000000 \tbl\t73300 <aal_l2_te_shaper_port_tbc_set>\n\t\t\t159950: R_AARCH64_CALL26\taal_l2_te_shaper_port_tbc_set\n  159954:\t34fffa20 \tcbz\tw0, 159898 <ca_port_shaper_set+0x308>\n  159958:\t90000000 \tadrp\tx0, 0 <__ca_skb_in>\n\t\t\t159958: R_AARCH64_ADR_PREL_PG_HI21\t.rodata.str1.8+0x36460\n  15995c:\t52814542 \tmov\tw2, #0xa2a                 \t// #2602\n  159960:\t2a1303e1 \tmov\tw1, w19\n  159964:\t91000000 \tadd\tx0, x0, #0x0\n\t\t\t159964: R_AARCH64_ADD_ABS_LO12_NC\t.rodata.str1.8+0x36460\n  159968:\t94000000 \tbl\t0 <ca_printf>\n\t\t\t159968: R_AARCH64_CALL26\tca_printf\n  15996c:\t12800000 \tmov\tw0, #0xffffffff            \t// #-1\n  159970:\tf94013b5 \tldr\tx21, [x29, #32]\n  159974:\tf9401bb7 \tldr\tx23, [x29, #48]\n  159978:\t14000006 \tb\t159990 <ca_port_shaper_set+0x400>\n  15997c:\td503201f \tnop\n  159980:\t710004bf \tcmp\tw5, #0x1\n  159984:\t54fff8a8 \tb.hi\t159898 <ca_port_shaper_set+0x308>  // b.pmore\n  159988:\t17ffffc2 \tb\t159890 <ca_port_shaper_set+0x300>\n  15998c:\td503201f \tnop\n  159990:\ta94153f3 \tldp\tx19, x20, [sp, #16]\n  159994:\tf94017f6 \tldr\tx22, [sp, #40]\n  159998:\ta8c87bfd \tldp\tx29, x30, [sp], #128\n  15999c:\td65f03c0 \tret\n\n00000000001599a0 <ca_queue_shaper_set>:\n  1599a0:\ta9b87bfd \tstp\tx29, x30, [sp, #-128]!\n  1599a4:\t910003fd \tmov\tx29, sp\n  1599a8:\ta90153f3 \tstp\tx19, x20, [sp, #16]\n  1599ac:\ta9025bf5 \tstp\tx21, x22, [sp, #32]\n  1599b0:\t12003c16 \tand\tw22, w0, #0xffff\n  1599b4:\t2a0103f3 \tmov\tw19, w1\n  1599b8:\taa1e03e0 \tmov\tx0, x30\n  1599bc:\t2a0203f5 \tmov\tw21, w2\n  1599c0:\taa0303f4 \tmov\tx20, x3\n  1599c4:\t94000000 \tbl\t0 <_mcount>\n\t\t\t1599c4: R_AARCH64_CALL26\t_mcount\n  1599c8:\t90000000 \tadrp\tx0, 192a <ca_pkt_parse+0xa62>\n\t\t\t1599c8: R_AARCH64_ADR_PREL_PG_HI21\tcfg_l3qm_buf_packing_size\n  1599cc:\t39400000 \tldrb\tw0, [x0]\n\t\t\t1599cc: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_l3qm_buf_packing_size\n  1599d0:\tb4001d14 \tcbz\tx20, 159d70 <ca_queue_shaper_set+0x3d0>\n  1599d4:\t340000e0 \tcbz\tw0, 1599f0 <ca_queue_shaper_set+0x50>\n  1599d8:\t53107e60 \tlsr\tw0, w19, #16\n  1599dc:\t7100281f \tcmp\tw0, #0xa\n  1599e0:\t54000081 \tb.ne\t1599f0 <ca_queue_shaper_set+0x50>  // b.any\n  1599e4:\tb9400681 \tldr\tw1, [x20, #4]\n  1599e8:\t528000e0 \tmov\tw0, #0x7                   \t// #7\n  1599ec:\t35001c81 \tcbnz\tw1, 159d7c <ca_queue_shaper_set+0x3dc>\n  1599f0:\t52800040 \tmov\tw0, #0x2                   \t// #2\n  1599f4:\t71001ebf \tcmp\tw21, #0x7\n  1599f8:\t54001c28 \tb.hi\t159d7c <ca_queue_shaper_set+0x3dc>  // b.pmore\n  1599fc:\tf9001bb7 \tstr\tx23, [x29, #48]\n  159a00:\t90000017 \tadrp\tx23, 0 <__ca_skb_in>\n\t\t\t159a00: R_AARCH64_ADR_PREL_PG_HI21\t.bss+0x804c0\n  159a04:\t910002f7 \tadd\tx23, x23, #0x0\n\t\t\t159a04: R_AARCH64_ADD_ABS_LO12_NC\t.bss+0x804c0\n  159a08:\tb949cae0 \tldr\tw0, [x23, #2504]\n  159a0c:\t35000180 \tcbnz\tw0, 159a3c <ca_queue_shaper_set+0x9c>\n  159a10:\td2805802 \tmov\tx2, #0x2c0                 \t// #704\n  159a14:\t52800001 \tmov\tw1, #0x0                   \t// #0\n  159a18:\t912742e0 \tadd\tx0, x23, #0x9d0\n  159a1c:\t94000000 \tbl\t0 <memset>\n\t\t\t159a1c: R_AARCH64_CALL26\tmemset\n  159a20:\td282c002 \tmov\tx2, #0x1600                \t// #5632\n  159a24:\t90000000 \tadrp\tx0, 81178 <aal_l2_qos_dscp_map_set+0x30>\n\t\t\t159a24: R_AARCH64_ADR_PREL_PG_HI21\tg_voq_burst_size\n  159a28:\t52800001 \tmov\tw1, #0x0                   \t// #0\n  159a2c:\t91000000 \tadd\tx0, x0, #0x0\n\t\t\t159a2c: R_AARCH64_ADD_ABS_LO12_NC\tg_voq_burst_size\n  159a30:\t94000000 \tbl\t0 <memset>\n\t\t\t159a30: R_AARCH64_CALL26\tmemset\n  159a34:\t52800020 \tmov\tw0, #0x1                   \t// #1\n  159a38:\tb909cae0 \tstr\tw0, [x23, #2504]\n  159a3c:\t53107e6a \tlsr\tw10, w19, #16\n  159a40:\t12003e73 \tand\tw19, w19, #0xffff\n  159a44:\t51000557 \tsub\tw23, w10, #0x1\n  159a48:\t710006ff \tcmp\tw23, #0x1\n  159a4c:\t540000a8 \tb.hi\t159a60 <ca_queue_shaper_set+0xc0>  // b.pmore\n  159a50:\t52800040 \tmov\tw0, #0x2                   \t// #2\n  159a54:\t71001e7f \tcmp\tw19, #0x7\n  159a58:\t540002c0 \tb.eq\t159ab0 <ca_queue_shaper_set+0x110>  // b.none\n  159a5c:\t140000c7 \tb\t159d78 <ca_queue_shaper_set+0x3d8>\n  159a60:\t71000d5f \tcmp\tw10, #0x3\n  159a64:\t540000e1 \tb.ne\t159a80 <ca_queue_shaper_set+0xe0>  // b.any\n  159a68:\t51006261 \tsub\tw1, w19, #0x18\n  159a6c:\t52800040 \tmov\tw0, #0x2                   \t// #2\n  159a70:\t7100043f \tcmp\tw1, #0x1\n  159a74:\t7a4f8a60 \tccmp\tw19, #0xf, #0x0, hi\t// hi = pmore\n  159a78:\t540001c9 \tb.ls\t159ab0 <ca_queue_shaper_set+0x110>  // b.plast\n  159a7c:\t140000bf \tb\t159d78 <ca_queue_shaper_set+0x3d8>\n  159a80:\t7100115f \tcmp\tw10, #0x4\n  159a84:\t540000e1 \tb.ne\t159aa0 <ca_queue_shaper_set+0x100>  // b.any\n  159a88:\t51004261 \tsub\tw1, w19, #0x10\n  159a8c:\t52800040 \tmov\tw0, #0x2                   \t// #2\n  159a90:\t71001c3f \tcmp\tw1, #0x7\n  159a94:\t540000e9 \tb.ls\t159ab0 <ca_queue_shaper_set+0x110>  // b.plast\n  159a98:\t140000b8 \tb\t159d78 <ca_queue_shaper_set+0x3d8>\n  159a9c:\td503201f \tnop\n  159aa0:\t7100295f \tcmp\tw10, #0xa\n  159aa4:\t52800040 \tmov\tw0, #0x2                   \t// #2\n  159aa8:\t7a470a62 \tccmp\tw19, #0x7, #0x2, eq\t// eq = none\n  159aac:\t54001668 \tb.hi\t159d78 <ca_queue_shaper_set+0x3d8>  // b.pmore\n  159ab0:\t29411a84 \tldp\tw4, w6, [x20, #8]\n  159ab4:\t5289ba61 \tmov\tw1, #0x4dd3                \t// #19923\n  159ab8:\t72a20c41 \tmovk\tw1, #0x1062, lsl #16\n  159abc:\t91015ba3 \tadd\tx3, x29, #0x56\n  159ac0:\t29400287 \tldp\tw7, w0, [x20]\n  159ac4:\t9ba17c81 \tumull\tx1, w4, w1\n  159ac8:\t52803e88 \tmov\tw8, #0x1f4                 \t// #500\n  159acc:\ta9007c7f \tstp\txzr, xzr, [x3]\n  159ad0:\t7100001f \tcmp\tw0, #0x0\n  159ad4:\t7900207f \tstrh\twzr, [x3, #16]\n  159ad8:\td360fc21 \tlsr\tx1, x1, #32\n  159adc:\tb90043bf \tstr\twzr, [x29, #64]\n  159ae0:\t53057c20 \tlsr\tw0, w1, #5\n  159ae4:\t528003e9 \tmov\tw9, #0x1f                  \t// #31\n  159ae8:\t12003c03 \tand\tw3, w0, #0xffff\n  159aec:\t12003cc5 \tand\tw5, w6, #0xffff\n  159af0:\t1a9f07e2 \tcset\tw2, ne\t// ne = any\n  159af4:\t7900aba5 \tstrh\tw5, [x29, #84]\n  159af8:\t1b089000 \tmsub\tw0, w0, w8, w4\n  159afc:\t7900a7a3 \tstrh\tw3, [x29, #82]\n  159b00:\tb9005fa2 \tstr\tw2, [x29, #92]\n  159b04:\t52800001 \tmov\tw1, #0x0                   \t// #0\n  159b08:\t12003c00 \tand\tw0, w0, #0xffff\n  159b0c:\t390103a9 \tstrb\tw9, [x29, #64]\n  159b10:\t7900a3a0 \tstrh\tw0, [x29, #80]\n  159b14:\t34000147 \tcbz\tw7, 159b3c <ca_queue_shaper_set+0x19c>\n  159b18:\t710004ff \tcmp\tw7, #0x1\n  159b1c:\t540000a1 \tb.ne\t159b30 <ca_queue_shaper_set+0x190>  // b.any\n  159b20:\t52800041 \tmov\tw1, #0x2                   \t// #2\n  159b24:\tb9005ba1 \tstr\tw1, [x29, #88]\n  159b28:\t14000005 \tb\t159b3c <ca_queue_shaper_set+0x19c>\n  159b2c:\td503201f \tnop\n  159b30:\t52800024 \tmov\tw4, #0x1                   \t// #1\n  159b34:\t2a0403e1 \tmov\tw1, w4\n  159b38:\tb9005ba4 \tstr\tw4, [x29, #88]\n  159b3c:\t9101bba4 \tadd\tx4, x29, #0x6e\n  159b40:\t7900ffbf \tstrh\twzr, [x29, #126]\n  159b44:\tb9004bbf \tstr\twzr, [x29, #72]\n  159b48:\t528003e7 \tmov\tw7, #0x1f                  \t// #31\n  159b4c:\t7900dba5 \tstrh\tw5, [x29, #108]\n  159b50:\t71000d5f \tcmp\tw10, #0x3\n  159b54:\ta9007c9f \tstp\txzr, xzr, [x4]\n  159b58:\t7900d3a0 \tstrh\tw0, [x29, #104]\n  159b5c:\t7900d7a3 \tstrh\tw3, [x29, #106]\n  159b60:\t290e0ba1 \tstp\tw1, w2, [x29, #112]\n  159b64:\t390123a7 \tstrb\tw7, [x29, #72]\n  159b68:\t54000600 \tb.eq\t159c28 <ca_queue_shaper_set+0x288>  // b.none\n  159b6c:\t54000068 \tb.hi\t159b78 <ca_queue_shaper_set+0x1d8>  // b.pmore\n  159b70:\t3500010a \tcbnz\tw10, 159b90 <ca_queue_shaper_set+0x1f0>\n  159b74:\t14000077 \tb\t159d50 <ca_queue_shaper_set+0x3b0>\n  159b78:\t7100115f \tcmp\tw10, #0x4\n  159b7c:\t540009a0 \tb.eq\t159cb0 <ca_queue_shaper_set+0x310>  // b.none\n  159b80:\t7100295f \tcmp\tw10, #0xa\n  159b84:\t54000c20 \tb.eq\t159d08 <ca_queue_shaper_set+0x368>  // b.none\n  159b88:\t14000072 \tb\t159d50 <ca_queue_shaper_set+0x3b0>\n  159b8c:\td503201f \tnop\n  159b90:\t90000000 \tadrp\tx0, 2038 <api_wmc_flooding_proc_write+0xc8>\n\t\t\t159b90: R_AARCH64_ADR_PREL_PG_HI21\tcfg_pon_upstream_use_deep_queue\n  159b94:\t39400000 \tldrb\tw0, [x0]\n\t\t\t159b94: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_pon_upstream_use_deep_queue\n  159b98:\t35000080 \tcbnz\tw0, 159ba8 <ca_queue_shaper_set+0x208>\n  159b9c:\t531d7260 \tlsl\tw0, w19, #3\n  159ba0:\t14000004 \tb\t159bb0 <ca_queue_shaper_set+0x210>\n  159ba4:\td503201f \tnop\n  159ba8:\t52800800 \tmov\tw0, #0x40                  \t// #64\n  159bac:\t52800113 \tmov\tw19, #0x8                   \t// #8\n  159bb0:\td37d3e73 \tubfiz\tx19, x19, #3, #16\n  159bb4:\tb94043a2 \tldr\tw2, [x29, #64]\n  159bb8:\t8b354264 \tadd\tx4, x19, w21, uxtw\n  159bbc:\t90000005 \tadrp\tx5, 81178 <aal_l2_qos_dscp_map_set+0x30>\n\t\t\t159bbc: R_AARCH64_ADR_PREL_PG_HI21\tg_voq_burst_size\n  159bc0:\t91020084 \tadd\tx4, x4, #0x80\n  159bc4:\t910000a5 \tadd\tx5, x5, #0x0\n\t\t\t159bc4: R_AARCH64_ADD_ABS_LO12_NC\tg_voq_burst_size\n  159bc8:\t0b0002b3 \tadd\tw19, w21, w0\n  159bcc:\t910143a3 \tadd\tx3, x29, #0x50\n  159bd0:\t2a1303e1 \tmov\tw1, w19\n  159bd4:\t2a1603e0 \tmov\tw0, w22\n  159bd8:\tb82478a6 \tstr\tw6, [x5, x4, lsl #2]\n  159bdc:\t94000000 \tbl\t72fb8 <aal_l2_te_shaper_voq_tbc_set>\n\t\t\t159bdc: R_AARCH64_CALL26\taal_l2_te_shaper_voq_tbc_set\n  159be0:\t34000080 \tcbz\tw0, 159bf0 <ca_queue_shaper_set+0x250>\n  159be4:\t90000000 \tadrp\tx0, 0 <__ca_skb_in>\n\t\t\t159be4: R_AARCH64_ADR_PREL_PG_HI21\t.rodata.str1.8+0x364b0\n  159be8:\t528170c2 \tmov\tw2, #0xb86                 \t// #2950\n  159bec:\t14000041 \tb\t159cf0 <ca_queue_shaper_set+0x350>\n  159bf0:\t90000000 \tadrp\tx0, 24e1 <ca_api_proc_init+0x1c1>\n\t\t\t159bf0: R_AARCH64_ADR_PREL_PG_HI21\tcfg_l2_upstream_redirect_to_l3fe\n  159bf4:\t39400000 \tldrb\tw0, [x0]\n\t\t\t159bf4: R_AARCH64_LDST8_ABS_LO12_NC\tcfg_l2_upstream_redirect_to_l3fe\n  159bf8:\t34000ac0 \tcbz\tw0, 159d50 <ca_queue_shaper_set+0x3b0>\n  159bfc:\tb94043a2 \tldr\tw2, [x29, #64]\n  159c00:\t1101a2b5 \tadd\tw21, w21, #0x68\n  159c04:\t910143a3 \tadd\tx3, x29, #0x50\n  159c08:\t2a1503e1 \tmov\tw1, w21\n  159c0c:\t2a1603e0 \tmov\tw0, w22\n  159c10:\t94000000 \tbl\t72fb8 <aal_l2_te_shaper_voq_tbc_set>\n\t\t\t159c10: R_AARCH64_CALL26\taal_l2_te_shaper_voq_tbc_set\n  159c14:\t340009e0 \tcbz\tw0, 159d50 <ca_queue_shaper_set+0x3b0>\n  159c18:\t90000000 \tadrp\tx0, 0 <__ca_skb_in>\n\t\t\t159c18: R_AARCH64_ADR_PREL_PG_HI21\t.rodata.str1.8+0x364b0\n  159c1c:\t528171a2 \tmov\tw2, #0xb8d                 \t// #2957\n  159c20:\t1400001e \tb\t159c98 <ca_queue_shaper_set+0x2f8>\n  159c24:\td503201f \tnop\n  159c28:\t7100627f \tcmp\tw19, #0x18\n  159c2c:\t540000a0 \tb.eq\t159c40 <ca_queue_shaper_set+0x2a0>  // b.none\n  159c30:\t531d7260 \tlsl\tw0, w19, #3\n  159c34:\t7100667f \tcmp\tw19, #0x19\n  159c38:\t54000101 \tb.ne\t159c58 <ca_queue_shaper_set+0x2b8>  // b.any\n  159c3c:\t14000005 \tb\t159c50 <ca_queue_shaper_set+0x2b0>\n  159c40:\t52800a00 \tmov\tw0, #0x50                  \t// #80\n  159c44:\t52800153 \tmov\tw19, #0xa                   \t// #10\n  159c48:\t14000004 \tb\t159c58 <ca_queue_shaper_set+0x2b8>\n  159c4c:\td503201f \tnop\n  159c50:\t52800d00 \tmov\tw0, #0x68                  \t// #104\n  159c54:\t528001b3 \tmov\tw19, #0xd                   \t// #13\n  159c58:\td37d3e73 \tubfiz\tx19, x19, #3, #16\n  159c5c:\tb94043a2 \tldr\tw2, [x29, #64]\n  159c60:\t8b354264 \tadd\tx4, x19, w21, uxtw\n  159c64:\t90000005 \tadrp\tx5, 81178 <aal_l2_qos_dscp_map_set+0x30>\n\t\t\t159c64: R_AARCH64_ADR_PREL_PG_HI21\tg_voq_burst_size"
+  },
+  "traces": [
+    {
+      "source": "private-source://PROFILE-G6-HJL/usr/bin/cfgmgr",
+      "bytes": 3212464,
+      "sha256": "1d4f8f7d8b0d2cfdc381083aa3a3c3f28b4ab50158f97742cae378cdfba14277",
+      "verified_instruction_words": 33,
+      "windows": [
+        {
+          "start": "0xc7f60",
+          "end_inclusive": "0xc7f84",
+          "instructions": [
+            "000c7f60: e10318aa  mov x1, x24",
+            "000c7f64: 60008052  mov w0, #3",
+            "000c7f68: 20033fd6  blr x25",
+            "000c7f6c: 22ffff17  b #0xc7bf4",
+            "000c7f70: c10f00d0  adrp x1, #0x2c1000",
+            "000c7f74: e0031aaa  mov x0, x26",
+            "000c7f78: 216845f9  ldr x1, [x1, #0xad0]",
+            "000c7f7c: 20003fd6  blr x1",
+            "000c7f80: e0060034  cbz w0, #0xc805c",
+            "000c7f84: 430c00b0  adrp x3, #0x250000"
+          ]
+        },
+        {
+          "start": "0xc800c",
+          "end_inclusive": "0xc8028",
+          "instructions": [
+            "000c800c: e403002a  mov w4, w0",
+            "000c8010: a22a8052  mov w2, #0x155",
+            "000c8014: d3ffff17  b #0xc7f60",
+            "000c8018: e10f00b0  adrp x1, #0x2c5000",
+            "000c801c: e0031caa  mov x0, x28",
+            "000c8020: 217044f9  ldr x1, [x1, #0x8e0]",
+            "000c8024: 20003fd6  blr x1",
+            "000c8028: c0000034  cbz w0, #0xc8040"
+          ]
+        },
+        {
+          "start": "0xc8100",
+          "end_inclusive": "0xc8118",
+          "instructions": [
+            "000c8100: 223f8052  mov w2, #0x1f9",
+            "000c8104: 97ffff17  b #0xc7f60",
+            "000c8108: e10f00b0  adrp x1, #0x2c5000",
+            "000c810c: a08b40b9  ldr w0, [x29, #0x88]",
+            "000c8110: 21ac46f9  ldr x1, [x1, #0xd58]",
+            "000c8114: 20003fd6  blr x1",
+            "000c8118: c0000034  cbz w0, #0xc8130"
+          ]
+        },
+        {
+          "start": "0xc86f0",
+          "end_inclusive": "0xc870c",
+          "instructions": [
+            "000c86f0: 20033fd6  blr x25",
+            "000c86f4: 77658452  mov w23, #0x232b",
+            "000c86f8: 6bffff17  b #0xc84a4",
+            "000c86fc: e10f00f0  adrp x1, #0x2c7000",
+            "000c8700: e00318aa  mov x0, x24",
+            "000c8704: 21b840f9  ldr x1, [x1, #0x170]",
+            "000c8708: 20003fd6  blr x1",
+            "000c870c: 20150034  cbz w0, #0xc89b0"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "private-source://PROFILE-G6-HJL/sbin/ndk_appsd",
+      "bytes": 373816,
+      "sha256": "37699265dae4acb49d727df7ed254024ab4b6cd34303ee1deb6af368ef80816c",
+      "verified_instruction_words": 72,
+      "windows": [
+        {
+          "start": "0x420a0c",
+          "end_inclusive": "0x420a3c",
+          "instructions": [
+            "00420a0c: ff0315d1  sub sp, sp, #0x540",
+            "00420a10: 023680d2  mov x2, #0x1b0",
+            "00420a14: fd7b04a9  stp x29, x30, [sp, #0x40]",
+            "00420a18: fd030191  add x29, sp, #0x40",
+            "00420a1c: f76307a9  stp x23, x24, [sp, #0x70]",
+            "00420a20: 580200b0  adrp x24, #0x469000",
+            "00420a24: f35305a9  stp x19, x20, [sp, #0x50]",
+            "00420a28: f30300aa  mov x19, x0",
+            "00420a2c: f55b06a9  stp x21, x22, [sp, #0x60]",
+            "00420a30: a0430d91  add x0, x29, #0x350",
+            "00420a34: f60301aa  mov x22, x1",
+            "00420a38: f96b08a9  stp x25, x26, [sp, #0x80]",
+            "00420a3c: 01008052  mov w1, #0"
+          ]
+        },
+        {
+          "start": "0x42146c",
+          "end_inclusive": "0x421494",
+          "instructions": [
+            "0042146c: e10314aa  mov x1, x20",
+            "00421470: 9c90ff97  bl #0x4056e0",
+            "00421474: a3430291  add x3, x29, #0x90",
+            "00421478: a2c30191  add x2, x29, #0x70",
+            "0042147c: a1430d91  add x1, x29, #0x350",
+            "00421480: a0830191  add x0, x29, #0x60",
+            "00421484: c78fff97  bl #0x4053a0",
+            "00421488: 007742b9  ldr w0, [x24, #0x274]",
+            "0042148c: 430100b0  adrp x3, #0x44a000",
+            "00421490: 63ac0791  add x3, x3, #0x1eb",
+            "00421494: c2d38152  mov w2, #0xe9e"
+          ]
+        },
+        {
+          "start": "0x4262a4",
+          "end_inclusive": "0x4262d0",
+          "instructions": [
+            "004262a4: ff4308d1  sub sp, sp, #0x210",
+            "004262a8: a23d8252  mov w2, #0x11ed",
+            "004262ac: fd7b00a9  stp x29, x30, [sp]",
+            "004262b0: fd030091  mov x29, sp",
+            "004262b4: f55b02a9  stp x21, x22, [sp, #0x20]",
+            "004262b8: 160200f0  adrp x22, #0x469000",
+            "004262bc: f50300aa  mov x21, x0",
+            "004262c0: f35301a9  stp x19, x20, [sp, #0x10]",
+            "004262c4: c07642b9  ldr w0, [x22, #0x274]",
+            "004262c8: 130100d0  adrp x19, #0x448000",
+            "004262cc: 74221b91  add x20, x19, #0x6c8",
+            "004262d0: 94621791  add x20, x20, #0x5d8"
+          ]
+        },
+        {
+          "start": "0x426614",
+          "end_inclusive": "0x426638",
+          "instructions": [
+            "00426614: c00000b0  adrp x0, #0x43f000",
+            "00426618: 00043d91  add x0, x0, #0xf41",
+            "0042661c: 417cff97  bl #0x405720",
+            "00426620: e00314aa  mov x0, x20",
+            "00426624: 3f7cff97  bl #0x405720",
+            "00426628: e10315aa  mov x1, x21",
+            "0042662c: a0830191  add x0, x29, #0x60",
+            "00426630: f7e8ff97  bl #0x420a0c",
+            "00426634: e07642b9  ldr w0, [x23, #0x274]",
+            "00426638: 61221b91  add x1, x19, #0x6c8"
+          ]
+        },
+        {
+          "start": "0x428798",
+          "end_inclusive": "0x4287e4",
+          "instructions": [
+            "00428798: e003142a  mov w0, w20",
+            "0042879c: f35341a9  ldp x19, x20, [sp, #0x10]",
+            "004287a0: f55b42a9  ldp x21, x22, [sp, #0x20]",
+            "004287a4: fd7bc3a8  ldp x29, x30, [sp], #0x30",
+            "004287a8: c0035fd6  ret",
+            "004287ac: e00315aa  mov x0, x21",
+            "004287b0: bdf6ff97  bl #0x4262a4",
+            "004287b4: f403002a  mov w20, w0",
+            "004287b8: 20010034  cbz w0, #0x4287dc",
+            "004287bc: 030100f0  adrp x3, #0x44b000",
+            "004287c0: 63543591  add x3, x3, #0xd55",
+            "004287c4: e403002a  mov w4, w0",
+            "004287c8: 42828252  mov w2, #0x1412",
+            "004287cc: e10313aa  mov x1, x19",
+            "004287d0: 80008052  mov w0, #4",
+            "004287d4: c373ff97  bl #0x4056e0",
+            "004287d8: f0ffff17  b #0x428798",
+            "004287dc: e00315aa  mov x0, x21",
+            "004287e0: 38dfff97  bl #0x4204c0",
+            "004287e4: f403002a  mov w20, w0"
+          ]
+        },
+        {
+          "start": "0x4395bc",
+          "end_inclusive": "0x4395d0",
+          "instructions": [
+            "004395bc: fd7bbea9  stp x29, x30, [sp, #-0x20]!",
+            "004395c0: fd030091  mov x29, sp",
+            "004395c4: a0070329  stp w0, w1, [x29, #0x18]",
+            "004395c8: a0630091  add x0, x29, #0x18",
+            "004395cc: 5d2fff97  bl #0x405340",
+            "004395d0: fd7bc2a8  ldp x29, x30, [sp], #0x20"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "private-source://PROFILE-G6-HJL/usr/lib/libhal_dp.so",
+      "bytes": 561760,
+      "sha256": "65c0ec74e3710554d31c61ff0e98811679ca5877afcf693614fe0a01369941e0",
+      "verified_instruction_words": 11,
+      "windows": [
+        {
+          "start": "0x49860",
+          "end_inclusive": "0x49880",
+          "instructions": [
+            "00049860: a5b30291  add x5, x29, #0xac",
+            "00049864: a4630391  add x4, x29, #0xd8",
+            "00049868: a3030391  add x3, x29, #0xc0",
+            "0004986c: e20316aa  mov x2, x22",
+            "00049870: 01008052  mov w1, #0",
+            "00049874: 00008052  mov w0, #0",
+            "00049878: e27fff97  bl #0x29800",
+            "0004987c: 200a0034  cbz w0, #0x499c0",
+            "00049880: e50240b9  ldr w5, [x23]"
+          ]
+        },
+        {
+          "start": "0x62094",
+          "end_inclusive": "0x62098",
+          "instructions": [
+            "00062094: 00008052  mov w0, #0",
+            "00062098: c0035fd6  ret"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "private-source://PROFILE-G6-HJL/usr/lib/libsal_qos.so",
+      "bytes": 214952,
+      "sha256": "4dfcc7fd158edc3e4023c46961150cbf9dc7c49fec1a4b773f685652c02de3b4",
+      "verified_instruction_words": 66,
+      "windows": [
+        {
+          "start": "0x18970",
+          "end_inclusive": "0x18a3c",
+          "instructions": [
+            "00018970: e30302aa  mov x3, x2",
+            "00018974: e20301aa  mov x2, x1",
+            "00018978: e10305aa  mov x1, x5",
+            "0001897c: 95feff97  bl #0x183d0",
+            "00018980: a01b40f9  ldr x0, [x29, #0x30]",
+            "00018984: 5ffcff97  bl #0x17b00",
+            "00018988: a21b40f9  ldr x2, [x29, #0x30]",
+            "0001898c: 800000d0  adrp x0, #0x2a000",
+            "00018990: 01603d91  add x1, x0, #0xf58",
+            "00018994: a0230191  add x0, x29, #0x48",
+            "00018998: e30302aa  mov x3, x2",
+            "0001899c: e20301aa  mov x2, x1",
+            "000189a0: 014080d2  mov x1, #0x200",
+            "000189a4: 57fbff97  bl #0x17700",
+            "000189a8: a0230191  add x0, x29, #0x48",
+            "000189ac: 55fcff97  bl #0x17b00",
+            "000189b0: 400100f0  adrp x0, #0x43000",
+            "000189b4: 00c447f9  ldr x0, [x0, #0xf88]",
+            "000189b8: d6f9ff97  bl #0x17110",
+            "000189bc: a02b40b9  ldr w0, [x29, #0x28]",
+            "000189c0: 00040011  add w0, w0, #1",
+            "000189c4: a02b00b9  str w0, [x29, #0x28]",
+            "000189c8: a02f40b9  ldr w0, [x29, #0x2c]",
+            "000189cc: 00040011  add w0, w0, #1",
+            "000189d0: a02f00b9  str w0, [x29, #0x2c]",
+            "000189d4: a02f40b9  ldr w0, [x29, #0x2c]",
+            "000189d8: 1f380071  cmp w0, #0xe",
+            "000189dc: 4c000054  b.gt #0x189e4",
+            "000189e0: 9fffff17  b #0x1885c",
+            "000189e4: 1f2003d5  nop",
+            "000189e8: a02740b9  ldr w0, [x29, #0x24]",
+            "000189ec: 00040011  add w0, w0, #1",
+            "000189f0: a02700b9  str w0, [x29, #0x24]",
+            "000189f4: 400100f0  adrp x0, #0x43000",
+            "000189f8: 00c447f9  ldr x0, [x0, #0xf88]",
+            "000189fc: 39fcff97  bl #0x17ae0",
+            "00018a00: 001c0012  and w0, w0, #0xff",
+            "00018a04: 1f000071  cmp w0, #0",
+            "00018a08: 60010054  b.eq #0x18a34",
+            "00018a0c: a02740b9  ldr w0, [x29, #0x24]",
+            "00018a10: 1f240071  cmp w0, #9",
+            "00018a14: 0d010054  b.le #0x18a34",
+            "00018a18: 60010090  adrp x0, #0x44000",
+            "00018a1c: 00200391  add x0, x0, #0xc8",
+            "00018a20: 000040b9  ldr w0, [x0]",
+            "00018a24: 1f000071  cmp w0, #0",
+            "00018a28: 60000054  b.eq #0x18a34",
+            "00018a2c: 20008052  mov w0, #1",
+            "00018a30: 02000014  b #0x18a38",
+            "00018a34: 00008052  mov w0, #0",
+            "00018a38: 1f000071  cmp w0, #0",
+            "00018a3c: 80090054  b.eq #0x18b6c"
+          ]
+        },
+        {
+          "start": "0x18b38",
+          "end_inclusive": "0x18b6c",
+          "instructions": [
+            "00018b38: bf2b00b9  str wzr, [x29, #0x28]",
+            "00018b3c: 60010090  adrp x0, #0x44000",
+            "00018b40: 00200391  add x0, x0, #0xc8",
+            "00018b44: 1f0000b9  str wzr, [x0]",
+            "00018b48: 800000d0  adrp x0, #0x2a000",
+            "00018b4c: 00403f91  add x0, x0, #0xfd0",
+            "00018b50: c0f6ff97  bl #0x16650",
+            "00018b54: 800000f0  adrp x0, #0x2b000",
+            "00018b58: 00400091  add x0, x0, #0x10",
+            "00018b5c: e9fbff97  bl #0x17b00",
+            "00018b60: 800000f0  adrp x0, #0x2b000",
+            "00018b64: 00400091  add x0, x0, #0x10",
+            "00018b68: e6fbff97  bl #0x17b00",
+            "00018b6c: 400100f0  adrp x0, #0x43000"
+          ]
+        }
+      ]
+    }
+  ]
+}

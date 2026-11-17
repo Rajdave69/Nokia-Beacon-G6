@@ -1,0 +1,228 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/bin/swmgnt:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000006200 <get_uptime@@Base+0x8c0>:
+    6200:	aa1403e0 	mov	x0, x20
+    6204:	11000673 	add	w19, w19, #0x1
+    6208:	97fff772 	bl	3fd0 <strcasecmp@plt>
+    620c:	35ffff20 	cbnz	w0, 61f0 <get_uptime@@Base+0x8b0>
+    6210:	d0000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    6214:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    6218:	52801e25 	mov	w5, #0xf1                  	// #241
+    621c:	9102c004 	add	x4, x0, #0xb0  ; 'swmgnt_process_Beacondown'
+    6220:	2a0503e1 	mov	w1, w5
+    6224:	91034000 	add	x0, x0, #0xd0  ; 'swmgnt_process_Beacondown'
+    6228:	d0000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    622c:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    6230:	aa1603e6 	mov	x6, x22
+    6234:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    6238:	9120c042 	add	x2, x2, #0x830  ; 'swmgnt: [%s %s:%d] info.mac=%s,remove existed beacon.'
+    623c:	97fff74d 	bl	3f70 <nalLogNotice@plt>
+    6240:	b94a32e0 	ldr	w0, [x23, #2608]
+    6244:	9128c2e1 	add	x1, x23, #0xa30
+    6248:	6b13001f 	cmp	w0, w19
+    624c:	540001ab 	b.lt	6280 <get_uptime@@Base+0x940>  // b.tstop
+    6250:	52802614 	mov	w20, #0x130                 	// #304
+    6254:	9b340674 	smaddl	x20, w19, w20, x1
+    6258:	d1097294 	sub	x20, x20, #0x25c
+    625c:	aa1403e0 	mov	x0, x20
+    6260:	9104c294 	add	x20, x20, #0x130
+    6264:	d2802602 	mov	x2, #0x130                 	// #304
+    6268:	aa1403e1 	mov	x1, x20
+    626c:	97fff589 	bl	3890 <memcpy@plt>
+    6270:	11000673 	add	w19, w19, #0x1
+    6274:	b94a32e0 	ldr	w0, [x23, #2608]
+    6278:	6b13001f 	cmp	w0, w19
+    627c:	54ffff0a 	b.ge	625c <get_uptime@@Base+0x91c>  // b.tcont
+    6280:	b0000101 	adrp	x1, 27000 <_fini@@Base+0x1797c>
+    6284:	51000400 	sub	w0, w0, #0x1
+    6288:	b90a32e0 	str	w0, [x23, #2608]
+    628c:	b94a9820 	ldr	w0, [x1, #2712]
+    6290:	7100001f 	cmp	w0, #0x0
+    6294:	540001ad 	b.le	62c8 <get_uptime@@Base+0x988>
+    6298:	a94153b3 	ldp	x19, x20, [x29, #16]
+    629c:	51000400 	sub	w0, w0, #0x1
+    62a0:	b90a9820 	str	w0, [x1, #2712]
+    62a4:	f947bf18 	ldr	x24, [x24, #3960]
+    62a8:	f94027a1 	ldr	x1, [x29, #72]
+    62ac:	f9400300 	ldr	x0, [x24]
+    62b0:	ca000020 	eor	x0, x1, x0
+    62b4:	b50000e0 	cbnz	x0, 62d0 <get_uptime@@Base+0x990>
+    62b8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    62bc:	a94363f7 	ldp	x23, x24, [sp, #48]
+    62c0:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    62c4:	d65f03c0 	ret
+    62c8:	a94153b3 	ldp	x19, x20, [x29, #16]
+    62cc:	17fffff6 	b	62a4 <get_uptime@@Base+0x964>
+    62d0:	a90153b3 	stp	x19, x20, [x29, #16]
+    62d4:	97fff5b3 	bl	39a0 <__stack_chk_fail@plt>
+    62d8:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    62dc:	f100001f 	cmp	x0, #0x0
+    62e0:	910003fd 	mov	x29, sp
+    62e4:	a90153f3 	stp	x19, x20, [sp, #16]
+    62e8:	90000113 	adrp	x19, 26000 <_fini@@Base+0x1697c>
+    62ec:	f90017f6 	str	x22, [sp, #40]
+    62f0:	aa0103f6 	mov	x22, x1
+    62f4:	f947be61 	ldr	x1, [x19, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    62f8:	aa0003f4 	mov	x20, x0
+    62fc:	fa401ac4 	ccmp	x22, #0x0, #0x4, ne	// ne = any
+    6300:	f9400022 	ldr	x2, [x1]
+    6304:	f90027a2 	str	x2, [x29, #72]
+    6308:	d2800002 	mov	x2, #0x0                   	// #0
+    630c:	540002c0 	b.eq	6364 <get_uptime@@Base+0xa24>  // b.none
+    6310:	f90013b5 	str	x21, [x29, #32]
+    6314:	d0000055 	adrp	x21, 10000 <_fini@@Base+0x97c>
+    6318:	9121a2b5 	add	x21, x21, #0x868  ; 'RGW'
+    631c:	aa1503e1 	mov	x1, x21
+    6320:	97fff6f0 	bl	3ee0 <strcmp@plt>
+    6324:	34000360 	cbz	w0, 6390 <get_uptime@@Base+0xa50>
+    6328:	f9001bb7 	str	x23, [x29, #48]
+    632c:	d0000057 	adrp	x23, 10000 <_fini@@Base+0x97c>
+    6330:	9121c2f7 	add	x23, x23, #0x870  ; 'AP_Bridge'
+    6334:	aa1403e0 	mov	x0, x20
+    6338:	aa1703e1 	mov	x1, x23
+    633c:	97fff6e9 	bl	3ee0 <strcmp@plt>
+    6340:	35000300 	cbnz	w0, 63a0 <get_uptime@@Base+0xa60>
+    6344:	d0000041 	adrp	x1, 10000 <_fini@@Base+0x97c>
+    6348:	aa1603e0 	mov	x0, x22
+    634c:	91220021 	add	x1, x1, #0x880  ; 'Controller'
+    6350:	97fff6e4 	bl	3ee0 <strcmp@plt>
+    6354:	7100001f 	cmp	w0, #0x0
+    6358:	9a9702b4 	csel	x20, x21, x23, eq	// eq = none
+    635c:	f94013b5 	ldr	x21, [x29, #32]
+    6360:	f9401bb7 	ldr	x23, [x29, #48]
+    6364:	f947be73 	ldr	x19, [x19, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    6368:	aa1403e0 	mov	x0, x20
+    636c:	f94027a2 	ldr	x2, [x29, #72]
+    6370:	f9400261 	ldr	x1, [x19]
+    6374:	ca010041 	eor	x1, x2, x1
+    6378:	b50001a1 	cbnz	x1, 63ac <get_uptime@@Base+0xa6c>
+    637c:	a94153f3 	ldp	x19, x20, [sp, #16]
+    6380:	f94017f6 	ldr	x22, [sp, #40]
+    6384:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    6388:	d65f03c0 	ret
+    638c:	d503201f 	nop
+    6390:	aa1503f4 	mov	x20, x21
+    6394:	f94013b5 	ldr	x21, [x29, #32]
+    6398:	17fffff3 	b	6364 <get_uptime@@Base+0xa24>
+    639c:	d503201f 	nop
+    63a0:	f94013b5 	ldr	x21, [x29, #32]
+    63a4:	f9401bb7 	ldr	x23, [x29, #48]
+    63a8:	17ffffef 	b	6364 <get_uptime@@Base+0xa24>
+    63ac:	f90013b5 	str	x21, [x29, #32]
+    63b0:	f9001bb7 	str	x23, [x29, #48]
+    63b4:	97fff57b 	bl	39a0 <__stack_chk_fail@plt>
+    63b8:	d10a43ff 	sub	sp, sp, #0x290
+    63bc:	a9007bfd 	stp	x29, x30, [sp]
+    63c0:	910003fd 	mov	x29, sp
+    63c4:	910803a1 	add	x1, x29, #0x200
+    63c8:	a90153f3 	stp	x19, x20, [sp, #16]
+    63cc:	90000113 	adrp	x19, 26000 <_fini@@Base+0x1697c>
+    63d0:	aa0003f4 	mov	x20, x0
+    63d4:	f90013f5 	str	x21, [sp, #32]
+    63d8:	f947be60 	ldr	x0, [x19, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    63dc:	9100e3b5 	add	x21, x29, #0x38
+    63e0:	a9067c3f 	stp	xzr, xzr, [x1, #96]
+    63e4:	a9077c3f 	stp	xzr, xzr, [x1, #112]
+    63e8:	f9400001 	ldr	x1, [x0]
+    63ec:	f90147a1 	str	x1, [x29, #648]
+    63f0:	d2800001 	mov	x1, #0x0                   	// #0
+    63f4:	390a03bf 	strb	wzr, [x29, #640]
+    63f8:	aa1503e0 	mov	x0, x21
+    63fc:	97fff725 	bl	4090 <nal_getNodeInfo@plt>
+    6400:	35000740 	cbnz	w0, 64e8 <get_uptime@@Base+0xba8>
+    6404:	f90017b6 	str	x22, [x29, #40]
+    6408:	910983b6 	add	x22, x29, #0x260
+    640c:	aa1603e0 	mov	x0, x22
+    6410:	97fff66c 	bl	3dc0 <nal_getOperatorUniqueID@plt>
+    6414:	35000860 	cbnz	w0, 6520 <get_uptime@@Base+0xbe0>
+    6418:	394983a0 	ldrb	w0, [x29, #608]
+    641c:	350003e0 	cbnz	w0, 6498 <get_uptime@@Base+0xb58>
+    6420:	910762b5 	add	x21, x21, #0x1d8
+    6424:	d0000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    6428:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    642c:	aa1503e6 	mov	x6, x21
+    6430:	9103c004 	add	x4, x0, #0xf0  ; 'swmgnt_getOPID'
+    6434:	d0000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    6438:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    643c:	52802965 	mov	w5, #0x14b                 	// #331
+    6440:	91040000 	add	x0, x0, #0x100  ; 'swmgnt_getOPID'
+    6444:	2a0503e1 	mov	w1, w5
+    6448:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    644c:	91248042 	add	x2, x2, #0x920  ; 'swmgnt: [%s %s:%d] OperatorID: %s'
+    6450:	97fff6c8 	bl	3f70 <nalLogNotice@plt>
+    6454:	d2800fe2 	mov	x2, #0x7f                  	// #127
+    6458:	aa1503e1 	mov	x1, x21
+    645c:	aa1403e0 	mov	x0, x20
+    6460:	97fff620 	bl	3ce0 <strncpy@plt>
+    6464:	f94017b6 	ldr	x22, [x29, #40]
+    6468:	aa1403e0 	mov	x0, x20
+    646c:	f947be73 	ldr	x19, [x19, #3960]  ; GOT __stack_chk_guard@GLIBC_2.17
+    6470:	f94147a2 	ldr	x2, [x29, #648]
+    6474:	f9400261 	ldr	x1, [x19]
+    6478:	ca010041 	eor	x1, x2, x1
+    647c:	b50006e1 	cbnz	x1, 6558 <get_uptime@@Base+0xc18>
+    6480:	a94153f3 	ldp	x19, x20, [sp, #16]
+    6484:	a9407bfd 	ldp	x29, x30, [sp]
+    6488:	f94013f5 	ldr	x21, [sp, #32]
+    648c:	910a43ff 	add	sp, sp, #0x290
+    6490:	d65f03c0 	ret
+    6494:	d503201f 	nop
+    6498:	d0000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    649c:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    64a0:	aa1603e6 	mov	x6, x22
+    64a4:	9103c004 	add	x4, x0, #0xf0  ; 'swmgnt_getOPID'
+    64a8:	d0000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    64ac:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    64b0:	528028c5 	mov	w5, #0x146                 	// #326
+    64b4:	91040000 	add	x0, x0, #0x100  ; 'swmgnt_getOPID'
+    64b8:	2a0503e1 	mov	w1, w5
+    64bc:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    64c0:	9123e042 	add	x2, x2, #0x8f8  ; 'swmgnt: [%s %s:%d] OperatorUniqueID: %s'
+    64c4:	97fff6ab 	bl	3f70 <nalLogNotice@plt>
+    64c8:	aa1603e1 	mov	x1, x22
+    64cc:	d2800fe2 	mov	x2, #0x7f                  	// #127
+    64d0:	aa1403e0 	mov	x0, x20
+    64d4:	97fff603 	bl	3ce0 <strncpy@plt>
+    64d8:	aa1403e0 	mov	x0, x20
+    64dc:	f94017b6 	ldr	x22, [x29, #40]
+    64e0:	17ffffe3 	b	646c <get_uptime@@Base+0xb2c>
+    64e4:	d503201f 	nop
+    64e8:	d0000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    64ec:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    64f0:	52802745 	mov	w5, #0x13a                 	// #314
+    64f4:	9103c004 	add	x4, x0, #0xf0  ; 'swmgnt_getOPID'
+    64f8:	d0000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    64fc:	91040000 	add	x0, x0, #0x100  ; 'swmgnt_getOPID'
+    6500:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    6504:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    6508:	91224042 	add	x2, x2, #0x890  ; 'swmgnt: [%s %s:%d] nal_getNodeInfo Failed!\n'
+    650c:	2a0503e1 	mov	w1, w5
+    6510:	97fff690 	bl	3f50 <nalLogError@plt>
+    6514:	d2800000 	mov	x0, #0x0                   	// #0
+    6518:	17ffffd5 	b	646c <get_uptime@@Base+0xb2c>
+    651c:	d503201f 	nop
+    6520:	d0000040 	adrp	x0, 10000 <_fini@@Base+0x97c>
+    6524:	91024000 	add	x0, x0, #0x90  ; 'swmgnt_getStatusString'
+    6528:	52802805 	mov	w5, #0x140                 	// #320
+    652c:	9103c004 	add	x4, x0, #0xf0  ; 'swmgnt_getOPID'
+    6530:	d0000043 	adrp	x3, 10000 <_fini@@Base+0x97c>
+    6534:	91040000 	add	x0, x0, #0x100  ; 'swmgnt_getOPID'
+    6538:	d0000042 	adrp	x2, 10000 <_fini@@Base+0x97c>
+    653c:	91184063 	add	x3, x3, #0x610  ; 'swmgnt_util.c'
+    6540:	91230042 	add	x2, x2, #0x8c0  ; 'swmgnt: [%s %s:%d] nal_getOperatorUniqueID Failed!\n'
+    6544:	2a0503e1 	mov	w1, w5
+    6548:	97fff682 	bl	3f50 <nalLogError@plt>
+    654c:	f94017b6 	ldr	x22, [x29, #40]
+    6550:	d2800000 	mov	x0, #0x0                   	// #0
+    6554:	17ffffc6 	b	646c <get_uptime@@Base+0xb2c>
+    6558:	f90017b6 	str	x22, [x29, #40]
+    655c:	97fff511 	bl	39a0 <__stack_chk_fail@plt>
+    6560:	d10d03ff 	sub	sp, sp, #0x340
+    6564:	a9007bfd 	stp	x29, x30, [sp]
+    6568:	910003fd 	mov	x29, sp
+    656c:	910883a1 	add	x1, x29, #0x220

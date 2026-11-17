@@ -1,0 +1,72 @@
+000ad608: 006442f9  ldr x0, [x0, #0x4c8]
+000ad60c: 00003fd6  blr x0 ; heuristic unknown {}
+000ad610: 00874439  ldrb w0, [x24, #0x121]
+000ad614: c0010035  cbnz w0, #0xad64c
+000ad618: c31000d0  adrp x3, #0x2c7000
+000ad61c: a20b0090  adrp x2, #0x221000
+000ad620: 42100b91  add x2, x2, #0x2c4
+000ad624: 636847f9  ldr x3, [x3, #0xed0]
+000ad628: e10313aa  mov x1, x19
+000ad62c: 000080d2  mov x0, #0
+000ad630: 60003fd6  blr x3 ; heuristic 0xacfc0 {"x0": 0, "x2": "Start_L2", "x3": 708544}
+000ad634: 1f040031  cmn w0, #1
+000ad638: a1fdff54  b.ne #0xad5ec
+000ad63c: c30c00d0  adrp x3, #0x247000
+000ad640: 63083d91  add x3, x3, #0xf42
+000ad644: 42148052  mov w2, #0xa2
+000ad648: d5ffff17  b #0xad59c
+000ad64c: 60864439  ldrb w0, [x19, #0x121]
+000ad650: 80010035  cbnz w0, #0xad680
+000ad654: a11000d0  adrp x1, #0x2c3000
+000ad658: c00c00d0  adrp x0, #0x247000
+000ad65c: 00a03d91  add x0, x0, #0xf68
+000ad660: 215c47f9  ldr x1, [x1, #0xeb8]
+000ad664: 20003fd6  blr x1 ; heuristic 0xad188 {"x0": "Stop_L2", "x1": 709000, "x2": 162, "x3": "start_home_agent Start for L2 failed\n"}
+000ad668: 1f040031  cmn w0, #1
+000ad66c: 01fcff54  b.ne #0xad5ec
+000ad670: c30c00d0  adrp x3, #0x247000
+000ad674: 63c03d91  add x3, x3, #0xf70
+000ad678: 42158052  mov w2, #0xaa
+000ad67c: c8ffff17  b #0xad59c
+000ad680: c31000d0  adrp x3, #0x2c7000
+000ad684: c20c00d0  adrp x2, #0x247000
+000ad688: 42503e91  add x2, x2, #0xf94
+000ad68c: 636847f9  ldr x3, [x3, #0xed0]
+000ad690: e10313aa  mov x1, x19
+000ad694: 000080d2  mov x0, #0
+000ad698: 60003fd6  blr x3 ; heuristic 0xacfc0 {"x0": 0, "x2": "Restart_L2", "x3": 708544}
+000ad69c: 1f040031  cmn w0, #1
+000ad6a0: 61faff54  b.ne #0xad5ec
+000ad6a4: d6ca46f9  ldr x22, [x22, #0xd90]
+000ad6a8: e1023791  add x1, x23, #0xdc0
+000ad6ac: c30c00d0  adrp x3, #0x247000
+000ad6b0: 637c3e91  add x3, x3, #0xf9f
+000ad6b4: 22168052  mov w2, #0xb1
+000ad6b8: 21400191  add x1, x1, #0x50
+000ad6bc: 60008052  mov w0, #3
+000ad6c0: c0023fd6  blr x22 ; heuristic unknown {"x0": 3, "x2": 177, "x3": "start_home_agent restart for L2 failed\n"}
+000ad6c4: caffff17  b #0xad5ec
+000ad6c8: f35341a9  ldp x19, x20, [sp, #0x10]
+000ad6cc: f55b42a9  ldp x21, x22, [sp, #0x20]
+000ad6d0: f76343a9  ldp x23, x24, [sp, #0x30]
+000ad6d4: f96b44a9  ldp x25, x26, [sp, #0x40]
+000ad6d8: fd7bc6a8  ldp x29, x30, [sp], #0x60
+000ad6dc: c0035fd6  ret 
+000ad6e0: fd7bbda9  stp x29, x30, [sp, #-0x30]!
+000ad6e4: c51000b0  adrp x5, #0x2c6000
+000ad6e8: c40c00d0  adrp x4, #0x247000
+000ad6ec: 84003791  add x4, x4, #0xdc0
+000ad6f0: fd030091  mov x29, sp
+000ad6f4: f30b00f9  str x19, [sp, #0x10]
+000ad6f8: d31000b0  adrp x19, #0x2c6000
+000ad6fc: a5c846f9  ldr x5, [x5, #0xd90]
+000ad700: 84a00191  add x4, x4, #0x68
+000ad704: 73fe45f9  ldr x19, [x19, #0xbf8]
+000ad708: 82178052  mov w2, #0xbc
+000ad70c: e10304aa  mov x1, x4
+000ad710: 030e00b0  adrp x3, #0x26e000
+000ad714: 63301c91  add x3, x3, #0x70c
+000ad718: 600240f9  ldr x0, [x19]
+000ad71c: a01700f9  str x0, [x29, #0x28]
+000ad720: 000080d2  mov x0, #0
+000ad724: e0008052  mov w0, #7

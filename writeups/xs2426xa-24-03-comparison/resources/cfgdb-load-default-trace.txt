@@ -1,0 +1,52 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/lib/libcfgdb.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000052c8 <cfg_db_load_default@@Base>:
+    52c8:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    52cc:	d0000082 	adrp	x2, 17000 <_fini@@Base+0x10848>
+    52d0:	910003fd 	mov	x29, sp
+    52d4:	a90153f3 	stp	x19, x20, [sp, #16]
+    52d8:	d0000093 	adrp	x19, 17000 <_fini@@Base+0x10848>
+    52dc:	aa0003f4 	mov	x20, x0
+    52e0:	f946d442 	ldr	x2, [x2, #3496]  ; GOT dm_db_open
+    52e4:	f9474660 	ldr	x0, [x19, #3720]  ; GOT __stack_chk_guard@GLIBC_2.17
+    52e8:	f9400001 	ldr	x1, [x0]
+    52ec:	f9001fa1 	str	x1, [x29, #56]
+    52f0:	d2800001 	mov	x1, #0x0                   	// #0
+    52f4:	f9401280 	ldr	x0, [x20, #32]
+    52f8:	f90013f5 	str	x21, [sp, #32]
+    52fc:	91012281 	add	x1, x20, #0x48
+    5300:	d63f0040 	blr	x2
+    5304:	b40002e0 	cbz	x0, 5360 <cfg_db_load_default@@Base+0x98>
+    5308:	aa0003f5 	mov	x21, x0
+    530c:	f9400280 	ldr	x0, [x20]
+    5310:	b4000080 	cbz	x0, 5320 <cfg_db_load_default@@Base+0x58>
+    5314:	d0000081 	adrp	x1, 17000 <_fini@@Base+0x10848>
+    5318:	f9472021 	ldr	x1, [x1, #3648]  ; GOT dm_db_close
+    531c:	d63f0020 	blr	x1
+    5320:	d0000082 	adrp	x2, 17000 <_fini@@Base+0x10848>
+    5324:	b9409681 	ldr	w1, [x20, #148]
+    5328:	f9000295 	str	x21, [x20]
+    532c:	aa1503e0 	mov	x0, x21
+    5330:	f946c042 	ldr	x2, [x2, #3456]  ; GOT dm_db_set_default_max_entries
+    5334:	b9000a9f 	str	wzr, [x20, #8]
+    5338:	d63f0040 	blr	x2
+    533c:	52800020 	mov	w0, #0x1                   	// #1
+    5340:	f9474673 	ldr	x19, [x19, #3720]  ; GOT __stack_chk_guard@GLIBC_2.17
+    5344:	f9401fa2 	ldr	x2, [x29, #56]
+    5348:	f9400261 	ldr	x1, [x19]
+    534c:	ca010041 	eor	x1, x2, x1
+    5350:	b40000c1 	cbz	x1, 5368 <cfg_db_load_default@@Base+0xa0>
+    5354:	d0000080 	adrp	x0, 17000 <_fini@@Base+0x10848>
+    5358:	f9473000 	ldr	x0, [x0, #3680]  ; GOT __stack_chk_fail@GLIBC_2.17
+    535c:	d63f0000 	blr	x0
+    5360:	52800000 	mov	w0, #0x0                   	// #0
+    5364:	17fffff7 	b	5340 <cfg_db_load_default@@Base+0x78>
+    5368:	a94153f3 	ldp	x19, x20, [sp, #16]
+    536c:	f94013f5 	ldr	x21, [sp, #32]
+    5370:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    5374:	d65f03c0 	ret

@@ -1,0 +1,105 @@
+{
+  "scope": "Original native factory deserializer under bounded QEMU probe plus Python reconstruction/decryption of supplied files. No SEdb init/router/server action.",
+  "selected_fields": [
+    {
+      "name": "EXT_WEB_PWD",
+      "decoded_bytes": 63
+    },
+    {
+      "name": "EXT_WEB_MGNT_PWD",
+      "decoded_bytes": 63
+    },
+    {
+      "name": "EXT_SSID1_PWD",
+      "decoded_bytes": 10
+    },
+    {
+      "name": "EXT_SSID5_PWD",
+      "decoded_bytes": 10
+    },
+    {
+      "name": "EXT_MD5_VAR",
+      "decoded_bytes": 20
+    },
+    {
+      "name": "EXT_SHA256_VAR",
+      "decoded_bytes": 20
+    },
+    {
+      "name": "EXT_SHA256CUS_VAR",
+      "decoded_bytes": 20
+    },
+    {
+      "name": "EXT_RANDOM_VAR",
+      "decoded_bytes": 20
+    }
+  ],
+  "source5_formula": "Base64(SHA256(concatenated decoded accepted fields in secDataNameList order; accepted C-string length1..63; no separator))",
+  "source5_bytes": 44,
+  "source5_private_file": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/reconstructed-source5.bin",
+  "files": [
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd06_rootfs_data1/555792398/rootfs_data1/dmdb_encryption.cfg",
+      "ciphertext_bytes": 126529,
+      "ciphertext_sha256": "09086db521e8276ef42ba21a60c2d6753ce7369554113f4c5f453f878d9fd42e",
+      "decoded_source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/decoded-09086db521e8276ef42ba21a60c2d6753ce7369554113f4c5f453f878d9fd42e.bin",
+      "success": true,
+      "metadata": {
+        "magic": "0x124126",
+        "encrypted_bytes": 126489,
+        "decompressed_bytes": 368473,
+        "header_version": "0x4b256a50",
+        "database_object_count": 662,
+        "plaintext_sha256": "ffb08996e4a9c594bce3924aef0e7b33bf433ae0db4625fa3891c845aa7fff25",
+        "validation": "CRC32, PKCS7, zlib checksum/end/length and binary schema bounds; CBC format has no verified MAC/AEAD authentication."
+      }
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd06_rootfs_data1/555792398/rootfs_data1/dmdb_encryption.cfg.bak",
+      "success": false,
+      "error": "stored database length/bound mismatch"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd07_cfg/519173170/cfg/dmdb_encryption.cfg",
+      "ciphertext_bytes": 116273,
+      "ciphertext_sha256": "601194f88418ba56e0da763d039dce60f2d6674fe945da3748ce684f45bb491b",
+      "decoded_source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/decoded-601194f88418ba56e0da763d039dce60f2d6674fe945da3748ce684f45bb491b.bin",
+      "success": true,
+      "metadata": {
+        "magic": "0x124126",
+        "encrypted_bytes": 116233,
+        "decompressed_bytes": 326437,
+        "header_version": "0x4c252937",
+        "database_object_count": 634,
+        "plaintext_sha256": "38f3323959304b05fadceacd486f2bd4eb12e20a50dd500522a744947590f25e",
+        "validation": "CRC32, PKCS7, zlib checksum/end/length and binary schema bounds; CBC format has no verified MAC/AEAD authentication."
+      }
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd07_cfg/519173170/cfg/dmdb_encryption.cfg.bak",
+      "ciphertext_bytes": 116273,
+      "ciphertext_sha256": "601194f88418ba56e0da763d039dce60f2d6674fe945da3748ce684f45bb491b",
+      "decoded_source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/decoded-601194f88418ba56e0da763d039dce60f2d6674fe945da3748ce684f45bb491b.bin",
+      "success": true,
+      "metadata": {
+        "magic": "0x124126",
+        "encrypted_bytes": 116233,
+        "decompressed_bytes": 326437,
+        "header_version": "0x4c252937",
+        "database_object_count": 634,
+        "plaintext_sha256": "38f3323959304b05fadceacd486f2bd4eb12e20a50dd500522a744947590f25e",
+        "validation": "CRC32, PKCS7, zlib checksum/end/length and binary schema bounds; CBC format has no verified MAC/AEAD authentication."
+      }
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd11_user_data/83955945/user_data/.backup/configs/dmdb_encryption.cfg",
+      "success": false,
+      "error": "stored database length/bound mismatch"
+    },
+    {
+      "source": "project://Nokia-Beacon-G6/config-private/xs2426xa-analysis-20261027/ubifs-mtd11_user_data/83955945/user_data/.backup/configs/dmdb_encryption.cfg.bak",
+      "success": false,
+      "error": "stored database length/bound mismatch"
+    }
+  ]
+}

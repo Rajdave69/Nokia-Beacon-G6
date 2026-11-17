@@ -1,0 +1,14 @@
+0006acdc: fd7bbea9  stp x29, x30, [sp, #-0x20]!
+0006ace0: 810100d0  adrp x1, #0x9c000
+0006ace4: fd030091  mov x29, sp
+0006ace8: 21d444f9  ldr x1, [x1, #0x9a8]
+0006acec: 200040f9  ldr x0, [x1]
+0006acf0: a00f00f9  str x0, [x29, #0x18]
+0006acf4: 000080d2  mov x0, #0
+0006acf8: a20f40f9  ldr x2, [x29, #0x18]
+0006acfc: 210040f9  ldr x1, [x1]
+0006ad00: 410001ca  eor x1, x2, x1
+0006ad04: 410000b4  cbz x1, #0x6ad0c
+0006ad08: a276fe97  bl #0x8790 ; heuristic __stack_chk_fail@plt {"x0": 0}
+0006ad0c: fd7bc2a8  ldp x29, x30, [sp], #0x20
+0006ad10: c0035fd6  ret 

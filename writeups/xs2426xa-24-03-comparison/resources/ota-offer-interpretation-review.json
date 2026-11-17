@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-27",
+  "scope": "Local re-examination only; no new cloud request or router operation. Device OTA total remains 104 POSTs and one prior G6 CDN GET. No new native target execution in this review.",
+  "question": "Why did even the genuinely older ONT image return no offer?",
+  "older_image_confirmed": {
+    "inactive": "3FE49940JJLK67 / JJL.K67p02, built 2025-02-25, HomeOS 24.03.01",
+    "current": "3FE49940KJLK50 / KJL.K50p01, built 2025-09-04, HomeOS 24.03.01",
+    "interpretation": "Actual build dates establish older/newer; trailing K67 versus K50 numbers are not a chronological sort."
+  },
+  "existing_control": {
+    "source": {
+      "source": "project://Nokia-Beacon-G6/writeups/firmware-upgrade-path/resources/cloud-download/regional-ota-matrix.json",
+      "bytes": 86898,
+      "sha256": "98d989af952cb7f34cb2ad26081ef212d96f1b8437d28df30ba1b4eff83ac242"
+    },
+    "scope": "62 two-second-spaced discovery scenarios. Actual saved owner serial/MAC/model/key held fixed; BOQA country grid plus8 operator-header codes present in both shipped profile inventories. Codes/countries are hypothetical query inputs, not actual device provisioning or verified country/operator pairings. Native isopctl=N. No router, enrollment/status PUT/install operation.",
+    "profiles_unchanged": true,
+    "cases": [
+      {
+        "number": 1,
+        "device": "g6",
+        "operatorcode": "BOQA",
+        "countrycode": "eu",
+        "reported_version": "3FE49996IJLJ03",
+        "http_status": 200,
+        "responseCode": 200,
+        "offers": [
+          {
+            "model": "Nokia WiFi Beacon G6",
+            "currentVersion": "3FE49996IJLJ03",
+            "nxtMSVersion": "3FE49996HJLL91",
+            "checksum": "fc87c474793286273df44dafcc3b605f",
+            "has_download_url": true,
+            "download_host": "ota.console.wifi.nokia.com",
+            "download_path": "/BOQA/3FE49996HJLL91"
+          }
+        ]
+      },
+      {
+        "number": 39,
+        "device": "g6",
+        "operatorcode": "ALCL",
+        "countrycode": "eu",
+        "reported_version": "3FE49996IJLJ03",
+        "http_status": 200,
+        "responseCode": 200,
+        "offers": [
+          {
+            "model": "Nokia WiFi Beacon G6",
+            "currentVersion": "3FE49996IJLJ03",
+            "nxtMSVersion": null,
+            "checksum": null,
+            "has_download_url": false,
+            "download_host": null,
+            "download_path": null
+          }
+        ]
+      }
+    ],
+    "conclusion": "The same earlier G6 identity/key/model/version/country context gives an offer under BOQA and no offer under ALCL. This demonstrates operator-context-sensitive availability, without recovering the complete vendor server policy."
+  },
+  "response_interpretation": "The ONT response has code 200 and Request processed successfully. It echoes the submitted model/version but supplies null nextVersion, URL and checksum. This does not independently establish enrollment, a matching firmware assignment, correctness of every profile input or the newest global release.",
+  "known_profile_gap": "The packaged GENERIC 41-byte API default was used. The plaintext of the actual stored 76-byte wrapped string remains unverified. Matching the profile reproducer to our saved constructed request is a self-consistency check, not proof of byte-for-byte native ONT request equality.",
+  "saved_enable_flag": "Saved cloud OTA Enable=false. Enable is not an outgoing header/body field in this request. It cannot be cited as the direct cause of the external no-offer; native cloud OTA use has not been established for this captured configuration.",
+  "new_offline_negative_checks": {
+    "candidates": 28,
+    "material": "Eleven static returned strings plus decoded hex forms for key0/key1/key2; each tested with PBKDF2-HMAC-SHA256, 10 or 100 rounds, and AES-256-CBC/PKCS7 against the FF + salt8 stored API value.",
+    "padding_successes": 0,
+    "plaintext_recovered": false,
+    "limits": "Bounded hypothesis tests, not comprehensive credential decryption, not proof packageddefault is wrong or correct. No candidate passwords/keys printed or sent."
+  },
+  "request_recheck": "Reviewed swmgnt header builder/payload and libnal getters. Model, serial, MAC, operator and country sources are consistent with the constructed request. ROOT_CA usage is trust configuration, not a newly demonstrated missing client-authentication certificate. Effective credential equality remains unresolved.",
+  "next_discriminating_check": "Compare actual stock cfg/libnal effective APIcredential and exact native request profile with the private constructed one. Read-only getter or captured request needed; do not start updater/activate a bank merely to check availability.",
+  "current_conclusion": "No offer for the tested VDQA profile, with an unverified effective API credential. Actual native ONT cloud availability remains inconclusive. Another operator delivery path or lack of a matching server-side assignment is plausible, not proven.",
+  "additional_static_crypto_review": {
+    "traces": [
+      {
+        "source": "private-source://PROFILE-ONT-KJL/usr/lib/libdbgen.so",
+        "source_sha256": "e5a6e96de5f9c2f0887170dcc6aed877b14f18865942d459a41b0b208f478f5d",
+        "start": "0x100a8",
+        "stop_exclusive": "0x104c0",
+        "trace": "ota-credential-dbgen-trace.txt",
+        "trace_sha256": "d1cd54eebe6d2b757b692132ad7809fc62b583ee4464c24428662fb6a628eefa"
+      },
+      {
+        "source": "private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so",
+        "source_sha256": "32df444607cd4d3ddf967797ddc621895d8a0a72d47afacdd033464d475bda9b",
+        "start": "0x25200",
+        "stop_exclusive": "0x25d70",
+        "trace": "ota-credential-string-crypto-trace.txt",
+        "trace_sha256": "d0963ab53f8fe676d8dfe83e652d63bb6c866a03e9fe8b8827040bea76f59f71"
+      },
+      {
+        "source": "private-source://PROFILE-ONT-KJL/usr/lib/libsec_engine.so",
+        "source_sha256": "32df444607cd4d3ddf967797ddc621895d8a0a72d47afacdd033464d475bda9b",
+        "start": "0x162a4",
+        "stop_exclusive": "0x16544",
+        "trace": "ota-credential-legacy-dispatch-trace.txt",
+        "trace_sha256": "8774dc1b6de3ef8ea9a323941e6288c1b48d684850093b232db0a1dcb1771c0e"
+      }
+    ],
+    "cfgUtl_getCryptValue": "libdbgen 0x100a8: mode 1 uses CS_getCryptOutLen/CS_crypt with type 2. Mode 2 resolves the caller-supplied key name through SE_getKeyByName, then SE_encStr2StrEx. This does not establish which mode/key the current saved API field uses.",
+    "string_crypto": "libsec_engine SE_encStr2StrEx 0x25a24 calls helper 0x25200. Cipher name is AES256 at 0x33b10, resolved through EVP_get_cipherbyname. Helper checks marker FF and reads an 8-byte salt; PKCS5_PBKDF2_HMAC is the 0x46db8 GOT relocation and EVP_sha256 is 0x46dd8. Wrapper retries decrypt with its 10/100-round alternative. This supports the bounded CBC hypothesis tests but does not identify the API field key.",
+    "failed_local_tools": [
+      "Python elftools unavailable; used installed cross readelf/objdump instead.",
+      "Whole decoded preconfiguration XML parse failed on trailing content at line 30503; inspected only the matching parameter tag with its v attribute withheld."
+    ],
+    "limits": "Static instruction inspection only. No successful API credential decoder, live configuration getter or new service request in this review."
+  }
+}

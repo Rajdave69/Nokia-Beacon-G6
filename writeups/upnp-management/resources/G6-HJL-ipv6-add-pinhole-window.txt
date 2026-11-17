@@ -1,0 +1,453 @@
+00018810: fd7bb9a9  stp x29, x30, [sp, #-0x70]!
+00018814: 410000b0  adrp x1, #0x21000
+00018818: 21000a91  add x1, x1, #0x280
+0001881c: fd030091  mov x29, sp
+00018820: f35301a9  stp x19, x20, [sp, #0x10]
+00018824: d40000d0  adrp x20, #0x32000
+00018828: f96b04a9  stp x25, x26, [sp, #0x40]
+0001882c: da0000d0  adrp x26, #0x32000
+00018830: 82d644f9  ldr x2, [x20, #0x9a8]
+00018834: f30300aa  mov x19, x0
+00018838: 5a8344f9  ldr x26, [x26, #0x900]
+0001883c: 00e041f9  ldr x0, [x0, #0x3c0]
+00018840: 430040f9  ldr x3, [x2]
+00018844: a33700f9  str x3, [x29, #0x68]
+00018848: 030080d2  mov x3, #0
+0001884c: f55b02a9  stp x21, x22, [sp, #0x20]
+00018850: f76303a9  stp x23, x24, [sp, #0x30]
+00018854: 40033fd6  blr x26 ; heuristic 0x109d0 {"x1": "RemoteHost", "x2": "@__stack_chk_guard", "x3": 0}
+00018858: f60300aa  mov x22, x0
+0001885c: e00400b4  cbz x0, #0x188f8
+00018860: 60e241f9  ldr x0, [x19, #0x3c0]
+00018864: 410000b0  adrp x1, #0x21000
+00018868: 21400a91  add x1, x1, #0x290
+0001886c: 40033fd6  blr x26 ; heuristic 0x109d0 {"x1": "RemotePort"}
+00018870: f50300aa  mov x21, x0
+00018874: 200400b4  cbz x0, #0x188f8
+00018878: 60e241f9  ldr x0, [x19, #0x3c0]
+0001887c: 410000b0  adrp x1, #0x21000
+00018880: 21800a91  add x1, x1, #0x2a0
+00018884: 40033fd6  blr x26 ; heuristic 0x109d0 {"x1": "InternalClient"}
+00018888: f70300aa  mov x23, x0
+0001888c: 600a00b4  cbz x0, #0x189d8
+00018890: 60e241f9  ldr x0, [x19, #0x3c0]
+00018894: 410000b0  adrp x1, #0x21000
+00018898: 21c00a91  add x1, x1, #0x2b0
+0001889c: 40033fd6  blr x26 ; heuristic 0x109d0 {"x1": "InternalPort"}
+000188a0: f80300aa  mov x24, x0
+000188a4: 200900b4  cbz x0, #0x189c8
+000188a8: 60e241f9  ldr x0, [x19, #0x3c0]
+000188ac: 410000b0  adrp x1, #0x21000
+000188b0: 21000b91  add x1, x1, #0x2c0
+000188b4: 40033fd6  blr x26 ; heuristic 0x109d0 {"x1": "Protocol"}
+000188b8: f90300aa  mov x25, x0
+000188bc: 600e00b4  cbz x0, #0x18a88
+000188c0: 60e241f9  ldr x0, [x19, #0x3c0]
+000188c4: 410000b0  adrp x1, #0x21000
+000188c8: 21801591  add x1, x1, #0x560
+000188cc: 40033fd6  blr x26 ; heuristic 0x109d0 {"x1": "LeaseTime"}
+000188d0: fa0300aa  mov x26, x0
+000188d4: e00000b4  cbz x0, #0x188f0
+000188d8: c10000d0  adrp x1, #0x32000
+000188dc: 60e241f9  ldr x0, [x19, #0x3c0]
+000188e0: 21a447f9  ldr x1, [x1, #0xf48]
+000188e4: 20003fd6  blr x1 ; heuristic 0xff60 {"x1": 65376}
+000188e8: 1f180071  cmp w0, #6
+000188ec: 20080054  b.eq #0x189f0
+000188f0: bb2b00f9  str x27, [x29, #0x50]
+000188f4: 07000014  b #0x18910
+000188f8: 1a0080d2  mov x26, #0
+000188fc: 190080d2  mov x25, #0
+00018900: 180080d2  mov x24, #0
+00018904: 170080d2  mov x23, #0
+00018908: 150080d2  mov x21, #0
+0001890c: bb2b00f9  str x27, [x29, #0x50]
+00018910: db0000d0  adrp x27, #0x32000
+00018914: 20008052  mov w0, #1
+00018918: 410000b0  adrp x1, #0x21000
+0001891c: 21a01f91  add x1, x1, #0x7e8
+00018920: 7b3745f9  ldr x27, [x27, #0xa68]
+00018924: 60033fd6  blr x27 ; heuristic 0xf5d0 {"x0": 1, "x1": "Failure in AddPinhole: Invalid Arguments!"}
+00018928: e7031aaa  mov x7, x26
+0001892c: e60317aa  mov x6, x23
+00018930: e50318aa  mov x5, x24
+00018934: e40319aa  mov x4, x25
+00018938: e30316aa  mov x3, x22
+0001893c: e20315aa  mov x2, x21
+00018940: 20008052  mov w0, #1
+00018944: 410000b0  adrp x1, #0x21000
+00018948: 21602091  add x1, x1, #0x818
+0001894c: 60033fd6  blr x27 ; heuristic 0xf5d0 {"x0": 1, "x1": "  RemotePort: %s RemoteHost: %s Protocol: %s InternalPort: %s InternalClient: %s leaseTime: %s", "x2": 0, "x4": 0, "x5": 0, "x6": 0, "x7": 0}
+00018950: e10313aa  mov x1, x19
+00018954: 40328052  mov w0, #0x192
+00018958: eafcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+0001895c: c10000d0  adrp x1, #0x32000
+00018960: e00316aa  mov x0, x22
+00018964: 361845f9  ldr x22, [x1, #0xa30]
+00018968: c0023fd6  blr x22 ; heuristic @free {"x1": 204800}
+0001896c: e00315aa  mov x0, x21
+00018970: c0023fd6  blr x22 ; heuristic @free {"x0": 0}
+00018974: e00317aa  mov x0, x23
+00018978: c0023fd6  blr x22 ; heuristic @free {"x0": 0}
+0001897c: e00318aa  mov x0, x24
+00018980: c0023fd6  blr x22 ; heuristic @free {"x0": 0}
+00018984: e00319aa  mov x0, x25
+00018988: c0023fd6  blr x22 ; heuristic @free {"x0": 0}
+0001898c: e0031aaa  mov x0, x26
+00018990: c0023fd6  blr x22 ; heuristic @free {"x0": 0}
+00018994: 600240b9  ldr w0, [x19]
+00018998: bb2b40f9  ldr x27, [x29, #0x50]
+0001899c: 94d644f9  ldr x20, [x20, #0x9a8]
+000189a0: a23740f9  ldr x2, [x29, #0x68]
+000189a4: 810240f9  ldr x1, [x20]
+000189a8: 410001ca  eor x1, x2, x1
+000189ac: 611000b5  cbnz x1, #0x18bb8
+000189b0: f35341a9  ldp x19, x20, [sp, #0x10]
+000189b4: f55b42a9  ldp x21, x22, [sp, #0x20]
+000189b8: f76343a9  ldp x23, x24, [sp, #0x30]
+000189bc: f96b44a9  ldp x25, x26, [sp, #0x40]
+000189c0: fd7bc7a8  ldp x29, x30, [sp], #0x70
+000189c4: c0035fd6  ret 
+000189c8: 1a0080d2  mov x26, #0
+000189cc: 190080d2  mov x25, #0
+000189d0: bb2b00f9  str x27, [x29, #0x50]
+000189d4: cfffff17  b #0x18910
+000189d8: 1a0080d2  mov x26, #0
+000189dc: 190080d2  mov x25, #0
+000189e0: 180080d2  mov x24, #0
+000189e4: bb2b00f9  str x27, [x29, #0x50]
+000189e8: caffff17  b #0x18910
+000189ec: 1f2003d5  nop 
+000189f0: c00000d0  adrp x0, #0x32000
+000189f4: 001046f9  ldr x0, [x0, #0xc20]
+000189f8: 01e444b9  ldr w1, [x0, #0x4e4]
+000189fc: 21070034  cbz w1, #0x18ae0
+00018a00: 00e844b9  ldr w0, [x0, #0x4e8]
+00018a04: 80040034  cbz w0, #0x18a94
+00018a08: bb2b00f9  str x27, [x29, #0x50]
+00018a0c: db0000d0  adrp x27, #0x32000
+00018a10: e00316aa  mov x0, x22
+00018a14: 611b47f9  ldr x1, [x27, #0xe30]
+00018a18: 20003fd6  blr x1 ; heuristic 0xfb40 {"x1": 64320}
+00018a1c: 80000035  cbnz w0, #0x18a2c
+00018a20: e00316aa  mov x0, x22
+00018a24: 37fbff97  bl #0x17700 ; heuristic 0x17700 {}
+00018a28: 60060034  cbz w0, #0x18af4
+00018a2c: 611b47f9  ldr x1, [x27, #0xe30]
+00018a30: e00315aa  mov x0, x21
+00018a34: 20003fd6  blr x1 ; heuristic 0xfb40 {"x1": 64320}
+00018a38: c0000035  cbnz w0, #0x18a50
+00018a3c: c10000d0  adrp x1, #0x32000
+00018a40: e00315aa  mov x0, x21
+00018a44: 213847f9  ldr x1, [x1, #0xe70]
+00018a48: 20003fd6  blr x1 ; heuristic 0x100c0 {"x1": 65728}
+00018a4c: 80070034  cbz w0, #0x18b3c
+00018a50: 611b47f9  ldr x1, [x27, #0xe30]
+00018a54: e00317aa  mov x0, x23
+00018a58: 20003fd6  blr x1 ; heuristic 0xfb40 {"x1": 64320}
+00018a5c: 60020034  cbz w0, #0x18aa8
+00018a60: 410000b0  adrp x1, #0x21000
+00018a64: 21801691  add x1, x1, #0x5a0
+00018a68: c20000d0  adrp x2, #0x32000
+00018a6c: 423445f9  ldr x2, [x2, #0xa68]
+00018a70: 20008052  mov w0, #1
+00018a74: 40003fd6  blr x2 ; heuristic 0xf5d0 {"x0": 1, "x1": " Internal client is wildcarded", "x2": 62928}
+00018a78: e10313aa  mov x1, x19
+00018a7c: 40328052  mov w0, #0x192
+00018a80: a0fcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+00018a84: b6ffff17  b #0x1895c
+00018a88: 1a0080d2  mov x26, #0
+00018a8c: bb2b00f9  str x27, [x29, #0x50]
+00018a90: a0ffff17  b #0x18910
+00018a94: e0578052  mov w0, #0x2bf
+00018a98: e10313aa  mov x1, x19
+00018a9c: 99fcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 703}
+00018aa0: e0578052  mov w0, #0x2bf
+00018aa4: beffff17  b #0x1899c
+00018aa8: e00317aa  mov x0, x23
+00018aac: 15fbff97  bl #0x17700 ; heuristic 0x17700 {}
+00018ab0: 80030035  cbnz w0, #0x18b20
+00018ab4: c30000d0  adrp x3, #0x32000
+00018ab8: e20317aa  mov x2, x23
+00018abc: 20008052  mov w0, #1
+00018ac0: 410000b0  adrp x1, #0x21000
+00018ac4: 633445f9  ldr x3, [x3, #0xa68]
+00018ac8: 21001791  add x1, x1, #0x5c0
+00018acc: 60003fd6  blr x3 ; heuristic 0xf5d0 {"x0": 1, "x1": " Internal client : %s", "x3": 62928}
+00018ad0: e10313aa  mov x1, x19
+00018ad4: 40328052  mov w0, #0x192
+00018ad8: 8afcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+00018adc: a0ffff17  b #0x1895c
+00018ae0: c0578052  mov w0, #0x2be
+00018ae4: e10313aa  mov x1, x19
+00018ae8: 86fcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 702}
+00018aec: c0578052  mov w0, #0x2be
+00018af0: abffff17  b #0x1899c
+00018af4: c30000d0  adrp x3, #0x32000
+00018af8: e20316aa  mov x2, x22
+00018afc: 20008052  mov w0, #1
+00018b00: 410000b0  adrp x1, #0x21000
+00018b04: 633445f9  ldr x3, [x3, #0xa68]
+00018b08: 21600d91  add x1, x1, #0x358
+00018b0c: 60003fd6  blr x3 ; heuristic 0xf5d0 {"x0": 1, "x1": " RemoteHost: %s \n", "x3": 62928}
+00018b10: e10313aa  mov x1, x19
+00018b14: 40328052  mov w0, #0x192
+00018b18: 7afcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+00018b1c: 90ffff17  b #0x1895c
+00018b20: e00317aa  mov x0, x23
+00018b24: 43fbff97  bl #0x17830 ; heuristic 0x17830 {}
+00018b28: 80020034  cbz w0, #0x18b78
+00018b2c: 410000b0  adrp x1, #0x21000
+00018b30: 21601791  add x1, x1, #0x5d8
+00018b34: c20000d0  adrp x2, #0x32000
+00018b38: cdffff17  b #0x18a6c
+00018b3c: db0000d0  adrp x27, #0x32000
+00018b40: 20008052  mov w0, #1
+00018b44: 410000b0  adrp x1, #0x21000
+00018b48: 21c01591  add x1, x1, #0x570
+00018b4c: 7b3745f9  ldr x27, [x27, #0xa68]
+00018b50: 60033fd6  blr x27 ; heuristic 0xf5d0 {"x0": 1, "x1": "Failure in AddPinhole:Invalid Arguments!", "x2": 204800}
+00018b54: e20315aa  mov x2, x21
+00018b58: 20008052  mov w0, #1
+00018b5c: 410000b0  adrp x1, #0x21000
+00018b60: 21c00d91  add x1, x1, #0x370
+00018b64: 60033fd6  blr x27 ; heuristic 0xf5d0 {"x0": 1, "x1": " RemotePort: %s \n"}
+00018b68: e10313aa  mov x1, x19
+00018b6c: 40328052  mov w0, #0x192
+00018b70: 64fcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+00018b74: 7affff17  b #0x1895c
+00018b78: c10000d0  adrp x1, #0x32000
+00018b7c: e00319aa  mov x0, x25
+00018b80: 213847f9  ldr x1, [x1, #0xe70]
+00018b84: 20003fd6  blr x1 ; heuristic 0x100c0 {"x0": 0, "x1": 65728}
+00018b88: 00020035  cbnz w0, #0x18bc8
+00018b8c: c30000d0  adrp x3, #0x32000
+00018b90: e20319aa  mov x2, x25
+00018b94: 20008052  mov w0, #1
+00018b98: 410000b0  adrp x1, #0x21000
+00018b9c: 633445f9  ldr x3, [x3, #0xa68]
+00018ba0: 21001891  add x1, x1, #0x600
+00018ba4: 60003fd6  blr x3 ; heuristic 0xf5d0 {"x0": 1, "x1": "Invalid protocol:%s", "x2": 0, "x3": 62928}
+00018ba8: e10313aa  mov x1, x19
+00018bac: 40328052  mov w0, #0x192
+00018bb0: 54fcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+00018bb4: 6affff17  b #0x1895c
+00018bb8: c00000d0  adrp x0, #0x32000
+00018bbc: bb7305a9  stp x27, x28, [x29, #0x50]
+00018bc0: 00a844f9  ldr x0, [x0, #0x950]
+00018bc4: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+00018bc8: c30000d0  adrp x3, #0x32000
+00018bcc: bc2f00f9  str x28, [x29, #0x58]
+00018bd0: 010080d2  mov x1, #0
+00018bd4: 42018052  mov w2, #0xa
+00018bd8: 7cf844f9  ldr x28, [x3, #0x9f0]
+00018bdc: e00319aa  mov x0, x25
+00018be0: 80033fd6  blr x28 ; heuristic @strtol {"x0": 0, "x1": 0, "x2": 10, "x3": 204800}
+00018be4: e1ff9f52  mov w1, #0xffff
+00018be8: 1f00016b  cmp w0, w1
+00018bec: e0090054  b.eq #0x18d28
+00018bf0: 42018052  mov w2, #0xa
+00018bf4: 010080d2  mov x1, #0
+00018bf8: e00319aa  mov x0, x25
+00018bfc: 80033fd6  blr x28 ; heuristic @strtol {"x0": 0, "x1": 0, "x2": 10}
+00018c00: 1f200271  cmp w0, #0x88
+00018c04: 40020054  b.eq #0x18c4c
+00018c08: 42018052  mov w2, #0xa
+00018c0c: 010080d2  mov x1, #0
+00018c10: e00319aa  mov x0, x25
+00018c14: 80033fd6  blr x28 ; heuristic @strtol {"x0": 0, "x1": 0, "x2": 10}
+00018c18: 1f440071  cmp w0, #0x11
+00018c1c: 80010054  b.eq #0x18c4c
+00018c20: 42018052  mov w2, #0xa
+00018c24: 010080d2  mov x1, #0
+00018c28: e00319aa  mov x0, x25
+00018c2c: 80033fd6  blr x28 ; heuristic @strtol {"x0": 0, "x1": 0, "x2": 10}
+00018c30: 1f180071  cmp w0, #6
+00018c34: c0000054  b.eq #0x18c4c
+00018c38: e10313aa  mov x1, x19
+00018c3c: 20588052  mov w0, #0x2c1
+00018c40: 30fcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 705}
+00018c44: bc2f40f9  ldr x28, [x29, #0x58]
+00018c48: 45ffff17  b #0x1895c
+00018c4c: c00000d0  adrp x0, #0x32000
+00018c50: 42018052  mov w2, #0xa
+00018c54: 010080d2  mov x1, #0
+00018c58: 1cf844f9  ldr x28, [x0, #0x9f0]
+00018c5c: e00318aa  mov x0, x24
+00018c60: 80033fd6  blr x28 ; heuristic @strtol {"x0": 0, "x1": 0, "x2": 10}
+00018c64: 1ffc0f71  cmp w0, #0x3ff
+00018c68: 2d050054  b.le #0x18d0c
+00018c6c: 61420f91  add x1, x19, #0x3d0
+00018c70: e00317aa  mov x0, x23
+00018c74: a3fbff97  bl #0x17b00 ; heuristic 0x17b00 {}
+00018c78: 20010035  cbnz w0, #0x18c9c
+00018c7c: c30000d0  adrp x3, #0x32000
+00018c80: 22008052  mov w2, #1
+00018c84: 01008052  mov w1, #0
+00018c88: e00313aa  mov x0, x19
+00018c8c: 63dc47f9  ldr x3, [x3, #0xfb8]
+00018c90: 60003fd6  blr x3 ; heuristic 0xaab0 {"x1": 0, "x2": 1, "x3": 43696}
+00018c94: 1f080071  cmp w0, #2
+00018c98: c0080054  b.eq #0x18db0
+00018c9c: 7b1b47f9  ldr x27, [x27, #0xe30]
+00018ca0: e00318aa  mov x0, x24
+00018ca4: 60033fd6  blr x27 ; heuristic 0x17ffffee2a1403e0 {"x0": 0}
+00018ca8: a0010034  cbz w0, #0x18cdc
+00018cac: c30000d0  adrp x3, #0x32000
+00018cb0: 410000b0  adrp x1, #0x21000
+00018cb4: e20318aa  mov x2, x24
+00018cb8: 21c01b91  add x1, x1, #0x6f0
+00018cbc: 633445f9  ldr x3, [x3, #0xa68]
+00018cc0: 20008052  mov w0, #1
+00018cc4: 60003fd6  blr x3 ; heuristic 0xf5d0 {"x0": 1, "x1": "Wild cards not permitted in internal port:%s", "x2": 0, "x3": 62928}
+00018cc8: e10313aa  mov x1, x19
+00018ccc: 40328052  mov w0, #0x192
+00018cd0: 0cfcff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+00018cd4: bc2f40f9  ldr x28, [x29, #0x58]
+00018cd8: 21ffff17  b #0x1895c
+00018cdc: c00000d0  adrp x0, #0x32000
+00018ce0: 1b3847f9  ldr x27, [x0, #0xe70]
+00018ce4: e00318aa  mov x0, x24
+00018ce8: 60033fd6  blr x27 ; heuristic 0x100c0 {"x0": 0}
+00018cec: c0020035  cbnz w0, #0x18d44
+00018cf0: c30000d0  adrp x3, #0x32000
+00018cf4: 410000b0  adrp x1, #0x21000
+00018cf8: e20318aa  mov x2, x24
+00018cfc: 20008052  mov w0, #1
+00018d00: 633445f9  ldr x3, [x3, #0xa68]
+00018d04: 21801c91  add x1, x1, #0x720
+00018d08: efffff17  b #0x18cc4
+00018d0c: 42018052  mov w2, #0xa
+00018d10: 010080d2  mov x1, #0
+00018d14: e00318aa  mov x0, x24
+00018d18: 80033fd6  blr x28 ; heuristic unknown {"x0": 0, "x1": 0, "x2": 10, "x3": 62928}
+00018d1c: 1f000071  cmp w0, #0
+00018d20: ecfaff54  b.gt #0x18c7c
+00018d24: d2ffff17  b #0x18c6c
+00018d28: c30000d0  adrp x3, #0x32000
+00018d2c: 410000b0  adrp x1, #0x21000
+00018d30: e20319aa  mov x2, x25
+00018d34: 20008052  mov w0, #1
+00018d38: 633445f9  ldr x3, [x3, #0xa68]
+00018d3c: 21601891  add x1, x1, #0x618
+00018d40: e1ffff17  b #0x18cc4
+00018d44: c00000d0  adrp x0, #0x32000
+00018d48: 42018052  mov w2, #0xa
+00018d4c: 010080d2  mov x1, #0
+00018d50: 1cf844f9  ldr x28, [x0, #0x9f0]
+00018d54: e0031aaa  mov x0, x26
+00018d58: 80033fd6  blr x28 ; heuristic @strtol {"x0": 0, "x1": 0, "x2": 10, "x3": 62928}
+00018d5c: 1f000071  cmp w0, #0
+00018d60: 2d010054  b.le #0x18d84
+00018d64: 010080d2  mov x1, #0
+00018d68: 42018052  mov w2, #0xa
+00018d6c: e0031aaa  mov x0, x26
+00018d70: 80033fd6  blr x28 ; heuristic @strtol {"x0": 0, "x1": 0, "x2": 10}
+00018d74: 01308a52  mov w1, #0x5180
+00018d78: 2100a072  movk w1, #1, lsl #16
+00018d7c: 1f00016b  cmp w0, w1
+00018d80: 2d030054  b.le #0x18de4
+00018d84: c20000d0  adrp x2, #0x32000
+00018d88: 20008052  mov w0, #1
+00018d8c: 410000b0  adrp x1, #0x21000
+00018d90: 21201d91  add x1, x1, #0x748
+00018d94: 423445f9  ldr x2, [x2, #0xa68]
+00018d98: 40003fd6  blr x2 ; heuristic 0xf5d0 {"x0": 1, "x1": "lease time must be between 1 and 86400", "x2": 62928}
+00018d9c: e10313aa  mov x1, x19
+00018da0: 40328052  mov w0, #0x192
+00018da4: d7fbff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 402}
+00018da8: bc2f40f9  ldr x28, [x29, #0x58]
+00018dac: ecfeff17  b #0x1895c
+00018db0: c40000d0  adrp x4, #0x32000
+00018db4: e30317aa  mov x3, x23
+00018db8: e20318aa  mov x2, x24
+00018dbc: 20008052  mov w0, #1
+00018dc0: 843445f9  ldr x4, [x4, #0xa68]
+00018dc4: 410000b0  adrp x1, #0x21000
+00018dc8: 21001991  add x1, x1, #0x640
+00018dcc: 80003fd6  blr x4 ; heuristic 0xf5d0 {"x0": 1, "x1": "Internal port number must be greater than 1023 and InternalClient must be same as IP of Control point unless control point is authorized. internal_port:%s internal_client:%s", "x2": 0, "x4": 62928}
+00018dd0: e10313aa  mov x1, x19
+00018dd4: c04b8052  mov w0, #0x25e
+00018dd8: cafbff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 606}
+00018ddc: bc2f40f9  ldr x28, [x29, #0x58]
+00018de0: dffeff17  b #0x1895c
+00018de4: e0031aaa  mov x0, x26
+00018de8: 60033fd6  blr x27 ; heuristic 0x100c0 {"x0": 0}
+00018dec: c0fcff34  cbz w0, #0x18d84
+00018df0: 42018052  mov w2, #0xa
+00018df4: 010080d2  mov x1, #0
+00018df8: e00319aa  mov x0, x25
+00018dfc: 80033fd6  blr x28 ; heuristic unknown {"x0": 0, "x1": 0, "x2": 10}
+00018e00: 40f6ff34  cbz w0, #0x18cc8
+00018e04: 010080d2  mov x1, #0
+00018e08: 42018052  mov w2, #0xa
+00018e0c: e00318aa  mov x0, x24
+00018e10: 80033fd6  blr x28 ; heuristic unknown {"x0": 0, "x1": 0, "x2": 10}
+00018e14: e1ff9f52  mov w1, #0xffff
+00018e18: 1f00016b  cmp w0, w1
+00018e1c: 6cf5ff54  b.gt #0x18cc8
+00018e20: c60000d0  adrp x6, #0x32000
+00018e24: bb930191  add x27, x29, #0x64
+00018e28: e5031baa  mov x5, x27
+00018e2c: e40319aa  mov x4, x25
+00018e30: c6e046f9  ldr x6, [x6, #0xdc0]
+00018e34: e30315aa  mov x3, x21
+00018e38: e20318aa  mov x2, x24
+00018e3c: e10316aa  mov x1, x22
+00018e40: e00317aa  mov x0, x23
+00018e44: c0003fd6  blr x6 ; heuristic 0x16100 {"x2": 0, "x4": 0, "x6": 90368}
+00018e48: 60030034  cbz w0, #0x18eb4
+00018e4c: c30000d0  adrp x3, #0x32000
+00018e50: a26740b9  ldr w2, [x29, #0x64]
+00018e54: 60008052  mov w0, #3
+00018e58: 410000b0  adrp x1, #0x21000
+00018e5c: 633445f9  ldr x3, [x3, #0xa68]
+00018e60: 21c01d91  add x1, x1, #0x770
+00018e64: 60003fd6  blr x3 ; heuristic 0xf5d0 {"x0": 3, "x1": "\nExisting pin hiole found in Addpinhile action %d\n", "x3": 62928}
+00018e68: bb6740b9  ldr w27, [x29, #0x64]
+00018e6c: 42018052  mov w2, #0xa
+00018e70: 010080d2  mov x1, #0
+00018e74: e0031aaa  mov x0, x26
+00018e78: 80033fd6  blr x28 ; heuristic unknown {"x0": 0, "x1": 0, "x2": 10}
+00018e7c: c20000d0  adrp x2, #0x32000
+00018e80: e103002a  mov w1, w0
+00018e84: e0031b2a  mov w0, w27
+00018e88: 428444f9  ldr x2, [x2, #0x908]
+00018e8c: 40003fd6  blr x2 ; heuristic 0x17070 {"x2": 94320}
+00018e90: c30000d0  adrp x3, #0x32000
+00018e94: a26740b9  ldr w2, [x29, #0x64]
+00018e98: 410000b0  adrp x1, #0x21000
+00018e9c: e00313aa  mov x0, x19
+00018ea0: 63e045f9  ldr x3, [x3, #0xbc0]
+00018ea4: 21201f91  add x1, x1, #0x7c8
+00018ea8: 60003fd6  blr x3 ; heuristic 0xfdb0 {"x1": "<UniqueID>%i</UniqueID>\n", "x3": 64944}
+00018eac: bc2f40f9  ldr x28, [x29, #0x58]
+00018eb0: abfeff17  b #0x1895c
+00018eb4: 42018052  mov w2, #0xa
+00018eb8: 010080d2  mov x1, #0
+00018ebc: e0031aaa  mov x0, x26
+00018ec0: 80033fd6  blr x28 ; heuristic unknown {"x0": 0, "x1": 0, "x2": 10}
+00018ec4: c70000d0  adrp x7, #0x32000
+00018ec8: e503002a  mov w5, w0
+00018ecc: e6031baa  mov x6, x27
+00018ed0: e40319aa  mov x4, x25
+00018ed4: e71045f9  ldr x7, [x7, #0xa20]
+00018ed8: e30315aa  mov x3, x21
+00018edc: e20318aa  mov x2, x24
+00018ee0: e10316aa  mov x1, x22
+00018ee4: e00317aa  mov x0, x23
+00018ee8: e0003fd6  blr x7 ; heuristic 0x16900 {"x2": 0, "x4": 0, "x7": 92416}
+00018eec: 20fdff36  tbz w0, #0x1f, #0x18e90
+00018ef0: c20000d0  adrp x2, #0x32000
+00018ef4: 20008052  mov w0, #1
+00018ef8: 410000b0  adrp x1, #0x21000
+00018efc: 21a01e91  add x1, x1, #0x7a8
+00018f00: 423445f9  ldr x2, [x2, #0xa68]
+00018f04: 40003fd6  blr x2 ; heuristic 0xf5d0 {"x0": 1, "x1": "AddPinhole out of memory", "x2": 62928}
+00018f08: e10313aa  mov x1, x19
+00018f0c: a0578052  mov w0, #0x2bd
+00018f10: 7cfbff97  bl #0x17d00 ; heuristic 0x17d00 {"x0": 701}
+00018f14: bc2f40f9  ldr x28, [x29, #0x58]
+00018f18: 91feff17  b #0x1895c
+00018f1c: 1f2003d5  nop 
+

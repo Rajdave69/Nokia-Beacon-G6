@@ -1,0 +1,115 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-ONT-KJL/usr/bin/cfgmgr:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000084640 <cfgRpc_socketRead@@Base+0xfb24>:
+   84640:	a9b97bfd 	stp	x29, x30, [sp, #-112]!
+   84644:	71000c3f 	cmp	w1, #0x3
+   84648:	910003fd 	mov	x29, sp
+   8464c:	a9025bf5 	stp	x21, x22, [sp, #32]
+   84650:	f0001415 	adrp	x21, 307000 <sal_hgu_qos_delete_classify>
+   84654:	aa0003f6 	mov	x22, x0
+   84658:	a90153f3 	stp	x19, x20, [sp, #16]
+   8465c:	f94592a0 	ldr	x0, [x21, #2848]  ; GOT __stack_chk_guard@GLIBC_2.17
+   84660:	a904ffbf 	stp	xzr, xzr, [x29, #72]
+   84664:	f9400002 	ldr	x2, [x0]
+   84668:	f90037a2 	str	x2, [x29, #104]
+   8466c:	d2800002 	mov	x2, #0x0                   	// #0
+   84670:	a905ffbf 	stp	xzr, xzr, [x29, #88]
+   84674:	f9001bf7 	str	x23, [sp, #48]
+   84678:	5400006c 	b.gt	84684 <cfgRpc_socketRead@@Base+0xfb68>
+   8467c:	52800014 	mov	w20, #0x0                   	// #0
+   84680:	14000045 	b	84794 <cfgRpc_socketRead@@Base+0xfc78>
+   84684:	b0001402 	adrp	x2, 305000 <_fini@@Base+0xbcd98>
+   84688:	910123b3 	add	x19, x29, #0x48
+   8468c:	52800401 	mov	w1, #0x20                  	// #32
+   84690:	aa1303e0 	mov	x0, x19
+   84694:	f9437042 	ldr	x2, [x2, #1760]
+   84698:	d63f0040 	blr	x2
+   8469c:	34ffff00 	cbz	w0, 8467c <cfgRpc_socketRead@@Base+0xfb60>
+   846a0:	f0001401 	adrp	x1, 307000 <sal_hgu_qos_delete_classify>
+   846a4:	90001414 	adrp	x20, 304000 <_fini@@Base+0xbbd98>
+   846a8:	aa1303e0 	mov	x0, x19
+   846ac:	f9433821 	ldr	x1, [x1, #1648]  ; GOT strlen@GLIBC_2.17
+   846b0:	d63f0020 	blr	x1
+   846b4:	f9406a94 	ldr	x20, [x20, #208]  ; GOT strncmp@GLIBC_2.17
+   846b8:	aa0003f7 	mov	x23, x0
+   846bc:	90000f41 	adrp	x1, 26c000 <_fini@@Base+0x23d98>
+   846c0:	9117c821 	add	x1, x1, #0x5f2  ; '3FE'
+   846c4:	d2800062 	mov	x2, #0x3                   	// #3
+   846c8:	aa1303e0 	mov	x0, x19
+   846cc:	d63f0280 	blr	x20
+   846d0:	340000e0 	cbz	w0, 846ec <cfgRpc_socketRead@@Base+0xfbd0>
+   846d4:	90000f41 	adrp	x1, 26c000 <_fini@@Base+0x23d98>
+   846d8:	9117d821 	add	x1, x1, #0x5f6  ; '3TN'
+   846dc:	d2800062 	mov	x2, #0x3                   	// #3
+   846e0:	aa1303e0 	mov	x0, x19
+   846e4:	d63f0280 	blr	x20
+   846e8:	350002e0 	cbnz	w0, 84744 <cfgRpc_socketRead@@Base+0xfc28>
+   846ec:	71002eff 	cmp	w23, #0xb
+   846f0:	540001ac 	b.gt	84724 <cfgRpc_socketRead@@Base+0xfc08>
+   846f4:	90000f43 	adrp	x3, 26c000 <_fini@@Base+0x23d98>
+   846f8:	9117e863 	add	x3, x3, #0x5fa  ; 'swversion[%s] len err'
+   846fc:	aa1303e4 	mov	x4, x19
+   84700:	5280d502 	mov	w2, #0x6a8                 	// #1704
+   84704:	f0001405 	adrp	x5, 307000 <sal_hgu_qos_delete_classify>
+   84708:	f0000f21 	adrp	x1, 26b000 <_fini@@Base+0x22d98>
+   8470c:	91260021 	add	x1, x1, #0x980  ; 'getValueFromSecExtfs'
+   84710:	f94678a5 	ldr	x5, [x5, #3312]  ; GOT log_log
+   84714:	91088021 	add	x1, x1, #0x220  ; 'cfgUtlGetReleaseVersionFromBuildinfo'
+   84718:	52800060 	mov	w0, #0x3                   	// #3
+   8471c:	d63f00a0 	blr	x5
+   84720:	17ffffd7 	b	8467c <cfgRpc_socketRead@@Base+0xfb60>
+   84724:	91002661 	add	x1, x19, #0x9
+   84728:	d2800062 	mov	x2, #0x3                   	// #3
+   8472c:	b0001403 	adrp	x3, 305000 <_fini@@Base+0xbcd98>
+   84730:	aa1603e0 	mov	x0, x22
+   84734:	52800034 	mov	w20, #0x1                   	// #1
+   84738:	f9456c63 	ldr	x3, [x3, #2776]  ; GOT strncpy@GLIBC_2.17
+   8473c:	d63f0060 	blr	x3
+   84740:	14000015 	b	84794 <cfgRpc_socketRead@@Base+0xfc78>
+   84744:	d2800082 	mov	x2, #0x4                   	// #4
+   84748:	b0001341 	adrp	x1, 2ed000 <_fini@@Base+0xa4d98>
+   8474c:	9127f421 	add	x1, x1, #0x9fd  ; 'ALCL'
+   84750:	aa1303e0 	mov	x0, x19
+   84754:	d63f0280 	blr	x20
+   84758:	2a0003f4 	mov	w20, w0
+   8475c:	35000340 	cbnz	w0, 847c4 <cfgRpc_socketRead@@Base+0xfca8>
+   84760:	71002aff 	cmp	w23, #0xa
+   84764:	540002ac 	b.gt	847b8 <cfgRpc_socketRead@@Base+0xfc9c>
+   84768:	f0001405 	adrp	x5, 307000 <sal_hgu_qos_delete_classify>
+   8476c:	f0000f21 	adrp	x1, 26b000 <_fini@@Base+0x22d98>
+   84770:	91260021 	add	x1, x1, #0x980  ; 'getValueFromSecExtfs'
+   84774:	f94678a5 	ldr	x5, [x5, #3312]  ; GOT log_log
+   84778:	90000f43 	adrp	x3, 26c000 <_fini@@Base+0x23d98>
+   8477c:	9117e863 	add	x3, x3, #0x5fa  ; 'swversion[%s] len err'
+   84780:	aa1303e4 	mov	x4, x19
+   84784:	5280d5e2 	mov	w2, #0x6af                 	// #1711
+   84788:	91088021 	add	x1, x1, #0x220  ; 'cfgUtlGetReleaseVersionFromBuildinfo'
+   8478c:	52800060 	mov	w0, #0x3                   	// #3
+   84790:	d63f00a0 	blr	x5
+   84794:	f94592b5 	ldr	x21, [x21, #2848]  ; GOT __stack_chk_guard@GLIBC_2.17
+   84798:	2a1403e0 	mov	w0, w20
+   8479c:	f94037a2 	ldr	x2, [x29, #104]
+   847a0:	f94002a1 	ldr	x1, [x21]
+   847a4:	ca010041 	eor	x1, x2, x1
+   847a8:	b4000181 	cbz	x1, 847d8 <cfgRpc_socketRead@@Base+0xfcbc>
+   847ac:	90001420 	adrp	x0, 308000 <_fini@@Base+0xbfd98>
+   847b0:	f9424000 	ldr	x0, [x0, #1152]  ; GOT __stack_chk_fail@GLIBC_2.17
+   847b4:	d63f0000 	blr	x0
+   847b8:	d2800062 	mov	x2, #0x3                   	// #3
+   847bc:	91002261 	add	x1, x19, #0x8
+   847c0:	17ffffdb 	b	8472c <cfgRpc_socketRead@@Base+0xfc10>
+   847c4:	90000f43 	adrp	x3, 26c000 <_fini@@Base+0x23d98>
+   847c8:	91184063 	add	x3, x3, #0x610  ; 'swversion[%s] not support'
+   847cc:	aa1303e4 	mov	x4, x19
+   847d0:	5280d6a2 	mov	w2, #0x6b5                 	// #1717
+   847d4:	17ffffcc 	b	84704 <cfgRpc_socketRead@@Base+0xfbe8>
+   847d8:	a94153f3 	ldp	x19, x20, [sp, #16]
+   847dc:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   847e0:	f9401bf7 	ldr	x23, [sp, #48]
+   847e4:	a8c77bfd 	ldp	x29, x30, [sp], #112
+   847e8:	d65f03c0 	ret

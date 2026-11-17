@@ -1,0 +1,112 @@
+
+private-source://PROFILE-ONT-KJL/usr/lib/libdmdb.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000018b1c <dm_value_to_string@@Base>:
+   18b1c:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   18b20:	900000a3 	adrp	x3, 2c000 <_fini@@Base+0x12d68>
+   18b24:	aa0003e4 	mov	x4, x0
+   18b28:	aa0103e0 	mov	x0, x1
+   18b2c:	910003fd 	mov	x29, sp
+   18b30:	f945f065 	ldr	x5, [x3, #3040]
+   18b34:	2a0203e1 	mov	w1, w2
+   18b38:	f94000a2 	ldr	x2, [x5]
+   18b3c:	f9000fa2 	str	x2, [x29, #24]
+   18b40:	d2800002 	mov	x2, #0x0                   	// #0
+   18b44:	b9400082 	ldr	w2, [x4]
+   18b48:	71001c5f 	cmp	w2, #0x7
+   18b4c:	540001c8 	b.hi	18b84 <dm_value_to_string@@Base+0x68>  // b.pmore
+   18b50:	f9400fa3 	ldr	x3, [x29, #24]
+   18b54:	f94000a2 	ldr	x2, [x5]
+   18b58:	ca020062 	eor	x2, x3, x2
+   18b5c:	b4000082 	cbz	x2, 18b6c <dm_value_to_string@@Base+0x50>
+   18b60:	900000a0 	adrp	x0, 2c000 <_fini@@Base+0x12d68>
+   18b64:	f946c800 	ldr	x0, [x0, #3472]
+   18b68:	d63f0000 	blr	x0
+   18b6c:	51000422 	sub	w2, w1, #0x1
+   18b70:	f9400481 	ldr	x1, [x4, #8]
+   18b74:	900000a3 	adrp	x3, 2c000 <_fini@@Base+0x12d68>
+   18b78:	f9460c63 	ldr	x3, [x3, #3096]
+   18b7c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   18b80:	d61f0060 	br	x3
+   18b84:	51002042 	sub	w2, w2, #0x8
+   18b88:	7100105f 	cmp	w2, #0x4
+   18b8c:	54000868 	b.hi	18c98 <dm_value_to_string@@Base+0x17c>  // b.pmore
+   18b90:	f0000005 	adrp	x5, 1b000 <_fini@@Base+0x1d68>
+   18b94:	912030a5 	add	x5, x5, #0x80c
+   18b98:	386248a2 	ldrb	w2, [x5, w2, uxtw]
+   18b9c:	10000065 	adr	x5, 18ba8 <dm_value_to_string@@Base+0x8c>
+   18ba0:	8b2288a2 	add	x2, x5, w2, sxtb #2
+   18ba4:	d61f0040 	br	x2
+   18ba8:	f945f063 	ldr	x3, [x3, #3040]
+   18bac:	f9400fa5 	ldr	x5, [x29, #24]
+   18bb0:	f9400062 	ldr	x2, [x3]
+   18bb4:	ca0200a2 	eor	x2, x5, x2
+   18bb8:	b5fffd42 	cbnz	x2, 18b60 <dm_value_to_string@@Base+0x44>
+   18bbc:	b9400883 	ldr	w3, [x4, #8]
+   18bc0:	f0000002 	adrp	x2, 1b000 <_fini@@Base+0x1d68>
+   18bc4:	912d5c42 	add	x2, x2, #0xb57
+   18bc8:	900000a4 	adrp	x4, 2c000 <_fini@@Base+0x12d68>
+   18bcc:	f945d084 	ldr	x4, [x4, #2976]
+   18bd0:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   18bd4:	d61f0080 	br	x4
+   18bd8:	f945f063 	ldr	x3, [x3, #3040]
+   18bdc:	f9400fa5 	ldr	x5, [x29, #24]
+   18be0:	f9400062 	ldr	x2, [x3]
+   18be4:	ca0200a2 	eor	x2, x5, x2
+   18be8:	b5fffbc2 	cbnz	x2, 18b60 <dm_value_to_string@@Base+0x44>
+   18bec:	d0000002 	adrp	x2, 1a000 <_fini@@Base+0xd68>
+   18bf0:	911c8c42 	add	x2, x2, #0x723
+   18bf4:	b9400883 	ldr	w3, [x4, #8]
+   18bf8:	17fffff4 	b	18bc8 <dm_value_to_string@@Base+0xac>
+   18bfc:	f945f063 	ldr	x3, [x3, #3040]
+   18c00:	f9400fa5 	ldr	x5, [x29, #24]
+   18c04:	f9400062 	ldr	x2, [x3]
+   18c08:	ca0200a2 	eor	x2, x5, x2
+   18c0c:	b5fffaa2 	cbnz	x2, 18b60 <dm_value_to_string@@Base+0x44>
+   18c10:	f9400483 	ldr	x3, [x4, #8]
+   18c14:	d0000002 	adrp	x2, 1a000 <_fini@@Base+0xd68>
+   18c18:	911d7c42 	add	x2, x2, #0x75f
+   18c1c:	900000a4 	adrp	x4, 2c000 <_fini@@Base+0x12d68>
+   18c20:	f945d084 	ldr	x4, [x4, #2976]
+   18c24:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   18c28:	d61f0080 	br	x4
+   18c2c:	f945f063 	ldr	x3, [x3, #3040]
+   18c30:	f9400fa5 	ldr	x5, [x29, #24]
+   18c34:	f9400062 	ldr	x2, [x3]
+   18c38:	ca0200a2 	eor	x2, x5, x2
+   18c3c:	b5fff922 	cbnz	x2, 18b60 <dm_value_to_string@@Base+0x44>
+   18c40:	d0000002 	adrp	x2, 1a000 <_fini@@Base+0xd68>
+   18c44:	911d8c42 	add	x2, x2, #0x763
+   18c48:	f9400483 	ldr	x3, [x4, #8]
+   18c4c:	17fffff4 	b	18c1c <dm_value_to_string@@Base+0x100>
+   18c50:	51000422 	sub	w2, w1, #0x1
+   18c54:	39402081 	ldrb	w1, [x4, #8]
+   18c58:	f945f063 	ldr	x3, [x3, #3040]
+   18c5c:	35000101 	cbnz	w1, 18c7c <dm_value_to_string@@Base+0x160>
+   18c60:	f9400fa4 	ldr	x4, [x29, #24]
+   18c64:	f9400061 	ldr	x1, [x3]
+   18c68:	ca010081 	eor	x1, x4, x1
+   18c6c:	b5fff7a1 	cbnz	x1, 18b60 <dm_value_to_string@@Base+0x44>
+   18c70:	d0000001 	adrp	x1, 1a000 <_fini@@Base+0xd68>
+   18c74:	911cc021 	add	x1, x1, #0x730
+   18c78:	17ffffbf 	b	18b74 <dm_value_to_string@@Base+0x58>
+   18c7c:	f9400fa4 	ldr	x4, [x29, #24]
+   18c80:	f9400061 	ldr	x1, [x3]
+   18c84:	ca010081 	eor	x1, x4, x1
+   18c88:	b5fff6c1 	cbnz	x1, 18b60 <dm_value_to_string@@Base+0x44>
+   18c8c:	d0000001 	adrp	x1, 1a000 <_fini@@Base+0xd68>
+   18c90:	911cd821 	add	x1, x1, #0x736
+   18c94:	17ffffb8 	b	18b74 <dm_value_to_string@@Base+0x58>
+   18c98:	900000a4 	adrp	x4, 2c000 <_fini@@Base+0x12d68>
+   18c9c:	f0000003 	adrp	x3, 1b000 <_fini@@Base+0x1d68>
+   18ca0:	91274063 	add	x3, x3, #0x9d0
+   18ca4:	f9468884 	ldr	x4, [x4, #3344]
+   18ca8:	f0000001 	adrp	x1, 1b000 <_fini@@Base+0x1d68>
+   18cac:	9128c021 	add	x1, x1, #0xa30
+   18cb0:	d0000000 	adrp	x0, 1a000 <_fini@@Base+0xd68>
+   18cb4:	912d5800 	add	x0, x0, #0xb56
+   18cb8:	52802942 	mov	w2, #0x14a                 	// #330
+   18cbc:	d63f0080 	blr	x4
