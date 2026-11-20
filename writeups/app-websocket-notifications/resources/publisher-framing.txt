@@ -1,0 +1,111 @@
+
+libws_client.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000001248 <wsappl_send@@Base>:
+    1248:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    124c:	910003fd 	mov	x29, sp
+    1250:	f9000bf3 	str	x19, [sp, #16]
+    1254:	90000093 	adrp	x19, 11000 <_fini@@Base+0xf98c>
+    1258:	f90013f5 	str	x21, [sp, #32]
+    125c:	aa0003f5 	mov	x21, x0
+    1260:	f947fa60 	ldr	x0, [x19, #4080]
+    1264:	f9001bbf 	str	xzr, [x29, #48]
+    1268:	f9400001 	ldr	x1, [x0]
+    126c:	f9001fa1 	str	x1, [x29, #56]
+    1270:	d2800001 	mov	x1, #0x0                   	// #0
+    1274:	b4000935 	cbz	x21, 1398 <wsappl_send@@Base+0x150>
+    1278:	f947fe60 	ldr	x0, [x19, #4088]
+    127c:	b9400000 	ldr	w0, [x0]
+    1280:	37f80600 	tbnz	w0, #31, 1340 <wsappl_send@@Base+0xf8>
+    1284:	f9000fb4 	str	x20, [x29, #24]
+    1288:	aa1503e0 	mov	x0, x21
+    128c:	97fffe45 	bl	ba0 <strlen@plt> ; heuristic args: x1=0
+    1290:	aa0003f4 	mov	x20, x0
+    1294:	2a1403e2 	mov	w2, w20
+    1298:	528000e0 	mov	w0, #0x7                   	// #7
+    129c:	90000001 	adrp	x1, 1000 <wsappl_client_reconnect@@Base+0xb8>
+    12a0:	91276021 	add	x1, x1, #0x9d8
+    12a4:	97fffe6b 	bl	c50 <wsappl_client_log@plt> ; heuristic args: x0=7, x1='wsappl_Client, message sendlen[%d].\n'
+    12a8:	aa1503e3 	mov	x3, x21
+    12ac:	90000001 	adrp	x1, 1000 <wsappl_client_reconnect@@Base+0xb8>
+    12b0:	2a1403e2 	mov	w2, w20
+    12b4:	9123e021 	add	x1, x1, #0x8f8
+    12b8:	9100c3a0 	add	x0, x29, #0x30
+    12bc:	97fffe45 	bl	bd0 <asprintf@plt> ; heuristic args: x1='%06d%s'
+    12c0:	3100041f 	cmn	w0, #0x1
+    12c4:	54000360 	b.eq	1330 <wsappl_send@@Base+0xe8>  // b.none
+    12c8:	f90017b6 	str	x22, [x29, #40]
+    12cc:	11001a94 	add	w20, w20, #0x6
+    12d0:	f947fe76 	ldr	x22, [x19, #4088]
+    12d4:	52880003 	mov	w3, #0x4000                	// #16384
+    12d8:	f9401ba1 	ldr	x1, [x29, #48]
+    12dc:	aa1403e2 	mov	x2, x20
+    12e0:	b94002c0 	ldr	w0, [x22]
+    12e4:	97fffe63 	bl	c70 <send@plt> ; heuristic args: x3=16384
+    12e8:	aa0003f5 	mov	x21, x0
+    12ec:	b100041f 	cmn	x0, #0x1
+    12f0:	54000300 	b.eq	1350 <wsappl_send@@Base+0x108>  // b.none
+    12f4:	f9401ba0 	ldr	x0, [x29, #48]
+    12f8:	97fffe52 	bl	c40 <free@plt>
+    12fc:	f9400fb4 	ldr	x20, [x29, #24]
+    1300:	f94017b6 	ldr	x22, [x29, #40]
+    1304:	52800000 	mov	w0, #0x0                   	// #0
+    1308:	f947fa73 	ldr	x19, [x19, #4080]
+    130c:	f9401fa2 	ldr	x2, [x29, #56]
+    1310:	f9400261 	ldr	x1, [x19]
+    1314:	ca010041 	eor	x1, x2, x1
+    1318:	b5000601 	cbnz	x1, 13d8 <wsappl_send@@Base+0x190>
+    131c:	f9400bf3 	ldr	x19, [sp, #16]
+    1320:	f94013f5 	ldr	x21, [sp, #32]
+    1324:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    1328:	d65f03c0 	ret
+    132c:	d503201f 	nop
+    1330:	52800000 	mov	w0, #0x0                   	// #0
+    1334:	f9400fb4 	ldr	x20, [x29, #24]
+    1338:	17fffff4 	b	1308 <wsappl_send@@Base+0xc0>
+    133c:	d503201f 	nop
+    1340:	97fffe20 	bl	bc0 <wsappl_client_reconnect@plt> ; heuristic args: x0=0
+    1344:	36fffa00 	tbz	w0, #31, 1284 <wsappl_send@@Base+0x3c>
+    1348:	12800000 	mov	w0, #0xffffffff            	// #-1
+    134c:	17ffffef 	b	1308 <wsappl_send@@Base+0xc0>
+    1350:	90000001 	adrp	x1, 1000 <wsappl_client_reconnect@@Base+0xb8>
+    1354:	91280021 	add	x1, x1, #0xa00
+    1358:	52800060 	mov	w0, #0x3                   	// #3
+    135c:	97fffe3d 	bl	c50 <wsappl_client_log@plt> ; heuristic args: x0=3, x1='wsappl_Client, Error in unix send. Trying to reconnect...\n'
+    1360:	97fffe18 	bl	bc0 <wsappl_client_reconnect@plt>
+    1364:	37f80260 	tbnz	w0, #31, 13b0 <wsappl_send@@Base+0x168>
+    1368:	b94002c0 	ldr	w0, [x22]
+    136c:	52880003 	mov	w3, #0x4000                	// #16384
+    1370:	f9401ba1 	ldr	x1, [x29, #48]
+    1374:	aa1403e2 	mov	x2, x20
+    1378:	97fffe3e 	bl	c70 <send@plt> ; heuristic args: x3=16384
+    137c:	b100041f 	cmn	x0, #0x1
+    1380:	54fffba1 	b.ne	12f4 <wsappl_send@@Base+0xac>  // b.any
+    1384:	90000001 	adrp	x1, 1000 <wsappl_client_reconnect@@Base+0xb8>
+    1388:	52800060 	mov	w0, #0x3                   	// #3
+    138c:	91290021 	add	x1, x1, #0xa40
+    1390:	97fffe30 	bl	c50 <wsappl_client_log@plt> ; heuristic args: x0=3, x1='wsappl_Client, Error in unix send.\n'
+    1394:	17ffffd8 	b	12f4 <wsappl_send@@Base+0xac>
+    1398:	528000e0 	mov	w0, #0x7                   	// #7
+    139c:	90000001 	adrp	x1, 1000 <wsappl_client_reconnect@@Base+0xb8>
+    13a0:	91268021 	add	x1, x1, #0x9a0
+    13a4:	97fffe2b 	bl	c50 <wsappl_client_log@plt> ; heuristic args: x0=7, x1='NULL pointer recived in wsapp_send. Discarding packet.\n'
+    13a8:	12800000 	mov	w0, #0xffffffff            	// #-1
+    13ac:	17ffffd7 	b	1308 <wsappl_send@@Base+0xc0>
+    13b0:	52800060 	mov	w0, #0x3                   	// #3
+    13b4:	90000001 	adrp	x1, 1000 <wsappl_client_reconnect@@Base+0xb8>
+    13b8:	91290021 	add	x1, x1, #0xa40
+    13bc:	97fffe25 	bl	c50 <wsappl_client_log@plt> ; heuristic args: x0=3, x1='wsappl_Client, Error in unix send.\n'
+    13c0:	f9401ba0 	ldr	x0, [x29, #48]
+    13c4:	97fffe1f 	bl	c40 <free@plt>
+    13c8:	f9400fb4 	ldr	x20, [x29, #24]
+    13cc:	2a1503e0 	mov	w0, w21
+    13d0:	f94017b6 	ldr	x22, [x29, #40]
+    13d4:	17ffffcd 	b	1308 <wsappl_send@@Base+0xc0>
+    13d8:	f9000fb4 	str	x20, [x29, #24]
+    13dc:	f90017b6 	str	x22, [x29, #40]
+    13e0:	97fffe0c 	bl	c10 <__stack_chk_fail@plt>
+    13e4:	d503201f 	nop

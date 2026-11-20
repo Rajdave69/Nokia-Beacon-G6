@@ -203,33 +203,10 @@ these routers. The initial phase held BOQA fixed. Later tests below vary shipped
 headers with the same owned identities; no serial/MAC fabrication or filename
 enumeration was performed.
 
-## Following the documented G6 BBDR2503 release further
+## What the documentation establishes about G6 BBD R25.03
 
-The next investigation confirmed a G6/G6_2 BBD25.03 product-guide entry in
-[Nokia's public documentation listing](https://documentation.nokia.com/pybin/doc_ctr.py?product_id=833-044763&release=BBD+R25.03).
-Its document ID is `3FE-49949-AAAA-TCZZA-15`. The 25.03 compatibility matrix is
-`3TN-01670-BAAA-TQZZA-01`. The metadata is public, while the documents themselves
-are marked as requiring entitlement. Nokia's fixed G6 release is documented;
-our missing binary should not be confused with a nonexistent release.
 
-I also made seven more normal availability requests. Four compared native
-`isopctl=N` with a request-only `Y` value. The N control still offered the
-captured HJL package from IJL; Y returned the reported version without a URL.
-Three mixed-model requests used the actual saved G6 and Beacon 9 identities as
-a hypothetical gateway/peer pair. None offered another file.
-
-With Beacon 9 as gateway, a G6 result even carried the gateway's
-`3TN01100JJMK44` target with no URL/checksum. That is not a G6 firmware image ID
-or a cross-model upgrade offer. It shows why a target string alone cannot serve
-as a firmware catalogue.
-
-At that stage the research comprised40 OTA metadata POSTs and the original
-one CDN GET. This follow-up made no additional download or router operation.
-The next useful source is the entitled compatibility/package mapping, a Nokia
-or ISP-provided file/link, or the owner's operator firmware catalogue. The
-[version catalogue](../firmware-versions-and-builds/README.md) records the exact
-public document leads separately from the five captured builds, including the
-ONT's two 24.03 maintenance images.
+Nokia's security advisory identifies BBD R25.03 as a fixed baseline for the G6. Nokia's documentation portal also lists the release, with access controls on the release notes and compatibility material. The public record does not map that release to a downloadable G6 image ID. None of the checked OTA profiles offered it. The Beacon 9 capture carries the same release family, but it cannot establish which components or account changes are in the G6 build. [Release inventory](../firmware-versions-and-builds/documented-releases.md), [Account comparison](../firmware-versions-and-builds/25.03-account-comparison.md), [Nokia advisory](https://www.nokia.com/we-are-nokia/security/product-security-advisory/cve-2025-9974/).
 
 ## Repeating the download separately from installation
 
@@ -290,181 +267,15 @@ files without starting an updater and prints image IDs and known Nokia paths
 without URL query tokens. Its synthetic privacy checks passed; live output is
 still needed to follow that separate lead.
 
-## Broader regional requests and the public release index
+## Regional offer coverage and public release records
 
-The subsequent 62-request experiment tested 24 more country values on the G6,
-12 Beacon 9 country scenarios, two controls and eight shipped operator-code
-values. The actual saved device identities stayed fixed. All replies were 200;
-BOQA G6 scenarios still offered the captured HJL checksum, and the alternate
-operator scenarios had no offer. No new image was downloaded. All requests
-originated from this workstation, so country-header scenarios are not actual
-measurements from those countries or proof of enrollment in another rollout.
-That regional phase ended at 102 availability POSTs and the original one CDN GET;
-the ONT follow-up below adds two POSTs.
 
-The [public model-specific release list](../firmware-versions-and-builds/documented-releases.md)
-now records newer G6 documentation through 26.03 and Beacon 9 documentation
-through 26.01a. This is stronger information about documented releases than the
-current assigned offer, but still supplies no product image ID/download URL for
-the newer packages. The [25.03 account comparison](../firmware-versions-and-builds/25.03-account-comparison.md)
-keeps shared release labels separate from compiled ONTUSER behavior.
+Country, model, operator and installed-version fields help identify a request profile. Varying them in the recorded tests produced no newer G6 file and no Beacon 9 file. A successful empty response applies to that profile. The [request evidence](../../knowledgebases/editorial-evidence/ota-firmware-downloads.md) retains the specific request batches and their results. Nokia's public release records are catalogued separately in the [documentation inventory](../firmware-versions-and-builds/documented-releases.md).
 
-## Vodafone ONT availability check, 27 October 2026
+## What the Vodafone ONT queries established
 
-I traced the Vodafone XS-2426X-A's own `swmgnt` and `libnal` code, then read
-its saved scalar settings with the stock `libdmdb` parser under QEMU. The model
-is `XS-2426X-A`, not a Beacon model string. Empty OperatorUniqueID selects the
-factory `VDQA` fallback. The high-priority WLAN-region setting selects `qa`.
-Its saved cloud-OTA enable flag is false; the workstation query does not alter it.
+The XS-2426X-A uses the same availability service with its own model, the `VDQA` operator fallback and `qa` selected by its WLAN-region setting. Neither the current KJLK50 nor the inactive JJLK67 version produced an offer. The repeated current-version query gave the same 240-byte response. All three completed with HTTP 200 and responseCode 200, with no target version, checksum or URL. This establishes the result for the tested profile. Vodafone distribution over another management channel remains possible.
 
-The saved API-key field is a 76-byte individually wrapped string. The queries
-used the ONT's own 41-byte packaged GENERIC default, which matches the earlier
-G6/Beacon 9 key. That is an explicit profile-source limitation: the saved wrapped
-value was not independently decrypted and equated with the packaged default.
-Serial and LAN MAC came from the saved getters and agree with redundant RI.
+The live stock getter independently matched the packaged 41-byte API key used by all three requests and the effective polling URL. It also reported `OTA_enabled=false`. That flag controls device-side behavior and is absent from the workstation request. The supplied evidence does not tie it to the server's no-offer response. Native and reconstructed JSON fields matched under the configured fixture. The native serializer's whitespace and the HTTP client headers differed, and the prior TLS session and live mesh-cache state were unavailable. Equality of the effective key leaves the wrapped field's inner decoding unresolved.
 
-After separate explicit approvals, I made these two normal metadata requests:
-
-| Reported ONT image | HTTP / responseCode | Next version | File URL / checksum |
-| --- | --- | --- | --- |
-| Captured current `3FE49940KJLK50` | 200 / 200 | null | absent |
-| Actual inactive `3FE49940JJLK67`, request override only | 200 / 200 | null | absent |
-
-Neither reply offered a file, so no ONT download was possible. The result does
-not identify the latest firmware globally or exclude Vodafone delivery through
-ACS, OMCI or another operator channel. No router, updater daemon, status PUT,
-bank switch, install or reboot was involved. The cumulative device availability
-count is now 104 POSTs; the one earlier G6 firmware CDN GET remains the only
-firmware download. Public documentation metadata requests are counted separately.
-
-[Source traces, parser scope and sanitized replies](../xs2426xa-24-03-comparison/resources/ota-research.json).
-
-## Repeated ONT availability request, 28 October 2026
-
-The owner requested another simulated router availability query. The existing
-client sent one completed POST to `https://swupd.wifi.nokia.com` with model
-`XS-2426X-A`, current/gateway version `3FE49940KJLK50`, `VDQA`, `qa`, `isopctl=N`,
-the unchanged owned ONT serial/MAC and the same packaged API default used
-previously. No model, country, operator or version override was applied.
-
-Nokia returned HTTP 200 / responseCode 200 and “Request processed successfully”,
-with null next-version, checksum and download URL. The 240-byte raw reply is
-exactly equal to the prior current-version reply. No firmware was downloaded.
-The later owner-supplied v2 getter result confirms the effective API key and
-URL match this profile. This run alone reproduced the traced fields; complete
-native wire equality is separate.
-HTTP success does not establish enrollment, an assigned firmware image or a
-global newest release.
-
-The first WSL attempt exited with URLError without an HTTP response or saved
-result. Separate probes resolved the hostname in both runtimes; WSL timed out
-during TLS handshake, while Windows verified TLSv1.3. The unchanged query then
-completed using Windows Python. The probes sent no HTTP request or credentials.
-The failed first attempt is not another no-offer reply; its exact failure stage
-was not saved by the CLI. Certificate verification stayed enabled.
-
-Current totals: 105 completed device availability POSTs, one additional failed
-transport attempt in this run, one previous firmware CDN GET and no new GET.
-The 77 public documentation metadata POSTs remain separate. Earlier reports
-showing 104 completed requests are historical snapshots. Router services,
-configuration, firmware banks and flash were not touched.
-
-Exact request shape with identifiers/credential withheld, private raw-response
-and reconstructed-request provenance, timestamps, failure details and limits
-are in the XS comparison resource `ota-native-format-retry-20261028.json`.
-
-## Native request equivalence review, 28 October 2026
-
-The previous query was not an exact native reproduction. The original ONT
-`swmgnt` payload/header functions were executed offline with a deliberately
-injected copy of the saved current profile. Original daemon main, configuration
-IPC, command execution and network I/O were not run. Stock function output
-confirms equal JSON values but different bytes: 102-byte compact workstation
-body versus 120-byte formatted native body, with corresponding content-length
-102 versus120. Seven explicit header values match given the injected inputs.
-The injected API key is not an independent credential verification.
-
-A separate native cJSON probe agrees with the native function body exactly.
-The native producer returns strlen+1; its caller recomputes strlen, so the
-transmitted native read callback excludes NUL. Offline Windows fake-socket
-reconstruction additionally identifies urllib User-Agent/Accept-Encoding/
-Connection headers. It is not an original packet capture, and the builder
-harness does not reproduce libcurl automatic headers or TLS negotiation.
-Native source-port options47791/range16 and four reply-accept iptables calls
-were also traced; all commands were intercepted in the harness. None of these
-observed differences has been established as the no-offer cause.
-
-At this stage the credential check was pending; the successful v2 live result
-below now confirms the effective API key and URL.
-`check-ont-ota-request.c` uses cfg_getObj(oid599,size0x8c5,flags0x1000), the same
-call used by nal_getSwAutoUpgradeInfo, and reports only key length, key/URL
-match flags, return status and enable flag. A 72-byte private comparison file
-contains lengths and SHA256 digests. Stock output is suppressed; AF_UNIX for
-local cfgmgr IPC is allowed; exported Internet socket/process functions are
-blocked. The helper requires only GLIBC_2.17. Six synthetic cases pass but no
-live output has yet been received. This verifies equality of the getter's
-returned bytes, without assuming they are already decrypted.
-
-The native packaged INI parser independently agrees with Python's 64-byte
-key7. Twelve raw NAND scans found no HTTP API-key header/plain key7 assignment;
-a working-file-name scan found se.conf but no sedb.conf name. These limited
-negative scans do not establish missing material or exclude compressed/journal
-recovery. Runtime peer entries can also change the native payload; zero peers
-were injected for this controlled comparison, not measured on the live ONT.
-
-Full sources, offsets, fixture/interception scope, positive/negative results,
-loader/getter failures and private provenance are in the XS resources
-`ota-request-equivalence-20261028.json` and `ota-request-equivalence-README.md`.
-No new external availability query was sent; totals remain105 completed POSTs
-and one earlier firmware CDN GET. The later v2 live helper comparison below confirms the key and URL.
-
-## Effective ONT OTA credential verified live, 28 October 2026
-
-The owner ran `check-ont-ota-request-v2` on the actual XS-2426X-A and reported:
-
-```json
-{"cfg_getObj_status":0,"key_bytes":41,"key_matches_requested_default":true,"url_matches_requested_profile":true,"OTA_enabled":false}
-```
-
-The helper exited0. This independently confirms that the stock getter's
-effective41-byte API key equals the packaged default used in all three
-completed ONT availability queries. Its effective polling URL also matches.
-The helper uses the exact oid599/size0x8c5/flags0x1000 call used by
-nal_getSwAutoUpgradeInfo. The expected72-byte file contains lengths and
-SHA256 digests, and its bytes reproduce from the unchanged private profile.
-Only status, length and match booleans were printed. No live credential bytes
-were sent back to the workstation. Earlier statements that effective credential
-equality was unverified or pending are superseded by this owner result.
-
-The first helper's silent exit127 was a build error. A reproduction with the
-ONT's original glibc2.27 showed that v1 incorrectly expected dlopen/dlsym in
-libc.so.6 because the modern build host merges libdl into libc. The ONT supplies
-them through separate libdl.so.2. stderr had already been redirected when lazy
-resolution failed, hiding the message. v2 explicitly links the target libdl,
-keeps GLIBC_2.17 requirements with correct provider attribution, binds symbols
-before output suppression and adds a15-second stage-specific timeout. Eight
-synthetic cases pass with the exact stock loader/libc/libdl/crypto; an additional
-real-library test without router cfgmgr returns an explicit getter error rather
-than disappearing. The owner's successful run is separate live evidence.
-
-This resolves the effective-key input question. It does not independently
-decrypt the saved76-byte ealgo=sab/ckn=key7 blob or establish how cfgmgr obtained
-its current effective value; those remain distinct reverse-engineering work.
-The prior request remains non-identical at the byte/transport level because
-of compact102-byte versus native formatted120-byte JSON and client headers.
-Its JSON values agree with the native fixture, and credential substitution is
-no longer an unresolved caveat for that profile. The native mesh-cache state
-and entire historical TLS session were not captured.
-
-OTA_enabled=false is a confirmed live setting, but the enable flag is absent
-from the external availability request. It is not established as the direct
-cause of a no-offer response. The no-offer is for the tested VDQA/qa profile
-with a now-verified effective key/URL; it is not proof of global firmware
-availability or the operator's delivery policy. No new cloud request was made.
-Totals remain105 completed device availability POSTs and one earlier CDN GET.
-
-Exact owner output, v1/v2 binaries and sources, runtime provenance, failure
-reproduction and validation scope are retained in the XS resources
-`ota-request-comparator-owner-live-result-20261028.json` and
-`ota-request-comparator-v2-fix.json`. The active helper source and instructions
-are `check-ont-ota-request-v2.c` and `ota-request-equivalence-README.md`.
+Across the workstation campaign, 105 device-availability POSTs completed and one firmware CDN GET succeeded. The firmware was G6 HJL; the ONT returned no file. The 77 public documentation metadata requests are a separate count. [Request and loader evidence](../../knowledgebases/editorial-evidence/ota-firmware-downloads.md), [ONT profile and response summary](../xs2426xa-24-03-comparison/resources/ota-research.json).

@@ -38,7 +38,7 @@ def main():
     if checksum and checksum.lower() in known:row['download_disposition']='Already captured checksum; duplicate GET skipped';continue
     name=str(item.get('nxtMSVersion') or 'unnamed')
     if not all(c.isalnum() or c in '._-' for c in name):raise ValueError('Unexpected version filename')
-    result=client.download(offer,G6/'config-private/downloaded-firmware'/(name+'-mixed-model.bin'),index);report['downloads'].append(result)
+    result=client.download(offer,G6/'dumped-firmware/downloaded-firmware'/(name+'-mixed-model.bin'),index);report['downloads'].append(result)
     if checksum:known.add(checksum.lower())
   except Exception as exc:row['error_type']=type(exc).__name__;report['stop_reason']='First error; no retry'
   client.private_write(out/'query-result.json',json.dumps(row,indent=2).encode())

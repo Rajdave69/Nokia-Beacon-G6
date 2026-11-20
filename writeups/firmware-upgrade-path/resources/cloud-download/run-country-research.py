@@ -42,7 +42,7 @@ def main():
      if checksum and checksum.lower() in known:row['download_disposition']='Already captured identical cloud checksum; duplicate transfer skipped';continue
      if identity in downloaded:continue
      if len(report['downloads'])>=4:raise ValueError('New image download cap reached')
-     image_dir=root/'config-private/downloaded-firmware';name=str(item.get('nxtMSVersion') or 'unnamed')
+     image_dir=root/('dumped-firmware/downloaded-firmware' if label=='g6' else 'config-private/downloaded-firmware');name=str(item.get('nxtMSVersion') or 'unnamed')
      if not all(c.isalnum() or c in '._-' for c in name):raise ValueError('Unexpected version filename')
      target=image_dir/(name+'-country-research.bin')
      download=client.download(raw,target,index);report['downloads'].append(download);downloaded.add(identity)

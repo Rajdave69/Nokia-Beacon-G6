@@ -229,6 +229,26 @@ On the examined Beacon 9, the corresponding normal updater is a 64-byte no-op. I
 
 That distinction prevents us from blaming the observed ONTUSER difference on BOQA policy: the examined G6 and Beacon 9 both use BOQA, and the decisive difference is the build's account-writer implementation. We have not established why Nokia removed that implementation from this build, or what other releases do.
 
+## Operator policy across IJL and HJL
+
+The [G6 policy comparison](../comparing-other-g6-routers/README.md) covers decoded IJL.J03 and HJL.L91. BOQA, EGEB, WLNP, JPDX and GENERIC subtrees are unchanged; five top-level operator sections are added and NBNX keeps its debug-override flag. Password-generation packaging moves from integrated cfgmgr code to standalone provisioning components, while native generic and legacy calculations agree. The [older/current role-map CSV](../../knowledgebases/g6-operator-role-comparison.csv) separately records changed role targets and removal of the old Gateway map.
+
+## Vodafone policy across ONT builds
+
+The Vodafone ONT uses factory `VDQA` and region `qa`. The examined Beacons use BOQA. Both ONT XMLs contain 156 sections and 180 literal
+aliases. VDQA selects `genpwd_longpasswd%10p` for normalAccount and WLAN, and
+`genpwd_sha256_customized%16p` for enabled WebAccount username `AdminGPON`.
+Those are selected callback rules, not a demonstration of current plaintexts
+or every later factory override. Both normal ONTUSER creators are implemented;
+`DebugRnPassEnable` is evaluated after creation, and the factory debug field
+is absent. NBNX remains the only section explicitly enabling that flag.
+
+VDQA also changes between the two 24.03 builds: Inform interval 86400 to 60,
+mesh false to true, DynamicbSTA added, TR69 trust true to false, and main WLAN
+rules from WPA2/WPA3 AES to WPA/WPA2 TKIP+AES. These are captured recipe changes,
+not live radio measurements. The saved OTA OUID is empty, selecting factory
+VDQA; its high-priority WLAN-region flag selects qa. [Full policy rows](../xs2426xa-24-03-comparison/resources/operator-policy-summary.json) and [saved OTA scalar evidence](../xs2426xa-24-03-comparison/resources/ota-research.json).
+
 ## Where to find the evidence again
 
 The two CSVs are deliberately shared comparison artifacts, so either repository's writeup can be read independently. The inventory is exhaustive for the literal keys/selectors in the named JSON/XML sources and role-directory names, with the additional traced `9999` sentinel. It is not an exhaustive audit of every operator comparison in every networking daemon, nor a manufacturer-issued operator registry.
@@ -274,24 +294,3 @@ a0d95d7b46ace69415681542a824e80c0f5adb796df77ea82ae2c649f556731c
 The comparison reads firmware and policy files; it does not change either router's operator ID. No new operator profiles were applied to the live routers. Static rule differences explain possible execution paths, while the earlier live hash comparisons establish which credential stores were actually in use on the examined BOQA units.
 
 The [configuration and provisioning investigation](../configuration-and-provisioning/README.md) follows the factory/current/preset stores, while the [credential investigation](../credential-reverse-engineering/README.md#the-flag-that-controls-the-factory-override) explains the G6 ONTUSER creator and debug override. The [credential map](../credential-map/README.md) keeps those Linux accounts separate from U-Boot's `en` verifier and the signed UART `Password2` response. None of the operator differences above establishes a universal root-password generator.
-
-## Comparing two actual G6 builds
-
-The [two-G6 follow-up](../comparing-other-g6-routers/README.md) compares decoded IJL.J03 and HJL.L91 policies. BOQA, EGEB, WLNP, JPDX and GENERIC subtrees are unchanged; five top-level operator sections are added and NBNX keeps its debug-override flag. Password-generation packaging moves from integrated cfgmgr code to standalone provisioning components, while native generic and legacy calculations agree. The [older/current role-map CSV](../../knowledgebases/g6-operator-role-comparison.csv) separately records changed role targets and removal of the old Gateway map.
-
-## VDQA in two real ONT maintenance builds
-
-The new owner-confirmed Vodafone sample has factory `VDQA`/`qa`, rather than
-the Beacons' BOQA profile. Both ONT XMLs contain 156 sections and 180 literal
-aliases. VDQA selects `genpwd_longpasswd%10p` for normalAccount and WLAN, and
-`genpwd_sha256_customized%16p` for enabled WebAccount username `AdminGPON`.
-Those are selected callback rules, not a demonstration of current plaintexts
-or every later factory override. Both normal ONTUSER creators are implemented;
-`DebugRnPassEnable` is evaluated after creation, and the factory debug field
-is absent. NBNX remains the only section explicitly enabling that flag.
-
-VDQA also changes between the two 24.03 builds: Inform interval 86400 to 60,
-mesh false to true, DynamicbSTA added, TR69 trust true to false, and main WLAN
-rules from WPA2/WPA3 AES to WPA/WPA2 TKIP+AES. These are captured recipe changes,
-not live radio measurements. The saved OTA OUID is empty, selecting factory
-VDQA; its high-priority WLAN-region flag selects qa. [Full policy rows](../xs2426xa-24-03-comparison/resources/operator-policy-summary.json) and [saved OTA scalar evidence](../xs2426xa-24-03-comparison/resources/ota-research.json).

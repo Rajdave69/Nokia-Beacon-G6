@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-14",
+  "scope": "Windows workstation tests, synthetic messages, dummy accounts, localhost only, no router changes.",
+  "runtime": {
+    "python": "3.14.7",
+    "websocket-client": "1.9.0"
+  },
+  "sha256": {
+    "writeups/websocket-notifications/resources/fleet-monitor.py": "21503623473c3d9196fb6b7311c044170856ca8b557269f5063a2a559dc8a0dc",
+    "writeups/websocket-notifications/resources/test_fleet_monitor.py": "cf23f35e8b278f40f6d3c7c2b4bf763bfa1205c6b363c67fae8137b08aab49fb",
+    "writeups/websocket-notifications/resources/test_port8099.py": "76fda4cd489b54e15adedd4ee6e784703ef07f188c141217d41f2dd387ca19d3",
+    "network-services/port-8099/src/beacon8099/client.py": "7294263c126ffd6aab7a1e8911ffe2d246420f731df63c92ef2ebfc53f8bcb7c",
+    "writeups/websocket-notifications/resources/field-catalog.json": "3d34b17890c5db930c237a477749abb39af6886052b7187a2bb679f5b4287043",
+    "writeups/easymesh-management/resources/topology-sample.json": "bf5ae35ebce684a5550cd0f0a979e406c938ade4a67dac7faf38aa3b362582cc"
+  },
+  "validation": {
+    "existing_client_loopback": 5,
+    "fleet_tests": 4,
+    "fleet_mocked": 3,
+    "fleet_concurrent_loopback": 1,
+    "cli_help": "passed"
+  },
+  "fleet_test_cases": [
+    "Idle receive and non-event text leave the epoch intact; disconnect marks a snapshot gap; next connection has a new generation.",
+    "401 emits authentication_stopped and does not retry.",
+    "509 and transport failures back off; payload is omitted unless requested.",
+    "Two concurrently authenticated raw loopback fixtures keep event attribution separate."
+  ],
+  "comparison": {
+    "association": "DDM fields inspected; per-AP station list live check pending",
+    "topology": "Native MeshNetwork builder plus prior live read-only ECD /1/topology sample",
+    "uplink": "No dedicated WAN lifecycle event established in the recovered event families. Poll interface and route.",
+    "replay": "No verified sequence, resume cursor or replay contract."
+  },
+  "live_authenticated_fleet_contact": false
+}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-12",
+  "package": "beacon8099 0.1.0",
+  "scope": "Windows workstation, raw loopback RFC6455 fixture and dummy credentials",
+  "runtime": {
+    "python": "3.14.7",
+    "websocket-client": "1.9.0",
+    "setuptools": "84.0.0"
+  },
+  "source_sha256": {
+    "network-services/port-8099/src/beacon8099/__init__.py": "2c2a7340f103433511ebd936a0ff3704dd9ae630d20dffa7a93baf2e171613ff",
+    "network-services/port-8099/src/beacon8099/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "network-services/port-8099/src/beacon8099/cli.py": "722f288ca4c4713b07b3f47b0da8c42326ac28182620834e5613d2d915e1ce23",
+    "network-services/port-8099/src/beacon8099/client.py": "7294263c126ffd6aab7a1e8911ffe2d246420f731df63c92ef2ebfc53f8bcb7c",
+    "network-services/port-8099/pyproject.toml": "42b30037661b9fffc1de76a7666d5f08b4f99af060a194e2c6752925ab5dcaa7",
+    "writeups/websocket-notifications/resources/test_port8099.py": "76fda4cd489b54e15adedd4ee6e784703ef07f188c141217d41f2dd387ca19d3"
+  },
+  "tests": [
+    "Masked ordinary authentication, early JSON event, extended payload, timeout, echo, payloadless event, peer close",
+    "Explicit chat negotiation, outgoing text, synthetic incoming peer text",
+    "Authentication refusal with status, no retry",
+    "HTTP redirect closes without a credential frame",
+    "CLI password prompt, local event-name filter and output count"
+  ],
+  "results": {
+    "source_tests_passed": 5,
+    "installed_wheel_tests_passed": 5,
+    "installed_module_help": "passed",
+    "console_script_metadata": "beacon8099.cli:main"
+  },
+  "wheel": {
+    "filename": "beacon8099-0.1.0-py3-none-any.whl",
+    "bytes": 7814,
+    "sha256": "db5c56bce14143ca8df200625a6e8264af4095128ab97a550800be9491243667",
+    "retained": false
+  },
+  "live_router_contacted": false,
+  "unverified_on_router": [
+    "ordinary account login with this client",
+    "live event delivery",
+    "echo round trip",
+    "chat fan-out",
+    "shared reporting start or stop"
+  ]
+}

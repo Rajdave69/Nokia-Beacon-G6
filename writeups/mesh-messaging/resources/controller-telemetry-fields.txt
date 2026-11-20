@@ -1,0 +1,1210 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-G6-HJL/usr/bin/ai_controller:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000045290 <.text+0x3cd60>:
+   45290:	d10343ff 	sub	sp, sp, #0xd0
+   45294:	a9027bfd 	stp	x29, x30, [sp, #32]
+   45298:	910083fd 	add	x29, sp, #0x20
+   4529c:	a90563f7 	stp	x23, x24, [sp, #80]
+   452a0:	f00001f7 	adrp	x23, 84000 <_fini@@Base+0x1e738>
+   452a4:	a9045bf5 	stp	x21, x22, [sp, #64]
+   452a8:	90000155 	adrp	x21, 6d000 <_fini@@Base+0x7738>
+   452ac:	f9454af6 	ldr	x22, [x23, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   452b0:	a90353f3 	stp	x19, x20, [sp, #48]
+   452b4:	aa0003f3 	mov	x19, x0
+   452b8:	f94002c0 	ldr	x0, [x22]
+   452bc:	f90057a0 	str	x0, [x29, #168]
+   452c0:	d2800000 	mov	x0, #0x0                   	// #0
+   452c4:	a9066bf9 	stp	x25, x26, [sp, #96]
+   452c8:	a90773fb 	stp	x27, x28, [sp, #112]
+   452cc:	aa0103e0 	mov	x0, x1
+   452d0:	12001c5c 	and	w28, w2, #0xff
+   452d4:	9000015a 	adrp	x26, 6d000 <_fini@@Base+0x7738>
+   452d8:	97ff0b8a 	bl	8100 <cJSON_Parse@plt>
+   452dc:	b5000300 	cbnz	x0, 4533c <_ZNSt6localeC1Ev@plt+0x3ce1c>
+   452e0:	940063f7 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   452e4:	f94057a2 	ldr	x2, [x29, #168]
+   452e8:	f94002c1 	ldr	x1, [x22]
+   452ec:	ca010041 	eor	x1, x2, x1
+   452f0:	b4000041 	cbz	x1, 452f8 <_ZNSt6localeC1Ev@plt+0x3cdd8>
+   452f4:	97ff097f 	bl	78f0 <__stack_chk_fail@plt>
+   452f8:	a94353f3 	ldp	x19, x20, [sp, #48]
+   452fc:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   45300:	a94563f7 	ldp	x23, x24, [sp, #80]
+   45304:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45308:	a9445bf5 	ldp	x21, x22, [sp, #64]
+   4530c:	b0000106 	adrp	x6, 66000 <_fini@@Base+0x738>
+   45310:	a9466bf9 	ldp	x25, x26, [sp, #96]
+   45314:	9114e8c6 	add	x6, x6, #0x53a  ; 'Received sensing sample is invalid!'
+   45318:	a94773fb 	ldp	x27, x28, [sp, #112]
+   4531c:	52801065 	mov	w5, #0x83                  	// #131
+   45320:	a9427bfd 	ldp	x29, x30, [sp, #32]
+   45324:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45328:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   4532c:	52800061 	mov	w1, #0x3                   	// #3
+   45330:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   45334:	910343ff 	add	sp, sp, #0xd0
+   45338:	1400625a 	b	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   4533c:	f000013b 	adrp	x27, 6c000 <_fini@@Base+0x6738>
+   45340:	aa0003f4 	mov	x20, x0
+   45344:	91220761 	add	x1, x27, #0x881
+   45348:	97ff09da 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   4534c:	b5000340 	cbnz	x0, 453b4 <_ZNSt6localeC1Ev@plt+0x3ce94>
+   45350:	940063db 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45354:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   45358:	52800061 	mov	w1, #0x3                   	// #3
+   4535c:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45360:	52801225 	mov	w5, #0x91                  	// #145
+   45364:	910668c6 	add	x6, x6, #0x19a  ; 'Parse sample header failed!'
+   45368:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   4536c:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45370:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   45374:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   45378:	9400624a 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   4537c:	f9454af7 	ldr	x23, [x23, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   45380:	f94057a1 	ldr	x1, [x29, #168]
+   45384:	f94002e0 	ldr	x0, [x23]
+   45388:	ca000020 	eor	x0, x1, x0
+   4538c:	b5fffb40 	cbnz	x0, 452f4 <_ZNSt6localeC1Ev@plt+0x3cdd4>
+   45390:	a9445bf5 	ldp	x21, x22, [sp, #64]
+   45394:	aa1403e0 	mov	x0, x20
+   45398:	a94563f7 	ldp	x23, x24, [sp, #80]
+   4539c:	a94353f3 	ldp	x19, x20, [sp, #48]
+   453a0:	a9466bf9 	ldp	x25, x26, [sp, #96]
+   453a4:	a94773fb 	ldp	x27, x28, [sp, #112]
+   453a8:	a9427bfd 	ldp	x29, x30, [sp, #32]
+   453ac:	910343ff 	add	sp, sp, #0xd0
+   453b0:	17ff0988 	b	79d0 <cJSON_Delete@plt>
+   453b4:	b0000156 	adrp	x22, 6e000 <_fini@@Base+0x8738>
+   453b8:	aa1403e0 	mov	x0, x20
+   453bc:	9106dac1 	add	x1, x22, #0x1b6  ; 'mac_addr'
+   453c0:	97ff09bc 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   453c4:	f9004fb6 	str	x22, [x29, #152]
+   453c8:	b4fffc40 	cbz	x0, 45350 <_ZNSt6localeC1Ev@plt+0x3ce30>
+   453cc:	b0000156 	adrp	x22, 6e000 <_fini@@Base+0x8738>
+   453d0:	aa1403e0 	mov	x0, x20
+   453d4:	9106fec1 	add	x1, x22, #0x1bf  ; 'ip_addr'
+   453d8:	97ff09b6 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   453dc:	f9004bb6 	str	x22, [x29, #144]
+   453e0:	b4fffb80 	cbz	x0, 45350 <_ZNSt6localeC1Ev@plt+0x3ce30>
+   453e4:	b0000156 	adrp	x22, 6e000 <_fini@@Base+0x8738>
+   453e8:	aa1403e0 	mov	x0, x20
+   453ec:	91071ec1 	add	x1, x22, #0x1c7  ; 'bh_type'
+   453f0:	97ff09b0 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   453f4:	f90047b6 	str	x22, [x29, #136]
+   453f8:	b4fffac0 	cbz	x0, 45350 <_ZNSt6localeC1Ev@plt+0x3ce30>
+   453fc:	b0000156 	adrp	x22, 6e000 <_fini@@Base+0x8738>
+   45400:	aa1403e0 	mov	x0, x20
+   45404:	91073ec1 	add	x1, x22, #0x1cf  ; 'is_ext'
+   45408:	97ff09aa 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   4540c:	f90043b6 	str	x22, [x29, #128]
+   45410:	b4fffa00 	cbz	x0, 45350 <_ZNSt6localeC1Ev@plt+0x3ce30>
+   45414:	b0000156 	adrp	x22, 6e000 <_fini@@Base+0x8738>
+   45418:	aa1403e0 	mov	x0, x20
+   4541c:	91075ac1 	add	x1, x22, #0x1d6  ; 'chipset'
+   45420:	97ff09a4 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45424:	f9003fb6 	str	x22, [x29, #120]
+   45428:	b4fff940 	cbz	x0, 45350 <_ZNSt6localeC1Ev@plt+0x3ce30>
+   4542c:	b0000158 	adrp	x24, 6e000 <_fini@@Base+0x8738>
+   45430:	aa1403e0 	mov	x0, x20
+   45434:	91077b01 	add	x1, x24, #0x1de  ; 'band_24'
+   45438:	97ff099e 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   4543c:	b4fff8a0 	cbz	x0, 45350 <_ZNSt6localeC1Ev@plt+0x3ce30>
+   45440:	b0000156 	adrp	x22, 6e000 <_fini@@Base+0x8738>
+   45444:	aa1403e0 	mov	x0, x20
+   45448:	91079ac1 	add	x1, x22, #0x1e6  ; 'band_5_high'
+   4544c:	97ff0999 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45450:	b4fff800 	cbz	x0, 45350 <_ZNSt6localeC1Ev@plt+0x3ce30>
+   45454:	d0000101 	adrp	x1, 67000 <_fini@@Base+0x1738>
+   45458:	aa1403e0 	mov	x0, x20
+   4545c:	913c3021 	add	x1, x1, #0xf0c  ; 'buddies'
+   45460:	97ff0994 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45464:	b4fff760 	cbz	x0, 45350 <_ZNSt6localeC1Ev@plt+0x3ce30>
+   45468:	b0000141 	adrp	x1, 6e000 <_fini@@Base+0x8738>
+   4546c:	aa1403e0 	mov	x0, x20
+   45470:	9107c821 	add	x1, x1, #0x1f2  ; 'band_5_low'
+   45474:	97ff0b7f 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45478:	91077b01 	add	x1, x24, #0x1de  ; 'band_24'
+   4547c:	aa0003f7 	mov	x23, x0
+   45480:	aa1403e0 	mov	x0, x20
+   45484:	97ff0b7b 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45488:	91079ac1 	add	x1, x22, #0x1e6  ; 'band_5_high'
+   4548c:	aa0003f8 	mov	x24, x0
+   45490:	aa1403e0 	mov	x0, x20
+   45494:	97ff0b77 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45498:	b0000141 	adrp	x1, 6e000 <_fini@@Base+0x8738>
+   4549c:	aa0003f6 	mov	x22, x0
+   454a0:	9107f421 	add	x1, x1, #0x1fd  ; 'band_6'
+   454a4:	aa1403e0 	mov	x0, x20
+   454a8:	97ff0b72 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   454ac:	b905f67f 	str	wzr, [x19, #1524]
+   454b0:	aa0003f9 	mov	x25, x0
+   454b4:	b40000d8 	cbz	x24, 454cc <_ZNSt6localeC1Ev@plt+0x3cfac>
+   454b8:	3957e260 	ldrb	w0, [x19, #1528]
+   454bc:	32000000 	orr	w0, w0, #0x1
+   454c0:	3917e260 	strb	w0, [x19, #1528]
+   454c4:	52800020 	mov	w0, #0x1                   	// #1
+   454c8:	b905f660 	str	w0, [x19, #1524]
+   454cc:	b40000f7 	cbz	x23, 454e8 <_ZNSt6localeC1Ev@plt+0x3cfc8>
+   454d0:	3957e260 	ldrb	w0, [x19, #1528]
+   454d4:	321f0000 	orr	w0, w0, #0x2
+   454d8:	3917e260 	strb	w0, [x19, #1528]
+   454dc:	b945f660 	ldr	w0, [x19, #1524]
+   454e0:	11000400 	add	w0, w0, #0x1
+   454e4:	b905f660 	str	w0, [x19, #1524]
+   454e8:	b40000f6 	cbz	x22, 45504 <_ZNSt6localeC1Ev@plt+0x3cfe4>
+   454ec:	3957e260 	ldrb	w0, [x19, #1528]
+   454f0:	321e0000 	orr	w0, w0, #0x4
+   454f4:	3917e260 	strb	w0, [x19, #1528]
+   454f8:	b945f660 	ldr	w0, [x19, #1524]
+   454fc:	11000400 	add	w0, w0, #0x1
+   45500:	b905f660 	str	w0, [x19, #1524]
+   45504:	b40000f9 	cbz	x25, 45520 <_ZNSt6localeC1Ev@plt+0x3d000>
+   45508:	3957e260 	ldrb	w0, [x19, #1528]
+   4550c:	321d0000 	orr	w0, w0, #0x8
+   45510:	3917e260 	strb	w0, [x19, #1528]
+   45514:	b945f660 	ldr	w0, [x19, #1524]
+   45518:	11000400 	add	w0, w0, #0x1
+   4551c:	b905f660 	str	w0, [x19, #1524]
+   45520:	b0000141 	adrp	x1, 6e000 <_fini@@Base+0x8738>
+   45524:	aa1403e0 	mov	x0, x20
+   45528:	91081021 	add	x1, x1, #0x204  ; 'request_type'
+   4552c:	97ff0b51 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45530:	b9402800 	ldr	w0, [x0, #40]
+   45534:	91220761 	add	x1, x27, #0x881
+   45538:	9111a27b 	add	x27, x19, #0x468
+   4553c:	71001c1f 	cmp	w0, #0x7
+   45540:	aa1403e0 	mov	x0, x20
+   45544:	1a9f17e8 	cset	w8, eq	// eq = none
+   45548:	b90067a8 	str	w8, [x29, #100]
+   4554c:	97ff0b49 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45550:	b9402801 	ldr	w1, [x0, #40]
+   45554:	f00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   45558:	b9000661 	str	w1, [x19, #4]
+   4555c:	f945b000 	ldr	x0, [x0, #2912]
+   45560:	b9000001 	str	w1, [x0]
+   45564:	f9404fa0 	ldr	x0, [x29, #152]
+   45568:	9106d801 	add	x1, x0, #0x1b6
+   4556c:	aa1403e0 	mov	x0, x20
+   45570:	97ff0b40 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45574:	f9401003 	ldr	x3, [x0, #32]
+   45578:	aa1b03e7 	mov	x7, x27
+   4557c:	d0000124 	adrp	x4, 6b000 <_fini@@Base+0x5738>
+   45580:	913ebc84 	add	x4, x4, #0xfaf
+   45584:	aa0703e0 	mov	x0, x7
+   45588:	a9069fa4 	stp	x4, x7, [x29, #104]
+   4558c:	aa0403e2 	mov	x2, x4
+   45590:	d2800241 	mov	x1, #0x12                  	// #18
+   45594:	5280003b 	mov	w27, #0x1                   	// #1
+   45598:	97ff0a62 	bl	7f20 <snprintf@plt>
+   4559c:	3901f27b 	strb	w27, [x19, #124]
+   455a0:	91008265 	add	x5, x19, #0x20
+   455a4:	f9404ba0 	ldr	x0, [x29, #144]
+   455a8:	f9004fa5 	str	x5, [x29, #152]
+   455ac:	9106fc01 	add	x1, x0, #0x1bf
+   455b0:	aa1403e0 	mov	x0, x20
+   455b4:	97ff0b2f 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   455b8:	f9401003 	ldr	x3, [x0, #32]
+   455bc:	f94037a4 	ldr	x4, [x29, #104]
+   455c0:	d2800221 	mov	x1, #0x11                  	// #17
+   455c4:	f9404fa5 	ldr	x5, [x29, #152]
+   455c8:	aa0403e2 	mov	x2, x4
+   455cc:	aa0503e0 	mov	x0, x5
+   455d0:	97ff0a54 	bl	7f20 <snprintf@plt>
+   455d4:	9400633a 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   455d8:	3957e261 	ldrb	w1, [x19, #1528]
+   455dc:	90000109 	adrp	x9, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   455e0:	f9404fa5 	ldr	x5, [x29, #152]
+   455e4:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   455e8:	f90003e5 	str	x5, [sp]
+   455ec:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   455f0:	d3430c21 	ubfx	x1, x1, #3, #1
+   455f4:	b90013e1 	str	w1, [sp, #16]
+   455f8:	f9403ba7 	ldr	x7, [x29, #112]
+   455fc:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45600:	b945f661 	ldr	w1, [x19, #1524]
+   45604:	912a9522 	add	x2, x9, #0xaa5  ; 'INFO'
+   45608:	b9000be1 	str	w1, [sp, #8]
+   4560c:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45610:	910844c6 	add	x6, x6, #0x211  ; 'Node %s .IP %s .band_num is %d,6G support: %d'
+   45614:	f9004fa9 	str	x9, [x29, #152]
+   45618:	52801765 	mov	w5, #0xbb                  	// #187
+   4561c:	528000c1 	mov	w1, #0x6                   	// #6
+   45620:	940061a0 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45624:	3900ca7b 	strb	w27, [x19, #50]
+   45628:	3900ce7b 	strb	w27, [x19, #51]
+   4562c:	d2800000 	mov	x0, #0x0                   	// #0
+   45630:	3900d27b 	strb	w27, [x19, #52]
+   45634:	3900c67b 	strb	w27, [x19, #49]
+   45638:	3911767f 	strb	wzr, [x19, #1117]
+   4563c:	39117a7f 	strb	wzr, [x19, #1118]
+   45640:	39117e7f 	strb	wzr, [x19, #1119]
+   45644:	3911827f 	strb	wzr, [x19, #1120]
+   45648:	94006588 	bl	5ec68 <_ZNSt6localeC1Ev@plt+0x56748>
+   4564c:	f9006a60 	str	x0, [x19, #208]
+   45650:	f94047a0 	ldr	x0, [x29, #136]
+   45654:	91071c01 	add	x1, x0, #0x1c7
+   45658:	aa1403e0 	mov	x0, x20
+   4565c:	97ff0b05 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45660:	b9402800 	ldr	w0, [x0, #40]
+   45664:	b9046660 	str	w0, [x19, #1124]
+   45668:	f94043a0 	ldr	x0, [x29, #128]
+   4566c:	91073c01 	add	x1, x0, #0x1cf
+   45670:	aa1403e0 	mov	x0, x20
+   45674:	97ff0aff 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45678:	b9402800 	ldr	w0, [x0, #40]
+   4567c:	b94067a8 	ldr	w8, [x29, #100]
+   45680:	7100041f 	cmp	w0, #0x1
+   45684:	54000041 	b.ne	4568c <_ZNSt6localeC1Ev@plt+0x3d16c>  // b.any
+   45688:	3900c67f 	strb	wzr, [x19, #49]
+   4568c:	2a1c0108 	orr	w8, w8, w28
+   45690:	34001528 	cbz	w8, 45934 <_ZNSt6localeC1Ev@plt+0x3d414>
+   45694:	f9403fa0 	ldr	x0, [x29, #120]
+   45698:	91075801 	add	x1, x0, #0x1d6
+   4569c:	aa1403e0 	mov	x0, x20
+   456a0:	97ff0af4 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   456a4:	b9402800 	ldr	w0, [x0, #40]
+   456a8:	f00001e2 	adrp	x2, 84000 <_fini@@Base+0x1e738>
+   456ac:	d29b8de3 	mov	x3, #0xdc6f                	// #56431
+   456b0:	f2ab6e83 	movk	x3, #0x5b74, lsl #16
+   456b4:	b9007a60 	str	w0, [x19, #120]
+   456b8:	f9471042 	ldr	x2, [x2, #3616]
+   456bc:	f2d05143 	movk	x3, #0x828a, lsl #32
+   456c0:	f2ece5c3 	movk	x3, #0x672e, lsl #48
+   456c4:	f9400041 	ldr	x1, [x2]
+   456c8:	cb010261 	sub	x1, x19, x1
+   456cc:	9344fc21 	asr	x1, x1, #4
+   456d0:	9b037c21 	mul	x1, x1, x3
+   456d4:	11000421 	add	w1, w1, #0x1
+   456d8:	79000261 	strh	w1, [x19]
+   456dc:	f9400040 	ldr	x0, [x2]
+   456e0:	cb000260 	sub	x0, x19, x0
+   456e4:	9344fc00 	asr	x0, x0, #4
+   456e8:	9b037c00 	mul	x0, x0, x3
+   456ec:	11000400 	add	w0, w0, #0x1
+   456f0:	b9000a60 	str	w0, [x19, #8]
+   456f4:	d2800000 	mov	x0, #0x0                   	// #0
+   456f8:	9400655c 	bl	5ec68 <_ZNSt6localeC1Ev@plt+0x56748>
+   456fc:	f9006a60 	str	x0, [x19, #208]
+   45700:	b2091be0 	mov	x0, #0x3f8000003f800000    	// #4575657222473777152
+   45704:	f900467f 	str	xzr, [x19, #136]
+   45708:	f806c260 	stur	x0, [x19, #108]
+   4570c:	52a7f000 	mov	w0, #0x3f800000            	// #1065353216
+   45710:	a909fe7f 	stp	xzr, xzr, [x19, #152]
+   45714:	b9007660 	str	w0, [x19, #116]
+   45718:	d2800000 	mov	x0, #0x0                   	// #0
+   4571c:	94006553 	bl	5ec68 <_ZNSt6localeC1Ev@plt+0x56748>
+   45720:	f9005a60 	str	x0, [x19, #176]
+   45724:	52800020 	mov	w0, #0x1                   	// #1
+   45728:	39117260 	strb	w0, [x19, #1116]
+   4572c:	91400a60 	add	x0, x19, #0x2, lsl #12
+   45730:	7900ba7f 	strh	wzr, [x19, #92]
+   45734:	7900c67f 	strh	wzr, [x19, #98]
+   45738:	d2851241 	mov	x1, #0x2892                	// #10386
+   4573c:	3901927f 	strb	wzr, [x19, #100]
+   45740:	3902e27f 	strb	wzr, [x19, #184]
+   45744:	3902e67f 	strb	wzr, [x19, #185]
+   45748:	3902ea7f 	strb	wzr, [x19, #186]
+   4574c:	3901a27f 	strb	wzr, [x19, #104]
+   45750:	a903fe7f 	stp	xzr, xzr, [x19, #56]
+   45754:	f900267f 	str	xzr, [x19, #72]
+   45758:	3902027f 	strb	wzr, [x19, #128]
+   4575c:	b9005a7f 	str	wzr, [x19, #88]
+   45760:	f9004a7f 	str	xzr, [x19, #144]
+   45764:	f80bc27f 	stur	xzr, [x19, #188]
+   45768:	f80c427f 	stur	xzr, [x19, #196]
+   4576c:	3922401f 	strb	wzr, [x0, #2192]
+   45770:	3922381f 	strb	wzr, [x0, #2190]
+   45774:	39223c1f 	strb	wzr, [x0, #2191]
+   45778:	3922441f 	strb	wzr, [x0, #2193]
+   4577c:	91036260 	add	x0, x19, #0xd8
+   45780:	a90dfe7f 	stp	xzr, xzr, [x19, #216]
+   45784:	a90efe7f 	stp	xzr, xzr, [x19, #232]
+   45788:	a90ffe7f 	stp	xzr, xzr, [x19, #248]
+   4578c:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+   45790:	a9047c1f 	stp	xzr, xzr, [x0, #64]
+   45794:	a9057c1f 	stp	xzr, xzr, [x0, #80]
+   45798:	9104f260 	add	x0, x19, #0x13c
+   4579c:	b9013a7f 	str	wzr, [x19, #312]
+   457a0:	a9007c1f 	stp	xzr, xzr, [x0]
+   457a4:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+   457a8:	a9027c1f 	stp	xzr, xzr, [x0, #32]
+   457ac:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+   457b0:	a9047c1f 	stp	xzr, xzr, [x0, #64]
+   457b4:	a9057c1f 	stp	xzr, xzr, [x0, #80]
+   457b8:	9109a260 	add	x0, x19, #0x268
+   457bc:	a91a7e7f 	stp	xzr, xzr, [x19, #416]
+   457c0:	a91b7e7f 	stp	xzr, xzr, [x19, #432]
+   457c4:	a91c7e7f 	stp	xzr, xzr, [x19, #448]
+   457c8:	a91d7e7f 	stp	xzr, xzr, [x19, #464]
+   457cc:	a91e7e7f 	stp	xzr, xzr, [x19, #480]
+   457d0:	a91f7e7f 	stp	xzr, xzr, [x19, #496]
+   457d4:	b9019e7f 	str	wzr, [x19, #412]
+   457d8:	b902027f 	str	wzr, [x19, #512]
+   457dc:	a9007c1f 	stp	xzr, xzr, [x0]
+   457e0:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+   457e4:	a9027c1f 	stp	xzr, xzr, [x0, #32]
+   457e8:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+   457ec:	a9047c1f 	stp	xzr, xzr, [x0, #64]
+   457f0:	a9057c1f 	stp	xzr, xzr, [x0, #80]
+   457f4:	910b3260 	add	x0, x19, #0x2cc
+   457f8:	b902ca7f 	str	wzr, [x19, #712]
+   457fc:	a9007c1f 	stp	xzr, xzr, [x0]
+   45800:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+   45804:	a9027c1f 	stp	xzr, xzr, [x0, #32]
+   45808:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+   4580c:	a9047c1f 	stp	xzr, xzr, [x0, #64]
+   45810:	a9057c1f 	stp	xzr, xzr, [x0, #80]
+   45814:	910cc260 	add	x0, x19, #0x330
+   45818:	b9032e7f 	str	wzr, [x19, #812]
+   4581c:	a9007c1f 	stp	xzr, xzr, [x0]
+   45820:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+   45824:	a9027c1f 	stp	xzr, xzr, [x0, #32]
+   45828:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+   4582c:	a9047c1f 	stp	xzr, xzr, [x0, #64]
+   45830:	a9057c1f 	stp	xzr, xzr, [x0, #80]
+   45834:	910e5260 	add	x0, x19, #0x394
+   45838:	b903927f 	str	wzr, [x19, #912]
+   4583c:	a9007c1f 	stp	xzr, xzr, [x0]
+   45840:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+   45844:	a9027c1f 	stp	xzr, xzr, [x0, #32]
+   45848:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+   4584c:	a9047c1f 	stp	xzr, xzr, [x0, #64]
+   45850:	a9057c1f 	stp	xzr, xzr, [x0, #80]
+   45854:	910fe260 	add	x0, x19, #0x3f8
+   45858:	b903f67f 	str	wzr, [x19, #1012]
+   4585c:	a9007c1f 	stp	xzr, xzr, [x0]
+   45860:	a9017c1f 	stp	xzr, xzr, [x0, #16]
+   45864:	a9027c1f 	stp	xzr, xzr, [x0, #32]
+   45868:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+   4586c:	a9047c1f 	stp	xzr, xzr, [x0, #64]
+   45870:	a9057c1f 	stp	xzr, xzr, [x0, #80]
+   45874:	8b010260 	add	x0, x19, x1
+   45878:	b9045a7f 	str	wzr, [x19, #1112]
+   4587c:	f8216a7f 	str	xzr, [x19, x1]
+   45880:	d2851421 	mov	x1, #0x28a1                	// #10401
+   45884:	7900181f 	strh	wzr, [x0, #12]
+   45888:	3900381f 	strb	wzr, [x0, #14]
+   4588c:	b900081f 	str	wzr, [x0, #8]
+   45890:	8b010260 	add	x0, x19, x1
+   45894:	f8216a7f 	str	xzr, [x19, x1]
+   45898:	d28517e1 	mov	x1, #0x28bf                	// #10431
+   4589c:	7900181f 	strh	wzr, [x0, #12]
+   458a0:	3900381f 	strb	wzr, [x0, #14]
+   458a4:	b900081f 	str	wzr, [x0, #8]
+   458a8:	d2851600 	mov	x0, #0x28b0                	// #10416
+   458ac:	8b000260 	add	x0, x19, x0
+   458b0:	f9145a7f 	str	xzr, [x19, #10416]
+   458b4:	b928ba7f 	str	wzr, [x19, #10424]
+   458b8:	7900181f 	strh	wzr, [x0, #12]
+   458bc:	3900381f 	strb	wzr, [x0, #14]
+   458c0:	8b010260 	add	x0, x19, x1
+   458c4:	f8216a7f 	str	xzr, [x19, x1]
+   458c8:	52800301 	mov	w1, #0x18                  	// #24
+   458cc:	7900181f 	strh	wzr, [x0, #12]
+   458d0:	3900381f 	strb	wzr, [x0, #14]
+   458d4:	b900081f 	str	wzr, [x0, #8]
+   458d8:	91124260 	add	x0, x19, #0x490
+   458dc:	97ffc386 	bl	366f4 <_ZNSt6localeC1Ev@plt+0x2e1d4>
+   458e0:	52800481 	mov	w1, #0x24                  	// #36
+   458e4:	9113a260 	add	x0, x19, #0x4e8
+   458e8:	97ffc383 	bl	366f4 <_ZNSt6localeC1Ev@plt+0x2e1d4>
+   458ec:	528000a1 	mov	w1, #0x5                   	// #5
+   458f0:	91150260 	add	x0, x19, #0x540
+   458f4:	97ffc380 	bl	366f4 <_ZNSt6localeC1Ev@plt+0x2e1d4>
+   458f8:	528000c1 	mov	w1, #0x6                   	// #6
+   458fc:	91166260 	add	x0, x19, #0x598
+   45900:	97ffc37d 	bl	366f4 <_ZNSt6localeC1Ev@plt+0x2e1d4>
+   45904:	f00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   45908:	f9460800 	ldr	x0, [x0, #3088]
+   4590c:	39400000 	ldrb	w0, [x0]
+   45910:	97ffc1ce 	bl	36048 <_ZNSt6localeC1Ev@plt+0x2db28>
+   45914:	3940c660 	ldrb	w0, [x19, #49]
+   45918:	340000a0 	cbz	w0, 4592c <_ZNSt6localeC1Ev@plt+0x3d40c>
+   4591c:	f00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   45920:	79400261 	ldrh	w1, [x19]
+   45924:	f9469000 	ldr	x0, [x0, #3360]
+   45928:	79000001 	strh	w1, [x0]
+   4592c:	aa1303e0 	mov	x0, x19
+   45930:	97ffbe79 	bl	35314 <_ZNSt6localeC1Ev@plt+0x2cdf4>
+   45934:	3940c660 	ldrb	w0, [x19, #49]
+   45938:	340000a0 	cbz	w0, 4594c <_ZNSt6localeC1Ev@plt+0x3d42c>
+   4593c:	f00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   45940:	79400261 	ldrh	w1, [x19]
+   45944:	f9469000 	ldr	x0, [x0, #3360]
+   45948:	79000001 	strh	w1, [x0]
+   4594c:	b0000142 	adrp	x2, 6e000 <_fini@@Base+0x8738>
+   45950:	9102bc5b 	add	x27, x2, #0xaf  ; 'vhtmode'
+   45954:	f9004ba2 	str	x2, [x29, #144]
+   45958:	aa1b03e1 	mov	x1, x27
+   4595c:	aa1803e0 	mov	x0, x24
+   45960:	97ff0854 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45964:	f9404ba2 	ldr	x2, [x29, #144]
+   45968:	f9003ba2 	str	x2, [x29, #112]
+   4596c:	b4000180 	cbz	x0, 4599c <_ZNSt6localeC1Ev@plt+0x3d47c>
+   45970:	3940c660 	ldrb	w0, [x19, #49]
+   45974:	34000140 	cbz	w0, 4599c <_ZNSt6localeC1Ev@plt+0x3d47c>
+   45978:	aa1b03e1 	mov	x1, x27
+   4597c:	aa1803e0 	mov	x0, x24
+   45980:	97ff0a3c 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45984:	b9402801 	ldr	w1, [x0, #40]
+   45988:	f00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   4598c:	7100043f 	cmp	w1, #0x1
+   45990:	f947f800 	ldr	x0, [x0, #4080]
+   45994:	540041e1 	b.ne	461d0 <_ZNSt6localeC1Ev@plt+0x3dcb0>  // b.any
+   45998:	39000001 	strb	w1, [x0]
+   4599c:	b0000142 	adrp	x2, 6e000 <_fini@@Base+0x8738>
+   459a0:	9108fc5b 	add	x27, x2, #0x23f  ; 'available_channel'
+   459a4:	aa1b03e1 	mov	x1, x27
+   459a8:	aa1803e0 	mov	x0, x24
+   459ac:	f9004ba2 	str	x2, [x29, #144]
+   459b0:	97ff0840 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   459b4:	b4000200 	cbz	x0, 459f4 <_ZNSt6localeC1Ev@plt+0x3d4d4>
+   459b8:	aa1b03e1 	mov	x1, x27
+   459bc:	aa1803e0 	mov	x0, x24
+   459c0:	97ff0a2c 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   459c4:	b50040a0 	cbnz	x0, 461d8 <_ZNSt6localeC1Ev@plt+0x3dcb8>
+   459c8:	9400623d 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   459cc:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   459d0:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   459d4:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   459d8:	910944c6 	add	x6, x6, #0x251  ; 'Available possible channel list are not present!'
+   459dc:	52802425 	mov	w5, #0x121                 	// #289
+   459e0:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   459e4:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   459e8:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   459ec:	52800061 	mov	w1, #0x3                   	// #3
+   459f0:	940060ac 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   459f4:	90000163 	adrp	x3, 71000 <_fini@@Base+0xb738>
+   459f8:	912b0462 	add	x2, x3, #0xac1  ; 'channels'
+   459fc:	aa0203e1 	mov	x1, x2
+   45a00:	aa1803e0 	mov	x0, x24
+   45a04:	a9080fa2 	stp	x2, x3, [x29, #128]
+   45a08:	97ff082a 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45a0c:	aa0003fb 	mov	x27, x0
+   45a10:	b4000420 	cbz	x0, 45a94 <_ZNSt6localeC1Ev@plt+0x3d574>
+   45a14:	f94043a2 	ldr	x2, [x29, #128]
+   45a18:	aa1803e0 	mov	x0, x24
+   45a1c:	aa0203e1 	mov	x1, x2
+   45a20:	97ff0a14 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45a24:	aa0003fb 	mov	x27, x0
+   45a28:	97ff0a2a 	bl	82d0 <cJSON_GetArraySize@plt>
+   45a2c:	7100001f 	cmp	w0, #0x0
+   45a30:	5400032d 	b.le	45a94 <_ZNSt6localeC1Ev@plt+0x3d574>
+   45a34:	94006222 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45a38:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   45a3c:	f9404fa1 	ldr	x1, [x29, #152]
+   45a40:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45a44:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45a48:	910a08c6 	add	x6, x6, #0x282  ; 'Parse band_24 radio data'
+   45a4c:	52802565 	mov	w5, #0x12b                 	// #299
+   45a50:	912a9422 	add	x2, x1, #0xaa5
+   45a54:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45a58:	528000c1 	mov	w1, #0x6                   	// #6
+   45a5c:	94006091 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45a60:	52800303 	mov	w3, #0x18                  	// #24
+   45a64:	2a1c03e2 	mov	w2, w28
+   45a68:	aa1303e1 	mov	x1, x19
+   45a6c:	aa1803e0 	mov	x0, x24
+   45a70:	97fff4fb 	bl	42e5c <_ZNSt6localeC1Ev@plt+0x3a93c>
+   45a74:	79401261 	ldrh	w1, [x19, #8]
+   45a78:	aa1b03e2 	mov	x2, x27
+   45a7c:	79400260 	ldrh	w0, [x19]
+   45a80:	97ff3ed8 	bl	155e0 <_ZNSt6localeC1Ev@plt+0xd0c0>
+   45a84:	b9400a60 	ldr	w0, [x19, #8]
+   45a88:	52800302 	mov	w2, #0x18                  	// #24
+   45a8c:	aa1b03e1 	mov	x1, x27
+   45a90:	97ffc3c2 	bl	36998 <_ZNSt6localeC1Ev@plt+0x2e478>
+   45a94:	b0000143 	adrp	x3, 6e000 <_fini@@Base+0x8738>
+   45a98:	910a6c62 	add	x2, x3, #0x29b
+   45a9c:	aa0203e1 	mov	x1, x2
+   45aa0:	aa1803e0 	mov	x0, x24
+   45aa4:	a9078fa2 	stp	x2, x3, [x29, #120]
+   45aa8:	97ff0802 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45aac:	b4000220 	cbz	x0, 45af0 <_ZNSt6localeC1Ev@plt+0x3d5d0>
+   45ab0:	f9403fa2 	ldr	x2, [x29, #120]
+   45ab4:	aa1803e0 	mov	x0, x24
+   45ab8:	aa0203e1 	mov	x1, x2
+   45abc:	97ff09ed 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45ac0:	f9003fa0 	str	x0, [x29, #120]
+   45ac4:	97ff0a03 	bl	82d0 <cJSON_GetArraySize@plt>
+   45ac8:	7100001f 	cmp	w0, #0x0
+   45acc:	5400012d 	b.le	45af0 <_ZNSt6localeC1Ev@plt+0x3d5d0>
+   45ad0:	b9400a60 	ldr	w0, [x19, #8]
+   45ad4:	52800302 	mov	w2, #0x18                  	// #24
+   45ad8:	f9403fa1 	ldr	x1, [x29, #120]
+   45adc:	97ff3804 	bl	13aec <_ZNSt6localeC1Ev@plt+0xb5cc>
+   45ae0:	b9400a60 	ldr	w0, [x19, #8]
+   45ae4:	52800302 	mov	w2, #0x18                  	// #24
+   45ae8:	f9403fa1 	ldr	x1, [x29, #120]
+   45aec:	97ffcf80 	bl	398ec <_ZNSt6localeC1Ev@plt+0x313cc>
+   45af0:	b0000143 	adrp	x3, 6e000 <_fini@@Base+0x8738>
+   45af4:	910a7862 	add	x2, x3, #0x29e  ; 'ch_survey'
+   45af8:	aa0203e1 	mov	x1, x2
+   45afc:	aa1803e0 	mov	x0, x24
+   45b00:	f90037a2 	str	x2, [x29, #104]
+   45b04:	f9003fa3 	str	x3, [x29, #120]
+   45b08:	97ff07ea 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45b0c:	b4000220 	cbz	x0, 45b50 <_ZNSt6localeC1Ev@plt+0x3d630>
+   45b10:	f94037a2 	ldr	x2, [x29, #104]
+   45b14:	aa1803e0 	mov	x0, x24
+   45b18:	aa0203e1 	mov	x1, x2
+   45b1c:	97ff09d5 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45b20:	b5003640 	cbnz	x0, 461e8 <_ZNSt6localeC1Ev@plt+0x3dcc8>
+   45b24:	940061e6 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45b28:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   45b2c:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45b30:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   45b34:	910aa0c6 	add	x6, x6, #0x2a8  ; 'Channel survey data are not present!'
+   45b38:	52802885 	mov	w5, #0x144                 	// #324
+   45b3c:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45b40:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45b44:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   45b48:	52800061 	mov	w1, #0x3                   	// #3
+   45b4c:	94006055 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45b50:	b400013b 	cbz	x27, 45b74 <_ZNSt6localeC1Ev@plt+0x3d654>
+   45b54:	aa1b03e0 	mov	x0, x27
+   45b58:	97ff09de 	bl	82d0 <cJSON_GetArraySize@plt>
+   45b5c:	7100001f 	cmp	w0, #0x0
+   45b60:	540000ad 	b.le	45b74 <_ZNSt6localeC1Ev@plt+0x3d654>
+   45b64:	52800002 	mov	w2, #0x0                   	// #0
+   45b68:	aa1303e1 	mov	x1, x19
+   45b6c:	aa1b03e0 	mov	x0, x27
+   45b70:	97ffca56 	bl	384c8 <_ZNSt6localeC1Ev@plt+0x2ffa8>
+   45b74:	f9404ba0 	ldr	x0, [x29, #144]
+   45b78:	9108fc18 	add	x24, x0, #0x23f
+   45b7c:	aa1703e0 	mov	x0, x23
+   45b80:	aa1803e1 	mov	x1, x24
+   45b84:	97ff07cb 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45b88:	b4000200 	cbz	x0, 45bc8 <_ZNSt6localeC1Ev@plt+0x3d6a8>
+   45b8c:	aa1803e1 	mov	x1, x24
+   45b90:	aa1703e0 	mov	x0, x23
+   45b94:	97ff09b7 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45b98:	b50032e0 	cbnz	x0, 461f4 <_ZNSt6localeC1Ev@plt+0x3dcd4>
+   45b9c:	940061c8 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45ba0:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   45ba4:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45ba8:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   45bac:	910944c6 	add	x6, x6, #0x251  ; 'Available possible channel list are not present!'
+   45bb0:	52802ac5 	mov	w5, #0x156                 	// #342
+   45bb4:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45bb8:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45bbc:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   45bc0:	52800061 	mov	w1, #0x3                   	// #3
+   45bc4:	94006037 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45bc8:	f94047a0 	ldr	x0, [x29, #136]
+   45bcc:	912b041b 	add	x27, x0, #0xac1
+   45bd0:	aa1703e0 	mov	x0, x23
+   45bd4:	aa1b03e1 	mov	x1, x27
+   45bd8:	97ff07b6 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45bdc:	aa0003f8 	mov	x24, x0
+   45be0:	b4000400 	cbz	x0, 45c60 <_ZNSt6localeC1Ev@plt+0x3d740>
+   45be4:	aa1b03e1 	mov	x1, x27
+   45be8:	aa1703e0 	mov	x0, x23
+   45bec:	97ff09a1 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45bf0:	aa0003f8 	mov	x24, x0
+   45bf4:	97ff09b7 	bl	82d0 <cJSON_GetArraySize@plt>
+   45bf8:	7100001f 	cmp	w0, #0x0
+   45bfc:	5400032d 	b.le	45c60 <_ZNSt6localeC1Ev@plt+0x3d740>
+   45c00:	940061af 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45c04:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   45c08:	f9404fa1 	ldr	x1, [x29, #152]
+   45c0c:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45c10:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45c14:	910b34c6 	add	x6, x6, #0x2cd  ; 'Parse band_5_low radio data!'
+   45c18:	52802be5 	mov	w5, #0x15f                 	// #351
+   45c1c:	912a9422 	add	x2, x1, #0xaa5
+   45c20:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45c24:	528000c1 	mov	w1, #0x6                   	// #6
+   45c28:	9400601e 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45c2c:	52800483 	mov	w3, #0x24                  	// #36
+   45c30:	2a1c03e2 	mov	w2, w28
+   45c34:	aa1303e1 	mov	x1, x19
+   45c38:	aa1703e0 	mov	x0, x23
+   45c3c:	97fff488 	bl	42e5c <_ZNSt6localeC1Ev@plt+0x3a93c>
+   45c40:	79401261 	ldrh	w1, [x19, #8]
+   45c44:	aa1803e2 	mov	x2, x24
+   45c48:	79400260 	ldrh	w0, [x19]
+   45c4c:	97ff3e65 	bl	155e0 <_ZNSt6localeC1Ev@plt+0xd0c0>
+   45c50:	b9400a60 	ldr	w0, [x19, #8]
+   45c54:	52800482 	mov	w2, #0x24                  	// #36
+   45c58:	aa1803e1 	mov	x1, x24
+   45c5c:	97ffc34f 	bl	36998 <_ZNSt6localeC1Ev@plt+0x2e478>
+   45c60:	f9403ba0 	ldr	x0, [x29, #112]
+   45c64:	9102bc1b 	add	x27, x0, #0xaf
+   45c68:	aa1703e0 	mov	x0, x23
+   45c6c:	aa1b03e1 	mov	x1, x27
+   45c70:	97ff0790 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45c74:	b4000180 	cbz	x0, 45ca4 <_ZNSt6localeC1Ev@plt+0x3d784>
+   45c78:	3940c660 	ldrb	w0, [x19, #49]
+   45c7c:	34000140 	cbz	w0, 45ca4 <_ZNSt6localeC1Ev@plt+0x3d784>
+   45c80:	aa1b03e1 	mov	x1, x27
+   45c84:	aa1703e0 	mov	x0, x23
+   45c88:	97ff097a 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45c8c:	b9402801 	ldr	w1, [x0, #40]
+   45c90:	f00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   45c94:	7100043f 	cmp	w1, #0x1
+   45c98:	f947c000 	ldr	x0, [x0, #3968]
+   45c9c:	54002b41 	b.ne	46204 <_ZNSt6localeC1Ev@plt+0x3dce4>  // b.any
+   45ca0:	39000001 	strb	w1, [x0]
+   45ca4:	f94043a0 	ldr	x0, [x29, #128]
+   45ca8:	910a6c1b 	add	x27, x0, #0x29b
+   45cac:	aa1703e0 	mov	x0, x23
+   45cb0:	aa1b03e1 	mov	x1, x27
+   45cb4:	97ff077f 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45cb8:	b4000200 	cbz	x0, 45cf8 <_ZNSt6localeC1Ev@plt+0x3d7d8>
+   45cbc:	aa1b03e1 	mov	x1, x27
+   45cc0:	aa1703e0 	mov	x0, x23
+   45cc4:	97ff096b 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45cc8:	aa0003fb 	mov	x27, x0
+   45ccc:	97ff0981 	bl	82d0 <cJSON_GetArraySize@plt>
+   45cd0:	7100001f 	cmp	w0, #0x0
+   45cd4:	5400012d 	b.le	45cf8 <_ZNSt6localeC1Ev@plt+0x3d7d8>
+   45cd8:	b9400a60 	ldr	w0, [x19, #8]
+   45cdc:	52800482 	mov	w2, #0x24                  	// #36
+   45ce0:	aa1b03e1 	mov	x1, x27
+   45ce4:	97ff3782 	bl	13aec <_ZNSt6localeC1Ev@plt+0xb5cc>
+   45ce8:	b9400a60 	ldr	w0, [x19, #8]
+   45cec:	52800482 	mov	w2, #0x24                  	// #36
+   45cf0:	aa1b03e1 	mov	x1, x27
+   45cf4:	97ffcefe 	bl	398ec <_ZNSt6localeC1Ev@plt+0x313cc>
+   45cf8:	f9403fa0 	ldr	x0, [x29, #120]
+   45cfc:	910a781b 	add	x27, x0, #0x29e
+   45d00:	aa1703e0 	mov	x0, x23
+   45d04:	aa1b03e1 	mov	x1, x27
+   45d08:	97ff076a 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45d0c:	b4000200 	cbz	x0, 45d4c <_ZNSt6localeC1Ev@plt+0x3d82c>
+   45d10:	aa1b03e1 	mov	x1, x27
+   45d14:	aa1703e0 	mov	x0, x23
+   45d18:	97ff0956 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45d1c:	b5002780 	cbnz	x0, 4620c <_ZNSt6localeC1Ev@plt+0x3dcec>
+   45d20:	94006167 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45d24:	913442a4 	add	x4, x21, #0xd10  ; 'copy_interface_tri'
+   45d28:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45d2c:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   45d30:	910aa0c6 	add	x6, x6, #0x2a8  ; 'Channel survey data are not present!'
+   45d34:	52803005 	mov	w5, #0x180                 	// #384
+   45d38:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45d3c:	91385f43 	add	x3, x26, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45d40:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   45d44:	52800061 	mov	w1, #0x3                   	// #3
+   45d48:	94005fd6 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45d4c:	b4000138 	cbz	x24, 45d70 <_ZNSt6localeC1Ev@plt+0x3d850>
+   45d50:	aa1803e0 	mov	x0, x24
+   45d54:	97ff095f 	bl	82d0 <cJSON_GetArraySize@plt>
+   45d58:	7100001f 	cmp	w0, #0x0
+   45d5c:	540000ad 	b.le	45d70 <_ZNSt6localeC1Ev@plt+0x3d850>
+   45d60:	52800002 	mov	w2, #0x0                   	// #0
+   45d64:	aa1303e1 	mov	x1, x19
+   45d68:	aa1803e0 	mov	x0, x24
+   45d6c:	97ffc9d7 	bl	384c8 <_ZNSt6localeC1Ev@plt+0x2ffa8>
+   45d70:	f9404ba0 	ldr	x0, [x29, #144]
+   45d74:	9108fc15 	add	x21, x0, #0x23f
+   45d78:	aa1603e0 	mov	x0, x22
+   45d7c:	aa1503e1 	mov	x1, x21
+   45d80:	97ff074c 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45d84:	b4000240 	cbz	x0, 45dcc <_ZNSt6localeC1Ev@plt+0x3d8ac>
+   45d88:	aa1503e1 	mov	x1, x21
+   45d8c:	aa1603e0 	mov	x0, x22
+   45d90:	97ff0938 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45d94:	b5002420 	cbnz	x0, 46218 <_ZNSt6localeC1Ev@plt+0x3dcf8>
+   45d98:	94006149 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45d9c:	90000144 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   45da0:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   45da4:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45da8:	90000143 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   45dac:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   45db0:	910944c6 	add	x6, x6, #0x251  ; 'Available possible channel list are not present!'
+   45db4:	52803245 	mov	w5, #0x192                 	// #402
+   45db8:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45dbc:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45dc0:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   45dc4:	52800061 	mov	w1, #0x3                   	// #3
+   45dc8:	94005fb6 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45dcc:	f94047a0 	ldr	x0, [x29, #136]
+   45dd0:	912b0417 	add	x23, x0, #0xac1
+   45dd4:	aa1603e0 	mov	x0, x22
+   45dd8:	aa1703e1 	mov	x1, x23
+   45ddc:	97ff0735 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45de0:	aa0003f5 	mov	x21, x0
+   45de4:	b4000440 	cbz	x0, 45e6c <_ZNSt6localeC1Ev@plt+0x3d94c>
+   45de8:	aa1703e1 	mov	x1, x23
+   45dec:	aa1603e0 	mov	x0, x22
+   45df0:	97ff0920 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45df4:	aa0003f5 	mov	x21, x0
+   45df8:	97ff0936 	bl	82d0 <cJSON_GetArraySize@plt>
+   45dfc:	7100001f 	cmp	w0, #0x0
+   45e00:	5400036d 	b.le	45e6c <_ZNSt6localeC1Ev@plt+0x3d94c>
+   45e04:	9400612e 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45e08:	90000144 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   45e0c:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   45e10:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45e14:	f9404fa1 	ldr	x1, [x29, #152]
+   45e18:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45e1c:	910ba8c6 	add	x6, x6, #0x2ea  ; 'Parse band5_high radio data!'
+   45e20:	52803365 	mov	w5, #0x19b                 	// #411
+   45e24:	912a9422 	add	x2, x1, #0xaa5
+   45e28:	90000143 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   45e2c:	528000c1 	mov	w1, #0x6                   	// #6
+   45e30:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45e34:	94005f9b 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45e38:	528000a3 	mov	w3, #0x5                   	// #5
+   45e3c:	2a1c03e2 	mov	w2, w28
+   45e40:	aa1303e1 	mov	x1, x19
+   45e44:	aa1603e0 	mov	x0, x22
+   45e48:	97fff405 	bl	42e5c <_ZNSt6localeC1Ev@plt+0x3a93c>
+   45e4c:	79401261 	ldrh	w1, [x19, #8]
+   45e50:	aa1503e2 	mov	x2, x21
+   45e54:	79400260 	ldrh	w0, [x19]
+   45e58:	97ff3de2 	bl	155e0 <_ZNSt6localeC1Ev@plt+0xd0c0>
+   45e5c:	b9400a60 	ldr	w0, [x19, #8]
+   45e60:	528000a2 	mov	w2, #0x5                   	// #5
+   45e64:	aa1503e1 	mov	x1, x21
+   45e68:	97ffc2cc 	bl	36998 <_ZNSt6localeC1Ev@plt+0x2e478>
+   45e6c:	f9403ba0 	ldr	x0, [x29, #112]
+   45e70:	9102bc17 	add	x23, x0, #0xaf
+   45e74:	aa1603e0 	mov	x0, x22
+   45e78:	aa1703e1 	mov	x1, x23
+   45e7c:	97ff070d 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45e80:	b4000180 	cbz	x0, 45eb0 <_ZNSt6localeC1Ev@plt+0x3d990>
+   45e84:	3940c660 	ldrb	w0, [x19, #49]
+   45e88:	34000140 	cbz	w0, 45eb0 <_ZNSt6localeC1Ev@plt+0x3d990>
+   45e8c:	aa1703e1 	mov	x1, x23
+   45e90:	aa1603e0 	mov	x0, x22
+   45e94:	97ff08f7 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45e98:	b9402801 	ldr	w1, [x0, #40]
+   45e9c:	f00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   45ea0:	7100043f 	cmp	w1, #0x1
+   45ea4:	f9454c00 	ldr	x0, [x0, #2712]
+   45ea8:	54001c01 	b.ne	46228 <_ZNSt6localeC1Ev@plt+0x3dd08>  // b.any
+   45eac:	39000001 	strb	w1, [x0]
+   45eb0:	f94043a0 	ldr	x0, [x29, #128]
+   45eb4:	910a6c17 	add	x23, x0, #0x29b
+   45eb8:	aa1603e0 	mov	x0, x22
+   45ebc:	aa1703e1 	mov	x1, x23
+   45ec0:	97ff06fc 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45ec4:	b4000200 	cbz	x0, 45f04 <_ZNSt6localeC1Ev@plt+0x3d9e4>
+   45ec8:	aa1703e1 	mov	x1, x23
+   45ecc:	aa1603e0 	mov	x0, x22
+   45ed0:	97ff08e8 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45ed4:	aa0003f7 	mov	x23, x0
+   45ed8:	97ff08fe 	bl	82d0 <cJSON_GetArraySize@plt>
+   45edc:	7100001f 	cmp	w0, #0x0
+   45ee0:	5400012d 	b.le	45f04 <_ZNSt6localeC1Ev@plt+0x3d9e4>
+   45ee4:	b9400a60 	ldr	w0, [x19, #8]
+   45ee8:	528000a2 	mov	w2, #0x5                   	// #5
+   45eec:	aa1703e1 	mov	x1, x23
+   45ef0:	97ff36ff 	bl	13aec <_ZNSt6localeC1Ev@plt+0xb5cc>
+   45ef4:	b9400a60 	ldr	w0, [x19, #8]
+   45ef8:	528000a2 	mov	w2, #0x5                   	// #5
+   45efc:	aa1703e1 	mov	x1, x23
+   45f00:	97ffce7b 	bl	398ec <_ZNSt6localeC1Ev@plt+0x313cc>
+   45f04:	f9403fa0 	ldr	x0, [x29, #120]
+   45f08:	910a7817 	add	x23, x0, #0x29e
+   45f0c:	aa1603e0 	mov	x0, x22
+   45f10:	aa1703e1 	mov	x1, x23
+   45f14:	97ff06e7 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45f18:	b4000240 	cbz	x0, 45f60 <_ZNSt6localeC1Ev@plt+0x3da40>
+   45f1c:	aa1703e1 	mov	x1, x23
+   45f20:	aa1603e0 	mov	x0, x22
+   45f24:	97ff08d3 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45f28:	b5001840 	cbnz	x0, 46230 <_ZNSt6localeC1Ev@plt+0x3dd10>
+   45f2c:	940060e4 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45f30:	90000144 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   45f34:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   45f38:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45f3c:	90000143 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   45f40:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   45f44:	910aa0c6 	add	x6, x6, #0x2a8  ; 'Channel survey data are not present!'
+   45f48:	528037a5 	mov	w5, #0x1bd                 	// #445
+   45f4c:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45f50:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45f54:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   45f58:	52800061 	mov	w1, #0x3                   	// #3
+   45f5c:	94005f51 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45f60:	b4000135 	cbz	x21, 45f84 <_ZNSt6localeC1Ev@plt+0x3da64>
+   45f64:	aa1503e0 	mov	x0, x21
+   45f68:	97ff08da 	bl	82d0 <cJSON_GetArraySize@plt>
+   45f6c:	7100001f 	cmp	w0, #0x0
+   45f70:	540000ad 	b.le	45f84 <_ZNSt6localeC1Ev@plt+0x3da64>
+   45f74:	52800002 	mov	w2, #0x0                   	// #0
+   45f78:	aa1303e1 	mov	x1, x19
+   45f7c:	aa1503e0 	mov	x0, x21
+   45f80:	97ffc952 	bl	384c8 <_ZNSt6localeC1Ev@plt+0x2ffa8>
+   45f84:	f9404ba0 	ldr	x0, [x29, #144]
+   45f88:	9108fc15 	add	x21, x0, #0x23f
+   45f8c:	aa1903e0 	mov	x0, x25
+   45f90:	aa1503e1 	mov	x1, x21
+   45f94:	97ff06c7 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45f98:	b4000240 	cbz	x0, 45fe0 <_ZNSt6localeC1Ev@plt+0x3dac0>
+   45f9c:	aa1503e1 	mov	x1, x21
+   45fa0:	aa1903e0 	mov	x0, x25
+   45fa4:	97ff08b3 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   45fa8:	b50014a0 	cbnz	x0, 4623c <_ZNSt6localeC1Ev@plt+0x3dd1c>
+   45fac:	940060c4 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   45fb0:	90000144 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   45fb4:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   45fb8:	b0000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   45fbc:	90000143 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   45fc0:	b0000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   45fc4:	910944c6 	add	x6, x6, #0x251  ; 'Available possible channel list are not present!'
+   45fc8:	52803a05 	mov	w5, #0x1d0                 	// #464
+   45fcc:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   45fd0:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   45fd4:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   45fd8:	52800061 	mov	w1, #0x3                   	// #3
+   45fdc:	94005f31 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   45fe0:	f94047a0 	ldr	x0, [x29, #136]
+   45fe4:	912b0416 	add	x22, x0, #0xac1
+   45fe8:	aa1903e0 	mov	x0, x25
+   45fec:	aa1603e1 	mov	x1, x22
+   45ff0:	97ff06b0 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   45ff4:	aa0003f5 	mov	x21, x0
+   45ff8:	b4000440 	cbz	x0, 46080 <_ZNSt6localeC1Ev@plt+0x3db60>
+   45ffc:	aa1603e1 	mov	x1, x22
+   46000:	aa1903e0 	mov	x0, x25
+   46004:	97ff089b 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   46008:	aa0003f5 	mov	x21, x0
+   4600c:	97ff08b1 	bl	82d0 <cJSON_GetArraySize@plt>
+   46010:	7100001f 	cmp	w0, #0x0
+   46014:	5400036d 	b.le	46080 <_ZNSt6localeC1Ev@plt+0x3db60>
+   46018:	940060a9 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   4601c:	f0000124 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   46020:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   46024:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   46028:	f9404fa1 	ldr	x1, [x29, #152]
+   4602c:	90000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   46030:	910c1cc6 	add	x6, x6, #0x307  ; 'Parse band6 radio data!'
+   46034:	52803b25 	mov	w5, #0x1d9                 	// #473
+   46038:	912a9422 	add	x2, x1, #0xaa5
+   4603c:	f0000123 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   46040:	528000c1 	mov	w1, #0x6                   	// #6
+   46044:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   46048:	94005f16 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   4604c:	528000c3 	mov	w3, #0x6                   	// #6
+   46050:	2a1c03e2 	mov	w2, w28
+   46054:	aa1303e1 	mov	x1, x19
+   46058:	aa1903e0 	mov	x0, x25
+   4605c:	97fff8bb 	bl	44348 <_ZNSt6localeC1Ev@plt+0x3be28>
+   46060:	79401261 	ldrh	w1, [x19, #8]
+   46064:	aa1503e2 	mov	x2, x21
+   46068:	79400260 	ldrh	w0, [x19]
+   4606c:	97ff41d8 	bl	167cc <_ZNSt6localeC1Ev@plt+0xe2ac>
+   46070:	b9400a60 	ldr	w0, [x19, #8]
+   46074:	528000c2 	mov	w2, #0x6                   	// #6
+   46078:	aa1503e1 	mov	x1, x21
+   4607c:	97ffc35b 	bl	36de8 <_ZNSt6localeC1Ev@plt+0x2e8c8>
+   46080:	f94043a0 	ldr	x0, [x29, #128]
+   46084:	910a6c16 	add	x22, x0, #0x29b
+   46088:	aa1903e0 	mov	x0, x25
+   4608c:	aa1603e1 	mov	x1, x22
+   46090:	97ff0688 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   46094:	b4000180 	cbz	x0, 460c4 <_ZNSt6localeC1Ev@plt+0x3dba4>
+   46098:	aa1603e1 	mov	x1, x22
+   4609c:	aa1903e0 	mov	x0, x25
+   460a0:	97ff0874 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   460a4:	aa0003f6 	mov	x22, x0
+   460a8:	97ff088a 	bl	82d0 <cJSON_GetArraySize@plt>
+   460ac:	7100001f 	cmp	w0, #0x0
+   460b0:	540000ad 	b.le	460c4 <_ZNSt6localeC1Ev@plt+0x3dba4>
+   460b4:	b9400a60 	ldr	w0, [x19, #8]
+   460b8:	528000c2 	mov	w2, #0x6                   	// #6
+   460bc:	aa1603e1 	mov	x1, x22
+   460c0:	97ffd086 	bl	3a2d8 <_ZNSt6localeC1Ev@plt+0x31db8>
+   460c4:	f9403fa0 	ldr	x0, [x29, #120]
+   460c8:	910a7816 	add	x22, x0, #0x29e
+   460cc:	aa1903e0 	mov	x0, x25
+   460d0:	aa1603e1 	mov	x1, x22
+   460d4:	97ff0677 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   460d8:	b4000240 	cbz	x0, 46120 <_ZNSt6localeC1Ev@plt+0x3dc00>
+   460dc:	aa1603e1 	mov	x1, x22
+   460e0:	aa1903e0 	mov	x0, x25
+   460e4:	97ff0863 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   460e8:	b5000b20 	cbnz	x0, 4624c <_ZNSt6localeC1Ev@plt+0x3dd2c>
+   460ec:	94006074 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   460f0:	f0000124 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   460f4:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   460f8:	90000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   460fc:	f0000123 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   46100:	90000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   46104:	910aa0c6 	add	x6, x6, #0x2a8  ; 'Channel survey data are not present!'
+   46108:	52803fe5 	mov	w5, #0x1ff                 	// #511
+   4610c:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   46110:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   46114:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   46118:	52800061 	mov	w1, #0x3                   	// #3
+   4611c:	94005ee1 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   46120:	b4000135 	cbz	x21, 46144 <_ZNSt6localeC1Ev@plt+0x3dc24>
+   46124:	aa1503e0 	mov	x0, x21
+   46128:	97ff086a 	bl	82d0 <cJSON_GetArraySize@plt>
+   4612c:	7100001f 	cmp	w0, #0x0
+   46130:	540000ad 	b.le	46144 <_ZNSt6localeC1Ev@plt+0x3dc24>
+   46134:	52800002 	mov	w2, #0x0                   	// #0
+   46138:	aa1303e1 	mov	x1, x19
+   4613c:	aa1503e0 	mov	x0, x21
+   46140:	97ffca52 	bl	38a88 <_ZNSt6localeC1Ev@plt+0x30568>
+   46144:	b0000115 	adrp	x21, 67000 <_fini@@Base+0x1738>
+   46148:	913c32b5 	add	x21, x21, #0xf0c  ; 'buddies'
+   4614c:	aa1503e1 	mov	x1, x21
+   46150:	aa1403e0 	mov	x0, x20
+   46154:	97ff0657 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   46158:	b4000300 	cbz	x0, 461b8 <_ZNSt6localeC1Ev@plt+0x3dc98>
+   4615c:	aa1503e1 	mov	x1, x21
+   46160:	aa1403e0 	mov	x0, x20
+   46164:	97ff0843 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   46168:	aa0003f5 	mov	x21, x0
+   4616c:	97ff0859 	bl	82d0 <cJSON_GetArraySize@plt>
+   46170:	7100001f 	cmp	w0, #0x0
+   46174:	5400022d 	b.le	461b8 <_ZNSt6localeC1Ev@plt+0x3dc98>
+   46178:	94006051 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   4617c:	f0000124 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   46180:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   46184:	90000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   46188:	9102c084 	add	x4, x4, #0xb0  ; 'copy_sensing_tri'
+   4618c:	910c7cc6 	add	x6, x6, #0x31f  ; 'PROCESS BUDDIES'
+   46190:	f0000123 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   46194:	f00000e2 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   46198:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   4619c:	91248042 	add	x2, x2, #0x920  ; 'DEBUG'
+   461a0:	52804225 	mov	w5, #0x211                 	// #529
+   461a4:	528000e1 	mov	w1, #0x7                   	// #7
+   461a8:	94005ebe 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   461ac:	aa1503e1 	mov	x1, x21
+   461b0:	aa1303e0 	mov	x0, x19
+   461b4:	97ffbd8d 	bl	357e8 <_ZNSt6localeC1Ev@plt+0x2d2c8>
+   461b8:	d00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   461bc:	f9454800 	ldr	x0, [x0, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   461c0:	f94057a1 	ldr	x1, [x29, #168]
+   461c4:	f9400000 	ldr	x0, [x0]
+   461c8:	ca000020 	eor	x0, x1, x0
+   461cc:	17fffc70 	b	4538c <_ZNSt6localeC1Ev@plt+0x3ce6c>
+   461d0:	3900001f 	strb	wzr, [x0]
+   461d4:	17fffdf2 	b	4599c <_ZNSt6localeC1Ev@plt+0x3d47c>
+   461d8:	52800302 	mov	w2, #0x18                  	// #24
+   461dc:	aa1303e1 	mov	x1, x19
+   461e0:	97fff9a6 	bl	44878 <_ZNSt6localeC1Ev@plt+0x3c358>
+   461e4:	17fffe04 	b	459f4 <_ZNSt6localeC1Ev@plt+0x3d4d4>
+   461e8:	b9400a61 	ldr	w1, [x19, #8]
+   461ec:	97ffc400 	bl	371ec <_ZNSt6localeC1Ev@plt+0x2eccc>
+   461f0:	17fffe58 	b	45b50 <_ZNSt6localeC1Ev@plt+0x3d630>
+   461f4:	52800482 	mov	w2, #0x24                  	// #36
+   461f8:	aa1303e1 	mov	x1, x19
+   461fc:	97fff99f 	bl	44878 <_ZNSt6localeC1Ev@plt+0x3c358>
+   46200:	17fffe72 	b	45bc8 <_ZNSt6localeC1Ev@plt+0x3d6a8>
+   46204:	3900001f 	strb	wzr, [x0]
+   46208:	17fffea7 	b	45ca4 <_ZNSt6localeC1Ev@plt+0x3d784>
+   4620c:	b9400a61 	ldr	w1, [x19, #8]
+   46210:	97ffc3f7 	bl	371ec <_ZNSt6localeC1Ev@plt+0x2eccc>
+   46214:	17fffece 	b	45d4c <_ZNSt6localeC1Ev@plt+0x3d82c>
+   46218:	528000a2 	mov	w2, #0x5                   	// #5
+   4621c:	aa1303e1 	mov	x1, x19
+   46220:	97fff996 	bl	44878 <_ZNSt6localeC1Ev@plt+0x3c358>
+   46224:	17fffeea 	b	45dcc <_ZNSt6localeC1Ev@plt+0x3d8ac>
+   46228:	3900001f 	strb	wzr, [x0]
+   4622c:	17ffff21 	b	45eb0 <_ZNSt6localeC1Ev@plt+0x3d990>
+   46230:	b9400a61 	ldr	w1, [x19, #8]
+   46234:	97ffc3ee 	bl	371ec <_ZNSt6localeC1Ev@plt+0x2eccc>
+   46238:	17ffff4a 	b	45f60 <_ZNSt6localeC1Ev@plt+0x3da40>
+   4623c:	528000c2 	mov	w2, #0x6                   	// #6
+   46240:	aa1303e1 	mov	x1, x19
+   46244:	97fff98d 	bl	44878 <_ZNSt6localeC1Ev@plt+0x3c358>
+   46248:	17ffff66 	b	45fe0 <_ZNSt6localeC1Ev@plt+0x3dac0>
+   4624c:	b9400a61 	ldr	w1, [x19, #8]
+   46250:	97ffc675 	bl	37c24 <_ZNSt6localeC1Ev@plt+0x2f704>
+   46254:	17ffffb3 	b	46120 <_ZNSt6localeC1Ev@plt+0x3dc00>
+   46258:	a9b77bfd 	stp	x29, x30, [sp, #-144]!
+   4625c:	910003fd 	mov	x29, sp
+   46260:	a90153f3 	stp	x19, x20, [sp, #16]
+   46264:	d00001f3 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   46268:	a9025bf5 	stp	x21, x22, [sp, #32]
+   4626c:	d00001f6 	adrp	x22, 84000 <_fini@@Base+0x1e738>
+   46270:	a90363f7 	stp	x23, x24, [sp, #48]
+   46274:	f9458678 	ldr	x24, [x19, #2824]
+   46278:	f9454ac1 	ldr	x1, [x22, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   4627c:	a9046bf9 	stp	x25, x26, [sp, #64]
+   46280:	f9400022 	ldr	x2, [x1]
+   46284:	f90047a2 	str	x2, [x29, #136]
+   46288:	d2800002 	mov	x2, #0x0                   	// #0
+   4628c:	a90573fb 	stp	x27, x28, [sp, #80]
+   46290:	b9400301 	ldr	w1, [x24]
+   46294:	7100183f 	cmp	w1, #0x6
+   46298:	5400028d 	b.le	462e8 <_ZNSt6localeC1Ev@plt+0x3ddc8>
+   4629c:	94006008 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   462a0:	90000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   462a4:	910cbcc6 	add	x6, x6, #0x32f  ; 'Too many wireless nodes!!! Will return!'
+   462a8:	528006e5 	mov	w5, #0x37                  	// #55
+   462ac:	f0000124 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   462b0:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   462b4:	f0000123 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   462b8:	90000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   462bc:	91032084 	add	x4, x4, #0xc8  ; 'add_sensing_tri'
+   462c0:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   462c4:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   462c8:	52800061 	mov	w1, #0x3                   	// #3
+   462cc:	94005e75 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   462d0:	f9454ad6 	ldr	x22, [x22, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   462d4:	f94047a1 	ldr	x1, [x29, #136]
+   462d8:	f94002c0 	ldr	x0, [x22]
+   462dc:	ca000020 	eor	x0, x1, x0
+   462e0:	b40011a0 	cbz	x0, 46514 <_ZNSt6localeC1Ev@plt+0x3dff4>
+   462e4:	97ff0583 	bl	78f0 <__stack_chk_fail@plt>
+   462e8:	aa0003f9 	mov	x25, x0
+   462ec:	97ff0785 	bl	8100 <cJSON_Parse@plt>
+   462f0:	aa0003f7 	mov	x23, x0
+   462f4:	b50000c0 	cbnz	x0, 4630c <_ZNSt6localeC1Ev@plt+0x3ddec>
+   462f8:	94005ff1 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   462fc:	90000106 	adrp	x6, 66000 <_fini@@Base+0x738>
+   46300:	528007c5 	mov	w5, #0x3e                  	// #62
+   46304:	9114e8c6 	add	x6, x6, #0x53a  ; 'Received sensing sample is invalid!'
+   46308:	17ffffe9 	b	462ac <_ZNSt6localeC1Ev@plt+0x3dd8c>
+   4630c:	90000154 	adrp	x20, 6e000 <_fini@@Base+0x8738>
+   46310:	9106da94 	add	x20, x20, #0x1b6  ; 'mac_addr'
+   46314:	aa1403e1 	mov	x1, x20
+   46318:	97ff05e6 	bl	7ab0 <cJSON_GetObjectItem@plt>
+   4631c:	b5000220 	cbnz	x0, 46360 <_ZNSt6localeC1Ev@plt+0x3de40>
+   46320:	94005fe7 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   46324:	f0000124 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   46328:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   4632c:	90000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   46330:	f0000123 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   46334:	90000102 	adrp	x2, 66000 <_fini@@Base+0x738>
+   46338:	910d5cc6 	add	x6, x6, #0x357  ; 'Received sensing sample is invalid:mac_addr lost!'
+   4633c:	91032084 	add	x4, x4, #0xc8  ; 'add_sensing_tri'
+   46340:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   46344:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   46348:	52800885 	mov	w5, #0x44                  	// #68
+   4634c:	52800061 	mov	w1, #0x3                   	// #3
+   46350:	94005e54 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   46354:	aa1703e0 	mov	x0, x23
+   46358:	97ff059e 	bl	79d0 <cJSON_Delete@plt>
+   4635c:	17ffffdd 	b	462d0 <_ZNSt6localeC1Ev@plt+0x3ddb0>
+   46360:	aa1403e1 	mov	x1, x20
+   46364:	aa1703e0 	mov	x0, x23
+   46368:	97ff07c2 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   4636c:	f9401003 	ldr	x3, [x0, #32]
+   46370:	d00001f4 	adrp	x20, 84000 <_fini@@Base+0x1e738>
+   46374:	9101c3ba 	add	x26, x29, #0x70
+   46378:	b0000122 	adrp	x2, 6b000 <_fini@@Base+0x5738>
+   4637c:	d2800241 	mov	x1, #0x12                  	// #18
+   46380:	913ebc42 	add	x2, x2, #0xfaf
+   46384:	aa1a03e0 	mov	x0, x26
+   46388:	97ff06e6 	bl	7f20 <snprintf@plt>
+   4638c:	f947129b 	ldr	x27, [x20, #3616]
+   46390:	f9400375 	ldr	x21, [x27]
+   46394:	b4000575 	cbz	x21, 46440 <_ZNSt6localeC1Ev@plt+0x3df20>
+   46398:	9111a2b5 	add	x21, x21, #0x468
+   4639c:	b9400303 	ldr	w3, [x24]
+   463a0:	d2851e02 	mov	x2, #0x28f0                	// #10480
+   463a4:	d2800018 	mov	x24, #0x0                   	// #0
+   463a8:	b90067a3 	str	w3, [x29, #100]
+   463ac:	2a1803fb 	mov	w27, w24
+   463b0:	6b18007f 	cmp	w3, w24
+   463b4:	5400074d 	b.le	4649c <_ZNSt6localeC1Ev@plt+0x3df7c>
+   463b8:	9b027f1c 	mul	x28, x24, x2
+   463bc:	aa1503e0 	mov	x0, x21
+   463c0:	f90037a2 	str	x2, [x29, #104]
+   463c4:	aa1a03e1 	mov	x1, x26
+   463c8:	97ff077a 	bl	81b0 <strcmp@plt>
+   463cc:	91000718 	add	x24, x24, #0x1
+   463d0:	f94037a2 	ldr	x2, [x29, #104]
+   463d4:	b94067a3 	ldr	w3, [x29, #100]
+   463d8:	8b0202b5 	add	x21, x21, x2
+   463dc:	35fffe60 	cbnz	w0, 463a8 <_ZNSt6localeC1Ev@plt+0x3de88>
+   463e0:	d0000121 	adrp	x1, 6c000 <_fini@@Base+0x6738>
+   463e4:	aa1703e0 	mov	x0, x23
+   463e8:	91220421 	add	x1, x1, #0x881
+   463ec:	97ff07a1 	bl	8270 <cJSON_GetObjectItemCaseSensitive@plt>
+   463f0:	f9471281 	ldr	x1, [x20, #3616]
+   463f4:	b9402802 	ldr	w2, [x0, #40]
+   463f8:	f9400020 	ldr	x0, [x1]
+   463fc:	8b1c0000 	add	x0, x0, x28
+   46400:	b9400403 	ldr	w3, [x0, #4]
+   46404:	6b03005f 	cmp	w2, w3
+   46408:	540003e1 	b.ne	46484 <_ZNSt6localeC1Ev@plt+0x3df64>  // b.any
+   4640c:	94005fac 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   46410:	f0000124 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   46414:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   46418:	90000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   4641c:	f0000123 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   46420:	f00000e2 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   46424:	910e24c6 	add	x6, x6, #0x389  ; 'Retransmission, ignore!'
+   46428:	52800c65 	mov	w5, #0x63                  	// #99
+   4642c:	91032084 	add	x4, x4, #0xc8  ; 'add_sensing_tri'
+   46430:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   46434:	91248042 	add	x2, x2, #0x920  ; 'DEBUG'
+   46438:	528000e1 	mov	w1, #0x7                   	// #7
+   4643c:	17ffffc5 	b	46350 <_ZNSt6localeC1Ev@plt+0x3de30>
+   46440:	d00001e3 	adrp	x3, 84000 <_fini@@Base+0x1e738>
+   46444:	d2851e02 	mov	x2, #0x28f0                	// #10480
+   46448:	52800001 	mov	w1, #0x0                   	// #0
+   4644c:	f946c863 	ldr	x3, [x3, #3472]
+   46450:	f9000363 	str	x3, [x27]
+   46454:	aa0303e0 	mov	x0, x3
+   46458:	97ff05aa 	bl	7b00 <memset@plt>
+   4645c:	aa1903e1 	mov	x1, x25
+   46460:	52800022 	mov	w2, #0x1                   	// #1
+   46464:	97fffb8b 	bl	45290 <_ZNSt6localeC1Ev@plt+0x3cd70>
+   46468:	f9400361 	ldr	x1, [x27]
+   4646c:	52800020 	mov	w0, #0x1                   	// #1
+   46470:	b9000300 	str	w0, [x24]
+   46474:	d00001e0 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   46478:	f944b000 	ldr	x0, [x0, #2400]
+   4647c:	f9000001 	str	x1, [x0]
+   46480:	17ffffb5 	b	46354 <_ZNSt6localeC1Ev@plt+0x3de34>
+   46484:	b9000402 	str	w2, [x0, #4]
+   46488:	52800002 	mov	w2, #0x0                   	// #0
+   4648c:	f9400020 	ldr	x0, [x1]
+   46490:	aa1903e1 	mov	x1, x25
+   46494:	8b1c0000 	add	x0, x0, x28
+   46498:	97fffb7e 	bl	45290 <_ZNSt6localeC1Ev@plt+0x3cd70>
+   4649c:	f9458673 	ldr	x19, [x19, #2824]
+   464a0:	b9400260 	ldr	w0, [x19]
+   464a4:	6b00037f 	cmp	w27, w0
+   464a8:	54fff561 	b.ne	46354 <_ZNSt6localeC1Ev@plt+0x3de34>  // b.any
+   464ac:	94005f84 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   464b0:	f0000124 	adrp	x4, 6d000 <_fini@@Base+0x7738>
+   464b4:	91344084 	add	x4, x4, #0xd10  ; 'copy_interface_tri'
+   464b8:	52800da5 	mov	w5, #0x6d                  	// #109
+   464bc:	91032084 	add	x4, x4, #0xc8  ; 'add_sensing_tri'
+   464c0:	528000c1 	mov	w1, #0x6                   	// #6
+   464c4:	90000146 	adrp	x6, 6e000 <_fini@@Base+0x8738>
+   464c8:	f0000123 	adrp	x3, 6d000 <_fini@@Base+0x7738>
+   464cc:	910e84c6 	add	x6, x6, #0x3a1  ; 'A new node sensed!'
+   464d0:	91385c63 	add	x3, x3, #0xe17  ; 'tri_band/aistages/sensing_tri.cpp'
+   464d4:	f00000e2 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   464d8:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   464dc:	94005df1 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   464e0:	f9471294 	ldr	x20, [x20, #3616]
+   464e4:	52851e00 	mov	w0, #0x28f0                	// #10480
+   464e8:	b9400264 	ldr	w4, [x19]
+   464ec:	aa1903e1 	mov	x1, x25
+   464f0:	52800022 	mov	w2, #0x1                   	// #1
+   464f4:	f9400283 	ldr	x3, [x20]
+   464f8:	9b200c80 	smaddl	x0, w4, w0, x3
+   464fc:	97fffb65 	bl	45290 <_ZNSt6localeC1Ev@plt+0x3cd70>
+   46500:	b9400260 	ldr	w0, [x19]
+   46504:	f9400281 	ldr	x1, [x20]
+   46508:	11000400 	add	w0, w0, #0x1
+   4650c:	b9000260 	str	w0, [x19]
+   46510:	17ffffd9 	b	46474 <_ZNSt6localeC1Ev@plt+0x3df54>
+   46514:	a94153f3 	ldp	x19, x20, [sp, #16]
+   46518:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   4651c:	a94363f7 	ldp	x23, x24, [sp, #48]
+   46520:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   46524:	a94573fb 	ldp	x27, x28, [sp, #80]
+   46528:	a8c97bfd 	ldp	x29, x30, [sp], #144
+   4652c:	d65f03c0 	ret
+   46530:	d10183ff 	sub	sp, sp, #0x60
+   46534:	d2920002 	mov	x2, #0x9000                	// #36864
+   46538:	d14067ff 	sub	sp, sp, #0x19, lsl #12
+   4653c:	f2a00022 	movk	x2, #0x1, lsl #16
+   46540:	a9007bfd 	stp	x29, x30, [sp]
+   46544:	910003fd 	mov	x29, sp
+   46548:	914063a0 	add	x0, x29, #0x18, lsl #12
+   4654c:	a90363f7 	stp	x23, x24, [sp, #48]
+   46550:	d00001f7 	adrp	x23, 84000 <_fini@@Base+0x1e738>
+   46554:	a90153f3 	stp	x19, x20, [sp, #16]

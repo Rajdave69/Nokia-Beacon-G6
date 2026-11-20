@@ -1,0 +1,491 @@
+
+libwebsocket.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000098b8 <validateClientUsernamePassword@@Base>:
+    98b8:	d11e83ff 	sub	sp, sp, #0x7a0
+    98bc:	a9017bfd 	stp	x29, x30, [sp, #16]
+    98c0:	910043fd 	add	x29, sp, #0x10
+    98c4:	a9035bf5 	stp	x21, x22, [sp, #48]
+    98c8:	900000b5 	adrp	x21, 1d000 <_fini@@Base+0x11b18>
+    98cc:	a90253f3 	stp	x19, x20, [sp, #32]
+    98d0:	aa0103f6 	mov	x22, x1
+    98d4:	f947f2a3 	ldr	x3, [x21, #4064]
+    98d8:	52800001 	mov	w1, #0x0                   	// #0
+    98dc:	aa0003f3 	mov	x19, x0
+    98e0:	910623b4 	add	x20, x29, #0x188
+    98e4:	f9400060 	ldr	x0, [x3]
+    98e8:	f903c7a0 	str	x0, [x29, #1928]
+    98ec:	d2800000 	mov	x0, #0x0                   	// #0
+    98f0:	f90033fb 	str	x27, [sp, #96]
+    98f4:	aa0203fb 	mov	x27, x2
+    98f8:	d2804002 	mov	x2, #0x200                 	// #512
+    98fc:	aa1403e0 	mov	x0, x20
+    9900:	97ffe79c 	bl	3770 <memset@plt> ; heuristic args: x1=0, x2=512
+    9904:	aa1303e0 	mov	x0, x19
+    9908:	97ffe6de 	bl	3480 <strlen@plt>
+    990c:	d342fc02 	lsr	x2, x0, #2
+    9910:	f1031c1f 	cmp	x0, #0xc7
+    9914:	8b020442 	add	x2, x2, x2, lsl #1
+    9918:	91000842 	add	x2, x2, #0x2
+    991c:	f9004fa2 	str	x2, [x29, #152]
+    9920:	54001988 	b.hi	9c50 <validateClientUsernamePassword@@Base+0x398>  // b.pmore
+    9924:	f9001bb7 	str	x23, [x29, #48]
+    9928:	910303b7 	add	x23, x29, #0xc0
+    992c:	aa0003e1 	mov	x1, x0
+    9930:	a90c7fbf 	stp	xzr, xzr, [x29, #192]
+    9934:	a90d7fbf 	stp	xzr, xzr, [x29, #208]
+    9938:	910263a3 	add	x3, x29, #0x98
+    993c:	a90e7fbf 	stp	xzr, xzr, [x29, #224]
+    9940:	aa1303e0 	mov	x0, x19
+    9944:	a90f7fbf 	stp	xzr, xzr, [x29, #240]
+    9948:	aa1703e2 	mov	x2, x23
+    994c:	a9107fbf 	stp	xzr, xzr, [x29, #256]
+    9950:	a9117fbf 	stp	xzr, xzr, [x29, #272]
+    9954:	a9127fbf 	stp	xzr, xzr, [x29, #288]
+    9958:	a9137fbf 	stp	xzr, xzr, [x29, #304]
+    995c:	a9147fbf 	stp	xzr, xzr, [x29, #320]
+    9960:	a9157fbf 	stp	xzr, xzr, [x29, #336]
+    9964:	a9167fbf 	stp	xzr, xzr, [x29, #352]
+    9968:	a9177fbf 	stp	xzr, xzr, [x29, #368]
+    996c:	f900c3bf 	str	xzr, [x29, #384]
+    9970:	97ffe8dc 	bl	3ce0 <base64_decode@plt>
+    9974:	72001c1f 	tst	w0, #0xff
+    9978:	54001800 	b.eq	9c78 <validateClientUsernamePassword@@Base+0x3c0>  // b.none
+    997c:	f9001fb8 	str	x24, [x29, #56]
+    9980:	f0000018 	adrp	x24, c000 <_fini@@Base+0xb18>
+    9984:	9126e313 	add	x19, x24, #0x9b8
+    9988:	aa1703e0 	mov	x0, x23
+    998c:	aa1303e1 	mov	x1, x19
+    9990:	97ffe810 	bl	39d0 <strcmp@plt> ; heuristic args: x1='nonce'
+    9994:	35001820 	cbnz	w0, 9c98 <validateClientUsernamePassword@@Base+0x3e0>
+    9998:	9102a3a3 	add	x3, x29, #0xa8
+    999c:	d28001e2 	mov	x2, #0xf                   	// #15
+    99a0:	aa0303e0 	mov	x0, x3
+    99a4:	aa1603e1 	mov	x1, x22
+    99a8:	a90affbf 	stp	xzr, xzr, [x29, #168]
+    99ac:	52800013 	mov	w19, #0x0                   	// #0
+    99b0:	79017bbf 	strh	wzr, [x29, #188]
+    99b4:	b900bbbf 	str	wzr, [x29, #184]
+    99b8:	97ffe89e 	bl	3c30 <strncpy@plt> ; heuristic args: x2=15
+    99bc:	d28002c2 	mov	x2, #0x16                  	// #22
+    99c0:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    99c4:	91270021 	add	x1, x1, #0x9c0
+    99c8:	97ffe82a 	bl	3a70 <__strcat_chk@plt> ; heuristic args: x1='_WS', x2=22
+    99cc:	aa0003e3 	mov	x3, x0
+    99d0:	f90003e3 	str	x3, [sp]
+    99d4:	f0000007 	adrp	x7, c000 <_fini@@Base+0xb18>
+    99d8:	f0000006 	adrp	x6, c000 <_fini@@Base+0xb18>
+    99dc:	912720e7 	add	x7, x7, #0x9c8
+    99e0:	9127e0c6 	add	x6, x6, #0x9f8
+    99e4:	f0000005 	adrp	x5, c000 <_fini@@Base+0xb18>
+    99e8:	f0000004 	adrp	x4, c000 <_fini@@Base+0xb18>
+    99ec:	912800a5 	add	x5, x5, #0xa00
+    99f0:	9128c084 	add	x4, x4, #0xa30
+    99f4:	f0000003 	adrp	x3, c000 <_fini@@Base+0xb18>
+    99f8:	91292063 	add	x3, x3, #0xa48
+    99fc:	d2804002 	mov	x2, #0x200                 	// #512
+    9a00:	52800021 	mov	w1, #0x1                   	// #1
+    9a04:	aa1403e0 	mov	x0, x20
+    9a08:	97ffe6a6 	bl	34a0 <__sprintf_chk@plt> ; heuristic args: x1=1, x2=512, x3='%s "%s" %s "%s&auth=nonce&sessionId=%s" ', x4='curl -v -X POST -H', x5='Content-Type: application/x-www-form-urlencoded', x6='-d', x7='command=Session_AUTH{Mobile}&timeout=600'
+    9a0c:	d2804002 	mov	x2, #0x200                 	// #512
+    9a10:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9a14:	aa1403e0 	mov	x0, x20
+    9a18:	9129e021 	add	x1, x1, #0xa78
+    9a1c:	97ffe815 	bl	3a70 <__strcat_chk@plt> ; heuristic args: x1='http://127.0.0.1/websoc_session_app.cgi', x2=512
+    9a20:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9a24:	aa1403e0 	mov	x0, x20
+    9a28:	910ec021 	add	x1, x1, #0x3b0
+    9a2c:	97ffe731 	bl	36f0 <popen@plt> ; heuristic args: x1='r'
+    9a30:	f9003fa0 	str	x0, [x29, #120]
+    9a34:	b4000ea0 	cbz	x0, 9c08 <validateClientUsernamePassword@@Base+0x350>
+    9a38:	528000c0 	mov	w0, #0x6                   	// #6
+    9a3c:	f9002fbc 	str	x28, [x29, #88]
+    9a40:	a9046bb9 	stp	x25, x26, [x29, #64]
+    9a44:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9a48:	d0000014 	adrp	x20, b000 <handleClient@@Base+0x5d0>
+    9a4c:	912a8021 	add	x1, x1, #0xaa0
+    9a50:	b9008fbf 	str	wzr, [x29, #140]
+    9a54:	91174294 	add	x20, x20, #0x5d0
+    9a58:	97ffe81a 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='Got response from CGI for token validation\n'
+    9a5c:	1280001c 	mov	w28, #0xffffffff            	// #-1
+    9a60:	f0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    9a64:	910e23a1 	add	x1, x29, #0x388
+    9a68:	912b4000 	add	x0, x0, #0xad0
+    9a6c:	f90043a1 	str	x1, [x29, #128]
+    9a70:	f9003ba0 	str	x0, [x29, #112]
+    9a74:	a94783a2 	ldp	x2, x0, [x29, #120]
+    9a78:	52807fe1 	mov	w1, #0x3ff                 	// #1023
+    9a7c:	97ffe89d 	bl	3cf0 <fgets@plt> ; heuristic args: x0='line = %s\n', x1=1023
+    9a80:	b4001580 	cbz	x0, 9d30 <validateClientUsernamePassword@@Base+0x478>
+    9a84:	f9403ba1 	ldr	x1, [x29, #112]
+    9a88:	528000c0 	mov	w0, #0x6                   	// #6
+    9a8c:	f94043b3 	ldr	x19, [x29, #128]
+    9a90:	910283ba 	add	x26, x29, #0xa0
+    9a94:	f0000019 	adrp	x25, c000 <_fini@@Base+0xb18>
+    9a98:	aa1303e2 	mov	x2, x19
+    9a9c:	97ffe809 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6
+    9aa0:	f90053bf 	str	xzr, [x29, #160]
+    9aa4:	aa1303e0 	mov	x0, x19
+    9aa8:	aa1a03e2 	mov	x2, x26
+    9aac:	912b8321 	add	x1, x25, #0xae0
+    9ab0:	97ffe6e4 	bl	3640 <strtok_r@plt> ; heuristic args: x1=','
+    9ab4:	aa0003f3 	mov	x19, x0
+    9ab8:	b4fffde0 	cbz	x0, 9a74 <validateClientUsernamePassword@@Base+0x1bc>
+    9abc:	f0000017 	adrp	x23, c000 <_fini@@Base+0xb18>
+    9ac0:	f0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    9ac4:	912ba2f7 	add	x23, x23, #0xae8
+    9ac8:	912bc016 	add	x22, x0, #0xaf0
+    9acc:	aa1703e1 	mov	x1, x23
+    9ad0:	aa1303e0 	mov	x0, x19
+    9ad4:	97ffe83f 	bl	3bd0 <strstr@plt> ; heuristic args: x1='result'
+    9ad8:	b4000160 	cbz	x0, 9b04 <validateClientUsernamePassword@@Base+0x24c>
+    9adc:	aa1403e1 	mov	x1, x20
+    9ae0:	aa1303e0 	mov	x0, x19
+    9ae4:	97ffe663 	bl	3470 <strtok@plt> ; heuristic args: x1=':'
+    9ae8:	aa1403e1 	mov	x1, x20
+    9aec:	d2800000 	mov	x0, #0x0                   	// #0
+    9af0:	97ffe660 	bl	3470 <strtok@plt> ; heuristic args: x0=0, x1=':'
+    9af4:	52800142 	mov	w2, #0xa                   	// #10
+    9af8:	d2800001 	mov	x1, #0x0                   	// #0
+    9afc:	97ffe7c5 	bl	3a10 <strtol@plt> ; heuristic args: x1=0, x2=10
+    9b00:	2a0003fc 	mov	w28, w0
+    9b04:	aa1603e1 	mov	x1, x22
+    9b08:	aa1303e0 	mov	x0, x19
+    9b0c:	97ffe831 	bl	3bd0 <strstr@plt> ; heuristic args: x1='reason'
+    9b10:	b4000160 	cbz	x0, 9b3c <validateClientUsernamePassword@@Base+0x284>
+    9b14:	aa1403e1 	mov	x1, x20
+    9b18:	aa1303e0 	mov	x0, x19
+    9b1c:	97ffe655 	bl	3470 <strtok@plt> ; heuristic args: x1=':'
+    9b20:	aa1403e1 	mov	x1, x20
+    9b24:	d2800000 	mov	x0, #0x0                   	// #0
+    9b28:	97ffe652 	bl	3470 <strtok@plt> ; heuristic args: x0=0, x1=':'
+    9b2c:	52800142 	mov	w2, #0xa                   	// #10
+    9b30:	d2800001 	mov	x1, #0x0                   	// #0
+    9b34:	97ffe7b7 	bl	3a10 <strtol@plt> ; heuristic args: x1=0, x2=10
+    9b38:	b9008fa0 	str	w0, [x29, #140]
+    9b3c:	9126e301 	add	x1, x24, #0x9b8
+    9b40:	aa1303e0 	mov	x0, x19
+    9b44:	97ffe823 	bl	3bd0 <strstr@plt> ; heuristic args: x1='nonce'
+    9b48:	b4000160 	cbz	x0, 9b74 <validateClientUsernamePassword@@Base+0x2bc>
+    9b4c:	aa1403e1 	mov	x1, x20
+    9b50:	aa1303e0 	mov	x0, x19
+    9b54:	97ffe647 	bl	3470 <strtok@plt> ; heuristic args: x1=':'
+    9b58:	aa1403e1 	mov	x1, x20
+    9b5c:	d2800000 	mov	x0, #0x0                   	// #0
+    9b60:	97ffe644 	bl	3470 <strtok@plt> ; heuristic args: x0=0, x1=':'
+    9b64:	aa0003e1 	mov	x1, x0
+    9b68:	d2803e62 	mov	x2, #0x1f3                 	// #499
+    9b6c:	aa1b03e0 	mov	x0, x27
+    9b70:	97ffe830 	bl	3c30 <strncpy@plt> ; heuristic args: x2=499
+    9b74:	aa1a03e2 	mov	x2, x26
+    9b78:	912b8321 	add	x1, x25, #0xae0
+    9b7c:	d2800000 	mov	x0, #0x0                   	// #0
+    9b80:	97ffe6b0 	bl	3640 <strtok_r@plt> ; heuristic args: x0=0, x1=','
+    9b84:	aa0003f3 	mov	x19, x0
+    9b88:	b5fffa20 	cbnz	x0, 9acc <validateClientUsernamePassword@@Base+0x214>
+    9b8c:	17ffffba 	b	9a74 <validateClientUsernamePassword@@Base+0x1bc>
+    9b90:	f9403fa0 	ldr	x0, [x29, #120]
+    9b94:	97ffe82b 	bl	3c40 <pclose@plt>
+    9b98:	b9408fb4 	ldr	w20, [x29, #140]
+    9b9c:	2a1603e3 	mov	w3, w22
+    9ba0:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9ba4:	528000c0 	mov	w0, #0x6                   	// #6
+    9ba8:	9131a021 	add	x1, x1, #0xc68
+    9bac:	2a1403e2 	mov	w2, w20
+    9bb0:	2a160296 	orr	w22, w20, w22
+    9bb4:	97ffe7c3 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='Got CGI result = %d, reason = %d\n', x3='reason'
+    9bb8:	340022d6 	cbz	w22, a010 <validateClientUsernamePassword@@Base+0x758>
+    9bbc:	f94027ba 	ldr	x26, [x29, #72]
+    9bc0:	f9402fbc 	ldr	x28, [x29, #88]
+    9bc4:	f94037a0 	ldr	x0, [x29, #104]
+    9bc8:	52800001 	mov	w1, #0x0                   	// #0
+    9bcc:	91324014 	add	x20, x0, #0xc90
+    9bd0:	aa1403e0 	mov	x0, x20
+    9bd4:	97ffe763 	bl	3960 <access@plt> ; heuristic args: x1=0
+    9bd8:	35000060 	cbnz	w0, 9be4 <validateClientUsernamePassword@@Base+0x32c>
+    9bdc:	aa1403e0 	mov	x0, x20
+    9be0:	97ffe644 	bl	34f0 <remove@plt>
+    9be4:	f94033a0 	ldr	x0, [x29, #96]
+    9be8:	52800001 	mov	w1, #0x0                   	// #0
+    9bec:	912f6014 	add	x20, x0, #0xbd8
+    9bf0:	aa1403e0 	mov	x0, x20
+    9bf4:	97ffe75b 	bl	3960 <access@plt> ; heuristic args: x1=0
+    9bf8:	35000980 	cbnz	w0, 9d28 <validateClientUsernamePassword@@Base+0x470>
+    9bfc:	aa1403e0 	mov	x0, x20
+    9c00:	97ffe63c 	bl	34f0 <remove@plt>
+    9c04:	f94023b9 	ldr	x25, [x29, #64]
+    9c08:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9c0c:	2a1303e2 	mov	w2, w19
+    9c10:	91328021 	add	x1, x1, #0xca0
+    9c14:	528000c0 	mov	w0, #0x6                   	// #6
+    9c18:	97ffe7aa 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='websocket Authentication returns as =%d\n'
+    9c1c:	a94363b7 	ldp	x23, x24, [x29, #48]
+    9c20:	2a1303e0 	mov	w0, w19
+    9c24:	f947f2b5 	ldr	x21, [x21, #4064]
+    9c28:	f943c7a2 	ldr	x2, [x29, #1928]
+    9c2c:	f94002a1 	ldr	x1, [x21]
+    9c30:	ca010041 	eor	x1, x2, x1
+    9c34:	b5001fe1 	cbnz	x1, a030 <validateClientUsernamePassword@@Base+0x778>
+    9c38:	a94253f3 	ldp	x19, x20, [sp, #32]
+    9c3c:	a9435bf5 	ldp	x21, x22, [sp, #48]
+    9c40:	a9417bfd 	ldp	x29, x30, [sp, #16]
+    9c44:	f94033fb 	ldr	x27, [sp, #96]
+    9c48:	911e83ff 	add	sp, sp, #0x7a0
+    9c4c:	d65f03c0 	ret
+    9c50:	f0000002 	adrp	x2, c000 <_fini@@Base+0xb18>
+    9c54:	910c0042 	add	x2, x2, #0x300
+    9c58:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9c5c:	d2801903 	mov	x3, #0xc8                  	// #200
+    9c60:	91004042 	add	x2, x2, #0x10
+    9c64:	91250021 	add	x1, x1, #0x940
+    9c68:	52800060 	mov	w0, #0x3                   	// #3
+    9c6c:	52800013 	mov	w19, #0x0                   	// #0
+    9c70:	97ffe794 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='[%s]Credential Input Length is more than max length %d.\n', x2='validateClientUsernamePassword', x3=200
+    9c74:	17ffffeb 	b	9c20 <validateClientUsernamePassword@@Base+0x368>
+    9c78:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9c7c:	52800060 	mov	w0, #0x3                   	// #3
+    9c80:	91260021 	add	x1, x1, #0x980
+    9c84:	52800013 	mov	w19, #0x0                   	// #0
+    9c88:	97ffe78e 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Unable to decode credential information form client.\n'
+    9c8c:	f9401bb7 	ldr	x23, [x29, #48]
+    9c90:	17ffffe4 	b	9c20 <validateClientUsernamePassword@@Base+0x368>
+    9c94:	d503201f 	nop
+    9c98:	910243a2 	add	x2, x29, #0x90
+    9c9c:	f90023b9 	str	x25, [x29, #64]
+    9ca0:	aa1703e0 	mov	x0, x23
+    9ca4:	d0000019 	adrp	x25, b000 <handleClient@@Base+0x5d0>
+    9ca8:	91174321 	add	x1, x25, #0x5d0
+    9cac:	97ffe665 	bl	3640 <strtok_r@plt> ; heuristic args: x1=':'
+    9cb0:	aa1303e1 	mov	x1, x19
+    9cb4:	aa1703e0 	mov	x0, x23
+    9cb8:	97ffe746 	bl	39d0 <strcmp@plt> ; heuristic args: x1=0
+    9cbc:	34001c20 	cbz	w0, a040 <validateClientUsernamePassword@@Base+0x788>
+    9cc0:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9cc4:	aa1703e0 	mov	x0, x23
+    9cc8:	912d2021 	add	x1, x1, #0xb48
+    9ccc:	97ffe741 	bl	39d0 <strcmp@plt> ; heuristic args: x1='clientId'
+    9cd0:	2a0003f3 	mov	w19, w0
+    9cd4:	340002a0 	cbz	w0, 9d28 <validateClientUsernamePassword@@Base+0x470>
+    9cd8:	aa1703e0 	mov	x0, x23
+    9cdc:	97ffe5e9 	bl	3480 <strlen@plt>
+    9ce0:	f102001f 	cmp	x0, #0x80
+    9ce4:	540000a8 	b.hi	9cf8 <validateClientUsernamePassword@@Base+0x440>  // b.pmore
+    9ce8:	f9404ba0 	ldr	x0, [x29, #144]
+    9cec:	97ffe5e5 	bl	3480 <strlen@plt>
+    9cf0:	f102001f 	cmp	x0, #0x80
+    9cf4:	540004e9 	b.ls	9d90 <validateClientUsernamePassword@@Base+0x4d8>  // b.plast
+    9cf8:	f0000002 	adrp	x2, c000 <_fini@@Base+0xb18>
+    9cfc:	910c0042 	add	x2, x2, #0x300
+    9d00:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9d04:	91004042 	add	x2, x2, #0x10
+    9d08:	912d6021 	add	x1, x1, #0xb58
+    9d0c:	52800060 	mov	w0, #0x3                   	// #3
+    9d10:	97ffe76c 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='[%s]Input Length of either username or password is more than max length.\n', x2='validateClientUsernamePassword'
+    9d14:	52800013 	mov	w19, #0x0                   	// #0
+    9d18:	f94023b9 	ldr	x25, [x29, #64]
+    9d1c:	a94363b7 	ldp	x23, x24, [x29, #48]
+    9d20:	17ffffc0 	b	9c20 <validateClientUsernamePassword@@Base+0x368>
+    9d24:	d503201f 	nop
+    9d28:	f94023b9 	ldr	x25, [x29, #64]
+    9d2c:	17ffffb7 	b	9c08 <validateClientUsernamePassword@@Base+0x350>
+    9d30:	f9403fa0 	ldr	x0, [x29, #120]
+    9d34:	52800013 	mov	w19, #0x0                   	// #0
+    9d38:	97ffe7c2 	bl	3c40 <pclose@plt>
+    9d3c:	b9408fb4 	ldr	w20, [x29, #140]
+    9d40:	2a1c03e2 	mov	w2, w28
+    9d44:	aa1b03e4 	mov	x4, x27
+    9d48:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9d4c:	528000c0 	mov	w0, #0x6                   	// #6
+    9d50:	912be021 	add	x1, x1, #0xaf8
+    9d54:	2a1403e3 	mov	w3, w20
+    9d58:	2a14039c 	orr	w28, w28, w20
+    9d5c:	97ffe759 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='Got CGI result = %d, reason = %d nonce %s\n'
+    9d60:	3400009c 	cbz	w28, 9d70 <validateClientUsernamePassword@@Base+0x4b8>
+    9d64:	a9446bb9 	ldp	x25, x26, [x29, #64]
+    9d68:	f9402fbc 	ldr	x28, [x29, #88]
+    9d6c:	17ffffa7 	b	9c08 <validateClientUsernamePassword@@Base+0x350>
+    9d70:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9d74:	528000c0 	mov	w0, #0x6                   	// #6
+    9d78:	912ca021 	add	x1, x1, #0xb28
+    9d7c:	52800033 	mov	w19, #0x1                   	// #1
+    9d80:	97ffe750 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='Websocket is authenticated !!!\n'
+    9d84:	f9402fbc 	ldr	x28, [x29, #88]
+    9d88:	a9446bb9 	ldp	x25, x26, [x29, #64]
+    9d8c:	17ffff9f 	b	9c08 <validateClientUsernamePassword@@Base+0x350>
+    9d90:	9102a3a3 	add	x3, x29, #0xa8
+    9d94:	aa1603e1 	mov	x1, x22
+    9d98:	d28001e2 	mov	x2, #0xf                   	// #15
+    9d9c:	aa0303e0 	mov	x0, x3
+    9da0:	a90affbf 	stp	xzr, xzr, [x29, #168]
+    9da4:	d2800016 	mov	x22, #0x0                   	// #0
+    9da8:	79017bbf 	strh	wzr, [x29, #188]
+    9dac:	b900bbbf 	str	wzr, [x29, #184]
+    9db0:	97ffe7a0 	bl	3c30 <strncpy@plt> ; heuristic args: x2=15
+    9db4:	d28002c2 	mov	x2, #0x16                  	// #22
+    9db8:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9dbc:	91270021 	add	x1, x1, #0x9c0
+    9dc0:	97ffe72c 	bl	3a70 <__strcat_chk@plt> ; heuristic args: x1='_WS', x2=22
+    9dc4:	f947e6b8 	ldr	x24, [x21, #4040]
+    9dc8:	d2801002 	mov	x2, #0x80                  	// #128
+    9dcc:	aa1703e1 	mov	x1, x23
+    9dd0:	8b161f00 	add	x0, x24, x22, lsl #7
+    9dd4:	97ffe64b 	bl	3700 <strncmp@plt> ; heuristic args: x2=128
+    9dd8:	2a0003f3 	mov	w19, w0
+    9ddc:	34000120 	cbz	w0, 9e00 <validateClientUsernamePassword@@Base+0x548>
+    9de0:	910006d6 	add	x22, x22, #0x1
+    9de4:	f1000edf 	cmp	x22, #0x3
+    9de8:	54ffff01 	b.ne	9dc8 <validateClientUsernamePassword@@Base+0x510>  // b.any
+    9dec:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9df0:	2a1603e0 	mov	w0, w22
+    9df4:	91334021 	add	x1, x1, #0xcd0
+    9df8:	97ffe732 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=1, x1='[Authentication]Websocket Server Invalid Account Credentials. \n'
+    9dfc:	17ffffc6 	b	9d14 <validateClientUsernamePassword@@Base+0x45c>
+    9e00:	f0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    9e04:	f0000016 	adrp	x22, c000 <_fini@@Base+0xb18>
+    9e08:	f90037a0 	str	x0, [x29, #104]
+    9e0c:	912f42c1 	add	x1, x22, #0xbd0
+    9e10:	91324000 	add	x0, x0, #0xc90
+    9e14:	97ffe60f 	bl	3650 <fopen@plt> ; heuristic args: x0='/tmp/cgi_local', x1='w'
+    9e18:	b4000040 	cbz	x0, 9e20 <validateClientUsernamePassword@@Base+0x568>
+    9e1c:	97ffe605 	bl	3630 <fclose@plt>
+    9e20:	52800060 	mov	w0, #0x3                   	// #3
+    9e24:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9e28:	912ea021 	add	x1, x1, #0xba8
+    9e2c:	97ffe725 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Handling platform  Authentication.\n'
+    9e30:	f0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    9e34:	912f42c1 	add	x1, x22, #0xbd0
+    9e38:	f90033a0 	str	x0, [x29, #96]
+    9e3c:	912f6000 	add	x0, x0, #0xbd8
+    9e40:	97ffe604 	bl	3650 <fopen@plt> ; heuristic args: x0='/tmp/ws_auth_pswd.txt', x1='w'
+    9e44:	aa0003f6 	mov	x22, x0
+    9e48:	b4000da0 	cbz	x0, 9ffc <validateClientUsernamePassword@@Base+0x744>
+    9e4c:	f9404ba3 	ldr	x3, [x29, #144]
+    9e50:	f0000002 	adrp	x2, c000 <_fini@@Base+0xb18>
+    9e54:	91308042 	add	x2, x2, #0xc20
+    9e58:	52800021 	mov	w1, #0x1                   	// #1
+    9e5c:	97ffe6d9 	bl	39c0 <__fprintf_chk@plt> ; heuristic args: x1=1, x2='pass=%s\n'
+    9e60:	aa1603e0 	mov	x0, x22
+    9e64:	97ffe5f3 	bl	3630 <fclose@plt>
+    9e68:	f0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    9e6c:	91318000 	add	x0, x0, #0xc60
+    9e70:	a90003f7 	stp	x23, x0, [sp]
+    9e74:	f0000007 	adrp	x7, c000 <_fini@@Base+0xb18>
+    9e78:	f0000006 	adrp	x6, c000 <_fini@@Base+0xb18>
+    9e7c:	912720e7 	add	x7, x7, #0x9c8
+    9e80:	9127e0c6 	add	x6, x6, #0x9f8
+    9e84:	f0000005 	adrp	x5, c000 <_fini@@Base+0xb18>
+    9e88:	f0000004 	adrp	x4, c000 <_fini@@Base+0xb18>
+    9e8c:	912800a5 	add	x5, x5, #0xa00
+    9e90:	9128c084 	add	x4, x4, #0xa30
+    9e94:	f0000003 	adrp	x3, c000 <_fini@@Base+0xb18>
+    9e98:	9130c063 	add	x3, x3, #0xc30
+    9e9c:	d2804002 	mov	x2, #0x200                 	// #512
+    9ea0:	52800021 	mov	w1, #0x1                   	// #1
+    9ea4:	aa1403e0 	mov	x0, x20
+    9ea8:	97ffe57e 	bl	34a0 <__sprintf_chk@plt> ; heuristic args: x1=1, x2=512, x3='%s "%s" %s "%s&name=%s&pswd=%s&auth=verify" ', x4='curl -v -X POST -H', x5='Content-Type: application/x-www-form-urlencoded', x6='-d', x7='command=Session_AUTH{Mobile}&timeout=600'
+    9eac:	d2804002 	mov	x2, #0x200                 	// #512
+    9eb0:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9eb4:	aa1403e0 	mov	x0, x20
+    9eb8:	9129e021 	add	x1, x1, #0xa78
+    9ebc:	97ffe6ed 	bl	3a70 <__strcat_chk@plt> ; heuristic args: x1='http://127.0.0.1/websoc_session_app.cgi', x2=512
+    9ec0:	aa1403e0 	mov	x0, x20
+    9ec4:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9ec8:	910ec021 	add	x1, x1, #0x3b0
+    9ecc:	97ffe609 	bl	36f0 <popen@plt> ; heuristic args: x1='r'
+    9ed0:	f9003fa0 	str	x0, [x29, #120]
+    9ed4:	b4ffe780 	cbz	x0, 9bc4 <validateClientUsernamePassword@@Base+0x30c>
+    9ed8:	528000c0 	mov	w0, #0x6                   	// #6
+    9edc:	f90027ba 	str	x26, [x29, #72]
+    9ee0:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9ee4:	f9002fbc 	str	x28, [x29, #88]
+    9ee8:	912a8021 	add	x1, x1, #0xaa0
+    9eec:	97ffe6f5 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='Got response from CGI for token validation\n'
+    9ef0:	12800000 	mov	w0, #0xffffffff            	// #-1
+    9ef4:	f000001a 	adrp	x26, c000 <_fini@@Base+0xb18>
+    9ef8:	910283bb 	add	x27, x29, #0xa0
+    9efc:	912b835a 	add	x26, x26, #0xae0
+    9f00:	910e23a1 	add	x1, x29, #0x388
+    9f04:	b9008fa0 	str	w0, [x29, #140]
+    9f08:	52800016 	mov	w22, #0x0                   	// #0
+    9f0c:	f0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    9f10:	f90043a1 	str	x1, [x29, #128]
+    9f14:	912b4000 	add	x0, x0, #0xad0
+    9f18:	f9003ba0 	str	x0, [x29, #112]
+    9f1c:	a94783a2 	ldp	x2, x0, [x29, #120]
+    9f20:	52807fe1 	mov	w1, #0x3ff                 	// #1023
+    9f24:	97ffe773 	bl	3cf0 <fgets@plt> ; heuristic args: x0='line = %s\n', x1=1023
+    9f28:	b4ffe340 	cbz	x0, 9b90 <validateClientUsernamePassword@@Base+0x2d8>
+    9f2c:	f9403ba1 	ldr	x1, [x29, #112]
+    9f30:	528000c0 	mov	w0, #0x6                   	// #6
+    9f34:	f94043b4 	ldr	x20, [x29, #128]
+    9f38:	aa1403e2 	mov	x2, x20
+    9f3c:	97ffe6e1 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6
+    9f40:	f90053bf 	str	xzr, [x29, #160]
+    9f44:	aa1b03e2 	mov	x2, x27
+    9f48:	aa1a03e1 	mov	x1, x26
+    9f4c:	aa1403e0 	mov	x0, x20
+    9f50:	97ffe5bc 	bl	3640 <strtok_r@plt> ; heuristic args: x1=','
+    9f54:	aa0003fc 	mov	x28, x0
+    9f58:	b4fffe20 	cbz	x0, 9f1c <validateClientUsernamePassword@@Base+0x664>
+    9f5c:	f0000017 	adrp	x23, c000 <_fini@@Base+0xb18>
+    9f60:	f0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    9f64:	912ba2f7 	add	x23, x23, #0xae8
+    9f68:	91174338 	add	x24, x25, #0x5d0
+    9f6c:	912bc014 	add	x20, x0, #0xaf0
+    9f70:	aa1703e1 	mov	x1, x23
+    9f74:	aa1c03e0 	mov	x0, x28
+    9f78:	97ffe716 	bl	3bd0 <strstr@plt> ; heuristic args: x1='result'
+    9f7c:	b4000160 	cbz	x0, 9fa8 <validateClientUsernamePassword@@Base+0x6f0>
+    9f80:	aa1803e1 	mov	x1, x24
+    9f84:	aa1c03e0 	mov	x0, x28
+    9f88:	97ffe53a 	bl	3470 <strtok@plt>
+    9f8c:	aa1803e1 	mov	x1, x24
+    9f90:	d2800000 	mov	x0, #0x0                   	// #0
+    9f94:	97ffe537 	bl	3470 <strtok@plt> ; heuristic args: x0=0
+    9f98:	52800142 	mov	w2, #0xa                   	// #10
+    9f9c:	d2800001 	mov	x1, #0x0                   	// #0
+    9fa0:	97ffe69c 	bl	3a10 <strtol@plt> ; heuristic args: x1=0, x2=10
+    9fa4:	b9008fa0 	str	w0, [x29, #140]
+    9fa8:	aa1403e1 	mov	x1, x20
+    9fac:	aa1c03e0 	mov	x0, x28
+    9fb0:	97ffe708 	bl	3bd0 <strstr@plt> ; heuristic args: x1='reason'
+    9fb4:	b4000160 	cbz	x0, 9fe0 <validateClientUsernamePassword@@Base+0x728>
+    9fb8:	aa1803e1 	mov	x1, x24
+    9fbc:	aa1c03e0 	mov	x0, x28
+    9fc0:	97ffe52c 	bl	3470 <strtok@plt>
+    9fc4:	aa1803e1 	mov	x1, x24
+    9fc8:	d2800000 	mov	x0, #0x0                   	// #0
+    9fcc:	97ffe529 	bl	3470 <strtok@plt> ; heuristic args: x0=0
+    9fd0:	52800142 	mov	w2, #0xa                   	// #10
+    9fd4:	d2800001 	mov	x1, #0x0                   	// #0
+    9fd8:	97ffe68e 	bl	3a10 <strtol@plt> ; heuristic args: x1=0, x2=10
+    9fdc:	2a0003f6 	mov	w22, w0
+    9fe0:	aa1b03e2 	mov	x2, x27
+    9fe4:	aa1a03e1 	mov	x1, x26
+    9fe8:	d2800000 	mov	x0, #0x0                   	// #0
+    9fec:	97ffe595 	bl	3640 <strtok_r@plt> ; heuristic args: x0=0, x1=','
+    9ff0:	aa0003fc 	mov	x28, x0
+    9ff4:	b5fffbe0 	cbnz	x0, 9f70 <validateClientUsernamePassword@@Base+0x6b8>
+    9ff8:	17ffffc9 	b	9f1c <validateClientUsernamePassword@@Base+0x664>
+    9ffc:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a000:	52800060 	mov	w0, #0x3                   	// #3
+    a004:	912fc021 	add	x1, x1, #0xbf0
+    a008:	97ffe6ae 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Error Unable to create ws auth pswd file\n'
+    a00c:	17ffff42 	b	9d14 <validateClientUsernamePassword@@Base+0x45c>
+    a010:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a014:	528000c0 	mov	w0, #0x6                   	// #6
+    a018:	912ca021 	add	x1, x1, #0xb28
+    a01c:	52800033 	mov	w19, #0x1                   	// #1
+    a020:	97ffe6a8 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='Websocket is authenticated !!!\n'
+    a024:	f94027ba 	ldr	x26, [x29, #72]
+    a028:	f9402fbc 	ldr	x28, [x29, #88]
+    a02c:	17fffee6 	b	9bc4 <validateClientUsernamePassword@@Base+0x30c>
+    a030:	a90363b7 	stp	x23, x24, [x29, #48]
+    a034:	a9046bb9 	stp	x25, x26, [x29, #64]
+    a038:	f9002fbc 	str	x28, [x29, #88]
+    a03c:	97ffe619 	bl	38a0 <__stack_chk_fail@plt>
+    a040:	f94023b9 	ldr	x25, [x29, #64]
+    a044:	17fffe55 	b	9998 <validateClientUsernamePassword@@Base+0xe0>

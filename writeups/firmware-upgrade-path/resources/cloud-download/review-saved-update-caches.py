@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 """Offline ASCII firmware-ID/URL review of saved writable captures; no network."""
+from pathlib import Path as _PublicationPath
+import json as _publication_json
+import re as _publication_re
+
+def _publication_input(alias):
+    project = next(p for p in _PublicationPath(__file__).resolve().parents
+                   if (p / 'writeups').is_dir())
+    registry = (project / 'writeups/README.private.md').read_text(encoding='utf-8')
+    payload = _publication_re.search(r'```json\s*\n(.*?)\n```', registry, _publication_re.S)
+    return _publication_json.loads(payload[1])['private_values'][alias]
+
 import hashlib,json,re,urllib.parse
 from pathlib import Path
 G6=Path(__file__).resolve().parents[4]
@@ -9,8 +20,8 @@ def main():
  report={'date':'2026-10-26 Asia/Riyadh','scope':'Read only saved writable raw dumps, router metadata and first G6 decrypted export. ASCII string scan only; no decompression/decryption/filesystem reconstruction or live log collection. Matches are leads, not proof of complete image existence.','sources':[],'urls':[],'private_original_urls':[],'limits':['No exhaustive negative claim for compressed/encrypted/unscanned data.','The clean dumps omit physical mtd08/log and provide zero-byte logical log/user_data files; these are not usable cache captures.']}
  version_re=re.compile(rb'(?:3FE49996|3TN01100)[A-Z0-9]{6}')
  inputs=[]
- for device,dump in [('ALCLFDE2F68C','beacon-g6-clean-dumps-20260929-200712'),('ALCLFD4B5342','beacon-g6-clean-dumps-20261022-192444')]:
-  folder=G6/f'router-flash-{device}'/dump
+ for device,dump in [(_publication_input('RESEARCH-INPUT-3CF7C1567A0B'),'beacon-g6-clean-dumps-20260929-200712'),(_publication_input('RESEARCH-INPUT-D131390C03C7'),'beacon-g6-clean-dumps-20261022-192444')]:
+  folder=G6/'dumped-firmware'/f'router-flash-{device}'/dump
   for name in ['mtd05_rootfs_data0.bin','mtd06_rootfs_data1.bin','mtd07_cfg.bin','mtd08_log.bin','mtd15_log.bin','mtd16_user_data.bin','mtd17_rootfs_data1.bin','router-metadata.txt']:inputs.append(folder/name)
  inputs.append(G6/'config-private/config_beacon_g6.json')
  raw_urls=[]

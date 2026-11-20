@@ -1,5 +1,7 @@
 # Disabling firmware upgrades on the stock Beacon G6
 
+**Scope and verification.** G6 HJL.L91p01 and IJL.J03p01 with the stock kernel and rootfs. The lock passed offline tests. Its behavior across a live boot or update attempt remains unverified.
+
 Turning off TR-069 and TR-369 does not turn off Nokia's own OTA service. The G6
 also has swmgnt, which polls Nokia's software service and coordinates downloads
 and activation through the cloud, mobile app, portal and mesh. Its SwMgnt enable

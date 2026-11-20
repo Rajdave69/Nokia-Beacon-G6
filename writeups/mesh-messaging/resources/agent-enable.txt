@@ -1,0 +1,235 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-G6-HJL/usr/bin/ai-agent:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000097b4 <.text+0x5f34>:
+    97b4:	d10583ff 	sub	sp, sp, #0x160
+    97b8:	a9017bfd 	stp	x29, x30, [sp, #16]
+    97bc:	910043fd 	add	x29, sp, #0x10
+    97c0:	a90253f3 	stp	x19, x20, [sp, #32]
+    97c4:	90000113 	adrp	x19, 29000 <_fini@@Base+0x13818>
+    97c8:	a9035bf5 	stp	x21, x22, [sp, #48]
+    97cc:	aa0103f6 	mov	x22, x1
+    97d0:	f947ce61 	ldr	x1, [x19, #3992]  ; GOT __stack_chk_guard@GLIBC_2.17
+    97d4:	a90463f7 	stp	x23, x24, [sp, #64]
+    97d8:	f9400022 	ldr	x2, [x1]
+    97dc:	f900a7a2 	str	x2, [x29, #328]
+    97e0:	d2800002 	mov	x2, #0x0                   	// #0
+    97e4:	b0000101 	adrp	x1, 2a000 <_fini@@Base+0x14818>
+    97e8:	b9010020 	str	w0, [x1, #256]
+    97ec:	aa1603e0 	mov	x0, x22
+    97f0:	97ffe750 	bl	3530 <cJSON_Print@plt>
+    97f4:	b40007c0 	cbz	x0, 98ec <csrv_stop_timer@plt+0x607c>
+    97f8:	90000075 	adrp	x21, 15000 <csrv_stop_timer@plt+0x11790>
+    97fc:	9122beb8 	add	x24, x21, #0x8af  ; '/tmp/ai-agent.log'
+    9800:	aa0003f7 	mov	x23, x0
+    9804:	910123a1 	add	x1, x29, #0x48
+    9808:	aa1803e0 	mov	x0, x24
+    980c:	94002ff1 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    9810:	35000320 	cbnz	w0, 9874 <csrv_stop_timer@plt+0x6004>
+    9814:	f9403fa0 	ldr	x0, [x29, #120]
+    9818:	f142001f 	cmp	x0, #0x80, lsl #12
+    981c:	540002cd 	b.le	9874 <csrv_stop_timer@plt+0x6004>
+    9820:	90000060 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    9824:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    9828:	97ffe6c6 	bl	3340 <remove@plt>
+    982c:	910323b4 	add	x20, x29, #0xc8
+    9830:	90000061 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    9834:	aa1803e0 	mov	x0, x24
+    9838:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    983c:	97ffe6f9 	bl	3420 <rename@plt>
+    9840:	d2801002 	mov	x2, #0x80                  	// #128
+    9844:	52800001 	mov	w1, #0x0                   	// #0
+    9848:	aa1403e0 	mov	x0, x20
+    984c:	97ffe675 	bl	3220 <memset@plt>
+    9850:	aa1803e4 	mov	x4, x24
+    9854:	90000063 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    9858:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    985c:	d2801002 	mov	x2, #0x80                  	// #128
+    9860:	52800021 	mov	w1, #0x1                   	// #1
+    9864:	aa1403e0 	mov	x0, x20
+    9868:	97ffe65e 	bl	31e0 <__sprintf_chk@plt>
+    986c:	aa1403e0 	mov	x0, x20
+    9870:	97ffe758 	bl	35d0 <system@plt>
+    9874:	90000081 	adrp	x1, 19000 <_fini@@Base+0x3818>
+    9878:	9122bea0 	add	x0, x21, #0x8af  ; '/tmp/ai-agent.log'
+    987c:	91041021 	add	x1, x1, #0x104
+    9880:	97ffe758 	bl	35e0 <fopen@plt>
+    9884:	aa0003f4 	mov	x20, x0
+    9888:	b40002e0 	cbz	x0, 98e4 <csrv_stop_timer@plt+0x6074>
+    988c:	d2800000 	mov	x0, #0x0                   	// #0
+    9890:	97ffe720 	bl	3510 <time@plt>
+    9894:	f90023a0 	str	x0, [x29, #64]
+    9898:	910103a0 	add	x0, x29, #0x40
+    989c:	97ffe621 	bl	3120 <ctime@plt>
+    98a0:	f90003f7 	str	x23, [sp]
+    98a4:	90000066 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    98a8:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    98ac:	aa0003e3 	mov	x3, x0
+    98b0:	9107c0c6 	add	x6, x6, #0x1f0  ; 'process_config_scan'
+    98b4:	b0000065 	adrp	x5, 16000 <_fini@@Base+0x818>
+    98b8:	90000064 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    98bc:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    98c0:	9131bc84 	add	x4, x4, #0xc6f  ; 'DEBUG'
+    98c4:	b0000062 	adrp	x2, 16000 <_fini@@Base+0x818>
+    98c8:	91360c42 	add	x2, x2, #0xd83  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  msh json is %s\n'
+    98cc:	52811587 	mov	w7, #0x8ac                 	// #2220
+    98d0:	52800021 	mov	w1, #0x1                   	// #1
+    98d4:	aa1403e0 	mov	x0, x20
+    98d8:	97ffe662 	bl	3260 <__fprintf_chk@plt>
+    98dc:	aa1403e0 	mov	x0, x20
+    98e0:	97ffe62c 	bl	3190 <fclose@plt>
+    98e4:	aa1703e0 	mov	x0, x23
+    98e8:	97ffe6e6 	bl	3480 <cJSON_free@plt>
+    98ec:	b0000074 	adrp	x20, 16000 <_fini@@Base+0x818>
+    98f0:	9136f694 	add	x20, x20, #0xdbd  ; 'enable'
+    98f4:	aa1403e1 	mov	x1, x20
+    98f8:	aa1603e0 	mov	x0, x22
+    98fc:	97ffe641 	bl	3200 <cJSON_GetObjectItem@plt>
+    9900:	b40008e0 	cbz	x0, 9a1c <csrv_stop_timer@plt+0x61ac>
+    9904:	aa1403e1 	mov	x1, x20
+    9908:	aa1603e0 	mov	x0, x22
+    990c:	97ffe771 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    9910:	b9402816 	ldr	w22, [x0, #40]
+    9914:	d0001c20 	adrp	x0, 38f000 <_fini@@Base+0x379818>
+    9918:	710006df 	cmp	w22, #0x1
+    991c:	394dc002 	ldrb	w2, [x0, #880]
+    9920:	1a9f17e1 	cset	w1, eq	// eq = none
+    9924:	6b01005f 	cmp	w2, w1
+    9928:	540007a0 	b.eq	9a1c <csrv_stop_timer@plt+0x61ac>  // b.none
+    992c:	390dc001 	strb	w1, [x0, #880]
+    9930:	710006df 	cmp	w22, #0x1
+    9934:	54000801 	b.ne	9a34 <csrv_stop_timer@plt+0x61c4>  // b.any
+    9938:	90000075 	adrp	x21, 15000 <csrv_stop_timer@plt+0x11790>
+    993c:	9122beb7 	add	x23, x21, #0x8af  ; '/tmp/ai-agent.log'
+    9940:	910123a1 	add	x1, x29, #0x48
+    9944:	aa1703e0 	mov	x0, x23
+    9948:	94002fa2 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    994c:	35000320 	cbnz	w0, 99b0 <csrv_stop_timer@plt+0x6140>
+    9950:	f9403fa0 	ldr	x0, [x29, #120]
+    9954:	f142001f 	cmp	x0, #0x80, lsl #12
+    9958:	540002cd 	b.le	99b0 <csrv_stop_timer@plt+0x6140>
+    995c:	90000060 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    9960:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    9964:	97ffe677 	bl	3340 <remove@plt>
+    9968:	910323b4 	add	x20, x29, #0xc8
+    996c:	90000061 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    9970:	aa1703e0 	mov	x0, x23
+    9974:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    9978:	97ffe6aa 	bl	3420 <rename@plt>
+    997c:	d2801002 	mov	x2, #0x80                  	// #128
+    9980:	52800001 	mov	w1, #0x0                   	// #0
+    9984:	aa1403e0 	mov	x0, x20
+    9988:	97ffe626 	bl	3220 <memset@plt>
+    998c:	aa1703e4 	mov	x4, x23
+    9990:	90000063 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    9994:	2a1603e1 	mov	w1, w22
+    9998:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    999c:	d2801002 	mov	x2, #0x80                  	// #128
+    99a0:	aa1403e0 	mov	x0, x20
+    99a4:	97ffe60f 	bl	31e0 <__sprintf_chk@plt>
+    99a8:	aa1403e0 	mov	x0, x20
+    99ac:	97ffe709 	bl	35d0 <system@plt>
+    99b0:	90000081 	adrp	x1, 19000 <_fini@@Base+0x3818>
+    99b4:	9122bea0 	add	x0, x21, #0x8af  ; '/tmp/ai-agent.log'
+    99b8:	91041021 	add	x1, x1, #0x104
+    99bc:	97ffe709 	bl	35e0 <fopen@plt>
+    99c0:	aa0003f4 	mov	x20, x0
+    99c4:	b40002c0 	cbz	x0, 9a1c <csrv_stop_timer@plt+0x61ac>
+    99c8:	d2800000 	mov	x0, #0x0                   	// #0
+    99cc:	97ffe6d1 	bl	3510 <time@plt>
+    99d0:	f90023a0 	str	x0, [x29, #64]
+    99d4:	910103a0 	add	x0, x29, #0x40
+    99d8:	97ffe5d2 	bl	3120 <ctime@plt>
+    99dc:	aa0003e3 	mov	x3, x0
+    99e0:	90000066 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    99e4:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    99e8:	9107c0c6 	add	x6, x6, #0x1f0  ; 'process_config_scan'
+    99ec:	b0000065 	adrp	x5, 16000 <_fini@@Base+0x818>
+    99f0:	90000064 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    99f4:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    99f8:	91243c84 	add	x4, x4, #0x90f  ; 'INFO'
+    99fc:	b0000062 	adrp	x2, 16000 <_fini@@Base+0x818>
+    9a00:	91371042 	add	x2, x2, #0xdc4  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  Agent reset info\n'
+    9a04:	52811807 	mov	w7, #0x8c0                 	// #2240
+    9a08:	52800021 	mov	w1, #0x1                   	// #1
+    9a0c:	aa1403e0 	mov	x0, x20
+    9a10:	97ffe614 	bl	3260 <__fprintf_chk@plt>
+    9a14:	aa1403e0 	mov	x0, x20
+    9a18:	97ffe5de 	bl	3190 <fclose@plt>
+    9a1c:	f947ce73 	ldr	x19, [x19, #3992]  ; GOT __stack_chk_guard@GLIBC_2.17
+    9a20:	f940a7a1 	ldr	x1, [x29, #328]
+    9a24:	f9400260 	ldr	x0, [x19]
+    9a28:	ca000020 	eor	x0, x1, x0
+    9a2c:	b4000080 	cbz	x0, 9a3c <csrv_stop_timer@plt+0x61cc>
+    9a30:	97ffe5b0 	bl	30f0 <__stack_chk_fail@plt>
+    9a34:	97ffff04 	bl	9644 <csrv_stop_timer@plt+0x5dd4>
+    9a38:	17fffff9 	b	9a1c <csrv_stop_timer@plt+0x61ac>
+    9a3c:	a94253f3 	ldp	x19, x20, [sp, #32]
+    9a40:	a9435bf5 	ldp	x21, x22, [sp, #48]
+    9a44:	a94463f7 	ldp	x23, x24, [sp, #64]
+    9a48:	a9417bfd 	ldp	x29, x30, [sp, #16]
+    9a4c:	910583ff 	add	sp, sp, #0x160
+    9a50:	d65f03c0 	ret
+    9a54:	d11e43ff 	sub	sp, sp, #0x790
+    9a58:	a90b7bfd 	stp	x29, x30, [sp, #176]
+    9a5c:	9102c3fd 	add	x29, sp, #0xb0
+    9a60:	a90d5bf5 	stp	x21, x22, [sp, #208]
+    9a64:	90000116 	adrp	x22, 29000 <_fini@@Base+0x13818>
+    9a68:	a90c53f3 	stp	x19, x20, [sp, #192]
+    9a6c:	910403b5 	add	x21, x29, #0x100
+    9a70:	f947cec0 	ldr	x0, [x22, #3992]  ; GOT __stack_chk_guard@GLIBC_2.17
+    9a74:	90000073 	adrp	x19, 15000 <csrv_stop_timer@plt+0x11790>
+    9a78:	9122be74 	add	x20, x19, #0x8af  ; '/tmp/ai-agent.log'
+    9a7c:	a90e63f7 	stp	x23, x24, [sp, #224]
+    9a80:	f9400001 	ldr	x1, [x0]
+    9a84:	f9036fa1 	str	x1, [x29, #1752]
+    9a88:	d2800001 	mov	x1, #0x0                   	// #0
+    9a8c:	a90f6bf9 	stp	x25, x26, [sp, #240]
+    9a90:	a91073fb 	stp	x27, x28, [sp, #256]
+    9a94:	aa1503e1 	mov	x1, x21
+    9a98:	aa1403e0 	mov	x0, x20
+    9a9c:	94002f4d 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    9aa0:	f9003fb6 	str	x22, [x29, #120]
+    9aa4:	911363b7 	add	x23, x29, #0x4d8
+    9aa8:	35000300 	cbnz	w0, 9b08 <csrv_stop_timer@plt+0x6298>
+    9aac:	f9409ba0 	ldr	x0, [x29, #304]
+    9ab0:	f142001f 	cmp	x0, #0x80, lsl #12
+    9ab4:	540002ad 	b.le	9b08 <csrv_stop_timer@plt+0x6298>
+    9ab8:	90000060 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    9abc:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    9ac0:	97ffe620 	bl	3340 <remove@plt>
+    9ac4:	90000061 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    9ac8:	aa1403e0 	mov	x0, x20
+    9acc:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    9ad0:	97ffe654 	bl	3420 <rename@plt>
+    9ad4:	d2801002 	mov	x2, #0x80                  	// #128
+    9ad8:	52800001 	mov	w1, #0x0                   	// #0
+    9adc:	aa1703e0 	mov	x0, x23
+    9ae0:	97ffe5d0 	bl	3220 <memset@plt>
+    9ae4:	aa1403e4 	mov	x4, x20
+    9ae8:	90000063 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    9aec:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    9af0:	d2801002 	mov	x2, #0x80                  	// #128
+    9af4:	52800021 	mov	w1, #0x1                   	// #1
+    9af8:	aa1703e0 	mov	x0, x23
+    9afc:	97ffe5b9 	bl	31e0 <__sprintf_chk@plt>
+    9b00:	aa1703e0 	mov	x0, x23
+    9b04:	97ffe6b3 	bl	35d0 <system@plt>
+    9b08:	90000094 	adrp	x20, 19000 <_fini@@Base+0x3818>
+    9b0c:	9122be60 	add	x0, x19, #0x8af  ; '/tmp/ai-agent.log'
+    9b10:	91041281 	add	x1, x20, #0x104
+    9b14:	97ffe6b3 	bl	35e0 <fopen@plt>
+    9b18:	aa0003f6 	mov	x22, x0
+    9b1c:	b40002c0 	cbz	x0, 9b74 <csrv_stop_timer@plt+0x6304>
+    9b20:	d2800000 	mov	x0, #0x0                   	// #0
+    9b24:	97ffe67b 	bl	3510 <time@plt>
+    9b28:	f9004fa0 	str	x0, [x29, #152]
+    9b2c:	910263a0 	add	x0, x29, #0x98
+    9b30:	97ffe57c 	bl	3120 <ctime@plt>
+    9b34:	aa0003e3 	mov	x3, x0
+    9b38:	90000066 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    9b3c:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'

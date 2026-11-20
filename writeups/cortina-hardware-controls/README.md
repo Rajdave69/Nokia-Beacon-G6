@@ -1,13 +1,15 @@
 # Following the Beacon G6's Cortina hardware controls
 
+Start with one Ethernet frame. The board configuration tells the driver which physical port it arrived on. The VLAN and switching tables decide where it may go. A separate path can send it to Linux or accelerate later packets in hardware. The sections below follow those decisions and show which settings a future OpenWrt port would need to reproduce.
+
 The G6's Ethernet hardware is controlled by a substantial Cortina software stack. There is an SDK,
 a Tcl console, a separate AAL console, board configuration, Linux network drivers, packet-engine 
 firmware and several diagnostic/control interfaces. Together they explain considerably more than 
 a list of `ca_*` commands would.
 
 This investigation follows those layers in the captured **CA8289/Venus G6**, concentrating on what 
-a future OpenWrt port needs to preserve or replace. The main profile is `3FE49996HJLL91` / `HJL.L91p01`, 
-with `3FE49996IJLJ03` / `IJL.J03p01` as the older comparison. Nothing was run on the router during 
+a future OpenWrt port needs to preserve or replace. The main profile is HomeOS 24.04 `3FE49996HJLL91` / `HJL.L91p01`,
+with HomeOS 24.02 `3FE49996IJLJ03` / `IJL.J03p01` as the older comparison. These findings concern the examined G6 profiles, not a control-group test of the ONT or Beacon 9. Nothing was run on the router during
 this investigation. Native SDK tests ran on the workstation with device operations intercepted.
 
 The most consequential finding is that these builds have **different SDK ioctl numbering**. Their 
@@ -296,7 +298,7 @@ of a standard isolated IOMMU domain.
 
 The saved `analysis/beacon-g6-stock.dtb` was independently compared with the original FIT. Only 
 `/memory/reg` and `/chosen/bootargs` differ; hardware resources discussed here match the original. The memory
-change matters for a port, as explained in the [hardware writeup](../hardware-beacon-g6/README.md).
+change matters for a port, as explained in the [hardware writeup](../hardware/beacon-g6.md).
 
 | Control            | Original DT/driver description                                                   | Porting consequence                                                                              |
 |--------------------|----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
@@ -321,6 +323,8 @@ three 32-bit words and call `aal_get/set_wdt_config`; their inspected wrappers r
 the AAL result. That result alone cannot confirm a hardware change. These controls also do not turn 
 OTP-backed secure boot into a reversible software switch. The [secure-boot investigation](../secure-boot/README.md) remains 
 authoritative.
+
+The [diagnostics and recovery investigation](../diagnostics-and-recovery/README.md) now maps the independent PCD/procd/diagnosis recovery layers, stock kernel core/panic settings and watchdog feeding controls. In the examined G6 procd, `stop: true` cancels feeding; device magic-close is a separate setting, so this is not by itself proof that hardware is disarmed. The work is offline and does not add a live hardware or custom-rootfs recovery test to this subject's results.
 
 ## What this gives a future OpenWrt port
 
@@ -350,7 +354,3 @@ Remaining work is specific: physical port/PHY mapping, complete DMA descriptor/p
 The [resource guide](resources/README.md) indexes scripts, source hashes, command/dispatch catalogues, structure accessors, comparison and disassembly. The [knowledgebase](../../knowledgebases/cortina-hardware-controls.md) retains the complete continuation and original script context.
 
 Offline checks exercised **36 original getters × three statuses × two builds = 216 cases**, plus both original transports under mocks. Every saved instruction byte was compared with its original ELF section; callback mappings and the original FIT DTB were independently checked. These validate the recovered interfaces. They did not test physical links, forwarding, isolation, acceleration, reboot behavior or hardware setters.
-
-## Diagnostics and recovery follow-up, 2026-11-10
-
-The [diagnostics and recovery investigation](../diagnostics-and-recovery/README.md) now maps the independent PCD/procd/diagnosis recovery layers, stock kernel core/panic settings and watchdog feeding controls. In the examined G6 procd, `stop: true` cancels feeding; device magic-close is a separate setting, so this is not by itself proof that hardware is disarmed. The work is offline and does not add a live hardware or custom-rootfs recovery test to this subject's results.

@@ -1,0 +1,1 @@
+listentToWebsocketEvent(i,r){return this.events=i,r&&(this.eventTimer=r),this.webSocket||(this.openWebSocket(),this.send({CSRFtoken:localStorage.getItem("token").toString(),SessionID:localStorage.getItem("sid").toString(),PasswordType:3})),this.webSocket.subscribe({next:a=>this.handleEvent(a),error:()=>this.closeConnection(),complete:()=>this.closeConnection()}),this.webSocket}

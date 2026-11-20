@@ -1,0 +1,428 @@
+{
+  "date": "2026-10-28",
+  "profile": "HJL.L91p01",
+  "event_schema_version": "6.1; independent of firmware build/version",
+  "notification_envelope": {
+    "gw": "gateway identity string",
+    "event": "case-sensitive event string",
+    "version": "string 6.1",
+    "payload": "array for the device/SSID events listed below",
+    "timestamp": "added as a string in the Wi-Fi update builder"
+  },
+  "events": {
+    "AllDeviceInfo": {
+      "builder_va": "0x656e0",
+      "payload": "known-device inventory; empty array is explicitly allowed"
+    },
+    "DeviceStatusUpdate": {
+      "builder_va": "0x65a0c",
+      "payload": "device status record(s)"
+    },
+    "Wifi_Associated_Devices_Update": {
+      "builder_va": "0x65e10",
+      "payload": "Wi-Fi association/link measurements; includes timestamp"
+    },
+    "NewDeviceAdded": {
+      "builder_va": "0x661f4 and0x668f8",
+      "payload": "new-device record(s)"
+    },
+    "DeviceInfo": {
+      "builder_va": "0x665dc and0x66d90",
+      "payload": "device information record(s)"
+    },
+    "SSIDInfo": {
+      "builder_va": "0x673f4",
+      "payload": "SSID records"
+    },
+    "SSIDInfoChange": {
+      "builder_va": "0x673f4, conditional branch",
+      "payload": "SSID changes"
+    },
+    "MeshNetwork": {
+      "builder_va": "0x7eb28",
+      "delivery_va": "0x6cf98",
+      "shape": "separate mesh envelope: gw,event,version,timestamp,timeZone,aps,links; do not require payload on this event"
+    }
+  },
+  "field_calls": [
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64a50",
+      "key": "gw",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64a6c",
+      "key": "mac",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64a90",
+      "key": "serialNumber",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64ab4",
+      "key": "ip",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64adc",
+      "key": "ipv6",
+      "builder": "cJSON_AddItemToObject",
+      "encoded_type": "nested value; inspect branch"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64bb8",
+      "key": "rssi",
+      "builder": "cJSON_AddItemToObject",
+      "encoded_type": "nested value; inspect branch"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64c9c",
+      "key": "rssi",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64cc0",
+      "key": "manufacturer",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64ce4",
+      "key": "host",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64d08",
+      "key": "name",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64d2c",
+      "key": "model",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64d50",
+      "key": "category",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64d74",
+      "key": "friendlyname",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64da0",
+      "key": "interface",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64dfc",
+      "key": "active",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64e2c",
+      "key": "isBeacon",
+      "builder": "cJSON_AddBoolToObject",
+      "encoded_type": "boolean"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64e60",
+      "key": "isCritical",
+      "builder": "cJSON_AddBoolToObject",
+      "encoded_type": "boolean"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64eec",
+      "key": "band",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64f1c",
+      "key": "band",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64f68",
+      "key": "supportedbands",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64f94",
+      "key": "preferred_radio_band",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x64fd4",
+      "key": "ssid",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x65138",
+      "key": "txPhyRate",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "device",
+      "function": "ddm_createDeviceInfo",
+      "call_va": "0x651a8",
+      "key": "rxPhyRate",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x653c0",
+      "key": "ssidindex",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x653dc",
+      "key": "mac",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x65430",
+      "key": "rssi",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x65480",
+      "key": "tx_rate",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x654d0",
+      "key": "rx_rate",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x65524",
+      "key": "opmode",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x65548",
+      "key": "opmode",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x65598",
+      "key": "interference",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x655d0",
+      "key": "deviceLinkQuality",
+      "builder": "cJSON_AddNumberToObject",
+      "encoded_type": "number"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x65608",
+      "key": "deviceLinkMetric",
+      "builder": "cJSON_AddNumberToObject",
+      "encoded_type": "number"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x65634",
+      "key": "pathToGatewayStatus",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x6566c",
+      "key": "pathToGatewayQuality",
+      "builder": "cJSON_AddNumberToObject",
+      "encoded_type": "number"
+    },
+    {
+      "scope": "wifi_measurement",
+      "function": "ddm_createRssiInfo",
+      "call_va": "0x656a4",
+      "key": "pathToGatewayMetric",
+      "builder": "cJSON_AddNumberToObject",
+      "encoded_type": "number"
+    },
+    {
+      "scope": "ssid",
+      "function": "ddm_createSsidInfo",
+      "call_va": "0x67244",
+      "key": "gw",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "ssid",
+      "function": "ddm_createSsidInfo",
+      "call_va": "0x67294",
+      "key": "radioindex",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "ssid",
+      "function": "ddm_createSsidInfo",
+      "call_va": "0x672e4",
+      "key": "ssidindex",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "ssid",
+      "function": "ddm_createSsidInfo",
+      "call_va": "0x67304",
+      "key": "ssidname",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "ssid",
+      "function": "ddm_createSsidInfo",
+      "call_va": "0x67324",
+      "key": "band",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "ssid",
+      "function": "ddm_createSsidInfo",
+      "call_va": "0x67344",
+      "key": "status",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    },
+    {
+      "scope": "ssid",
+      "function": "ddm_createSsidInfo",
+      "call_va": "0x673b8",
+      "key": "MLO",
+      "builder": "cJSON_AddStringToObject",
+      "encoded_type": "string"
+    }
+  ],
+  "mesh_topology_fields": [
+    "id",
+    "router-id",
+    "imageVersion",
+    "ipaddress",
+    "ipv6address",
+    "macaddress",
+    "name",
+    "modelName",
+    "role",
+    "operMode",
+    "status",
+    "backhaulQuality",
+    "ledState",
+    "costtogateway",
+    "isbackhaul-connected",
+    "ssid",
+    "ssids",
+    "meshbackhaulnodes"
+  ],
+  "limits": [
+    "Field presence and type can be conditional; rssi has both string and constructed nested-value branches.",
+    "Rates, quality metrics, indexes and enumerations are not all semantically/unit-mapped. Preserve original types and unknown fields.",
+    "Full nested aps/links/rssi schemas and all producer event families are not claimed complete.",
+    "No authenticated live notification payload was captured. These fields come from matched native builders.",
+    "MLO in shared code is not proof the G6 hardware supports MLO."
+  ]
+}

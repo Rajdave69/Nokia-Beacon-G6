@@ -1,5 +1,7 @@
 # Recover a UART root shell using the stock G6 U-Boot
 
+**Scope and verification.** A G6 with access to the full stock `VENUS#` prompt. A temporary boot of the HJL rootfs0 FIT reached a UART shell as UID 0 and PID 1. A later session mounted the configuration volume read-only. Older-bank recovery, file restoration, and a sustained watchdog-stop test remain unverified.
+
 ## Introduction
 
 The Nokia Beacon G6's ordinary UART route goes through Nokia's Linux CLI and its `Password2` check. A rootfs change can remove a custom `Password2` overlay or its startup hook. If you can still access the **full stock U-Boot** prompt, there is a separate recovery route that does not depend on those Linux files.
@@ -20,7 +22,7 @@ The older `IJL.J03` bank and the subsequent configuration-restore stage have **n
 - A working 115200-baud UART adapter and access to the stock `VENUS#` prompt via [UART console](../enable-uart-console/README.MD) and [`en` authentication](../unlock-uboot-en-console/README.MD).
 - A G6 with the **validated partition layout** and a bootable current stock `rootfs0` bank.
 - The supplied command reference [`resources/recover-bank0.cmd`](resources/recover-bank0.cmd).
-- For optional configuration recovery, the included [`resources/mount-configs-readonly.sh`](resources/mount-configs-readonly.sh) and a confirmed `cfg_partition` backing volume.
+- For optional read-only inspection, the confirmed `cfg_partition` backing volume and the manual steps below. The former helper has been retired because it could obscure the serial console.
 
 > [!caution]
 > Work only with your own device and check the partition layout first. Do **not** run `bn0`, `bn1`, `nand erase`, `ubiformat` or a vendor reset script here. The stock `bn1` path can erase `rootfs_data1`, which was the configuration store on the tested setup. Do not use `saveenv` for these recovery arguments.
@@ -64,19 +66,93 @@ The command file is a copy/paste reference, not a compiled U-Boot script image; 
 
 ### 4. Confirm the root shell
 
-Run `id -u` and `echo $$`. The verified session printed `0` and `1` respectively: a root shell acting as Linux PID 1. This is **not** proof that the session stays alive indefinitely or that normal services, networking, or `/configs` have started. Correctable NAND-read warnings occurred in the captured log, but the stock FIT/kernel/DTB integrity checks passed and the shell booted.
+Run `id -u` and `echo $$`. The verified session printed `0` and `1` respectively: a root shell acting as Linux PID 1. This does not prove that the session stays alive indefinitely or that normal services, networking, or `/configs` have started. Correctable NAND-read warnings occurred in the captured log, but the stock FIT/kernel/DTB integrity checks passed and the shell booted.
 
 Do not type `exit` from the PID 1 shell; terminating init can panic Linux. When finished, use `sync` followed by `reboot -f`, if available, to return to the saved normal boot configuration.
 
-### 5. Inspect and optionally restore persistent files
+### 5. Prepare the early recovery environment
 
-The recovery shell starts before normal mount setup. The squashfs root is read-only, the RAM overlay is not established, and `/configs` is not automatically mounted. Copying to `/usr` or `/etc` at this point will not repair a normal boot.
+The root squashfs is read-only, the normal RAM overlay is absent, and `/configs` is not automatically mounted. In a 16 November 2026 session on the tested G6, I mounted `proc` and `sysfs` successfully. Run these only if they are not already mounted:
 
-The included `mount-configs-readonly.sh` is an *optional*, conservatively guarded helper for the observed `cfg_partition=rootfs_data1` environment. It prepares the necessary proc/sysfs/device access, resolves the backing Linux MTD **by name**, attaches an available UBI device and mounts its volume read-only. Before use, review the script and confirm `cfg_partition`; the mount/restore flow has been syntax-checked but **not live-tested**. Run a copied script as a **child** with `sh /tmp/mount-configs-readonly.sh`, not by sourcing it into PID 1.
+```sh
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+cat /proc/mtd
+cat /proc/mounts
+ls /sys/class/ubi
+```
 
-Inspect the mounted files and make a backup before any write. If you intentionally need to restore the saved public key or custom `sec_cli` overlay and its startup script, only then remount the established `/configs` read/write (`mount -o remount,rw /configs`). The [UART Password2 tutorial](../unlock-uart-root-shell/README.MD) explains the relevant payloads. Merge changes into existing multi-purpose hooks instead of overwriting them. A new rootfs that no longer calls a hook will not run it merely because the file is present; the [cross-bank startup tutorial](../setup-startup-across-firmware-banks/README.md) describes the known late-hook option.
+The attempt to mount `devtmpfs` on `/dev` returned `No such device`. Device nodes such as `/dev/ubi*` were missing and redirection to `/dev/null` failed. Do not mount another filesystem over `/dev`: that could hide the existing serial-console devices. The older `mount-configs-readonly.sh` helper has been retired for this reason; the manual sequence below is the one demonstrated.
 
-Do not invoke Nokia's ordinary startup or factory-default scripts just to mount `/configs`: their error paths may format data. After deliberate changes, sync, unmount the data volume safely and reboot normally. Test the normal authentication route separately.
+### 6. Inspect the configuration volume read-only
+
+In the tested session, `cfg_partition=rootfs_data1`, Linux identified it as `mtd6`, and `ubi6` was unused. I attached that partition as UBI6 and mounted its volume read-only at `/mnt`. **These numbers are examples for that session, not portable identifiers.** Check the partition name and existing UBI attachments each time. Enter commands one at a time and stop on a mismatch or error.
+
+Read-only inspection does not validate restoration. UBIFS reported that recovery was needed and deferred, and the visible database differed from an earlier normal-boot observation. Do not remount read/write or overwrite it on the strength of this test.
+
+First check the target and control device:
+
+```sh
+cat /proc/mtd
+cat /sys/class/mtd/mtd6/name
+ls /sys/class/ubi
+cat /sys/class/misc/ubi_ctrl/dev
+```
+
+For this example, proceed only if `mtd6/name` says `rootfs_data1` and you have confirmed that this is the saved configuration partition. Inspect existing UBI attachments and their `mtd_num` values; if the target is already attached, do not attach it again. Confirm that UBI6 is unused before the example attach. If the numbers differ, identify the correct mapping rather than guessing.
+
+Check `/proc/mounts` and mount a temporary filesystem at `/tmp` **only if it is not already a writable tmpfs**. Mounting it again would hide existing temporary files and nodes. Then create the control node using this kernel's reported major and minor numbers:
+
+```sh
+cat /proc/mounts
+# Only if /tmp is not already a writable tmpfs:
+mount -t tmpfs -o size=8m,mode=0755 tmpfs /tmp
+DEV=$(cat /sys/class/misc/ubi_ctrl/dev)
+MAJOR=${DEV%:*}
+MINOR=${DEV#*:}
+echo "UBI control device: $MAJOR:$MINOR"
+rm -f /tmp/ubi_ctrl
+mknod /tmp/ubi_ctrl c "$MAJOR" "$MINOR"
+ls -l /tmp/ubi_ctrl
+```
+
+Verify the node's major and minor against `/sys/class/misc/ubi_ctrl/dev`. An earlier hardcoded `10:63` node produced `Inappropriate ioctl for device (25)`; do not reuse a number from another device. The removal above affects only the temporary node.
+
+With the example mapping confirmed and UBI6 free, attach and verify it:
+
+```sh
+/usr/sbin/ubiattach /tmp/ubi_ctrl -m 6 -d 6
+cat /sys/class/ubi/ubi6/mtd_num
+cat /sys/class/ubi/ubi6_0/name
+```
+
+The tested attach reported `mtd6` named `rootfs_data1`, and the two checks returned `6` and `rootfs_data1`. The report counted 120 good, zero bad and zero corrupted physical eraseblocks. If the attach fails or the output differs from your verified mapping, stop; do not format or retry with guessed numbers.
+
+After confirming that `/mnt` is an available mountpoint, mount the identified volume read-only and inspect it:
+
+```sh
+mount -t ubifs -o ro ubi6_0 /mnt
+cat /proc/mounts
+ls -l /mnt/dmdb_encryption.cfg /mnt/dmdb_encryption.cfg.bak
+/usr/bin/openssl dgst -sha256 /mnt/dmdb_encryption.cfg
+/usr/bin/openssl dgst -sha256 /mnt/dmdb_encryption.cfg.bak
+```
+
+The tested mount reported `ubi6_0 /mnt ubifs ro,relatime,ubi=6,vol=0`; addressing the volume by name avoided creating a `/dev/ubi6_0` node. The underlying `/configs` directory still showed `Nokia`. The main database and backup had identical hashes within the recovery view, but each was 128,769 bytes, versus 128,353 bytes in the earlier normal-boot view. The pair also matched within that earlier view, but its hash differed from the recovery pair. Their reported file dates were 3 October and 16 November 2026 respectively.
+
+The log said `recovery needed` and `recovery deferred` for the read-only UBIFS mount. It does not establish which snapshot is newer or which state normal boot will expose after recovery. Equal hashes within a pair do not make it a known-good backup. **Do not restore either pair, write to the volume, or assume rollback is safe** without further investigation and a tested restoration procedure.
+
+A possible cleanup, after securing any needed evidence, is to unmount `/mnt` and then detach UBI6 only if this session attached it and no other mount uses it:
+
+```sh
+umount /mnt
+# Only after successful unmount and the checks above:
+/usr/sbin/ubidetach /tmp/ubi_ctrl -d 6
+```
+
+This cleanup was not demonstrated in the recovery session. Do not exit the PID 1 shell. Read/write access, UBIFS journal recovery, restoration and normal-boot acceptance remain untested. Do not run `ubiformat`, `ubimkvol`, `nand erase`, `mount_root` or Nokia startup/factory-reset scripts to obtain the mount: their effects can destroy data.
+
+The [UART Password2 tutorial](../unlock-uart-root-shell/README.MD) and [cross-bank startup tutorial](../setup-startup-across-firmware-banks/README.md) describe the files and callers that may eventually need restoration. Preserve existing multi-purpose scripts; a file alone cannot restore a caller removed from a later firmware build.
 
 ## Persistence
 

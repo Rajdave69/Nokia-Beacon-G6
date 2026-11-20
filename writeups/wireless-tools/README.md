@@ -69,7 +69,7 @@ The [complete source and command catalogue](resources/profile-comparison.json) r
 
 The HJL wrapper has two concrete limitations. If it cannot select XML, its conditional branches can execute nothing and still finish without a useful failure status. Its ten-argument branch also uses `$10`, which shell expansion interprets as `$1` followed by `0`; `${10}` is required for the tenth argument. These are static findings in the shipped wrapper. We did not exercise that branch or patch the router.
 
-## The USSA channel handoff is now decoded
+## How USSA hands off a channel request
 
 The ubus setter's `data` argument is eight raw bytes:
 
@@ -85,7 +85,7 @@ USSA's band indices0–5 label2.4GHz,5GHz lower,5GHz high,5GHz all,60GHz and6GHz
 
 The getter calls `ussa_getChannel` and prints its initialized result buffer without checking the API result at that point. Its formatted output therefore needs corroboration. The collector deliberately skipped these getters when its external time bound was unavailable; this is not a demonstrated getter failure. No USSA setter was executed.
 
-The [ubus follow-up](../internal-ubus-management/resources/wireless-followup/README.md) retains the exact constructor, enums, JSON envelope and backend leads. A related NWAL channel function reaches an optional driver callback and can reject missing callbacks; it is not an unconditional success stub. Its full binding to the specific ubus setter, final driver behavior and persistence remain unresolved.
+The [ubus trace](../internal-ubus-management/resources/wireless-followup/README.md) retains the exact constructor, enums, JSON envelope and backend leads. A related NWAL channel function reaches an optional driver callback and can reject missing callbacks; it is not an unconditional success stub. Its full binding to the specific ubus setter, final driver behavior and persistence remain unresolved.
 
 ## What this enables now
 

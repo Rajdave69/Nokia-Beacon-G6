@@ -1,0 +1,162 @@
+00001d10: 106682d2  mov x16, #0x1330
+00001d14: ff6330cb  sub sp, sp, x16
+00001d18: fe0300f9  str x30, [sp]
+00001d1c: e02f00b9  str w0, [sp, #0x2c]
+00001d20: e11300f9  str x1, [sp, #0x20]
+00001d24: e20f00f9  str x2, [sp, #0x18]
+00001d28: 000c8052  mov w0, #0x60
+00001d2c: e02f13b9  str w0, [sp, #0x132c]
+00001d30: a0a18152  mov w0, #0xd0d
+00001d34: a039a172  movk w0, #0x9cd, lsl #16
+00001d38: e0b312b9  str w0, [sp, #0x12b0]
+00001d3c: ff2b13b9  str wzr, [sp, #0x1328]
+00001d40: 0c000014  b #0x1d70
+00001d44: 800000d0  adrp x0, #0x13000
+00001d48: 01800091  add x1, x0, #0x20
+00001d4c: e02b93b9  ldrsw x0, [sp, #0x1328]
+00001d50: 22686038  ldrb w2, [x1, x0]
+00001d54: e02b93b9  ldrsw x0, [sp, #0x1328]
+00001d58: e1074091  add x1, sp, #1, lsl #12
+00001d5c: 21d00a91  add x1, x1, #0x2b4
+00001d60: 22682038  strb w2, [x1, x0]
+00001d64: e02b53b9  ldr w0, [sp, #0x1328]
+00001d68: 00040011  add w0, w0, #1
+00001d6c: e02b13b9  str w0, [sp, #0x1328]
+00001d70: e02b53b9  ldr w0, [sp, #0x1328]
+00001d74: 1f7c0071  cmp w0, #0x1f
+00001d78: 6dfeff54  b.le #0x1d44
+00001d7c: 19fdff97  bl #0x11e0 ; heuristic getpid@plt {}
+00001d80: e0eb12b9  str w0, [sp, #0x12e8]
+00001d84: e01340f9  ldr x0, [sp, #0x20]
+00001d88: 000840b9  ldr w0, [x0, #8]
+00001d8c: e0f312b9  str w0, [sp, #0x12f0]
+00001d90: e02f40b9  ldr w0, [sp, #0x2c]
+00001d94: e0ef12b9  str w0, [sp, #0x12ec]
+00001d98: e01340f9  ldr x0, [sp, #0x20]
+00001d9c: 000440b9  ldr w0, [x0, #4]
+00001da0: e00313b9  str w0, [sp, #0x1300]
+00001da4: 6bfdff97  bl #0x1350 ; heuristic __errno_location@plt {}
+00001da8: 000040b9  ldr w0, [x0]
+00001dac: e00713b9  str w0, [sp, #0x1304]
+00001db0: e01340f9  ldr x0, [sp, #0x20]
+00001db4: 000840f9  ldr x0, [x0, #0x10]
+00001db8: e07f09f9  str x0, [sp, #0x12f8]
+00001dbc: e0074091  add x0, sp, #1, lsl #12
+00001dc0: 00c00a91  add x0, x0, #0x2b0
+00001dc4: 00a00091  add x0, x0, #0x28
+00001dc8: e10300aa  mov x1, x0
+00001dcc: 00008052  mov w0, #0
+00001dd0: e4fcff97  bl #0x1160 ; heuristic clock_gettime@plt {"x0": 0}
+00001dd4: e0c30891  add x0, sp, #0x230
+00001dd8: 010082d2  mov x1, #0x1000
+00001ddc: e20301aa  mov x2, x1
+00001de0: 01008052  mov w1, #0
+00001de4: 0ffdff97  bl #0x1220 ; heuristic memset@plt {"x1": 0, "x2": 4096}
+00001de8: ff2713b9  str wzr, [sp, #0x1324]
+00001dec: e0c30891  add x0, sp, #0x230
+00001df0: 01008252  mov w1, #0x1000
+00001df4: e7fcff97  bl #0x1190 ; heuristic do_backtrace@plt {"x1": 4096}
+00001df8: e02713b9  str w0, [sp, #0x1324]
+00001dfc: 800000d0  adrp x0, #0x13000
+00001e00: 00e00191  add x0, x0, #0x78
+00001e04: 023f8052  mov w2, #0x1f8
+00001e08: 21088252  mov w1, #0x1041
+00001e0c: 0102a072  movk w1, #0x10, lsl #16
+00001e10: f8fcff97  bl #0x11f0 ; heuristic open@plt {"x0": 77944, "x1": 1052737, "x2": 504}
+00001e14: e02313b9  str w0, [sp, #0x1320]
+00001e18: e02353b9  ldr w0, [sp, #0x1320]
+00001e1c: 1f000071  cmp w0, #0
+00001e20: 2d010054  b.le #0x1e44
+00001e24: e12793b9  ldrsw x1, [sp, #0x1324]
+00001e28: e0c30891  add x0, sp, #0x230
+00001e2c: e20301aa  mov x2, x1
+00001e30: e10300aa  mov x1, x0
+00001e34: e02353b9  ldr w0, [sp, #0x1320]
+00001e38: 1efdff97  bl #0x12b0 ; heuristic write@plt {}
+00001e3c: e02353b9  ldr w0, [sp, #0x1320]
+00001e40: 08fdff97  bl #0x1260 ; heuristic close@plt {}
+00001e44: 800000d0  adrp x0, #0x13000
+00001e48: 00200191  add x0, x0, #0x48
+00001e4c: 01008052  mov w1, #0
+00001e50: e8fcff97  bl #0x11f0 ; heuristic open@plt {"x0": 77896, "x1": 0}
+00001e54: e01f13b9  str w0, [sp, #0x131c]
+00001e58: e01f53b9  ldr w0, [sp, #0x131c]
+00001e5c: 1f000071  cmp w0, #0
+00001e60: 8d040054  b.le #0x1ef0
+00001e64: ff1b13b9  str wzr, [sp, #0x1318]
+00001e68: 800000d0  adrp x0, #0x13000
+00001e6c: 00800191  add x0, x0, #0x60
+00001e70: 023f8052  mov w2, #0x1f8
+00001e74: 21088252  mov w1, #0x1041
+00001e78: 0102a072  movk w1, #0x10, lsl #16
+00001e7c: ddfcff97  bl #0x11f0 ; heuristic open@plt {"x0": 77920, "x1": 1052737, "x2": 504}
+00001e80: e01713b9  str w0, [sp, #0x1314]
+00001e84: e01753b9  ldr w0, [sp, #0x1314]
+00001e88: 1f000071  cmp w0, #0
+00001e8c: ed020054  b.le #0x1ee8
+00001e90: 09000014  b #0x1eb4
+00001e94: e11b93b9  ldrsw x1, [sp, #0x1318]
+00001e98: e0c30091  add x0, sp, #0x30
+00001e9c: e20301aa  mov x2, x1
+00001ea0: e10300aa  mov x1, x0
+00001ea4: e01753b9  ldr w0, [sp, #0x1314]
+00001ea8: 02fdff97  bl #0x12b0 ; heuristic write@plt {}
+00001eac: 1f0000f1  cmp x0, #0
+00001eb0: 6d010054  b.le #0x1edc
+00001eb4: e0c30091  add x0, sp, #0x30
+00001eb8: 024080d2  mov x2, #0x200
+00001ebc: e10300aa  mov x1, x0
+00001ec0: e01f53b9  ldr w0, [sp, #0x131c]
+00001ec4: 13fdff97  bl #0x1310 ; heuristic read@plt {"x2": 512}
+00001ec8: e01b13b9  str w0, [sp, #0x1318]
+00001ecc: e01b53b9  ldr w0, [sp, #0x1318]
+00001ed0: 1f000071  cmp w0, #0
+00001ed4: 0cfeff54  b.gt #0x1e94
+00001ed8: 02000014  b #0x1ee0
+00001edc: 1f2003d5  nop 
+00001ee0: e01753b9  ldr w0, [sp, #0x1314]
+00001ee4: dffcff97  bl #0x1260 ; heuristic close@plt {}
+00001ee8: e01f53b9  ldr w0, [sp, #0x131c]
+00001eec: ddfcff97  bl #0x1260 ; heuristic close@plt {}
+00001ef0: 000000b0  adrp x0, #0x2000
+00001ef4: 00a00b91  add x0, x0, #0x2e8
+00001ef8: 21008252  mov w1, #0x1001
+00001efc: 0102a072  movk w1, #0x10, lsl #16
+00001f00: bcfcff97  bl #0x11f0 ; heuristic open@plt {"x0": "/tmp/pcd_except", "x1": 1052673}
+00001f04: e01f13b9  str w0, [sp, #0x131c]
+00001f08: e01f53b9  ldr w0, [sp, #0x131c]
+00001f0c: 1f000071  cmp w0, #0
+00001f10: 2a020054  b.ge #0x1f54
+00001f14: 20008052  mov w0, #1
+00001f18: 86fcff97  bl #0x1130 ; heuristic exit@plt {"x0": 1}
+00001f1c: e0074091  add x0, sp, #1, lsl #12
+00001f20: 00c00a91  add x0, x0, #0x2b0
+00001f24: 020c80d2  mov x2, #0x60
+00001f28: e10300aa  mov x1, x0
+00001f2c: e01f53b9  ldr w0, [sp, #0x131c]
+00001f30: e0fcff97  bl #0x12b0 ; heuristic write@plt {"x2": 96}
+00001f34: e01313b9  str w0, [sp, #0x1310]
+00001f38: e01353b9  ldr w0, [sp, #0x1310]
+00001f3c: 1f000071  cmp w0, #0
+00001f40: ad000054  b.le #0x1f54
+00001f44: e12f53b9  ldr w1, [sp, #0x132c]
+00001f48: e01353b9  ldr w0, [sp, #0x1310]
+00001f4c: 2000004b  sub w0, w1, w0
+00001f50: e02f13b9  str w0, [sp, #0x132c]
+00001f54: e02f53b9  ldr w0, [sp, #0x132c]
+00001f58: 1f000071  cmp w0, #0
+00001f5c: 0cfeff54  b.gt #0x1f1c
+00001f60: e01f53b9  ldr w0, [sp, #0x131c]
+00001f64: bffcff97  bl #0x1260 ; heuristic close@plt {}
+00001f68: 800000d0  adrp x0, #0x13000
+00001f6c: 00000191  add x0, x0, #0x40
+00001f70: 000040f9  ldr x0, [x0]
+00001f74: 1f0000f1  cmp x0, #0
+00001f78: c0000054  b.eq #0x1f90
+00001f7c: 800000d0  adrp x0, #0x13000
+00001f80: 00000191  add x0, x0, #0x40
+00001f84: 010040f9  ldr x1, [x0]
+00001f88: e02f40b9  ldr w0, [sp, #0x2c]
+00001f8c: 20003fd6  blr x1 ; heuristic unknown {}
+00001f90: 20008052  mov w0, #1
+00001f94: 67fcff97  bl #0x1130 ; heuristic exit@plt {"x0": 1}

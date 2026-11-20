@@ -1,8 +1,28 @@
-# How the Beacon G6 offloads packets and applies QoS
+# How the Beacon G6 accelerates traffic and applies QoS
 
-Offload moves eligible packet processing out of the normal Linux forwarding path. QoS decides how to mark, queue, rate-limit or drop traffic. Both can touch the Cortina datapath, but they enter it through different parts of HomeOS. On the Beacon G6, the quickest way to get confused is to take a loaded offload module or a successful QoS call as proof of what happened to a packet.
+When a router forwards traffic, does every packet take the same route through Linux? And if the WebUI accepts a bandwidth setting, does that mean the hardware enforces it? The examined G6 firmware has several acceleration and quality-of-service paths, but their presence does not prove that a particular flow used them or that a requested rate was applied.
 
-## Three things named offload
+This investigation traces the Beacon G6 HomeOS 24.02 `IJL.J03p01` and 24.04 `HJL.L91p01` firmware. The runtime settings below are read-only observations from a G6 running 24.04. The Beacon 9 HomeOS 25.03 `JJM.K44p01` uses a different Qualcomm platform and is a component comparison, not a live Cortina test. Firmware inspection and runtime settings are separate from a packet-level measurement.
+
+## What is packet offload?
+
+A router normally receives a packet, identifies its connection, applies the relevant routing and policy, and transmits it through another interface. That work can involve the Linux networking stack and CPU. **Offload** moves some of that work to a faster path once a flow meets its conditions. For example, a hardware engine may use a programmed flow entry to handle later packets without repeating every CPU-side operation. This can reduce CPU work, but eligibility, hardware capabilities and the point at which rules are enforced all matter.
+
+A flow is a set of related packets, often identified by addresses, ports and protocol. The first packets may still traverse the ordinary path so the router can establish state. Offload is not automatically enabled for every connection, and a loaded module is not proof that a particular packet bypassed a particular Linux rule. To establish that, match a controlled flow to the relevant hardware entry or counters and verify delivery.
+
+**Quality of service (QoS)** is a different question: how traffic is classified, marked, queued, scheduled, limited or dropped when capacity is constrained. An offloaded flow may interact with hardware queues, but the mere existence of an accelerator does not prove that a QoS setting configures those queues. Conversely, a Linux classifier can exist without demonstrating hardware shaping.
+
+## Which firmware runs the packet engine?
+
+The G6 runs Linux on its main processor and **Zephyr RTOS on the auxiliary Cortina Wi-Fi packet engine**. Early Linux startup loads `/taroko/wfo-qca-nss-pe0.bin` through `rboot -z`. The payload identifies itself as `zephyr-v1.13.0-155-g89629ff620`; the [preserved initial UART log](../probing-from-outside/initial-uart.txt) shows the matching `wfo-qca` application and Zephyr banner starting on the PE0-labelled IPC path. This establishes a historical boot of that image, not its current runtime state.
+
+The loader is a Linux program that copies the payload into packet-engine memory and controls the engine. The WFO image contains host communication and Wi-Fi datapath identifiers. It runs in a separate execution environment, not as a Linux process: the host is AArch64, while the examined WFO entry decodes as MIPS32. UART output from the two environments can be interleaved. The traced loader invocation changes engine state and is not a read-only status command.
+
+The WFO payload is byte-identical in both G6 24.02/24.04 builds and all three examined XS-2426X-A 24.03 builds. Older XS-2426G-B R21/R23 images ship earlier 1.13-based revisions. Separate IPsec, MAP-T and throughput-test payloads contain 1.9-based Zephyr banners; their presence does not show they ran during normal boot. The empty files named `offload_firmware` are placeholders, not the WFO image.
+
+Identifying the RTOS does not establish that a particular flow used it, or that every acceleration or QoS path runs there. Beacon 9 uses a different Qualcomm stack; its capture does not establish whether a future Cortina HomeOS 25.xx build retains this component. The [Zephyr packet-engine knowledgebase](../../knowledgebases/zephyr-packet-engines.md) preserves the cross-version hashes, startup path and UART evidence.
+
+## Three different paths called offload
 
 | Component | What the firmware shows |
 | --- | --- |
@@ -10,9 +30,9 @@ Offload moves eligible packet processing out of the normal Linux forwarding path
 | Cortina kernel hooks | `ca-ne-gpl.ko` registers its own operations, including TCP and UDP flow handling. The handlers can program Cortina entries through `ca-ne.ko`. This path exists independently of an iptables FLOWOFFLOAD rule. |
 | Nokia `koffload.ko` | The inspected functions set up Wi-Fi-side receive callbacks and netlink handling, including DHCP snooping and trapping. Its module name alone tells us little about routed-flow acceleration. |
 
-The two stock G6 builds have the same Linux FLOWOFFLOAD target module and hardware flow-table companion bytes. Their Cortina modules differ, but both have the vendor hook initialization, packet-count check and TCP and UDP paths. Two empty files named `offload_firmware` also ship in the images. The working hooks are in the driver, so those empty files do not tell us whether it is active. [Stock source hashes and disassemblies](resources/static-evidence.json).
+The G6 24.02 `IJL.J03p01` and 24.04 `HJL.L91p01` builds have the same Linux FLOWOFFLOAD target module and hardware flow-table companion bytes. Their Cortina modules differ, but both have the vendor hook initialization, packet-count check and TCP and UDP paths. These compiled paths and the separately identified Zephyr Wi-Fi payload do not establish how every routed flow is handled or whether a particular flow is accelerated. [Stock source hashes and disassemblies](resources/static-evidence.json).
 
-## What the stock G6 actually reported
+## What the live G6 24.04 reported
 
 | Read on HJL.L91p01 | Result |
 | --- | --- |
@@ -23,9 +43,11 @@ The two stock G6 builds have the same Linux FLOWOFFLOAD target module and hardwa
 
 The native packet-count callback reads the conntrack accounting data when available and compares a sum against the configured threshold. That explains why a flow can first appear on the CPU path even when acceleration is available. The 15 is a setting, and actual table admission still depends on the protocol and other driver checks.
 
-The UDP setting has a separate purpose. The driver describes mode 0 as creating the forward and reverse hash entries at different points as traffic arrives in each direction. Its mode 1 description waits for conntrack to become `ASSURED`. The first description is the policy shown on this G6. The owner's later snapshot counted 69 conntrack entries with zero `[OFFLOAD]` and zero `[HW_OFFLOAD]` markers. The saved HJL kernel contains the first marker and has no literal for the second. Cortina also has a separate driver path. A matching hardware flow-table entry or counter is needed to confirm that a particular flow reached Cortina. [Read-only router snapshot](resources/owner-runtime.json) · [Kernel and conntrack evidence](resources/classification-and-conntrack-evidence.json).
+The UDP setting has a separate purpose. The driver describes mode 0 as creating the forward and reverse hash entries at different points as traffic arrives in each direction. Its mode 1 description waits for conntrack to become `ASSURED`. The first description is the policy shown on this G6. My later snapshot counted 69 conntrack entries with zero `[OFFLOAD]` and zero `[HW_OFFLOAD]` markers. The saved HJL kernel contains the first marker and has no literal for the second. Cortina also has a separate driver path. A matching hardware flow-table entry or counter is needed to confirm that a particular flow reached Cortina. [Read-only router snapshot](resources/owner-runtime.json) · [Kernel and conntrack evidence](resources/classification-and-conntrack-evidence.json).
 
-## From a QoS setting to a packet
+## Following a QoS setting toward a packet
+
+Consider a request to cap an uplink at a chosen rate. The UI can save the number, and a classifier can mark a packet as belonging to a class, but neither step proves a scheduler or shaper enforces that rate. The traces below distinguish those stages in the G6 24.02 and 24.04 images.
 
 The WebUI reads and writes configuration objects for classifiers, queues, policers, DSCP and 802.1p. The G6 library also contains Linux rule builders for mangle chains, DSCP marking and traffic-class assignment. Those operations deal with how to identify a packet or label it. A hardware queue, shaper or policer is a separate step.
 
@@ -55,6 +77,8 @@ None of these packet measurements were made in this pass. The saved module expos
 
 ## What this means for a port
 
-For an OpenWrt port, Linux flow offload, Cortina flow programming and hardware QoS need their own checks. A useful packet experiment would keep the route and QoS configuration fixed, compare a new flow with the same flow after it warms up, and correlate Linux counters with a hardware flow or queue counter. The existing WCA statistics commands default to clearing counters, so a passive comparison needs the explicit non-clearing mode. The Beacon 9 ships Qualcomm ECM/PPE/SFE and a separate QoS integration, so it needs its own test.
+For an OpenWrt port, Linux flow offload, Cortina flow programming and hardware QoS need their own checks. A useful packet experiment would keep the route and QoS configuration fixed, compare a new flow with the same flow after it warms up, and correlate Linux counters with a hardware flow or queue counter. The existing WCA statistics commands default to clearing counters, so a passive comparison needs the explicit non-clearing mode. The examined Beacon 9 25.03 `JJM.K44p01` image ships Qualcomm ECM/PPE/SFE and a separate QoS integration, so it needs its own test.
+
+Retaining the G6's Zephyr WFO payload in a replacement Linux system would also require compatible loader and packet-engine control, reserved-memory configuration, host IPC and ring handling, Cortina datapath support and Wi-Fi integration. Copying the binary alone does not provide those interfaces; this is an integration requirement inferred from the stock path, not a validated port.
 
 The remaining lab check is to correlate a known flow with a Cortina table entry and its queue counters. A timed run can establish the programmed rate and a rule-change run can measure how quickly the old hardware entry goes away. The available runtime evidence comes from existing settings and rules. No traffic or hardware state was changed for this follow-up. [Technical record](../../knowledgebases/cortina-offload-and-qos.md).

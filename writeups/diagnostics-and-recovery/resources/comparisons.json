@@ -1,0 +1,2636 @@
+{
+  "scope": "Static derivation only; no firmware execution, IPC request or live state.",
+  "policies": {
+    "PROFILE-G6-HJL": [
+      {
+        "path": "etc/pcd/ECD.pcd",
+        "RULE": "service_ECD",
+        "START_COND": "RULE_COMPLETED service_system_init service_NVA",
+        "COMMAND": "/usr/bin/run_ecd.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/HABOARD.pcd",
+        "RULE": "service_HABoard",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/ha_board",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/HAFORDDM.pcd",
+        "RULE": "service_HAForDDM",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/exe/ha_board.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/HomeAgent.pcd",
+        "RULE": "service_HomeAgent",
+        "START_COND": "FILE /tmp/nwf-board-param.json",
+        "COMMAND": "/usr/bin/homeagent",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/NVA.pcd",
+        "RULE": "service_NVA",
+        "START_COND": "RULE_COMPLETED service_system_init",
+        "COMMAND": "/usr/bin/run_nva.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /configs/map_role",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/USSA.pcd",
+        "RULE": "service_USSA",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/run_ussa.sh > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ai_agent.pcd",
+        "RULE": "service_ai_agent",
+        "START_COND": "RULE_COMPLETED service_system_init service_NVA",
+        "COMMAND": "/usr/bin/run_aiagent.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/ai_controller.pcd",
+        "RULE": "service_ai_controller",
+        "START_COND": "RULE_COMPLETED service_system_init service_ai_agent",
+        "COMMAND": "/usr/bin/run_aicontroller.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/bdemgr.pcd",
+        "RULE": "service_bdemgr",
+        "START_COND": "FILE /tmp/bde_enabled",
+        "COMMAND": "/usr/bin/bdemgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/boeng.pcd",
+        "RULE": "service_boeng",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/boengAgent",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/cfgmgr.pcd",
+        "RULE": "service_cfgmgr",
+        "START_COND": "RULE_COMPLETED service_ndk_wand service_msgmgr SECURITY_SERVICES service_wifi_sched service_dbmgr",
+        "COMMAND": "/usr/bin/cfgmgr > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/cfgmgr_socket",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/cthulhu.pcd",
+        "RULE": "service_cthulhu",
+        "START_COND": "RULE_COMPLETED service_timingila",
+        "COMMAND": "/usr/bin/run_cthulhu.sh",
+        "SCHED": "NICE,0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/dataelement_dm.pcd",
+        "RULE": "service_dataelement",
+        "START_COND": "RULE_COMPLETED service_cfgmgr service_dbmgr",
+        "COMMAND": "/usr/bin/dataelement -f > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/dbmgr.pcd",
+        "RULE": "service_dbmgr",
+        "START_COND": "RULE_COMPLETED SECURITY_SERVICES",
+        "COMMAND": "/usr/bin/ndbd --default=/etc/datamodel.db --dbfile=/configs/dmdb_encryption.cfg --backup=/configs/dmdb_encryption.cfg.bak --prepare=/usr/bin/cfgmgr_db_prepare > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/ndbd_socket",
+        "END_COND_TIMEOUT": "300000",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ddm.pcd",
+        "RULE": "service_ddm",
+        "START_COND": "FILE /tmp/nwf-ua-enabled",
+        "COMMAND": "/usr/bin/ddm",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/dhcpsnoop.pcd",
+        "RULE": "service_dhcpsnoop",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/dhcpsnoop",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/diagnosis.pcd",
+        "RULE": "service_diagnosis",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/diagnosis",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/igmpd.pcd",
+        "RULE": "service_igmpd",
+        "START_COND": "FILE /tmp/igmp_boot",
+        "COMMAND": "/sbin/igmpd /configs/igmprt.conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/lanhostd.pcd",
+        "RULE": "service_lanhostd",
+        "START_COND": "FILE /tmp/lanhostd_boot",
+        "COMMAND": "/usr/bin/lanhostd -m 0 -f 0 -t 1",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/lcm_adapter.pcd",
+        "RULE": "service_lcm-adapter",
+        "START_COND": "RULE_COMPLETED,service_cfgmgr,service_cthulhu",
+        "COMMAND": "/usr/bin/lcm-adapter",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ledmgr.pcd",
+        "RULE": "service_ledmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/ledmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/msgmgr.pcd",
+        "RULE": "service_msgmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/msgmgr -s",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_appsd.pcd",
+        "RULE": "service_ndk_appsd",
+        "START_COND": "RULE_COMPLETED service_msgmgr service_ndk_xiptmgr service_ndk_evtmgr",
+        "COMMAND": "/sbin/ndk_appsd",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "FILE /tmp/ndk_appsd_started",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_evtmgr.pcd",
+        "RULE": "service_ndk_evtmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/ndk_evtmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_ramond.pcd",
+        "RULE": "service_ndk_ramond",
+        "START_COND": "RULE_COMPLETED service_msgmgr",
+        "COMMAND": "/sbin/ndk_ramond",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_timer.pcd",
+        "RULE": "service_ndktimer",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/ndk_timer",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_wand.pcd",
+        "RULE": "service_ndk_wand",
+        "START_COND": "RULE_COMPLETED service_msgmgr service_ndk_xiptmgr service_ndk_evtmgr service_ndk_appsd",
+        "COMMAND": "/sbin/ndk_wand",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_xiptmgr.pcd",
+        "RULE": "service_ndk_xiptmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/ndk_xiptmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/nuspd.pcd",
+        "RULE": "service_nuspd",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/nuspd",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "WAIT 15000",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/obuspa.pcd",
+        "RULE": "service_obuspa",
+        "START_COND": "FILE /tmp/obuspaStart",
+        "COMMAND": "/sbin/obuspa -v 1 -r /etc/uspfactory_reset.conf -l syslog",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/XYZ",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES",
+        "ALIVE_TIMEOUT": "75000"
+      },
+      {
+        "path": "etc/pcd/premeshctl.pcd",
+        "RULE": "service_premeshctl",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/bin/sh /usr/bin/premeshctl.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/raccess.pcd",
+        "RULE": "service_raccess",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/raccess",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/rlyeh.pcd",
+        "RULE": "service_rlyeh",
+        "START_COND": "RULE_COMPLETED service_cfgmgr service_nuspd service_rpcd",
+        "COMMAND": "/usr/bin/rlyeh -D",
+        "SCHED": "NICE,0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/rpcd.pcd",
+        "RULE": "service_rpcd",
+        "START_COND": "FILE /tmp/.boot.finish /var/run/ubus-session/ubus.sock",
+        "COMMAND": "/sbin/rpcd -t 30",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/security.pcd",
+        "RULE": "SECURITY_SERVICES",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/secInit.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "EXIT 0",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/srmf.pcd",
+        "RULE": "service_srmf",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/srmf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/swmgnt.pcd",
+        "RULE": "service_swmgnt",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/load_app -d InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Enable=true -- /usr/bin/swmgnt",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/syncmgr.pcd",
+        "RULE": "service_syncmgr",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/syncmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/system_init.pcd",
+        "RULE": "service_system_init",
+        "START_COND": "NONE",
+        "COMMAND": "/bin/sh /usr/bin/system_init.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "FILE /tmp/system_inited",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/timingila.pcd",
+        "RULE": "service_timingila",
+        "START_COND": "RULE_COMPLETED service_rlyeh",
+        "COMMAND": "/usr/bin/timingila -D",
+        "SCHED": "NICE,0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/tr069.pcd",
+        "RULE": "service_tr069",
+        "START_COND": "FILE /tmp/tr069client_enabled",
+        "COMMAND": "tr069client -d /configs/tr069_conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ubus_session.pcd",
+        "RULE": "service_ubus_session",
+        "START_COND": "RULE_COMPLETED service_system_init",
+        "COMMAND": "/sbin/ubusd -s /var/run/ubus-session/ubus.sock",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/uplinkmgr.pcd",
+        "RULE": "service_uplinkmgr",
+        "START_COND": "FILE /tmp/evtmgr_ready",
+        "COMMAND": "/usr/bin/uplinkmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/uspCfgUpdate.pcd",
+        "RULE": "service_uspCfgUpdate",
+        "START_COND": "FILE /tmp/uspCfgUpdateStart",
+        "COMMAND": "/usr/bin/uspCfgUpdate",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "WAIT 15000",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/uva.pcd",
+        "RULE": "service_uva",
+        "START_COND": "RULE_COMPLETED service_cfgmgr service_ubus_session",
+        "COMMAND": "/sbin/uva -u appService",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "WAIT 15000",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wanlived.pcd",
+        "RULE": "service_wanlived",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/wanlived",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/web.pcd",
+        "RULE": "service_web",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/webs/thttpd -dd /webs",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wifi_sched.pcd",
+        "RULE": "service_wifi_sched",
+        "START_COND": "RULE_COMPLETED service_msgmgr",
+        "COMMAND": "/usr/sbin/sched > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wifimon.pcd",
+        "RULE": "service_wifimon",
+        "START_COND": "FILE /tmp/start_wifimon.txt",
+        "COMMAND": "/usr/sbin/wifimond",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wlancli.pcd",
+        "RULE": "service_wlancli",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/wlancli setWpsDaemon",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/xmppc.pcd",
+        "RULE": "service_xmppc",
+        "START_COND": "FILE /tmp/xmppc_enable",
+        "COMMAND": "/usr/bin/xmppc /configs/xmpp/xmpp.conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      }
+    ],
+    "PROFILE-G6-IJL": [
+      {
+        "path": "etc/pcd/ECD.pcd",
+        "RULE": "service_ECD",
+        "START_COND": "RULE_COMPLETED service_system_init service_NVA",
+        "COMMAND": "/usr/bin/run_ecd.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/HABOARD.pcd",
+        "RULE": "service_HABoard",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/ha_board",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/HAFORDDM.pcd",
+        "RULE": "service_HAForDDM",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/exe/ha_board.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/HomeAgent.pcd",
+        "RULE": "service_HomeAgent",
+        "START_COND": "FILE /tmp/nwf-board-param.json",
+        "COMMAND": "/usr/bin/homeagent",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/NVA.pcd",
+        "RULE": "service_NVA",
+        "START_COND": "RULE_COMPLETED service_system_init",
+        "COMMAND": "/usr/bin/run_nva.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /configs/map_role",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/USSA.pcd",
+        "RULE": "service_USSA",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/run_ussa.sh > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/bdemgr.pcd",
+        "RULE": "service_bdemgr",
+        "START_COND": "FILE /tmp/bde_enabled",
+        "COMMAND": "/usr/bin/bdemgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/boeng.pcd",
+        "RULE": "service_boeng",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/boengAgent",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/cfgmgr.pcd",
+        "RULE": "service_cfgmgr",
+        "START_COND": "RULE_COMPLETED service_ndk_wand service_msgmgr SECURITY_SERVICES service_wifi_sched service_dbmgr",
+        "COMMAND": "/usr/bin/cfgmgr > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/cfgmgr_socket",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/container.pcd",
+        "RULE": "service_container",
+        "START_COND": "RULE_COMPLETED service_rpcd",
+        "COMMAND": "/usr/bin/ContainerMgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/dbmgr.pcd",
+        "RULE": "service_dbmgr",
+        "START_COND": "RULE_COMPLETED SECURITY_SERVICES",
+        "COMMAND": "/usr/bin/ndbd --default=/etc/datamodel.db --dbfile=/configs/dmdb_encryption.cfg --backup=/configs/dmdb_encryption.cfg.bak --prepare=/usr/bin/cfgmgr_db_prepare > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/ndbd_socket",
+        "END_COND_TIMEOUT": "300000",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ddm.pcd",
+        "RULE": "service_ddm",
+        "START_COND": "FILE /tmp/nwf-ua-enabled",
+        "COMMAND": "/usr/bin/ddm",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/dhcpsnoop.pcd",
+        "RULE": "service_dhcpsnoop",
+        "START_COND": "FILE /tmp/dhcpsnoop_boot",
+        "COMMAND": "/usr/bin/dhcpsnoop",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/diagnosis.pcd",
+        "RULE": "service_diagnosis",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/diagnosis",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/igmpd.pcd",
+        "RULE": "service_igmpd",
+        "START_COND": "FILE /tmp/igmp_boot",
+        "COMMAND": "/sbin/igmpd /configs/igmprt.conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/lanhostd.pcd",
+        "RULE": "service_lanhostd",
+        "START_COND": "FILE /tmp/lanhostd_boot",
+        "COMMAND": "/usr/bin/lanhostd -m 0 -f 0 -t 1",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ledmgr.pcd",
+        "RULE": "service_ledmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/ledmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/msgmgr.pcd",
+        "RULE": "service_msgmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/msgmgr -s",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_appsd.pcd",
+        "RULE": "service_ndk_appsd",
+        "START_COND": "RULE_COMPLETED service_msgmgr service_ndk_xiptmgr service_ndk_evtmgr",
+        "COMMAND": "/sbin/ndk_appsd",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "FILE /tmp/ndk_appsd_started",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_evtmgr.pcd",
+        "RULE": "service_ndk_evtmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/ndk_evtmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_ramond.pcd",
+        "RULE": "service_ndk_ramond",
+        "START_COND": "RULE_COMPLETED service_msgmgr",
+        "COMMAND": "/sbin/ndk_ramond",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_timer.pcd",
+        "RULE": "service_ndktimer",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/ndk_timer",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_wand.pcd",
+        "RULE": "service_ndk_wand",
+        "START_COND": "RULE_COMPLETED service_msgmgr service_ndk_xiptmgr service_ndk_evtmgr service_ndk_appsd",
+        "COMMAND": "/sbin/ndk_wand",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_xiptmgr.pcd",
+        "RULE": "service_ndk_xiptmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/ndk_xiptmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/nuspd.pcd",
+        "RULE": "service_nuspd",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/nuspd",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "WAIT 15000",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/obuspa.pcd",
+        "RULE": "service_obuspa",
+        "START_COND": "FILE /tmp/obuspaStart",
+        "COMMAND": "/sbin/obuspa -v 1 -r /etc/uspfactory_reset.conf -l syslog",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/XYZ",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES",
+        "ALIVE_TIMEOUT": "75000"
+      },
+      {
+        "path": "etc/pcd/pluginmgr.pcd",
+        "RULE": "service_pluginmgr",
+        "START_COND": "RULE_COMPLETED service_container",
+        "COMMAND": "/usr/bin/PluginMgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/premeshctl.pcd",
+        "RULE": "service_premeshctl",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/bin/sh /usr/bin/premeshctl.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/raccess.pcd",
+        "RULE": "service_raccess",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/raccess",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/rpcd.pcd",
+        "RULE": "service_rpcd",
+        "START_COND": "FILE /tmp/.boot.finish /var/run/ubus-session/ubus.sock",
+        "COMMAND": "/sbin/rpcd -s /var/run/ubus.sock -t 30",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/security.pcd",
+        "RULE": "SECURITY_SERVICES",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/secInit.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "EXIT 0",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/srmf.pcd",
+        "RULE": "service_srmf",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/srmf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/swmgnt.pcd",
+        "RULE": "service_swmgnt",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/load_app -d InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Enable=true -- /usr/bin/swmgnt",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/syncmgr.pcd",
+        "RULE": "service_syncmgr",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/syncmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/system_init.pcd",
+        "RULE": "service_system_init",
+        "START_COND": "NONE",
+        "COMMAND": "/bin/sh /usr/bin/system_init.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "FILE /tmp/system_inited",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/tr069.pcd",
+        "RULE": "service_tr069",
+        "START_COND": "FILE /tmp/tr069client_enabled",
+        "COMMAND": "tr069client -d /configs/tr069_conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ubus_session.pcd",
+        "RULE": "service_ubus_session",
+        "START_COND": "RULE_COMPLETED service_system_init",
+        "COMMAND": "/sbin/ubusd -s /var/run/ubus-session/ubus.sock",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/uplinkmgr.pcd",
+        "RULE": "service_uplinkmgr",
+        "START_COND": "FILE /tmp/evtmgr_ready",
+        "COMMAND": "/usr/bin/uplinkmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/uspCfgUpdate.pcd",
+        "RULE": "service_uspCfgUpdate",
+        "START_COND": "FILE /tmp/uspCfgUpdateStart",
+        "COMMAND": "/usr/bin/uspCfgUpdate",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "WAIT 15000",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/uva.pcd",
+        "RULE": "service_uva",
+        "START_COND": "RULE_COMPLETED service_cfgmgr service_ubus_session",
+        "COMMAND": "/sbin/uva -u appService",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "WAIT 15000",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wanlived.pcd",
+        "RULE": "service_wanlived",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/wanlived",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/web.pcd",
+        "RULE": "service_web",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/webs/thttpd -dd /webs",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wifi_sched.pcd",
+        "RULE": "service_wifi_sched",
+        "START_COND": "RULE_COMPLETED service_msgmgr",
+        "COMMAND": "/usr/sbin/sched",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wifimon.pcd",
+        "RULE": "service_wifimon",
+        "START_COND": "FILE /tmp/start_wifimon.txt",
+        "COMMAND": "/usr/sbin/wifimond",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wlancli.pcd",
+        "RULE": "service_wlancli",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/wlancli setWpsDaemon",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      }
+    ],
+    "PROFILE-B9-JJM": [
+      {
+        "path": "etc/pcd/ECD.pcd",
+        "RULE": "service_ECD",
+        "START_COND": "RULE_COMPLETED service_system_init service_NVA",
+        "COMMAND": "/usr/bin/run_ecd.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/HABOARD.pcd",
+        "RULE": "service_HABoard",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/ha_board",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/HAFORDDM.pcd",
+        "RULE": "service_HAForDDM",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/exe/ha_board.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/HomeAgent.pcd",
+        "RULE": "service_HomeAgent",
+        "START_COND": "FILE /tmp/nwf-board-param.json",
+        "COMMAND": "/usr/bin/homeagent",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/NVA.pcd",
+        "RULE": "service_NVA",
+        "START_COND": "RULE_COMPLETED service_system_init",
+        "COMMAND": "/usr/bin/run_nva.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /configs/map_role",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/USSA.pcd",
+        "RULE": "service_USSA",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/run_ussa.sh > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ai_agent.pcd",
+        "RULE": "service_ai_agent",
+        "START_COND": "RULE_COMPLETED service_system_init service_NVA",
+        "COMMAND": "/usr/bin/run_aiagent.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/ai_controller.pcd",
+        "RULE": "service_ai_controller",
+        "START_COND": "RULE_COMPLETED service_system_init service_ai_agent",
+        "COMMAND": "/usr/bin/run_aicontroller.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/bdemgr.pcd",
+        "RULE": "service_bdemgr",
+        "START_COND": "FILE /tmp/bde_enabled",
+        "COMMAND": "/usr/bin/bdemgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/boeng.pcd",
+        "RULE": "service_boeng",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/boengAgent",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/cfgmgr.pcd",
+        "RULE": "service_cfgmgr",
+        "START_COND": "RULE_COMPLETED service_ndk_wand service_msgmgr SECURITY_SERVICES service_wifi_sched service_dbmgr",
+        "COMMAND": "/usr/bin/cfgmgr > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/cfgmgr_socket",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/cthulhu.pcd",
+        "RULE": "service_cthulhu",
+        "START_COND": "RULE_COMPLETED service_timingila",
+        "COMMAND": "/usr/bin/run_cthulhu.sh",
+        "SCHED": "NICE,0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/dataelement_dm.pcd",
+        "RULE": "service_dataelement",
+        "START_COND": "RULE_COMPLETED service_cfgmgr service_dbmgr",
+        "COMMAND": "/usr/bin/dataelement -f > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/dbmgr.pcd",
+        "RULE": "service_dbmgr",
+        "START_COND": "RULE_COMPLETED SECURITY_SERVICES",
+        "COMMAND": "/usr/bin/ndbd --default=/etc/datamodel.db --dbfile=/configs/dmdb_encryption.cfg --backup=/configs/dmdb_encryption.cfg.bak --prepare=/usr/bin/cfgmgr_db_prepare > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/ndbd_socket",
+        "END_COND_TIMEOUT": "300000",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ddm.pcd",
+        "RULE": "service_ddm",
+        "START_COND": "FILE /tmp/nwf-ua-enabled",
+        "COMMAND": "/usr/bin/ddm",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/dhcpsnoop.pcd",
+        "RULE": "service_dhcpsnoop",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/dhcpsnoop",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/diagnosis.pcd",
+        "RULE": "service_diagnosis",
+        "START_COND": "RULE_COMPLETED service_msgmgr",
+        "COMMAND": "/usr/bin/diagnosis",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/igmpd.pcd",
+        "RULE": "service_igmpd",
+        "START_COND": "FILE /tmp/igmp_boot",
+        "COMMAND": "/sbin/igmpd /configs/igmprt.conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/lanhostd.pcd",
+        "RULE": "service_lanhostd",
+        "START_COND": "FILE /tmp/lanhostd_boot",
+        "COMMAND": "/usr/bin/lanhostd -m 0 -f 0 -t 1",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/lcm_adapter.pcd",
+        "RULE": "service_lcm-adapter",
+        "START_COND": "RULE_COMPLETED,service_cfgmgr,service_cthulhu",
+        "COMMAND": "/usr/bin/lcm-adapter",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ledmgr.pcd",
+        "RULE": "service_ledmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/ledmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/msgmgr.pcd",
+        "RULE": "service_msgmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/msgmgr -s",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_appsd.pcd",
+        "RULE": "service_ndk_appsd",
+        "START_COND": "RULE_COMPLETED service_msgmgr service_ndk_xiptmgr service_ndk_evtmgr",
+        "COMMAND": "/sbin/ndk_appsd",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "FILE /tmp/ndk_appsd_started",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_evtmgr.pcd",
+        "RULE": "service_ndk_evtmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/ndk_evtmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_ramond.pcd",
+        "RULE": "service_ndk_ramond",
+        "START_COND": "RULE_COMPLETED service_msgmgr",
+        "COMMAND": "/sbin/ndk_ramond",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_timer.pcd",
+        "RULE": "service_ndktimer",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/ndk_timer",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_wand.pcd",
+        "RULE": "service_ndk_wand",
+        "START_COND": "RULE_COMPLETED service_msgmgr service_ndk_xiptmgr service_ndk_evtmgr service_ndk_appsd",
+        "COMMAND": "/sbin/ndk_wand",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "REBOOT",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ndk_xiptmgr.pcd",
+        "RULE": "service_ndk_xiptmgr",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/ndk_xiptmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/nokia-api.pcd",
+        "RULE": "service_nokia-api",
+        "START_COND": "RULE_COMPLETED service_cfgmgr service_ubus_session",
+        "COMMAND": "/usr/bin/load_app -r OperatorID=BWDS,BGGL -- /usr/bin/nokia-api",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/nuspd.pcd",
+        "RULE": "service_nuspd",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/nuspd",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "WAIT 15000",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/obuspa.pcd",
+        "RULE": "service_obuspa",
+        "START_COND": "FILE /tmp/obuspaStart",
+        "COMMAND": "/sbin/obuspa -v 1 -r /etc/uspfactory_reset.conf -l syslog",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "FILE /tmp/XYZ",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES",
+        "ALIVE_TIMEOUT": "75000"
+      },
+      {
+        "path": "etc/pcd/premeshctl.pcd",
+        "RULE": "service_premeshctl",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/bin/sh /usr/bin/premeshctl.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "NO"
+      },
+      {
+        "path": "etc/pcd/raccess.pcd",
+        "RULE": "service_raccess",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/raccess",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/rlyeh.pcd",
+        "RULE": "service_rlyeh",
+        "START_COND": "FILE /tmp/uspRawAdded",
+        "COMMAND": "/usr/bin/run_rlyeh.sh",
+        "SCHED": "NICE,0",
+        "DAEMON": "NO",
+        "END_COND": "EXIT 0",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/rpcd.pcd",
+        "RULE": "service_rpcd",
+        "START_COND": "FILE /tmp/.boot.finish /var/run/ubus-session/ubus.sock",
+        "COMMAND": "/sbin/rpcd -t 30",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/security.pcd",
+        "RULE": "SECURITY_SERVICES",
+        "START_COND": "NONE",
+        "COMMAND": "/sbin/secInit.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "EXIT 0",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/srmf.pcd",
+        "RULE": "service_srmf",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/srmf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/swmgnt.pcd",
+        "RULE": "service_swmgnt",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/load_app -d InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Enable=true -- /usr/bin/swmgnt",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/syncmgr.pcd",
+        "RULE": "service_syncmgr",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/syncmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/system_init.pcd",
+        "RULE": "service_system_init",
+        "START_COND": "NONE",
+        "COMMAND": "/bin/sh /usr/bin/system_init.sh",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "FILE /tmp/system_inited",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/timingila.pcd",
+        "RULE": "service_timingila",
+        "START_COND": "RULE_COMPLETED service_rlyeh",
+        "COMMAND": "/usr/bin/timingila -D",
+        "SCHED": "NICE,0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/tr069.pcd",
+        "RULE": "service_tr069",
+        "START_COND": "FILE /tmp/tr069client_enabled",
+        "COMMAND": "tr069client -d /configs/tr069_conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/ubus_session.pcd",
+        "RULE": "service_ubus_session",
+        "START_COND": "RULE_COMPLETED service_system_init",
+        "COMMAND": "/sbin/ubusd -s /var/run/ubus-session/ubus.sock",
+        "SCHED": "NICE 0",
+        "DAEMON": "NO",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/uplinkmgr.pcd",
+        "RULE": "service_uplinkmgr",
+        "START_COND": "FILE /tmp/evtmgr_ready",
+        "COMMAND": "/usr/bin/uplinkmgr",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/uva.pcd",
+        "RULE": "service_uva",
+        "START_COND": "RULE_COMPLETED service_cfgmgr service_ubus_session",
+        "COMMAND": "/sbin/uva -u appService",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "WAIT 15000",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wanlived.pcd",
+        "RULE": "service_wanlived",
+        "START_COND": "RULE_COMPLETED service_cfgmgr",
+        "COMMAND": "/usr/bin/wanlived",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/web.pcd",
+        "RULE": "service_web",
+        "START_COND": "FILE /etc/httpd.conf",
+        "COMMAND": "/webs/thttpd -u appService -dd /webs -C /etc/httpd.conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wifi_sched.pcd",
+        "RULE": "service_wifi_sched",
+        "START_COND": "RULE_COMPLETED service_msgmgr",
+        "COMMAND": "/usr/sbin/sched > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wifihost.pcd",
+        "RULE": "service_wifihostd",
+        "START_COND": "RULE_COMPLETED service_dbmgr",
+        "COMMAND": "/usr/bin/wifihostd > /dev/console",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wifimon.pcd",
+        "RULE": "service_wifimon",
+        "START_COND": "FILE /tmp/start_wifimon.txt",
+        "COMMAND": "/usr/sbin/wifimond",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/wlancli.pcd",
+        "RULE": "service_wlancli",
+        "START_COND": "NONE",
+        "COMMAND": "/usr/bin/wlancli setWpsDaemon",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "NONE",
+        "ACTIVE": "YES"
+      },
+      {
+        "path": "etc/pcd/xmppc.pcd",
+        "RULE": "service_xmppc",
+        "START_COND": "FILE /tmp/xmppc_enable",
+        "COMMAND": "/usr/bin/xmppc /configs/xmpp/xmpp.conf",
+        "SCHED": "NICE 0",
+        "DAEMON": "YES",
+        "END_COND": "NONE",
+        "END_COND_TIMEOUT": "-1",
+        "FAILURE_ACTION": "RESTART",
+        "ACTIVE": "YES"
+      }
+    ]
+  },
+  "rule_changes": [
+    {
+      "before": "PROFILE-G6-IJL",
+      "after": "PROFILE-G6-HJL",
+      "added": [
+        {
+          "path": "etc/pcd/ai_agent.pcd",
+          "RULE": "service_ai_agent",
+          "START_COND": "RULE_COMPLETED service_system_init service_NVA",
+          "COMMAND": "/usr/bin/run_aiagent.sh",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "RESTART",
+          "ACTIVE": "NO"
+        },
+        {
+          "path": "etc/pcd/ai_controller.pcd",
+          "RULE": "service_ai_controller",
+          "START_COND": "RULE_COMPLETED service_system_init service_ai_agent",
+          "COMMAND": "/usr/bin/run_aicontroller.sh",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "RESTART",
+          "ACTIVE": "NO"
+        },
+        {
+          "path": "etc/pcd/cthulhu.pcd",
+          "RULE": "service_cthulhu",
+          "START_COND": "RULE_COMPLETED service_timingila",
+          "COMMAND": "/usr/bin/run_cthulhu.sh",
+          "SCHED": "NICE,0",
+          "DAEMON": "NO",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "NONE",
+          "ACTIVE": "YES"
+        },
+        {
+          "path": "etc/pcd/dataelement_dm.pcd",
+          "RULE": "service_dataelement",
+          "START_COND": "RULE_COMPLETED service_cfgmgr service_dbmgr",
+          "COMMAND": "/usr/bin/dataelement -f > /dev/console",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "NONE",
+          "ACTIVE": "YES"
+        },
+        {
+          "path": "etc/pcd/lcm_adapter.pcd",
+          "RULE": "service_lcm-adapter",
+          "START_COND": "RULE_COMPLETED,service_cfgmgr,service_cthulhu",
+          "COMMAND": "/usr/bin/lcm-adapter",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "RESTART",
+          "ACTIVE": "YES"
+        },
+        {
+          "path": "etc/pcd/rlyeh.pcd",
+          "RULE": "service_rlyeh",
+          "START_COND": "RULE_COMPLETED service_cfgmgr service_nuspd service_rpcd",
+          "COMMAND": "/usr/bin/rlyeh -D",
+          "SCHED": "NICE,0",
+          "DAEMON": "NO",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "NONE",
+          "ACTIVE": "YES"
+        },
+        {
+          "path": "etc/pcd/timingila.pcd",
+          "RULE": "service_timingila",
+          "START_COND": "RULE_COMPLETED service_rlyeh",
+          "COMMAND": "/usr/bin/timingila -D",
+          "SCHED": "NICE,0",
+          "DAEMON": "NO",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "NONE",
+          "ACTIVE": "YES"
+        },
+        {
+          "path": "etc/pcd/xmppc.pcd",
+          "RULE": "service_xmppc",
+          "START_COND": "FILE /tmp/xmppc_enable",
+          "COMMAND": "/usr/bin/xmppc /configs/xmpp/xmpp.conf",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "RESTART",
+          "ACTIVE": "YES"
+        }
+      ],
+      "removed": [
+        {
+          "path": "etc/pcd/container.pcd",
+          "RULE": "service_container",
+          "START_COND": "RULE_COMPLETED service_rpcd",
+          "COMMAND": "/usr/bin/ContainerMgr",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "RESTART",
+          "ACTIVE": "YES"
+        },
+        {
+          "path": "etc/pcd/pluginmgr.pcd",
+          "RULE": "service_pluginmgr",
+          "START_COND": "RULE_COMPLETED service_container",
+          "COMMAND": "/usr/bin/PluginMgr",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "RESTART",
+          "ACTIVE": "YES"
+        }
+      ],
+      "changed": [
+        {
+          "path": "etc/pcd/dhcpsnoop.pcd",
+          "before": {
+            "path": "etc/pcd/dhcpsnoop.pcd",
+            "RULE": "service_dhcpsnoop",
+            "START_COND": "FILE /tmp/dhcpsnoop_boot",
+            "COMMAND": "/usr/bin/dhcpsnoop",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          },
+          "after": {
+            "path": "etc/pcd/dhcpsnoop.pcd",
+            "RULE": "service_dhcpsnoop",
+            "START_COND": "NONE",
+            "COMMAND": "/usr/bin/dhcpsnoop",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          }
+        },
+        {
+          "path": "etc/pcd/rpcd.pcd",
+          "before": {
+            "path": "etc/pcd/rpcd.pcd",
+            "RULE": "service_rpcd",
+            "START_COND": "FILE /tmp/.boot.finish /var/run/ubus-session/ubus.sock",
+            "COMMAND": "/sbin/rpcd -s /var/run/ubus.sock -t 30",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          },
+          "after": {
+            "path": "etc/pcd/rpcd.pcd",
+            "RULE": "service_rpcd",
+            "START_COND": "FILE /tmp/.boot.finish /var/run/ubus-session/ubus.sock",
+            "COMMAND": "/sbin/rpcd -t 30",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          }
+        },
+        {
+          "path": "etc/pcd/wifi_sched.pcd",
+          "before": {
+            "path": "etc/pcd/wifi_sched.pcd",
+            "RULE": "service_wifi_sched",
+            "START_COND": "RULE_COMPLETED service_msgmgr",
+            "COMMAND": "/usr/sbin/sched",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          },
+          "after": {
+            "path": "etc/pcd/wifi_sched.pcd",
+            "RULE": "service_wifi_sched",
+            "START_COND": "RULE_COMPLETED service_msgmgr",
+            "COMMAND": "/usr/sbin/sched > /dev/console",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          }
+        }
+      ]
+    },
+    {
+      "before": "PROFILE-G6-HJL",
+      "after": "PROFILE-B9-JJM",
+      "added": [
+        {
+          "path": "etc/pcd/nokia-api.pcd",
+          "RULE": "service_nokia-api",
+          "START_COND": "RULE_COMPLETED service_cfgmgr service_ubus_session",
+          "COMMAND": "/usr/bin/load_app -r OperatorID=BWDS,BGGL -- /usr/bin/nokia-api",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "NONE",
+          "ACTIVE": "YES"
+        },
+        {
+          "path": "etc/pcd/wifihost.pcd",
+          "RULE": "service_wifihostd",
+          "START_COND": "RULE_COMPLETED service_dbmgr",
+          "COMMAND": "/usr/bin/wifihostd > /dev/console",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "NONE",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "NONE",
+          "ACTIVE": "YES"
+        }
+      ],
+      "removed": [
+        {
+          "path": "etc/pcd/uspCfgUpdate.pcd",
+          "RULE": "service_uspCfgUpdate",
+          "START_COND": "FILE /tmp/uspCfgUpdateStart",
+          "COMMAND": "/usr/bin/uspCfgUpdate",
+          "SCHED": "NICE 0",
+          "DAEMON": "YES",
+          "END_COND": "WAIT 15000",
+          "END_COND_TIMEOUT": "-1",
+          "FAILURE_ACTION": "RESTART",
+          "ACTIVE": "YES"
+        }
+      ],
+      "changed": [
+        {
+          "path": "etc/pcd/diagnosis.pcd",
+          "before": {
+            "path": "etc/pcd/diagnosis.pcd",
+            "RULE": "service_diagnosis",
+            "START_COND": "NONE",
+            "COMMAND": "/usr/bin/diagnosis",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          },
+          "after": {
+            "path": "etc/pcd/diagnosis.pcd",
+            "RULE": "service_diagnosis",
+            "START_COND": "RULE_COMPLETED service_msgmgr",
+            "COMMAND": "/usr/bin/diagnosis",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          }
+        },
+        {
+          "path": "etc/pcd/rlyeh.pcd",
+          "before": {
+            "path": "etc/pcd/rlyeh.pcd",
+            "RULE": "service_rlyeh",
+            "START_COND": "RULE_COMPLETED service_cfgmgr service_nuspd service_rpcd",
+            "COMMAND": "/usr/bin/rlyeh -D",
+            "SCHED": "NICE,0",
+            "DAEMON": "NO",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "NONE",
+            "ACTIVE": "YES"
+          },
+          "after": {
+            "path": "etc/pcd/rlyeh.pcd",
+            "RULE": "service_rlyeh",
+            "START_COND": "FILE /tmp/uspRawAdded",
+            "COMMAND": "/usr/bin/run_rlyeh.sh",
+            "SCHED": "NICE,0",
+            "DAEMON": "NO",
+            "END_COND": "EXIT 0",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          }
+        },
+        {
+          "path": "etc/pcd/web.pcd",
+          "before": {
+            "path": "etc/pcd/web.pcd",
+            "RULE": "service_web",
+            "START_COND": "RULE_COMPLETED service_cfgmgr",
+            "COMMAND": "/webs/thttpd -dd /webs",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "NONE",
+            "ACTIVE": "YES"
+          },
+          "after": {
+            "path": "etc/pcd/web.pcd",
+            "RULE": "service_web",
+            "START_COND": "FILE /etc/httpd.conf",
+            "COMMAND": "/webs/thttpd -u appService -dd /webs -C /etc/httpd.conf",
+            "SCHED": "NICE 0",
+            "DAEMON": "YES",
+            "END_COND": "NONE",
+            "END_COND_TIMEOUT": "-1",
+            "FAILURE_ACTION": "RESTART",
+            "ACTIVE": "YES"
+          }
+        }
+      ]
+    }
+  ],
+  "text_sections": {
+    "PROFILE-G6-HJL": {
+      "lib/libcs_util.so": {
+        "start": "0x7ab0",
+        "bytes": 74344,
+        "sha256": "c93ce1858133a7ab6e1606281ceaba06493d6521866f28f2d80c37db263d3e87"
+      },
+      "lib/liberrhandling.so": {
+        "start": "0x1690",
+        "bytes": 5880,
+        "sha256": "7feff31dd8ae2bb7c465e1a5d3a419037242b3e6fc56b85cd59f66992fefade3"
+      },
+      "sbin/procd": {
+        "start": "0x4042b0",
+        "bytes": 35472,
+        "sha256": "571c4970bba73baed4e9d06993a11662f82b111372c5082f3b8a716a390abec6"
+      },
+      "sbin/sec_monitor": {
+        "start": "0x1c00",
+        "bytes": 17832,
+        "sha256": "53f9d6b89da5f848596f694cd5e010698fe807ae0f58863e1a57e3e313ad72b7"
+      },
+      "usr/bin/crashcapture": {
+        "start": "0x1060",
+        "bytes": 8424,
+        "sha256": "b390ad04dce72d6545304f4ff23b0fd14a59082a9ca9c3333f976b238c0a27dc"
+      },
+      "usr/bin/diagnosis": {
+        "start": "0x1bf0",
+        "bytes": 14440,
+        "sha256": "48487aad999cf6ae7a96fcab355504783c3e7edfff6332cf832531a493747862"
+      },
+      "usr/bin/fonendoscope": {
+        "start": "0x4024b0",
+        "bytes": 10520,
+        "sha256": "014a530a74bb8aa2d0f1919a052a611769a7d23847e12b8fa8466f072bfb720b"
+      },
+      "usr/bin/guestdev": {
+        "start": "0x4015d0",
+        "bytes": 10196,
+        "sha256": "6fa3b6e326de2301ea59d59274559f0076f453aefda8f1ffce99a4b1cea83379"
+      },
+      "usr/bin/pcd": {
+        "start": "0x403690",
+        "bytes": 41400,
+        "sha256": "38467348147fcece469b2fa7f999200dc31c4924d8c89fa9e24729dd3509be57"
+      },
+      "usr/bin/wanlived": {
+        "start": "0x2580",
+        "bytes": 28516,
+        "sha256": "7a0a9a9e660fea9dda22ff46e782301b806c1640faaff9d4da30fe6f4385ea25"
+      },
+      "usr/lib/libdm_utility.so": {
+        "start": "0x2aa0",
+        "bytes": 25196,
+        "sha256": "720ff0c7bfb29721c20d3db0a9adf44d5287e63627afe69278444770183c0606"
+      },
+      "usr/lib/libipc.so": {
+        "start": "0x1000",
+        "bytes": 5348,
+        "sha256": "f85d77937f395d89afba18b0df5cfc05d89130956d56b0aee4fd78db1a815f64"
+      },
+      "usr/lib/libpcd.so": {
+        "start": "0x1370",
+        "bytes": 3564,
+        "sha256": "5b7006040d22e20fbd9024938db704f35aadb6e699f8bfbf5d38b72de0a065a4"
+      },
+      "usr/sbin/registerReboot": {
+        "start": "0x10b0",
+        "bytes": 10980,
+        "sha256": "766cc8fab0b056f5179b2e8841511c69010d40901f34aee50a2dbd45a528e061"
+      },
+      "usr/sbin/watchquagga": {
+        "start": "0x4018c0",
+        "bytes": 8884,
+        "sha256": "d75e9a4e60f9c20426d8e1abf546579ae69515bad6e5ade8d4fd1597373c7212"
+      }
+    },
+    "PROFILE-G6-IJL": {
+      "lib/libcs_util.so": {
+        "start": "0x7ab0",
+        "bytes": 74344,
+        "sha256": "c93ce1858133a7ab6e1606281ceaba06493d6521866f28f2d80c37db263d3e87"
+      },
+      "lib/liberrhandling.so": {
+        "start": "0x1690",
+        "bytes": 5680,
+        "sha256": "452e8ccd83a056164845438dc9930ae5ea0a02bf37e74f6fe76203601077b3e8"
+      },
+      "sbin/procd": {
+        "start": "0x4042b0",
+        "bytes": 35472,
+        "sha256": "571c4970bba73baed4e9d06993a11662f82b111372c5082f3b8a716a390abec6"
+      },
+      "sbin/sec_monitor": {
+        "start": "0x1980",
+        "bytes": 16184,
+        "sha256": "3056cb36932b13cbdeaa808efd72fc132782081e14eeeb4fab7f3d633cfa804c"
+      },
+      "usr/bin/crashcapture": {
+        "start": "0x1060",
+        "bytes": 8424,
+        "sha256": "b390ad04dce72d6545304f4ff23b0fd14a59082a9ca9c3333f976b238c0a27dc"
+      },
+      "usr/bin/diagnosis": {
+        "start": "0x1bd0",
+        "bytes": 14584,
+        "sha256": "c8972ebd9062c032071f5370fee207afe69bc3a08c38e26b6b266d3e38f7b125"
+      },
+      "usr/bin/fonendoscope": {
+        "start": "0x4024b0",
+        "bytes": 10520,
+        "sha256": "014a530a74bb8aa2d0f1919a052a611769a7d23847e12b8fa8466f072bfb720b"
+      },
+      "usr/bin/guestdev": {
+        "start": "0x4015d0",
+        "bytes": 10164,
+        "sha256": "d194954a00eaa118c78b3a3436ab78ec18395279406388b1287f262c22862bcf"
+      },
+      "usr/bin/pcd": {
+        "start": "0x403690",
+        "bytes": 41400,
+        "sha256": "38467348147fcece469b2fa7f999200dc31c4924d8c89fa9e24729dd3509be57"
+      },
+      "usr/bin/wanlived": {
+        "start": "0x2500",
+        "bytes": 28692,
+        "sha256": "e0b22ea6be4702715c5e85dfe1f20df518d973135aeddd630ab7ffed476629d8"
+      },
+      "usr/lib/libdm_utility.so": {
+        "start": "0x2490",
+        "bytes": 17696,
+        "sha256": "b3e8fc65f84d0715e5b57d65fffb7b587834331c8aa326a1507cf693268a3177"
+      },
+      "usr/lib/libipc.so": {
+        "start": "0x1000",
+        "bytes": 5348,
+        "sha256": "f85d77937f395d89afba18b0df5cfc05d89130956d56b0aee4fd78db1a815f64"
+      },
+      "usr/lib/libpcd.so": {
+        "start": "0x1370",
+        "bytes": 3564,
+        "sha256": "5b7006040d22e20fbd9024938db704f35aadb6e699f8bfbf5d38b72de0a065a4"
+      },
+      "usr/sbin/registerReboot": {
+        "start": "0x10b0",
+        "bytes": 10980,
+        "sha256": "766cc8fab0b056f5179b2e8841511c69010d40901f34aee50a2dbd45a528e061"
+      },
+      "usr/sbin/watchquagga": {
+        "start": "0x4018c0",
+        "bytes": 8884,
+        "sha256": "d75e9a4e60f9c20426d8e1abf546579ae69515bad6e5ade8d4fd1597373c7212"
+      }
+    },
+    "PROFILE-B9-JJM": {
+      "lib/libcs_util.so": {
+        "start": "0x7b20",
+        "bytes": 74572,
+        "sha256": "74b1479a2c4cf3188e2f5243563e90e36123a0974d6d2ba838d89a9f0ba66977"
+      },
+      "sbin/sec_monitor": {
+        "start": "0x1a90",
+        "bytes": 19520,
+        "sha256": "90d5442059f5f834f60d1c98d77f7a4b41283ce763d8a2a87afffb2152a487bd"
+      },
+      "usr/bin/crashcapture": {
+        "start": "0xf30",
+        "bytes": 8156,
+        "sha256": "b0f55dbbb026468d08634e0f5c977986b03f0e53a002639a3076db9172e6e688"
+      },
+      "usr/bin/diagnosis": {
+        "start": "0x1a80",
+        "bytes": 14252,
+        "sha256": "d360caa6cada8194c0a8834f742c1b294c8ed4d1dbb67aebcd454c406dc7da09"
+      },
+      "usr/bin/pcd": {
+        "start": "0x3e60",
+        "bytes": 41228,
+        "sha256": "5fac92faa649eb849b623be8e4f4c6aaaa9869b72ee47058d18f30b625a13791"
+      },
+      "usr/bin/wanlived": {
+        "start": "0x2470",
+        "bytes": 29352,
+        "sha256": "046d8671944f1f9c1dc025abda98086c2cefd2d4470b483b4e5fc2c492bc0f31"
+      },
+      "usr/lib/libipc.so": {
+        "start": "0x1030",
+        "bytes": 5324,
+        "sha256": "0b453d9e88b725052bd46ab5a2e4d39f128a9ce5b11d704e8147ab5473b207ad"
+      },
+      "usr/lib/libpcd.so": {
+        "start": "0x1390",
+        "bytes": 3616,
+        "sha256": "43dd209a3c8dd98960df7f01ab7026ec7a4285c653e5a6bbb052d2fb24db50ce"
+      }
+    }
+  },
+  "diagnosis_command_tables": {
+    "PROFILE-G6-HJL": {
+      "file_offset": "0x7080",
+      "va": "0x17080",
+      "stride": 65,
+      "records": [
+        {
+          "id": 1,
+          "command": "ps"
+        },
+        {
+          "id": 2,
+          "command": "cfgcli dumpwan"
+        },
+        {
+          "id": 3,
+          "command": "wand dump"
+        },
+        {
+          "id": 4,
+          "command": "bs /b/e system max_prints:-1"
+        },
+        {
+          "id": 5,
+          "command": "bs /b/e gpon max_prints:-1"
+        },
+        {
+          "id": 6,
+          "command": "bs /b/e cpu max_prints:-1"
+        },
+        {
+          "id": 7,
+          "command": "bs /b/e gem"
+        },
+        {
+          "id": 8,
+          "command": "bs /b/e tcont"
+        },
+        {
+          "id": 9,
+          "command": "bs /b/e egress_tm  max_prints:-1"
+        },
+        {
+          "id": 10,
+          "command": "cat /proc/interrupts"
+        },
+        {
+          "id": 11,
+          "command": "cat /proc/softirqs"
+        },
+        {
+          "id": 12,
+          "command": "ritool dump"
+        }
+      ]
+    },
+    "PROFILE-G6-IJL": {
+      "file_offset": "0x7078",
+      "va": "0x17078",
+      "stride": 65,
+      "records": [
+        {
+          "id": 1,
+          "command": "ps"
+        },
+        {
+          "id": 2,
+          "command": "cfgcli dumpwan"
+        },
+        {
+          "id": 3,
+          "command": "wand dump"
+        },
+        {
+          "id": 4,
+          "command": "bs /b/e system max_prints:-1"
+        },
+        {
+          "id": 5,
+          "command": "bs /b/e gpon max_prints:-1"
+        },
+        {
+          "id": 6,
+          "command": "bs /b/e cpu max_prints:-1"
+        },
+        {
+          "id": 7,
+          "command": "bs /b/e gem"
+        },
+        {
+          "id": 8,
+          "command": "bs /b/e tcont"
+        },
+        {
+          "id": 9,
+          "command": "bs /b/e egress_tm  max_prints:-1"
+        },
+        {
+          "id": 10,
+          "command": "cat /proc/interrupts"
+        },
+        {
+          "id": 11,
+          "command": "cat /proc/softirqs"
+        },
+        {
+          "id": 12,
+          "command": "ritool dump"
+        }
+      ]
+    },
+    "PROFILE-B9-JJM": {
+      "file_offset": "0x7078",
+      "va": "0x17078",
+      "stride": 65,
+      "records": [
+        {
+          "id": 1,
+          "command": "ps"
+        },
+        {
+          "id": 2,
+          "command": "cfgcli dumpwan"
+        },
+        {
+          "id": 3,
+          "command": "wand dump"
+        },
+        {
+          "id": 4,
+          "command": "bs /b/e system max_prints:-1"
+        },
+        {
+          "id": 5,
+          "command": "bs /b/e gpon max_prints:-1"
+        },
+        {
+          "id": 6,
+          "command": "bs /b/e cpu max_prints:-1"
+        },
+        {
+          "id": 7,
+          "command": "bs /b/e gem"
+        },
+        {
+          "id": 8,
+          "command": "bs /b/e tcont"
+        },
+        {
+          "id": 9,
+          "command": "bs /b/e egress_tm  max_prints:-1"
+        },
+        {
+          "id": 10,
+          "command": "cat /proc/interrupts"
+        },
+        {
+          "id": 11,
+          "command": "cat /proc/softirqs"
+        },
+        {
+          "id": 12,
+          "command": "ritool dump"
+        }
+      ]
+    }
+  },
+  "fonendoscope_ubus": {
+    "object": "fonendoscope",
+    "object_va": "0x417010",
+    "method_table_va": "0x405e10",
+    "method_stride": 48,
+    "methods": [
+      {
+        "entry_va": "0x405e10",
+        "name": "processes",
+        "handler_va": "0x403f40",
+        "policy_va": "0x0",
+        "policy_count": 0
+      },
+      {
+        "entry_va": "0x405e40",
+        "name": "stop",
+        "handler_va": "0x404410",
+        "policy_va": "0x405d98",
+        "policy_count": 1,
+        "fields": [
+          {
+            "name": "process",
+            "blobmsg_type": 3
+          }
+        ]
+      },
+      {
+        "entry_va": "0x405e70",
+        "name": "start",
+        "handler_va": "0x404564",
+        "policy_va": "0x405d98",
+        "policy_count": 1,
+        "fields": [
+          {
+            "name": "process",
+            "blobmsg_type": 3
+          }
+        ]
+      },
+      {
+        "entry_va": "0x405ea0",
+        "name": "restart",
+        "handler_va": "0x404140",
+        "policy_va": "0x405d98",
+        "policy_count": 1,
+        "fields": [
+          {
+            "name": "process",
+            "blobmsg_type": 3
+          }
+        ]
+      },
+      {
+        "entry_va": "0x405ed0",
+        "name": "action",
+        "handler_va": "0x4048bc",
+        "policy_va": "0x405dd0",
+        "policy_count": 2,
+        "fields": [
+          {
+            "name": "enable",
+            "blobmsg_type": 7
+          },
+          {
+            "name": "processlist",
+            "blobmsg_type": 1
+          }
+        ]
+      }
+    ]
+  },
+  "find_process_id": {
+    "source": "private-source://PROFILE-G6-HJL/usr/lib/libpcd.so",
+    "va": "0x1aa0",
+    "end": "0x1bc4",
+    "trace": "traces/G6-HJL--libpcd.so--PCD_api_find_process_id.txt",
+    "calls": [
+      {
+        "va": "0x1ab4",
+        "target": "getpid@plt",
+        "args": {
+          "x0": -1
+        }
+      },
+      {
+        "va": "0x1ad8",
+        "target": "sprintf@plt",
+        "args": {
+          "x1": "/proc/%d/stat"
+        }
+      },
+      {
+        "va": "0x1ae4",
+        "target": "open@plt",
+        "args": {
+          "x1": 0
+        }
+      },
+      {
+        "va": "0x1b08",
+        "target": "read@plt",
+        "args": {
+          "x2": 255
+        }
+      },
+      {
+        "va": "0x1b1c",
+        "target": "strchr@plt",
+        "args": {
+          "x1": 40
+        }
+      },
+      {
+        "va": "0x1b2c",
+        "target": "strchr@plt",
+        "args": {
+          "x1": 41
+        }
+      },
+      {
+        "va": "0x1b64",
+        "target": "strlen@plt",
+        "args": {}
+      },
+      {
+        "va": "0x1b74",
+        "target": "strncmp@plt",
+        "args": {}
+      },
+      {
+        "va": "0x1b84",
+        "target": "close@plt",
+        "args": {}
+      },
+      {
+        "va": "0x1b94",
+        "target": "close@plt",
+        "args": {}
+      }
+    ]
+  }
+}

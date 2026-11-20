@@ -16,7 +16,7 @@ import sys
 
 
 def load_prepare():
-    path = Path(__file__).resolve().parents[3] / "webui/scripts/prepare-config-keys.py"
+    path = Path(__file__).resolve().parents[3] / "network-services/webui/scripts/prepare-config-keys.py"
     spec = importlib.util.spec_from_file_location("prepare_config_keys", path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)

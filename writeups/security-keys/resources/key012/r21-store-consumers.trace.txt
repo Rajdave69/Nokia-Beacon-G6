@@ -1,0 +1,290 @@
+Original legacy code; selector enum 1 -> key0, 2 -> key1, 3 -> key2.
+
+RANGE 0x11110..0x11248
+00011110: c0035fd6  ret 
+00011114: fd7bbba9  stp x29, x30, [sp, #-0x50]!
+00011118: fd030091  mov x29, sp
+0001111c: f55b02a9  stp x21, x22, [sp, #0x20]
+00011120: 550100f0  adrp x21, #0x3c000
+00011124: f60300aa  mov x22, x0
+00011128: f35301a9  stp x19, x20, [sp, #0x10]
+0001112c: a07643f9  ldr x0, [x21, #0x6e8]
+00011130: f76303a9  stp x23, x24, [sp, #0x30]
+00011134: 010040f9  ldr x1, [x0]
+00011138: a12700f9  str x1, [x29, #0x48]
+0001113c: 010080d2  mov x1, #0
+00011140: 73010090  adrp x19, #0x3d000
+00011144: 600243f9  ldr x0, [x19, #0x600]
+00011148: 800400b5  cbnz x0, #0x111d8
+0001114c: 410100f0  adrp x1, #0x3c000
+00011150: 001080d2  mov x0, #0x80
+00011154: 21a846f9  ldr x1, [x1, #0xd50]
+00011158: 20003fd6  blr x1 ; heuristic @malloc {"x0": 128, "x1": "@malloc"}
+0001115c: f70300aa  mov x23, x0
+00011160: 600100b5  cbnz x0, #0x1118c
+00011164: 14018052  mov w20, #8
+00011168: b57643f9  ldr x21, [x21, #0x6e8]
+0001116c: e003142a  mov w0, w20
+00011170: a22740f9  ldr x2, [x29, #0x48]
+00011174: a10240f9  ldr x1, [x21]
+00011178: 410001ca  eor x1, x2, x1
+0001117c: 210700b4  cbz x1, #0x11260
+00011180: 400100f0  adrp x0, #0x3c000
+00011184: 001043f9  ldr x0, [x0, #0x620]
+00011188: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+0001118c: 430100f0  adrp x3, #0x3c000
+00011190: 021080d2  mov x2, #0x80
+00011194: 610c8052  mov w1, #0x63
+00011198: 63d443f9  ldr x3, [x3, #0x7a8]
+0001119c: 60003fd6  blr x3 ; heuristic @memset {"x1": 99, "x2": 128, "x3": "@memset"}
+000111a0: 430100f0  adrp x3, #0x3c000
+000111a4: 02108052  mov w2, #0x80
+000111a8: e10317aa  mov x1, x23
+000111ac: 20008052  mov w0, #1
+000111b0: 637043f9  ldr x3, [x3, #0x6e0]
+000111b4: 60003fd6  blr x3 ; heuristic 0x1a848 {"x0": 1, "x2": 128, "x3": 108616}
+000111b8: f403002a  mov w20, w0
+000111bc: c0000034  cbz w0, #0x111d4
+000111c0: 410100f0  adrp x1, #0x3c000
+000111c4: e00317aa  mov x0, x23
+000111c8: 21cc43f9  ldr x1, [x1, #0x798]
+000111cc: 20003fd6  blr x1 ; heuristic @free {"x1": "@free"}
+000111d0: e6ffff17  b #0x11168
+000111d4: 770203f9  str x23, [x19, #0x600]
+000111d8: 78021891  add x24, x19, #0x600
+000111dc: 000740f9  ldr x0, [x24, #8]
+000111e0: a00200b5  cbnz x0, #0x11234
+000111e4: 410100f0  adrp x1, #0x3c000
+000111e8: 001080d2  mov x0, #0x80
+000111ec: 21a846f9  ldr x1, [x1, #0xd50]
+000111f0: 20003fd6  blr x1 ; heuristic @malloc {"x0": 128, "x1": "@malloc"}
+000111f4: f70300aa  mov x23, x0
+000111f8: 60fbffb4  cbz x0, #0x11164
+000111fc: 430100f0  adrp x3, #0x3c000
+00011200: 021080d2  mov x2, #0x80
+00011204: 610c8052  mov w1, #0x63
+00011208: 63d443f9  ldr x3, [x3, #0x7a8]
+0001120c: 60003fd6  blr x3 ; heuristic @memset {"x1": 99, "x2": 128, "x3": "@memset"}
+00011210: 430100f0  adrp x3, #0x3c000
+00011214: 02108052  mov w2, #0x80
+00011218: e10317aa  mov x1, x23
+0001121c: 40008052  mov w0, #2
+00011220: 637043f9  ldr x3, [x3, #0x6e0]
+00011224: 60003fd6  blr x3 ; heuristic 0x1a848 {"x0": 2, "x2": 128, "x3": 108616}
+00011228: f403002a  mov w20, w0
+0001122c: a0fcff35  cbnz w0, #0x111c0
+00011230: 170700f9  str x23, [x24, #8]
+00011234: c01640f9  ldr x0, [x22, #0x28]
+00011238: 600000b5  cbnz x0, #0x11244
+0001123c: 600243f9  ldr x0, [x19, #0x600]
+00011240: c01600f9  str x0, [x22, #0x28]
+00011244: c01a40f9  ldr x0, [x22, #0x30]
+
+RANGE 0x12b30..0x12d38
+
+CS_getSha256Str:
+00012b30: ff830ad1  sub sp, sp, #0x2a0
+00012b34: fd7b00a9  stp x29, x30, [sp]
+00012b38: fd030091  mov x29, sp
+00012b3c: f96b04a9  stp x25, x26, [sp, #0x40]
+00012b40: f903032a  mov w25, w3
+00012b44: 430100d0  adrp x3, #0x3c000
+00012b48: f55b02a9  stp x21, x22, [sp, #0x20]
+00012b4c: 550100d0  adrp x21, #0x3c000
+00012b50: f35301a9  stp x19, x20, [sp, #0x10]
+00012b54: 63d443f9  ldr x3, [x3, #0x7a8]
+00012b58: f603012a  mov w22, w1
+00012b5c: f76303a9  stp x23, x24, [sp, #0x30]
+00012b60: f70300aa  mov x23, x0
+00012b64: fb7305a9  stp x27, x28, [sp, #0x50]
+00012b68: bc630291  add x28, x29, #0x98
+00012b6c: a07643f9  ldr x0, [x21, #0x6e8]
+00012b70: f80302aa  mov x24, x2
+00012b74: fa0304aa  mov x26, x4
+00012b78: 024080d2  mov x2, #0x200
+00012b7c: 010040f9  ldr x1, [x0]
+00012b80: a14f01f9  str x1, [x29, #0x298]
+00012b84: 010080d2  mov x1, #0
+00012b88: e0031caa  mov x0, x28
+00012b8c: 60003fd6  blr x3 ; heuristic @memset {"x1": 0, "x2": 512, "x3": "@memset"}
+00012b90: ff0200f1  cmp x23, #0
+00012b94: c41a407a  ccmp w22, #0, #4, ne
+00012b98: c00b0054  b.eq #0x12d10
+00012b9c: 1f0300f1  cmp x24, #0
+00012ba0: 201b407a  ccmp w25, #0, #0, ne
+00012ba4: 600b0054  b.eq #0x12d10
+00012ba8: 5a0b00b4  cbz x26, #0x12d10
+00012bac: b80400b5  cbnz x24, #0x12c40
+00012bb0: 540100f0  adrp x20, #0x3d000
+00012bb4: 800a43f9  ldr x0, [x20, #0x610]
+00012bb8: f80314aa  mov x24, x20
+00012bbc: e00300b5  cbnz x0, #0x12c38
+00012bc0: 410100d0  adrp x1, #0x3c000
+00012bc4: 001080d2  mov x0, #0x80
+00012bc8: 21a846f9  ldr x1, [x1, #0xd50]
+00012bcc: 20003fd6  blr x1 ; heuristic @malloc {"x0": 128, "x1": "@malloc"}
+00012bd0: 800a03f9  str x0, [x20, #0x610]
+00012bd4: 600100b5  cbnz x0, #0x12c00
+00012bd8: 13018052  mov w19, #8
+00012bdc: b57643f9  ldr x21, [x21, #0x6e8]
+00012be0: e003132a  mov w0, w19
+00012be4: a24f41f9  ldr x2, [x29, #0x298]
+00012be8: a10240f9  ldr x1, [x21]
+00012bec: 410001ca  eor x1, x2, x1
+00012bf0: 410900b4  cbz x1, #0x12d18
+00012bf4: 400100d0  adrp x0, #0x3c000
+00012bf8: 001043f9  ldr x0, [x0, #0x620]
+00012bfc: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+00012c00: 430100d0  adrp x3, #0x3c000
+00012c04: e10300aa  mov x1, x0
+00012c08: 02108052  mov w2, #0x80
+00012c0c: 60008052  mov w0, #3
+00012c10: 637043f9  ldr x3, [x3, #0x6e0]
+00012c14: 60003fd6  blr x3 ; heuristic 0x1a848 {"x0": 3, "x2": 128, "x3": 108616}
+00012c18: f303002a  mov w19, w0
+00012c1c: e0000034  cbz w0, #0x12c38
+00012c20: 410100d0  adrp x1, #0x3c000
+00012c24: 800a43f9  ldr x0, [x20, #0x610]
+00012c28: 21cc43f9  ldr x1, [x1, #0x798]
+00012c2c: 20003fd6  blr x1 ; heuristic @free {"x1": "@free"}
+00012c30: 9f0a03f9  str xzr, [x20, #0x610]
+00012c34: eaffff17  b #0x12bdc
+00012c38: 180b43f9  ldr x24, [x24, #0x610]
+00012c3c: 19048052  mov w25, #0x20
+00012c40: 3b03160b  add w27, w25, w22
+00012c44: 7fff0771  cmp w27, #0x1ff
+00012c48: 49050054  b.ls #0x12cf0
+00012c4c: 410100d0  adrp x1, #0x3c000
+00012c50: e0031b2a  mov w0, w27
+00012c54: 21a846f9  ldr x1, [x1, #0xd50]
+00012c58: 20003fd6  blr x1 ; heuristic @malloc {"x1": "@malloc"}
+00012c5c: f40300aa  mov x20, x0
+00012c60: c0fbffb4  cbz x0, #0x12bd8
+00012c64: fc0300aa  mov x28, x0
+00012c68: e10317aa  mov x1, x23
+00012c6c: 570100d0  adrp x23, #0x3c000
+00012c70: e20316aa  mov x2, x22
+00012c74: e0031caa  mov x0, x28
+00012c78: f77e42f9  ldr x23, [x23, #0x4f8]
+00012c7c: e0023fd6  blr x23 ; heuristic @memcpy {}
+00012c80: 8003168b  add x0, x28, x22
+00012c84: 227f4093  sxtw x2, w25
+00012c88: b6830191  add x22, x29, #0x60
+00012c8c: e10318aa  mov x1, x24
+00012c90: e0023fd6  blr x23 ; heuristic @memcpy {}
+00012c94: bc3700f9  str x28, [x29, #0x68]
+00012c98: c0520091  add x0, x22, #0x14
+00012c9c: 410100d0  adrp x1, #0x3c000
+00012ca0: bb7300b9  str w27, [x29, #0x70]
+00012ca4: 21d842f9  ldr x1, [x1, #0x5b0]
+00012ca8: 1f7c00a9  stp xzr, xzr, [x0]
+00012cac: 1f7c01a9  stp xzr, xzr, [x0, #0x10]
+00012cb0: 80008052  mov w0, #4
+00012cb4: df3600b9  str wzr, [x22, #0x34]
+00012cb8: a06300b9  str w0, [x29, #0x60]
+00012cbc: 20008052  mov w0, #1
+00012cc0: a06700b9  str w0, [x29, #0x64]
+00012cc4: e00316aa  mov x0, x22
+00012cc8: ba3f00f9  str x26, [x29, #0x78]
+00012ccc: 20003fd6  blr x1 ; heuristic @CS_getCryptOutLen {"x1": "@CS_getCryptOutLen"}
+00012cd0: f303002a  mov w19, w0
+00012cd4: 20010034  cbz w0, #0x12cf8
+00012cd8: 34f8ffb4  cbz x20, #0x12bdc
+00012cdc: 410100d0  adrp x1, #0x3c000
+00012ce0: e00314aa  mov x0, x20
+00012ce4: 21cc43f9  ldr x1, [x1, #0x798]
+00012ce8: 20003fd6  blr x1 ; heuristic @free {"x1": "@free"}
+00012cec: bcffff17  b #0x12bdc
+00012cf0: 140080d2  mov x20, #0
+00012cf4: ddffff17  b #0x12c68
+00012cf8: 410100d0  adrp x1, #0x3c000
+00012cfc: e00316aa  mov x0, x22
+00012d00: 213043f9  ldr x1, [x1, #0x660]
+00012d04: 20003fd6  blr x1 ; heuristic @CS_crypt {"x1": "@CS_crypt"}
+00012d08: f303002a  mov w19, w0
+00012d0c: f3ffff17  b #0x12cd8
+00012d10: 53018052  mov w19, #0xa
+00012d14: b2ffff17  b #0x12bdc
+00012d18: fd7b40a9  ldp x29, x30, [sp]
+00012d1c: f35341a9  ldp x19, x20, [sp, #0x10]
+00012d20: f55b42a9  ldp x21, x22, [sp, #0x20]
+00012d24: f76343a9  ldp x23, x24, [sp, #0x30]
+00012d28: f96b44a9  ldp x25, x26, [sp, #0x40]
+00012d2c: fb7345a9  ldp x27, x28, [sp, #0x50]
+00012d30: ff830a91  add sp, sp, #0x2a0
+00012d34: c0035fd6  ret 
+
+RANGE 0x1a848..0x1a968
+0001a848: fd7bbaa9  stp x29, x30, [sp, #-0x60]!
+0001a84c: 1f080071  cmp w0, #2
+0001a850: fd030091  mov x29, sp
+0001a854: f35301a9  stp x19, x20, [sp, #0x10]
+0001a858: 130100d0  adrp x19, #0x3c000
+0001a85c: f76303a9  stp x23, x24, [sp, #0x30]
+0001a860: f70301aa  mov x23, x1
+0001a864: 617643f9  ldr x1, [x19, #0x6e8]
+0001a868: f55b02a9  stp x21, x22, [sp, #0x20]
+0001a86c: f603022a  mov w22, w2
+0001a870: 220040f9  ldr x2, [x1]
+0001a874: a22f00f9  str x2, [x29, #0x58]
+0001a878: 020080d2  mov x2, #0
+0001a87c: bfff04a9  stp xzr, xzr, [x29, #0x48]
+0001a880: 80030054  b.eq #0x1a8f0
+0001a884: 1f0c0071  cmp w0, #3
+0001a888: 620000b0  adrp x2, #0x27000
+0001a88c: 610000b0  adrp x1, #0x27000
+0001a890: 42881791  add x2, x2, #0x5e2
+0001a894: 20741791  add x0, x1, #0x5dd
+0001a898: 0000829a  csel x0, x0, x2, eq
+0001a89c: 020100d0  adrp x2, #0x3c000
+0001a8a0: a1230191  add x1, x29, #0x48
+0001a8a4: 429443f9  ldr x2, [x2, #0x728]
+0001a8a8: 40003fd6  blr x2 ; heuristic @SE_getKeyByName {"x2": "@SE_getKeyByName"}
+0001a8ac: f503002a  mov w21, w0
+0001a8b0: 00040035  cbnz w0, #0x1a930
+0001a8b4: 020100d0  adrp x2, #0x3c000
+0001a8b8: a02740f9  ldr x0, [x29, #0x48]
+0001a8bc: a1430191  add x1, x29, #0x50
+0001a8c0: 42c844f9  ldr x2, [x2, #0x990]
+0001a8c4: 40003fd6  blr x2 ; heuristic @SE_hexstr2buf {"x2": "@SE_hexstr2buf"}
+0001a8c8: f80300aa  mov x24, x0
+0001a8cc: e00000b4  cbz x0, #0x1a8e8
+0001a8d0: a12b40f9  ldr x1, [x29, #0x50]
+0001a8d4: 140100d0  adrp x20, #0x3c000
+0001a8d8: 3f0000f1  cmp x1, #0
+0001a8dc: 0c010054  b.gt #0x1a8fc
+0001a8e0: 949e46f9  ldr x20, [x20, #0xd38]
+0001a8e4: 80023fd6  blr x20 ; heuristic @SE_bufFree {}
+0001a8e8: f5068052  mov w21, #0x37
+0001a8ec: 11000014  b #0x1a930
+0001a8f0: 600000b0  adrp x0, #0x27000
+0001a8f4: 00601791  add x0, x0, #0x5d8
+0001a8f8: e9ffff17  b #0x1a89c
+0001a8fc: e203162a  mov w2, w22
+0001a900: 3f0002eb  cmp x1, x2
+0001a904: 4d000054  b.le #0x1a90c
+0001a908: a22b00f9  str x2, [x29, #0x50]
+0001a90c: 030100d0  adrp x3, #0x3c000
+0001a910: a22b40f9  ldr x2, [x29, #0x50]
+0001a914: e10318aa  mov x1, x24
+0001a918: e00317aa  mov x0, x23
+0001a91c: 637c42f9  ldr x3, [x3, #0x4f8]
+0001a920: 60003fd6  blr x3 ; heuristic @memcpy {"x3": "@memcpy"}
+0001a924: 949e46f9  ldr x20, [x20, #0xd38]
+0001a928: e00318aa  mov x0, x24
+0001a92c: 80023fd6  blr x20 ; heuristic unknown {}
+0001a930: 737643f9  ldr x19, [x19, #0x6e8]
+0001a934: e003152a  mov w0, w21
+0001a938: a22f40f9  ldr x2, [x29, #0x58]
+0001a93c: 610240f9  ldr x1, [x19]
+0001a940: 410001ca  eor x1, x2, x1
+0001a944: 810000b4  cbz x1, #0x1a954
+0001a948: 000100d0  adrp x0, #0x3c000
+0001a94c: 001043f9  ldr x0, [x0, #0x620]
+0001a950: 00003fd6  blr x0 ; heuristic @__stack_chk_fail {"x0": "@__stack_chk_fail"}
+0001a954: f35341a9  ldp x19, x20, [sp, #0x10]
+0001a958: f55b42a9  ldp x21, x22, [sp, #0x20]
+0001a95c: f76343a9  ldp x23, x24, [sp, #0x30]
+0001a960: fd7bc6a8  ldp x29, x30, [sp], #0x60
+0001a964: c0035fd6  ret 
+

@@ -1,0 +1,199 @@
+{
+  "result": "passed",
+  "cases": 36,
+  "router_requests": 0,
+  "profiles": [
+    {
+      "profile": "G6-IJL",
+      "result": "passed",
+      "scope": "Exact extracted methods; getRequestModel, Angular generator wrapper, HTTP, localStorage and WebSocket transport mocked; no frontend module evaluated or real network called",
+      "server_url": "ws://router.invalid:60980/",
+      "auth_fixture": {
+        "CSRFtoken": "fixture-csrf",
+        "SessionID": "fixture-sid",
+        "PasswordType": 3
+      },
+      "event_body_fixture": {
+        "version": 1,
+        "csrf_token": "fixture-csrf",
+        "id": 1,
+        "interface": "Nokia.EventService",
+        "service": "OAM",
+        "function": "SubscribeEvents",
+        "paralist": [
+          {
+            "Source": "Web"
+          },
+          {
+            "wssessionid": 7
+          },
+          {
+            "timeout": ""
+          },
+          {
+            "eventlist": [
+              4
+            ]
+          }
+        ]
+      },
+      "actual_HTTP_fixture": {
+        "url": "http://router.invalid/service_function_web_app.cgi",
+        "body": {
+          "version": 1,
+          "csrf_token": "fixture-csrf",
+          "id": 1,
+          "interface": "Nokia.GenericService",
+          "service": "OAM",
+          "function": "GetSIMInfo",
+          "paralist": []
+        },
+        "sameAsGeneric": true,
+        "sameAsEvent": false,
+        "options": {
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "withCredentials": true
+        }
+      },
+      "findings": [
+        "SubscribeEvents updates event body, but POST_CSRF_FWA sends generic body",
+        "default timeout string empty; truthy30 becomes string;zero argument does not replace it",
+        "Repeated listener adds subscription, does not resend auth",
+        "Zero session ID ignored",
+        "Only non-Web event4 RebootSystem/Level2FactoryReset causes the tested UI alert/close",
+        "Missing token throws before auth message"
+      ],
+      "cases": 12
+    },
+    {
+      "profile": "G6-HJL",
+      "result": "passed",
+      "scope": "Exact extracted methods; getRequestModel, Angular generator wrapper, HTTP, localStorage and WebSocket transport mocked; no frontend module evaluated or real network called",
+      "server_url": "ws://router.invalid:60980/",
+      "auth_fixture": {
+        "CSRFtoken": "fixture-csrf",
+        "SessionID": "fixture-sid",
+        "PasswordType": 3
+      },
+      "event_body_fixture": {
+        "version": 1,
+        "csrf_token": "fixture-csrf",
+        "id": 1,
+        "interface": "Nokia.EventService",
+        "service": "OAM",
+        "function": "SubscribeEvents",
+        "paralist": [
+          {
+            "Source": "Web"
+          },
+          {
+            "wssessionid": 7
+          },
+          {
+            "timeout": ""
+          },
+          {
+            "eventlist": [
+              4
+            ]
+          }
+        ]
+      },
+      "actual_HTTP_fixture": {
+        "url": "http://router.invalid/service_function_web_app.cgi",
+        "body": {
+          "version": 1,
+          "csrf_token": "fixture-csrf",
+          "id": 1,
+          "interface": "Nokia.GenericService",
+          "service": "OAM",
+          "function": "GetSIMInfo",
+          "paralist": []
+        },
+        "sameAsGeneric": true,
+        "sameAsEvent": false,
+        "options": {
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "withCredentials": true
+        }
+      },
+      "findings": [
+        "SubscribeEvents updates event body, but POST_CSRF_FWA sends generic body",
+        "default timeout string empty; truthy30 becomes string;zero argument does not replace it",
+        "Repeated listener adds subscription, does not resend auth",
+        "Zero session ID ignored",
+        "Only non-Web event4 RebootSystem/Level2FactoryReset causes the tested UI alert/close",
+        "Missing token throws before auth message"
+      ],
+      "cases": 12
+    },
+    {
+      "profile": "B9-JJM",
+      "result": "passed",
+      "scope": "Exact extracted methods; getRequestModel, Angular generator wrapper, HTTP, localStorage and WebSocket transport mocked; no frontend module evaluated or real network called",
+      "server_url": "ws://router.invalid:60980/",
+      "auth_fixture": {
+        "CSRFtoken": "fixture-csrf",
+        "SessionID": "fixture-sid",
+        "PasswordType": 3
+      },
+      "event_body_fixture": {
+        "version": 1,
+        "csrf_token": "fixture-csrf",
+        "id": 1,
+        "interface": "Nokia.EventService",
+        "service": "OAM",
+        "function": "SubscribeEvents",
+        "paralist": [
+          {
+            "Source": "Web"
+          },
+          {
+            "wssessionid": 7
+          },
+          {
+            "timeout": ""
+          },
+          {
+            "eventlist": [
+              4
+            ]
+          }
+        ]
+      },
+      "actual_HTTP_fixture": {
+        "url": "http://router.invalid/service_function_web_app.cgi",
+        "body": {
+          "version": 1,
+          "csrf_token": "fixture-csrf",
+          "id": 1,
+          "interface": "Nokia.GenericService",
+          "service": "OAM",
+          "function": "GetSIMInfo",
+          "paralist": []
+        },
+        "sameAsGeneric": true,
+        "sameAsEvent": false,
+        "options": {
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "withCredentials": true
+        }
+      },
+      "findings": [
+        "SubscribeEvents updates event body, but POST_CSRF_FWA sends generic body",
+        "default timeout string empty; truthy30 becomes string;zero argument does not replace it",
+        "Repeated listener adds subscription, does not resend auth",
+        "Zero session ID ignored",
+        "Only non-Web event4 RebootSystem/Level2FactoryReset causes the tested UI alert/close",
+        "Missing token throws before auth message"
+      ],
+      "cases": 12
+    }
+  ]
+}

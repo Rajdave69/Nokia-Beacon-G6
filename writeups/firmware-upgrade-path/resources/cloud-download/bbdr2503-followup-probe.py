@@ -30,7 +30,7 @@ def main():
     if checksum and checksum.lower() in known:row['download_disposition']='Captured identical cloud checksum; no duplicate GET';continue
     name=str(item.get('nxtMSVersion') or 'unnamed')
     if not all(c.isalnum() or c in '._-' for c in name):raise ValueError('Unexpected version filename')
-    result=client.download(raw,G6/'config-private/downloaded-firmware'/(name+'-2503-research.bin'),index);report['downloads'].append(result)
+    result=client.download(raw,G6/'dumped-firmware/downloaded-firmware'/(name+'-2503-research.bin'),index);report['downloads'].append(result)
     if checksum:known.add(checksum.lower())
   except Exception as exc:
    row['error_type']=type(exc).__name__;report['stop_reason']='Stopped on first error; no retries'

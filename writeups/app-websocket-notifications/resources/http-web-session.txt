@@ -1,0 +1,151 @@
+
+websoc_session_web_app.cgi:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000b9c <CGIMain@@Base>:
+ b9c:	d109c3ff 	sub	sp, sp, #0x270
+ ba0:	a9007bfd 	stp	x29, x30, [sp]
+ ba4:	910003fd 	mov	x29, sp
+ ba8:	a9025bf5 	stp	x21, x22, [sp, #32]
+ bac:	b0000096 	adrp	x22, 11000 <_fini@@Base+0x1018c>
+ bb0:	a90153f3 	stp	x19, x20, [sp, #16]
+ bb4:	b0000093 	adrp	x19, 11000 <_fini@@Base+0x1018c>
+ bb8:	f947f2c0 	ldr	x0, [x22, #4064]
+ bbc:	f947ca73 	ldr	x19, [x19, #3984]
+ bc0:	f9400001 	ldr	x1, [x0]
+ bc4:	f90137a1 	str	x1, [x29, #616]
+ bc8:	d2800001 	mov	x1, #0x0                   	// #0
+ bcc:	a90363f7 	stp	x23, x24, [sp, #48]
+ bd0:	90000000 	adrp	x0, 0 <_init@@Base-0xa90>
+ bd4:	913a2000 	add	x0, x0, #0xe88
+ bd8:	b0000098 	adrp	x24, 11000 <_fini@@Base+0x1018c>
+ bdc:	d63f0260 	blr	x19 ; heuristic args: x0='command', x1=0
+ be0:	aa0003f7 	mov	x23, x0
+ be4:	90000000 	adrp	x0, 0 <_init@@Base-0xa90>
+ be8:	913a4000 	add	x0, x0, #0xe90
+ bec:	d63f0260 	blr	x19 ; heuristic args: x0='timeout'
+ bf0:	910103b3 	add	x19, x29, #0x40
+ bf4:	b0000083 	adrp	x3, 11000 <_fini@@Base+0x1018c>
+ bf8:	d2804462 	mov	x2, #0x223                 	// #547
+ bfc:	52800001 	mov	w1, #0x0                   	// #0
+ c00:	aa0003f5 	mov	x21, x0
+ c04:	f947cc63 	ldr	x3, [x3, #3992]
+ c08:	aa1303e0 	mov	x0, x19
+ c0c:	d63f0060 	blr	x3 ; heuristic args: x1=0, x2=547
+ c10:	b0000083 	adrp	x3, 11000 <_fini@@Base+0x1018c>
+ c14:	52804e20 	mov	w0, #0x271                 	// #625
+ c18:	52800082 	mov	w2, #0x4                   	// #4
+ c1c:	b90043a0 	str	w0, [x29, #64]
+ c20:	f947d063 	ldr	x3, [x3, #4000]
+ c24:	52804461 	mov	w1, #0x223                 	// #547
+ c28:	aa1303e0 	mov	x0, x19
+ c2c:	d63f0060 	blr	x3 ; heuristic args: x1=547, x2=4
+ c30:	340004a0 	cbz	w0, cc4 <CGIMain@@Base+0x128>
+ c34:	90000001 	adrp	x1, 0 <_init@@Base-0xa90>
+ c38:	913a6021 	add	x1, x1, #0xe98
+ c3c:	f947bf02 	ldr	x2, [x24, #3960]
+ c40:	52800014 	mov	w20, #0x0                   	// #0
+ c44:	52800060 	mov	w0, #0x3                   	// #3
+ c48:	d63f0040 	blr	x2 ; heuristic args: x0=3, x1='[cgi-webapp]:\nWeb MobileApp websoc_session_app error get AnalyticsObject\n'
+ c4c:	52800033 	mov	w19, #0x1                   	// #1
+ c50:	f947bf18 	ldr	x24, [x24, #3960]
+ c54:	aa1703e2 	mov	x2, x23
+ c58:	528000c0 	mov	w0, #0x6                   	// #6
+ c5c:	2a1303e4 	mov	w4, w19
+ c60:	aa1503e3 	mov	x3, x21
+ c64:	90000001 	adrp	x1, 0 <_init@@Base-0xa90>
+ c68:	913dec21 	add	x1, x1, #0xf7b
+ c6c:	d63f0300 	blr	x24 ; heuristic args: x0=6, x1='[cgi-webapp]:Web MobileApp websoc_session_app command=%s timeout=%s result=%d', x4=1
+ c70:	aa1703e0 	mov	x0, x23
+ c74:	b0000097 	adrp	x23, 11000 <_fini@@Base+0x1018c>
+ c78:	f947fef7 	ldr	x23, [x23, #4088]
+ c7c:	d63f02e0 	blr	x23
+ c80:	b4000075 	cbz	x21, c8c <CGIMain@@Base+0xf0>
+ c84:	aa1503e0 	mov	x0, x21
+ c88:	d63f02e0 	blr	x23
+ c8c:	b0000082 	adrp	x2, 11000 <_fini@@Base+0x1018c>
+ c90:	2a1403e1 	mov	w1, w20
+ c94:	2a1303e0 	mov	w0, w19
+ c98:	f947b842 	ldr	x2, [x2, #3952]
+ c9c:	d63f0040 	blr	x2 ; heuristic args: x0=1, x1=0
+ ca0:	f947f2d6 	ldr	x22, [x22, #4064]
+ ca4:	52800000 	mov	w0, #0x0                   	// #0
+ ca8:	f94137a2 	ldr	x2, [x29, #616]
+ cac:	f94002c1 	ldr	x1, [x22]
+ cb0:	ca010041 	eor	x1, x2, x1
+ cb4:	b4000881 	cbz	x1, dc4 <CGIMain@@Base+0x228>
+ cb8:	b0000080 	adrp	x0, 11000 <_fini@@Base+0x1018c>
+ cbc:	f947f800 	ldr	x0, [x0, #4080]
+ cc0:	d63f0000 	blr	x0
+ cc4:	b0000094 	adrp	x20, 11000 <_fini@@Base+0x1018c>
+ cc8:	90000001 	adrp	x1, 0 <_init@@Base-0xa90>
+ ccc:	913b8821 	add	x1, x1, #0xee2
+ cd0:	f947ee94 	ldr	x20, [x20, #4056]
+ cd4:	aa1703e0 	mov	x0, x23
+ cd8:	d63f0280 	blr	x20 ; heuristic args: x1='Session_START{Mobile}'
+ cdc:	350004a0 	cbnz	w0, d70 <CGIMain@@Base+0x1d4>
+ ce0:	b4000535 	cbz	x21, d84 <CGIMain@@Base+0x1e8>
+ ce4:	394002a0 	ldrb	w0, [x21]
+ ce8:	340004e0 	cbz	w0, d84 <CGIMain@@Base+0x1e8>
+ cec:	b0000082 	adrp	x2, 11000 <_fini@@Base+0x1018c>
+ cf0:	52800001 	mov	w1, #0x0                   	// #0
+ cf4:	aa1503e0 	mov	x0, x21
+ cf8:	f947d842 	ldr	x2, [x2, #4016]
+ cfc:	d63f0040 	blr	x2 ; heuristic args: x1=0
+ d00:	34000540 	cbz	w0, da8 <CGIMain@@Base+0x20c>
+ d04:	b0000081 	adrp	x1, 11000 <_fini@@Base+0x1018c>
+ d08:	aa1503e0 	mov	x0, x21
+ d0c:	f947dc21 	ldr	x1, [x1, #4024]
+ d10:	d63f0020 	blr	x1
+ d14:	51001402 	sub	w2, w0, #0x5
+ d18:	528a2f61 	mov	w1, #0x517b                	// #20859
+ d1c:	72a00021 	movk	w1, #0x1, lsl #16
+ d20:	6b01005f 	cmp	w2, w1
+ d24:	54000428 	b.hi	da8 <CGIMain@@Base+0x20c>  // b.pmore
+ d28:	b0000084 	adrp	x4, 11000 <_fini@@Base+0x1018c>
+ d2c:	2a0003e3 	mov	w3, w0
+ d30:	90000002 	adrp	x2, 0 <_init@@Base-0xa90>
+ d34:	913be042 	add	x2, x2, #0xef8
+ d38:	f947c484 	ldr	x4, [x4, #3976]
+ d3c:	d2804021 	mov	x1, #0x201                 	// #513
+ d40:	91008260 	add	x0, x19, #0x20
+ d44:	d63f0080 	blr	x4 ; heuristic args: x0=33, x1=513, x2='Session_START{Mobile,timeout=%d}'
+ d48:	b0000083 	adrp	x3, 11000 <_fini@@Base+0x1018c>
+ d4c:	52800082 	mov	w2, #0x4                   	// #4
+ d50:	52804461 	mov	w1, #0x223                 	// #547
+ d54:	aa1303e0 	mov	x0, x19
+ d58:	f947f463 	ldr	x3, [x3, #4072]
+ d5c:	d63f0060 	blr	x3 ; heuristic args: x0=1, x1=547, x2=4
+ d60:	340002c0 	cbz	w0, db8 <CGIMain@@Base+0x21c>
+ d64:	90000001 	adrp	x1, 0 <_init@@Base-0xa90>
+ d68:	913cc421 	add	x1, x1, #0xf31
+ d6c:	17ffffb4 	b	c3c <CGIMain@@Base+0xa0>
+ d70:	90000001 	adrp	x1, 0 <_init@@Base-0xa90>
+ d74:	913c7021 	add	x1, x1, #0xf1c
+ d78:	aa1703e0 	mov	x0, x23
+ d7c:	d63f0280 	blr	x20 ; heuristic args: x1='Session_STOP{Mobile}'
+ d80:	35000180 	cbnz	w0, db0 <CGIMain@@Base+0x214>
+ d84:	b0000084 	adrp	x4, 11000 <_fini@@Base+0x1018c>
+ d88:	aa1703e3 	mov	x3, x23
+ d8c:	90000002 	adrp	x2, 0 <_init@@Base-0xa90>
+ d90:	913c6442 	add	x2, x2, #0xf19
+ d94:	f947c484 	ldr	x4, [x4, #3976]
+ d98:	d2804021 	mov	x1, #0x201                 	// #513
+ d9c:	91008260 	add	x0, x19, #0x20
+ da0:	d63f0080 	blr	x4 ; heuristic args: x0=33, x1=513, x2='%s'
+ da4:	17ffffe9 	b	d48 <CGIMain@@Base+0x1ac>
+ da8:	52800054 	mov	w20, #0x2                   	// #2
+ dac:	17ffffa8 	b	c4c <CGIMain@@Base+0xb0>
+ db0:	52800034 	mov	w20, #0x1                   	// #1
+ db4:	17ffffa6 	b	c4c <CGIMain@@Base+0xb0>
+ db8:	52800014 	mov	w20, #0x0                   	// #0
+ dbc:	52800013 	mov	w19, #0x0                   	// #0
+ dc0:	17ffffa4 	b	c50 <CGIMain@@Base+0xb4>
+ dc4:	a9407bfd 	ldp	x29, x30, [sp]
+ dc8:	a94153f3 	ldp	x19, x20, [sp, #16]
+ dcc:	a9425bf5 	ldp	x21, x22, [sp, #32]
+ dd0:	a94363f7 	ldp	x23, x24, [sp, #48]
+ dd4:	9109c3ff 	add	sp, sp, #0x270
+ dd8:	d65f03c0 	ret

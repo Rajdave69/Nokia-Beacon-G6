@@ -76,7 +76,7 @@ def main():
    if not p.is_file() or p.is_symlink():continue
    if p.name in ('cfg_update_remote_encryption.kv','cfg_update_remote_avalible','cfg_update_remote_file_name','custom.cfg','se.conf','usp.db','tr181.db','tr.conf','tr181.conf','default_scfg.txt','scfg.txt','http_privkey.pem','http_pubkey.pem') or p.name.startswith('ENC_CFG'):inventory.append(fp(p))
  b9root=B9/'config-private/provisioning-analysis-20261027/configs-p28';b9parts=B9/'stock-firmware/router-emmc-20261014-033951/partitions'
- decoder=module(ROOT/'writeups/configuration-import-export/resources/stored-database/decrypt-stored-config.py','stored');negative={}
+ decoder=module(ROOT/'writeups/stored-configuration-database/resources/decrypt-stored-config.py','stored');negative={}
  try:decoder.decrypt_stored((b9root/'dmdb_encryption.cfg').read_bytes(),decoder.derive_key10(private_value('B9-A:RI-G984Serial').encode(),private_value('PROGDATE-D').encode()))
  except ValueError as e:negative={'input':fp(b9root/'dmdb_encryption.cfg'),'serial_source':'B9-A:RI-G984Serial','ProgDate_source':'PROGDATE-D','source5':'invalid_key_src5_str','result':'failed','error':str(e),'limit':'This exact G6 missing-source5 profile failed; no proof of why or a universal B9 decryptability claim.'}
  else:raise AssertionError('Earlier negative result changed')

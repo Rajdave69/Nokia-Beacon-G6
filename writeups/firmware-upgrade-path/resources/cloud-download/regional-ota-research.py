@@ -43,7 +43,7 @@ def main():
     if len(report['downloads'])>=8:raise ValueError('Eight-image download cap reached')
     name=str(item.get('nxtMSVersion') or 'unnamed')
     if not all(c.isalnum() or c in '._-' for c in name):raise ValueError('Unexpected version filename')
-    root=G6 if device=='g6' else B9;target=root/'config-private/downloaded-firmware'/(name+'-'+operator+'-regional-research.bin')
+    root=G6 if device=='g6' else B9;target=root/('dumped-firmware/downloaded-firmware' if device=='g6' else 'config-private/downloaded-firmware')/(name+'-'+operator+'-regional-research.bin')
     download=client.download(raw,target,index);download['request_operator_scenario']=operator;download['compatibility']='Research bytes only; no assertion of BOQA compatibility';report['downloads'].append(download);downloaded.add(identity)
     if checksum:known.add(checksum.lower())
   except Exception as exc:row['error_type']=type(exc).__name__;report['stop_reason']='First request/download error; stopped without retry'

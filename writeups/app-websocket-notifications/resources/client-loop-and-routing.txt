@@ -1,0 +1,387 @@
+
+libwebsocket.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000aa30 <handleClient@@Base>:
+    aa30:	d2882c10 	mov	x16, #0x4160                	// #16736
+    aa34:	cb3063ff 	sub	sp, sp, x16
+    aa38:	a9007bfd 	stp	x29, x30, [sp]
+    aa3c:	910003fd 	mov	x29, sp
+    aa40:	a90153f3 	stp	x19, x20, [sp, #16]
+    aa44:	f0000093 	adrp	x19, 1d000 <_fini@@Base+0x11b18>
+    aa48:	f9003fa0 	str	x0, [x29, #120]
+    aa4c:	f947f260 	ldr	x0, [x19, #4064]
+    aa50:	a9025bf5 	stp	x21, x22, [sp, #32]
+    aa54:	f9400001 	ldr	x1, [x0]
+    aa58:	f920afa1 	str	x1, [x29, #16728]
+    aa5c:	d2800001 	mov	x1, #0x0                   	// #0
+    aa60:	a90363f7 	stp	x23, x24, [sp, #48]
+    aa64:	a9046bf9 	stp	x25, x26, [sp, #64]
+    aa68:	f9002bfb 	str	x27, [sp, #80]
+    aa6c:	97ffe47d 	bl	3c60 <pthread_self@plt> ; heuristic args: x1=0
+    aa70:	f9003ba0 	str	x0, [x29, #112]
+    aa74:	97ffe337 	bl	3750 <pthread_detach@plt>
+    aa78:	d2800001 	mov	x1, #0x0                   	// #0
+    aa7c:	52800000 	mov	w0, #0x0                   	// #0
+    aa80:	97ffe3a8 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=0, x1=0
+    aa84:	d2800001 	mov	x1, #0x0                   	// #0
+    aa88:	52800000 	mov	w0, #0x0                   	// #0
+    aa8c:	97ffe435 	bl	3b60 <pthread_setcanceltype@plt> ; heuristic args: x0=0, x1=0
+    aa90:	f947c260 	ldr	x0, [x19, #3968]
+    aa94:	52800001 	mov	w1, #0x0                   	// #0
+    aa98:	f90037a0 	str	x0, [x29, #104]
+    aa9c:	910203a0 	add	x0, x29, #0x80
+    aaa0:	97ffe29c 	bl	3510 <__sigsetjmp@plt> ; heuristic args: x1=0
+    aaa4:	350007e0 	cbnz	w0, aba0 <handleClient@@Base+0x170>
+    aaa8:	910203a0 	add	x0, x29, #0x80
+    aaac:	97ffe2b9 	bl	3590 <__pthread_register_cancel@plt>
+    aab0:	a9474fa0 	ldp	x0, x19, [x29, #112]
+    aab4:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    aab8:	9110a021 	add	x1, x1, #0x428
+    aabc:	aa0003e2 	mov	x2, x0
+    aac0:	f9000e60 	str	x0, [x19, #24]
+    aac4:	52800060 	mov	w0, #0x3                   	// #3
+    aac8:	97ffe3fe 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Thread Created, New Client [%d]\n'
+    aacc:	d2800001 	mov	x1, #0x0                   	// #0
+    aad0:	52800020 	mov	w0, #0x1                   	// #1
+    aad4:	97ffe393 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=1, x1=0
+    aad8:	d2800001 	mov	x1, #0x0                   	// #0
+    aadc:	52800000 	mov	w0, #0x0                   	// #0
+    aae0:	97ffe390 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=0, x1=0
+    aae4:	d2800020 	mov	x0, #0x1                   	// #1
+    aae8:	97ffe2e2 	bl	3670 <malloc@plt> ; heuristic args: x0=1
+    aaec:	f9000a60 	str	x0, [x19, #16]
+    aaf0:	b4000400 	cbz	x0, ab70 <handleClient@@Base+0x140>
+    aaf4:	f9403fb4 	ldr	x20, [x29, #120]
+    aaf8:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    aafc:	52800020 	mov	w0, #0x1                   	// #1
+    ab00:	91114021 	add	x1, x1, #0x450
+    ab04:	f0000093 	adrp	x19, 1d000 <_fini@@Base+0x11b18>
+    ab08:	f9400683 	ldr	x3, [x20, #8]
+    ab0c:	b9400282 	ldr	w2, [x20]
+    ab10:	97ffe30c 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='Client connected with the following information:\n\tSocket: %d\n\tAddress: %s\n\n'
+    ab14:	f9400682 	ldr	x2, [x20, #8]
+    ab18:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    ab1c:	91128021 	add	x1, x1, #0x4a0
+    ab20:	528000c0 	mov	w0, #0x6                   	// #6
+    ab24:	97ffe3e7 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[%s]New Client Connected. Authenticating Client..\n'
+    ab28:	f0000000 	adrp	x0, d000 <_fini@@Base+0x1b18>
+    ab2c:	91136000 	add	x0, x0, #0x4d8
+    ab30:	97ffe398 	bl	3990 <puts@plt> ; heuristic args: x0='Checking whether client is valid ...'
+    ab34:	f947e260 	ldr	x0, [x19, #4032]
+    ab38:	f9400000 	ldr	x0, [x0]
+    ab3c:	97ffe401 	bl	3b40 <fflush@plt>
+    ab40:	f947d260 	ldr	x0, [x19, #4000]
+    ab44:	f9400000 	ldr	x0, [x0]
+    ab48:	97ffe28a 	bl	3570 <ws_checkMaxConnections@plt>
+    ab4c:	35000340 	cbnz	w0, abb4 <handleClient@@Base+0x184>
+    ab50:	b0000001 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    ab54:	aa1403e2 	mov	x2, x20
+    ab58:	91192021 	add	x1, x1, #0x648
+    ab5c:	f0000000 	adrp	x0, d000 <_fini@@Base+0x1b18>
+    ab60:	91140000 	add	x0, x0, #0x500
+    ab64:	97ffe473 	bl	3d30 <validation_error@plt> ; heuristic args: x0='Max Connections Limit Reached.', x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    ab68:	d2800020 	mov	x0, #0x1                   	// #1
+    ab6c:	97ffe371 	bl	3930 <pthread_exit@plt> ; heuristic args: x0=1
+    ab70:	d2800001 	mov	x1, #0x0                   	// #0
+    ab74:	52800020 	mov	w0, #0x1                   	// #1
+    ab78:	97ffe36a 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=1, x1=0
+    ab7c:	f9403fa2 	ldr	x2, [x29, #120]
+    ab80:	b0000001 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    ab84:	91192021 	add	x1, x1, #0x648
+    ab88:	b0000000 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    ab8c:	9119a000 	add	x0, x0, #0x668
+    ab90:	97ffe3d8 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="Couldn't allocate memory.", x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    ab94:	d2800020 	mov	x0, #0x1                   	// #1
+    ab98:	97ffe366 	bl	3930 <pthread_exit@plt> ; heuristic args: x0=1
+    ab9c:	d503201f 	nop
+    aba0:	f9403fa0 	ldr	x0, [x29, #120]
+    aba4:	f94037a1 	ldr	x1, [x29, #104]
+    aba8:	d63f0020 	blr	x1
+    abac:	910203a0 	add	x0, x29, #0x80
+    abb0:	97ffe328 	bl	3850 <__pthread_unwind_next@plt>
+    abb4:	f9403fa0 	ldr	x0, [x29, #120]
+    abb8:	f9400401 	ldr	x1, [x0, #8]
+    abbc:	f947ea60 	ldr	x0, [x19, #4048]
+    abc0:	97ffe360 	bl	3940 <ws_blockValidateIP@plt>
+    abc4:	34001060 	cbz	w0, add0 <handleClient@@Base+0x3a0>
+    abc8:	52800037 	mov	w23, #0x1                   	// #1
+    abcc:	b0000015 	adrp	x21, b000 <handleClient@@Base+0x5d0>
+    abd0:	b0000014 	adrp	x20, b000 <handleClient@@Base+0x5d0>
+    abd4:	93407ef3 	sxtw	x19, w23
+    abd8:	910563b6 	add	x22, x29, #0x158
+    abdc:	911842b5 	add	x21, x21, #0x610
+    abe0:	91354294 	add	x20, x20, #0xd50
+    abe4:	d2840018 	mov	x24, #0x2000                	// #8192
+    abe8:	52800001 	mov	w1, #0x0                   	// #0
+    abec:	aa1803e2 	mov	x2, x24
+    abf0:	aa1603e0 	mov	x0, x22
+    abf4:	97ffe2df 	bl	3770 <memset@plt> ; heuristic args: x1=0, x2=8192
+    abf8:	f9403fa0 	ldr	x0, [x29, #120]
+    abfc:	52800003 	mov	w3, #0x0                   	// #0
+    ac00:	aa1803e2 	mov	x2, x24
+    ac04:	aa1603e1 	mov	x1, x22
+    ac08:	b9400000 	ldr	w0, [x0]
+    ac0c:	97ffe339 	bl	38f0 <recv@plt> ; heuristic args: x2=8192, x3=0
+    ac10:	aa0003f9 	mov	x25, x0
+    ac14:	7100001f 	cmp	w0, #0x0
+    ac18:	5400072d 	b.le	acfc <handleClient@@Base+0x2cc>
+    ac1c:	710006ff 	cmp	w23, #0x1
+    ac20:	540000a1 	b.ne	ac34 <handleClient@@Base+0x204>  // b.any
+    ac24:	aa1603e0 	mov	x0, x22
+    ac28:	97ffe216 	bl	3480 <strlen@plt>
+    ac2c:	f100341f 	cmp	x0, #0xd
+    ac30:	54000ec9 	b.ls	ae08 <handleClient@@Base+0x3d8>  // b.plast
+    ac34:	f9403fa0 	ldr	x0, [x29, #120]
+    ac38:	0b190278 	add	w24, w19, w25
+    ac3c:	93407f1a 	sxtw	x26, w24
+    ac40:	aa1a03e1 	mov	x1, x26
+    ac44:	f9400800 	ldr	x0, [x0, #16]
+    ac48:	97ffe2fe 	bl	3840 <realloc@plt>
+    ac4c:	b4000f60 	cbz	x0, ae38 <handleClient@@Base+0x408>
+    ac50:	f9403fbb 	ldr	x27, [x29, #120]
+    ac54:	d1000673 	sub	x19, x19, #0x1
+    ac58:	11000722 	add	w2, w25, #0x1
+    ac5c:	52800001 	mov	w1, #0x0                   	// #0
+    ac60:	93407c42 	sxtw	x2, w2
+    ac64:	110006f7 	add	w23, w23, #0x1
+    ac68:	f9000b60 	str	x0, [x27, #16]
+    ac6c:	8b130000 	add	x0, x0, x19
+    ac70:	97ffe2c0 	bl	3770 <memset@plt> ; heuristic args: x1=0
+    ac74:	f9400b60 	ldr	x0, [x27, #16]
+    ac78:	93407f22 	sxtw	x2, w25
+    ac7c:	aa1603e1 	mov	x1, x22
+    ac80:	8b130000 	add	x0, x0, x19
+    ac84:	97ffe1f7 	bl	3460 <memcpy@plt>
+    ac88:	f9400b79 	ldr	x25, [x27, #16]
+    ac8c:	d1001741 	sub	x1, x26, #0x5
+    ac90:	d2800082 	mov	x2, #0x4                   	// #4
+    ac94:	aa1503e0 	mov	x0, x21
+    ac98:	8b010321 	add	x1, x25, x1
+    ac9c:	97ffe299 	bl	3700 <strncmp@plt> ; heuristic args: x0='\r\n\r\n', x2=4
+    aca0:	340004c0 	cbz	w0, ad38 <handleClient@@Base+0x308>
+    aca4:	d1000f41 	sub	x1, x26, #0x3
+    aca8:	d2800042 	mov	x2, #0x2                   	// #2
+    acac:	8b010321 	add	x1, x25, x1
+    acb0:	aa1403e0 	mov	x0, x20
+    acb4:	97ffe293 	bl	3700 <strncmp@plt> ; heuristic args: x0='\n\n', x2=2
+    acb8:	34000400 	cbz	w0, ad38 <handleClient@@Base+0x308>
+    acbc:	51002313 	sub	w19, w24, #0x8
+    acc0:	d2800082 	mov	x2, #0x4                   	// #4
+    acc4:	93407e73 	sxtw	x19, w19
+    acc8:	aa1503e0 	mov	x0, x21
+    accc:	d1001661 	sub	x1, x19, #0x5
+    acd0:	8b010321 	add	x1, x25, x1
+    acd4:	97ffe28b 	bl	3700 <strncmp@plt> ; heuristic args: x0='\r\n\r\n', x2=4
+    acd8:	34000300 	cbz	w0, ad38 <handleClient@@Base+0x308>
+    acdc:	d1000e61 	sub	x1, x19, #0x3
+    ace0:	d2800042 	mov	x2, #0x2                   	// #2
+    ace4:	8b010321 	add	x1, x25, x1
+    ace8:	aa1403e0 	mov	x0, x20
+    acec:	97ffe285 	bl	3700 <strncmp@plt> ; heuristic args: x0='\n\n', x2=2
+    acf0:	34000240 	cbz	w0, ad38 <handleClient@@Base+0x308>
+    acf4:	93407f13 	sxtw	x19, w24
+    acf8:	17ffffbb 	b	abe4 <handleClient@@Base+0x1b4>
+    acfc:	d2800001 	mov	x1, #0x0                   	// #0
+    ad00:	52800020 	mov	w0, #0x1                   	// #1
+    ad04:	97ffe307 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=1, x1=0
+    ad08:	528000c0 	mov	w0, #0x6                   	// #6
+    ad0c:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    ad10:	91156021 	add	x1, x1, #0x558
+    ad14:	97ffe36b 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1="Didn't receive any headers from the client.\n"
+    ad18:	f9403fa2 	ldr	x2, [x29, #120]
+    ad1c:	b0000001 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    ad20:	9117e021 	add	x1, x1, #0x5f8
+    ad24:	f0000000 	adrp	x0, d000 <_fini@@Base+0x1b18>
+    ad28:	91162000 	add	x0, x0, #0x588
+    ad2c:	97ffe371 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="Didn't receive any headers from the client.", x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    ad30:	d2800020 	mov	x0, #0x1                   	// #1
+    ad34:	97ffe2ff 	bl	3930 <pthread_exit@plt> ; heuristic args: x0=1
+    ad38:	f0000093 	adrp	x19, 1d000 <_fini@@Base+0x11b18>
+    ad3c:	f947e260 	ldr	x0, [x19, #4032]
+    ad40:	f9400000 	ldr	x0, [x0]
+    ad44:	97ffe37f 	bl	3b40 <fflush@plt>
+    ad48:	97ffe1d2 	bl	3490 <header_new@plt>
+    ad4c:	b4fff120 	cbz	x0, ab70 <handleClient@@Base+0x140>
+    ad50:	f9403fb4 	ldr	x20, [x29, #120]
+    ad54:	d2800001 	mov	x1, #0x0                   	// #0
+    ad58:	f9001280 	str	x0, [x20, #32]
+    ad5c:	52800020 	mov	w0, #0x1                   	// #1
+    ad60:	97ffe2f0 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=1, x1=0
+    ad64:	f947ce73 	ldr	x19, [x19, #3992]
+    ad68:	f9400a80 	ldr	x0, [x20, #16]
+    ad6c:	aa1403e1 	mov	x1, x20
+    ad70:	b9400262 	ldr	w2, [x19]
+    ad74:	97ffe20f 	bl	35b0 <parseHeaders@plt>
+    ad78:	37f80280 	tbnz	w0, #31, adc8 <handleClient@@Base+0x398>
+    ad7c:	f9403fb3 	ldr	x19, [x29, #120]
+    ad80:	aa1303e0 	mov	x0, x19
+    ad84:	97ffe31f 	bl	3a00 <sendHandshake@plt>
+    ad88:	36f80080 	tbz	w0, #31, ad98 <handleClient@@Base+0x368>
+    ad8c:	f9401260 	ldr	x0, [x19, #32]
+    ad90:	b9408c00 	ldr	w0, [x0, #140]
+    ad94:	350001a0 	cbnz	w0, adc8 <handleClient@@Base+0x398>
+    ad98:	f0000093 	adrp	x19, 1d000 <_fini@@Base+0x11b18>
+    ad9c:	f9403fb4 	ldr	x20, [x29, #120]
+    ada0:	f947d276 	ldr	x22, [x19, #4000]
+    ada4:	aa1403e1 	mov	x1, x20
+    ada8:	f94002c0 	ldr	x0, [x22]
+    adac:	97ffe3d9 	bl	3d10 <ws_authenticateClient@plt>
+    adb0:	35000620 	cbnz	w0, ae74 <handleClient@@Base+0x444>
+    adb4:	f9400e82 	ldr	x2, [x20, #24]
+    adb8:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    adbc:	52800060 	mov	w0, #0x3                   	// #3
+    adc0:	91192021 	add	x1, x1, #0x648
+    adc4:	97ffe33f 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Thread Exited, Auth Failed [%d]\n'
+    adc8:	d2800020 	mov	x0, #0x1                   	// #1
+    adcc:	97ffe2d9 	bl	3930 <pthread_exit@plt> ; heuristic args: x0=1
+    add0:	f9403fb3 	ldr	x19, [x29, #120]
+    add4:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    add8:	52800020 	mov	w0, #0x1                   	// #1
+    addc:	91148021 	add	x1, x1, #0x520
+    ade0:	f9400662 	ldr	x2, [x19, #8]
+    ade4:	97ffe257 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='IP Address: %s is blocked.\n'
+    ade8:	b0000001 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    adec:	aa1303e2 	mov	x2, x19
+    adf0:	91192021 	add	x1, x1, #0x648
+    adf4:	f0000000 	adrp	x0, d000 <_fini@@Base+0x1b18>
+    adf8:	91150000 	add	x0, x0, #0x540
+    adfc:	97ffe3cd 	bl	3d30 <validation_error@plt> ; heuristic args: x0='IP Address is blocked.', x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    ae00:	d2800020 	mov	x0, #0x1                   	// #1
+    ae04:	97ffe2cb 	bl	3930 <pthread_exit@plt> ; heuristic args: x0=1
+    ae08:	528000c0 	mov	w0, #0x6                   	// #6
+    ae0c:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    ae10:	9116e021 	add	x1, x1, #0x5b8
+    ae14:	97ffe32b 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='SSL request is not supported yet.\n'
+    ae18:	f9403fa2 	ldr	x2, [x29, #120]
+    ae1c:	b0000001 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    ae20:	9121a021 	add	x1, x1, #0x868
+    ae24:	f0000000 	adrp	x0, d000 <_fini@@Base+0x1b18>
+    ae28:	91178000 	add	x0, x0, #0x5e0
+    ae2c:	97ffe331 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='SSL request is not supported yet.', x1='HTTP/1.1 501 Not Implemented\r\n\r\n'
+    ae30:	d2800020 	mov	x0, #0x1                   	// #1
+    ae34:	97ffe2bf 	bl	3930 <pthread_exit@plt> ; heuristic args: x0=1
+    ae38:	d2800001 	mov	x1, #0x0                   	// #0
+    ae3c:	52800020 	mov	w0, #0x1                   	// #1
+    ae40:	97ffe2b8 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=1, x1=0
+    ae44:	52800060 	mov	w0, #0x3                   	// #3
+    ae48:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    ae4c:	91182021 	add	x1, x1, #0x608
+    ae50:	97ffe31c 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1="Couldn't reallocate memory.\n"
+    ae54:	f9403fa2 	ldr	x2, [x29, #120]
+    ae58:	b0000001 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    ae5c:	91192021 	add	x1, x1, #0x648
+    ae60:	f0000000 	adrp	x0, d000 <_fini@@Base+0x1b18>
+    ae64:	9118a000 	add	x0, x0, #0x628
+    ae68:	97ffe322 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="Couldn't reallocate memory.", x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    ae6c:	d2800020 	mov	x0, #0x1                   	// #1
+    ae70:	97ffe2b0 	bl	3930 <pthread_exit@plt> ; heuristic args: x0=1
+    ae74:	d2842b00 	mov	x0, #0x2158                	// #8536
+    ae78:	8b0003b4 	add	x20, x29, x0
+    ae7c:	f9403fa0 	ldr	x0, [x29, #120]
+    ae80:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    ae84:	9119c021 	add	x1, x1, #0x670
+    ae88:	aa1403f8 	mov	x24, x20
+    ae8c:	d2800015 	mov	x21, #0x0                   	// #0
+    ae90:	52800039 	mov	w25, #0x1                   	// #1
+    ae94:	f9400402 	ldr	x2, [x0, #8]
+    ae98:	528000e0 	mov	w0, #0x7                   	// #7
+    ae9c:	97ffe309 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=7, x1='[%s]Client has been validated and is now connected\n'
+    aea0:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    aea4:	52800020 	mov	w0, #0x1                   	// #1
+    aea8:	911aa021 	add	x1, x1, #0x6a8
+    aeac:	97ffe225 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='> '
+    aeb0:	f947e273 	ldr	x19, [x19, #4032]
+    aeb4:	f9400260 	ldr	x0, [x19]
+    aeb8:	97ffe322 	bl	3b40 <fflush@plt>
+    aebc:	d2800001 	mov	x1, #0x0                   	// #0
+    aec0:	52800000 	mov	w0, #0x0                   	// #0
+    aec4:	97ffe297 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=0, x1=0
+    aec8:	d2840002 	mov	x2, #0x2000                	// #8192
+    aecc:	52800001 	mov	w1, #0x0                   	// #0
+    aed0:	aa1403e0 	mov	x0, x20
+    aed4:	97ffe227 	bl	3770 <memset@plt> ; heuristic args: x1=0, x2=8192
+    aed8:	f9403fa0 	ldr	x0, [x29, #120]
+    aedc:	aa1503e2 	mov	x2, x21
+    aee0:	aa1803e1 	mov	x1, x24
+    aee4:	97ffe2b3 	bl	39b0 <communicate@plt> ; heuristic args: x2=0
+    aee8:	350004c0 	cbnz	w0, af80 <handleClient@@Base+0x550>
+    aeec:	d2800001 	mov	x1, #0x0                   	// #0
+    aef0:	2a1903e0 	mov	w0, w25
+    aef4:	97ffe28b 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=1, x1=0
+    aef8:	f9403fa0 	ldr	x0, [x29, #120]
+    aefc:	f9401001 	ldr	x1, [x0, #32]
+    af00:	f94002c0 	ldr	x0, [x22]
+    af04:	b9409021 	ldr	w1, [x1, #144]
+    af08:	7100043f 	cmp	w1, #0x1
+    af0c:	54000820 	b.eq	b010 <handleClient@@Base+0x5e0>  // b.none
+    af10:	f9403fa2 	ldr	x2, [x29, #120]
+    af14:	f9403fa1 	ldr	x1, [x29, #120]
+    af18:	f9401442 	ldr	x2, [x2, #40]
+    af1c:	97ffe271 	bl	38e0 <list_multicast_one@plt>
+    af20:	d2800001 	mov	x1, #0x0                   	// #0
+    af24:	52800000 	mov	w0, #0x0                   	// #0
+    af28:	97ffe27e 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=0, x1=0
+    af2c:	f9403fa0 	ldr	x0, [x29, #120]
+    af30:	f9401413 	ldr	x19, [x0, #40]
+    af34:	b4fffd33 	cbz	x19, aed8 <handleClient@@Base+0x4a8>
+    af38:	d2840014 	mov	x20, #0x2000                	// #8192
+    af3c:	52800001 	mov	w1, #0x0                   	// #0
+    af40:	aa1403e2 	mov	x2, x20
+    af44:	aa1803e0 	mov	x0, x24
+    af48:	97ffe20a 	bl	3770 <memset@plt> ; heuristic args: x1=0, x2=8192
+    af4c:	f9400e62 	ldr	x2, [x19, #24]
+    af50:	aa1403e3 	mov	x3, x20
+    af54:	f9401661 	ldr	x1, [x19, #40]
+    af58:	aa1803e0 	mov	x0, x24
+    af5c:	97ffe1a9 	bl	3600 <__memcpy_chk@plt> ; heuristic args: x3=8192
+    af60:	f9400e75 	ldr	x21, [x19, #24]
+    af64:	aa1303e0 	mov	x0, x19
+    af68:	97ffe2ae 	bl	3a20 <message_free@plt>
+    af6c:	f9403fb3 	ldr	x19, [x29, #120]
+    af70:	f9401660 	ldr	x0, [x19, #40]
+    af74:	97ffe2bb 	bl	3a60 <free@plt>
+    af78:	f900167f 	str	xzr, [x19, #40]
+    af7c:	17ffffd7 	b	aed8 <handleClient@@Base+0x4a8>
+    af80:	f9403fb4 	ldr	x20, [x29, #120]
+    af84:	52800060 	mov	w0, #0x3                   	// #3
+    af88:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    af8c:	911ac021 	add	x1, x1, #0x6b0
+    af90:	f0000093 	adrp	x19, 1d000 <_fini@@Base+0x11b18>
+    af94:	f9400682 	ldr	x2, [x20, #8]
+    af98:	97ffe2ca 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='[%s]Closing Client Connection...\n'
+    af9c:	f9400682 	ldr	x2, [x20, #8]
+    afa0:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    afa4:	911b6021 	add	x1, x1, #0x6d8
+    afa8:	528000c0 	mov	w0, #0x6                   	// #6
+    afac:	97ffe2c5 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[%s]Shutting client down...\n'
+    afb0:	f0000000 	adrp	x0, d000 <_fini@@Base+0x1b18>
+    afb4:	91104000 	add	x0, x0, #0x410
+    afb8:	97ffe276 	bl	3990 <puts@plt> ; heuristic args: x0='Shutting client down..\n'
+    afbc:	52800020 	mov	w0, #0x1                   	// #1
+    afc0:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    afc4:	911aa021 	add	x1, x1, #0x6a8
+    afc8:	97ffe1de 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='> '
+    afcc:	f947e260 	ldr	x0, [x19, #4032]
+    afd0:	f9400000 	ldr	x0, [x0]
+    afd4:	97ffe2db 	bl	3b40 <fflush@plt>
+    afd8:	d2800001 	mov	x1, #0x0                   	// #0
+    afdc:	52800020 	mov	w0, #0x1                   	// #1
+    afe0:	97ffe250 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=1, x1=0
+    afe4:	f947d273 	ldr	x19, [x19, #4000]
+    afe8:	aa1403e1 	mov	x1, x20
+    afec:	f9400260 	ldr	x0, [x19]
+    aff0:	97ffe344 	bl	3d00 <list_remove@plt>
+    aff4:	d2800001 	mov	x1, #0x0                   	// #0
+    aff8:	52800000 	mov	w0, #0x0                   	// #0
+    affc:	97ffe249 	bl	3920 <pthread_setcancelstate@plt> ; heuristic args: x0=0, x1=0
+    b000:	910203a0 	add	x0, x29, #0x80
+    b004:	97ffe207 	bl	3820 <__pthread_unregister_cancel@plt>
+    b008:	d2800000 	mov	x0, #0x0                   	// #0
+    b00c:	97ffe249 	bl	3930 <pthread_exit@plt> ; heuristic args: x0=0
+    b010:	f9403fa1 	ldr	x1, [x29, #120]
+    b014:	97ffe1a3 	bl	36a0 <list_multicast@plt>
+    b018:	17ffffc2 	b	af20 <handleClient@@Base+0x4f0>
+    b01c:	d503201f 	nop

@@ -61,7 +61,7 @@ that Nokia has no corresponding package.
 The [captured-build catalogue](README.md) keeps actual image IDs, hashes and
 build metadata separately. The [account comparison](25.03-account-comparison.md)
 explains why a shared release family does not prove identical ONTUSER behavior.
-The [other router's list](../../../Nokia-Beacon-9/writeups/firmware-versions-and-builds/documented-releases.md) uses the same selection rule.
+The [Beacon 9 companion repository](https://github.com/Rajdave69/Nokia-Beacon-9) (`writeups/firmware-versions-and-builds/documented-releases.md` in the research checkout) uses the same selection rule.
 
 The [complete metadata index](resources/documentation-release-index.json) preserves all 76 filters, including
 those without a model match, every selected document association and hashes of
@@ -69,10 +69,6 @@ all 77 protected raw responses. No locked PDF, software catalogue or firmware
 package was obtained by this metadata scan. Document dates and release-filter
 associations must not be substituted for actual firmware build provenance.
 
-## Capture reconciliation, 27 October 2026
+## Which documented releases have a captured image
 
-The recovered-image list now contains five builds across G6, Beacon 9 and
-XS-2426X-A. The ONT adds JJL.K67p02 and KJL.K50p01, both 24.03, without adding
-an actual G6 24.03 or 25.03 binary. Model-specific documentation associations
-above remain the 26 October metadata snapshot. No new documentation crawl,
-locked PDF download or ONT OTA query was performed for this reconciliation.
+The [captured-image list](README.md#the-firmware-we-recovered) includes the two G6 builds, the Beacon 9 build, and the JJL.K24p02, JJL.K67p02 and KJL.K50p01 ONT builds. The ONT captures supply 24.03 evidence for that model. The collection still has no captured G6 24.03 or 25.03 image. The portal associations above describe the original metadata snapshot.

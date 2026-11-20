@@ -18,7 +18,7 @@ def main():
     p=Path(item['source']);relative=Path(item['relative_path']);root=p
     for _ in relative.parts[2:]:root=root.parent
     roots[tag]=root;break
- decoder=load(ROOT/'writeups/configuration-import-export/resources/stored-database/decrypt-stored-config.py','decoder');key=decoder.derive_key10(identity['G984Serial'].encode(),identity['ProgDate'].encode())
+ decoder=load(ROOT/'writeups/stored-configuration-database/resources/decrypt-stored-config.py','decoder');key=decoder.derive_key10(identity['G984Serial'].encode(),identity['ProgDate'].encode())
  dbs=[]
  for p in sorted(a.private_root.glob('ubifs-*/**/dmdb_encryption.cfg*')):
   data=p.read_bytes();raw,meta=decoder.decrypt_stored(data,key)

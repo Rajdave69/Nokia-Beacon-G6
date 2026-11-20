@@ -1,16 +1,14 @@
 # Sorting out the firmware versions and builds
 
-This writeup is like a little database for the firmware dumps I have on hand, and a little bit
-about what changes between them. For the entire list of firmware versions, you can look at 
-[documented-releases.md](documented-releases.md)
+Nokia identifies firmware at several levels. This guide explains how to read the labels, which images the project has recovered, and how the installed banks can differ. The [documented release list](documented-releases.md) tracks releases mentioned in Nokia’s material, including versions we have yet to obtain.
 
 The second Beacon G6 looked like a chance to find an older firmware. It was manufactured in December
 2023, yet its WebUI reported the same version as the first G6: `3FE49996HJLL91`. Its running Linux 
 files told the same story. The older build turned up when we read the other firmware bank in the 
 NAND dump.
 
-That gave us two different G6 builds to compare on the same model. A Beacon 9 and two VDQA
-XS-2426X-A fibre ONTs added four more builds from related Nokia software releases. The device 
+That gave us two different G6 builds to compare on the same model. A Beacon 9, two VDQA
+XS-2426X-A fibre ONTs and three older XS-2426G-B images broaden the comparison across related Nokia software releases. The device 
 names below follow the [project's capture aliases](../README.md#device-aliases).
 
 ## How to read a Nokia firmware version
@@ -34,20 +32,25 @@ The G6's `REPO` field says `master`, so we traced its BBDR labels through `/usr/
 
 A **firmware bank** is a slot in flash that holds a bootable image. The WebUI reports the running image. Reading both slots can reveal a previous build that is still on the device.
 
-| Device | Product image ID | Software version | BBD release | Build date |
-| --- | --- | --- | --- | --- |
-| Beacon G6 | `3FE49996IJLJ03` | `IJL.J03p01` | R24.02 | 2024-07-02 |
-| Beacon G6 | `3FE49996HJLL91` | `HJL.L91p01` | R24.04 | 2024-12-27 |
-| XS-2426X-A | `3FE49940JJLK24` | `JJL.K24p02` | R24.03 | 2024-11-15 |
-| XS-2426X-A | `3FE49940JJLK67` | `JJL.K67p02` | R24.03 | 2025-02-25 |
-| XS-2426X-A | `3FE49940KJLK50` | `KJL.K50p01` | R24.03 | 2025-09-04 |
-| Beacon 9 | `3TN01100JJMK44` | `JJM.K44p01` | R25.03 | 2025-11-13 |
+| Device     | Product image ID | Software version | BBD release | Build date |
+|------------|------------------|------------------|-------------|------------|
+| XS-2426G-B | `3FE49544JJIL12` | `JJI.L12p01`     | R21.04      | 2022-01-16 |
+| XS-2426G-B | `3FE49544IJKK02` | `IJK.K02p03`     | R23.03      | 2023-09-27 |
+| XS-2426G-B | `3FE49544JJKK44` | `JJK.K44p03`     | R23.03      | 2024-07-02 |
+| Beacon G6  | `3FE49996IJLJ03` | `IJL.J03p01`     | R24.02      | 2024-07-02 |
+| Beacon G6  | `3FE49996HJLL91` | `HJL.L91p01`     | R24.04      | 2024-12-27 |
+| XS-2426X-A | `3FE49940JJLK24` | `JJL.K24p02`     | R24.03      | 2024-11-15 |
+| XS-2426X-A | `3FE49940JJLK67` | `JJL.K67p02`     | R24.03      | 2025-02-25 |
+| XS-2426X-A | `3FE49940KJLK50` | `KJL.K50p01`     | R24.03      | 2025-09-04 |
+| Beacon 9   | `3TN01100JJMK44` | `JJM.K44p01`     | R25.03      | 2025-11-13 |
 
 All six G6s were running HJL.L91p01 when captured. G6-B, G6-D and G6-F retained IJL.J03p01 in bank 0. Both raw banks of G6-F match G6-B and G6-D byte for byte. G6-A, G6-C and G6-E had HJL in both banks. [Sixth capture evidence](resources/g6-f-capture.json). The HJL download from Nokia matched the saved kernel container, root filesystem and Wi-Fi firmware payloads, so it adds another source for the same build. The July 2024 date of the inactive image leaves G6-B's original shipping version unknown. [G6 capture comparison](../comparing-other-g6-routers/README.md) · [Nokia OTA downloads](../ota-firmware-downloads/README.md).
 
 Both ONTs were running KJL.K50p01. ONT-A kept JJL.K67p02 in its other bank, while ONT-B preserved the earlier JJL.K24p02. Both Beacon 9 banks held the same compressed root filesystem. These comparisons cover the saved firmware bytes. Each unit also has its own factory data and writable configuration. [ONT comparison](../xs2426xa-24-03-comparison/README.md).
 
 ## What changed between builds
+
+The older XS-2426G-B images retain the late `/configs/pre_app_boot.sh` hook and ship a working HomeAgent launcher and an older LXC 3.2.1 application manager. Their packaged key sets are smaller than the newer images, and the R21 build still attempts an automatic image commit after boot. These are different hardware from the G6, so they establish shared-software history without proving that every difference is caused by a release upgrade. [Older ONT comparison](../xs2426gb-21-23-comparison/README.md).
 
 On the G6, R24.02 and R24.04 both report OpenWrt 19.07.3 and Linux 4.14.275. The full kernel package IDs differ, and several packages changed while those headline numbers stayed the same. EasyMesh went from 1.14.22 to 1.16.15, and the container runtime went from LXC 3.2.1 to 5.0.1. The bootloader has its own version history too. G6-A and G6-B run the same HJL image and show the same U-Boot banner, yet their U-Boot binaries differ. The G6 stores that bootloader outside the two Linux banks.
 

@@ -6,23 +6,23 @@ The additional routers helped separate three things that a single dump could not
 
 The aliases below follow the [shared device list](../README.md#device-aliases). An alias identifies a physical router; a build name identifies software that more than one router can run.
 
-| Device | Captured running bank | Bank 0 / bank 1 | Whole SSB group | Owner changes reported before capture |
-| --- | --- | --- | --- | --- |
-| `G6-A` | 0 | HJL.L91 / HJL.L91 | A | UART/boot access and later persistence changes; the original boot verifier comes from its earlier capture. |
-| `G6-B` | 1 | IJL.J03 / HJL.L91 | B | Persistence script on the active build; original manufacture date does not date the inactive image. |
-| `G6-C` | 0 | HJL.L91 / HJL.L91 | A | LAN IP only. |
-| `G6-D` | 1 | IJL.J03 / HJL.L91 | A | None reported. This does not mean it had no prior provisioning or use. |
-| `G6-E` | 0 | HJL.L91 / HJL.L91 | A | Owner separately reported secure boot enabled. |
-| `G6-F` | 1 | IJL.J03 / HJL.L91 | A | No change history supplied. |
+| Device | Captured running bank | Bank 0 / bank 1   | Whole SSB group | Owner changes reported before capture                                                                      |
+|--------|-----------------------|-------------------|-----------------|------------------------------------------------------------------------------------------------------------|
+| `G6-A` | 0                     | HJL.L91 / HJL.L91 | A               | UART/boot access and later persistence changes; the original boot verifier comes from its earlier capture. |
+| `G6-B` | 1                     | IJL.J03 / HJL.L91 | B               | Persistence script on the active build; original manufacture date does not date the inactive image.        |
+| `G6-C` | 0                     | HJL.L91 / HJL.L91 | A               | LAN IP only.                                                                                               |
+| `G6-D` | 1                     | IJL.J03 / HJL.L91 | A               | None reported. This does not mean it had no prior provisioning or use.                                     |
+| `G6-E` | 0                     | HJL.L91 / HJL.L91 | A               | Owner separately reported secure boot enabled.                                                             |
+| `G6-F` | 1                     | IJL.J03 / HJL.L91 | A               | No change history supplied.                                                                                |
 
 All six use the captured BOQA G6 profile. `G6-C` and `G6-D` provide twelve-partition main-area dumps, including writable storage and logs. Those extra regions produced useful results even though their immutable Linux files were already familiar.
 
 ## Two Linux builds, two bootloader packages
 
-| Build | Image version | Build date | Used SquashFS bytes |
-| --- | --- | --- | ---: |
-| IJL.J03p01 | `3FE49996IJLJ03` | 2 July 2024 | 37,633,784 |
-| HJL.L91p01 | `3FE49996HJLL91` | 27 December 2024 | 39,269,512 |
+| Build      | Image version    | Build date       | Used SquashFS bytes |
+|------------|------------------|------------------|--------------------:|
+| IJL.J03p01 | `3FE49996IJLJ03` | 2 July 2024      |          37,633,784 |
+| HJL.L91p01 | `3FE49996HJLL91` | 27 December 2024 |          39,269,512 |
 
 The two current ROM captures from `G6-A` and `G6-B` agree on all 4,612 regular files and 491 symlink targets. `G6-C` repeats the HJL image in both banks. `G6-D` matches `G6-B` bank-for-bank, including all six used FIT, rootfs and Wi-Fi payloads. G6-F matches G6-B and G6-D even at the raw 80 MiB bank level. G6-E matches G6-A bank 0 and the HJL bank 1 shared by G6-B, G6-D and G6-F. Raw NAND hashes can differ because padding and UBI metadata differ; comparing the used payloads avoids counting that as another firmware build.
 
@@ -34,14 +34,14 @@ This also keeps Linux banks separate from the bootloader: `G6-D` and `G6-F` comb
 
 ## Which keys are shared and which are derived?
 
-| Material | What the comparison establishes |
-| --- | --- |
-| `key7_2` | Same static G6 value in IJL/HJL; the later units repeat those exact rootfs profiles. G6-B's live lookup matches G6-A's earlier capture. |
-| `key14`, `key17` | Shared across the examined G6 profiles; G6-B's live values also match. |
-| `key3`, `key4` | Change between IJL and HJL. Use each build's own preconfiguration key. |
-| `key9`, `key10` | Derived runtime keys. G6-B's live values differ from G6-A's earlier capture. |
-| `key18` | Absent from the static stores; factory `EXT_KEY_FW` absent on all four. Live lookup fails with status 608 on the first two; no equivalent live result from G6-C/D. |
-| `EXT_DBG_PWD` | Absent from all four captured factory records. |
+| Material         | What the comparison establishes                                                                                                                                    |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `key7_2`         | Same static G6 value in IJL/HJL; the later units repeat those exact rootfs profiles. G6-B's live lookup matches G6-A's earlier capture.                            |
+| `key14`, `key17` | Shared across the examined G6 profiles; G6-B's live values also match.                                                                                             |
+| `key3`, `key4`   | Change between IJL and HJL. Use each build's own preconfiguration key.                                                                                             |
+| `key9`, `key10`  | Derived runtime keys. G6-B's live values differ from G6-A's earlier capture.                                                                                       |
+| `key18`          | Absent from the static stores; factory `EXT_KEY_FW` absent on all four. Live lookup fails with status 608 on the first two; no equivalent live result from G6-C/D. |
+| `EXT_DBG_PWD`    | Absent from all four captured factory records.                                                                                                                     |
 
 For the observed short ASCII sources, the runtime derivation is:
 
@@ -60,16 +60,16 @@ The shared static key7_2 does not make these derived keys equal. Conversely, dif
 
 `G6-C` supplied the clearest new result: the known key10 calculation decrypted its real current and older stored databases. The same calculation then worked across eighteen saved files from all four G6s, including equal backup copies. These are file checks, not eighteen independent configuration states.
 
-| Container | Key/input profile | Result and boundary |
-| --- | --- | --- |
-| Internal `dmdb_encryption.cfg`, magic `0x124126` | Device-specific key10 from exact RI serial, programming-date text and effective source5 | AES-CBC outer container and zlib-compressed binary database; decoder works offline on the supplied captures. |
-| WebUI export, magic `0x123123` | Selected uppercase serial, shared G6 key7_2, optional key18 contribution, operator and mnemonic | Existing export pack/unpack path; not the stored-database key10 format. |
+| Container                                        | Key/input profile                                                                               | Result and boundary                                                                                          |
+|--------------------------------------------------|-------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| Internal `dmdb_encryption.cfg`, magic `0x124126` | Device-specific key10 from exact RI serial, programming-date text and effective source5         | AES-CBC outer container and zlib-compressed binary database; decoder works offline on the supplied captures. |
+| WebUI export, magic `0x123123`                   | Selected uppercase serial, shared G6 key7_2, optional key18 contribution, operator and mnemonic | Existing export pack/unpack path; not the stored-database key10 format.                                      |
 
 The original IJL/HJL export functions matched the reconstructed KDF in twelve synthetic cases. Both original security libraries accepted the real first-unit export and a synthetic export for the second identity, while rejecting wrong-serial fixtures. `sl_num` selects the identity used for decryption; it does not rewrite RI or supply a different key profile.
 
 For matching profiles, neither KDF needs root status as an input. That does not provide a way to retrieve an internal database without access, discover an unknown source5, safely edit its binary contents or install an edited file. The stored-file helper currently decrypts only. Actual edited import, account-writer ordering and reboot persistence remain separate checks.
 
-`G6-D` adds six successful stored-file decodes but only two distinct plaintexts: current/backup copies and an older `cfg` state. An old `se.conf` version token and a 634-object schema are configuration history, not an additional installed Linux image. The [configuration writeup](../configuration-import-export/README.md) covers the export path; the [decoder](../../writeups/configuration-import-export/resources/stored-database/decrypt-stored-config.py) handles the distinct stored format.
+`G6-D` adds six successful stored-file decodes but only two distinct plaintexts: current/backup copies and an older `cfg` state. An old `se.conf` version token and a 634-object schema are configuration history, not an additional installed Linux image. The [configuration writeup](../configuration-import-export/README.md) covers the export path; the [decoder](../stored-configuration-database/resources/decrypt-stored-config.py) handles the distinct stored format.
 
 ## Factory credentials differ even when the code is identical
 

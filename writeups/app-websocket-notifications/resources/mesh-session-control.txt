@@ -1,0 +1,123 @@
+
+ddm:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000073840 <meshCtl_handleSessionCommand@@Base>:
+   73840:	a9b97bfd 	stp	x29, x30, [sp, #-112]!
+   73844:	910003fd 	mov	x29, sp
+   73848:	f9000bf3 	str	x19, [sp, #16]
+   7384c:	900002d3 	adrp	x19, cb000 <_IO_stdin_used@@Base+0x49f68>
+   73850:	f946b662 	ldr	x2, [x19, #3432]
+   73854:	39400001 	ldrb	w1, [x0]
+   73858:	f9400043 	ldr	x3, [x2]
+   7385c:	f90037a3 	str	x3, [x29, #104]
+   73860:	d2800003 	mov	x3, #0x0                   	// #0
+   73864:	a904ffbf 	stp	xzr, xzr, [x29, #72]
+   73868:	a905ffbf 	stp	xzr, xzr, [x29, #88]
+   7386c:	35000121 	cbnz	w1, 73890 <meshCtl_handleSessionCommand@@Base+0x50>
+   73870:	f946b673 	ldr	x19, [x19, #3432]
+   73874:	f94037a1 	ldr	x1, [x29, #104]
+   73878:	f9400260 	ldr	x0, [x19]
+   7387c:	ca000020 	eor	x0, x1, x0
+   73880:	b5000c00 	cbnz	x0, 73a00 <meshCtl_handleSessionCommand@@Base+0x1c0>
+   73884:	f9400bf3 	ldr	x19, [sp, #16]
+   73888:	a8c77bfd 	ldp	x29, x30, [sp], #112
+   7388c:	d65f03c0 	ret
+   73890:	a901d7b4 	stp	x20, x21, [x29, #24]
+   73894:	b0000161 	adrp	x1, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   73898:	f90017b6 	str	x22, [x29, #40]
+   7389c:	aa0003f4 	mov	x20, x0
+   738a0:	9113e021 	add	x1, x1, #0x4f8
+   738a4:	97fe87e3 	bl	15830 <strstr@plt> ; heuristic args: x1='Session_START', x3=0
+   738a8:	b4000880 	cbz	x0, 739b8 <meshCtl_handleSessionCommand@@Base+0x178>
+   738ac:	b0000161 	adrp	x1, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   738b0:	aa1403e0 	mov	x0, x20
+   738b4:	91142021 	add	x1, x1, #0x508
+   738b8:	97fe87de 	bl	15830 <strstr@plt> ; heuristic args: x1='Mobile'
+   738bc:	b40006a0 	cbz	x0, 73990 <meshCtl_handleSessionCommand@@Base+0x150>
+   738c0:	900002d5 	adrp	x21, cb000 <_IO_stdin_used@@Base+0x49f68>
+   738c4:	52800021 	mov	w1, #0x1                   	// #1
+   738c8:	d2800000 	mov	x0, #0x0                   	// #0
+   738cc:	f94686b6 	ldr	x22, [x21, #3336]
+   738d0:	390142c1 	strb	w1, [x22, #80]
+   738d4:	97fe8a27 	bl	16170 <time@plt> ; heuristic args: x0=0, x1=1
+   738d8:	911c2000 	add	x0, x0, #0x708
+   738dc:	b0000161 	adrp	x1, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   738e0:	f9002ec0 	str	x0, [x22, #88]
+   738e4:	91144021 	add	x1, x1, #0x510
+   738e8:	aa1403e0 	mov	x0, x20
+   738ec:	97fe87d1 	bl	15830 <strstr@plt> ; heuristic args: x1='timeout'
+   738f0:	b4000280 	cbz	x0, 73940 <meshCtl_handleSessionCommand@@Base+0x100>
+   738f4:	528007a1 	mov	w1, #0x3d                  	// #61
+   738f8:	a90363b7 	stp	x23, x24, [x29, #48]
+   738fc:	aa1403e0 	mov	x0, x20
+   73900:	97fe88e8 	bl	15ca0 <strchr@plt> ; heuristic args: x1=61
+   73904:	91000401 	add	x1, x0, #0x1
+   73908:	d28003e2 	mov	x2, #0x1f                  	// #31
+   7390c:	910123b8 	add	x24, x29, #0x48
+   73910:	aa1803e0 	mov	x0, x24
+   73914:	97fe89ab 	bl	15fc0 <strncpy@plt> ; heuristic args: x2=31
+   73918:	d2800000 	mov	x0, #0x0                   	// #0
+   7391c:	97fe8a15 	bl	16170 <time@plt> ; heuristic args: x0=0
+   73920:	aa0003f7 	mov	x23, x0
+   73924:	52800142 	mov	w2, #0xa                   	// #10
+   73928:	aa1803e0 	mov	x0, x24
+   7392c:	d2800001 	mov	x1, #0x0                   	// #0
+   73930:	97fe88a4 	bl	15bc0 <strtol@plt> ; heuristic args: x1=0, x2=10
+   73934:	8b20c2e0 	add	x0, x23, w0, sxtw
+   73938:	a94363b7 	ldp	x23, x24, [x29, #48]
+   7393c:	f9002ec0 	str	x0, [x22, #88]
+   73940:	97ffe596 	bl	6cf98 <meshctl_sendMeshNetworkOnSessionMobile@@Base>
+   73944:	b0000176 	adrp	x22, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   73948:	f94686a0 	ldr	x0, [x21, #3336]
+   7394c:	91018000 	add	x0, x0, #0x60
+   73950:	97ffff00 	bl	73550 <meshctl_updateSessionRecvTime@@Base>
+   73954:	f94686a4 	ldr	x4, [x21, #3336]
+   73958:	910142c0 	add	x0, x22, #0x50
+   7395c:	aa1403e3 	mov	x3, x20
+   73960:	b0000162 	adrp	x2, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   73964:	528020e1 	mov	w1, #0x107                 	// #263
+   73968:	9115c042 	add	x2, x2, #0x570
+   7396c:	9100e000 	add	x0, x0, #0x38
+   73970:	39400086 	ldrb	w6, [x4]
+   73974:	f9400487 	ldr	x7, [x4, #8]
+   73978:	f9402c85 	ldr	x5, [x4, #88]
+   7397c:	39414084 	ldrb	w4, [x4, #80]
+   73980:	97fe87a8 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='meshCtl_handleSessionCommand', x1=263, x2='[meshctl-dbus][handleSessionCommand][%s][%d][%d][%d][%d]\n'
+   73984:	f94017b6 	ldr	x22, [x29, #40]
+   73988:	a941d7b4 	ldp	x20, x21, [x29, #24]
+   7398c:	17ffffb9 	b	73870 <meshCtl_handleSessionCommand@@Base+0x30>
+   73990:	b0000176 	adrp	x22, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   73994:	910142c0 	add	x0, x22, #0x50
+   73998:	900002d5 	adrp	x21, cb000 <_IO_stdin_used@@Base+0x49f68>
+   7399c:	b0000162 	adrp	x2, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   739a0:	528020a1 	mov	w1, #0x105                 	// #261
+   739a4:	9114a042 	add	x2, x2, #0x528
+   739a8:	9100e000 	add	x0, x0, #0x38
+   739ac:	97fe8a9d 	bl	16420 <nalLogError@plt> ; heuristic args: x0='meshCtl_handleSessionCommand', x1=261, x2='[meshctl-dbus][handleSessionCommand] handle tr069 signal unknown cmd\n'
+   739b0:	17ffffe9 	b	73954 <meshCtl_handleSessionCommand@@Base+0x114>
+   739b4:	d503201f 	nop
+   739b8:	b0000161 	adrp	x1, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   739bc:	aa1403e0 	mov	x0, x20
+   739c0:	91146021 	add	x1, x1, #0x518
+   739c4:	97fe879b 	bl	15830 <strstr@plt> ; heuristic args: x1='Session_STOP'
+   739c8:	b4fffe40 	cbz	x0, 73990 <meshCtl_handleSessionCommand@@Base+0x150>
+   739cc:	b0000161 	adrp	x1, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   739d0:	aa1403e0 	mov	x0, x20
+   739d4:	91142021 	add	x1, x1, #0x508
+   739d8:	97fe8796 	bl	15830 <strstr@plt> ; heuristic args: x1='Mobile'
+   739dc:	b4fffda0 	cbz	x0, 73990 <meshCtl_handleSessionCommand@@Base+0x150>
+   739e0:	900002d5 	adrp	x21, cb000 <_IO_stdin_used@@Base+0x49f68>
+   739e4:	b0000176 	adrp	x22, a0000 <_IO_stdin_used@@Base+0x1ef68>
+   739e8:	f94686a1 	ldr	x1, [x21, #3336]
+   739ec:	91018020 	add	x0, x1, #0x60
+   739f0:	3901403f 	strb	wzr, [x1, #80]
+   739f4:	f9002c3f 	str	xzr, [x1, #88]
+   739f8:	97fffed6 	bl	73550 <meshctl_updateSessionRecvTime@@Base>
+   739fc:	17ffffd6 	b	73954 <meshCtl_handleSessionCommand@@Base+0x114>
+   73a00:	a901d7b4 	stp	x20, x21, [x29, #24]
+   73a04:	a902dfb6 	stp	x22, x23, [x29, #40]
+   73a08:	f9001fb8 	str	x24, [x29, #56]
+   73a0c:	97fe87fd 	bl	15a00 <__stack_chk_fail@plt>

@@ -28,7 +28,7 @@ def main():
     if checksum and checksum.lower() in known:row['download_disposition']='Identical already captured cloud checksum; skipped duplicate';continue
     name=str(item.get('nxtMSVersion') or 'unnamed')
     if not all(c.isalnum() or c in '._-' for c in name):raise ValueError('Unexpected version filename')
-    result=client.download(raw,ROOT/'config-private/downloaded-firmware'/(name+'-version-fields.bin'),index)
+    result=client.download(raw,ROOT/'dumped-firmware/downloaded-firmware'/(name+'-version-fields.bin'),index)
     report['downloads'].append(result)
     if checksum:known.add(checksum.lower())
   except Exception as exc:

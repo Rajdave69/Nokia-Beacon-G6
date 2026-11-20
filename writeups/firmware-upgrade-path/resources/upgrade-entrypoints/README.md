@@ -1,6 +1,6 @@
 # G6 firmware-update entry-point evidence
 
-Collected offline beginning 2026-10-25; integrated 2026-10-26. Sources are ALCLFD4B5342's recovered inactive IJL.J03 rootfs0 and active HJL.L91 rootfs1. No firmware executable, updater, router command or network operation was run.
+Collected offline beginning 2026-10-25; integrated 2026-10-26. Sources are G6-B's recovered inactive IJL.J03 rootfs0 and active HJL.L91 rootfs1. No firmware executable, updater, router command or network operation was run.
 
 - [collected-static-evidence.json](collected-static-evidence.json): hashes and availability for 21 binary/tool paths per build; symbols and strings; 17 old/18 new complete source snapshots; selected schema lines; whole-tree exact-literal caller searches; RPC handler/argv records. Old lacks optional lib/upgrade/common.sh.
 - [static-traces.txt](static-traces.txt): complete .text for swug, rpcsys, batch_upgrade and ca.upgrade in both builds; selected named OTA/NAL/CWMP functions in both builds; current cfgmgr/USP control regions. These are code analysis artifacts, not command execution logs.

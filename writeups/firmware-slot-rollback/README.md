@@ -1,5 +1,13 @@
 # Switching back to the other Beacon G6 firmware slot
 
+A firmware **slot**, also called a bank, is a storage region containing an installed Linux image. The examined G6 has two. The bootloader chooses one to start, leaving the other available as another boot candidate. This arrangement can help recover from an update that does not complete the expected boot process.
+
+Switching slots selects an image already stored on the device; it does not upload a firmware file. The other bank is not necessarily older or bootable: both captured banks on one G6 contain the same build. Nor is a bank switch a complete snapshot restore, because configuration and bootloader storage can be shared.
+
+This article follows the captured G6 HomeOS 24.02 `IJL.J03p01` and 24.04 `HJL.L91p01` banks and two G6 bootloaders. Activation marks a bank for a trial, boot completion commits it, and the captured bootloader logic can fall back if the expected commitment does not occur. The state transitions below were tested offline; a live activation, reboot and downgrade were not performed. [Storage layout](../storage-and-flash/beacon-g6.md) · [Firmware upgrade path](../firmware-upgrade-path/README.md).
+
+**Scope and verification.** The stock `swug` selection path was traced against the captured G6 banks. Use the read-only status command to identify the running and alternate images. A live activation and reboot were outside the test.
+
 ## The other slot is already an installed image
 
 The second G6 has version `HJL.L91` (built December 2024) in the selected rootfs1 and older `IJL.J03` (2024) in rootfs0. Its two CRC-valid environment records agree: active_part1, sb_flag114 (0x72), and the corresponding image-version strings. The first G6 has HJL.L91 in both captured slots. Switching that first unit would therefore not recover an older release from these captures.

@@ -20,13 +20,13 @@ SSDP discovery uses UDP1900. One unicast `M-SEARCH` to the router returned its I
 
 The live description referenced these services:
 
-| Service | Control URL | Purpose |
-| --- | --- | --- |
-| `WANCommonInterfaceConfig:1` | `/upnp/control/WANCommonIFC1` | Link properties and counters. |
-| `WANIPConnection:2` | `/upnp/control/WANIPConn1` | IPv4 mappings, connection state and connection controls. |
-| `WANPPPConnection:1` | `/upnp/control/WANPPPConn1` | PPP-oriented connection/mapping interface. |
-| `WANIPv6FirewallControl:1` | `/upnp/control/WANIPv6FwCtrl1` | IPv6 firewall status and pinholes. |
-| `LANHostConfigManagement:1` | `/upnp/control/LANHostConfig1` | Advertised DHCP/address/router/domain/DNS getters. |
+| Service                      | Control URL                    | Purpose                                                  |
+|------------------------------|--------------------------------|----------------------------------------------------------|
+| `WANCommonInterfaceConfig:1` | `/upnp/control/WANCommonIFC1`  | Link properties and counters.                            |
+| `WANIPConnection:2`          | `/upnp/control/WANIPConn1`     | IPv4 mappings, connection state and connection controls. |
+| `WANPPPConnection:1`         | `/upnp/control/WANPPPConn1`    | PPP-oriented connection/mapping interface.               |
+| `WANIPv6FirewallControl:1`   | `/upnp/control/WANIPv6FwCtrl1` | IPv6 firewall status and pinholes.                       |
+| `LANHostConfigManagement:1`  | `/upnp/control/LANHostConfig1` | Advertised DHCP/address/router/domain/DNS getters.       |
 
 A dummy service was also listed. Description, SCPD, SOAP control and event-subscription URLs are distinct. Some shipped XML files describe other services but are not referenced by this live description.
 

@@ -1,0 +1,1 @@
+onSuccessResponse(i,r,a,o,c,d){this.handleResponse(i,r,a,o,c,d);let _=i.method==="GET"&&this.skipUrlsforRefreshIcon.includes(i?.action),m=this.skipPagesforRefreshIcon.includes(this.router.url);!_&&!m&&window.setTimeout(()=>{this.pubSubService.publish(Y.SHOW_HEADER_REFRESH_BUTTON,!0)},300)}

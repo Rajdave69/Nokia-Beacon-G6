@@ -6,7 +6,7 @@ When experimenting with the Beacon G6's security utilities, I sometimes needed a
 
 That suggested an approach different from building a new signed firmware image for every experiment: store the desired files and a small startup script on persistent flash, and have stock Linux run the script again on each boot. The question was whether Nokia had already provided a suitable call site.
 
-The earlier G6 investigation found one under the Wi-Fi firmware initialization path. A later inspection found another execution point inside `commit_image`. I then checked the actual init scripts, the enabled startup links, the `/configs` mount, and a live process list. That additional evidence confirmed the two call sites but also corrected an assumption in the first draft: the image-commit command visible in this G6 build is commented out, not an active delayed job.
+Nokia supplies two callers with different timing. HJL’s Wi-Fi initialization can call an executable script before wireless setup completes. The `commit_image` script on HJL and IJL can call a script later in startup. The image-commit command in that file is commented out; the script still runs its separate startup-hook branch.
 
 Comparing these paths is more informative than calling both “a boot hook.” They use different shell conditions and execution styles, and their positions in boot do not, by themselves, reveal the moment at which every dependent service becomes ready.
 
@@ -26,7 +26,7 @@ ls -ld /rom /configs /configs/debug 2>/dev/null
 
 The difference matters for recovery too. Rebooting might undo a temporary file replacement, but it does not necessarily undo a persistent script that will promptly replace the file again. The location of the *instructions* is as important as the location of the changed program.
 
-## The original early hook: `replace_with_test.sh` on G6 HJL.L91
+## The early Wi-Fi mount hook on HJL
 
 Our first useful lead was the vendor's `wifi_fw_mount` init script. In the examined Beacon G6 HJL.L91 firmware, it checked for an executable `/configs/debug/replace_with_test.sh` and ran it. The path was not one we invented: it was embedded in Nokia's own boot script.
 
@@ -56,6 +56,8 @@ The file's development-sounding name hints at its original purpose, but a name i
 
 The timing is significant. `wifi_fw_mount` participates in early Wi-Fi/firmware setup. An early hook may be suitable for preparing resources required by services that start later, but it may run before every service, interface, or mount that a custom script expects is ready. The exact readiness of those dependencies must be verified on the running build.
 
+The inactive IJL.J03 bank lacks the `replace_with_test.sh` call. Both stock builds ship an identical `commit_image` with `pre_app_boot.sh`. An owner-installed payload seen under the active HJL build says nothing about whether IJL calls it. [Build comparison](../comparing-other-g6-routers/README.md).
+
 ## The Beacon 9 variant has a different early hook name
 
 The newer Beacon 9 firmware revealed a related early hook named `/configs/debug/wifi_test.sh`. It is tempting to describe this as “Nokia's hook” and use the filenames interchangeably, but that would create a misleading cross-model tutorial.
@@ -71,7 +73,7 @@ Nothing in this comparison proves that every G6 release understands `wifi_test.s
 
 This difference is also a reminder that the hardware is not interchangeable. The G6 is a Cortina/CA8289 platform with NAND; the analyzed Beacon 9 is built around a different Qualcomm platform and eMMC layout. Similar-looking management conventions do not imply identical boot processes.
 
-## The second discovery: `pre_app_boot.sh` in `commit_image`
+## The shared late hook in commit_image
 
 A different investigation of the init scripts found `/configs/pre_app_boot.sh` referenced from `/etc/init.d/commit_image`. At first, the script's name suggested that this hook might run *after* an image-commit job. That sounded plausible, but the newer capture provided the decisive detail: this particular `commit_image` script no longer performs an image commit during boot.
 
@@ -121,8 +123,9 @@ sed -n '1,80p' /etc/init.d/commit_image 2>/dev/null
 ls -l /configs/pre_app_boot.sh 2>/dev/null
 ```
 
-The hook's presence in an init script is not evidence that the file exists, passes the `-x` check, or ran on this boot. Those are distinct runtime observations to establish separately. In the original stock-state observations, neither script was installed on my G6 or Beacon 9, and `/configs/debug` did not exist. That is a historical baseline. On 22 October 2026 I confirmed adding `replace_with_test.sh` to both active HJL.L91 G6 routers to preserve shell access. The user-installed script and the stock init script's invocation are separate facts; the supplied diagnostic does not show the script's contents or a boot execution trace.
+An init-script call is evidence that the firmware can invoke the hook. To establish execution, check that the expected file exists, meets the caller’s mode check, and ran on that boot. The stock baseline had neither hook payload and no `/configs/debug` directory. G6-A and G6-B had owner-installed payloads on their active HJL banks. That confirms file placement and ownership history; the reported diagnostic did not trace invocation.
 
+The persistent firewall configuration provides an earlier caller in both G6 builds. `S19firewall` runs before `S98pcd` and fw3 sources its configured script includes. The [firmware update lock](../../tutorials/disable-firmware-upgrades/README.md) starts its payload in a separate shell from an include. This depends on retained configs and firewall startup. Verification used isolated tests; a live boot with the include remains unverified.
 
 ## What each hook is good for and the failure modes to expect
 
@@ -138,6 +141,14 @@ The architectural distinction suggests different uses, without making either hoo
 | Main risk                                                         | Long-running hook delays its immediate caller; resources may not be ready                                 | Async execution and races with other startup services; incorrectly assuming `S99` means full readiness |
 
 Because the hook filenames and implementations are version-specific, a public repository should include a small compatibility statement for each verified device and image. A pathname found in one firmware is not a device-independent API.
+
+A successful launch can still leave no listener later in boot. The ONT development script started Telnet when invoked manually, but the boot-launched port 2323 instance disappeared after an initial listening check. The stock authenticated port 23 server remained. The hook already set PATH and used the absolute daemon path.
+
+The stock ONT `/etc/init.d/telnet` has a broader stop action than its start action: it starts port 23, but stops with `killall telnetd`. That can also terminate a development instance on port 2323. It is a plausible explanation for the observed boot interaction, although neither the supplied logs nor `logread` identified the actual terminating component. 
+
+The [Telnet payload](../../tutorials/setup-persistent-unauthenticated-telnet/replace_with_test.sh) uses a separate shell watchdog. It checks every five seconds, validates recorded process identities, recreates a missing firewall rule and restarts a missing listener. The stock daemon and its port are left alone. A daemon restart disconnects existing clients; it restores the ability to connect afterward. `--stop` stops recovery as well as the managed listener. Runtime diagnostics stay in RAM.
+
+This is runtime recovery, not a new persistence boundary. The same hook, filesystem, reset and upgrade limits still apply; killing the supervisor itself prevents recovery until the hook is invoked again. Local intercepted tests and their exact scope are retained in [the watchdog test resources](resources/telnet-watchdog-tests/README.md). A reboot with this revised payload has not yet been verified on the ONT.
 
 ## How I used the early hook during development
 
@@ -181,21 +192,9 @@ Likewise, finding an executable hook in a vendor init script does not prove a vu
 
 A boot-time script can also lock an owner out by changing authentication, networking, or file permissions repeatedly. Recovery planning should include a known-good copy of the script, a way to disable its execution, and confirmation that any changes made by it are truly scoped to the intended runtime paths. The fact that a path is writable says nothing about the safety of arbitrary code stored there.
 
-
-## Related writeups
-
-- [Firmware architecture](../firmware-architecture/README.md) for where these hooks fit among Nokia's startup services and data-model daemons.
-- [Storage and flash](../storage-and-flash/README.md) for the temporary root overlay versus persistent UBIFS explanation.
-- [Boot and console](../boot-and-console/README.md) for why post-Linux hooks are not U-Boot authentication changes.
-- [OpenWrt init scripts](https://openwrt.org/docs/techref/initscripts) for the general `S*` invocation model; the vendor source lines above remain the primary evidence for these particular hooks.
-
-## The older IJL.J03 slot answers the hook question
-
-The [second-G6 comparison](../comparing-other-g6-routers/README.md) recovers IJL.J03 from the inactive slot and checks its scripts directly. That wifi_fw_mount lacks the replace_with_test.sh hook present in HJL.L91. Both commit_image scripts are byte-identical and retain pre_app_boot.sh. Tutorials using the early hook must therefore be adapted on IJL.J03; both devices run HJL.L91 and the owner reports installing the persistence script on both. That does not change the recovered stock IJL.J03 call sites; switching to that inactive image would require checking its persistence mechanism separately.
-
 ## From reboot persistence to bank persistence
 
-The second G6 let us separate a persistent payload from a persistent caller. Both inspected builds still call `/configs/pre_app_boot.sh` in commit_image, and both have the S99commit_image startup link. Only HJL.L91 calls replace_with_test.sh in wifi_fw_mount. The [migration tutorial](../../tutorials/setup-startup-across-firmware-banks/README.md) therefore uses the shared late hook to run the existing payload with `sh`, while removing its execute bit to skip the early HJL invocation. The payload's behavior is unchanged, but its timing changes and must be tested.
+A persistent payload needs a caller in each bank that will boot. Both inspected builds still call `/configs/pre_app_boot.sh` in commit_image, and both have the S99commit_image startup link. Only HJL.L91 calls replace_with_test.sh in wifi_fw_mount. The [migration tutorial](../../tutorials/setup-startup-across-firmware-banks/README.md) therefore uses the shared late hook to run the existing payload with `sh`, while removing its execute bit to skip the early HJL invocation. The payload's behavior is unchanged, but its timing changes and must be tested.
 
 There is another condition below the hooks: which physical data do they see? In both builds, `/etc/init.d/startup` reads cfg_partition from the shared U-Boot environment and adds `$cfg_partition:0:/configs` to UBI_MAP_LIST. It does not calculate that partition from active_part on every boot. If the variable is missing, it sets a default of rootfs_data[current] and enters migration handling. The legacy-upgrade path can also remap it.
 
@@ -227,29 +226,11 @@ The [post-Linux UART tutorial](../../tutorials/unlock-uart-root-shell/README.MD)
 
 I would keep the separately stored UART/en recovery settings, test the common late launcher on each known bank, and retain off-device payload and firmware backups. Before a firmware update, inspect the new rootfs caller, included boot components and data-formatting targets. If an update would erase the launcher storage or remove its caller, arrange a separate tested recovery/install path first. There is no demonstrated script-only guarantee against arbitrary future vendor upgrades, factory resets or flash loss. U-Boot access itself is a recovery foothold, not proof that a particular Linux root-shell procedure will still work.
 
-## A tested UART fallback when the overlay is gone
+The [UART recovery procedure](../uart-recovery-from-uboot/README.md) gives an independent route when the overlay launcher disappears. On HJL rootfs0, the stock FIT passed RSA/SHA checks and booted a UID 0, PID 1 shell with `init=/bin/sh`, before normal Nokia startup. It required initializing the partition map in RAM before accessing named UBI partitions. A later session mounted the configuration volume read-only, but reported deferred UBIFS recovery and a database snapshot differing from an earlier normal-boot view. Restoration and older-bank recovery remain untested.
 
-The [24 October recovery follow-up](../uart-recovery-from-uboot/README.md) changes the practical recovery position. After entering the existing U-Boot console, the owner loaded rootfs0's stock FIT and passed init=/bin/sh. The kernel and DTB checks passed, and the shell reported UID0/PID1 before normal Nokia init. That supplies root entry without retaining the Password2 overlay at all; it does not prove that the ordinary overlay has already been restored or that every future kernel permits this route.
+## Related writeups
 
-The [tutorial](../../tutorials/recover-uart-root-shell-from-uboot/README.md) records the exact successful partition-map assignments and manual boot. It also records the initial missing-partition failure and the U-Boot crash when listing mtdparts while that variable was unset. No explicit image-write/erase/saveenv command was used. Use the recovery shell to restore persistent files after inspecting the correct store, rather than reflashing a bank to copy a script. The rootfs0/current-kernel boot is live-verified; the optional configs mount helper and older-bank recovery remain untested.
-
-## A configured caller before PCD starts
-
-Both G6 builds also retain script includes in the persistent /etc/config/firewall.
-S19firewall runs before S98pcd, which makes this an earlier configured caller than
-the common late pre_app hook. I used it for the [firmware-update lock](../../tutorials/disable-firmware-upgrades/README.md),
-leaving existing shell payloads alone. fw3 sources the include, so its wrapper
-starts the payload in a separate shell. It still depends on retained configs
-and successful firewall startup; the isolated tests do not replace a live boot
-check. This caller is separate from the mount/app/driver saferun dispatcher.
-
-
-## Keeping a development listener alive during startup
-
-On the XS-2426X-A ONT, the owner found that the persistent Telnet script worked when run manually after boot, while its boot-launched port-2323 listener later disappeared. The old log reported a listener at the 60-second check; a subsequent process and socket listing showed only the stock authenticated port-23 daemon. This rules out interpreting the launcher's success as proof that access remained available. The hook already set PATH and used `/usr/sbin/telnetd` explicitly.
-
-The stock ONT `/etc/init.d/telnet` has a broader stop action than its start action: it starts port 23, but stops with `killall telnetd`. That can also terminate a development instance on port 2323. It is a plausible explanation for the observed boot interaction, although neither the supplied logs nor `logread` identified the actual terminating component. The owner subsequently clarified that the entire hook, not just the daemon command, works when run manually.
-
-The [Telnet payload](../../tutorials/setup-persistent-unauthenticated-telnet/replace_with_test.sh) now launches a separate shell watchdog rather than making one delayed check. It checks every five seconds, validates recorded process identities, recreates a missing firewall rule and restarts a missing listener. The stock daemon and its port are left alone. A daemon restart disconnects existing clients; it restores the ability to connect afterward. `--stop` stops recovery as well as the managed listener. Runtime diagnostics stay in RAM.
-
-This is runtime recovery, not a new persistence boundary. The same hook, filesystem, reset and upgrade limits still apply; killing the supervisor itself prevents recovery until the hook is invoked again. Local intercepted tests and their exact scope are retained in [the watchdog test resources](resources/telnet-watchdog-tests/README.md). A reboot with this revised payload has not yet been verified on the ONT.
+- [Firmware architecture](../firmware-architecture/README.md) for where these hooks fit among Nokia's startup services and data-model daemons.
+- [Storage and flash](../storage-and-flash/README.md) for the temporary root overlay versus persistent UBIFS explanation.
+- [Boot and console](../boot-and-console/README.md) for why post-Linux hooks are not U-Boot authentication changes.
+- [OpenWrt init scripts](https://openwrt.org/docs/techref/initscripts) for the general `S*` invocation model; the vendor source lines above remain the primary evidence for these particular hooks.

@@ -1,0 +1,253 @@
+
+libwebsocket.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000069b8 <communicate@@Base>:
+    69b8:	d2840c10 	mov	x16, #0x2060                	// #8288
+    69bc:	cb3063ff 	sub	sp, sp, x16
+    69c0:	a9007bfd 	stp	x29, x30, [sp]
+    69c4:	910003fd 	mov	x29, sp
+    69c8:	f9001ff8 	str	x24, [sp, #56]
+    69cc:	f00000b8 	adrp	x24, 1d000 <_fini@@Base+0x11b18>
+    69d0:	a9025bf5 	stp	x21, x22, [sp, #32]
+    69d4:	aa0003f5 	mov	x21, x0
+    69d8:	f947f300 	ldr	x0, [x24, #4064]
+    69dc:	aa0103f6 	mov	x22, x1
+    69e0:	f9000bf3 	str	x19, [sp, #16]
+    69e4:	aa0203f3 	mov	x19, x2
+    69e8:	f9400001 	ldr	x1, [x0]
+    69ec:	f9102fa1 	str	x1, [x29, #8280]
+    69f0:	d2800001 	mov	x1, #0x0                   	// #0
+    69f4:	97fff35b 	bl	3760 <message_new@plt> ; heuristic args: x1=0
+    69f8:	f90016a0 	str	x0, [x21, #40]
+    69fc:	f94012a1 	ldr	x1, [x21, #32]
+    6a00:	b40011c1 	cbz	x1, 6c38 <communicate@@Base+0x280>
+    6a04:	b9408c20 	ldr	w0, [x1, #140]
+    6a08:	7100101f 	cmp	w0, #0x4
+    6a0c:	54000be0 	b.eq	6b88 <communicate@@Base+0x1d0>  // b.none
+    6a10:	51000400 	sub	w0, w0, #0x1
+    6a14:	7100081f 	cmp	w0, #0x2
+    6a18:	540009c8 	b.hi	6b50 <communicate@@Base+0x198>  // b.pmore
+    6a1c:	f9000fb4 	str	x20, [x29, #24]
+    6a20:	910163b4 	add	x20, x29, #0x58
+    6a24:	f9001bb7 	str	x23, [x29, #48]
+    6a28:	52800017 	mov	w23, #0x0                   	// #0
+    6a2c:	f90023b9 	str	x25, [x29, #64]
+    6a30:	d2840019 	mov	x25, #0x2000                	// #8192
+    6a34:	14000013 	b	6a80 <communicate@@Base+0xc8>
+    6a38:	394006c0 	ldrb	w0, [x22, #1]
+    6a3c:	12001800 	and	w0, w0, #0x7f
+    6a40:	7101f81f 	cmp	w0, #0x7e
+    6a44:	540006e0 	b.eq	6b20 <communicate@@Base+0x168>  // b.none
+    6a48:	7101fc1f 	cmp	w0, #0x7f
+    6a4c:	fa4e0a62 	ccmp	x19, #0xe, #0x2, eq	// eq = none
+    6a50:	540002e9 	b.ls	6aac <communicate@@Base+0xf4>  // b.plast
+    6a54:	f94016a0 	ldr	x0, [x21, #40]
+    6a58:	8b37c261 	add	x1, x19, w23, sxtw
+    6a5c:	39400002 	ldrb	w2, [x0]
+    6a60:	340004c2 	cbz	w2, 6af8 <communicate@@Base+0x140>
+    6a64:	aa1503e2 	mov	x2, x21
+    6a68:	aa1403e0 	mov	x0, x20
+    6a6c:	97fff489 	bl	3c90 <parseMessage@plt>
+    6a70:	35000500 	cbnz	w0, 6b10 <communicate@@Base+0x158>
+    6a74:	39c163a0 	ldrsb	w0, [x29, #88]
+    6a78:	d2800013 	mov	x19, #0x0                   	// #0
+    6a7c:	37f80ba0 	tbnz	w0, #31, 6bf0 <communicate@@Base+0x238>
+    6a80:	d2840002 	mov	x2, #0x2000                	// #8192
+    6a84:	52800001 	mov	w1, #0x0                   	// #0
+    6a88:	aa1403e0 	mov	x0, x20
+    6a8c:	97fff339 	bl	3770 <memset@plt> ; heuristic args: x1=0, x2=8192
+    6a90:	d2840003 	mov	x3, #0x2000                	// #8192
+    6a94:	aa1303e2 	mov	x2, x19
+    6a98:	aa1603e1 	mov	x1, x22
+    6a9c:	aa1403e0 	mov	x0, x20
+    6aa0:	97fff2d8 	bl	3600 <__memcpy_chk@plt> ; heuristic args: x2=0, x3=8192
+    6aa4:	f1001a7f 	cmp	x19, #0x6
+    6aa8:	54fffc88 	b.hi	6a38 <communicate@@Base+0x80>  // b.pmore
+    6aac:	b94002a0 	ldr	w0, [x21]
+    6ab0:	52800003 	mov	w3, #0x0                   	// #0
+    6ab4:	cb130322 	sub	x2, x25, x19
+    6ab8:	8b130281 	add	x1, x20, x19
+    6abc:	97fff38d 	bl	38f0 <recv@plt> ; heuristic args: x3=0
+    6ac0:	2a0003f7 	mov	w23, w0
+    6ac4:	7100001f 	cmp	w0, #0x0
+    6ac8:	54fffc6c 	b.gt	6a54 <communicate@@Base+0x9c>
+    6acc:	b0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    6ad0:	91382000 	add	x0, x0, #0xe08
+    6ad4:	97fff3af 	bl	3990 <puts@plt> ; heuristic args: x0="Didn't receive any message from client.\n"
+    6ad8:	f947e300 	ldr	x0, [x24, #4032]
+    6adc:	f9400000 	ldr	x0, [x0]
+    6ae0:	97fff418 	bl	3b40 <fflush@plt>
+    6ae4:	f9400fb4 	ldr	x20, [x29, #24]
+    6ae8:	52807d40 	mov	w0, #0x3ea                 	// #1002
+    6aec:	f9401bb7 	ldr	x23, [x29, #48]
+    6af0:	f94023b9 	ldr	x25, [x29, #64]
+    6af4:	14000018 	b	6b54 <communicate@@Base+0x19c>
+    6af8:	394163a2 	ldrb	w2, [x29, #88]
+    6afc:	39000002 	strb	w2, [x0]
+    6b00:	aa1503e2 	mov	x2, x21
+    6b04:	aa1403e0 	mov	x0, x20
+    6b08:	97fff462 	bl	3c90 <parseMessage@plt>
+    6b0c:	34fffb40 	cbz	w0, 6a74 <communicate@@Base+0xbc>
+    6b10:	f9400fb4 	ldr	x20, [x29, #24]
+    6b14:	f9401bb7 	ldr	x23, [x29, #48]
+    6b18:	f94023b9 	ldr	x25, [x29, #64]
+    6b1c:	1400000e 	b	6b54 <communicate@@Base+0x19c>
+    6b20:	f100227f 	cmp	x19, #0x8
+    6b24:	54fff988 	b.hi	6a54 <communicate@@Base+0x9c>  // b.pmore
+    6b28:	b94002a0 	ldr	w0, [x21]
+    6b2c:	52800003 	mov	w3, #0x0                   	// #0
+    6b30:	cb130322 	sub	x2, x25, x19
+    6b34:	8b130281 	add	x1, x20, x19
+    6b38:	97fff36e 	bl	38f0 <recv@plt> ; heuristic args: x3=0
+    6b3c:	2a0003f7 	mov	w23, w0
+    6b40:	7100001f 	cmp	w0, #0x0
+    6b44:	54fff88c 	b.gt	6a54 <communicate@@Base+0x9c>
+    6b48:	17ffffe1 	b	6acc <communicate@@Base+0x114>
+    6b4c:	d503201f 	nop
+    6b50:	52800000 	mov	w0, #0x0                   	// #0
+    6b54:	f947f318 	ldr	x24, [x24, #4064]
+    6b58:	f9502fa2 	ldr	x2, [x29, #8280]
+    6b5c:	f9400301 	ldr	x1, [x24]
+    6b60:	ca010041 	eor	x1, x2, x1
+    6b64:	b50010c1 	cbnz	x1, 6d7c <communicate@@Base+0x3c4>
+    6b68:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    6b6c:	d2840c10 	mov	x16, #0x2060                	// #8288
+    6b70:	a9407bfd 	ldp	x29, x30, [sp]
+    6b74:	f9400bf3 	ldr	x19, [sp, #16]
+    6b78:	f9401ff8 	ldr	x24, [sp, #56]
+    6b7c:	8b3063ff 	add	sp, sp, x16
+    6b80:	d65f03c0 	ret
+    6b84:	d503201f 	nop
+    6b88:	910163b3 	add	x19, x29, #0x58
+    6b8c:	d2840002 	mov	x2, #0x2000                	// #8192
+    6b90:	52800001 	mov	w1, #0x0                   	// #0
+    6b94:	aa1303e0 	mov	x0, x19
+    6b98:	97fff2f6 	bl	3770 <memset@plt> ; heuristic args: x1=0, x2=8192
+    6b9c:	b94002a0 	ldr	w0, [x21]
+    6ba0:	52800003 	mov	w3, #0x0                   	// #0
+    6ba4:	d2840002 	mov	x2, #0x2000                	// #8192
+    6ba8:	aa1303e1 	mov	x1, x19
+    6bac:	97fff351 	bl	38f0 <recv@plt> ; heuristic args: x2=8192, x3=0
+    6bb0:	7100001f 	cmp	w0, #0x0
+    6bb4:	54000aed 	b.le	6d10 <communicate@@Base+0x358>
+    6bb8:	394163a1 	ldrb	w1, [x29, #88]
+    6bbc:	7103fc3f 	cmp	w1, #0xff
+    6bc0:	54000be0 	b.eq	6d3c <communicate@@Base+0x384>  // b.none
+    6bc4:	35fffc61 	cbnz	w1, 6b50 <communicate@@Base+0x198>
+    6bc8:	93407c00 	sxtw	x0, w0
+    6bcc:	aa1503e2 	mov	x2, x21
+    6bd0:	d1000401 	sub	x1, x0, #0x1
+    6bd4:	91000660 	add	x0, x19, #0x1
+    6bd8:	97fff322 	bl	3860 <getWholeMessage@plt>
+    6bdc:	35fffbc0 	cbnz	w0, 6b54 <communicate@@Base+0x19c>
+    6be0:	f94016a0 	ldr	x0, [x21, #40]
+    6be4:	97fff2f7 	bl	37c0 <encodeMessage@plt>
+    6be8:	17ffffdb 	b	6b54 <communicate@@Base+0x19c>
+    6bec:	d503201f 	nop
+    6bf0:	f94016a0 	ldr	x0, [x21, #40]
+    6bf4:	39400002 	ldrb	w2, [x0]
+    6bf8:	12001841 	and	w1, w2, #0x7f
+    6bfc:	7100203f 	cmp	w1, #0x8
+    6c00:	540002e0 	b.eq	6c5c <communicate@@Base+0x2a4>  // b.none
+    6c04:	7100283f 	cmp	w1, #0xa
+    6c08:	54000500 	b.eq	6ca8 <communicate@@Base+0x2f0>  // b.none
+    6c0c:	7100243f 	cmp	w1, #0x9
+    6c10:	540007a0 	b.eq	6d04 <communicate@@Base+0x34c>  // b.none
+    6c14:	7100083f 	cmp	w1, #0x2
+    6c18:	540008c0 	b.eq	6d30 <communicate@@Base+0x378>  // b.none
+    6c1c:	7100043f 	cmp	w1, #0x1
+    6c20:	540005a1 	b.ne	6cd4 <communicate@@Base+0x31c>  // b.any
+    6c24:	97fff2e7 	bl	37c0 <encodeMessage@plt>
+    6c28:	f9400fb4 	ldr	x20, [x29, #24]
+    6c2c:	f9401bb7 	ldr	x23, [x29, #48]
+    6c30:	f94023b9 	ldr	x25, [x29, #64]
+    6c34:	17ffffc8 	b	6b54 <communicate@@Base+0x19c>
+    6c38:	d0000021 	adrp	x1, c000 <_fini@@Base+0xb18>
+    6c3c:	52800020 	mov	w0, #0x1                   	// #1
+    6c40:	9100c021 	add	x1, x1, #0x30
+    6c44:	97fff2bf 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='The header was not available anymore.'
+    6c48:	f947e300 	ldr	x0, [x24, #4032]
+    6c4c:	f9400000 	ldr	x0, [x0]
+    6c50:	97fff3bc 	bl	3b40 <fflush@plt>
+    6c54:	52807d40 	mov	w0, #0x3ea                 	// #1002
+    6c58:	17ffffbf 	b	6b54 <communicate@@Base+0x19c>
+    6c5c:	b94002a2 	ldr	w2, [x21]
+    6c60:	d0000021 	adrp	x1, c000 <_fini@@Base+0xb18>
+    6c64:	f94006a3 	ldr	x3, [x21, #8]
+    6c68:	91016021 	add	x1, x1, #0x58
+    6c6c:	52800020 	mov	w0, #0x1                   	// #1
+    6c70:	97fff2b4 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='Client:\n\tSocket: %d\n\tAddress: %s\nreports that he is shutting down.\n\n'
+    6c74:	f947e300 	ldr	x0, [x24, #4032]
+    6c78:	f9400000 	ldr	x0, [x0]
+    6c7c:	97fff3b1 	bl	3b40 <fflush@plt>
+    6c80:	f94006a2 	ldr	x2, [x21, #8]
+    6c84:	528000c0 	mov	w0, #0x6                   	// #6
+    6c88:	d0000021 	adrp	x1, c000 <_fini@@Base+0xb18>
+    6c8c:	91028021 	add	x1, x1, #0xa0
+    6c90:	97fff38c 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[%s]Client reports that he is shutting down.\n'
+    6c94:	f9400fb4 	ldr	x20, [x29, #24]
+    6c98:	52807d00 	mov	w0, #0x3e8                 	// #1000
+    6c9c:	f9401bb7 	ldr	x23, [x29, #48]
+    6ca0:	f94023b9 	ldr	x25, [x29, #64]
+    6ca4:	17ffffac 	b	6b54 <communicate@@Base+0x19c>
+    6ca8:	d0000020 	adrp	x0, c000 <_fini@@Base+0xb18>
+    6cac:	91034000 	add	x0, x0, #0xd0
+    6cb0:	97fff338 	bl	3990 <puts@plt> ; heuristic args: x0='Pong arrived\n'
+    6cb4:	f947e300 	ldr	x0, [x24, #4032]
+    6cb8:	f9400000 	ldr	x0, [x0]
+    6cbc:	97fff3a1 	bl	3b40 <fflush@plt>
+    6cc0:	f9400fb4 	ldr	x20, [x29, #24]
+    6cc4:	52807d60 	mov	w0, #0x3eb                 	// #1003
+    6cc8:	f9401bb7 	ldr	x23, [x29, #48]
+    6ccc:	f94023b9 	ldr	x25, [x29, #64]
+    6cd0:	17ffffa1 	b	6b54 <communicate@@Base+0x19c>
+    6cd4:	d0000021 	adrp	x1, c000 <_fini@@Base+0xb18>
+    6cd8:	52800020 	mov	w0, #0x1                   	// #1
+    6cdc:	91042021 	add	x1, x1, #0x108
+    6ce0:	97fff298 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='Something very strange happened, received opcode: 0x%x\n\n'
+    6ce4:	f947e300 	ldr	x0, [x24, #4032]
+    6ce8:	f9400000 	ldr	x0, [x0]
+    6cec:	97fff395 	bl	3b40 <fflush@plt>
+    6cf0:	f9400fb4 	ldr	x20, [x29, #24]
+    6cf4:	52807e60 	mov	w0, #0x3f3                 	// #1011
+    6cf8:	f9401bb7 	ldr	x23, [x29, #48]
+    6cfc:	f94023b9 	ldr	x25, [x29, #64]
+    6d00:	17ffff95 	b	6b54 <communicate@@Base+0x19c>
+    6d04:	d0000020 	adrp	x0, c000 <_fini@@Base+0xb18>
+    6d08:	91038000 	add	x0, x0, #0xe0
+    6d0c:	17ffffe9 	b	6cb0 <communicate@@Base+0x2f8>
+    6d10:	b0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    6d14:	91382000 	add	x0, x0, #0xe08
+    6d18:	97fff31e 	bl	3990 <puts@plt> ; heuristic args: x0="Didn't receive any message from client.\n"
+    6d1c:	f947e300 	ldr	x0, [x24, #4032]
+    6d20:	f9400000 	ldr	x0, [x0]
+    6d24:	97fff387 	bl	3b40 <fflush@plt>
+    6d28:	52807d40 	mov	w0, #0x3ea                 	// #1002
+    6d2c:	17ffff8a 	b	6b54 <communicate@@Base+0x19c>
+    6d30:	d0000020 	adrp	x0, c000 <_fini@@Base+0xb18>
+    6d34:	9103c000 	add	x0, x0, #0xf0
+    6d38:	17ffffde 	b	6cb0 <communicate@@Base+0x2f8>
+    6d3c:	b94002a2 	ldr	w2, [x21]
+    6d40:	d0000021 	adrp	x1, c000 <_fini@@Base+0xb18>
+    6d44:	f94006a3 	ldr	x3, [x21, #8]
+    6d48:	91016021 	add	x1, x1, #0x58
+    6d4c:	52800020 	mov	w0, #0x1                   	// #1
+    6d50:	97fff27c 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='Client:\n\tSocket: %d\n\tAddress: %s\nreports that he is shutting down.\n\n'
+    6d54:	f947e300 	ldr	x0, [x24, #4032]
+    6d58:	f9400000 	ldr	x0, [x0]
+    6d5c:	97fff379 	bl	3b40 <fflush@plt>
+    6d60:	f94006a2 	ldr	x2, [x21, #8]
+    6d64:	528000c0 	mov	w0, #0x6                   	// #6
+    6d68:	d0000021 	adrp	x1, c000 <_fini@@Base+0xb18>
+    6d6c:	91028021 	add	x1, x1, #0xa0
+    6d70:	97fff354 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[%s]Client reports that he is shutting down.\n'
+    6d74:	52807d00 	mov	w0, #0x3e8                 	// #1000
+    6d78:	17ffff77 	b	6b54 <communicate@@Base+0x19c>
+    6d7c:	f9000fb4 	str	x20, [x29, #24]
+    6d80:	f9001bb7 	str	x23, [x29, #48]
+    6d84:	f90023b9 	str	x25, [x29, #64]
+    6d88:	97fff2c6 	bl	38a0 <__stack_chk_fail@plt> ; heuristic args: x0=1000
+    6d8c:	d503201f 	nop

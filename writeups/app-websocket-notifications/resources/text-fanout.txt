@@ -1,0 +1,139 @@
+
+libwebsocket.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000005f00 <list_multicast@@Base>:
+    5f00:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    5f04:	910003fd 	mov	x29, sp
+    5f08:	a902dff6 	stp	x22, x23, [sp, #40]
+    5f0c:	aa0003f6 	mov	x22, x0
+    5f10:	91006017 	add	x23, x0, #0x18
+    5f14:	a90153f3 	stp	x19, x20, [sp, #16]
+    5f18:	aa1703e0 	mov	x0, x23
+    5f1c:	aa0103f4 	mov	x20, x1
+    5f20:	97fff768 	bl	3cc0 <pthread_mutex_lock@plt>
+    5f24:	f94006d3 	ldr	x19, [x22, #8]
+    5f28:	b4000413 	cbz	x19, 5fa8 <list_multicast@@Base+0xa8>
+    5f2c:	f90013b5 	str	x21, [x29, #32]
+    5f30:	eb14027f 	cmp	x19, x20
+    5f34:	540001e0 	b.eq	5f70 <list_multicast@@Base+0x70>  // b.none
+    5f38:	f9401681 	ldr	x1, [x20, #40]
+    5f3c:	aa1303e0 	mov	x0, x19
+    5f40:	97fff598 	bl	35a0 <ws_send@plt>
+    5f44:	f9401a75 	ldr	x21, [x19, #48]
+    5f48:	37f801c0 	tbnz	w0, #31, 5f80 <list_multicast@@Base+0x80>
+    5f4c:	aa1503f3 	mov	x19, x21
+    5f50:	b5ffff13 	cbnz	x19, 5f30 <list_multicast@@Base+0x30>
+    5f54:	aa1703e0 	mov	x0, x23
+    5f58:	f94013b5 	ldr	x21, [x29, #32]
+    5f5c:	a94153f3 	ldp	x19, x20, [sp, #16]
+    5f60:	a942dff6 	ldp	x22, x23, [sp, #40]
+    5f64:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    5f68:	17fff75a 	b	3cd0 <pthread_mutex_unlock@plt>
+    5f6c:	d503201f 	nop
+    5f70:	f9401a73 	ldr	x19, [x19, #48]
+    5f74:	b5fffdf3 	cbnz	x19, 5f30 <list_multicast@@Base+0x30>
+    5f78:	17fffff7 	b	5f54 <list_multicast@@Base+0x54>
+    5f7c:	d503201f 	nop
+    5f80:	aa1303e1 	mov	x1, x19
+    5f84:	aa1603e0 	mov	x0, x22
+    5f88:	aa1503f3 	mov	x19, x21
+    5f8c:	97fff709 	bl	3bb0 <client_remove@plt>
+    5f90:	b4fffe35 	cbz	x21, 5f54 <list_multicast@@Base+0x54>
+    5f94:	eb15029f 	cmp	x20, x21
+    5f98:	54fffd01 	b.ne	5f38 <list_multicast@@Base+0x38>  // b.any
+    5f9c:	f9401a93 	ldr	x19, [x20, #48]
+    5fa0:	b5fffc93 	cbnz	x19, 5f30 <list_multicast@@Base+0x30>
+    5fa4:	17ffffec 	b	5f54 <list_multicast@@Base+0x54>
+    5fa8:	aa1703e0 	mov	x0, x23
+    5fac:	a94153f3 	ldp	x19, x20, [sp, #16]
+    5fb0:	a942dff6 	ldp	x22, x23, [sp, #40]
+    5fb4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    5fb8:	17fff746 	b	3cd0 <pthread_mutex_unlock@plt>
+    5fbc:	d503201f 	nop
+
+0000000000005fc0 <list_multicast_one@@Base>:
+    5fc0:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+    5fc4:	910003fd 	mov	x29, sp
+    5fc8:	a90153f3 	stp	x19, x20, [sp, #16]
+    5fcc:	aa0003f4 	mov	x20, x0
+    5fd0:	a9025bf5 	stp	x21, x22, [sp, #32]
+    5fd4:	91006015 	add	x21, x0, #0x18
+    5fd8:	aa0103f3 	mov	x19, x1
+    5fdc:	aa0203f6 	mov	x22, x2
+    5fe0:	aa1503e0 	mov	x0, x21
+    5fe4:	97fff737 	bl	3cc0 <pthread_mutex_lock@plt>
+    5fe8:	f9400680 	ldr	x0, [x20, #8]
+    5fec:	f100001f 	cmp	x0, #0x0
+    5ff0:	fa401a64 	ccmp	x19, #0x0, #0x4, ne	// ne = any
+    5ff4:	54000120 	b.eq	6018 <list_multicast_one@@Base+0x58>  // b.none
+    5ff8:	eb13001f 	cmp	x0, x19
+    5ffc:	540000a1 	b.ne	6010 <list_multicast_one@@Base+0x50>  // b.any
+    6000:	1400000c 	b	6030 <list_multicast_one@@Base+0x70>
+    6004:	d503201f 	nop
+    6008:	eb00027f 	cmp	x19, x0
+    600c:	54000120 	b.eq	6030 <list_multicast_one@@Base+0x70>  // b.none
+    6010:	f9401800 	ldr	x0, [x0, #48]
+    6014:	b5ffffa0 	cbnz	x0, 6008 <list_multicast_one@@Base+0x48>
+    6018:	aa1503e0 	mov	x0, x21
+    601c:	a94153f3 	ldp	x19, x20, [sp, #16]
+    6020:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    6024:	a8c37bfd 	ldp	x29, x30, [sp], #48
+    6028:	17fff72a 	b	3cd0 <pthread_mutex_unlock@plt>
+    602c:	d503201f 	nop
+    6030:	aa1603e1 	mov	x1, x22
+    6034:	aa1303e0 	mov	x0, x19
+    6038:	97fff55a 	bl	35a0 <ws_send@plt>
+    603c:	36fffee0 	tbz	w0, #31, 6018 <list_multicast_one@@Base+0x58>
+    6040:	aa1303e1 	mov	x1, x19
+    6044:	aa1403e0 	mov	x0, x20
+    6048:	97fff6da 	bl	3bb0 <client_remove@plt>
+    604c:	17fffff3 	b	6018 <list_multicast_one@@Base+0x58>
+
+0000000000006050 <list_multicast_all@@Base>:
+    6050:	b4000480 	cbz	x0, 60e0 <list_multicast_all@@Base+0x90>
+    6054:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    6058:	910003fd 	mov	x29, sp
+    605c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    6060:	aa0003f6 	mov	x22, x0
+    6064:	f9001bf7 	str	x23, [sp, #48]
+    6068:	91006017 	add	x23, x0, #0x18
+    606c:	f9000bf3 	str	x19, [sp, #16]
+    6070:	aa0103f5 	mov	x21, x1
+    6074:	aa1703e0 	mov	x0, x23
+    6078:	97fff712 	bl	3cc0 <pthread_mutex_lock@plt>
+    607c:	f94006d3 	ldr	x19, [x22, #8]
+    6080:	aa1703e0 	mov	x0, x23
+    6084:	b4000233 	cbz	x19, 60c8 <list_multicast_all@@Base+0x78>
+    6088:	f9000fb4 	str	x20, [x29, #24]
+    608c:	14000003 	b	6098 <list_multicast_all@@Base+0x48>
+    6090:	aa1403f3 	mov	x19, x20
+    6094:	b4000174 	cbz	x20, 60c0 <list_multicast_all@@Base+0x70>
+    6098:	aa1503e1 	mov	x1, x21
+    609c:	aa1303e0 	mov	x0, x19
+    60a0:	97fff540 	bl	35a0 <ws_send@plt>
+    60a4:	f9401a74 	ldr	x20, [x19, #48]
+    60a8:	36ffff40 	tbz	w0, #31, 6090 <list_multicast_all@@Base+0x40>
+    60ac:	aa1303e1 	mov	x1, x19
+    60b0:	aa1603e0 	mov	x0, x22
+    60b4:	aa1403f3 	mov	x19, x20
+    60b8:	97fff6be 	bl	3bb0 <client_remove@plt>
+    60bc:	b5fffef4 	cbnz	x20, 6098 <list_multicast_all@@Base+0x48>
+    60c0:	f9400fb4 	ldr	x20, [x29, #24]
+    60c4:	aa1703e0 	mov	x0, x23
+    60c8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    60cc:	f9400bf3 	ldr	x19, [sp, #16]
+    60d0:	f9401bf7 	ldr	x23, [sp, #48]
+    60d4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    60d8:	17fff6fe 	b	3cd0 <pthread_mutex_unlock@plt>
+    60dc:	d503201f 	nop
+    60e0:	b0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    60e4:	9137c000 	add	x0, x0, #0xdf0
+    60e8:	17fff62a 	b	3990 <puts@plt>
+    60ec:	d503201f 	nop
+    60f0:	d2840c10 	mov	x16, #0x2060                	// #8288
+    60f4:	cb3063ff 	sub	sp, sp, x16
+    60f8:	a9007bfd 	stp	x29, x30, [sp]
+    60fc:	910003fd 	mov	x29, sp

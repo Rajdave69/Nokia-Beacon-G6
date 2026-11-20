@@ -1,0 +1,40 @@
+
+PCD_rulesdb_setup_optional_params:
+0040c7a8: fe0f1ef8  str x30, [sp, #-0x20]!
+0040c7ac: e00f00f9  str x0, [sp, #0x18]
+0040c7b0: e10b00f9  str x1, [sp, #0x10]
+0040c7b4: e00f40f9  ldr x0, [sp, #0x18]
+0040c7b8: 1f0000f1  cmp x0, #0
+0040c7bc: 80000054  b.eq #0x40c7cc
+0040c7c0: e00b40f9  ldr x0, [sp, #0x10]
+0040c7c4: 1f0000f1  cmp x0, #0
+0040c7c8: 61000054  b.ne #0x40c7d4
+0040c7cc: 00008012  mov w0, #-1
+0040c7d0: 1a000014  b #0x40c838
+0040c7d4: e00f40f9  ldr x0, [sp, #0x18]
+0040c7d8: 00d440f9  ldr x0, [x0, #0x1a8]
+0040c7dc: 1f0000f1  cmp x0, #0
+0040c7e0: 80000054  b.eq #0x40c7f0
+0040c7e4: e00f40f9  ldr x0, [sp, #0x18]
+0040c7e8: 00d440f9  ldr x0, [x0, #0x1a8]
+0040c7ec: 2ddbff97  bl #0x4034a0 ; heuristic free@plt {}
+0040c7f0: e00b40f9  ldr x0, [sp, #0x10]
+0040c7f4: 53daff97  bl #0x403140 ; heuristic strlen@plt {}
+0040c7f8: 00040091  add x0, x0, #1
+0040c7fc: addaff97  bl #0x4032b0 ; heuristic malloc@plt {}
+0040c800: e10300aa  mov x1, x0
+0040c804: e00f40f9  ldr x0, [sp, #0x18]
+0040c808: 01d400f9  str x1, [x0, #0x1a8]
+0040c80c: e00f40f9  ldr x0, [sp, #0x18]
+0040c810: 00d440f9  ldr x0, [x0, #0x1a8]
+0040c814: 1f0000f1  cmp x0, #0
+0040c818: 61000054  b.ne #0x40c824
+0040c81c: 00008012  mov w0, #-1
+0040c820: 06000014  b #0x40c838
+0040c824: e00f40f9  ldr x0, [sp, #0x18]
+0040c828: 00d440f9  ldr x0, [x0, #0x1a8]
+0040c82c: e10b40f9  ldr x1, [sp, #0x10]
+0040c830: 38dbff97  bl #0x403510 ; heuristic strcpy@plt {}
+0040c834: 00008052  mov w0, #0
+0040c838: fe0742f8  ldr x30, [sp], #0x20
+0040c83c: c0035fd6  ret 

@@ -1,0 +1,149 @@
+
+ddm:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000234bc <ddm_setAsyncNotification@@Base>:
+   234bc:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   234c0:	910003fd 	mov	x29, sp
+   234c4:	b9001fa0 	str	w0, [x29, #28]
+   234c8:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   234cc:	f946b400 	ldr	x0, [x0, #3432]
+   234d0:	f9400001 	ldr	x1, [x0]
+   234d4:	f90017a1 	str	x1, [x29, #40]
+   234d8:	d2800001 	mov	x1, #0x0                   	// #0
+   234dc:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   234e0:	f9469c00 	ldr	x0, [x0, #3384]
+   234e4:	b942c001 	ldr	w1, [x0, #704]
+   234e8:	b9401fa0 	ldr	w0, [x29, #28]
+   234ec:	2a000021 	orr	w1, w1, w0
+   234f0:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   234f4:	f9469c00 	ldr	x0, [x0, #3384]
+   234f8:	b902c001 	str	w1, [x0, #704]
+   234fc:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23500:	f9469c00 	ldr	x0, [x0, #3384]
+   23504:	b942c002 	ldr	w2, [x0, #704]
+   23508:	d0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   2350c:	91088001 	add	x1, x0, #0x220
+   23510:	d0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   23514:	91384000 	add	x0, x0, #0xe10
+   23518:	2a0203e3 	mov	w3, w2
+   2351c:	aa0103e2 	mov	x2, x1
+   23520:	52800b41 	mov	w1, #0x5a                  	// #90
+   23524:	97ffc8bf 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_setAsyncNotification', x1=90, x2='setAsyncNotification =%x\n'
+   23528:	d503201f 	nop
+   2352c:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23530:	f946b400 	ldr	x0, [x0, #3432]
+   23534:	f94017a1 	ldr	x1, [x29, #40]
+   23538:	f9400000 	ldr	x0, [x0]
+   2353c:	ca000020 	eor	x0, x1, x0
+   23540:	f100001f 	cmp	x0, #0x0
+   23544:	54000040 	b.eq	2354c <ddm_setAsyncNotification@@Base+0x90>  // b.none
+   23548:	97ffc92e 	bl	15a00 <__stack_chk_fail@plt>
+   2354c:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   23550:	d65f03c0 	ret
+
+0000000000023554 <ddm_resetAsyncNotification@@Base>:
+   23554:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   23558:	910003fd 	mov	x29, sp
+   2355c:	b9001fa0 	str	w0, [x29, #28]
+   23560:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23564:	f946b400 	ldr	x0, [x0, #3432]
+   23568:	f9400001 	ldr	x1, [x0]
+   2356c:	f90017a1 	str	x1, [x29, #40]
+   23570:	d2800001 	mov	x1, #0x0                   	// #0
+   23574:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23578:	f9469c00 	ldr	x0, [x0, #3384]
+   2357c:	b942c001 	ldr	w1, [x0, #704]
+   23580:	b9401fa0 	ldr	w0, [x29, #28]
+   23584:	2a2003e0 	mvn	w0, w0
+   23588:	0a000021 	and	w1, w1, w0
+   2358c:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23590:	f9469c00 	ldr	x0, [x0, #3384]
+   23594:	b902c001 	str	w1, [x0, #704]
+   23598:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   2359c:	f9469c00 	ldr	x0, [x0, #3384]
+   235a0:	b942c002 	ldr	w2, [x0, #704]
+   235a4:	d0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   235a8:	91090001 	add	x1, x0, #0x240
+   235ac:	d0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   235b0:	9138c000 	add	x0, x0, #0xe30
+   235b4:	2a0203e3 	mov	w3, w2
+   235b8:	aa0103e2 	mov	x2, x1
+   235bc:	52800c01 	mov	w1, #0x60                  	// #96
+   235c0:	97ffc898 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_resetAsyncNotification', x1=96, x2='resetAsyncNotification =%x\n'
+   235c4:	d503201f 	nop
+   235c8:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   235cc:	f946b400 	ldr	x0, [x0, #3432]
+   235d0:	f94017a1 	ldr	x1, [x29, #40]
+   235d4:	f9400000 	ldr	x0, [x0]
+   235d8:	ca000020 	eor	x0, x1, x0
+   235dc:	f100001f 	cmp	x0, #0x0
+   235e0:	54000040 	b.eq	235e8 <ddm_resetAsyncNotification@@Base+0x94>  // b.none
+   235e4:	97ffc907 	bl	15a00 <__stack_chk_fail@plt>
+   235e8:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   235ec:	d65f03c0 	ret
+
+00000000000235f0 <ddm_isAsyncNotificationEnabled@@Base>:
+   235f0:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   235f4:	910003fd 	mov	x29, sp
+   235f8:	b9001fa0 	str	w0, [x29, #28]
+   235fc:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23600:	f946b400 	ldr	x0, [x0, #3432]
+   23604:	f9400001 	ldr	x1, [x0]
+   23608:	f90017a1 	str	x1, [x29, #40]
+   2360c:	d2800001 	mov	x1, #0x0                   	// #0
+   23610:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23614:	f9469c00 	ldr	x0, [x0, #3384]
+   23618:	b942c002 	ldr	w2, [x0, #704]
+   2361c:	d0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   23620:	91098001 	add	x1, x0, #0x260
+   23624:	d0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   23628:	91394000 	add	x0, x0, #0xe50
+   2362c:	b9401fa4 	ldr	w4, [x29, #28]
+   23630:	2a0203e3 	mov	w3, w2
+   23634:	aa0103e2 	mov	x2, x1
+   23638:	52800ca1 	mov	w1, #0x65                  	// #101
+   2363c:	97ffc879 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_isAsyncNotificationEnabled', x1=101, x2='asyncNotificationStatus = %hhu option : %hhu\n'
+   23640:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23644:	f9469c00 	ldr	x0, [x0, #3384]
+   23648:	b942c001 	ldr	w1, [x0, #704]
+   2364c:	b9401fa0 	ldr	w0, [x29, #28]
+   23650:	0a000020 	and	w0, w1, w0
+   23654:	b9401fa1 	ldr	w1, [x29, #28]
+   23658:	6b00003f 	cmp	w1, w0
+   2365c:	1a9f17e0 	cset	w0, eq	// eq = none
+   23660:	12001c00 	and	w0, w0, #0xff
+   23664:	90000541 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23668:	f946b421 	ldr	x1, [x1, #3432]
+   2366c:	f94017a2 	ldr	x2, [x29, #40]
+   23670:	f9400021 	ldr	x1, [x1]
+   23674:	ca010041 	eor	x1, x2, x1
+   23678:	f100003f 	cmp	x1, #0x0
+   2367c:	54000040 	b.eq	23684 <ddm_isAsyncNotificationEnabled@@Base+0x94>  // b.none
+   23680:	97ffc8e0 	bl	15a00 <__stack_chk_fail@plt>
+   23684:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   23688:	d65f03c0 	ret
+
+000000000002368c <ddm_getAsyncNotificationStatus@@Base>:
+   2368c:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   23690:	910003fd 	mov	x29, sp
+   23694:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   23698:	f946b400 	ldr	x0, [x0, #3432]
+   2369c:	f9400001 	ldr	x1, [x0]
+   236a0:	f9000fa1 	str	x1, [x29, #24]
+   236a4:	d2800001 	mov	x1, #0x0                   	// #0
+   236a8:	90000540 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   236ac:	f9469c00 	ldr	x0, [x0, #3384]
+   236b0:	b942c000 	ldr	w0, [x0, #704]
+   236b4:	90000541 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   236b8:	f946b421 	ldr	x1, [x1, #3432]
+   236bc:	f9400fa2 	ldr	x2, [x29, #24]
+   236c0:	f9400021 	ldr	x1, [x1]
+   236c4:	ca010041 	eor	x1, x2, x1
+   236c8:	f100003f 	cmp	x1, #0x0
+   236cc:	54000040 	b.eq	236d4 <ddm_getAsyncNotificationStatus@@Base+0x48>  // b.none
+   236d0:	97ffc8cc 	bl	15a00 <__stack_chk_fail@plt>
+   236d4:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   236d8:	d65f03c0 	ret

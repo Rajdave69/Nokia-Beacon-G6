@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 """Offline key-inventory/provenance/link/privacy validation; no router calls."""
+from pathlib import Path as _PublicationPath
+import json as _publication_json
+import re as _publication_re
+
+def _publication_input(alias):
+    project = next(p for p in _PublicationPath(__file__).resolve().parents
+                   if (p / 'writeups').is_dir())
+    registry = (project / 'writeups/README.private.md').read_text(encoding='utf-8')
+    payload = _publication_re.search(r'```json\s*\n(.*?)\n```', registry, _publication_re.S)
+    return _publication_json.loads(payload[1])['private_values'][alias]
+
 import argparse,ast,hashlib,importlib.util,json,re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3];B9=ROOT.parent/'Nokia-Beacon-9'
@@ -50,8 +61,8 @@ def main():
    if q.exists():links+=1;continue
    # Existing project README links sometimes use uppercase .MD spelling on NTFS.
    parent=q.parent;assert parent.is_dir() and q.name.lower() in {x.name.lower() for x in parent.iterdir()},(p,target);links+=1
- spec=importlib.util.spec_from_file_location('prepare',ROOT/'webui/scripts/prepare-config-keys.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);secrets=[]
- for root in (Path('/tmp/g6-old-slot-review-20261025-by5iaikl/old'),Path('/tmp/g6-old-slot-review-20261025-by5iaikl/new'),Path('/tmp/beacon9-stock-root'),ROOT/'config-private/xs2426xa-analysis-20261027/bank0-root',ROOT/'config-private/xs2426xa-analysis-20261027/bank1-root'):secrets += [x.encode() for x in m.static_keys(root,m.backup_module()).values() if len(x)>=10]
+ spec=importlib.util.spec_from_file_location('prepare',ROOT/'network-services/webui/scripts/prepare-config-keys.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);secrets=[]
+ for root in (Path(_publication_input('RESEARCH-INPUT-A401F244A177')),Path(_publication_input('RESEARCH-INPUT-03F256D23A59')),Path(_publication_input('RESEARCH-INPUT-6D58EDFEFE71')),ROOT/'config-private/xs2426xa-analysis-20261027/bank0-root',ROOT/'config-private/xs2426xa-analysis-20261027/bank1-root'):secrets += [x.encode() for x in m.static_keys(root,m.backup_module()).values() if len(x)>=10]
  for root in (ROOT,B9):
   for filename in ('keys.json','live-config-keys-20261019.json'):
    p=root/'config-private'/filename

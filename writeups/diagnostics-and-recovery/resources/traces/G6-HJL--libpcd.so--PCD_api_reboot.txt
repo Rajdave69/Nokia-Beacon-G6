@@ -1,0 +1,85 @@
+
+PCD_api_reboot:
+00001bc4: ff4305d1  sub sp, sp, #0x150
+00001bc8: fe0300f9  str x30, [sp]
+00001bcc: e00f00f9  str x0, [sp, #0x18]
+00001bd0: e11700b9  str w1, [sp, #0x14]
+00001bd4: 83fdff97  bl #0x11e0 ; heuristic getpid@plt {}
+00001bd8: e04f01b9  str w0, [sp, #0x14c]
+00001bdc: e0a30091  add x0, sp, #0x28
+00001be0: e11f80d2  mov x1, #0xff
+00001be4: e20301aa  mov x2, x1
+00001be8: 01008052  mov w1, #0
+00001bec: 8dfdff97  bl #0x1220 ; heuristic memset@plt {"x1": 0, "x2": 255}
+00001bf0: 000000b0  adrp x0, #0x2000
+00001bf4: 01600991  add x1, x0, #0x258
+00001bf8: e0a30491  add x0, sp, #0x128
+00001bfc: e24f41b9  ldr w2, [sp, #0x14c]
+00001c00: 54fdff97  bl #0x1150 ; heuristic sprintf@plt {"x1": "/proc/%d/cmdline"}
+00001c04: e0a30491  add x0, sp, #0x128
+00001c08: 01008052  mov w1, #0
+00001c0c: 79fdff97  bl #0x11f0 ; heuristic open@plt {"x1": 0}
+00001c10: e04b01b9  str w0, [sp, #0x148]
+00001c14: e04b41b9  ldr w0, [sp, #0x148]
+00001c18: 1f000071  cmp w0, #0
+00001c1c: 6b020054  b.lt #0x1c68
+00001c20: e0a30091  add x0, sp, #0x28
+00001c24: c21f80d2  mov x2, #0xfe
+00001c28: e10300aa  mov x1, x0
+00001c2c: e04b41b9  ldr w0, [sp, #0x148]
+00001c30: b8fdff97  bl #0x1310 ; heuristic read@plt {"x2": 254}
+00001c34: 1f0000f1  cmp x0, #0
+00001c38: 2a010054  b.ge #0x1c5c
+00001c3c: e2a30091  add x2, sp, #0x28
+00001c40: 000000b0  adrp x0, #0x2000
+00001c44: 01c00991  add x1, x0, #0x270
+00001c48: e00302aa  mov x0, x2
+00001c4c: 220040f9  ldr x2, [x1]
+00001c50: 020000f9  str x2, [x0]
+00001c54: 21104079  ldrh w1, [x1, #8]
+00001c58: 01100079  strh w1, [x0, #8]
+00001c5c: e04b41b9  ldr w0, [sp, #0x148]
+00001c60: 80fdff97  bl #0x1260 ; heuristic close@plt {"x2": 7959953386440119612}
+00001c64: 09000014  b #0x1c88
+00001c68: e2a30091  add x2, sp, #0x28
+00001c6c: 000000b0  adrp x0, #0x2000
+00001c70: 01c00991  add x1, x0, #0x270
+00001c74: e00302aa  mov x0, x2
+00001c78: 220040f9  ldr x2, [x1]
+00001c7c: 020000f9  str x2, [x0]
+00001c80: 21104079  ldrh w1, [x1, #8]
+00001c84: 01100079  strh w1, [x0, #8]
+00001c88: e1a30091  add x1, sp, #0x28
+00001c8c: 000000b0  adrp x0, #0x2000
+00001c90: 00000a91  add x0, x0, #0x280
+00001c94: e24f41b9  ldr w2, [sp, #0x14c]
+00001c98: aafdff97  bl #0x1340 ; heuristic printf@plt {"x0": "pcd: Process %s (%d) requested system reboot.\n"}
+00001c9c: e00f40f9  ldr x0, [sp, #0x18]
+00001ca0: 1f0000f1  cmp x0, #0
+00001ca4: a0000054  b.eq #0x1cb8
+00001ca8: 000000b0  adrp x0, #0x2000
+00001cac: 00c00a91  add x0, x0, #0x2b0
+00001cb0: e10f40f9  ldr x1, [sp, #0x18]
+00001cb4: a3fdff97  bl #0x1340 ; heuristic printf@plt {"x0": "Reboot reason:\n%s\n"}
+00001cb8: 800000b0  adrp x0, #0x12000
+00001cbc: 00f847f9  ldr x0, [x0, #0xff0]
+00001cc0: 000040f9  ldr x0, [x0]
+00001cc4: 8ffdff97  bl #0x1300 ; heuristic fflush@plt {}
+00001cc8: e01740b9  ldr w0, [sp, #0x14]
+00001ccc: 1f000071  cmp w0, #0
+00001cd0: 81010054  b.ne #0x1d00
+00001cd4: 000000b0  adrp x0, #0x2000
+00001cd8: 00200b91  add x0, x0, #0x2c8
+00001cdc: 19fdff97  bl #0x1140 ; heuristic PCD_api_find_process_id@plt {"x0": "/usr/sbin/pcd"}
+00001ce0: e04f01b9  str w0, [sp, #0x14c]
+00001ce4: e04f41b9  ldr w0, [sp, #0x14c]
+00001ce8: 1f000071  cmp w0, #0
+00001cec: ad000054  b.le #0x1d00
+00001cf0: e1018052  mov w1, #0xf
+00001cf4: e04f41b9  ldr w0, [sp, #0x14c]
+00001cf8: 1efdff97  bl #0x1170 ; heuristic kill@plt {"x1": 15}
+00001cfc: 04000014  b #0x1d0c
+00001d00: 000000b0  adrp x0, #0x2000
+00001d04: 00600b91  add x0, x0, #0x2d8
+00001d08: 4efdff97  bl #0x1240 ; heuristic system@plt {"x0": "reboot -f"}
+00001d0c: 00000014  b #0x1d0c

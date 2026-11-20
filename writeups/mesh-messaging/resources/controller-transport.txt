@@ -1,0 +1,1104 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-G6-HJL/usr/bin/ai_controller:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000054000 <.text+0x4bad0>:
+   54000:	52800481 	mov	w1, #0x24                  	// #36
+   54004:	39418e83 	ldrb	w3, [x20, #99]
+   54008:	7940b682 	ldrh	w2, [x20, #90]
+   5400c:	78736800 	ldrh	w0, [x0, x19]
+   54010:	97ff5f9e 	bl	2be88 <_ZNSt6localeC1Ev@plt+0x23968>
+   54014:	52800023 	mov	w3, #0x1                   	// #1
+   54018:	52800042 	mov	w2, #0x2                   	// #2
+   5401c:	2a0303e1 	mov	w1, w3
+   54020:	900000e0 	adrp	x0, 70000 <_fini@@Base+0xa738>
+   54024:	911d8c00 	add	x0, x0, #0x763  ; 'Force channel alignment'
+   54028:	97ff1ea0 	bl	1baa8 <_ZNSt6localeC1Ev@plt+0x13588>
+   5402c:	f9404ba8 	ldr	x8, [x29, #144]
+   54030:	b900091f 	str	wzr, [x8, #8]
+   54034:	f944b2a2 	ldr	x2, [x21, #2400]
+   54038:	f9004ba2 	str	x2, [x29, #144]
+   5403c:	f9400040 	ldr	x0, [x2]
+   54040:	8b130000 	add	x0, x0, x19
+   54044:	f9405001 	ldr	x1, [x0, #160]
+   54048:	f94057a0 	ldr	x0, [x29, #168]
+   5404c:	97fecdf1 	bl	7810 <difftime@plt>
+   54050:	f94053a0 	ldr	x0, [x29, #160]
+   54054:	f9404ba2 	ldr	x2, [x29, #144]
+   54058:	f946d01c 	ldr	x28, [x0, #3488]
+   5405c:	b9400380 	ldr	w0, [x28]
+   54060:	1e630001 	ucvtf	d1, w0
+   54064:	1e612010 	fcmpe	d0, d1
+   54068:	54ffcfad 	b.le	53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>
+   5406c:	528000a0 	mov	w0, #0x5                   	// #5
+   54070:	f90053a2 	str	x2, [x29, #160]
+   54074:	97ff63d0 	bl	2cfb4 <_ZNSt6localeC1Ev@plt+0x24a94>
+   54078:	72001c1f 	tst	w0, #0xff
+   5407c:	54ffcf00 	b.eq	53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>  // b.none
+   54080:	121e02dc 	and	w28, w22, #0x4
+   54084:	3717ced6 	tbnz	w22, #2, 53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>
+   54088:	f94053a2 	ldr	x2, [x29, #160]
+   5408c:	7940ba81 	ldrh	w1, [x20, #92]
+   54090:	f9400040 	ldr	x0, [x2]
+   54094:	8b130000 	add	x0, x0, x19
+   54098:	7940b802 	ldrh	w2, [x0, #92]
+   5409c:	6b01005f 	cmp	w2, w1
+   540a0:	54000121 	b.ne	540c4 <_ZNSt6localeC1Ev@plt+0x4bba4>  // b.any
+   540a4:	39419002 	ldrb	w2, [x0, #100]
+   540a8:	39419281 	ldrb	w1, [x20, #100]
+   540ac:	6b01005f 	cmp	w2, w1
+   540b0:	54ffcd60 	b.eq	53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>  // b.none
+   540b4:	794a8802 	ldrh	w2, [x0, #1348]
+   540b8:	794a8a81 	ldrh	w1, [x20, #1348]
+   540bc:	6b01005f 	cmp	w2, w1
+   540c0:	54ffcce1 	b.ne	53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>  // b.any
+   540c4:	3951e800 	ldrb	w0, [x0, #1146]
+   540c8:	34000240 	cbz	w0, 54110 <_ZNSt6localeC1Ev@plt+0x4bbf0>
+   540cc:	9400287c 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   540d0:	f944b2b5 	ldr	x21, [x21, #2400]
+   540d4:	9118e2e4 	add	x4, x23, #0x638
+   540d8:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   540dc:	52801dc5 	mov	w5, #0xee                  	// #238
+   540e0:	912078c6 	add	x6, x6, #0x81e  ; 'WIFI node %d 5g high channel pre-cac is  %d'
+   540e4:	91008084 	add	x4, x4, #0x20
+   540e8:	9119df03 	add	x3, x24, #0x677
+   540ec:	f94002a1 	ldr	x1, [x21]
+   540f0:	8b130022 	add	x2, x1, x19
+   540f4:	78736827 	ldrh	w7, [x1, x19]
+   540f8:	3951e841 	ldrb	w1, [x2, #1146]
+   540fc:	91248322 	add	x2, x25, #0x920
+   54100:	b90003e1 	str	w1, [sp]
+   54104:	528000e1 	mov	w1, #0x7                   	// #7
+   54108:	940026e6 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   5410c:	17fffe54 	b	53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>
+   54110:	9400286b 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54114:	9118e2f6 	add	x22, x23, #0x638
+   54118:	f944b2a9 	ldr	x9, [x21, #2400]
+   5411c:	910082d6 	add	x22, x22, #0x20
+   54120:	52801e45 	mov	w5, #0xf2                  	// #242
+   54124:	aa1603e4 	mov	x4, x22
+   54128:	9119df03 	add	x3, x24, #0x677
+   5412c:	91248322 	add	x2, x25, #0x920
+   54130:	f90053a9 	str	x9, [x29, #160]
+   54134:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54138:	f9400121 	ldr	x1, [x9]
+   5413c:	912128c6 	add	x6, x6, #0x84a  ; 'WIFI node %d 5g high channel mismatch count %d'
+   54140:	78736827 	ldrh	w7, [x1, x19]
+   54144:	9119df01 	add	x1, x24, #0x677
+   54148:	f9004ba1 	str	x1, [x29, #144]
+   5414c:	b94d2761 	ldr	w1, [x27, #3364]
+   54150:	b90003e1 	str	w1, [sp]
+   54154:	528000e1 	mov	w1, #0x7                   	// #7
+   54158:	940026d2 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   5415c:	f94053a9 	ldr	x9, [x29, #160]
+   54160:	7940ba81 	ldrh	w1, [x20, #92]
+   54164:	f9400120 	ldr	x0, [x9]
+   54168:	8b130000 	add	x0, x0, x19
+   5416c:	b9400800 	ldr	w0, [x0, #8]
+   54170:	97ff201e 	bl	1c1e8 <_ZNSt6localeC1Ev@plt+0x13cc8>
+   54174:	72001c1f 	tst	w0, #0xff
+   54178:	f94053a9 	ldr	x9, [x29, #160]
+   5417c:	54000180 	b.eq	541ac <_ZNSt6localeC1Ev@plt+0x4bc8c>  // b.none
+   54180:	9400284f 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54184:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54188:	52801ec5 	mov	w5, #0xf6                  	// #246
+   5418c:	9121e4c6 	add	x6, x6, #0x879  ; '5G high channel not aline, but give up on mast channel on mute status. '
+   54190:	aa1603e4 	mov	x4, x22
+   54194:	9119df03 	add	x3, x24, #0x677
+   54198:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   5419c:	528000c1 	mov	w1, #0x6                   	// #6
+   541a0:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   541a4:	940026bf 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   541a8:	17fffe2d 	b	53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>
+   541ac:	f9400120 	ldr	x0, [x9]
+   541b0:	39419281 	ldrb	w1, [x20, #100]
+   541b4:	8b130000 	add	x0, x0, x19
+   541b8:	39419002 	ldrb	w2, [x0, #100]
+   541bc:	6b01005f 	cmp	w2, w1
+   541c0:	54000180 	b.eq	541f0 <_ZNSt6localeC1Ev@plt+0x4bcd0>  // b.none
+   541c4:	3940c402 	ldrb	w2, [x0, #49]
+   541c8:	35000142 	cbnz	w2, 541f0 <_ZNSt6localeC1Ev@plt+0x4bcd0>
+   541cc:	7102803f 	cmp	w1, #0xa0
+   541d0:	54000101 	b.ne	541f0 <_ZNSt6localeC1Ev@plt+0x4bcd0>  // b.any
+   541d4:	794a8800 	ldrh	w0, [x0, #1348]
+   541d8:	f27d001f 	tst	x0, #0x8
+   541dc:	121e0400 	and	w0, w0, #0xc
+   541e0:	1a8103fc 	csel	w28, wzr, w1, eq	// eq = none
+   541e4:	7100101f 	cmp	w0, #0x4
+   541e8:	52800a00 	mov	w0, #0x50                  	// #80
+   541ec:	1a80139c 	csel	w28, w28, w0, ne	// ne = any
+   541f0:	f9404fa0 	ldr	x0, [x29, #152]
+   541f4:	f9404fa1 	ldr	x1, [x29, #152]
+   541f8:	b9400c00 	ldr	w0, [x0, #12]
+   541fc:	11000400 	add	w0, w0, #0x1
+   54200:	b9000c20 	str	w0, [x1, #12]
+   54204:	3707c2c0 	tbnz	w0, #0, 53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>
+   54208:	90000180 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   5420c:	528000a1 	mov	w1, #0x5                   	// #5
+   54210:	52800006 	mov	w6, #0x0                   	// #0
+   54214:	d00000c3 	adrp	x3, 6e000 <_fini@@Base+0x8738>
+   54218:	f946f800 	ldr	x0, [x0, #3568]
+   5421c:	9113f863 	add	x3, x3, #0x4fe  ; '%d %d %d'
+   54220:	d28001e2 	mov	x2, #0xf                   	// #15
+   54224:	f9400000 	ldr	x0, [x0]
+   54228:	91014800 	add	x0, x0, #0x52
+   5422c:	381d6001 	sturb	w1, [x0, #-42]
+   54230:	52800021 	mov	w1, #0x1                   	// #1
+   54234:	b81b601a 	stur	w26, [x0, #-74]
+   54238:	39419285 	ldrb	w5, [x20, #100]
+   5423c:	7940ba84 	ldrh	w4, [x20, #92]
+   54240:	97fece14 	bl	7a90 <__sprintf_chk@plt>
+   54244:	f944b2b5 	ldr	x21, [x21, #2400]
+   54248:	f94002a0 	ldr	x0, [x21]
+   5424c:	3400027c 	cbz	w28, 54298 <_ZNSt6localeC1Ev@plt+0x4bd78>
+   54250:	8b130001 	add	x1, x0, x19
+   54254:	39419021 	ldrb	w1, [x1, #100]
+   54258:	6b1c003f 	cmp	w1, w28
+   5425c:	540000c0 	b.eq	54274 <_ZNSt6localeC1Ev@plt+0x4bd54>  // b.none
+   54260:	2a1c03e3 	mov	w3, w28
+   54264:	7940ba82 	ldrh	w2, [x20, #92]
+   54268:	528000a1 	mov	w1, #0x5                   	// #5
+   5426c:	78736800 	ldrh	w0, [x0, x19]
+   54270:	97ff5f06 	bl	2be88 <_ZNSt6localeC1Ev@plt+0x23968>
+   54274:	52800023 	mov	w3, #0x1                   	// #1
+   54278:	52800042 	mov	w2, #0x2                   	// #2
+   5427c:	2a0303e1 	mov	w1, w3
+   54280:	900000e0 	adrp	x0, 70000 <_fini@@Base+0xa738>
+   54284:	911d8c00 	add	x0, x0, #0x763  ; 'Force channel alignment'
+   54288:	97ff1e08 	bl	1baa8 <_ZNSt6localeC1Ev@plt+0x13588>
+   5428c:	f9404fa0 	ldr	x0, [x29, #152]
+   54290:	b9000c1f 	str	wzr, [x0, #12]
+   54294:	17fffdf2 	b	53a5c <_ZNSt6localeC1Ev@plt+0x4b53c>
+   54298:	39419283 	ldrb	w3, [x20, #100]
+   5429c:	17fffff2 	b	54264 <_ZNSt6localeC1Ev@plt+0x4bd44>
+   542a0:	f94047a0 	ldr	x0, [x29, #136]
+   542a4:	f9454800 	ldr	x0, [x0, #2704]
+   542a8:	f9405fa1 	ldr	x1, [x29, #184]
+   542ac:	f9400000 	ldr	x0, [x0]
+   542b0:	ca000020 	eor	x0, x1, x0
+   542b4:	b5ffe5a0 	cbnz	x0, 53f68 <_ZNSt6localeC1Ev@plt+0x4ba48>
+   542b8:	a94253f3 	ldp	x19, x20, [sp, #32]
+   542bc:	a9435bf5 	ldp	x21, x22, [sp, #48]
+   542c0:	a94463f7 	ldp	x23, x24, [sp, #64]
+   542c4:	a9456bf9 	ldp	x25, x26, [sp, #80]
+   542c8:	a94673fb 	ldp	x27, x28, [sp, #96]
+   542cc:	a9417bfd 	ldp	x29, x30, [sp, #16]
+   542d0:	910343ff 	add	sp, sp, #0xd0
+   542d4:	d65f03c0 	ret
+   542d8:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   542dc:	910003fd 	mov	x29, sp
+   542e0:	f9000bf3 	str	x19, [sp, #16]
+   542e4:	90000193 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   542e8:	f9454a73 	ldr	x19, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   542ec:	f9400260 	ldr	x0, [x19]
+   542f0:	f90017a0 	str	x0, [x29, #40]
+   542f4:	d2800000 	mov	x0, #0x0                   	// #0
+   542f8:	940027f1 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   542fc:	f94017a2 	ldr	x2, [x29, #40]
+   54300:	f9400261 	ldr	x1, [x19]
+   54304:	ca010041 	eor	x1, x2, x1
+   54308:	b4000041 	cbz	x1, 54310 <_ZNSt6localeC1Ev@plt+0x4bdf0>
+   5430c:	97fecd79 	bl	78f0 <__stack_chk_fail@plt>
+   54310:	f9400bf3 	ldr	x19, [sp, #16]
+   54314:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   54318:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   5431c:	528013a5 	mov	w5, #0x9d                  	// #157
+   54320:	9127dcc6 	add	x6, x6, #0x9f7  ; '[Meshmsg] server: request timeout\n'
+   54324:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   54328:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   5432c:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   54330:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54334:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   54338:	528000e1 	mov	w1, #0x7                   	// #7
+   5433c:	91248042 	add	x2, x2, #0x920  ; 'DEBUG'
+   54340:	14002658 	b	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54344:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   54348:	910003fd 	mov	x29, sp
+   5434c:	a90153f3 	stp	x19, x20, [sp, #16]
+   54350:	90000193 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   54354:	aa0103f4 	mov	x20, x1
+   54358:	f9454a73 	ldr	x19, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   5435c:	f9400260 	ldr	x0, [x19]
+   54360:	f90017a0 	str	x0, [x29, #40]
+   54364:	d2800000 	mov	x0, #0x0                   	// #0
+   54368:	940027d5 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   5436c:	f94017a2 	ldr	x2, [x29, #40]
+   54370:	f9400261 	ldr	x1, [x19]
+   54374:	ca010041 	eor	x1, x2, x1
+   54378:	b4000041 	cbz	x1, 54380 <_ZNSt6localeC1Ev@plt+0x4be60>
+   5437c:	97fecd5d 	bl	78f0 <__stack_chk_fail@plt>
+   54380:	aa1403e7 	mov	x7, x20
+   54384:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   54388:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5438c:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   54390:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   54394:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54398:	52801305 	mov	w5, #0x98                  	// #152
+   5439c:	9128c8c6 	add	x6, x6, #0xa32  ; '[Meshmsg] server: response received:\n%s\n'
+   543a0:	91006084 	add	x4, x4, #0x18  ; 'server_resp_handler'
+   543a4:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   543a8:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   543ac:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   543b0:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   543b4:	528000c1 	mov	w1, #0x6                   	// #6
+   543b8:	1400263a 	b	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   543bc:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   543c0:	910003fd 	mov	x29, sp
+   543c4:	a90153f3 	stp	x19, x20, [sp, #16]
+   543c8:	90000193 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   543cc:	2a0003f4 	mov	w20, w0
+   543d0:	f9454a73 	ldr	x19, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   543d4:	f9400260 	ldr	x0, [x19]
+   543d8:	f90017a0 	str	x0, [x29, #40]
+   543dc:	d2800000 	mov	x0, #0x0                   	// #0
+   543e0:	940027b7 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   543e4:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   543e8:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   543ec:	528000c1 	mov	w1, #0x6                   	// #6
+   543f0:	2a1403e7 	mov	w7, w20
+   543f4:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   543f8:	528018e5 	mov	w5, #0xc7                  	// #199
+   543fc:	91296cc6 	add	x6, x6, #0xa5b  ; '[Meshmsg] fd_open_cb, fd is [%d]\n'
+   54400:	9100c084 	add	x4, x4, #0x30  ; 'fd_open_cb'
+   54404:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   54408:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   5440c:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54410:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   54414:	94002623 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54418:	f94017a1 	ldr	x1, [x29, #40]
+   5441c:	f9400260 	ldr	x0, [x19]
+   54420:	ca000020 	eor	x0, x1, x0
+   54424:	b4000040 	cbz	x0, 5442c <_ZNSt6localeC1Ev@plt+0x4bf0c>
+   54428:	97fecd32 	bl	78f0 <__stack_chk_fail@plt>
+   5442c:	90000181 	adrp	x1, 84000 <_fini@@Base+0x1e738>
+   54430:	2a1403e0 	mov	w0, w20
+   54434:	a94153f3 	ldp	x19, x20, [sp, #16]
+   54438:	52800003 	mov	w3, #0x0                   	// #0
+   5443c:	f947a421 	ldr	x1, [x1, #3912]  ; GOT mm_pair_fd_handler
+   54440:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   54444:	52800002 	mov	w2, #0x0                   	// #0
+   54448:	17fecf6a 	b	81f0 <ndbusRegisterPollingFd@plt>
+   5444c:	d10143ff 	sub	sp, sp, #0x50
+   54450:	a9017bfd 	stp	x29, x30, [sp, #16]
+   54454:	910043fd 	add	x29, sp, #0x10
+   54458:	a90253f3 	stp	x19, x20, [sp, #32]
+   5445c:	90000193 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   54460:	2a0003f4 	mov	w20, w0
+   54464:	f9454a73 	ldr	x19, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54468:	f9400260 	ldr	x0, [x19]
+   5446c:	f9001fa0 	str	x0, [x29, #56]
+   54470:	d2800000 	mov	x0, #0x0                   	// #0
+   54474:	f9001bf5 	str	x21, [sp, #48]
+   54478:	aa0103f5 	mov	x21, x1
+   5447c:	94002790 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54480:	b90003f4 	str	w20, [sp]
+   54484:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   54488:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   5448c:	528000c1 	mov	w1, #0x6                   	// #6
+   54490:	aa1503e7 	mov	x7, x21
+   54494:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54498:	528015e5 	mov	w5, #0xaf                  	// #175
+   5449c:	9129f4c6 	add	x6, x6, #0xa7d  ; '[Meshmsg] client[%s] linkdown id[%d]\n'
+   544a0:	91010084 	add	x4, x4, #0x40  ; 'linkdown_callback'
+   544a4:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   544a8:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   544ac:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   544b0:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   544b4:	940025fb 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   544b8:	f9401fa1 	ldr	x1, [x29, #56]
+   544bc:	f9400260 	ldr	x0, [x19]
+   544c0:	ca000020 	eor	x0, x1, x0
+   544c4:	b4000040 	cbz	x0, 544cc <_ZNSt6localeC1Ev@plt+0x4bfac>
+   544c8:	97fecd0a 	bl	78f0 <__stack_chk_fail@plt>
+   544cc:	a9417bfd 	ldp	x29, x30, [sp, #16]
+   544d0:	2a1403e0 	mov	w0, w20
+   544d4:	f9401bf5 	ldr	x21, [sp, #48]
+   544d8:	a94253f3 	ldp	x19, x20, [sp, #32]
+   544dc:	910143ff 	add	sp, sp, #0x50
+   544e0:	17fecf3c 	b	81d0 <mm_close_channel_no_free_channel@plt>
+   544e4:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   544e8:	910003fd 	mov	x29, sp
+   544ec:	a90153f3 	stp	x19, x20, [sp, #16]
+   544f0:	90000193 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   544f4:	2a0003f4 	mov	w20, w0
+   544f8:	f9454a73 	ldr	x19, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   544fc:	f9400260 	ldr	x0, [x19]
+   54500:	f90017a0 	str	x0, [x29, #40]
+   54504:	d2800000 	mov	x0, #0x0                   	// #0
+   54508:	9400276d 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   5450c:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   54510:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   54514:	528000c1 	mov	w1, #0x6                   	// #6
+   54518:	2a1403e7 	mov	w7, w20
+   5451c:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54520:	528019a5 	mov	w5, #0xcd                  	// #205
+   54524:	912a8cc6 	add	x6, x6, #0xaa3  ; '[Meshmsg] fd_close_cb, fd is [%d]\n'
+   54528:	91016084 	add	x4, x4, #0x58  ; 'fd_close_cb'
+   5452c:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   54530:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   54534:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54538:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   5453c:	940025d9 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54540:	f94017a1 	ldr	x1, [x29, #40]
+   54544:	f9400260 	ldr	x0, [x19]
+   54548:	ca000020 	eor	x0, x1, x0
+   5454c:	b4000040 	cbz	x0, 54554 <_ZNSt6localeC1Ev@plt+0x4c034>
+   54550:	97fecce8 	bl	78f0 <__stack_chk_fail@plt>
+   54554:	2a1403e0 	mov	w0, w20
+   54558:	a94153f3 	ldp	x19, x20, [sp, #16]
+   5455c:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   54560:	17feccbc 	b	7850 <ndbusUnregisterPollingFd@plt>
+   54564:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   54568:	90000181 	adrp	x1, 84000 <_fini@@Base+0x1e738>
+   5456c:	910003fd 	mov	x29, sp
+   54570:	f9454822 	ldr	x2, [x1, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54574:	f9400043 	ldr	x3, [x2]
+   54578:	f90017a3 	str	x3, [x29, #40]
+   5457c:	d2800003 	mov	x3, #0x0                   	// #0
+   54580:	f9000bf3 	str	x19, [sp, #16]
+   54584:	aa0103f3 	mov	x19, x1
+   54588:	b4000120 	cbz	x0, 545ac <_ZNSt6localeC1Ev@plt+0x4c08c>
+   5458c:	97fecd51 	bl	7ad0 <free@plt>
+   54590:	52800000 	mov	w0, #0x0                   	// #0
+   54594:	f9454a61 	ldr	x1, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54598:	f94017a2 	ldr	x2, [x29, #40]
+   5459c:	f9400021 	ldr	x1, [x1]
+   545a0:	ca010041 	eor	x1, x2, x1
+   545a4:	b4000081 	cbz	x1, 545b4 <_ZNSt6localeC1Ev@plt+0x4c094>
+   545a8:	97feccd2 	bl	78f0 <__stack_chk_fail@plt>
+   545ac:	12800000 	mov	w0, #0xffffffff            	// #-1
+   545b0:	17fffff9 	b	54594 <_ZNSt6localeC1Ev@plt+0x4c074>
+   545b4:	f9400bf3 	ldr	x19, [sp, #16]
+   545b8:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   545bc:	d65f03c0 	ret
+   545c0:	a9b87bfd 	stp	x29, x30, [sp, #-128]!
+   545c4:	910003fd 	mov	x29, sp
+   545c8:	a90153f3 	stp	x19, x20, [sp, #16]
+   545cc:	90000193 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   545d0:	a9046bf9 	stp	x25, x26, [sp, #64]
+   545d4:	2a0003fa 	mov	w26, w0
+   545d8:	f9454a60 	ldr	x0, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   545dc:	2a0203f9 	mov	w25, w2
+   545e0:	a9025bf5 	stp	x21, x22, [sp, #32]
+   545e4:	aa0103f6 	mov	x22, x1
+   545e8:	f9400001 	ldr	x1, [x0]
+   545ec:	f9003fa1 	str	x1, [x29, #120]
+   545f0:	d2800001 	mov	x1, #0x0                   	// #0
+   545f4:	a90363f7 	stp	x23, x24, [sp, #48]
+   545f8:	a90573fb 	stp	x27, x28, [sp, #80]
+   545fc:	900000f4 	adrp	x20, 70000 <_fini@@Base+0xa738>
+   54600:	aa0303fb 	mov	x27, x3
+   54604:	aa0403fc 	mov	x28, x4
+   54608:	91232298 	add	x24, x20, #0x8c8  ; 'server_timeout_handler'
+   5460c:	9400272c 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54610:	900000f5 	adrp	x21, 70000 <_fini@@Base+0xa738>
+   54614:	91286ab7 	add	x23, x21, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54618:	aa1603e7 	mov	x7, x22
+   5461c:	9101a304 	add	x4, x24, #0x68  ; 'actor'
+   54620:	aa1703e3 	mov	x3, x23
+   54624:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54628:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   5462c:	912b18c6 	add	x6, x6, #0xac6  ; 'AI Engine receive raw message [%s]'
+   54630:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   54634:	52801745 	mov	w5, #0xba                  	// #186
+   54638:	528000c1 	mov	w1, #0x6                   	// #6
+   5463c:	94002599 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54640:	900000e1 	adrp	x1, 70000 <_fini@@Base+0xa738>
+   54644:	aa1603e0 	mov	x0, x22
+   54648:	912ba421 	add	x1, x1, #0xae9  ; 'ai-meshmsg-data'
+   5464c:	97fecc49 	bl	7770 <strstr@plt>
+   54650:	f90037b3 	str	x19, [x29, #104]
+   54654:	b40001e0 	cbz	x0, 54690 <_ZNSt6localeC1Ev@plt+0x4c170>
+   54658:	11000722 	add	w2, w25, #0x1
+   5465c:	91004416 	add	x22, x0, #0x11
+   54660:	93407c42 	sxtw	x2, w2
+   54664:	f90033a2 	str	x2, [x29, #96]
+   54668:	aa0203e0 	mov	x0, x2
+   5466c:	97fecef5 	bl	8240 <malloc@plt>
+   54670:	aa0003f3 	mov	x19, x0
+   54674:	f94033a2 	ldr	x2, [x29, #96]
+   54678:	b5000240 	cbnz	x0, 546c0 <_ZNSt6localeC1Ev@plt+0x4c1a0>
+   5467c:	94002710 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54680:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54684:	52800e85 	mov	w5, #0x74                  	// #116
+   54688:	912c54c6 	add	x6, x6, #0xb15  ; 'MSG apply memeory for load failed'
+   5468c:	14000005 	b	546a0 <_ZNSt6localeC1Ev@plt+0x4c180>
+   54690:	9400270b 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54694:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54698:	912be4c6 	add	x6, x6, #0xaf9  ; 'MSG head valid check failed'
+   5469c:	52800dc5 	mov	w5, #0x6e                  	// #110
+   546a0:	9101c304 	add	x4, x24, #0x70  ; 'remove_head'
+   546a4:	aa1703e3 	mov	x3, x23
+   546a8:	d0000082 	adrp	x2, 66000 <_fini@@Base+0x738>
+   546ac:	52800061 	mov	w1, #0x3                   	// #3
+   546b0:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   546b4:	9400257b 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   546b8:	12800000 	mov	w0, #0xffffffff            	// #-1
+   546bc:	1400001c 	b	5472c <_ZNSt6localeC1Ev@plt+0x4c20c>
+   546c0:	52800001 	mov	w1, #0x0                   	// #0
+   546c4:	97fecd0f 	bl	7b00 <memset@plt>
+   546c8:	aa1603e1 	mov	x1, x22
+   546cc:	93407f22 	sxtw	x2, w25
+   546d0:	aa1303e0 	mov	x0, x19
+   546d4:	97fecdd3 	bl	7e20 <strncpy@plt>
+   546d8:	aa1303e0 	mov	x0, x19
+   546dc:	97fecc71 	bl	78a0 <strlen@plt>
+   546e0:	93407c16 	sxtw	x22, w0
+   546e4:	d10006d6 	sub	x22, x22, #0x1
+   546e8:	2a0003f7 	mov	w23, w0
+   546ec:	8b160276 	add	x22, x19, x22
+   546f0:	b40003f6 	cbz	x22, 5476c <_ZNSt6localeC1Ev@plt+0x4c24c>
+   546f4:	394002c0 	ldrb	w0, [x22]
+   546f8:	7101f41f 	cmp	w0, #0x7d
+   546fc:	540002c1 	b.ne	54754 <_ZNSt6localeC1Ev@plt+0x4c234>  // b.any
+   54700:	f0000200 	adrp	x0, 97000 <_fini@@Base+0x31738>
+   54704:	aa1303e1 	mov	x1, x19
+   54708:	390002df 	strb	wzr, [x22]
+   5470c:	f9469c02 	ldr	x2, [x0, #3384]
+   54710:	2a1a03e0 	mov	w0, w26
+   54714:	d63f0040 	blr	x2
+   54718:	aa1303e0 	mov	x0, x19
+   5471c:	97ffff92 	bl	54564 <_ZNSt6localeC1Ev@plt+0x4c044>
+   54720:	f900037f 	str	xzr, [x27]
+   54724:	52800020 	mov	w0, #0x1                   	// #1
+   54728:	b900039f 	str	wzr, [x28]
+   5472c:	f94037a1 	ldr	x1, [x29, #104]
+   54730:	f9454821 	ldr	x1, [x1, #2704]
+   54734:	f9403fa2 	ldr	x2, [x29, #120]
+   54738:	f9400021 	ldr	x1, [x1]
+   5473c:	ca010041 	eor	x1, x2, x1
+   54740:	b40002a1 	cbz	x1, 54794 <_ZNSt6localeC1Ev@plt+0x4c274>
+   54744:	97fecc6b 	bl	78f0 <__stack_chk_fail@plt>
+   54748:	2a1703e0 	mov	w0, w23
+   5474c:	2a0003f7 	mov	w23, w0
+   54750:	17ffffe8 	b	546f0 <_ZNSt6localeC1Ev@plt+0x4c1d0>
+   54754:	d10006d6 	sub	x22, x22, #0x1
+   54758:	97feccb2 	bl	7a20 <isspace@plt>
+   5475c:	35ffff60 	cbnz	w0, 54748 <_ZNSt6localeC1Ev@plt+0x4c228>
+   54760:	510006e0 	sub	w0, w23, #0x1
+   54764:	710002ff 	cmp	w23, #0x0
+   54768:	54ffff2c 	b.gt	5474c <_ZNSt6localeC1Ev@plt+0x4c22c>
+   5476c:	aa1303e0 	mov	x0, x19
+   54770:	97feccd8 	bl	7ad0 <free@plt>
+   54774:	940026d2 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54778:	91232284 	add	x4, x20, #0x8c8  ; 'server_timeout_handler'
+   5477c:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54780:	52801105 	mov	w5, #0x88                  	// #136
+   54784:	912be4c6 	add	x6, x6, #0xaf9  ; 'MSG head valid check failed'
+   54788:	9101c084 	add	x4, x4, #0x70  ; 'remove_head'
+   5478c:	91286aa3 	add	x3, x21, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54790:	17ffffc6 	b	546a8 <_ZNSt6localeC1Ev@plt+0x4c188>
+   54794:	a94153f3 	ldp	x19, x20, [sp, #16]
+   54798:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   5479c:	a94363f7 	ldp	x23, x24, [sp, #48]
+   547a0:	a9446bf9 	ldp	x25, x26, [sp, #64]
+   547a4:	a94573fb 	ldp	x27, x28, [sp, #80]
+   547a8:	a8c87bfd 	ldp	x29, x30, [sp], #128
+   547ac:	d65f03c0 	ret
+   547b0:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   547b4:	7100341f 	cmp	w0, #0xd
+   547b8:	910003fd 	mov	x29, sp
+   547bc:	f9000bf3 	str	x19, [sp, #16]
+   547c0:	90000193 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   547c4:	f9454a73 	ldr	x19, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   547c8:	f9400261 	ldr	x1, [x19]
+   547cc:	f90017a1 	str	x1, [x29, #40]
+   547d0:	d2800001 	mov	x1, #0x0                   	// #0
+   547d4:	540002a1 	b.ne	54828 <_ZNSt6localeC1Ev@plt+0x4c308>  // b.any
+   547d8:	940026b9 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   547dc:	f94017a2 	ldr	x2, [x29, #40]
+   547e0:	f9400261 	ldr	x1, [x19]
+   547e4:	ca010041 	eor	x1, x2, x1
+   547e8:	b4000041 	cbz	x1, 547f0 <_ZNSt6localeC1Ev@plt+0x4c2d0>
+   547ec:	97fecc41 	bl	78f0 <__stack_chk_fail@plt>
+   547f0:	f9400bf3 	ldr	x19, [sp, #16]
+   547f4:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   547f8:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   547fc:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   54800:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54804:	52801ae5 	mov	w5, #0xd7                  	// #215
+   54808:	912cdcc6 	add	x6, x6, #0xb37  ; 'SIGPIPE'
+   5480c:	91020084 	add	x4, x4, #0x80  ; 'sig_handler'
+   54810:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   54814:	d0000082 	adrp	x2, 66000 <_fini@@Base+0x738>
+   54818:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   5481c:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   54820:	52800061 	mov	w1, #0x3                   	// #3
+   54824:	1400251f 	b	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54828:	f94017a1 	ldr	x1, [x29, #40]
+   5482c:	f9400260 	ldr	x0, [x19]
+   54830:	ca000020 	eor	x0, x1, x0
+   54834:	b5fffdc0 	cbnz	x0, 547ec <_ZNSt6localeC1Ev@plt+0x4c2cc>
+   54838:	f9400bf3 	ldr	x19, [sp, #16]
+   5483c:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   54840:	d65f03c0 	ret
+   54844:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   54848:	910003fd 	mov	x29, sp
+   5484c:	a90153f3 	stp	x19, x20, [sp, #16]
+   54850:	90000194 	adrp	x20, 84000 <_fini@@Base+0x1e738>
+   54854:	a90363f7 	stp	x23, x24, [sp, #48]
+   54858:	aa0003f7 	mov	x23, x0
+   5485c:	f9454a80 	ldr	x0, [x20, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54860:	a9025bf5 	stp	x21, x22, [sp, #32]
+   54864:	b0000195 	adrp	x21, 85000 <_fini@@Base+0x1f738>
+   54868:	f9400001 	ldr	x1, [x0]
+   5486c:	f90027a1 	str	x1, [x29, #72]
+   54870:	d2800001 	mov	x1, #0x0                   	// #0
+   54874:	9110e2b5 	add	x21, x21, #0x438  ; '{"type":"AI","sequence":1,"mac":"00:00:00:00:00:00","version":"1.0.0","ai-meshmsg-data":'
+   54878:	aa1503e0 	mov	x0, x21
+   5487c:	9101a2b6 	add	x22, x21, #0x68
+   54880:	97fecc08 	bl	78a0 <strlen@plt>
+   54884:	aa0003f3 	mov	x19, x0
+   54888:	aa1703e0 	mov	x0, x23
+   5488c:	97fecc05 	bl	78a0 <strlen@plt>
+   54890:	aa0003f8 	mov	x24, x0
+   54894:	aa1603e0 	mov	x0, x22
+   54898:	0b180273 	add	w19, w19, w24
+   5489c:	97fecc01 	bl	78a0 <strlen@plt>
+   548a0:	0b000273 	add	w19, w19, w0
+   548a4:	11000673 	add	w19, w19, #0x1
+   548a8:	93407e73 	sxtw	x19, w19
+   548ac:	aa1303e0 	mov	x0, x19
+   548b0:	97fece64 	bl	8240 <malloc@plt>
+   548b4:	aa0003f8 	mov	x24, x0
+   548b8:	b50002a0 	cbnz	x0, 5490c <_ZNSt6localeC1Ev@plt+0x4c3ec>
+   548bc:	94002680 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   548c0:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   548c4:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   548c8:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   548cc:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   548d0:	d0000082 	adrp	x2, 66000 <_fini@@Base+0x738>
+   548d4:	912c54c6 	add	x6, x6, #0xb15  ; 'MSG apply memeory for load failed'
+   548d8:	52800b85 	mov	w5, #0x5c                  	// #92
+   548dc:	91024084 	add	x4, x4, #0x90  ; 'add_head'
+   548e0:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   548e4:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   548e8:	52800061 	mov	w1, #0x3                   	// #3
+   548ec:	940024ed 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   548f0:	f9454a81 	ldr	x1, [x20, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   548f4:	aa1803e0 	mov	x0, x24
+   548f8:	f94027a2 	ldr	x2, [x29, #72]
+   548fc:	f9400021 	ldr	x1, [x1]
+   54900:	ca010041 	eor	x1, x2, x1
+   54904:	b40001e1 	cbz	x1, 54940 <_ZNSt6localeC1Ev@plt+0x4c420>
+   54908:	97fecbfa 	bl	78f0 <__stack_chk_fail@plt>
+   5490c:	aa1303e2 	mov	x2, x19
+   54910:	52800001 	mov	w1, #0x0                   	// #0
+   54914:	97fecc7b 	bl	7b00 <memset@plt>
+   54918:	aa1503e1 	mov	x1, x21
+   5491c:	aa1803e0 	mov	x0, x24
+   54920:	97fecee8 	bl	84c0 <strcat@plt>
+   54924:	aa1703e1 	mov	x1, x23
+   54928:	aa1803e0 	mov	x0, x24
+   5492c:	97fecee5 	bl	84c0 <strcat@plt>
+   54930:	aa1603e1 	mov	x1, x22
+   54934:	aa1803e0 	mov	x0, x24
+   54938:	97fecee2 	bl	84c0 <strcat@plt>
+   5493c:	17ffffed 	b	548f0 <_ZNSt6localeC1Ev@plt+0x4c3d0>
+   54940:	a94153f3 	ldp	x19, x20, [sp, #16]
+   54944:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   54948:	a94363f7 	ldp	x23, x24, [sp, #48]
+   5494c:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   54950:	d65f03c0 	ret
+   54954:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   54958:	910003fd 	mov	x29, sp
+   5495c:	a9025bf5 	stp	x21, x22, [sp, #32]
+   54960:	90000196 	adrp	x22, 84000 <_fini@@Base+0x1e738>
+   54964:	f9001bf7 	str	x23, [sp, #48]
+   54968:	2a0003f7 	mov	w23, w0
+   5496c:	f9454ad6 	ldr	x22, [x22, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54970:	900000f5 	adrp	x21, 70000 <_fini@@Base+0xa738>
+   54974:	a90153f3 	stp	x19, x20, [sp, #16]
+   54978:	900000f3 	adrp	x19, 70000 <_fini@@Base+0xa738>
+   5497c:	f94002c0 	ldr	x0, [x22]
+   54980:	f90027a0 	str	x0, [x29, #72]
+   54984:	d2800000 	mov	x0, #0x0                   	// #0
+   54988:	91232273 	add	x19, x19, #0x8c8  ; 'server_timeout_handler'
+   5498c:	91028273 	add	x19, x19, #0xa0  ; 'client_connected'
+   54990:	91286ab5 	add	x21, x21, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54994:	b0000094 	adrp	x20, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   54998:	91248294 	add	x20, x20, #0x920  ; 'DEBUG'
+   5499c:	94002648 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   549a0:	2a1703e7 	mov	w7, w23
+   549a4:	aa1303e4 	mov	x4, x19
+   549a8:	aa1503e3 	mov	x3, x21
+   549ac:	aa1403e2 	mov	x2, x20
+   549b0:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   549b4:	912cfcc6 	add	x6, x6, #0xb3f  ; '[Meshmsg] server: client_connected,id is[%d].\n'
+   549b8:	52801445 	mov	w5, #0xa2                  	// #162
+   549bc:	528000e1 	mov	w1, #0x7                   	// #7
+   549c0:	940024b8 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   549c4:	97feccbb 	bl	7cb0 <mm_get_server_polling_fd@plt>
+   549c8:	3100041f 	cmn	w0, #0x1
+   549cc:	54000261 	b.ne	54a18 <_ZNSt6localeC1Ev@plt+0x4c4f8>  // b.any
+   549d0:	9400263b 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   549d4:	f94027a2 	ldr	x2, [x29, #72]
+   549d8:	f94002c1 	ldr	x1, [x22]
+   549dc:	ca010041 	eor	x1, x2, x1
+   549e0:	b4000041 	cbz	x1, 549e8 <_ZNSt6localeC1Ev@plt+0x4c4c8>
+   549e4:	97fecbc3 	bl	78f0 <__stack_chk_fail@plt>
+   549e8:	f9401bf7 	ldr	x23, [sp, #48]
+   549ec:	aa1303e4 	mov	x4, x19
+   549f0:	aa1503e3 	mov	x3, x21
+   549f4:	aa1403e2 	mov	x2, x20
+   549f8:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   549fc:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54a00:	a94153f3 	ldp	x19, x20, [sp, #16]
+   54a04:	912db8c6 	add	x6, x6, #0xb6e  ; '[Meshmsg] fd is not valid.\n'
+   54a08:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   54a0c:	528014c5 	mov	w5, #0xa6                  	// #166
+   54a10:	528000e1 	mov	w1, #0x7                   	// #7
+   54a14:	140024a3 	b	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54a18:	2a0003f7 	mov	w23, w0
+   54a1c:	94002628 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54a20:	528000e1 	mov	w1, #0x7                   	// #7
+   54a24:	2a1703e7 	mov	w7, w23
+   54a28:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54a2c:	52801525 	mov	w5, #0xa9                  	// #169
+   54a30:	912e28c6 	add	x6, x6, #0xb8a  ; '[Meshmsg] server: client_connected,fd is[%d].\n'
+   54a34:	aa1303e4 	mov	x4, x19
+   54a38:	aa1503e3 	mov	x3, x21
+   54a3c:	aa1403e2 	mov	x2, x20
+   54a40:	94002498 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54a44:	f94027a1 	ldr	x1, [x29, #72]
+   54a48:	f94002c0 	ldr	x0, [x22]
+   54a4c:	ca000020 	eor	x0, x1, x0
+   54a50:	b5fffca0 	cbnz	x0, 549e4 <_ZNSt6localeC1Ev@plt+0x4c4c4>
+   54a54:	90000180 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   54a58:	f9401bf7 	ldr	x23, [sp, #48]
+   54a5c:	a94153f3 	ldp	x19, x20, [sp, #16]
+   54a60:	f9460800 	ldr	x0, [x0, #3088]
+   54a64:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   54a68:	39400000 	ldrb	w0, [x0]
+   54a6c:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   54a70:	17ff8576 	b	36048 <_ZNSt6localeC1Ev@plt+0x2db28>
+   54a74:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   54a78:	90000180 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   54a7c:	910003fd 	mov	x29, sp
+   54a80:	f9454800 	ldr	x0, [x0, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54a84:	f9400001 	ldr	x1, [x0]
+   54a88:	f9000fa1 	str	x1, [x29, #24]
+   54a8c:	d2800001 	mov	x1, #0x0                   	// #0
+   54a90:	f9400fa1 	ldr	x1, [x29, #24]
+   54a94:	f9400000 	ldr	x0, [x0]
+   54a98:	ca000020 	eor	x0, x1, x0
+   54a9c:	b4000040 	cbz	x0, 54aa4 <_ZNSt6localeC1Ev@plt+0x4c584>
+   54aa0:	97fecb94 	bl	78f0 <__stack_chk_fail@plt>
+   54aa4:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   54aa8:	140021ad 	b	5d15c <_ZNSt6localeC1Ev@plt+0x54c3c>
+   54aac:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   54ab0:	90000181 	adrp	x1, 84000 <_fini@@Base+0x1e738>
+   54ab4:	910003fd 	mov	x29, sp
+   54ab8:	f9454821 	ldr	x1, [x1, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54abc:	f9400022 	ldr	x2, [x1]
+   54ac0:	f9000fa2 	str	x2, [x29, #24]
+   54ac4:	d2800002 	mov	x2, #0x0                   	// #0
+   54ac8:	f9400fa2 	ldr	x2, [x29, #24]
+   54acc:	f9400021 	ldr	x1, [x1]
+   54ad0:	ca010041 	eor	x1, x2, x1
+   54ad4:	b4000041 	cbz	x1, 54adc <_ZNSt6localeC1Ev@plt+0x4c5bc>
+   54ad8:	97fecb86 	bl	78f0 <__stack_chk_fail@plt>
+   54adc:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   54ae0:	17fecd70 	b	80a0 <nal_getNodeMac@plt>
+   54ae4:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   54ae8:	90000180 	adrp	x0, 84000 <_fini@@Base+0x1e738>
+   54aec:	910003fd 	mov	x29, sp
+   54af0:	f9454800 	ldr	x0, [x0, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54af4:	f9400002 	ldr	x2, [x0]
+   54af8:	f9000fa2 	str	x2, [x29, #24]
+   54afc:	d2800002 	mov	x2, #0x0                   	// #0
+   54b00:	f0000202 	adrp	x2, 97000 <_fini@@Base+0x31738>
+   54b04:	f9069c41 	str	x1, [x2, #3384]
+   54b08:	f9400fa1 	ldr	x1, [x29, #24]
+   54b0c:	f9400000 	ldr	x0, [x0]
+   54b10:	ca000020 	eor	x0, x1, x0
+   54b14:	b4000040 	cbz	x0, 54b1c <_ZNSt6localeC1Ev@plt+0x4c5fc>
+   54b18:	97fecb76 	bl	78f0 <__stack_chk_fail@plt>
+   54b1c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+   54b20:	d65f03c0 	ret
+   54b24:	a9ae7bfd 	stp	x29, x30, [sp, #-288]!
+   54b28:	910003fd 	mov	x29, sp
+   54b2c:	a90153f3 	stp	x19, x20, [sp, #16]
+   54b30:	90000194 	adrp	x20, 84000 <_fini@@Base+0x1e738>
+   54b34:	a9025bf5 	stp	x21, x22, [sp, #32]
+   54b38:	910483b5 	add	x21, x29, #0x120
+   54b3c:	f9454a80 	ldr	x0, [x20, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54b40:	900000f3 	adrp	x19, 70000 <_fini@@Base+0xa738>
+   54b44:	91232273 	add	x19, x19, #0x8c8  ; 'server_timeout_handler'
+   54b48:	f9400001 	ldr	x1, [x0]
+   54b4c:	f9008fa1 	str	x1, [x29, #280]
+   54b50:	d2800001 	mov	x1, #0x0                   	// #0
+   54b54:	9102e273 	add	x19, x19, #0xb8  ; 'message_init'
+   54b58:	f9001bf7 	str	x23, [sp, #48]
+   54b5c:	900000f7 	adrp	x23, 70000 <_fini@@Base+0xa738>
+   54b60:	a9bc7ebf 	stp	xzr, xzr, [x21, #-64]!
+   54b64:	aa1503e0 	mov	x0, x21
+   54b68:	97fecd6e 	bl	8120 <nal_getNodeIp@plt>
+   54b6c:	2a0003f6 	mov	w22, w0
+   54b70:	340001e0 	cbz	w0, 54bac <_ZNSt6localeC1Ev@plt+0x4c68c>
+   54b74:	940025d2 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54b78:	2a1603e7 	mov	w7, w22
+   54b7c:	912ee6e6 	add	x6, x23, #0xbb9  ; ' get node ip failed %d'
+   54b80:	aa1303e4 	mov	x4, x19
+   54b84:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   54b88:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   54b8c:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54b90:	91248042 	add	x2, x2, #0x920  ; 'DEBUG'
+   54b94:	52801e05 	mov	w5, #0xf0                  	// #240
+   54b98:	528000e1 	mov	w1, #0x7                   	// #7
+   54b9c:	94002441 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54ba0:	52800140 	mov	w0, #0xa                   	// #10
+   54ba4:	97fecba3 	bl	7a30 <sleep@plt>
+   54ba8:	17ffffef 	b	54b64 <_ZNSt6localeC1Ev@plt+0x4c644>
+   54bac:	d2801202 	mov	x2, #0x90                  	// #144
+   54bb0:	52800001 	mov	w1, #0x0                   	// #0
+   54bb4:	910143a0 	add	x0, x29, #0x50
+   54bb8:	97fecbd2 	bl	7b00 <memset@plt>
+   54bbc:	90000000 	adrp	x0, 54000 <_ZNSt6localeC1Ev@plt+0x4bae0>
+   54bc0:	911ec000 	add	x0, x0, #0x7b0
+   54bc4:	910123b3 	add	x19, x29, #0x48
+   54bc8:	f90027a0 	str	x0, [x29, #72]
+   54bcc:	52800040 	mov	w0, #0x2                   	// #2
+   54bd0:	d2800002 	mov	x2, #0x0                   	// #0
+   54bd4:	b900d3a0 	str	w0, [x29, #208]
+   54bd8:	aa1303e1 	mov	x1, x19
+   54bdc:	528001a0 	mov	w0, #0xd                   	// #13
+   54be0:	97fece24 	bl	8470 <sigaction@plt>
+   54be4:	36f801c0 	tbz	w0, #31, 54c1c <_ZNSt6localeC1Ev@plt+0x4c6fc>
+   54be8:	940025b5 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54bec:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   54bf0:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   54bf4:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54bf8:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   54bfc:	d0000082 	adrp	x2, 66000 <_fini@@Base+0x738>
+   54c00:	912f40c6 	add	x6, x6, #0xbd0  ; 'failed to install SIGINT handler'
+   54c04:	52801c85 	mov	w5, #0xe4                  	// #228
+   54c08:	91032084 	add	x4, x4, #0xc8  ; 'init_signal'
+   54c0c:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54c10:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   54c14:	52800061 	mov	w1, #0x3                   	// #3
+   54c18:	94002422 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54c1c:	90000004 	adrp	x4, 54000 <_ZNSt6localeC1Ev@plt+0x4bae0>
+   54c20:	90000003 	adrp	x3, 54000 <_ZNSt6localeC1Ev@plt+0x4bae0>
+   54c24:	91255084 	add	x4, x4, #0x954
+   54c28:	910b6063 	add	x3, x3, #0x2d8
+   54c2c:	90000002 	adrp	x2, 54000 <_ZNSt6localeC1Ev@plt+0x4bae0>
+   54c30:	128da501 	mov	w1, #0xffff92d7            	// #-27945
+   54c34:	910d1042 	add	x2, x2, #0x344
+   54c38:	aa1503e0 	mov	x0, x21
+   54c3c:	97fecb29 	bl	78e0 <mm_start_service_server@plt>
+   54c40:	2a0003f3 	mov	w19, w0
+   54c44:	3100041f 	cmn	w0, #0x1
+   54c48:	540001a0 	b.eq	54c7c <_ZNSt6localeC1Ev@plt+0x4c75c>  // b.none
+   54c4c:	5284e201 	mov	w1, #0x2710                	// #10000
+   54c50:	97fecd8c 	bl	8280 <mm_set_poll_timeout@plt>
+   54c54:	90000001 	adrp	x1, 54000 <_ZNSt6localeC1Ev@plt+0x4bae0>
+   54c58:	2a1303e0 	mov	w0, w19
+   54c5c:	91170021 	add	x1, x1, #0x5c0
+   54c60:	97fecd24 	bl	80f0 <mm_register_actor@plt>
+   54c64:	2a0003f5 	mov	w21, w0
+   54c68:	3100041f 	cmn	w0, #0x1
+   54c6c:	54000161 	b.ne	54c98 <_ZNSt6localeC1Ev@plt+0x4c778>  // b.any
+   54c70:	2a1303e0 	mov	w0, w19
+   54c74:	2a1503f3 	mov	w19, w21
+   54c78:	97fecdc6 	bl	8390 <mm_close_channel@plt>
+   54c7c:	f9454a94 	ldr	x20, [x20, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54c80:	2a1303e0 	mov	w0, w19
+   54c84:	f9408fa2 	ldr	x2, [x29, #280]
+   54c88:	f9400281 	ldr	x1, [x20]
+   54c8c:	ca010041 	eor	x1, x2, x1
+   54c90:	b4000741 	cbz	x1, 54d78 <_ZNSt6localeC1Ev@plt+0x4c858>
+   54c94:	97fecb17 	bl	78f0 <__stack_chk_fail@plt>
+   54c98:	90000000 	adrp	x0, 54000 <_ZNSt6localeC1Ev@plt+0x4bae0>
+   54c9c:	910ef000 	add	x0, x0, #0x3bc
+   54ca0:	97fecc40 	bl	7da0 <mm_register_client_fd_open_callback@plt>
+   54ca4:	90000000 	adrp	x0, 54000 <_ZNSt6localeC1Ev@plt+0x4bae0>
+   54ca8:	91139000 	add	x0, x0, #0x4e4
+   54cac:	97fecd19 	bl	8110 <mm_register_client_fd_close_callback@plt>
+   54cb0:	97fecc00 	bl	7cb0 <mm_get_server_polling_fd@plt>
+   54cb4:	2a0003f5 	mov	w21, w0
+   54cb8:	3100041f 	cmn	w0, #0x1
+   54cbc:	54fffda0 	b.eq	54c70 <_ZNSt6localeC1Ev@plt+0x4c750>  // b.none
+   54cc0:	9400257f 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54cc4:	90000016 	adrp	x22, 54000 <_ZNSt6localeC1Ev@plt+0x4bae0>
+   54cc8:	900000e4 	adrp	x4, 70000 <_fini@@Base+0xa738>
+   54ccc:	91232084 	add	x4, x4, #0x8c8  ; 'server_timeout_handler'
+   54cd0:	2a1503e7 	mov	w7, w21
+   54cd4:	9102e084 	add	x4, x4, #0xb8  ; 'message_init'
+   54cd8:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54cdc:	900000e3 	adrp	x3, 70000 <_fini@@Base+0xa738>
+   54ce0:	912fc4c6 	add	x6, x6, #0xbf1  ; '[Meshmsg] server, server fd is %d\n'
+   54ce4:	91286863 	add	x3, x3, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54ce8:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   54cec:	91248042 	add	x2, x2, #0x920  ; 'DEBUG'
+   54cf0:	52802125 	mov	w5, #0x109                 	// #265
+   54cf4:	528000e1 	mov	w1, #0x7                   	// #7
+   54cf8:	911132d6 	add	x22, x22, #0x44c
+   54cfc:	940023e9 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54d00:	aa1603e1 	mov	x1, x22
+   54d04:	2a1303e0 	mov	w0, w19
+   54d08:	97fecbee 	bl	7cc0 <mm_register_linkdown_callback@plt>
+   54d0c:	aa1603e2 	mov	x2, x22
+   54d10:	52800081 	mov	w1, #0x4                   	// #4
+   54d14:	5285dc00 	mov	w0, #0x2ee0                	// #12000
+   54d18:	97fecbb6 	bl	7bf0 <mm_service_enable_heartbeat@plt>
+   54d1c:	90000181 	adrp	x1, 84000 <_fini@@Base+0x1e738>
+   54d20:	52800003 	mov	w3, #0x0                   	// #0
+   54d24:	52800002 	mov	w2, #0x0                   	// #0
+   54d28:	2a1503e0 	mov	w0, w21
+   54d2c:	f9475821 	ldr	x1, [x1, #3760]  ; GOT mm_server_fd_handler
+   54d30:	9103c3b5 	add	x21, x29, #0xf0
+   54d34:	97fecd2f 	bl	81f0 <ndbusRegisterPollingFd@plt>
+   54d38:	a90f7fbf 	stp	xzr, xzr, [x29, #240]
+   54d3c:	a9107fbf 	stp	xzr, xzr, [x29, #256]
+   54d40:	aa1503e0 	mov	x0, x21
+   54d44:	390443bf 	strb	wzr, [x29, #272]
+   54d48:	97feccd6 	bl	80a0 <nal_getNodeMac@plt>
+   54d4c:	d0000081 	adrp	x1, 66000 <_fini@@Base+0x738>
+   54d50:	b0000180 	adrp	x0, 85000 <_fini@@Base+0x1f738>
+   54d54:	91159c21 	add	x1, x1, #0x567  ; 'mac'
+   54d58:	9110e000 	add	x0, x0, #0x438  ; '{"type":"AI","sequence":1,"mac":"00:00:00:00:00:00","version":"1.0.0","ai-meshmsg-data":'
+   54d5c:	97feca85 	bl	7770 <strstr@plt>
+   54d60:	b4fff8e0 	cbz	x0, 54c7c <_ZNSt6localeC1Ev@plt+0x4c75c>
+   54d64:	d2800222 	mov	x2, #0x11                  	// #17
+   54d68:	aa1503e1 	mov	x1, x21
+   54d6c:	91001800 	add	x0, x0, #0x6  ; '":"AI","sequence":1,"mac":"00:00:00:00:00:00","version":"1.0.0","ai-meshmsg-data":'
+   54d70:	97fecc2c 	bl	7e20 <strncpy@plt>
+   54d74:	17ffffc2 	b	54c7c <_ZNSt6localeC1Ev@plt+0x4c75c>
+   54d78:	a94153f3 	ldp	x19, x20, [sp, #16]
+   54d7c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   54d80:	f9401bf7 	ldr	x23, [sp, #48]
+   54d84:	a8d27bfd 	ldp	x29, x30, [sp], #288
+   54d88:	d65f03c0 	ret
+   54d8c:	a9ba7bfd 	stp	x29, x30, [sp, #-96]!
+   54d90:	52800002 	mov	w2, #0x0                   	// #0
+   54d94:	910003fd 	mov	x29, sp
+   54d98:	a90153f3 	stp	x19, x20, [sp, #16]
+   54d9c:	90000194 	adrp	x20, 84000 <_fini@@Base+0x1e738>
+   54da0:	a90363f7 	stp	x23, x24, [sp, #48]
+   54da4:	12003c17 	and	w23, w0, #0xffff
+   54da8:	f9454a80 	ldr	x0, [x20, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54dac:	aa0103f8 	mov	x24, x1
+   54db0:	a9025bf5 	stp	x21, x22, [sp, #32]
+   54db4:	900000f3 	adrp	x19, 70000 <_fini@@Base+0xa738>
+   54db8:	f9400001 	ldr	x1, [x0]
+   54dbc:	f9002fa1 	str	x1, [x29, #88]
+   54dc0:	d2800001 	mov	x1, #0x0                   	// #0
+   54dc4:	900000f6 	adrp	x22, 70000 <_fini@@Base+0xa738>
+   54dc8:	52800041 	mov	w1, #0x2                   	// #2
+   54dcc:	2a0103e0 	mov	w0, w1
+   54dd0:	97feca48 	bl	76f0 <socket@plt>
+   54dd4:	36f80280 	tbz	w0, #31, 54e24 <_ZNSt6localeC1Ev@plt+0x4c904>
+   54dd8:	94002539 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54ddc:	aa0003f5 	mov	x21, x0
+   54de0:	97fecc9c 	bl	8050 <__errno_location@plt>
+   54de4:	b9400000 	ldr	w0, [x0]
+   54de8:	97fecb9e 	bl	7c60 <strerror@plt>
+   54dec:	aa0003e7 	mov	x7, x0
+   54df0:	91232264 	add	x4, x19, #0x8c8  ; 'server_timeout_handler'
+   54df4:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54df8:	d0000082 	adrp	x2, 66000 <_fini@@Base+0x738>
+   54dfc:	913050c6 	add	x6, x6, #0xc14  ; 'Socket for aicli: %s'
+   54e00:	52802365 	mov	w5, #0x11b                 	// #283
+   54e04:	91036084 	add	x4, x4, #0xd8  ; 'message_add_localsocket'
+   54e08:	91286ac3 	add	x3, x22, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54e0c:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   54e10:	52800061 	mov	w1, #0x3                   	// #3
+   54e14:	aa1503e0 	mov	x0, x21
+   54e18:	940023a2 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54e1c:	12800000 	mov	w0, #0xffffffff            	// #-1
+   54e20:	14000047 	b	54f3c <_ZNSt6localeC1Ev@plt+0x4ca1c>
+   54e24:	910183a3 	add	x3, x29, #0x60
+   54e28:	52800021 	mov	w1, #0x1                   	// #1
+   54e2c:	2a0003f5 	mov	w21, w0
+   54e30:	52800084 	mov	w4, #0x4                   	// #4
+   54e34:	52800042 	mov	w2, #0x2                   	// #2
+   54e38:	b81e4c61 	str	w1, [x3, #-28]!
+   54e3c:	97fecb5d 	bl	7bb0 <setsockopt@plt>
+   54e40:	36f802a0 	tbz	w0, #31, 54e94 <_ZNSt6localeC1Ev@plt+0x4c974>
+   54e44:	9400251e 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54e48:	aa0003f7 	mov	x23, x0
+   54e4c:	97fecc81 	bl	8050 <__errno_location@plt>
+   54e50:	b9400000 	ldr	w0, [x0]
+   54e54:	97fecb83 	bl	7c60 <strerror@plt>
+   54e58:	aa0003e7 	mov	x7, x0
+   54e5c:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54e60:	91232264 	add	x4, x19, #0x8c8  ; 'server_timeout_handler'
+   54e64:	9130a4c6 	add	x6, x6, #0xc29  ; 'Setsocketopt for aicli: %s'
+   54e68:	52802405 	mov	w5, #0x120                 	// #288
+   54e6c:	91036084 	add	x4, x4, #0xd8  ; 'message_add_localsocket'
+   54e70:	91286ac3 	add	x3, x22, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54e74:	d0000082 	adrp	x2, 66000 <_fini@@Base+0x738>
+   54e78:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   54e7c:	52800061 	mov	w1, #0x3                   	// #3
+   54e80:	aa1703e0 	mov	x0, x23
+   54e84:	94002387 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54e88:	2a1503e0 	mov	w0, w21
+   54e8c:	97feccbd 	bl	8180 <close@plt>
+   54e90:	17ffffe3 	b	54e1c <_ZNSt6localeC1Ev@plt+0x4c8fc>
+   54e94:	52800040 	mov	w0, #0x2                   	// #2
+   54e98:	790093a0 	strh	w0, [x29, #72]
+   54e9c:	52800fe0 	mov	w0, #0x7f                  	// #127
+   54ea0:	5ac006f7 	rev16	w23, w23
+   54ea4:	72a02000 	movk	w0, #0x100, lsl #16
+   54ea8:	790097b7 	strh	w23, [x29, #74]
+   54eac:	b9004fa0 	str	w0, [x29, #76]
+   54eb0:	52800202 	mov	w2, #0x10                  	// #16
+   54eb4:	910123a1 	add	x1, x29, #0x48
+   54eb8:	f9002bbf 	str	xzr, [x29, #80]
+   54ebc:	2a1503e0 	mov	w0, w21
+   54ec0:	97fecd4c 	bl	83f0 <bind@plt>
+   54ec4:	36f80180 	tbz	w0, #31, 54ef4 <_ZNSt6localeC1Ev@plt+0x4c9d4>
+   54ec8:	940024fd 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54ecc:	aa0003f7 	mov	x23, x0
+   54ed0:	97fecc60 	bl	8050 <__errno_location@plt>
+   54ed4:	b9400000 	ldr	w0, [x0]
+   54ed8:	97fecb62 	bl	7c60 <strerror@plt>
+   54edc:	aa0003e7 	mov	x7, x0
+   54ee0:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54ee4:	91232264 	add	x4, x19, #0x8c8  ; 'server_timeout_handler'
+   54ee8:	913110c6 	add	x6, x6, #0xc44  ; 'Bind for aicli: %s'
+   54eec:	52802545 	mov	w5, #0x12a                 	// #298
+   54ef0:	17ffffdf 	b	54e6c <_ZNSt6localeC1Ev@plt+0x4c94c>
+   54ef4:	940024f2 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54ef8:	91232264 	add	x4, x19, #0x8c8  ; 'server_timeout_handler'
+   54efc:	2a1503e7 	mov	w7, w21
+   54f00:	91036084 	add	x4, x4, #0xd8  ; 'message_add_localsocket'
+   54f04:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54f08:	91315cc6 	add	x6, x6, #0xc57  ; 'AI Engine localsocket fd %d\n'
+   54f0c:	528025c5 	mov	w5, #0x12e                 	// #302
+   54f10:	91286ac3 	add	x3, x22, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54f14:	528000c1 	mov	w1, #0x6                   	// #6
+   54f18:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   54f1c:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   54f20:	94002360 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   54f24:	52800003 	mov	w3, #0x0                   	// #0
+   54f28:	52800002 	mov	w2, #0x0                   	// #0
+   54f2c:	aa1803e1 	mov	x1, x24
+   54f30:	2a1503e0 	mov	w0, w21
+   54f34:	97feccaf 	bl	81f0 <ndbusRegisterPollingFd@plt>
+   54f38:	52800000 	mov	w0, #0x0                   	// #0
+   54f3c:	f9454a94 	ldr	x20, [x20, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54f40:	f9402fa2 	ldr	x2, [x29, #88]
+   54f44:	f9400281 	ldr	x1, [x20]
+   54f48:	ca010041 	eor	x1, x2, x1
+   54f4c:	b4000041 	cbz	x1, 54f54 <_ZNSt6localeC1Ev@plt+0x4ca34>
+   54f50:	97feca68 	bl	78f0 <__stack_chk_fail@plt>
+   54f54:	a94153f3 	ldp	x19, x20, [sp, #16]
+   54f58:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   54f5c:	a94363f7 	ldp	x23, x24, [sp, #48]
+   54f60:	a8c67bfd 	ldp	x29, x30, [sp], #96
+   54f64:	d65f03c0 	ret
+   54f68:	d101c3ff 	sub	sp, sp, #0x70
+   54f6c:	a9017bfd 	stp	x29, x30, [sp, #16]
+   54f70:	910043fd 	add	x29, sp, #0x10
+   54f74:	f9002bf9 	str	x25, [sp, #80]
+   54f78:	90000199 	adrp	x25, 84000 <_fini@@Base+0x1e738>
+   54f7c:	a90253f3 	stp	x19, x20, [sp, #32]
+   54f80:	aa0103f4 	mov	x20, x1
+   54f84:	f9454b20 	ldr	x0, [x25, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   54f88:	900000f3 	adrp	x19, 70000 <_fini@@Base+0xa738>
+   54f8c:	a90463f7 	stp	x23, x24, [sp, #64]
+   54f90:	900000f7 	adrp	x23, 70000 <_fini@@Base+0xa738>
+   54f94:	f9400001 	ldr	x1, [x0]
+   54f98:	f9002fa1 	str	x1, [x29, #88]
+   54f9c:	d2800001 	mov	x1, #0x0                   	// #0
+   54fa0:	a9035bf5 	stp	x21, x22, [sp, #48]
+   54fa4:	aa0203e0 	mov	x0, x2
+   54fa8:	aa0203f5 	mov	x21, x2
+   54fac:	97fffe26 	bl	54844 <_ZNSt6localeC1Ev@plt+0x4c324>
+   54fb0:	aa0003f8 	mov	x24, x0
+   54fb4:	128da4e1 	mov	w1, #0xffff92d8            	// #-27944
+   54fb8:	aa1403e0 	mov	x0, x20
+   54fbc:	97feccbd 	bl	82b0 <mm_get_client_channel@plt>
+   54fc0:	3100041f 	cmn	w0, #0x1
+   54fc4:	54000420 	b.eq	55048 <_ZNSt6localeC1Ev@plt+0x4cb28>  // b.none
+   54fc8:	2a0003f6 	mov	w22, w0
+   54fcc:	940024bc 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   54fd0:	91232264 	add	x4, x19, #0x8c8  ; 'server_timeout_handler'
+   54fd4:	aa1403e7 	mov	x7, x20
+   54fd8:	9103c084 	add	x4, x4, #0xf0  ; 'message_request'
+   54fdc:	91286ae3 	add	x3, x23, #0xa1a  ; 'ai-engine-messaging.cpp'
+   54fe0:	900000e6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   54fe4:	b0000082 	adrp	x2, 65000 <_ZNSt6localeC1Ev@plt+0x5cae0>
+   54fe8:	9131d0c6 	add	x6, x6, #0xc74  ; '[Meshmsg] Send request to %s, CID %u, payload:%s\n'
+   54fec:	912a9442 	add	x2, x2, #0xaa5  ; 'INFO'
+   54ff0:	b90003f6 	str	w22, [sp]
+   54ff4:	52802885 	mov	w5, #0x144                 	// #324
+   54ff8:	f90007f5 	str	x21, [sp, #8]
+   54ffc:	528000c1 	mov	w1, #0x6                   	// #6
+   55000:	94002328 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   55004:	aa1803e0 	mov	x0, x24
+   55008:	97feca26 	bl	78a0 <strlen@plt>
+   5500c:	52800003 	mov	w3, #0x0                   	// #0
+   55010:	11000402 	add	w2, w0, #0x1
+   55014:	aa1803e1 	mov	x1, x24
+   55018:	2a1603e0 	mov	w0, w22
+   5501c:	97fecd31 	bl	84e0 <mm_send_rqst@plt>
+   55020:	2a0003f3 	mov	w19, w0
+   55024:	aa1803e0 	mov	x0, x24
+   55028:	97fffd4f 	bl	54564 <_ZNSt6localeC1Ev@plt+0x4c044>
+   5502c:	f9454b21 	ldr	x1, [x25, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   55030:	2a1303e0 	mov	w0, w19
+   55034:	f9402fa2 	ldr	x2, [x29, #88]
+   55038:	f9400021 	ldr	x1, [x1]
+   5503c:	ca010041 	eor	x1, x2, x1
+   55040:	b4000221 	cbz	x1, 55084 <_ZNSt6localeC1Ev@plt+0x4cb64>
+   55044:	97feca2b 	bl	78f0 <__stack_chk_fail@plt>
+   55048:	9400249d 	bl	5e2bc <_ZNSt6localeC1Ev@plt+0x55d9c>
+   5504c:	f90003f5 	str	x21, [sp]
+   55050:	91232264 	add	x4, x19, #0x8c8  ; 'server_timeout_handler'
+   55054:	aa1403e7 	mov	x7, x20
+   55058:	f00000c6 	adrp	x6, 70000 <_fini@@Base+0xa738>
+   5505c:	52802905 	mov	w5, #0x148                 	// #328
+   55060:	913298c6 	add	x6, x6, #0xca6  ; 'Unknown Beacon %s, payload: %s\n'
+   55064:	9103c084 	add	x4, x4, #0xf0  ; 'message_request'
+   55068:	91286ae3 	add	x3, x23, #0xa1a  ; 'ai-engine-messaging.cpp'
+   5506c:	b0000082 	adrp	x2, 66000 <_fini@@Base+0x738>
+   55070:	52800061 	mov	w1, #0x3                   	// #3
+   55074:	91157842 	add	x2, x2, #0x55e  ; 'ERROR'
+   55078:	52800013 	mov	w19, #0x0                   	// #0
+   5507c:	94002309 	bl	5dca0 <_ZNSt6localeC1Ev@plt+0x55780>
+   55080:	17ffffe9 	b	55024 <_ZNSt6localeC1Ev@plt+0x4cb04>
+   55084:	a94253f3 	ldp	x19, x20, [sp, #32]
+   55088:	a9435bf5 	ldp	x21, x22, [sp, #48]
+   5508c:	a94463f7 	ldp	x23, x24, [sp, #64]
+   55090:	a9417bfd 	ldp	x29, x30, [sp, #16]
+   55094:	f9402bf9 	ldr	x25, [sp, #80]
+   55098:	9101c3ff 	add	sp, sp, #0x70
+   5509c:	d65f03c0 	ret
+   550a0:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+   550a4:	910003fd 	mov	x29, sp
+   550a8:	a90153f3 	stp	x19, x20, [sp, #16]
+   550ac:	f0000173 	adrp	x19, 84000 <_fini@@Base+0x1e738>
+   550b0:	f90013f5 	str	x21, [sp, #32]
+   550b4:	2a0003f5 	mov	w21, w0
+   550b8:	f9454a60 	ldr	x0, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   550bc:	f9400002 	ldr	x2, [x0]
+   550c0:	f9001fa2 	str	x2, [x29, #56]
+   550c4:	d2800002 	mov	x2, #0x0                   	// #0
+   550c8:	aa0103e0 	mov	x0, x1
+   550cc:	97fffdde 	bl	54844 <_ZNSt6localeC1Ev@plt+0x4c324>
+   550d0:	b4000220 	cbz	x0, 55114 <_ZNSt6localeC1Ev@plt+0x4cbf4>
+   550d4:	aa0003f4 	mov	x20, x0
+   550d8:	97fec9f2 	bl	78a0 <strlen@plt>
+   550dc:	aa1403e1 	mov	x1, x20
+   550e0:	11000402 	add	w2, w0, #0x1
+   550e4:	2a1503e0 	mov	w0, w21
+   550e8:	97fecbaa 	bl	7f90 <mm_send_resp@plt>
+   550ec:	2a0003f5 	mov	w21, w0
+   550f0:	aa1403e0 	mov	x0, x20
+   550f4:	97fffd1c 	bl	54564 <_ZNSt6localeC1Ev@plt+0x4c044>
+   550f8:	f9454a73 	ldr	x19, [x19, #2704]  ; GOT __stack_chk_guard@GLIBC_2.17
+   550fc:	2a1503e0 	mov	w0, w21
+   55100:	f9401fa2 	ldr	x2, [x29, #56]
+   55104:	f9400261 	ldr	x1, [x19]
+   55108:	ca010041 	eor	x1, x2, x1
+   5510c:	b4000081 	cbz	x1, 5511c <_ZNSt6localeC1Ev@plt+0x4cbfc>
+   55110:	97fec9f8 	bl	78f0 <__stack_chk_fail@plt>
+   55114:	12800015 	mov	w21, #0xffffffff            	// #-1
+   55118:	17fffff8 	b	550f8 <_ZNSt6localeC1Ev@plt+0x4cbd8>
+   5511c:	a94153f3 	ldp	x19, x20, [sp, #16]

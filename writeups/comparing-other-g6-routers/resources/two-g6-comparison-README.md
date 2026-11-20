@@ -27,7 +27,7 @@ The key-comparison tool reports names, lengths, equality and factory metadata, n
 To independently check the old static key against the first real backup, use a new private output filename:
 
 ```sh
-python3 webui/scripts/prepare-config-keys.py config-private/new-old-build-profile.json \
+python3 network-services/webui/scripts/prepare-config-keys.py config-private/new-old-build-profile.json \
   --firmware-root analysis/another-recovered-second-rootfs0 \
   --backup config-private/config_beacon_g6.cfg \
   --serial "$G6_A_SERIAL" --operator BOQA --mnemonic 'Beacon G6'
@@ -56,7 +56,7 @@ g6_root="dumped-firmware/router-flash-$G6_A_SERIAL/old/rom/rom"
 aarch64-linux-gnu-gcc -Wall -Wextra -Werror -O1 \
   -Wl,--dynamic-linker=/lib/ld-linux-aarch64.so.1 \
   -Wl,--allow-shlib-undefined \
-  -o analysis/g6-export-kdf-probe webui/scripts/research/g6-export-kdf-probe.c \
+  -o analysis/g6-export-kdf-probe network-services/webui/scripts/research/g6-export-kdf-probe.c \
   "$g6_root/lib/libdl.so.2" "$g6_root/lib/libc.so.6"
 
 qemu-aarch64 -L "$g6_root" \

@@ -1,0 +1,105 @@
+
+libwebsocket.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000a048 <ws_configureConnection@@Base>:
+    a048:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    a04c:	52800783 	mov	w3, #0x3c                  	// #60
+    a050:	52800021 	mov	w1, #0x1                   	// #1
+    a054:	52800122 	mov	w2, #0x9                   	// #9
+    a058:	910003fd 	mov	x29, sp
+    a05c:	a90153f3 	stp	x19, x20, [sp, #16]
+    a060:	f0000093 	adrp	x19, 1d000 <_fini@@Base+0x11b18>
+    a064:	52a00044 	mov	w4, #0x20000               	// #131072
+    a068:	2a0003f4 	mov	w20, w0
+    a06c:	f947c673 	ldr	x19, [x19, #3976]
+    a070:	29058fa1 	stp	w1, w3, [x29, #44]
+    a074:	29068ba3 	stp	w3, w2, [x29, #52]
+    a078:	b9003fa4 	str	w4, [x29, #60]
+    a07c:	b9401263 	ldr	w3, [x19, #16]
+    a080:	340005a3 	cbz	w3, a134 <ws_configureConnection@@Base+0xec>
+    a084:	52800084 	mov	w4, #0x4                   	// #4
+    a088:	9100b3a3 	add	x3, x29, #0x2c
+    a08c:	97ffe581 	bl	3690 <setsockopt@plt> ; heuristic args: x1=1, x2=9, x4=4
+    a090:	37f80700 	tbnz	w0, #31, a170 <ws_configureConnection@@Base+0x128>
+    a094:	52800084 	mov	w4, #0x4                   	// #4
+    a098:	9100c3a3 	add	x3, x29, #0x30
+    a09c:	2a0403e2 	mov	w2, w4
+    a0a0:	528000c1 	mov	w1, #0x6                   	// #6
+    a0a4:	2a1403e0 	mov	w0, w20
+    a0a8:	97ffe57a 	bl	3690 <setsockopt@plt> ; heuristic args: x1=6, x2=4, x4=4
+    a0ac:	37f80820 	tbnz	w0, #31, a1b0 <ws_configureConnection@@Base+0x168>
+    a0b0:	b94033a0 	ldr	w0, [x29, #48]
+    a0b4:	910103a3 	add	x3, x29, #0x40
+    a0b8:	b9401265 	ldr	w5, [x19, #16]
+    a0bc:	52800084 	mov	w4, #0x4                   	// #4
+    a0c0:	b9403ba6 	ldr	w6, [x29, #56]
+    a0c4:	528000a2 	mov	w2, #0x5                   	// #5
+    a0c8:	4b0000a5 	sub	w5, w5, w0
+    a0cc:	528000c1 	mov	w1, #0x6                   	// #6
+    a0d0:	2a1403e0 	mov	w0, w20
+    a0d4:	1ac608a5 	udiv	w5, w5, w6
+    a0d8:	b81f4c65 	str	w5, [x3, #-12]!
+    a0dc:	97ffe56d 	bl	3690 <setsockopt@plt> ; heuristic args: x1=6, x2=5, x4=4
+    a0e0:	35000580 	cbnz	w0, a190 <ws_configureConnection@@Base+0x148>
+    a0e4:	528000c2 	mov	w2, #0x6                   	// #6
+    a0e8:	52800084 	mov	w4, #0x4                   	// #4
+    a0ec:	9100e3a3 	add	x3, x29, #0x38
+    a0f0:	2a0203e1 	mov	w1, w2
+    a0f4:	2a1403e0 	mov	w0, w20
+    a0f8:	97ffe566 	bl	3690 <setsockopt@plt> ; heuristic args: x1=6, x2=6, x4=4
+    a0fc:	34000120 	cbz	w0, a120 <ws_configureConnection@@Base+0xd8>
+    a100:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a104:	52800060 	mov	w0, #0x3                   	// #3
+    a108:	9136a021 	add	x1, x1, #0xda8
+    a10c:	97ffe66d 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Setting keep count failed for new connection.\n'
+    a110:	a94153f3 	ldp	x19, x20, [sp, #16]
+    a114:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    a118:	d65f03c0 	ret
+    a11c:	d503201f 	nop
+    a120:	b94037a2 	ldr	w2, [x29, #52]
+    a124:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a128:	528000c0 	mov	w0, #0x6                   	// #6
+    a12c:	91376021 	add	x1, x1, #0xdd8
+    a130:	97ffe664 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='New Client Connection Configured successfully.[%d]\n'
+    a134:	52800084 	mov	w4, #0x4                   	// #4
+    a138:	9100f3a3 	add	x3, x29, #0x3c
+    a13c:	528000e2 	mov	w2, #0x7                   	// #7
+    a140:	52800021 	mov	w1, #0x1                   	// #1
+    a144:	2a1403e0 	mov	w0, w20
+    a148:	97ffe552 	bl	3690 <setsockopt@plt> ; heuristic args: x1=1, x2=7, x4=4
+    a14c:	36fffe20 	tbz	w0, #31, a110 <ws_configureConnection@@Base+0xc8>
+    a150:	52800060 	mov	w0, #0x3                   	// #3
+    a154:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a158:	91384021 	add	x1, x1, #0xe10
+    a15c:	97ffe659 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Setting setsockopt for SO_SNDBUF failed!\n'
+    a160:	a94153f3 	ldp	x19, x20, [sp, #16]
+    a164:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    a168:	d65f03c0 	ret
+    a16c:	d503201f 	nop
+    a170:	52800060 	mov	w0, #0x3                   	// #3
+    a174:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a178:	91344021 	add	x1, x1, #0xd10
+    a17c:	97ffe651 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Keep Alive enable failed for new connection.\n'
+    a180:	a94153f3 	ldp	x19, x20, [sp, #16]
+    a184:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    a188:	d65f03c0 	ret
+    a18c:	d503201f 	nop
+    a190:	52800060 	mov	w0, #0x3                   	// #3
+    a194:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a198:	9135c021 	add	x1, x1, #0xd70
+    a19c:	97ffe649 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Setting interval time failed for new connection.\n'
+    a1a0:	a94153f3 	ldp	x19, x20, [sp, #16]
+    a1a4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    a1a8:	d65f03c0 	ret
+    a1ac:	d503201f 	nop
+    a1b0:	52800060 	mov	w0, #0x3                   	// #3
+    a1b4:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a1b8:	91350021 	add	x1, x1, #0xd40
+    a1bc:	97ffe641 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Setting idle time failed for new connection.\n'
+    a1c0:	a94153f3 	ldp	x19, x20, [sp, #16]
+    a1c4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    a1c8:	d65f03c0 	ret
+    a1cc:	d503201f 	nop

@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-29",
+  "scope": "Three saved frontend profiles; read-only live G6 metadata/static-assets; isolated frontend mocks. No live60980 connection/authentication/subscription/CGI request.",
+  "profiles": [
+    "G6-IJL",
+    "G6-HJL",
+    "B9-JJM"
+  ],
+  "matched_string_files": 11,
+  "regular_files_searched": 14541,
+  "source_records": 42,
+  "exact_fragments": 84,
+  "shell_receipts": 2,
+  "http_static_assets": 3,
+  "live_source_hash_matches": 5,
+  "offline_profile_replays": 3,
+  "grouped_behavior_cases": 36,
+  "backend_file_present_by_profile": {
+    "G6-IJL": false,
+    "G6-HJL": false,
+    "B9-JJM": false
+  },
+  "ui_build_tags": {
+    "G6-IJL": "2402.28.06.A17",
+    "G6-HJL": "2404.26.12.A17",
+    "B9-JJM": "2503a.26.10.A19"
+  },
+  "direct_websocket_consumer": "SIM lock-management component; listens for event4 and external RebootSystem/Level2FactoryReset",
+  "HTTP_body_correction": "createSocketBody changes webSocketBody; POST_CSRF_FWA serializes generic body in all three profiles. Replay after GetSIMInfo posts Nokia.GenericService/GetSIMInfo, not prepared EventService/SubscribeEvents.",
+  "model_list_FWA_counts": {
+    "G6-IJL": 16,
+    "G6-HJL": 21,
+    "B9-JJM": 27
+  },
+  "literal_function_counts": {
+    "G6-IJL": 23,
+    "G6-HJL": 39,
+    "B9-JJM": 49
+  },
+  "limits": [
+    "Only exact ASCII byte markers searched in selected regular files; no symlink following, compressed/resource decoding, decoded port instructions or whole-NAND scan.",
+    "Profile G6 roots are complete selected image extractions, not an assumption that a legacy tar omitted the missing CGI. No absent CGI recovered.",
+    "No listener60980 in either live snapshot; default/session Nokia.*advertisements Notfound4; namedfilemissing in/webs and/www. Runtime alias routing not exhaustively disproven.",
+    "Actual HJL frontend/index/consumer servedHTTP200 and matched saved bytes; no Cookie/Authorization sent; responseSetCookievalues deliberately not retained.",
+    "FWA fallback model lists exclude G6/G6.2/9. Later DeviceType capability override exists and was not read live.",
+    "No B9 live test. No WebSocket network/protocol/backend effect proved by browser-side code or mocked objects.",
+    "VM extraction compiles without linking/evaluating modules. Replays run only selected methods/declarative model assignments with mocked imports/HTTP/WebSocket/storage.",
+    "No PIN/PUK, password, modem, cell-scan, reboot/reset, configuration, cookie/token or subscription operation sent.",
+    "Prior8099record described intended EventService subscription. Actual three-profile request serialization mismatch supersedes that implication."
+  ]
+}

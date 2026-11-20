@@ -1,0 +1,3100 @@
+
+ddm:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000006473c <ddm_createDeviceInfo@@Base>:
+   6473c:	a9ad7bfd 	stp	x29, x30, [sp, #-304]!
+   64740:	910003fd 	mov	x29, sp
+   64744:	a90153f3 	stp	x19, x20, [sp, #16]
+   64748:	a9025bf5 	stp	x21, x22, [sp, #32]
+   6474c:	f9001fa0 	str	x0, [x29, #56]
+   64750:	f9001ba1 	str	x1, [x29, #48]
+   64754:	f0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   64758:	f946b400 	ldr	x0, [x0, #3432]
+   6475c:	f9400001 	ldr	x1, [x0]
+   64760:	f90097a1 	str	x1, [x29, #296]
+   64764:	d2800001 	mov	x1, #0x0                   	// #0
+   64768:	f9401fa0 	ldr	x0, [x29, #56]
+   6476c:	f100001f 	cmp	x0, #0x0
+   64770:	54000080 	b.eq	64780 <ddm_createDeviceInfo@@Base+0x44>  // b.none
+   64774:	f9401ba0 	ldr	x0, [x29, #48]
+   64778:	f100001f 	cmp	x0, #0x0
+   6477c:	54000121 	b.ne	647a0 <ddm_createDeviceInfo@@Base+0x64>  // b.any
+   64780:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64784:	910f6001 	add	x1, x0, #0x3d8
+   64788:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6478c:	91054000 	add	x0, x0, #0x150
+   64790:	aa0103e2 	mov	x2, x1
+   64794:	52802021 	mov	w1, #0x101                 	// #257
+   64798:	97fec722 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=257, x2='NULL Parameter passed.'
+   6479c:	140002a7 	b	65238 <ddm_createDeviceInfo@@Base+0xafc>
+   647a0:	f9401fa0 	ldr	x0, [x29, #56]
+   647a4:	f9002fa0 	str	x0, [x29, #88]
+   647a8:	f9401ba0 	ldr	x0, [x29, #48]
+   647ac:	f90033a0 	str	x0, [x29, #96]
+   647b0:	a90affbf 	stp	xzr, xzr, [x29, #168]
+   647b4:	a90bffbf 	stp	xzr, xzr, [x29, #184]
+   647b8:	a90effbf 	stp	xzr, xzr, [x29, #232]
+   647bc:	a90fffbf 	stp	xzr, xzr, [x29, #248]
+   647c0:	910803a0 	add	x0, x29, #0x200
+   647c4:	a930fc1f 	stp	xzr, xzr, [x0, #-248]
+   647c8:	910803a0 	add	x0, x29, #0x200
+   647cc:	a931fc1f 	stp	xzr, xzr, [x0, #-232]
+   647d0:	a90cffbf 	stp	xzr, xzr, [x29, #200]
+   647d4:	a90dffbf 	stp	xzr, xzr, [x29, #216]
+   647d8:	f90037bf 	str	xzr, [x29, #104]
+   647dc:	39011fbf 	strb	wzr, [x29, #71]
+   647e0:	f9003bbf 	str	xzr, [x29, #112]
+   647e4:	f94033a0 	ldr	x0, [x29, #96]
+   647e8:	f9404800 	ldr	x0, [x0, #144]
+   647ec:	f100001f 	cmp	x0, #0x0
+   647f0:	54000121 	b.ne	64814 <ddm_createDeviceInfo@@Base+0xd8>  // b.any
+   647f4:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   647f8:	910fc001 	add	x1, x0, #0x3f0
+   647fc:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   64800:	91054000 	add	x0, x0, #0x150
+   64804:	aa0103e2 	mov	x2, x1
+   64808:	52802161 	mov	w1, #0x10b                 	// #267
+   6480c:	97fec705 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=267, x2='Node Root Details is NULL'
+   64810:	1400028a 	b	65238 <ddm_createDeviceInfo@@Base+0xafc>
+   64814:	f94033a1 	ldr	x1, [x29, #96]
+   64818:	9103a3a0 	add	x0, x29, #0xe8
+   6481c:	97fec68d 	bl	16250 <convert_mac_to_string@plt>
+   64820:	7100001f 	cmp	w0, #0x0
+   64824:	54000100 	b.eq	64844 <ddm_createDeviceInfo@@Base+0x108>  // b.none
+   64828:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6482c:	91104001 	add	x1, x0, #0x410
+   64830:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   64834:	91054000 	add	x0, x0, #0x150
+   64838:	aa0103e2 	mov	x2, x1
+   6483c:	528021e1 	mov	w1, #0x10f                 	// #271
+   64840:	97fec6f8 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=271, x2='Mac to string conversion failed'
+   64844:	9103a3a2 	add	x2, x29, #0xe8
+   64848:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6484c:	9110c001 	add	x1, x0, #0x430
+   64850:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   64854:	91054000 	add	x0, x0, #0x150
+   64858:	aa0203e3 	mov	x3, x2
+   6485c:	aa0103e2 	mov	x2, x1
+   64860:	52802221 	mov	w1, #0x111                 	// #273
+   64864:	97fec3ef 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=273, x2='Mac address after converted into string = %s'
+   64868:	f94033a0 	ldr	x0, [x29, #96]
+   6486c:	39c03800 	ldrsb	w0, [x0, #14]
+   64870:	3100041f 	cmn	w0, #0x1
+   64874:	540004c0 	b.eq	6490c <ddm_createDeviceInfo@@Base+0x1d0>  // b.none
+   64878:	f94033a0 	ldr	x0, [x29, #96]
+   6487c:	f9404800 	ldr	x0, [x0, #144]
+   64880:	910ad000 	add	x0, x0, #0x2b4
+   64884:	97fec443 	bl	15990 <strlen@plt>
+   64888:	f100181f 	cmp	x0, #0x6
+   6488c:	540000c8 	b.hi	648a4 <ddm_createDeviceInfo@@Base+0x168>  // b.pmore
+   64890:	f94033a0 	ldr	x0, [x29, #96]
+   64894:	f9404800 	ldr	x0, [x0, #144]
+   64898:	394b7000 	ldrb	w0, [x0, #732]
+   6489c:	7100001f 	cmp	w0, #0x0
+   648a0:	54000360 	b.eq	6490c <ddm_createDeviceInfo@@Base+0x1d0>  // b.none
+   648a4:	f94033a0 	ldr	x0, [x29, #96]
+   648a8:	f9404800 	ldr	x0, [x0, #144]
+   648ac:	394cd000 	ldrb	w0, [x0, #820]
+   648b0:	7100001f 	cmp	w0, #0x0
+   648b4:	540000c1 	b.ne	648cc <ddm_createDeviceInfo@@Base+0x190>  // b.any
+   648b8:	f94033a0 	ldr	x0, [x29, #96]
+   648bc:	f9404800 	ldr	x0, [x0, #144]
+   648c0:	394dd000 	ldrb	w0, [x0, #884]
+   648c4:	7100001f 	cmp	w0, #0x0
+   648c8:	54000220 	b.eq	6490c <ddm_createDeviceInfo@@Base+0x1d0>  // b.none
+   648cc:	f94033a0 	ldr	x0, [x29, #96]
+   648d0:	39c03800 	ldrsb	w0, [x0, #14]
+   648d4:	12001c00 	and	w0, w0, #0xff
+   648d8:	97ffff81 	bl	646dc <ddm_isBeacon@@Base>
+   648dc:	12001c00 	and	w0, w0, #0xff
+   648e0:	7100001f 	cmp	w0, #0x0
+   648e4:	540000c1 	b.ne	648fc <ddm_createDeviceInfo@@Base+0x1c0>  // b.any
+   648e8:	f94033a0 	ldr	x0, [x29, #96]
+   648ec:	b9402400 	ldr	w0, [x0, #36]
+   648f0:	97fefd96 	bl	23f48 <ddm_deriveStatus@@Base>
+   648f4:	7100081f 	cmp	w0, #0x2
+   648f8:	540000a0 	b.eq	6490c <ddm_createDeviceInfo@@Base+0x1d0>  // b.none
+   648fc:	f94033a0 	ldr	x0, [x29, #96]
+   64900:	b9405400 	ldr	w0, [x0, #84]
+   64904:	7100201f 	cmp	w0, #0x8
+   64908:	54000901 	b.ne	64a28 <ddm_createDeviceInfo@@Base+0x2ec>  // b.any
+   6490c:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64910:	91118001 	add	x1, x0, #0x460
+   64914:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   64918:	91054000 	add	x0, x0, #0x150
+   6491c:	aa0103e2 	mov	x2, x1
+   64920:	52802521 	mov	w1, #0x129                 	// #297
+   64924:	97fec3bf 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=297, x2='Removed Node/Invalid/NULL IP Address/host & friendlyname/WAN Data Found. Discarding Data...\n'
+   64928:	f94033a0 	ldr	x0, [x29, #96]
+   6492c:	39c03800 	ldrsb	w0, [x0, #14]
+   64930:	2a0003f6 	mov	w22, w0
+   64934:	f94033a0 	ldr	x0, [x29, #96]
+   64938:	f9404800 	ldr	x0, [x0, #144]
+   6493c:	910ad013 	add	x19, x0, #0x2b4
+   64940:	f94033a0 	ldr	x0, [x29, #96]
+   64944:	f9404800 	ldr	x0, [x0, #144]
+   64948:	910cd014 	add	x20, x0, #0x334
+   6494c:	f94033a0 	ldr	x0, [x29, #96]
+   64950:	f9404800 	ldr	x0, [x0, #144]
+   64954:	910dd015 	add	x21, x0, #0x374
+   64958:	f94033a0 	ldr	x0, [x29, #96]
+   6495c:	b9405400 	ldr	w0, [x0, #84]
+   64960:	12001c00 	and	w0, w0, #0xff
+   64964:	97fefb5e 	bl	236dc <ddm_getInterfaceType@@Base>
+   64968:	aa0003e2 	mov	x2, x0
+   6496c:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64970:	91130001 	add	x1, x0, #0x4c0
+   64974:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   64978:	91054000 	add	x0, x0, #0x150
+   6497c:	aa0203e7 	mov	x7, x2
+   64980:	aa1503e6 	mov	x6, x21
+   64984:	aa1403e5 	mov	x5, x20
+   64988:	aa1303e4 	mov	x4, x19
+   6498c:	2a1603e3 	mov	w3, w22
+   64990:	aa0103e2 	mov	x2, x1
+   64994:	52802561 	mov	w1, #0x12b                 	// #299
+   64998:	97fec3a2 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=299, x2='[Removed state : %d][IP: %s][Host: %s][FriendlyName:%s.][intfName: %s]\n'
+   6499c:	f94033a0 	ldr	x0, [x29, #96]
+   649a0:	39c03800 	ldrsb	w0, [x0, #14]
+   649a4:	12001c00 	and	w0, w0, #0xff
+   649a8:	97ffff4d 	bl	646dc <ddm_isBeacon@@Base>
+   649ac:	12001c00 	and	w0, w0, #0xff
+   649b0:	7100001f 	cmp	w0, #0x0
+   649b4:	1a9f17e0 	cset	w0, eq	// eq = none
+   649b8:	12001c00 	and	w0, w0, #0xff
+   649bc:	2a0003f3 	mov	w19, w0
+   649c0:	f94033a0 	ldr	x0, [x29, #96]
+   649c4:	b9402400 	ldr	w0, [x0, #36]
+   649c8:	97fefd60 	bl	23f48 <ddm_deriveStatus@@Base>
+   649cc:	2a0003e3 	mov	w3, w0
+   649d0:	9103a3a2 	add	x2, x29, #0xe8
+   649d4:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   649d8:	91142001 	add	x1, x0, #0x508
+   649dc:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   649e0:	91054000 	add	x0, x0, #0x150
+   649e4:	aa0203e5 	mov	x5, x2
+   649e8:	2a0303e4 	mov	w4, w3
+   649ec:	2a1303e3 	mov	w3, w19
+   649f0:	aa0103e2 	mov	x2, x1
+   649f4:	52802581 	mov	w1, #0x12c                 	// #300
+   649f8:	97fec38a 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=300, x2=' While in IPV6 is Beacon [%d] and derive status [%d] mac [%s]\n'
+   649fc:	f94033a0 	ldr	x0, [x29, #96]
+   64a00:	b9405402 	ldr	w2, [x0, #84]
+   64a04:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64a08:	91152001 	add	x1, x0, #0x548
+   64a0c:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   64a10:	91054000 	add	x0, x0, #0x150
+   64a14:	2a0203e3 	mov	w3, w2
+   64a18:	aa0103e2 	mov	x2, x1
+   64a1c:	528025a1 	mov	w1, #0x12d                 	// #301
+   64a20:	97fec380 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=301, x2='interface type [%d]\n'
+   64a24:	14000205 	b	65238 <ddm_createDeviceInfo@@Base+0xafc>
+   64a28:	97fec43a 	bl	15b10 <cJSON_CreateObject@plt>
+   64a2c:	f9003fa0 	str	x0, [x29, #120]
+   64a30:	f94033a0 	ldr	x0, [x29, #96]
+   64a34:	f9404800 	ldr	x0, [x0, #144]
+   64a38:	aa0003e1 	mov	x1, x0
+   64a3c:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64a40:	91158000 	add	x0, x0, #0x560
+   64a44:	aa0103e2 	mov	x2, x1
+   64a48:	aa0003e1 	mov	x1, x0
+   64a4c:	f9403fa0 	ldr	x0, [x29, #120]
+   64a50:	97fec420 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   64a54:	9103a3a1 	add	x1, x29, #0xe8
+   64a58:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64a5c:	9115a000 	add	x0, x0, #0x568
+   64a60:	aa0103e2 	mov	x2, x1
+   64a64:	aa0003e1 	mov	x1, x0
+   64a68:	f9403fa0 	ldr	x0, [x29, #120]
+   64a6c:	97fec419 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='mac'
+   64a70:	f94033a0 	ldr	x0, [x29, #96]
+   64a74:	f9404800 	ldr	x0, [x0, #144]
+   64a78:	9105f001 	add	x1, x0, #0x17c
+   64a7c:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64a80:	9115c000 	add	x0, x0, #0x570
+   64a84:	aa0103e2 	mov	x2, x1
+   64a88:	aa0003e1 	mov	x1, x0
+   64a8c:	f9403fa0 	ldr	x0, [x29, #120]
+   64a90:	97fec410 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='serialNumber'
+   64a94:	f94033a0 	ldr	x0, [x29, #96]
+   64a98:	f9404800 	ldr	x0, [x0, #144]
+   64a9c:	910ad001 	add	x1, x0, #0x2b4
+   64aa0:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64aa4:	91160000 	add	x0, x0, #0x580
+   64aa8:	aa0103e2 	mov	x2, x1
+   64aac:	aa0003e1 	mov	x1, x0
+   64ab0:	f9403fa0 	ldr	x0, [x29, #120]
+   64ab4:	97fec407 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='ip'
+   64ab8:	f90043bf 	str	xzr, [x29, #128]
+   64abc:	b9004bbf 	str	wzr, [x29, #72]
+   64ac0:	97fec6c0 	bl	165c0 <cJSON_CreateArray@plt>
+   64ac4:	f90043a0 	str	x0, [x29, #128]
+   64ac8:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64acc:	91162000 	add	x0, x0, #0x588
+   64ad0:	f94043a2 	ldr	x2, [x29, #128]
+   64ad4:	aa0003e1 	mov	x1, x0
+   64ad8:	f9403fa0 	ldr	x0, [x29, #120]
+   64adc:	97fec629 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='ipv6'
+   64ae0:	b9004bbf 	str	wzr, [x29, #72]
+   64ae4:	1400001f 	b	64b60 <ddm_createDeviceInfo@@Base+0x424>
+   64ae8:	f94033a0 	ldr	x0, [x29, #96]
+   64aec:	f9404802 	ldr	x2, [x0, #144]
+   64af0:	b9804ba1 	ldrsw	x1, [x29, #72]
+   64af4:	aa0103e0 	mov	x0, x1
+   64af8:	d37ef400 	lsl	x0, x0, #2
+   64afc:	8b010000 	add	x0, x0, x1
+   64b00:	d37df000 	lsl	x0, x0, #3
+   64b04:	8b010000 	add	x0, x0, x1
+   64b08:	8b000040 	add	x0, x2, x0
+   64b0c:	394b7000 	ldrb	w0, [x0, #732]
+   64b10:	7100001f 	cmp	w0, #0x0
+   64b14:	54000200 	b.eq	64b54 <ddm_createDeviceInfo@@Base+0x418>  // b.none
+   64b18:	f94033a0 	ldr	x0, [x29, #96]
+   64b1c:	f9404802 	ldr	x2, [x0, #144]
+   64b20:	b9804ba1 	ldrsw	x1, [x29, #72]
+   64b24:	aa0103e0 	mov	x0, x1
+   64b28:	d37ef400 	lsl	x0, x0, #2
+   64b2c:	8b010000 	add	x0, x0, x1
+   64b30:	d37df000 	lsl	x0, x0, #3
+   64b34:	8b010000 	add	x0, x0, x1
+   64b38:	910b4000 	add	x0, x0, #0x2d0
+   64b3c:	8b000040 	add	x0, x2, x0
+   64b40:	91003000 	add	x0, x0, #0xc
+   64b44:	97fec5ab 	bl	161f0 <cJSON_CreateString@plt>
+   64b48:	aa0003e1 	mov	x1, x0
+   64b4c:	f94043a0 	ldr	x0, [x29, #128]
+   64b50:	97fec604 	bl	16360 <cJSON_AddItemToArray@plt>
+   64b54:	b9404ba0 	ldr	w0, [x29, #72]
+   64b58:	11000400 	add	w0, w0, #0x1
+   64b5c:	b9004ba0 	str	w0, [x29, #72]
+   64b60:	b9404ba0 	ldr	w0, [x29, #72]
+   64b64:	7100041f 	cmp	w0, #0x1
+   64b68:	54fffc0d 	b.le	64ae8 <ddm_createDeviceInfo@@Base+0x3ac>
+   64b6c:	f90047bf 	str	xzr, [x29, #136]
+   64b70:	910323a0 	add	x0, x29, #0xc8
+   64b74:	d2800402 	mov	x2, #0x20                  	// #32
+   64b78:	52800001 	mov	w1, #0x0                   	// #0
+   64b7c:	97fec43d 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   64b80:	9103a3a0 	add	x0, x29, #0xe8
+   64b84:	52800021 	mov	w1, #0x1                   	// #1
+   64b88:	97ffa56d 	bl	4e13c <retrieveCombinedValues@@Base> ; heuristic args: x1=1
+   64b8c:	f9003ba0 	str	x0, [x29, #112]
+   64b90:	f9403ba0 	ldr	x0, [x29, #112]
+   64b94:	f100001f 	cmp	x0, #0x0
+   64b98:	54000620 	b.eq	64c5c <ddm_createDeviceInfo@@Base+0x520>  // b.none
+   64b9c:	97fec3dd 	bl	15b10 <cJSON_CreateObject@plt>
+   64ba0:	f90047a0 	str	x0, [x29, #136]
+   64ba4:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64ba8:	91164000 	add	x0, x0, #0x590
+   64bac:	f94047a2 	ldr	x2, [x29, #136]
+   64bb0:	aa0003e1 	mov	x1, x0
+   64bb4:	f9403fa0 	ldr	x0, [x29, #120]
+   64bb8:	97fec5f2 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='rssi'
+   64bbc:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64bc0:	91166000 	add	x0, x0, #0x598
+   64bc4:	aa0003e1 	mov	x1, x0
+   64bc8:	f9403ba0 	ldr	x0, [x29, #112]
+   64bcc:	97fec479 	bl	15db0 <strtok@plt> ; heuristic args: x1=','
+   64bd0:	f9002ba0 	str	x0, [x29, #80]
+   64bd4:	1400001e 	b	64c4c <ddm_createDeviceInfo@@Base+0x510>
+   64bd8:	f9004fbf 	str	xzr, [x29, #152]
+   64bdc:	790143bf 	strh	wzr, [x29, #160]
+   64be0:	52800741 	mov	w1, #0x3a                  	// #58
+   64be4:	f9402ba0 	ldr	x0, [x29, #80]
+   64be8:	97fec42e 	bl	15ca0 <strchr@plt> ; heuristic args: x1=58
+   64bec:	f9004ba0 	str	x0, [x29, #144]
+   64bf0:	b9004fbf 	str	wzr, [x29, #76]
+   64bf4:	f9404ba1 	ldr	x1, [x29, #144]
+   64bf8:	f9402ba0 	ldr	x0, [x29, #80]
+   64bfc:	cb000020 	sub	x0, x1, x0
+   64c00:	b9004fa0 	str	w0, [x29, #76]
+   64c04:	b9804fa1 	ldrsw	x1, [x29, #76]
+   64c08:	910263a0 	add	x0, x29, #0x98
+   64c0c:	aa0103e2 	mov	x2, x1
+   64c10:	f9402ba1 	ldr	x1, [x29, #80]
+   64c14:	97fec4eb 	bl	15fc0 <strncpy@plt>
+   64c18:	f9404ba0 	ldr	x0, [x29, #144]
+   64c1c:	91000401 	add	x1, x0, #0x1
+   64c20:	910263a0 	add	x0, x29, #0x98
+   64c24:	aa0103e2 	mov	x2, x1
+   64c28:	aa0003e1 	mov	x1, x0
+   64c2c:	f94047a0 	ldr	x0, [x29, #136]
+   64c30:	97fec3a8 	bl	15ad0 <cJSON_AddStringToObject@plt>
+   64c34:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64c38:	91166000 	add	x0, x0, #0x598
+   64c3c:	aa0003e1 	mov	x1, x0
+   64c40:	d2800000 	mov	x0, #0x0                   	// #0
+   64c44:	97fec45b 	bl	15db0 <strtok@plt> ; heuristic args: x0=0, x1=','
+   64c48:	f9002ba0 	str	x0, [x29, #80]
+   64c4c:	f9402ba0 	ldr	x0, [x29, #80]
+   64c50:	f100001f 	cmp	x0, #0x0
+   64c54:	54fffc21 	b.ne	64bd8 <ddm_createDeviceInfo@@Base+0x49c>  // b.any
+   64c58:	14000012 	b	64ca0 <ddm_createDeviceInfo@@Base+0x564>
+   64c5c:	f94033a0 	ldr	x0, [x29, #96]
+   64c60:	79c01800 	ldrsh	w0, [x0, #12]
+   64c64:	2a0003e2 	mov	w2, w0
+   64c68:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64c6c:	91168001 	add	x1, x0, #0x5a0
+   64c70:	910323a0 	add	x0, x29, #0xc8
+   64c74:	2a0203e3 	mov	w3, w2
+   64c78:	aa0103e2 	mov	x2, x1
+   64c7c:	d28003e1 	mov	x1, #0x1f                  	// #31
+   64c80:	97fec514 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   64c84:	910323a1 	add	x1, x29, #0xc8
+   64c88:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64c8c:	91164000 	add	x0, x0, #0x590
+   64c90:	aa0103e2 	mov	x2, x1
+   64c94:	aa0003e1 	mov	x1, x0
+   64c98:	f9403fa0 	ldr	x0, [x29, #120]
+   64c9c:	97fec38d 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='rssi'
+   64ca0:	f94033a0 	ldr	x0, [x29, #96]
+   64ca4:	f9404800 	ldr	x0, [x0, #144]
+   64ca8:	91097001 	add	x1, x0, #0x25c
+   64cac:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64cb0:	9116a000 	add	x0, x0, #0x5a8
+   64cb4:	aa0103e2 	mov	x2, x1
+   64cb8:	aa0003e1 	mov	x1, x0
+   64cbc:	f9403fa0 	ldr	x0, [x29, #120]
+   64cc0:	97fec384 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='manufacturer'
+   64cc4:	f94033a0 	ldr	x0, [x29, #96]
+   64cc8:	f9404800 	ldr	x0, [x0, #144]
+   64ccc:	910cd001 	add	x1, x0, #0x334
+   64cd0:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64cd4:	9116e000 	add	x0, x0, #0x5b8
+   64cd8:	aa0103e2 	mov	x2, x1
+   64cdc:	aa0003e1 	mov	x1, x0
+   64ce0:	f9403fa0 	ldr	x0, [x29, #120]
+   64ce4:	97fec37b 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='host'
+   64ce8:	f94033a0 	ldr	x0, [x29, #96]
+   64cec:	f9404800 	ldr	x0, [x0, #144]
+   64cf0:	9106f001 	add	x1, x0, #0x1bc
+   64cf4:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64cf8:	91170000 	add	x0, x0, #0x5c0
+   64cfc:	aa0103e2 	mov	x2, x1
+   64d00:	aa0003e1 	mov	x1, x0
+   64d04:	f9403fa0 	ldr	x0, [x29, #120]
+   64d08:	97fec372 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='name'
+   64d0c:	f94033a0 	ldr	x0, [x29, #96]
+   64d10:	f9404800 	ldr	x0, [x0, #144]
+   64d14:	9107f001 	add	x1, x0, #0x1fc
+   64d18:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64d1c:	91172000 	add	x0, x0, #0x5c8
+   64d20:	aa0103e2 	mov	x2, x1
+   64d24:	aa0003e1 	mov	x1, x0
+   64d28:	f9403fa0 	ldr	x0, [x29, #120]
+   64d2c:	97fec369 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='model'
+   64d30:	f94033a0 	ldr	x0, [x29, #96]
+   64d34:	f9404800 	ldr	x0, [x0, #144]
+   64d38:	91037001 	add	x1, x0, #0xdc
+   64d3c:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64d40:	91174000 	add	x0, x0, #0x5d0
+   64d44:	aa0103e2 	mov	x2, x1
+   64d48:	aa0003e1 	mov	x1, x0
+   64d4c:	f9403fa0 	ldr	x0, [x29, #120]
+   64d50:	97fec360 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='category'
+   64d54:	f94033a0 	ldr	x0, [x29, #96]
+   64d58:	f9404800 	ldr	x0, [x0, #144]
+   64d5c:	910dd001 	add	x1, x0, #0x374
+   64d60:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64d64:	91178000 	add	x0, x0, #0x5e0
+   64d68:	aa0103e2 	mov	x2, x1
+   64d6c:	aa0003e1 	mov	x1, x0
+   64d70:	f9403fa0 	ldr	x0, [x29, #120]
+   64d74:	97fec357 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='friendlyname'
+   64d78:	f94033a0 	ldr	x0, [x29, #96]
+   64d7c:	b9405400 	ldr	w0, [x0, #84]
+   64d80:	12001c00 	and	w0, w0, #0xff
+   64d84:	97fefa56 	bl	236dc <ddm_getInterfaceType@@Base>
+   64d88:	aa0003e1 	mov	x1, x0
+   64d8c:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64d90:	9117c000 	add	x0, x0, #0x5f0
+   64d94:	aa0103e2 	mov	x2, x1
+   64d98:	aa0003e1 	mov	x1, x0
+   64d9c:	f9403fa0 	ldr	x0, [x29, #120]
+   64da0:	97fec34c 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='interface'
+   64da4:	910323a0 	add	x0, x29, #0xc8
+   64da8:	d2800402 	mov	x2, #0x20                  	// #32
+   64dac:	52800001 	mov	w1, #0x0                   	// #0
+   64db0:	97fec3b0 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   64db4:	f94033a0 	ldr	x0, [x29, #96]
+   64db8:	b9402400 	ldr	w0, [x0, #36]
+   64dbc:	97fffd95 	bl	64410 <ddm_isDeviceActive@@Base>
+   64dc0:	12001c00 	and	w0, w0, #0xff
+   64dc4:	2a0003e2 	mov	w2, w0
+   64dc8:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64dcc:	91168001 	add	x1, x0, #0x5a0
+   64dd0:	910323a0 	add	x0, x29, #0xc8
+   64dd4:	2a0203e3 	mov	w3, w2
+   64dd8:	aa0103e2 	mov	x2, x1
+   64ddc:	d28003e1 	mov	x1, #0x1f                  	// #31
+   64de0:	97fec4bc 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   64de4:	910323a1 	add	x1, x29, #0xc8
+   64de8:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64dec:	91180000 	add	x0, x0, #0x600
+   64df0:	aa0103e2 	mov	x2, x1
+   64df4:	aa0003e1 	mov	x1, x0
+   64df8:	f9403fa0 	ldr	x0, [x29, #120]
+   64dfc:	97fec335 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='active'
+   64e00:	f94033a0 	ldr	x0, [x29, #96]
+   64e04:	39c03800 	ldrsb	w0, [x0, #14]
+   64e08:	12001c00 	and	w0, w0, #0xff
+   64e0c:	97fffe34 	bl	646dc <ddm_isBeacon@@Base>
+   64e10:	12001c00 	and	w0, w0, #0xff
+   64e14:	2a0003e1 	mov	w1, w0
+   64e18:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64e1c:	91182000 	add	x0, x0, #0x608
+   64e20:	2a0103e2 	mov	w2, w1
+   64e24:	aa0003e1 	mov	x1, x0
+   64e28:	f9403fa0 	ldr	x0, [x29, #120]
+   64e2c:	97fec589 	bl	16450 <cJSON_AddBoolToObject@plt> ; heuristic args: x1='isBeacon'
+   64e30:	f94033a0 	ldr	x0, [x29, #96]
+   64e34:	f9404800 	ldr	x0, [x0, #144]
+   64e38:	b9429c00 	ldr	w0, [x0, #668]
+   64e3c:	12001c00 	and	w0, w0, #0xff
+   64e40:	97fefb15 	bl	23a94 <ddm_isCritical@@Base>
+   64e44:	12001c00 	and	w0, w0, #0xff
+   64e48:	2a0003e1 	mov	w1, w0
+   64e4c:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64e50:	91186000 	add	x0, x0, #0x618
+   64e54:	2a0103e2 	mov	w2, w1
+   64e58:	aa0003e1 	mov	x1, x0
+   64e5c:	f9403fa0 	ldr	x0, [x29, #120]
+   64e60:	97fec57c 	bl	16450 <cJSON_AddBoolToObject@plt> ; heuristic args: x1='isCritical'
+   64e64:	910323a0 	add	x0, x29, #0xc8
+   64e68:	d2800402 	mov	x2, #0x20                  	// #32
+   64e6c:	52800001 	mov	w1, #0x0                   	// #0
+   64e70:	97fec380 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   64e74:	f94033a0 	ldr	x0, [x29, #96]
+   64e78:	f9404800 	ldr	x0, [x0, #144]
+   64e7c:	b9429c02 	ldr	w2, [x0, #668]
+   64e80:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64e84:	91168001 	add	x1, x0, #0x5a0
+   64e88:	910323a0 	add	x0, x29, #0xc8
+   64e8c:	2a0203e3 	mov	w3, w2
+   64e90:	aa0103e2 	mov	x2, x1
+   64e94:	d28003e1 	mov	x1, #0x1f                  	// #31
+   64e98:	97fec48e 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   64e9c:	9103a3a0 	add	x0, x29, #0xe8
+   64ea0:	52800041 	mov	w1, #0x2                   	// #2
+   64ea4:	97ffa4a6 	bl	4e13c <retrieveCombinedValues@@Base> ; heuristic args: x1=2
+   64ea8:	f9003ba0 	str	x0, [x29, #112]
+   64eac:	f9403ba0 	ldr	x0, [x29, #112]
+   64eb0:	f100001f 	cmp	x0, #0x0
+   64eb4:	54000200 	b.eq	64ef4 <ddm_createDeviceInfo@@Base+0x7b8>  // b.none
+   64eb8:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64ebc:	9118a001 	add	x1, x0, #0x628
+   64ec0:	910323a0 	add	x0, x29, #0xc8
+   64ec4:	f9403ba3 	ldr	x3, [x29, #112]
+   64ec8:	aa0103e2 	mov	x2, x1
+   64ecc:	d28003e1 	mov	x1, #0x1f                  	// #31
+   64ed0:	97fec480 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%s'
+   64ed4:	910323a1 	add	x1, x29, #0xc8
+   64ed8:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64edc:	9118c000 	add	x0, x0, #0x630
+   64ee0:	aa0103e2 	mov	x2, x1
+   64ee4:	aa0003e1 	mov	x1, x0
+   64ee8:	f9403fa0 	ldr	x0, [x29, #120]
+   64eec:	97fec2f9 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='band'
+   64ef0:	1400000c 	b	64f20 <ddm_createDeviceInfo@@Base+0x7e4>
+   64ef4:	f94033a0 	ldr	x0, [x29, #96]
+   64ef8:	b9405400 	ldr	w0, [x0, #84]
+   64efc:	12001c00 	and	w0, w0, #0xff
+   64f00:	97fffce0 	bl	64280 <ddm_getConnectedBand@@Base>
+   64f04:	aa0003e1 	mov	x1, x0
+   64f08:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64f0c:	9118c000 	add	x0, x0, #0x630
+   64f10:	aa0103e2 	mov	x2, x1
+   64f14:	aa0003e1 	mov	x1, x0
+   64f18:	f9403fa0 	ldr	x0, [x29, #120]
+   64f1c:	97fec2ed 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='band'
+   64f20:	f94033a0 	ldr	x0, [x29, #96]
+   64f24:	f9404800 	ldr	x0, [x0, #144]
+   64f28:	91058003 	add	x3, x0, #0x160
+   64f2c:	f94033a0 	ldr	x0, [x29, #96]
+   64f30:	f9404800 	ldr	x0, [x0, #144]
+   64f34:	910ee401 	add	x1, x0, #0x3b9
+   64f38:	f94033a0 	ldr	x0, [x29, #96]
+   64f3c:	b9405400 	ldr	w0, [x0, #84]
+   64f40:	12001c00 	and	w0, w0, #0xff
+   64f44:	2a0003e2 	mov	w2, w0
+   64f48:	aa0303e0 	mov	x0, x3
+   64f4c:	97fffda5 	bl	645e0 <ddm_getSupportedBands@@Base>
+   64f50:	aa0003e1 	mov	x1, x0
+   64f54:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64f58:	9118e000 	add	x0, x0, #0x638
+   64f5c:	aa0103e2 	mov	x2, x1
+   64f60:	aa0003e1 	mov	x1, x0
+   64f64:	f9403fa0 	ldr	x0, [x29, #120]
+   64f68:	97fec2da 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='supportedbands'
+   64f6c:	f94033a0 	ldr	x0, [x29, #96]
+   64f70:	f9404800 	ldr	x0, [x0, #144]
+   64f74:	9105c000 	add	x0, x0, #0x170
+   64f78:	97fffd73 	bl	64544 <ddm_getPreferredBand@@Base>
+   64f7c:	aa0003e1 	mov	x1, x0
+   64f80:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64f84:	91192000 	add	x0, x0, #0x648
+   64f88:	aa0103e2 	mov	x2, x1
+   64f8c:	aa0003e1 	mov	x1, x0
+   64f90:	f9403fa0 	ldr	x0, [x29, #120]
+   64f94:	97fec2cf 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='preferred_radio_band'
+   64f98:	f94033a0 	ldr	x0, [x29, #96]
+   64f9c:	91026c00 	add	x0, x0, #0x9b
+   64fa0:	f100001f 	cmp	x0, #0x0
+   64fa4:	54000740 	b.eq	6508c <ddm_createDeviceInfo@@Base+0x950>  // b.none
+   64fa8:	f94033a0 	ldr	x0, [x29, #96]
+   64fac:	39426c00 	ldrb	w0, [x0, #155]
+   64fb0:	7100001f 	cmp	w0, #0x0
+   64fb4:	540006c0 	b.eq	6508c <ddm_createDeviceInfo@@Base+0x950>  // b.none
+   64fb8:	f94033a0 	ldr	x0, [x29, #96]
+   64fbc:	91026c01 	add	x1, x0, #0x9b
+   64fc0:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64fc4:	91198000 	add	x0, x0, #0x660
+   64fc8:	aa0103e2 	mov	x2, x1
+   64fcc:	aa0003e1 	mov	x1, x0
+   64fd0:	f9403fa0 	ldr	x0, [x29, #120]
+   64fd4:	97fec2bf 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='ssid'
+   64fd8:	9103a3a3 	add	x3, x29, #0xe8
+   64fdc:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   64fe0:	9105a002 	add	x2, x0, #0x168
+   64fe4:	900001a0 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   64fe8:	9119a001 	add	x1, x0, #0x668
+   64fec:	b00001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   64ff0:	91054000 	add	x0, x0, #0x150
+   64ff4:	aa0303e4 	mov	x4, x3
+   64ff8:	aa0203e3 	mov	x3, x2
+   64ffc:	aa0103e2 	mov	x2, x1
+   65000:	52802e61 	mov	w1, #0x173                 	// #371
+   65004:	97fec50f 	bl	16440 <nalLogNotice@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=371, x2='[%s] Trying to add ssid name for mac %s', x3='ddm_createDeviceInfo'
+   65008:	9103a3a2 	add	x2, x29, #0xe8
+   6500c:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65010:	9105a001 	add	x1, x0, #0x168
+   65014:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65018:	9119a000 	add	x0, x0, #0x668
+   6501c:	aa0203e3 	mov	x3, x2
+   65020:	aa0103e2 	mov	x2, x1
+   65024:	aa0003e1 	mov	x1, x0
+   65028:	528000a0 	mov	w0, #0x5                   	// #5
+   6502c:	97ff3ea5 	bl	34ac0 <ddm_log@@Base> ; heuristic args: x0=5, x1='[%s] Trying to add ssid name for mac %s', x2='ddm_createDeviceInfo'
+   65030:	f94033a0 	ldr	x0, [x29, #96]
+   65034:	91026c02 	add	x2, x0, #0x9b
+   65038:	9103a3a3 	add	x3, x29, #0xe8
+   6503c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65040:	911a4001 	add	x1, x0, #0x690
+   65044:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65048:	91054000 	add	x0, x0, #0x150
+   6504c:	aa0303e4 	mov	x4, x3
+   65050:	aa0203e3 	mov	x3, x2
+   65054:	aa0103e2 	mov	x2, x1
+   65058:	52802e81 	mov	w1, #0x174                 	// #372
+   6505c:	97fec4f9 	bl	16440 <nalLogNotice@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=372, x2='ssid_name [%s] mac = %s\n'
+   65060:	f94033a0 	ldr	x0, [x29, #96]
+   65064:	91026c01 	add	x1, x0, #0x9b
+   65068:	9103a3a2 	add	x2, x29, #0xe8
+   6506c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65070:	911a4000 	add	x0, x0, #0x690
+   65074:	aa0203e3 	mov	x3, x2
+   65078:	aa0103e2 	mov	x2, x1
+   6507c:	aa0003e1 	mov	x1, x0
+   65080:	528000a0 	mov	w0, #0x5                   	// #5
+   65084:	97ff3e8f 	bl	34ac0 <ddm_log@@Base> ; heuristic args: x0=5, x1='ssid_name [%s] mac = %s\n'
+   65088:	1400000d 	b	650bc <ddm_createDeviceInfo@@Base+0x980>
+   6508c:	9103a3a3 	add	x3, x29, #0xe8
+   65090:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65094:	9105a002 	add	x2, x0, #0x168
+   65098:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6509c:	911ac001 	add	x1, x0, #0x6b0
+   650a0:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   650a4:	91054000 	add	x0, x0, #0x150
+   650a8:	aa0303e4 	mov	x4, x3
+   650ac:	aa0203e3 	mov	x3, x2
+   650b0:	aa0103e2 	mov	x2, x1
+   650b4:	52802f01 	mov	w1, #0x178                 	// #376
+   650b8:	97fec4da 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=376, x2='[%s] SSID name is null for mac = %s', x3='ddm_createDeviceInfo'
+   650bc:	f94033a0 	ldr	x0, [x29, #96]
+   650c0:	b9405400 	ldr	w0, [x0, #84]
+   650c4:	71000c1f 	cmp	w0, #0x3
+   650c8:	54000901 	b.ne	651e8 <ddm_createDeviceInfo@@Base+0xaac>  // b.any
+   650cc:	910323a0 	add	x0, x29, #0xc8
+   650d0:	d2800402 	mov	x2, #0x20                  	// #32
+   650d4:	52800001 	mov	w1, #0x0                   	// #0
+   650d8:	97fec2e6 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   650dc:	f94033a0 	ldr	x0, [x29, #96]
+   650e0:	f9404800 	ldr	x0, [x0, #144]
+   650e4:	f9404001 	ldr	x1, [x0, #128]
+   650e8:	aa0103e0 	mov	x0, x1
+   650ec:	d37be800 	lsl	x0, x0, #5
+   650f0:	cb010000 	sub	x0, x0, x1
+   650f4:	d37ef400 	lsl	x0, x0, #2
+   650f8:	8b010000 	add	x0, x0, x1
+   650fc:	d37df000 	lsl	x0, x0, #3
+   65100:	aa0003e2 	mov	x2, x0
+   65104:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65108:	911b6001 	add	x1, x0, #0x6d8
+   6510c:	910323a0 	add	x0, x29, #0xc8
+   65110:	aa0203e3 	mov	x3, x2
+   65114:	aa0103e2 	mov	x2, x1
+   65118:	d28003e1 	mov	x1, #0x1f                  	// #31
+   6511c:	97fec3ed 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%lu'
+   65120:	910323a1 	add	x1, x29, #0xc8
+   65124:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65128:	911b8000 	add	x0, x0, #0x6e0
+   6512c:	aa0103e2 	mov	x2, x1
+   65130:	aa0003e1 	mov	x1, x0
+   65134:	f9403fa0 	ldr	x0, [x29, #120]
+   65138:	97fec266 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='txPhyRate'
+   6513c:	910323a0 	add	x0, x29, #0xc8
+   65140:	d2800402 	mov	x2, #0x20                  	// #32
+   65144:	52800001 	mov	w1, #0x0                   	// #0
+   65148:	97fec2ca 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   6514c:	f94033a0 	ldr	x0, [x29, #96]
+   65150:	f9404800 	ldr	x0, [x0, #144]
+   65154:	f9404401 	ldr	x1, [x0, #136]
+   65158:	aa0103e0 	mov	x0, x1
+   6515c:	d37be800 	lsl	x0, x0, #5
+   65160:	cb010000 	sub	x0, x0, x1
+   65164:	d37ef400 	lsl	x0, x0, #2
+   65168:	8b010000 	add	x0, x0, x1
+   6516c:	d37df000 	lsl	x0, x0, #3
+   65170:	aa0003e2 	mov	x2, x0
+   65174:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65178:	911b6001 	add	x1, x0, #0x6d8
+   6517c:	910323a0 	add	x0, x29, #0xc8
+   65180:	aa0203e3 	mov	x3, x2
+   65184:	aa0103e2 	mov	x2, x1
+   65188:	d28003e1 	mov	x1, #0x1f                  	// #31
+   6518c:	97fec3d1 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%lu'
+   65190:	910323a1 	add	x1, x29, #0xc8
+   65194:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65198:	911bc000 	add	x0, x0, #0x6f0
+   6519c:	aa0103e2 	mov	x2, x1
+   651a0:	aa0003e1 	mov	x1, x0
+   651a4:	f9403fa0 	ldr	x0, [x29, #120]
+   651a8:	97fec24a 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='rxPhyRate'
+   651ac:	f94033a0 	ldr	x0, [x29, #96]
+   651b0:	f9404800 	ldr	x0, [x0, #144]
+   651b4:	f9404402 	ldr	x2, [x0, #136]
+   651b8:	f94033a0 	ldr	x0, [x29, #96]
+   651bc:	f9404800 	ldr	x0, [x0, #144]
+   651c0:	f9404003 	ldr	x3, [x0, #128]
+   651c4:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   651c8:	911c0001 	add	x1, x0, #0x700
+   651cc:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   651d0:	91054000 	add	x0, x0, #0x150
+   651d4:	aa0303e4 	mov	x4, x3
+   651d8:	aa0203e3 	mov	x3, x2
+   651dc:	aa0103e2 	mov	x2, x1
+   651e0:	52803161 	mov	w1, #0x18b                 	// #395
+   651e4:	97fec18f 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=395, x2='In Json: RXrate[%PRIu64] TXrate[%PRIu64] in btree\n'
+   651e8:	f9403fa0 	ldr	x0, [x29, #120]
+   651ec:	97fec4bd 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   651f0:	f90037a0 	str	x0, [x29, #104]
+   651f4:	f94037a0 	ldr	x0, [x29, #104]
+   651f8:	f100001f 	cmp	x0, #0x0
+   651fc:	54000160 	b.eq	65228 <ddm_createDeviceInfo@@Base+0xaec>  // b.none
+   65200:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65204:	911ce001 	add	x1, x0, #0x738
+   65208:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6520c:	91054000 	add	x0, x0, #0x150
+   65210:	f94037a3 	ldr	x3, [x29, #104]
+   65214:	aa0103e2 	mov	x2, x1
+   65218:	52803241 	mov	w1, #0x192                 	// #402
+   6521c:	97fec181 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_createDeviceInfo', x1=402, x2='WS device info [%s]'
+   65220:	f94037a0 	ldr	x0, [x29, #104]
+   65224:	97fec28b 	bl	15c50 <free@plt>
+   65228:	f9403fa1 	ldr	x1, [x29, #120]
+   6522c:	f9402fa0 	ldr	x0, [x29, #88]
+   65230:	97fec44c 	bl	16360 <cJSON_AddItemToArray@plt>
+   65234:	d503201f 	nop
+   65238:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6523c:	f946b400 	ldr	x0, [x0, #3432]
+   65240:	f94097a1 	ldr	x1, [x29, #296]
+   65244:	f9400000 	ldr	x0, [x0]
+   65248:	ca000020 	eor	x0, x1, x0
+   6524c:	f100001f 	cmp	x0, #0x0
+   65250:	54000040 	b.eq	65258 <ddm_createDeviceInfo@@Base+0xb1c>  // b.none
+   65254:	97fec1eb 	bl	15a00 <__stack_chk_fail@plt>
+   65258:	a94153f3 	ldp	x19, x20, [sp, #16]
+   6525c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+   65260:	a8d37bfd 	ldp	x29, x30, [sp], #304
+   65264:	d65f03c0 	ret
+
+0000000000065268 <ddm_createRssiInfo@@Base>:
+   65268:	a9b97bfd 	stp	x29, x30, [sp, #-112]!
+   6526c:	910003fd 	mov	x29, sp
+   65270:	f9000fa0 	str	x0, [x29, #24]
+   65274:	f9000ba1 	str	x1, [x29, #16]
+   65278:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6527c:	f946b400 	ldr	x0, [x0, #3432]
+   65280:	f9400001 	ldr	x1, [x0]
+   65284:	f90037a1 	str	x1, [x29, #104]
+   65288:	d2800001 	mov	x1, #0x0                   	// #0
+   6528c:	f9400fa0 	ldr	x0, [x29, #24]
+   65290:	f100001f 	cmp	x0, #0x0
+   65294:	54000080 	b.eq	652a4 <ddm_createRssiInfo@@Base+0x3c>  // b.none
+   65298:	f9400ba0 	ldr	x0, [x29, #16]
+   6529c:	f100001f 	cmp	x0, #0x0
+   652a0:	54000121 	b.ne	652c4 <ddm_createRssiInfo@@Base+0x5c>  // b.any
+   652a4:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   652a8:	911d4001 	add	x1, x0, #0x750
+   652ac:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   652b0:	91060000 	add	x0, x0, #0x180
+   652b4:	aa0103e2 	mov	x2, x1
+   652b8:	52803361 	mov	w1, #0x19b                 	// #411
+   652bc:	97fec459 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_createRssiInfo', x1=411, x2='NULL parameter passed.'
+   652c0:	140000fe 	b	656b8 <ddm_createRssiInfo@@Base+0x450>
+   652c4:	a904ffbf 	stp	xzr, xzr, [x29, #72]
+   652c8:	a905ffbf 	stp	xzr, xzr, [x29, #88]
+   652cc:	f90017bf 	str	xzr, [x29, #40]
+   652d0:	f9400fa0 	ldr	x0, [x29, #24]
+   652d4:	f9001ba0 	str	x0, [x29, #48]
+   652d8:	f9400ba0 	ldr	x0, [x29, #16]
+   652dc:	f9001fa0 	str	x0, [x29, #56]
+   652e0:	f9401fa0 	ldr	x0, [x29, #56]
+   652e4:	b9403400 	ldr	w0, [x0, #52]
+   652e8:	7100001f 	cmp	w0, #0x0
+   652ec:	540001ad 	b.le	65320 <ddm_createRssiInfo@@Base+0xb8>
+   652f0:	f9401fa0 	ldr	x0, [x29, #56]
+   652f4:	b9403800 	ldr	w0, [x0, #56]
+   652f8:	7100001f 	cmp	w0, #0x0
+   652fc:	5400012d 	b.le	65320 <ddm_createRssiInfo@@Base+0xb8>
+   65300:	f9401fa0 	ldr	x0, [x29, #56]
+   65304:	3940f000 	ldrb	w0, [x0, #60]
+   65308:	7100001f 	cmp	w0, #0x0
+   6530c:	540000a0 	b.eq	65320 <ddm_createRssiInfo@@Base+0xb8>  // b.none
+   65310:	f9401fa0 	ldr	x0, [x29, #56]
+   65314:	79c06400 	ldrsh	w0, [x0, #50]
+   65318:	7101901f 	cmp	w0, #0x64
+   6531c:	54000261 	b.ne	65368 <ddm_createRssiInfo@@Base+0x100>  // b.any
+   65320:	f9401fa0 	ldr	x0, [x29, #56]
+   65324:	b9403402 	ldr	w2, [x0, #52]
+   65328:	f9401fa0 	ldr	x0, [x29, #56]
+   6532c:	b9403803 	ldr	w3, [x0, #56]
+   65330:	f9401fa0 	ldr	x0, [x29, #56]
+   65334:	79c06400 	ldrsh	w0, [x0, #50]
+   65338:	2a0003e4 	mov	w4, w0
+   6533c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65340:	911da001 	add	x1, x0, #0x768
+   65344:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65348:	91060000 	add	x0, x0, #0x180
+   6534c:	2a0403e5 	mov	w5, w4
+   65350:	2a0303e4 	mov	w4, w3
+   65354:	2a0203e3 	mov	w3, w2
+   65358:	aa0103e2 	mov	x2, x1
+   6535c:	528034a1 	mov	w1, #0x1a5                 	// #421
+   65360:	97fec130 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_createRssiInfo', x1=421, x2='Invalid tx[%d] rx[%d] rate rssi[%d]'
+   65364:	140000d5 	b	656b8 <ddm_createRssiInfo@@Base+0x450>
+   65368:	97fec1ea 	bl	15b10 <cJSON_CreateObject@plt>
+   6536c:	f90023a0 	str	x0, [x29, #64]
+   65370:	910123a0 	add	x0, x29, #0x48
+   65374:	d2800402 	mov	x2, #0x20                  	// #32
+   65378:	52800001 	mov	w1, #0x0                   	// #0
+   6537c:	97fec23d 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   65380:	f9401fa0 	ldr	x0, [x29, #56]
+   65384:	3940c000 	ldrb	w0, [x0, #48]
+   65388:	2a0003e2 	mov	w2, w0
+   6538c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65390:	91168001 	add	x1, x0, #0x5a0
+   65394:	910123a0 	add	x0, x29, #0x48
+   65398:	2a0203e3 	mov	w3, w2
+   6539c:	aa0103e2 	mov	x2, x1
+   653a0:	d28003e1 	mov	x1, #0x1f                  	// #31
+   653a4:	97fec34b 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   653a8:	910123a1 	add	x1, x29, #0x48
+   653ac:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   653b0:	911e4000 	add	x0, x0, #0x790
+   653b4:	aa0103e2 	mov	x2, x1
+   653b8:	aa0003e1 	mov	x1, x0
+   653bc:	f94023a0 	ldr	x0, [x29, #64]
+   653c0:	97fec1c4 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='ssidindex'
+   653c4:	f9401fa1 	ldr	x1, [x29, #56]
+   653c8:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   653cc:	9115a000 	add	x0, x0, #0x568
+   653d0:	aa0103e2 	mov	x2, x1
+   653d4:	aa0003e1 	mov	x1, x0
+   653d8:	f94023a0 	ldr	x0, [x29, #64]
+   653dc:	97fec1bd 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='mac'
+   653e0:	910123a0 	add	x0, x29, #0x48
+   653e4:	d2800402 	mov	x2, #0x20                  	// #32
+   653e8:	52800001 	mov	w1, #0x0                   	// #0
+   653ec:	97fec221 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   653f0:	f9401fa0 	ldr	x0, [x29, #56]
+   653f4:	79c06400 	ldrsh	w0, [x0, #50]
+   653f8:	2a0003e2 	mov	w2, w0
+   653fc:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65400:	91168001 	add	x1, x0, #0x5a0
+   65404:	910123a0 	add	x0, x29, #0x48
+   65408:	2a0203e3 	mov	w3, w2
+   6540c:	aa0103e2 	mov	x2, x1
+   65410:	d28003e1 	mov	x1, #0x1f                  	// #31
+   65414:	97fec32f 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   65418:	910123a1 	add	x1, x29, #0x48
+   6541c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65420:	91164000 	add	x0, x0, #0x590
+   65424:	aa0103e2 	mov	x2, x1
+   65428:	aa0003e1 	mov	x1, x0
+   6542c:	f94023a0 	ldr	x0, [x29, #64]
+   65430:	97fec1a8 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='rssi'
+   65434:	910123a0 	add	x0, x29, #0x48
+   65438:	d2800402 	mov	x2, #0x20                  	// #32
+   6543c:	52800001 	mov	w1, #0x0                   	// #0
+   65440:	97fec20c 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   65444:	f9401fa0 	ldr	x0, [x29, #56]
+   65448:	b9403402 	ldr	w2, [x0, #52]
+   6544c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65450:	91168001 	add	x1, x0, #0x5a0
+   65454:	910123a0 	add	x0, x29, #0x48
+   65458:	2a0203e3 	mov	w3, w2
+   6545c:	aa0103e2 	mov	x2, x1
+   65460:	d28003e1 	mov	x1, #0x1f                  	// #31
+   65464:	97fec31b 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   65468:	910123a1 	add	x1, x29, #0x48
+   6546c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65470:	911e8000 	add	x0, x0, #0x7a0
+   65474:	aa0103e2 	mov	x2, x1
+   65478:	aa0003e1 	mov	x1, x0
+   6547c:	f94023a0 	ldr	x0, [x29, #64]
+   65480:	97fec194 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='tx_rate'
+   65484:	910123a0 	add	x0, x29, #0x48
+   65488:	d2800402 	mov	x2, #0x20                  	// #32
+   6548c:	52800001 	mov	w1, #0x0                   	// #0
+   65490:	97fec1f8 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   65494:	f9401fa0 	ldr	x0, [x29, #56]
+   65498:	b9403802 	ldr	w2, [x0, #56]
+   6549c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   654a0:	91168001 	add	x1, x0, #0x5a0
+   654a4:	910123a0 	add	x0, x29, #0x48
+   654a8:	2a0203e3 	mov	w3, w2
+   654ac:	aa0103e2 	mov	x2, x1
+   654b0:	d28003e1 	mov	x1, #0x1f                  	// #31
+   654b4:	97fec307 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   654b8:	910123a1 	add	x1, x29, #0x48
+   654bc:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   654c0:	911ea000 	add	x0, x0, #0x7a8
+   654c4:	aa0103e2 	mov	x2, x1
+   654c8:	aa0003e1 	mov	x1, x0
+   654cc:	f94023a0 	ldr	x0, [x29, #64]
+   654d0:	97fec180 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='rx_rate'
+   654d4:	f9401fa0 	ldr	x0, [x29, #56]
+   654d8:	52800061 	mov	w1, #0x3                   	// #3
+   654dc:	97ffa318 	bl	4e13c <retrieveCombinedValues@@Base> ; heuristic args: x1=3
+   654e0:	f90017a0 	str	x0, [x29, #40]
+   654e4:	f94017a0 	ldr	x0, [x29, #40]
+   654e8:	f100001f 	cmp	x0, #0x0
+   654ec:	54000200 	b.eq	6552c <ddm_createRssiInfo@@Base+0x2c4>  // b.none
+   654f0:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   654f4:	9118a001 	add	x1, x0, #0x628
+   654f8:	910123a0 	add	x0, x29, #0x48
+   654fc:	f94017a3 	ldr	x3, [x29, #40]
+   65500:	aa0103e2 	mov	x2, x1
+   65504:	d28003e1 	mov	x1, #0x1f                  	// #31
+   65508:	97fec2f2 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%s'
+   6550c:	910123a1 	add	x1, x29, #0x48
+   65510:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65514:	911ec000 	add	x0, x0, #0x7b0
+   65518:	aa0103e2 	mov	x2, x1
+   6551c:	aa0003e1 	mov	x1, x0
+   65520:	f94023a0 	ldr	x0, [x29, #64]
+   65524:	97fec16b 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='opmode'
+   65528:	14000009 	b	6554c <ddm_createRssiInfo@@Base+0x2e4>
+   6552c:	f9401fa0 	ldr	x0, [x29, #56]
+   65530:	9100f001 	add	x1, x0, #0x3c
+   65534:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65538:	911ec000 	add	x0, x0, #0x7b0
+   6553c:	aa0103e2 	mov	x2, x1
+   65540:	aa0003e1 	mov	x1, x0
+   65544:	f94023a0 	ldr	x0, [x29, #64]
+   65548:	97fec162 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='opmode'
+   6554c:	910123a0 	add	x0, x29, #0x48
+   65550:	d2800402 	mov	x2, #0x20                  	// #32
+   65554:	52800001 	mov	w1, #0x0                   	// #0
+   65558:	97fec1c6 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   6555c:	f9401fa0 	ldr	x0, [x29, #56]
+   65560:	b9406002 	ldr	w2, [x0, #96]
+   65564:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65568:	91168001 	add	x1, x0, #0x5a0
+   6556c:	910123a0 	add	x0, x29, #0x48
+   65570:	2a0203e3 	mov	w3, w2
+   65574:	aa0103e2 	mov	x2, x1
+   65578:	d28003e1 	mov	x1, #0x1f                  	// #31
+   6557c:	97fec2d5 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   65580:	910123a1 	add	x1, x29, #0x48
+   65584:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65588:	911ee000 	add	x0, x0, #0x7b8
+   6558c:	aa0103e2 	mov	x2, x1
+   65590:	aa0003e1 	mov	x1, x0
+   65594:	f94023a0 	ldr	x0, [x29, #64]
+   65598:	97fec14e 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='interference'
+   6559c:	f9401fa0 	ldr	x0, [x29, #56]
+   655a0:	39c19000 	ldrsb	w0, [x0, #100]
+   655a4:	3100041f 	cmn	w0, #0x1
+   655a8:	540000a0 	b.eq	655bc <ddm_createRssiInfo@@Base+0x354>  // b.none
+   655ac:	f9401fa0 	ldr	x0, [x29, #56]
+   655b0:	39c19000 	ldrsb	w0, [x0, #100]
+   655b4:	1e620000 	scvtf	d0, w0
+   655b8:	14000002 	b	655c0 <ddm_createRssiInfo@@Base+0x358>
+   655bc:	2f00e400 	movi	d0, #0x0
+   655c0:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   655c4:	911f2000 	add	x0, x0, #0x7c8
+   655c8:	aa0003e1 	mov	x1, x0
+   655cc:	f94023a0 	ldr	x0, [x29, #64]
+   655d0:	97fec200 	bl	15dd0 <cJSON_AddNumberToObject@plt> ; heuristic args: x1='deviceLinkQuality'
+   655d4:	f9401fa0 	ldr	x0, [x29, #56]
+   655d8:	b9406800 	ldr	w0, [x0, #104]
+   655dc:	3100041f 	cmn	w0, #0x1
+   655e0:	540000a0 	b.eq	655f4 <ddm_createRssiInfo@@Base+0x38c>  // b.none
+   655e4:	f9401fa0 	ldr	x0, [x29, #56]
+   655e8:	b9406800 	ldr	w0, [x0, #104]
+   655ec:	1e620000 	scvtf	d0, w0
+   655f0:	14000002 	b	655f8 <ddm_createRssiInfo@@Base+0x390>
+   655f4:	2f00e400 	movi	d0, #0x0
+   655f8:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   655fc:	911f8000 	add	x0, x0, #0x7e0
+   65600:	aa0003e1 	mov	x1, x0
+   65604:	f94023a0 	ldr	x0, [x29, #64]
+   65608:	97fec1f2 	bl	15dd0 <cJSON_AddNumberToObject@plt> ; heuristic args: x1='deviceLinkMetric'
+   6560c:	f9401fa0 	ldr	x0, [x29, #56]
+   65610:	b9406c00 	ldr	w0, [x0, #108]
+   65614:	12001c00 	and	w0, w0, #0xff
+   65618:	97fffba7 	bl	644b4 <ddm_getLinkStatus@@Base>
+   6561c:	aa0003e1 	mov	x1, x0
+   65620:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65624:	911fe000 	add	x0, x0, #0x7f8
+   65628:	aa0103e2 	mov	x2, x1
+   6562c:	aa0003e1 	mov	x1, x0
+   65630:	f94023a0 	ldr	x0, [x29, #64]
+   65634:	97fec127 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='pathToGatewayStatus'
+   65638:	f9401fa0 	ldr	x0, [x29, #56]
+   6563c:	39c1c000 	ldrsb	w0, [x0, #112]
+   65640:	3100041f 	cmn	w0, #0x1
+   65644:	540000a0 	b.eq	65658 <ddm_createRssiInfo@@Base+0x3f0>  // b.none
+   65648:	f9401fa0 	ldr	x0, [x29, #56]
+   6564c:	39c1c000 	ldrsb	w0, [x0, #112]
+   65650:	1e620000 	scvtf	d0, w0
+   65654:	14000002 	b	6565c <ddm_createRssiInfo@@Base+0x3f4>
+   65658:	2f00e400 	movi	d0, #0x0
+   6565c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65660:	91204000 	add	x0, x0, #0x810
+   65664:	aa0003e1 	mov	x1, x0
+   65668:	f94023a0 	ldr	x0, [x29, #64]
+   6566c:	97fec1d9 	bl	15dd0 <cJSON_AddNumberToObject@plt> ; heuristic args: x1='pathToGatewayQuality'
+   65670:	f9401fa0 	ldr	x0, [x29, #56]
+   65674:	b9407400 	ldr	w0, [x0, #116]
+   65678:	3100041f 	cmn	w0, #0x1
+   6567c:	540000a0 	b.eq	65690 <ddm_createRssiInfo@@Base+0x428>  // b.none
+   65680:	f9401fa0 	ldr	x0, [x29, #56]
+   65684:	b9407400 	ldr	w0, [x0, #116]
+   65688:	1e620000 	scvtf	d0, w0
+   6568c:	14000002 	b	65694 <ddm_createRssiInfo@@Base+0x42c>
+   65690:	2f00e400 	movi	d0, #0x0
+   65694:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65698:	9120a000 	add	x0, x0, #0x828
+   6569c:	aa0003e1 	mov	x1, x0
+   656a0:	f94023a0 	ldr	x0, [x29, #64]
+   656a4:	97fec1cb 	bl	15dd0 <cJSON_AddNumberToObject@plt> ; heuristic args: x1='pathToGatewayMetric'
+   656a8:	f94023a1 	ldr	x1, [x29, #64]
+   656ac:	f9401ba0 	ldr	x0, [x29, #48]
+   656b0:	97fec32c 	bl	16360 <cJSON_AddItemToArray@plt>
+   656b4:	d503201f 	nop
+   656b8:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   656bc:	f946b400 	ldr	x0, [x0, #3432]
+   656c0:	f94037a1 	ldr	x1, [x29, #104]
+   656c4:	f9400000 	ldr	x0, [x0]
+   656c8:	ca000020 	eor	x0, x1, x0
+   656cc:	f100001f 	cmp	x0, #0x0
+   656d0:	54000040 	b.eq	656d8 <ddm_createRssiInfo@@Base+0x470>  // b.none
+   656d4:	97fec0cb 	bl	15a00 <__stack_chk_fail@plt>
+   656d8:	a8c77bfd 	ldp	x29, x30, [sp], #112
+   656dc:	d65f03c0 	ret
+
+00000000000656e0 <ddm_sendAllDeviceInfo@@Base>:
+   656e0:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+   656e4:	910003fd 	mov	x29, sp
+   656e8:	f9000fa0 	str	x0, [x29, #24]
+   656ec:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   656f0:	f946b400 	ldr	x0, [x0, #3432]
+   656f4:	f9400001 	ldr	x1, [x0]
+   656f8:	f9001fa1 	str	x1, [x29, #56]
+   656fc:	d2800001 	mov	x1, #0x0                   	// #0
+   65700:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65704:	f9469c00 	ldr	x0, [x0, #3384]
+   65708:	b9400000 	ldr	w0, [x0]
+   6570c:	7100001f 	cmp	w0, #0x0
+   65710:	54000060 	b.eq	6571c <ddm_sendAllDeviceInfo@@Base+0x3c>  // b.none
+   65714:	52800000 	mov	w0, #0x0                   	// #0
+   65718:	140000b3 	b	659e4 <ddm_sendAllDeviceInfo@@Base+0x304>
+   6571c:	f9400fa0 	ldr	x0, [x29, #24]
+   65720:	f100001f 	cmp	x0, #0x0
+   65724:	54000141 	b.ne	6574c <ddm_sendAllDeviceInfo@@Base+0x6c>  // b.any
+   65728:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6572c:	9104c001 	add	x1, x0, #0x130
+   65730:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65734:	91066000 	add	x0, x0, #0x198
+   65738:	aa0103e2 	mov	x2, x1
+   6573c:	528039a1 	mov	w1, #0x1cd                 	// #461
+   65740:	97fec338 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=461, x2='Null pointer passed!'
+   65744:	12800000 	mov	w0, #0xffffffff            	// #-1
+   65748:	140000a7 	b	659e4 <ddm_sendAllDeviceInfo@@Base+0x304>
+   6574c:	f90013bf 	str	xzr, [x29, #32]
+   65750:	f90017bf 	str	xzr, [x29, #40]
+   65754:	f9001bbf 	str	xzr, [x29, #48]
+   65758:	97fec0ee 	bl	15b10 <cJSON_CreateObject@plt>
+   6575c:	f90013a0 	str	x0, [x29, #32]
+   65760:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65764:	f9469c00 	ldr	x0, [x0, #3384]
+   65768:	91016c01 	add	x1, x0, #0x5b
+   6576c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65770:	91158000 	add	x0, x0, #0x560
+   65774:	aa0103e2 	mov	x2, x1
+   65778:	aa0003e1 	mov	x1, x0
+   6577c:	f94013a0 	ldr	x0, [x29, #32]
+   65780:	97fec0d4 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   65784:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65788:	91210001 	add	x1, x0, #0x840
+   6578c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65790:	91214000 	add	x0, x0, #0x850
+   65794:	aa0103e2 	mov	x2, x1
+   65798:	aa0003e1 	mov	x1, x0
+   6579c:	f94013a0 	ldr	x0, [x29, #32]
+   657a0:	97fec0cc 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='AllDeviceInfo'
+   657a4:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   657a8:	91216001 	add	x1, x0, #0x858
+   657ac:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   657b0:	91218000 	add	x0, x0, #0x860
+   657b4:	aa0103e2 	mov	x2, x1
+   657b8:	aa0003e1 	mov	x1, x0
+   657bc:	f94013a0 	ldr	x0, [x29, #32]
+   657c0:	97fec0c4 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='version', x2='6.1'
+   657c4:	97fec37f 	bl	165c0 <cJSON_CreateArray@plt>
+   657c8:	f90017a0 	str	x0, [x29, #40]
+   657cc:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   657d0:	9121a000 	add	x0, x0, #0x868
+   657d4:	f94017a2 	ldr	x2, [x29, #40]
+   657d8:	aa0003e1 	mov	x1, x0
+   657dc:	f94013a0 	ldr	x0, [x29, #32]
+   657e0:	97fec2e8 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='payload'
+   657e4:	97ff093d 	bl	27cd8 <ddm_btreeRdLock@@Base>
+   657e8:	7100001f 	cmp	w0, #0x0
+   657ec:	54000180 	b.eq	6581c <ddm_sendAllDeviceInfo@@Base+0x13c>  // b.none
+   657f0:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   657f4:	9121c001 	add	x1, x0, #0x870
+   657f8:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   657fc:	91066000 	add	x0, x0, #0x198
+   65800:	aa0103e2 	mov	x2, x1
+   65804:	52803ba1 	mov	w1, #0x1dd                 	// #477
+   65808:	97fec306 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=477, x2='btree lock failed\n'
+   6580c:	f94013a0 	ldr	x0, [x29, #32]
+   65810:	97fec0b8 	bl	15af0 <cJSON_Delete@plt>
+   65814:	12800000 	mov	w0, #0xffffffff            	// #-1
+   65818:	14000073 	b	659e4 <ddm_sendAllDeviceInfo@@Base+0x304>
+   6581c:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65820:	f947b000 	ldr	x0, [x0, #3936]
+   65824:	f9400000 	ldr	x0, [x0]
+   65828:	f100001f 	cmp	x0, #0x0
+   6582c:	540001e0 	b.eq	65868 <ddm_sendAllDeviceInfo@@Base+0x188>  // b.none
+   65830:	f0ffffe0 	adrp	x0, 64000 <ddm_unixClientInit@@Base+0x88>
+   65834:	911cf000 	add	x0, x0, #0x73c
+   65838:	aa0003e2 	mov	x2, x0
+   6583c:	f94017a1 	ldr	x1, [x29, #40]
+   65840:	f9400fa0 	ldr	x0, [x29, #24]
+   65844:	97fec19f 	bl	15ec0 <btree_walk@plt>
+   65848:	14000008 	b	65868 <ddm_sendAllDeviceInfo@@Base+0x188>
+   6584c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65850:	91222001 	add	x1, x0, #0x888
+   65854:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65858:	91066000 	add	x0, x0, #0x198
+   6585c:	aa0103e2 	mov	x2, x1
+   65860:	52803ca1 	mov	w1, #0x1e5                 	// #485
+   65864:	97fec2ef 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=485, x2='btree unlock failed\n'
+   65868:	97ff095a 	bl	27dd0 <ddm_btreeUnLock@@Base>
+   6586c:	7100001f 	cmp	w0, #0x0
+   65870:	54fffee1 	b.ne	6584c <ddm_sendAllDeviceInfo@@Base+0x16c>  // b.any
+   65874:	f94017a0 	ldr	x0, [x29, #40]
+   65878:	97fffac5 	bl	6438c <ddm_getJsonArraySize@@Base>
+   6587c:	7100001f 	cmp	w0, #0x0
+   65880:	54000101 	b.ne	658a0 <ddm_sendAllDeviceInfo@@Base+0x1c0>  // b.any
+   65884:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65888:	91228001 	add	x1, x0, #0x8a0
+   6588c:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65890:	91066000 	add	x0, x0, #0x198
+   65894:	aa0103e2 	mov	x2, x1
+   65898:	52803d01 	mov	w1, #0x1e8                 	// #488
+   6589c:	97febfe1 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=488, x2='Empty Payload Found for All Device Info. Sending Empty Payload Event...'
+   658a0:	f94013a0 	ldr	x0, [x29, #32]
+   658a4:	97fec30f 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   658a8:	f9001ba0 	str	x0, [x29, #48]
+   658ac:	f9401ba0 	ldr	x0, [x29, #48]
+   658b0:	f100001f 	cmp	x0, #0x0
+   658b4:	54000920 	b.eq	659d8 <ddm_sendAllDeviceInfo@@Base+0x2f8>  // b.none
+   658b8:	52800200 	mov	w0, #0x10                  	// #16
+   658bc:	97fef74d 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=16
+   658c0:	12001c00 	and	w0, w0, #0xff
+   658c4:	7100001f 	cmp	w0, #0x0
+   658c8:	54000300 	b.eq	65928 <ddm_sendAllDeviceInfo@@Base+0x248>  // b.none
+   658cc:	f9401ba0 	ldr	x0, [x29, #48]
+   658d0:	97fec2bc 	bl	163c0 <wsappl_send@plt>
+   658d4:	7100001f 	cmp	w0, #0x0
+   658d8:	5400016a 	b.ge	65904 <ddm_sendAllDeviceInfo@@Base+0x224>  // b.tcont
+   658dc:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   658e0:	9123a001 	add	x1, x0, #0x8e8
+   658e4:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   658e8:	91066000 	add	x0, x0, #0x198
+   658ec:	aa0103e2 	mov	x2, x1
+   658f0:	52803dc1 	mov	w1, #0x1ee                 	// #494
+   658f4:	97febfcb 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=494, x2='Unable to send All Device Info on websocket'
+   658f8:	528001e0 	mov	w0, #0xf                   	// #15
+   658fc:	97ff3f4e 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=15
+   65900:	1400000a 	b	65928 <ddm_sendAllDeviceInfo@@Base+0x248>
+   65904:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65908:	91246001 	add	x1, x0, #0x918
+   6590c:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65910:	91066000 	add	x0, x0, #0x198
+   65914:	aa0103e2 	mov	x2, x1
+   65918:	52803e21 	mov	w1, #0x1f1                 	// #497
+   6591c:	97febfc1 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=497, x2='All Device Info Sent to Websocket'
+   65920:	528001c0 	mov	w0, #0xe                   	// #14
+   65924:	97ff3f44 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=14
+   65928:	52802000 	mov	w0, #0x100                 	// #256
+   6592c:	97fef731 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=256
+   65930:	12001c00 	and	w0, w0, #0xff
+   65934:	7100001f 	cmp	w0, #0x0
+   65938:	540003c0 	b.eq	659b0 <ddm_sendAllDeviceInfo@@Base+0x2d0>  // b.none
+   6593c:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65940:	f9478c00 	ldr	x0, [x0, #3864]
+   65944:	f9401ba1 	ldr	x1, [x29, #48]
+   65948:	97fff8f9 	bl	63d2c <ddm_unixClientSend@@Base>
+   6594c:	7100001f 	cmp	w0, #0x0
+   65950:	540001a0 	b.eq	65984 <ddm_sendAllDeviceInfo@@Base+0x2a4>  // b.none
+   65954:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65958:	f9478c00 	ldr	x0, [x0, #3864]
+   6595c:	91002002 	add	x2, x0, #0x8
+   65960:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65964:	91250001 	add	x1, x0, #0x940
+   65968:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6596c:	91066000 	add	x0, x0, #0x198
+   65970:	aa0203e3 	mov	x3, x2
+   65974:	aa0103e2 	mov	x2, x1
+   65978:	52803ee1 	mov	w1, #0x1f7                 	// #503
+   6597c:	97fec2a9 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=503, x2='Unable to send All Device info on unixPath[%s]'
+   65980:	1400000c 	b	659b0 <ddm_sendAllDeviceInfo@@Base+0x2d0>
+   65984:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65988:	f9478c00 	ldr	x0, [x0, #3864]
+   6598c:	91002002 	add	x2, x0, #0x8
+   65990:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65994:	9125c001 	add	x1, x0, #0x970
+   65998:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6599c:	91066000 	add	x0, x0, #0x198
+   659a0:	aa0203e3 	mov	x3, x2
+   659a4:	aa0103e2 	mov	x2, x1
+   659a8:	52803f21 	mov	w1, #0x1f9                 	// #505
+   659ac:	97febf9d 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=505, x2='All Device Info Sent to unix socket[%s]'
+   659b0:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   659b4:	91266001 	add	x1, x0, #0x998
+   659b8:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   659bc:	91066000 	add	x0, x0, #0x198
+   659c0:	f9401ba3 	ldr	x3, [x29, #48]
+   659c4:	aa0103e2 	mov	x2, x1
+   659c8:	52803f81 	mov	w1, #0x1fc                 	// #508
+   659cc:	97febf95 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendAllDeviceInfo', x1=508, x2='All Device Info[%s]'
+   659d0:	f9401ba0 	ldr	x0, [x29, #48]
+   659d4:	97fec09f 	bl	15c50 <free@plt>
+   659d8:	f94013a0 	ldr	x0, [x29, #32]
+   659dc:	97fec045 	bl	15af0 <cJSON_Delete@plt>
+   659e0:	52800000 	mov	w0, #0x0                   	// #0
+   659e4:	d0000321 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   659e8:	f946b421 	ldr	x1, [x1, #3432]
+   659ec:	f9401fa2 	ldr	x2, [x29, #56]
+   659f0:	f9400021 	ldr	x1, [x1]
+   659f4:	ca010041 	eor	x1, x2, x1
+   659f8:	f100003f 	cmp	x1, #0x0
+   659fc:	54000040 	b.eq	65a04 <ddm_sendAllDeviceInfo@@Base+0x324>  // b.none
+   65a00:	97fec000 	bl	15a00 <__stack_chk_fail@plt> ; heuristic args: x0=0
+   65a04:	a8c47bfd 	ldp	x29, x30, [sp], #64
+   65a08:	d65f03c0 	ret
+
+0000000000065a0c <ddm_sendDeviceStatus@@Base>:
+   65a0c:	a9b97bfd 	stp	x29, x30, [sp, #-112]!
+   65a10:	910003fd 	mov	x29, sp
+   65a14:	f9000fa0 	str	x0, [x29, #24]
+   65a18:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65a1c:	f946b400 	ldr	x0, [x0, #3432]
+   65a20:	f9400001 	ldr	x1, [x0]
+   65a24:	f90037a1 	str	x1, [x29, #104]
+   65a28:	d2800001 	mov	x1, #0x0                   	// #0
+   65a2c:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65a30:	f9469c00 	ldr	x0, [x0, #3384]
+   65a34:	b9400000 	ldr	w0, [x0]
+   65a38:	7100001f 	cmp	w0, #0x0
+   65a3c:	54000060 	b.eq	65a48 <ddm_sendDeviceStatus@@Base+0x3c>  // b.none
+   65a40:	52800000 	mov	w0, #0x0                   	// #0
+   65a44:	140000e9 	b	65de8 <ddm_sendDeviceStatus@@Base+0x3dc>
+   65a48:	f9400fa0 	ldr	x0, [x29, #24]
+   65a4c:	f100001f 	cmp	x0, #0x0
+   65a50:	54000141 	b.ne	65a78 <ddm_sendDeviceStatus@@Base+0x6c>  // b.any
+   65a54:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65a58:	9104c001 	add	x1, x0, #0x130
+   65a5c:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65a60:	9106c000 	add	x0, x0, #0x1b0
+   65a64:	aa0103e2 	mov	x2, x1
+   65a68:	52804101 	mov	w1, #0x208                 	// #520
+   65a6c:	97fec26d 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=520, x2='Null pointer passed!'
+   65a70:	12800000 	mov	w0, #0xffffffff            	// #-1
+   65a74:	140000dd 	b	65de8 <ddm_sendDeviceStatus@@Base+0x3dc>
+   65a78:	12800000 	mov	w0, #0xffffffff            	// #-1
+   65a7c:	b9002fa0 	str	w0, [x29, #44]
+   65a80:	b90037bf 	str	wzr, [x29, #52]
+   65a84:	b90033bf 	str	wzr, [x29, #48]
+   65a88:	f9001fbf 	str	xzr, [x29, #56]
+   65a8c:	f90023bf 	str	xzr, [x29, #64]
+   65a90:	f90027bf 	str	xzr, [x29, #72]
+   65a94:	f9002bbf 	str	xzr, [x29, #80]
+   65a98:	f9400fa0 	ldr	x0, [x29, #24]
+   65a9c:	f9002fa0 	str	x0, [x29, #88]
+   65aa0:	f9402fa0 	ldr	x0, [x29, #88]
+   65aa4:	f9400000 	ldr	x0, [x0]
+   65aa8:	b90037a0 	str	w0, [x29, #52]
+   65aac:	b94037a0 	ldr	w0, [x29, #52]
+   65ab0:	7100001f 	cmp	w0, #0x0
+   65ab4:	54000141 	b.ne	65adc <ddm_sendDeviceStatus@@Base+0xd0>  // b.any
+   65ab8:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65abc:	9126c001 	add	x1, x0, #0x9b0
+   65ac0:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65ac4:	9106c000 	add	x0, x0, #0x1b0
+   65ac8:	aa0103e2 	mov	x2, x1
+   65acc:	52804261 	mov	w1, #0x213                 	// #531
+   65ad0:	97fec254 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=531, x2='No Device in data'
+   65ad4:	b9402fa0 	ldr	w0, [x29, #44]
+   65ad8:	140000c4 	b	65de8 <ddm_sendDeviceStatus@@Base+0x3dc>
+   65adc:	97fec00d 	bl	15b10 <cJSON_CreateObject@plt>
+   65ae0:	f90027a0 	str	x0, [x29, #72]
+   65ae4:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65ae8:	f9469c00 	ldr	x0, [x0, #3384]
+   65aec:	91016c01 	add	x1, x0, #0x5b
+   65af0:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65af4:	91158000 	add	x0, x0, #0x560
+   65af8:	aa0103e2 	mov	x2, x1
+   65afc:	aa0003e1 	mov	x1, x0
+   65b00:	f94027a0 	ldr	x0, [x29, #72]
+   65b04:	97febff3 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   65b08:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65b0c:	91272001 	add	x1, x0, #0x9c8
+   65b10:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65b14:	91214000 	add	x0, x0, #0x850
+   65b18:	aa0103e2 	mov	x2, x1
+   65b1c:	aa0003e1 	mov	x1, x0
+   65b20:	f94027a0 	ldr	x0, [x29, #72]
+   65b24:	97febfeb 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='DeviceStatusUpdate'
+   65b28:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65b2c:	91216001 	add	x1, x0, #0x858
+   65b30:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65b34:	91218000 	add	x0, x0, #0x860
+   65b38:	aa0103e2 	mov	x2, x1
+   65b3c:	aa0003e1 	mov	x1, x0
+   65b40:	f94027a0 	ldr	x0, [x29, #72]
+   65b44:	97febfe3 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='version', x2='6.1'
+   65b48:	97fec29e 	bl	165c0 <cJSON_CreateArray@plt>
+   65b4c:	f9002ba0 	str	x0, [x29, #80]
+   65b50:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65b54:	9121a000 	add	x0, x0, #0x868
+   65b58:	f9402ba2 	ldr	x2, [x29, #80]
+   65b5c:	aa0003e1 	mov	x1, x0
+   65b60:	f94027a0 	ldr	x0, [x29, #72]
+   65b64:	97fec207 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='payload'
+   65b68:	97ff085c 	bl	27cd8 <ddm_btreeRdLock@@Base>
+   65b6c:	7100001f 	cmp	w0, #0x0
+   65b70:	54000180 	b.eq	65ba0 <ddm_sendDeviceStatus@@Base+0x194>  // b.none
+   65b74:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65b78:	9121c001 	add	x1, x0, #0x870
+   65b7c:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65b80:	9106c000 	add	x0, x0, #0x1b0
+   65b84:	aa0103e2 	mov	x2, x1
+   65b88:	52804421 	mov	w1, #0x221                 	// #545
+   65b8c:	97fec225 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=545, x2='btree lock failed\n'
+   65b90:	f94027a0 	ldr	x0, [x29, #72]
+   65b94:	97febfd7 	bl	15af0 <cJSON_Delete@plt>
+   65b98:	b9402fa0 	ldr	w0, [x29, #44]
+   65b9c:	14000093 	b	65de8 <ddm_sendDeviceStatus@@Base+0x3dc>
+   65ba0:	b90033bf 	str	wzr, [x29, #48]
+   65ba4:	14000024 	b	65c34 <ddm_sendDeviceStatus@@Base+0x228>
+   65ba8:	b94033a1 	ldr	w1, [x29, #48]
+   65bac:	aa0103e0 	mov	x0, x1
+   65bb0:	d37ff800 	lsl	x0, x0, #1
+   65bb4:	8b010000 	add	x0, x0, x1
+   65bb8:	d37ef400 	lsl	x0, x0, #2
+   65bbc:	cb010000 	sub	x0, x0, x1
+   65bc0:	d37cec00 	lsl	x0, x0, #4
+   65bc4:	f9402fa1 	ldr	x1, [x29, #88]
+   65bc8:	8b000020 	add	x0, x1, x0
+   65bcc:	91002000 	add	x0, x0, #0x8
+   65bd0:	f90033a0 	str	x0, [x29, #96]
+   65bd4:	f94033a0 	ldr	x0, [x29, #96]
+   65bd8:	39406000 	ldrb	w0, [x0, #24]
+   65bdc:	7100041f 	cmp	w0, #0x1
+   65be0:	54000241 	b.ne	65c28 <ddm_sendDeviceStatus@@Base+0x21c>  // b.any
+   65be4:	f94033a0 	ldr	x0, [x29, #96]
+   65be8:	97ff0682 	bl	275f0 <ddm_getDeviceNode@@Base>
+   65bec:	f9001fa0 	str	x0, [x29, #56]
+   65bf0:	f9401fa0 	ldr	x0, [x29, #56]
+   65bf4:	f100001f 	cmp	x0, #0x0
+   65bf8:	54000121 	b.ne	65c1c <ddm_sendDeviceStatus@@Base+0x210>  // b.any
+   65bfc:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65c00:	91278001 	add	x1, x0, #0x9e0
+   65c04:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65c08:	9106c000 	add	x0, x0, #0x1b0
+   65c0c:	aa0103e2 	mov	x2, x1
+   65c10:	52804561 	mov	w1, #0x22b                 	// #555
+   65c14:	97fec203 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=555, x2='Unable to get node from btree'
+   65c18:	14000004 	b	65c28 <ddm_sendDeviceStatus@@Base+0x21c>
+   65c1c:	f9401fa1 	ldr	x1, [x29, #56]
+   65c20:	f9402ba0 	ldr	x0, [x29, #80]
+   65c24:	97fffac6 	bl	6473c <ddm_createDeviceInfo@@Base>
+   65c28:	b94033a0 	ldr	w0, [x29, #48]
+   65c2c:	11000400 	add	w0, w0, #0x1
+   65c30:	b90033a0 	str	w0, [x29, #48]
+   65c34:	b94033a1 	ldr	w1, [x29, #48]
+   65c38:	b94037a0 	ldr	w0, [x29, #52]
+   65c3c:	6b00003f 	cmp	w1, w0
+   65c40:	54fffb43 	b.cc	65ba8 <ddm_sendDeviceStatus@@Base+0x19c>  // b.lo, b.ul, b.last
+   65c44:	14000008 	b	65c64 <ddm_sendDeviceStatus@@Base+0x258>
+   65c48:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65c4c:	91222001 	add	x1, x0, #0x888
+   65c50:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65c54:	9106c000 	add	x0, x0, #0x1b0
+   65c58:	aa0103e2 	mov	x2, x1
+   65c5c:	52804641 	mov	w1, #0x232                 	// #562
+   65c60:	97fec1f0 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=562, x2='btree unlock failed\n'
+   65c64:	97ff085b 	bl	27dd0 <ddm_btreeUnLock@@Base>
+   65c68:	7100001f 	cmp	w0, #0x0
+   65c6c:	54fffee1 	b.ne	65c48 <ddm_sendDeviceStatus@@Base+0x23c>  // b.any
+   65c70:	f9402ba0 	ldr	x0, [x29, #80]
+   65c74:	97fff9c6 	bl	6438c <ddm_getJsonArraySize@@Base>
+   65c78:	7100001f 	cmp	w0, #0x0
+   65c7c:	54000a20 	b.eq	65dc0 <ddm_sendDeviceStatus@@Base+0x3b4>  // b.none
+   65c80:	f94027a0 	ldr	x0, [x29, #72]
+   65c84:	97fec217 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   65c88:	f90023a0 	str	x0, [x29, #64]
+   65c8c:	f94023a0 	ldr	x0, [x29, #64]
+   65c90:	f100001f 	cmp	x0, #0x0
+   65c94:	54000920 	b.eq	65db8 <ddm_sendDeviceStatus@@Base+0x3ac>  // b.none
+   65c98:	52800200 	mov	w0, #0x10                  	// #16
+   65c9c:	97fef655 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=16
+   65ca0:	12001c00 	and	w0, w0, #0xff
+   65ca4:	7100001f 	cmp	w0, #0x0
+   65ca8:	54000300 	b.eq	65d08 <ddm_sendDeviceStatus@@Base+0x2fc>  // b.none
+   65cac:	f94023a0 	ldr	x0, [x29, #64]
+   65cb0:	97fec1c4 	bl	163c0 <wsappl_send@plt>
+   65cb4:	7100001f 	cmp	w0, #0x0
+   65cb8:	5400016a 	b.ge	65ce4 <ddm_sendDeviceStatus@@Base+0x2d8>  // b.tcont
+   65cbc:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65cc0:	91280001 	add	x1, x0, #0xa00
+   65cc4:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65cc8:	9106c000 	add	x0, x0, #0x1b0
+   65ccc:	aa0103e2 	mov	x2, x1
+   65cd0:	52804721 	mov	w1, #0x239                 	// #569
+   65cd4:	97febed3 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=569, x2='Unable to send device status on websocket'
+   65cd8:	52800220 	mov	w0, #0x11                  	// #17
+   65cdc:	97ff3e56 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=17
+   65ce0:	1400000a 	b	65d08 <ddm_sendDeviceStatus@@Base+0x2fc>
+   65ce4:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65ce8:	9128c001 	add	x1, x0, #0xa30
+   65cec:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65cf0:	9106c000 	add	x0, x0, #0x1b0
+   65cf4:	aa0103e2 	mov	x2, x1
+   65cf8:	528047a1 	mov	w1, #0x23d                 	// #573
+   65cfc:	97febec9 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=573, x2='Device Status Sent to Websocket'
+   65d00:	52800200 	mov	w0, #0x10                  	// #16
+   65d04:	97ff3e4c 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=16
+   65d08:	52802000 	mov	w0, #0x100                 	// #256
+   65d0c:	97fef639 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=256
+   65d10:	12001c00 	and	w0, w0, #0xff
+   65d14:	7100001f 	cmp	w0, #0x0
+   65d18:	540003c0 	b.eq	65d90 <ddm_sendDeviceStatus@@Base+0x384>  // b.none
+   65d1c:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65d20:	f9478c00 	ldr	x0, [x0, #3864]
+   65d24:	f94023a1 	ldr	x1, [x29, #64]
+   65d28:	97fff801 	bl	63d2c <ddm_unixClientSend@@Base>
+   65d2c:	7100001f 	cmp	w0, #0x0
+   65d30:	540001a0 	b.eq	65d64 <ddm_sendDeviceStatus@@Base+0x358>  // b.none
+   65d34:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65d38:	f9478c00 	ldr	x0, [x0, #3864]
+   65d3c:	91002002 	add	x2, x0, #0x8
+   65d40:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65d44:	91294001 	add	x1, x0, #0xa50
+   65d48:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65d4c:	9106c000 	add	x0, x0, #0x1b0
+   65d50:	aa0203e3 	mov	x3, x2
+   65d54:	aa0103e2 	mov	x2, x1
+   65d58:	52804861 	mov	w1, #0x243                 	// #579
+   65d5c:	97fec1b1 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=579, x2='Unable to send device status on unixPath[%s]'
+   65d60:	1400000c 	b	65d90 <ddm_sendDeviceStatus@@Base+0x384>
+   65d64:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65d68:	f9478c00 	ldr	x0, [x0, #3864]
+   65d6c:	91002002 	add	x2, x0, #0x8
+   65d70:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65d74:	912a0001 	add	x1, x0, #0xa80
+   65d78:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65d7c:	9106c000 	add	x0, x0, #0x1b0
+   65d80:	aa0203e3 	mov	x3, x2
+   65d84:	aa0103e2 	mov	x2, x1
+   65d88:	528048a1 	mov	w1, #0x245                 	// #581
+   65d8c:	97febea5 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=581, x2='Device status Sent to unix socket[%s]'
+   65d90:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65d94:	912aa001 	add	x1, x0, #0xaa8
+   65d98:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65d9c:	9106c000 	add	x0, x0, #0x1b0
+   65da0:	f94023a3 	ldr	x3, [x29, #64]
+   65da4:	aa0103e2 	mov	x2, x1
+   65da8:	52804901 	mov	w1, #0x248                 	// #584
+   65dac:	97febe9d 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=584, x2='Device Status[%s]'
+   65db0:	f94023a0 	ldr	x0, [x29, #64]
+   65db4:	97febfa7 	bl	15c50 <free@plt>
+   65db8:	b9002fbf 	str	wzr, [x29, #44]
+   65dbc:	14000008 	b	65ddc <ddm_sendDeviceStatus@@Base+0x3d0>
+   65dc0:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65dc4:	912b0001 	add	x1, x0, #0xac0
+   65dc8:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65dcc:	9106c000 	add	x0, x0, #0x1b0
+   65dd0:	aa0103e2 	mov	x2, x1
+   65dd4:	528049a1 	mov	w1, #0x24d                 	// #589
+   65dd8:	97febe92 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceStatus', x1=589, x2='Empty Payload Found. Discarding Event send to ws...'
+   65ddc:	f94027a0 	ldr	x0, [x29, #72]
+   65de0:	97febf44 	bl	15af0 <cJSON_Delete@plt>
+   65de4:	b9402fa0 	ldr	w0, [x29, #44]
+   65de8:	d0000321 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65dec:	f946b421 	ldr	x1, [x1, #3432]
+   65df0:	f94037a2 	ldr	x2, [x29, #104]
+   65df4:	f9400021 	ldr	x1, [x1]
+   65df8:	ca010041 	eor	x1, x2, x1
+   65dfc:	f100003f 	cmp	x1, #0x0
+   65e00:	54000040 	b.eq	65e08 <ddm_sendDeviceStatus@@Base+0x3fc>  // b.none
+   65e04:	97febeff 	bl	15a00 <__stack_chk_fail@plt>
+   65e08:	a8c77bfd 	ldp	x29, x30, [sp], #112
+   65e0c:	d65f03c0 	ret
+
+0000000000065e10 <ddm_sendRssiInfo@@Base>:
+   65e10:	a9b87bfd 	stp	x29, x30, [sp, #-128]!
+   65e14:	910003fd 	mov	x29, sp
+   65e18:	f9000fa0 	str	x0, [x29, #24]
+   65e1c:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65e20:	f946b400 	ldr	x0, [x0, #3432]
+   65e24:	f9400001 	ldr	x1, [x0]
+   65e28:	f9003fa1 	str	x1, [x29, #120]
+   65e2c:	d2800001 	mov	x1, #0x0                   	// #0
+   65e30:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65e34:	f9469c00 	ldr	x0, [x0, #3384]
+   65e38:	b9400000 	ldr	w0, [x0]
+   65e3c:	7100001f 	cmp	w0, #0x0
+   65e40:	54000060 	b.eq	65e4c <ddm_sendRssiInfo@@Base+0x3c>  // b.none
+   65e44:	52800000 	mov	w0, #0x0                   	// #0
+   65e48:	140000e1 	b	661cc <ddm_sendRssiInfo@@Base+0x3bc>
+   65e4c:	f9400fa0 	ldr	x0, [x29, #24]
+   65e50:	f100001f 	cmp	x0, #0x0
+   65e54:	54000141 	b.ne	65e7c <ddm_sendRssiInfo@@Base+0x6c>  // b.any
+   65e58:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65e5c:	9104c001 	add	x1, x0, #0x130
+   65e60:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65e64:	91072000 	add	x0, x0, #0x1c8
+   65e68:	aa0103e2 	mov	x2, x1
+   65e6c:	52804b01 	mov	w1, #0x258                 	// #600
+   65e70:	97febe6c 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendRssiInfo', x1=600, x2='Null pointer passed!'
+   65e74:	12800000 	mov	w0, #0xffffffff            	// #-1
+   65e78:	140000d5 	b	661cc <ddm_sendRssiInfo@@Base+0x3bc>
+   65e7c:	12800000 	mov	w0, #0xffffffff            	// #-1
+   65e80:	b90027a0 	str	w0, [x29, #36]
+   65e84:	b9002fbf 	str	wzr, [x29, #44]
+   65e88:	b9002bbf 	str	wzr, [x29, #40]
+   65e8c:	f9001bbf 	str	xzr, [x29, #48]
+   65e90:	a905ffbf 	stp	xzr, xzr, [x29, #88]
+   65e94:	a906ffbf 	stp	xzr, xzr, [x29, #104]
+   65e98:	f9001fbf 	str	xzr, [x29, #56]
+   65e9c:	f90023bf 	str	xzr, [x29, #64]
+   65ea0:	f9400fa0 	ldr	x0, [x29, #24]
+   65ea4:	f90027a0 	str	x0, [x29, #72]
+   65ea8:	f94027a0 	ldr	x0, [x29, #72]
+   65eac:	b9400000 	ldr	w0, [x0]
+   65eb0:	b9002fa0 	str	w0, [x29, #44]
+   65eb4:	b9402fa0 	ldr	w0, [x29, #44]
+   65eb8:	7100001f 	cmp	w0, #0x0
+   65ebc:	54000141 	b.ne	65ee4 <ddm_sendRssiInfo@@Base+0xd4>  // b.any
+   65ec0:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65ec4:	9126c001 	add	x1, x0, #0x9b0
+   65ec8:	900001a0 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   65ecc:	91072000 	add	x0, x0, #0x1c8
+   65ed0:	aa0103e2 	mov	x2, x1
+   65ed4:	52804c61 	mov	w1, #0x263                 	// #611
+   65ed8:	97febe52 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendRssiInfo', x1=611, x2='No Device in data'
+   65edc:	b94027a0 	ldr	w0, [x29, #36]
+   65ee0:	140000bb 	b	661cc <ddm_sendRssiInfo@@Base+0x3bc>
+   65ee4:	97febf0b 	bl	15b10 <cJSON_CreateObject@plt>
+   65ee8:	f9001fa0 	str	x0, [x29, #56]
+   65eec:	d0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   65ef0:	f9469c00 	ldr	x0, [x0, #3384]
+   65ef4:	91016c01 	add	x1, x0, #0x5b
+   65ef8:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65efc:	91158000 	add	x0, x0, #0x560
+   65f00:	aa0103e2 	mov	x2, x1
+   65f04:	aa0003e1 	mov	x1, x0
+   65f08:	f9401fa0 	ldr	x0, [x29, #56]
+   65f0c:	97febef1 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   65f10:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65f14:	912be001 	add	x1, x0, #0xaf8
+   65f18:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65f1c:	91214000 	add	x0, x0, #0x850
+   65f20:	aa0103e2 	mov	x2, x1
+   65f24:	aa0003e1 	mov	x1, x0
+   65f28:	f9401fa0 	ldr	x0, [x29, #56]
+   65f2c:	97febee9 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='Wifi_Associated_Devices_Update'
+   65f30:	d2800000 	mov	x0, #0x0                   	// #0
+   65f34:	97fec08f 	bl	16170 <time@plt> ; heuristic args: x0=0
+   65f38:	aa0003e2 	mov	x2, x0
+   65f3c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65f40:	911b6001 	add	x1, x0, #0x6d8
+   65f44:	910163a0 	add	x0, x29, #0x58
+   65f48:	aa0203e3 	mov	x3, x2
+   65f4c:	aa0103e2 	mov	x2, x1
+   65f50:	d28003e1 	mov	x1, #0x1f                  	// #31
+   65f54:	97fec05f 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%lu'
+   65f58:	910163a1 	add	x1, x29, #0x58
+   65f5c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65f60:	912c6000 	add	x0, x0, #0xb18
+   65f64:	aa0103e2 	mov	x2, x1
+   65f68:	aa0003e1 	mov	x1, x0
+   65f6c:	f9401fa0 	ldr	x0, [x29, #56]
+   65f70:	97febed8 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='timestamp'
+   65f74:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65f78:	91216001 	add	x1, x0, #0x858
+   65f7c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65f80:	91218000 	add	x0, x0, #0x860
+   65f84:	aa0103e2 	mov	x2, x1
+   65f88:	aa0003e1 	mov	x1, x0
+   65f8c:	f9401fa0 	ldr	x0, [x29, #56]
+   65f90:	97febed0 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='version', x2='6.1'
+   65f94:	97fec18b 	bl	165c0 <cJSON_CreateArray@plt>
+   65f98:	f90023a0 	str	x0, [x29, #64]
+   65f9c:	f0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   65fa0:	9121a000 	add	x0, x0, #0x868
+   65fa4:	f94023a2 	ldr	x2, [x29, #64]
+   65fa8:	aa0003e1 	mov	x1, x0
+   65fac:	f9401fa0 	ldr	x0, [x29, #56]
+   65fb0:	97fec0f4 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='payload'
+   65fb4:	b9002bbf 	str	wzr, [x29, #40]
+   65fb8:	14000011 	b	65ffc <ddm_sendRssiInfo@@Base+0x1ec>
+   65fbc:	b9402ba1 	ldr	w1, [x29, #40]
+   65fc0:	aa0103e0 	mov	x0, x1
+   65fc4:	d37cec00 	lsl	x0, x0, #4
+   65fc8:	cb010000 	sub	x0, x0, x1
+   65fcc:	d37df000 	lsl	x0, x0, #3
+   65fd0:	91020000 	add	x0, x0, #0x80
+   65fd4:	f94027a1 	ldr	x1, [x29, #72]
+   65fd8:	8b000020 	add	x0, x1, x0
+   65fdc:	91002000 	add	x0, x0, #0x8
+   65fe0:	f9002ba0 	str	x0, [x29, #80]
+   65fe4:	f9402ba1 	ldr	x1, [x29, #80]
+   65fe8:	f94023a0 	ldr	x0, [x29, #64]
+   65fec:	97fffc9f 	bl	65268 <ddm_createRssiInfo@@Base>
+   65ff0:	b9402ba0 	ldr	w0, [x29, #40]
+   65ff4:	11000400 	add	w0, w0, #0x1
+   65ff8:	b9002ba0 	str	w0, [x29, #40]
+   65ffc:	b9402ba1 	ldr	w1, [x29, #40]
+   66000:	b9402fa0 	ldr	w0, [x29, #44]
+   66004:	6b00003f 	cmp	w1, w0
+   66008:	54fffda3 	b.cc	65fbc <ddm_sendRssiInfo@@Base+0x1ac>  // b.lo, b.ul, b.last
+   6600c:	f94023a0 	ldr	x0, [x29, #64]
+   66010:	97fff8df 	bl	6438c <ddm_getJsonArraySize@@Base>
+   66014:	7100001f 	cmp	w0, #0x0
+   66018:	54000c60 	b.eq	661a4 <ddm_sendRssiInfo@@Base+0x394>  // b.none
+   6601c:	f9401fa0 	ldr	x0, [x29, #56]
+   66020:	97fec130 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   66024:	f9001ba0 	str	x0, [x29, #48]
+   66028:	f9401ba0 	ldr	x0, [x29, #48]
+   6602c:	f100001f 	cmp	x0, #0x0
+   66030:	54000b60 	b.eq	6619c <ddm_sendRssiInfo@@Base+0x38c>  // b.none
+   66034:	52800200 	mov	w0, #0x10                  	// #16
+   66038:	97fef56e 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=16
+   6603c:	12001c00 	and	w0, w0, #0xff
+   66040:	7100001f 	cmp	w0, #0x0
+   66044:	54000280 	b.eq	66094 <ddm_sendRssiInfo@@Base+0x284>  // b.none
+   66048:	f9401ba0 	ldr	x0, [x29, #48]
+   6604c:	97fec0dd 	bl	163c0 <wsappl_send@plt>
+   66050:	7100001f 	cmp	w0, #0x0
+   66054:	5400012a 	b.ge	66078 <ddm_sendRssiInfo@@Base+0x268>  // b.tcont
+   66058:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6605c:	912ca001 	add	x1, x0, #0xb28
+   66060:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66064:	91072000 	add	x0, x0, #0x1c8
+   66068:	aa0103e2 	mov	x2, x1
+   6606c:	52804f61 	mov	w1, #0x27b                 	// #635
+   66070:	97febdec 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendRssiInfo', x1=635, x2='Unable to send Wifi_Associated_Devices_Update on websocket'
+   66074:	14000008 	b	66094 <ddm_sendRssiInfo@@Base+0x284>
+   66078:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6607c:	912da001 	add	x1, x0, #0xb68
+   66080:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66084:	91072000 	add	x0, x0, #0x1c8
+   66088:	aa0103e2 	mov	x2, x1
+   6608c:	52804fc1 	mov	w1, #0x27e                 	// #638
+   66090:	97febde4 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendRssiInfo', x1=638, x2='Wifi_Associated_Devices_Update Sent to Websocket'
+   66094:	52802000 	mov	w0, #0x100                 	// #256
+   66098:	97fef556 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=256
+   6609c:	12001c00 	and	w0, w0, #0xff
+   660a0:	7100001f 	cmp	w0, #0x0
+   660a4:	54000680 	b.eq	66174 <ddm_sendRssiInfo@@Base+0x364>  // b.none
+   660a8:	90000340 	adrp	x0, ce000 <ddmDebug@@Base+0x230>
+   660ac:	9137c000 	add	x0, x0, #0xdf0
+   660b0:	39400000 	ldrb	w0, [x0]
+   660b4:	7100001f 	cmp	w0, #0x0
+   660b8:	540003c1 	b.ne	66130 <ddm_sendRssiInfo@@Base+0x320>  // b.any
+   660bc:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   660c0:	f9478c00 	ldr	x0, [x0, #3864]
+   660c4:	f9401ba1 	ldr	x1, [x29, #48]
+   660c8:	97fff719 	bl	63d2c <ddm_unixClientSend@@Base>
+   660cc:	7100001f 	cmp	w0, #0x0
+   660d0:	540001a0 	b.eq	66104 <ddm_sendRssiInfo@@Base+0x2f4>  // b.none
+   660d4:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   660d8:	f9478c00 	ldr	x0, [x0, #3864]
+   660dc:	91002002 	add	x2, x0, #0x8
+   660e0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   660e4:	912e8001 	add	x1, x0, #0xba0
+   660e8:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   660ec:	91072000 	add	x0, x0, #0x1c8
+   660f0:	aa0203e3 	mov	x3, x2
+   660f4:	aa0103e2 	mov	x2, x1
+   660f8:	52805081 	mov	w1, #0x284                 	// #644
+   660fc:	97fec0c9 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendRssiInfo', x1=644, x2='Unable to send Wifi_Associated_Devices_Update on unixPath[%s]'
+   66100:	1400000c 	b	66130 <ddm_sendRssiInfo@@Base+0x320>
+   66104:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66108:	f9478c00 	ldr	x0, [x0, #3864]
+   6610c:	91002002 	add	x2, x0, #0x8
+   66110:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66114:	912f8001 	add	x1, x0, #0xbe0
+   66118:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6611c:	91072000 	add	x0, x0, #0x1c8
+   66120:	aa0203e3 	mov	x3, x2
+   66124:	aa0103e2 	mov	x2, x1
+   66128:	528050c1 	mov	w1, #0x286                 	// #646
+   6612c:	97febdbd 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendRssiInfo', x1=646, x2='Wifi_Associated_Devices_Update Sent to unix socket[%s]'
+   66130:	90000340 	adrp	x0, ce000 <ddmDebug@@Base+0x230>
+   66134:	9137c000 	add	x0, x0, #0xdf0
+   66138:	39400000 	ldrb	w0, [x0]
+   6613c:	7100081f 	cmp	w0, #0x2
+   66140:	54000148 	b.hi	66168 <ddm_sendRssiInfo@@Base+0x358>  // b.pmore
+   66144:	90000340 	adrp	x0, ce000 <ddmDebug@@Base+0x230>
+   66148:	9137c000 	add	x0, x0, #0xdf0
+   6614c:	39400000 	ldrb	w0, [x0]
+   66150:	11000400 	add	w0, w0, #0x1
+   66154:	12001c01 	and	w1, w0, #0xff
+   66158:	90000340 	adrp	x0, ce000 <ddmDebug@@Base+0x230>
+   6615c:	9137c000 	add	x0, x0, #0xdf0
+   66160:	39000001 	strb	w1, [x0]
+   66164:	14000004 	b	66174 <ddm_sendRssiInfo@@Base+0x364>
+   66168:	90000340 	adrp	x0, ce000 <ddmDebug@@Base+0x230>
+   6616c:	9137c000 	add	x0, x0, #0xdf0
+   66170:	3900001f 	strb	wzr, [x0]
+   66174:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66178:	91306001 	add	x1, x0, #0xc18
+   6617c:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66180:	91072000 	add	x0, x0, #0x1c8
+   66184:	f9401ba3 	ldr	x3, [x29, #48]
+   66188:	aa0103e2 	mov	x2, x1
+   6618c:	528051e1 	mov	w1, #0x28f                 	// #655
+   66190:	97febda4 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendRssiInfo', x1=655, x2='Wifi_Associated_Devices_Update[%s]'
+   66194:	f9401ba0 	ldr	x0, [x29, #48]
+   66198:	97febeae 	bl	15c50 <free@plt>
+   6619c:	b90027bf 	str	wzr, [x29, #36]
+   661a0:	14000008 	b	661c0 <ddm_sendRssiInfo@@Base+0x3b0>
+   661a4:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   661a8:	912b0001 	add	x1, x0, #0xac0
+   661ac:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   661b0:	91072000 	add	x0, x0, #0x1c8
+   661b4:	aa0103e2 	mov	x2, x1
+   661b8:	52805281 	mov	w1, #0x294                 	// #660
+   661bc:	97febd99 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendRssiInfo', x1=660, x2='Empty Payload Found. Discarding Event send to ws...'
+   661c0:	f9401fa0 	ldr	x0, [x29, #56]
+   661c4:	97febe4b 	bl	15af0 <cJSON_Delete@plt>
+   661c8:	b94027a0 	ldr	w0, [x29, #36]
+   661cc:	b0000321 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   661d0:	f946b421 	ldr	x1, [x1, #3432]
+   661d4:	f9403fa2 	ldr	x2, [x29, #120]
+   661d8:	f9400021 	ldr	x1, [x1]
+   661dc:	ca010041 	eor	x1, x2, x1
+   661e0:	f100003f 	cmp	x1, #0x0
+   661e4:	54000040 	b.eq	661ec <ddm_sendRssiInfo@@Base+0x3dc>  // b.none
+   661e8:	97febe06 	bl	15a00 <__stack_chk_fail@plt>
+   661ec:	a8c87bfd 	ldp	x29, x30, [sp], #128
+   661f0:	d65f03c0 	ret
+
+00000000000661f4 <ddm_sendNewDeviceAdded@@Base>:
+   661f4:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   661f8:	910003fd 	mov	x29, sp
+   661fc:	f9000fa0 	str	x0, [x29, #24]
+   66200:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66204:	f946b400 	ldr	x0, [x0, #3432]
+   66208:	f9400001 	ldr	x1, [x0]
+   6620c:	f90027a1 	str	x1, [x29, #72]
+   66210:	d2800001 	mov	x1, #0x0                   	// #0
+   66214:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66218:	f9469c00 	ldr	x0, [x0, #3384]
+   6621c:	b9400000 	ldr	w0, [x0]
+   66220:	7100001f 	cmp	w0, #0x0
+   66224:	54000060 	b.eq	66230 <ddm_sendNewDeviceAdded@@Base+0x3c>  // b.none
+   66228:	52800000 	mov	w0, #0x0                   	// #0
+   6622c:	140000e2 	b	665b4 <ddm_sendNewDeviceAdded@@Base+0x3c0>
+   66230:	f9400fa0 	ldr	x0, [x29, #24]
+   66234:	f100001f 	cmp	x0, #0x0
+   66238:	54000141 	b.ne	66260 <ddm_sendNewDeviceAdded@@Base+0x6c>  // b.any
+   6623c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66240:	9104c001 	add	x1, x0, #0x130
+   66244:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66248:	91078000 	add	x0, x0, #0x1e0
+   6624c:	aa0103e2 	mov	x2, x1
+   66250:	528053e1 	mov	w1, #0x29f                 	// #671
+   66254:	97fec073 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=671, x2='Null pointer passed!'
+   66258:	12800000 	mov	w0, #0xffffffff            	// #-1
+   6625c:	140000d6 	b	665b4 <ddm_sendNewDeviceAdded@@Base+0x3c0>
+   66260:	12800000 	mov	w0, #0xffffffff            	// #-1
+   66264:	b9002fa0 	str	w0, [x29, #44]
+   66268:	f9001bbf 	str	xzr, [x29, #48]
+   6626c:	f9001fbf 	str	xzr, [x29, #56]
+   66270:	f90023bf 	str	xzr, [x29, #64]
+   66274:	97febe27 	bl	15b10 <cJSON_CreateObject@plt>
+   66278:	f9001fa0 	str	x0, [x29, #56]
+   6627c:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66280:	f9469c00 	ldr	x0, [x0, #3384]
+   66284:	91016c01 	add	x1, x0, #0x5b
+   66288:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6628c:	91158000 	add	x0, x0, #0x560
+   66290:	aa0103e2 	mov	x2, x1
+   66294:	aa0003e1 	mov	x1, x0
+   66298:	f9401fa0 	ldr	x0, [x29, #56]
+   6629c:	97febe0d 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   662a0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   662a4:	91310001 	add	x1, x0, #0xc40
+   662a8:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   662ac:	91214000 	add	x0, x0, #0x850
+   662b0:	aa0103e2 	mov	x2, x1
+   662b4:	aa0003e1 	mov	x1, x0
+   662b8:	f9401fa0 	ldr	x0, [x29, #56]
+   662bc:	97febe05 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='NewDeviceAdded'
+   662c0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   662c4:	91216001 	add	x1, x0, #0x858
+   662c8:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   662cc:	91218000 	add	x0, x0, #0x860
+   662d0:	aa0103e2 	mov	x2, x1
+   662d4:	aa0003e1 	mov	x1, x0
+   662d8:	f9401fa0 	ldr	x0, [x29, #56]
+   662dc:	97febdfd 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='version', x2='6.1'
+   662e0:	97fec0b8 	bl	165c0 <cJSON_CreateArray@plt>
+   662e4:	f90023a0 	str	x0, [x29, #64]
+   662e8:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   662ec:	9121a000 	add	x0, x0, #0x868
+   662f0:	f94023a2 	ldr	x2, [x29, #64]
+   662f4:	aa0003e1 	mov	x1, x0
+   662f8:	f9401fa0 	ldr	x0, [x29, #56]
+   662fc:	97fec021 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='payload'
+   66300:	97ff0676 	bl	27cd8 <ddm_btreeRdLock@@Base>
+   66304:	7100001f 	cmp	w0, #0x0
+   66308:	54000180 	b.eq	66338 <ddm_sendNewDeviceAdded@@Base+0x144>  // b.none
+   6630c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66310:	9121c001 	add	x1, x0, #0x870
+   66314:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66318:	91078000 	add	x0, x0, #0x1e0
+   6631c:	aa0103e2 	mov	x2, x1
+   66320:	52805601 	mov	w1, #0x2b0                 	// #688
+   66324:	97fec03f 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=688, x2='btree lock failed\n'
+   66328:	f9401fa0 	ldr	x0, [x29, #56]
+   6632c:	97febdf1 	bl	15af0 <cJSON_Delete@plt>
+   66330:	12800000 	mov	w0, #0xffffffff            	// #-1
+   66334:	140000a0 	b	665b4 <ddm_sendNewDeviceAdded@@Base+0x3c0>
+   66338:	f9400fa0 	ldr	x0, [x29, #24]
+   6633c:	39426800 	ldrb	w0, [x0, #154]
+   66340:	7100001f 	cmp	w0, #0x0
+   66344:	54000761 	b.ne	66430 <ddm_sendNewDeviceAdded@@Base+0x23c>  // b.any
+   66348:	f9400fa0 	ldr	x0, [x29, #24]
+   6634c:	f9404800 	ldr	x0, [x0, #144]
+   66350:	f100001f 	cmp	x0, #0x0
+   66354:	540006e0 	b.eq	66430 <ddm_sendNewDeviceAdded@@Base+0x23c>  // b.none
+   66358:	f9400fa0 	ldr	x0, [x29, #24]
+   6635c:	f9404800 	ldr	x0, [x0, #144]
+   66360:	910ad000 	add	x0, x0, #0x2b4
+   66364:	97febd8b 	bl	15990 <strlen@plt>
+   66368:	f100181f 	cmp	x0, #0x6
+   6636c:	54000389 	b.ls	663dc <ddm_sendNewDeviceAdded@@Base+0x1e8>  // b.plast
+   66370:	f9400fa0 	ldr	x0, [x29, #24]
+   66374:	f9404800 	ldr	x0, [x0, #144]
+   66378:	394cd000 	ldrb	w0, [x0, #820]
+   6637c:	7100001f 	cmp	w0, #0x0
+   66380:	540000c1 	b.ne	66398 <ddm_sendNewDeviceAdded@@Base+0x1a4>  // b.any
+   66384:	f9400fa0 	ldr	x0, [x29, #24]
+   66388:	f9404800 	ldr	x0, [x0, #144]
+   6638c:	394dd000 	ldrb	w0, [x0, #884]
+   66390:	7100001f 	cmp	w0, #0x0
+   66394:	54000240 	b.eq	663dc <ddm_sendNewDeviceAdded@@Base+0x1e8>  // b.none
+   66398:	f9400fa0 	ldr	x0, [x29, #24]
+   6639c:	b9402400 	ldr	w0, [x0, #36]
+   663a0:	97fef6ea 	bl	23f48 <ddm_deriveStatus@@Base>
+   663a4:	7100081f 	cmp	w0, #0x2
+   663a8:	540001a0 	b.eq	663dc <ddm_sendNewDeviceAdded@@Base+0x1e8>  // b.none
+   663ac:	f9400fa0 	ldr	x0, [x29, #24]
+   663b0:	b9405400 	ldr	w0, [x0, #84]
+   663b4:	7100201f 	cmp	w0, #0x8
+   663b8:	54000201 	b.ne	663f8 <ddm_sendNewDeviceAdded@@Base+0x204>  // b.any
+   663bc:	14000008 	b	663dc <ddm_sendNewDeviceAdded@@Base+0x1e8>
+   663c0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   663c4:	91222001 	add	x1, x0, #0x888
+   663c8:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   663cc:	91078000 	add	x0, x0, #0x1e0
+   663d0:	aa0103e2 	mov	x2, x1
+   663d4:	52805761 	mov	w1, #0x2bb                 	// #699
+   663d8:	97fec012 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=699, x2='btree unlock failed\n'
+   663dc:	97ff067d 	bl	27dd0 <ddm_btreeUnLock@@Base>
+   663e0:	7100001f 	cmp	w0, #0x0
+   663e4:	54fffee1 	b.ne	663c0 <ddm_sendNewDeviceAdded@@Base+0x1cc>  // b.any
+   663e8:	f9401fa0 	ldr	x0, [x29, #56]
+   663ec:	97febdc1 	bl	15af0 <cJSON_Delete@plt>
+   663f0:	12800000 	mov	w0, #0xffffffff            	// #-1
+   663f4:	14000070 	b	665b4 <ddm_sendNewDeviceAdded@@Base+0x3c0>
+   663f8:	f9400fa1 	ldr	x1, [x29, #24]
+   663fc:	f94023a0 	ldr	x0, [x29, #64]
+   66400:	97fff8cf 	bl	6473c <ddm_createDeviceInfo@@Base>
+   66404:	f9400fa0 	ldr	x0, [x29, #24]
+   66408:	52800021 	mov	w1, #0x1                   	// #1
+   6640c:	39026801 	strb	w1, [x0, #154]
+   66410:	14000008 	b	66430 <ddm_sendNewDeviceAdded@@Base+0x23c>
+   66414:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66418:	91222001 	add	x1, x0, #0x888
+   6641c:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66420:	91078000 	add	x0, x0, #0x1e0
+   66424:	aa0103e2 	mov	x2, x1
+   66428:	528058c1 	mov	w1, #0x2c6                 	// #710
+   6642c:	97febffd 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=710, x2='btree unlock failed\n'
+   66430:	97ff0668 	bl	27dd0 <ddm_btreeUnLock@@Base>
+   66434:	7100001f 	cmp	w0, #0x0
+   66438:	54fffee1 	b.ne	66414 <ddm_sendNewDeviceAdded@@Base+0x220>  // b.any
+   6643c:	f94023a0 	ldr	x0, [x29, #64]
+   66440:	97fff7d3 	bl	6438c <ddm_getJsonArraySize@@Base>
+   66444:	7100001f 	cmp	w0, #0x0
+   66448:	54000a20 	b.eq	6658c <ddm_sendNewDeviceAdded@@Base+0x398>  // b.none
+   6644c:	f9401fa0 	ldr	x0, [x29, #56]
+   66450:	97fec024 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   66454:	f9001ba0 	str	x0, [x29, #48]
+   66458:	f9401ba0 	ldr	x0, [x29, #48]
+   6645c:	f100001f 	cmp	x0, #0x0
+   66460:	54000920 	b.eq	66584 <ddm_sendNewDeviceAdded@@Base+0x390>  // b.none
+   66464:	52800200 	mov	w0, #0x10                  	// #16
+   66468:	97fef462 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=16
+   6646c:	12001c00 	and	w0, w0, #0xff
+   66470:	7100001f 	cmp	w0, #0x0
+   66474:	54000300 	b.eq	664d4 <ddm_sendNewDeviceAdded@@Base+0x2e0>  // b.none
+   66478:	f9401ba0 	ldr	x0, [x29, #48]
+   6647c:	97febfd1 	bl	163c0 <wsappl_send@plt>
+   66480:	7100001f 	cmp	w0, #0x0
+   66484:	5400016a 	b.ge	664b0 <ddm_sendNewDeviceAdded@@Base+0x2bc>  // b.tcont
+   66488:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6648c:	91314001 	add	x1, x0, #0xc50
+   66490:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66494:	91078000 	add	x0, x0, #0x1e0
+   66498:	aa0103e2 	mov	x2, x1
+   6649c:	528059a1 	mov	w1, #0x2cd                 	// #717
+   664a0:	97febce0 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=717, x2='Unable to send New Device Added on websocket'
+   664a4:	528003a0 	mov	w0, #0x1d                  	// #29
+   664a8:	97ff3c63 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=29
+   664ac:	1400000a 	b	664d4 <ddm_sendNewDeviceAdded@@Base+0x2e0>
+   664b0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   664b4:	91320001 	add	x1, x0, #0xc80
+   664b8:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   664bc:	91078000 	add	x0, x0, #0x1e0
+   664c0:	aa0103e2 	mov	x2, x1
+   664c4:	52805a01 	mov	w1, #0x2d0                 	// #720
+   664c8:	97febcd6 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=720, x2='New Device Added Sent to Websocket'
+   664cc:	52800380 	mov	w0, #0x1c                  	// #28
+   664d0:	97ff3c59 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=28
+   664d4:	52802000 	mov	w0, #0x100                 	// #256
+   664d8:	97fef446 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=256
+   664dc:	12001c00 	and	w0, w0, #0xff
+   664e0:	7100001f 	cmp	w0, #0x0
+   664e4:	540003c0 	b.eq	6655c <ddm_sendNewDeviceAdded@@Base+0x368>  // b.none
+   664e8:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   664ec:	f9478c00 	ldr	x0, [x0, #3864]
+   664f0:	f9401ba1 	ldr	x1, [x29, #48]
+   664f4:	97fff60e 	bl	63d2c <ddm_unixClientSend@@Base>
+   664f8:	7100001f 	cmp	w0, #0x0
+   664fc:	540001a0 	b.eq	66530 <ddm_sendNewDeviceAdded@@Base+0x33c>  // b.none
+   66500:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66504:	f9478c00 	ldr	x0, [x0, #3864]
+   66508:	91002002 	add	x2, x0, #0x8
+   6650c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66510:	9132a001 	add	x1, x0, #0xca8
+   66514:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66518:	91078000 	add	x0, x0, #0x1e0
+   6651c:	aa0203e3 	mov	x3, x2
+   66520:	aa0103e2 	mov	x2, x1
+   66524:	52805ac1 	mov	w1, #0x2d6                 	// #726
+   66528:	97febfbe 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=726, x2='Unable to send New Device Added on unixPath[%s]'
+   6652c:	1400000c 	b	6655c <ddm_sendNewDeviceAdded@@Base+0x368>
+   66530:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66534:	f9478c00 	ldr	x0, [x0, #3864]
+   66538:	91002002 	add	x2, x0, #0x8
+   6653c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66540:	91336001 	add	x1, x0, #0xcd8
+   66544:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66548:	91078000 	add	x0, x0, #0x1e0
+   6654c:	aa0203e3 	mov	x3, x2
+   66550:	aa0103e2 	mov	x2, x1
+   66554:	52805b01 	mov	w1, #0x2d8                 	// #728
+   66558:	97febcb2 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=728, x2='New Device Added Sent to unix socket[%s]'
+   6655c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66560:	91342001 	add	x1, x0, #0xd08
+   66564:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66568:	91078000 	add	x0, x0, #0x1e0
+   6656c:	f9401ba3 	ldr	x3, [x29, #48]
+   66570:	aa0103e2 	mov	x2, x1
+   66574:	52805b61 	mov	w1, #0x2db                 	// #731
+   66578:	97febcaa 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=731, x2='New Device Added[%s]'
+   6657c:	f9401ba0 	ldr	x0, [x29, #48]
+   66580:	97febdb4 	bl	15c50 <free@plt>
+   66584:	b9002fbf 	str	wzr, [x29, #44]
+   66588:	14000008 	b	665a8 <ddm_sendNewDeviceAdded@@Base+0x3b4>
+   6658c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66590:	912b0001 	add	x1, x0, #0xac0
+   66594:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66598:	91078000 	add	x0, x0, #0x1e0
+   6659c:	aa0103e2 	mov	x2, x1
+   665a0:	52805c01 	mov	w1, #0x2e0                 	// #736
+   665a4:	97febc9f 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAdded', x1=736, x2='Empty Payload Found. Discarding Event send to ws...'
+   665a8:	f9401fa0 	ldr	x0, [x29, #56]
+   665ac:	97febd51 	bl	15af0 <cJSON_Delete@plt>
+   665b0:	b9402fa0 	ldr	w0, [x29, #44]
+   665b4:	b0000321 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   665b8:	f946b421 	ldr	x1, [x1, #3432]
+   665bc:	f94027a2 	ldr	x2, [x29, #72]
+   665c0:	f9400021 	ldr	x1, [x1]
+   665c4:	ca010041 	eor	x1, x2, x1
+   665c8:	f100003f 	cmp	x1, #0x0
+   665cc:	54000040 	b.eq	665d4 <ddm_sendNewDeviceAdded@@Base+0x3e0>  // b.none
+   665d0:	97febd0c 	bl	15a00 <__stack_chk_fail@plt>
+   665d4:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   665d8:	d65f03c0 	ret
+
+00000000000665dc <ddm_sendDeviceInfo@@Base>:
+   665dc:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   665e0:	910003fd 	mov	x29, sp
+   665e4:	f9000fa0 	str	x0, [x29, #24]
+   665e8:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   665ec:	f946b400 	ldr	x0, [x0, #3432]
+   665f0:	f9400001 	ldr	x1, [x0]
+   665f4:	f90027a1 	str	x1, [x29, #72]
+   665f8:	d2800001 	mov	x1, #0x0                   	// #0
+   665fc:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66600:	f9469c00 	ldr	x0, [x0, #3384]
+   66604:	b9400000 	ldr	w0, [x0]
+   66608:	7100001f 	cmp	w0, #0x0
+   6660c:	54000060 	b.eq	66618 <ddm_sendDeviceInfo@@Base+0x3c>  // b.none
+   66610:	52800000 	mov	w0, #0x0                   	// #0
+   66614:	140000af 	b	668d0 <ddm_sendDeviceInfo@@Base+0x2f4>
+   66618:	f9400fa0 	ldr	x0, [x29, #24]
+   6661c:	f100001f 	cmp	x0, #0x0
+   66620:	54000141 	b.ne	66648 <ddm_sendDeviceInfo@@Base+0x6c>  // b.any
+   66624:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66628:	9104c001 	add	x1, x0, #0x130
+   6662c:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66630:	9107e000 	add	x0, x0, #0x1f8
+   66634:	aa0103e2 	mov	x2, x1
+   66638:	52805d61 	mov	w1, #0x2eb                 	// #747
+   6663c:	97febf79 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=747, x2='Null pointer passed!'
+   66640:	12800000 	mov	w0, #0xffffffff            	// #-1
+   66644:	140000a3 	b	668d0 <ddm_sendDeviceInfo@@Base+0x2f4>
+   66648:	12800000 	mov	w0, #0xffffffff            	// #-1
+   6664c:	b9002fa0 	str	w0, [x29, #44]
+   66650:	f9001bbf 	str	xzr, [x29, #48]
+   66654:	f9001fbf 	str	xzr, [x29, #56]
+   66658:	f90023bf 	str	xzr, [x29, #64]
+   6665c:	97febd2d 	bl	15b10 <cJSON_CreateObject@plt>
+   66660:	f9001fa0 	str	x0, [x29, #56]
+   66664:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66668:	f9469c00 	ldr	x0, [x0, #3384]
+   6666c:	91016c01 	add	x1, x0, #0x5b
+   66670:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66674:	91158000 	add	x0, x0, #0x560
+   66678:	aa0103e2 	mov	x2, x1
+   6667c:	aa0003e1 	mov	x1, x0
+   66680:	f9401fa0 	ldr	x0, [x29, #56]
+   66684:	97febd13 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   66688:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6668c:	91348001 	add	x1, x0, #0xd20
+   66690:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66694:	91214000 	add	x0, x0, #0x850
+   66698:	aa0103e2 	mov	x2, x1
+   6669c:	aa0003e1 	mov	x1, x0
+   666a0:	f9401fa0 	ldr	x0, [x29, #56]
+   666a4:	97febd0b 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='DeviceInfo'
+   666a8:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   666ac:	91216001 	add	x1, x0, #0x858
+   666b0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   666b4:	91218000 	add	x0, x0, #0x860
+   666b8:	aa0103e2 	mov	x2, x1
+   666bc:	aa0003e1 	mov	x1, x0
+   666c0:	f9401fa0 	ldr	x0, [x29, #56]
+   666c4:	97febd03 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='version', x2='6.1'
+   666c8:	97febfbe 	bl	165c0 <cJSON_CreateArray@plt>
+   666cc:	f90023a0 	str	x0, [x29, #64]
+   666d0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   666d4:	9121a000 	add	x0, x0, #0x868
+   666d8:	f94023a2 	ldr	x2, [x29, #64]
+   666dc:	aa0003e1 	mov	x1, x0
+   666e0:	f9401fa0 	ldr	x0, [x29, #56]
+   666e4:	97febf27 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='payload'
+   666e8:	97ff057c 	bl	27cd8 <ddm_btreeRdLock@@Base>
+   666ec:	7100001f 	cmp	w0, #0x0
+   666f0:	54000180 	b.eq	66720 <ddm_sendDeviceInfo@@Base+0x144>  // b.none
+   666f4:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   666f8:	9121c001 	add	x1, x0, #0x870
+   666fc:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66700:	9107e000 	add	x0, x0, #0x1f8
+   66704:	aa0103e2 	mov	x2, x1
+   66708:	52805f81 	mov	w1, #0x2fc                 	// #764
+   6670c:	97febf45 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=764, x2='btree lock failed\n'
+   66710:	f9401fa0 	ldr	x0, [x29, #56]
+   66714:	97febcf7 	bl	15af0 <cJSON_Delete@plt>
+   66718:	12800000 	mov	w0, #0xffffffff            	// #-1
+   6671c:	1400006d 	b	668d0 <ddm_sendDeviceInfo@@Base+0x2f4>
+   66720:	f9400fa1 	ldr	x1, [x29, #24]
+   66724:	f94023a0 	ldr	x0, [x29, #64]
+   66728:	97fff805 	bl	6473c <ddm_createDeviceInfo@@Base>
+   6672c:	14000008 	b	6674c <ddm_sendDeviceInfo@@Base+0x170>
+   66730:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66734:	91222001 	add	x1, x0, #0x888
+   66738:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6673c:	9107e000 	add	x0, x0, #0x1f8
+   66740:	aa0103e2 	mov	x2, x1
+   66744:	52806041 	mov	w1, #0x302                 	// #770
+   66748:	97febf36 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=770, x2='btree unlock failed\n'
+   6674c:	97ff05a1 	bl	27dd0 <ddm_btreeUnLock@@Base>
+   66750:	7100001f 	cmp	w0, #0x0
+   66754:	54fffee1 	b.ne	66730 <ddm_sendDeviceInfo@@Base+0x154>  // b.any
+   66758:	f94023a0 	ldr	x0, [x29, #64]
+   6675c:	97fff70c 	bl	6438c <ddm_getJsonArraySize@@Base>
+   66760:	7100001f 	cmp	w0, #0x0
+   66764:	54000a20 	b.eq	668a8 <ddm_sendDeviceInfo@@Base+0x2cc>  // b.none
+   66768:	f9401fa0 	ldr	x0, [x29, #56]
+   6676c:	97febf5d 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   66770:	f9001ba0 	str	x0, [x29, #48]
+   66774:	f9401ba0 	ldr	x0, [x29, #48]
+   66778:	f100001f 	cmp	x0, #0x0
+   6677c:	54000920 	b.eq	668a0 <ddm_sendDeviceInfo@@Base+0x2c4>  // b.none
+   66780:	52800200 	mov	w0, #0x10                  	// #16
+   66784:	97fef39b 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=16
+   66788:	12001c00 	and	w0, w0, #0xff
+   6678c:	7100001f 	cmp	w0, #0x0
+   66790:	54000300 	b.eq	667f0 <ddm_sendDeviceInfo@@Base+0x214>  // b.none
+   66794:	f9401ba0 	ldr	x0, [x29, #48]
+   66798:	97febf0a 	bl	163c0 <wsappl_send@plt>
+   6679c:	7100001f 	cmp	w0, #0x0
+   667a0:	5400016a 	b.ge	667cc <ddm_sendDeviceInfo@@Base+0x1f0>  // b.tcont
+   667a4:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   667a8:	9134c001 	add	x1, x0, #0xd30
+   667ac:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   667b0:	9107e000 	add	x0, x0, #0x1f8
+   667b4:	aa0103e2 	mov	x2, x1
+   667b8:	52806121 	mov	w1, #0x309                 	// #777
+   667bc:	97febc19 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=777, x2='Unable to send DeviceInfo on websocket'
+   667c0:	52800220 	mov	w0, #0x11                  	// #17
+   667c4:	97ff3b9c 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=17
+   667c8:	1400000a 	b	667f0 <ddm_sendDeviceInfo@@Base+0x214>
+   667cc:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   667d0:	91356001 	add	x1, x0, #0xd58
+   667d4:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   667d8:	9107e000 	add	x0, x0, #0x1f8
+   667dc:	aa0103e2 	mov	x2, x1
+   667e0:	52806181 	mov	w1, #0x30c                 	// #780
+   667e4:	97febc0f 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=780, x2='DeviceInfo Sent to Websocket'
+   667e8:	52800200 	mov	w0, #0x10                  	// #16
+   667ec:	97ff3b92 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=16
+   667f0:	52802000 	mov	w0, #0x100                 	// #256
+   667f4:	97fef37f 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=256
+   667f8:	12001c00 	and	w0, w0, #0xff
+   667fc:	7100001f 	cmp	w0, #0x0
+   66800:	540003c0 	b.eq	66878 <ddm_sendDeviceInfo@@Base+0x29c>  // b.none
+   66804:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66808:	f9478c00 	ldr	x0, [x0, #3864]
+   6680c:	f9401ba1 	ldr	x1, [x29, #48]
+   66810:	97fff547 	bl	63d2c <ddm_unixClientSend@@Base>
+   66814:	7100001f 	cmp	w0, #0x0
+   66818:	540001a0 	b.eq	6684c <ddm_sendDeviceInfo@@Base+0x270>  // b.none
+   6681c:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66820:	f9478c00 	ldr	x0, [x0, #3864]
+   66824:	91002002 	add	x2, x0, #0x8
+   66828:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6682c:	9135e001 	add	x1, x0, #0xd78
+   66830:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66834:	9107e000 	add	x0, x0, #0x1f8
+   66838:	aa0203e3 	mov	x3, x2
+   6683c:	aa0103e2 	mov	x2, x1
+   66840:	52806241 	mov	w1, #0x312                 	// #786
+   66844:	97febef7 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=786, x2='Unable to send DeviceInfo on unixPath[%s]'
+   66848:	1400000c 	b	66878 <ddm_sendDeviceInfo@@Base+0x29c>
+   6684c:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66850:	f9478c00 	ldr	x0, [x0, #3864]
+   66854:	91002002 	add	x2, x0, #0x8
+   66858:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6685c:	9136a001 	add	x1, x0, #0xda8
+   66860:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66864:	9107e000 	add	x0, x0, #0x1f8
+   66868:	aa0203e3 	mov	x3, x2
+   6686c:	aa0103e2 	mov	x2, x1
+   66870:	52806281 	mov	w1, #0x314                 	// #788
+   66874:	97febbeb 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=788, x2='DeviceInfo Sent to unix socket[%s]'
+   66878:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6687c:	91374001 	add	x1, x0, #0xdd0
+   66880:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66884:	9107e000 	add	x0, x0, #0x1f8
+   66888:	f9401ba3 	ldr	x3, [x29, #48]
+   6688c:	aa0103e2 	mov	x2, x1
+   66890:	528062e1 	mov	w1, #0x317                 	// #791
+   66894:	97febbe3 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=791, x2='DeviceInfo[%s]'
+   66898:	f9401ba0 	ldr	x0, [x29, #48]
+   6689c:	97febced 	bl	15c50 <free@plt>
+   668a0:	b9002fbf 	str	wzr, [x29, #44]
+   668a4:	14000008 	b	668c4 <ddm_sendDeviceInfo@@Base+0x2e8>
+   668a8:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   668ac:	912b0001 	add	x1, x0, #0xac0
+   668b0:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   668b4:	9107e000 	add	x0, x0, #0x1f8
+   668b8:	aa0103e2 	mov	x2, x1
+   668bc:	52806381 	mov	w1, #0x31c                 	// #796
+   668c0:	97febbd8 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendDeviceInfo', x1=796, x2='Empty Payload Found. Discarding Event send to ws...'
+   668c4:	f9401fa0 	ldr	x0, [x29, #56]
+   668c8:	97febc8a 	bl	15af0 <cJSON_Delete@plt>
+   668cc:	b9402fa0 	ldr	w0, [x29, #44]
+   668d0:	b0000321 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   668d4:	f946b421 	ldr	x1, [x1, #3432]
+   668d8:	f94027a2 	ldr	x2, [x29, #72]
+   668dc:	f9400021 	ldr	x1, [x1]
+   668e0:	ca010041 	eor	x1, x2, x1
+   668e4:	f100003f 	cmp	x1, #0x0
+   668e8:	54000040 	b.eq	668f0 <ddm_sendDeviceInfo@@Base+0x314>  // b.none
+   668ec:	97febc45 	bl	15a00 <__stack_chk_fail@plt>
+   668f0:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   668f4:	d65f03c0 	ret
+
+00000000000668f8 <ddm_sendNewDeviceAddEvent@@Base>:
+   668f8:	a9b97bfd 	stp	x29, x30, [sp, #-112]!
+   668fc:	910003fd 	mov	x29, sp
+   66900:	f9000fa0 	str	x0, [x29, #24]
+   66904:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66908:	f946b400 	ldr	x0, [x0, #3432]
+   6690c:	f9400001 	ldr	x1, [x0]
+   66910:	f90037a1 	str	x1, [x29, #104]
+   66914:	d2800001 	mov	x1, #0x0                   	// #0
+   66918:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6691c:	f9469c00 	ldr	x0, [x0, #3384]
+   66920:	b9400000 	ldr	w0, [x0]
+   66924:	7100001f 	cmp	w0, #0x0
+   66928:	54000060 	b.eq	66934 <ddm_sendNewDeviceAddEvent@@Base+0x3c>  // b.none
+   6692c:	52800000 	mov	w0, #0x0                   	// #0
+   66930:	14000110 	b	66d70 <ddm_sendNewDeviceAddEvent@@Base+0x478>
+   66934:	f9400fa0 	ldr	x0, [x29, #24]
+   66938:	f100001f 	cmp	x0, #0x0
+   6693c:	54000141 	b.ne	66964 <ddm_sendNewDeviceAddEvent@@Base+0x6c>  // b.any
+   66940:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66944:	9104c001 	add	x1, x0, #0x130
+   66948:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6694c:	91084000 	add	x0, x0, #0x210
+   66950:	aa0103e2 	mov	x2, x1
+   66954:	528064e1 	mov	w1, #0x327                 	// #807
+   66958:	97febeb2 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=807, x2='Null pointer passed!'
+   6695c:	12800000 	mov	w0, #0xffffffff            	// #-1
+   66960:	14000104 	b	66d70 <ddm_sendNewDeviceAddEvent@@Base+0x478>
+   66964:	12800000 	mov	w0, #0xffffffff            	// #-1
+   66968:	b9002fa0 	str	w0, [x29, #44]
+   6696c:	b90037bf 	str	wzr, [x29, #52]
+   66970:	b90033bf 	str	wzr, [x29, #48]
+   66974:	f9001fbf 	str	xzr, [x29, #56]
+   66978:	f90023bf 	str	xzr, [x29, #64]
+   6697c:	f90027bf 	str	xzr, [x29, #72]
+   66980:	f9002bbf 	str	xzr, [x29, #80]
+   66984:	f9400fa0 	ldr	x0, [x29, #24]
+   66988:	f9002fa0 	str	x0, [x29, #88]
+   6698c:	f9402fa0 	ldr	x0, [x29, #88]
+   66990:	f9400000 	ldr	x0, [x0]
+   66994:	b90037a0 	str	w0, [x29, #52]
+   66998:	b94037a0 	ldr	w0, [x29, #52]
+   6699c:	7100001f 	cmp	w0, #0x0
+   669a0:	54000141 	b.ne	669c8 <ddm_sendNewDeviceAddEvent@@Base+0xd0>  // b.any
+   669a4:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   669a8:	9126c001 	add	x1, x0, #0x9b0
+   669ac:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   669b0:	91084000 	add	x0, x0, #0x210
+   669b4:	aa0103e2 	mov	x2, x1
+   669b8:	52806641 	mov	w1, #0x332                 	// #818
+   669bc:	97febe99 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=818, x2='No Device in data'
+   669c0:	b9402fa0 	ldr	w0, [x29, #44]
+   669c4:	140000eb 	b	66d70 <ddm_sendNewDeviceAddEvent@@Base+0x478>
+   669c8:	97febc52 	bl	15b10 <cJSON_CreateObject@plt>
+   669cc:	f90027a0 	str	x0, [x29, #72]
+   669d0:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   669d4:	f9469c00 	ldr	x0, [x0, #3384]
+   669d8:	91016c01 	add	x1, x0, #0x5b
+   669dc:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   669e0:	91158000 	add	x0, x0, #0x560
+   669e4:	aa0103e2 	mov	x2, x1
+   669e8:	aa0003e1 	mov	x1, x0
+   669ec:	f94027a0 	ldr	x0, [x29, #72]
+   669f0:	97febc38 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   669f4:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   669f8:	91310001 	add	x1, x0, #0xc40
+   669fc:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66a00:	91214000 	add	x0, x0, #0x850
+   66a04:	aa0103e2 	mov	x2, x1
+   66a08:	aa0003e1 	mov	x1, x0
+   66a0c:	f94027a0 	ldr	x0, [x29, #72]
+   66a10:	97febc30 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='NewDeviceAdded'
+   66a14:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66a18:	91216001 	add	x1, x0, #0x858
+   66a1c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66a20:	91218000 	add	x0, x0, #0x860
+   66a24:	aa0103e2 	mov	x2, x1
+   66a28:	aa0003e1 	mov	x1, x0
+   66a2c:	f94027a0 	ldr	x0, [x29, #72]
+   66a30:	97febc28 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='version', x2='6.1'
+   66a34:	97febee3 	bl	165c0 <cJSON_CreateArray@plt>
+   66a38:	f9002ba0 	str	x0, [x29, #80]
+   66a3c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66a40:	9121a000 	add	x0, x0, #0x868
+   66a44:	f9402ba2 	ldr	x2, [x29, #80]
+   66a48:	aa0003e1 	mov	x1, x0
+   66a4c:	f94027a0 	ldr	x0, [x29, #72]
+   66a50:	97febe4c 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='payload'
+   66a54:	97ff04a1 	bl	27cd8 <ddm_btreeRdLock@@Base>
+   66a58:	7100001f 	cmp	w0, #0x0
+   66a5c:	54000180 	b.eq	66a8c <ddm_sendNewDeviceAddEvent@@Base+0x194>  // b.none
+   66a60:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66a64:	9121c001 	add	x1, x0, #0x870
+   66a68:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66a6c:	91084000 	add	x0, x0, #0x210
+   66a70:	aa0103e2 	mov	x2, x1
+   66a74:	52806801 	mov	w1, #0x340                 	// #832
+   66a78:	97febe6a 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=832, x2='btree lock failed\n'
+   66a7c:	f94027a0 	ldr	x0, [x29, #72]
+   66a80:	97febc1c 	bl	15af0 <cJSON_Delete@plt>
+   66a84:	b9402fa0 	ldr	w0, [x29, #44]
+   66a88:	140000ba 	b	66d70 <ddm_sendNewDeviceAddEvent@@Base+0x478>
+   66a8c:	b90033bf 	str	wzr, [x29, #48]
+   66a90:	1400004b 	b	66bbc <ddm_sendNewDeviceAddEvent@@Base+0x2c4>
+   66a94:	b94033a1 	ldr	w1, [x29, #48]
+   66a98:	aa0103e0 	mov	x0, x1
+   66a9c:	d37ff800 	lsl	x0, x0, #1
+   66aa0:	8b010000 	add	x0, x0, x1
+   66aa4:	d37ef400 	lsl	x0, x0, #2
+   66aa8:	cb010000 	sub	x0, x0, x1
+   66aac:	d37cec00 	lsl	x0, x0, #4
+   66ab0:	f9402fa1 	ldr	x1, [x29, #88]
+   66ab4:	8b000020 	add	x0, x1, x0
+   66ab8:	91002000 	add	x0, x0, #0x8
+   66abc:	f90033a0 	str	x0, [x29, #96]
+   66ac0:	f94033a0 	ldr	x0, [x29, #96]
+   66ac4:	39406000 	ldrb	w0, [x0, #24]
+   66ac8:	7100041f 	cmp	w0, #0x1
+   66acc:	54000721 	b.ne	66bb0 <ddm_sendNewDeviceAddEvent@@Base+0x2b8>  // b.any
+   66ad0:	f9001fbf 	str	xzr, [x29, #56]
+   66ad4:	f94033a0 	ldr	x0, [x29, #96]
+   66ad8:	97ff02c6 	bl	275f0 <ddm_getDeviceNode@@Base>
+   66adc:	f9001fa0 	str	x0, [x29, #56]
+   66ae0:	f9401fa0 	ldr	x0, [x29, #56]
+   66ae4:	f100001f 	cmp	x0, #0x0
+   66ae8:	54000121 	b.ne	66b0c <ddm_sendNewDeviceAddEvent@@Base+0x214>  // b.any
+   66aec:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66af0:	91278001 	add	x1, x0, #0x9e0
+   66af4:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66af8:	91084000 	add	x0, x0, #0x210
+   66afc:	aa0103e2 	mov	x2, x1
+   66b00:	52806961 	mov	w1, #0x34b                 	// #843
+   66b04:	97febe47 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=843, x2='Unable to get node from btree'
+   66b08:	1400002a 	b	66bb0 <ddm_sendNewDeviceAddEvent@@Base+0x2b8>
+   66b0c:	f9401fa0 	ldr	x0, [x29, #56]
+   66b10:	39426800 	ldrb	w0, [x0, #154]
+   66b14:	7100001f 	cmp	w0, #0x0
+   66b18:	540004c1 	b.ne	66bb0 <ddm_sendNewDeviceAddEvent@@Base+0x2b8>  // b.any
+   66b1c:	f9401fa0 	ldr	x0, [x29, #56]
+   66b20:	f9404800 	ldr	x0, [x0, #144]
+   66b24:	f100001f 	cmp	x0, #0x0
+   66b28:	54000440 	b.eq	66bb0 <ddm_sendNewDeviceAddEvent@@Base+0x2b8>  // b.none
+   66b2c:	f9401fa0 	ldr	x0, [x29, #56]
+   66b30:	f9404800 	ldr	x0, [x0, #144]
+   66b34:	910ad000 	add	x0, x0, #0x2b4
+   66b38:	97febb96 	bl	15990 <strlen@plt>
+   66b3c:	f100181f 	cmp	x0, #0x6
+   66b40:	54000369 	b.ls	66bac <ddm_sendNewDeviceAddEvent@@Base+0x2b4>  // b.plast
+   66b44:	f9401fa0 	ldr	x0, [x29, #56]
+   66b48:	f9404800 	ldr	x0, [x0, #144]
+   66b4c:	394cd000 	ldrb	w0, [x0, #820]
+   66b50:	7100001f 	cmp	w0, #0x0
+   66b54:	540000c1 	b.ne	66b6c <ddm_sendNewDeviceAddEvent@@Base+0x274>  // b.any
+   66b58:	f9401fa0 	ldr	x0, [x29, #56]
+   66b5c:	f9404800 	ldr	x0, [x0, #144]
+   66b60:	394dd000 	ldrb	w0, [x0, #884]
+   66b64:	7100001f 	cmp	w0, #0x0
+   66b68:	54000220 	b.eq	66bac <ddm_sendNewDeviceAddEvent@@Base+0x2b4>  // b.none
+   66b6c:	f9401fa0 	ldr	x0, [x29, #56]
+   66b70:	b9402400 	ldr	w0, [x0, #36]
+   66b74:	97fef4f5 	bl	23f48 <ddm_deriveStatus@@Base>
+   66b78:	7100081f 	cmp	w0, #0x2
+   66b7c:	54000180 	b.eq	66bac <ddm_sendNewDeviceAddEvent@@Base+0x2b4>  // b.none
+   66b80:	f9401fa0 	ldr	x0, [x29, #56]
+   66b84:	b9405400 	ldr	w0, [x0, #84]
+   66b88:	7100201f 	cmp	w0, #0x8
+   66b8c:	54000100 	b.eq	66bac <ddm_sendNewDeviceAddEvent@@Base+0x2b4>  // b.none
+   66b90:	f9401fa1 	ldr	x1, [x29, #56]
+   66b94:	f9402ba0 	ldr	x0, [x29, #80]
+   66b98:	97fff6e9 	bl	6473c <ddm_createDeviceInfo@@Base>
+   66b9c:	f9401fa0 	ldr	x0, [x29, #56]
+   66ba0:	52800021 	mov	w1, #0x1                   	// #1
+   66ba4:	39026801 	strb	w1, [x0, #154]
+   66ba8:	14000002 	b	66bb0 <ddm_sendNewDeviceAddEvent@@Base+0x2b8>
+   66bac:	d503201f 	nop
+   66bb0:	b94033a0 	ldr	w0, [x29, #48]
+   66bb4:	11000400 	add	w0, w0, #0x1
+   66bb8:	b90033a0 	str	w0, [x29, #48]
+   66bbc:	b94033a1 	ldr	w1, [x29, #48]
+   66bc0:	b94037a0 	ldr	w0, [x29, #52]
+   66bc4:	6b00003f 	cmp	w1, w0
+   66bc8:	54fff663 	b.cc	66a94 <ddm_sendNewDeviceAddEvent@@Base+0x19c>  // b.lo, b.ul, b.last
+   66bcc:	14000008 	b	66bec <ddm_sendNewDeviceAddEvent@@Base+0x2f4>
+   66bd0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66bd4:	91222001 	add	x1, x0, #0x888
+   66bd8:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66bdc:	91084000 	add	x0, x0, #0x210
+   66be0:	aa0103e2 	mov	x2, x1
+   66be4:	52806be1 	mov	w1, #0x35f                 	// #863
+   66be8:	97febe0e 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=863, x2='btree unlock failed\n'
+   66bec:	97ff0479 	bl	27dd0 <ddm_btreeUnLock@@Base>
+   66bf0:	7100001f 	cmp	w0, #0x0
+   66bf4:	54fffee1 	b.ne	66bd0 <ddm_sendNewDeviceAddEvent@@Base+0x2d8>  // b.any
+   66bf8:	f9402ba0 	ldr	x0, [x29, #80]
+   66bfc:	97fff5e4 	bl	6438c <ddm_getJsonArraySize@@Base>
+   66c00:	7100001f 	cmp	w0, #0x0
+   66c04:	54000a20 	b.eq	66d48 <ddm_sendNewDeviceAddEvent@@Base+0x450>  // b.none
+   66c08:	f94027a0 	ldr	x0, [x29, #72]
+   66c0c:	97febe35 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   66c10:	f90023a0 	str	x0, [x29, #64]
+   66c14:	f94023a0 	ldr	x0, [x29, #64]
+   66c18:	f100001f 	cmp	x0, #0x0
+   66c1c:	54000920 	b.eq	66d40 <ddm_sendNewDeviceAddEvent@@Base+0x448>  // b.none
+   66c20:	52800200 	mov	w0, #0x10                  	// #16
+   66c24:	97fef273 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=16
+   66c28:	12001c00 	and	w0, w0, #0xff
+   66c2c:	7100001f 	cmp	w0, #0x0
+   66c30:	54000300 	b.eq	66c90 <ddm_sendNewDeviceAddEvent@@Base+0x398>  // b.none
+   66c34:	f94023a0 	ldr	x0, [x29, #64]
+   66c38:	97febde2 	bl	163c0 <wsappl_send@plt>
+   66c3c:	7100001f 	cmp	w0, #0x0
+   66c40:	5400016a 	b.ge	66c6c <ddm_sendNewDeviceAddEvent@@Base+0x374>  // b.tcont
+   66c44:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66c48:	91378001 	add	x1, x0, #0xde0
+   66c4c:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66c50:	91084000 	add	x0, x0, #0x210
+   66c54:	aa0103e2 	mov	x2, x1
+   66c58:	52806ce1 	mov	w1, #0x367                 	// #871
+   66c5c:	97febaf1 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=871, x2='Unable to send New Device Added Event on websocket'
+   66c60:	528003a0 	mov	w0, #0x1d                  	// #29
+   66c64:	97ff3a74 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=29
+   66c68:	1400000a 	b	66c90 <ddm_sendNewDeviceAddEvent@@Base+0x398>
+   66c6c:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66c70:	91386001 	add	x1, x0, #0xe18
+   66c74:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66c78:	91084000 	add	x0, x0, #0x210
+   66c7c:	aa0103e2 	mov	x2, x1
+   66c80:	52806d41 	mov	w1, #0x36a                 	// #874
+   66c84:	97febae7 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=874, x2='New Device Added Event Sent to Websocket'
+   66c88:	52800380 	mov	w0, #0x1c                  	// #28
+   66c8c:	97ff3a6a 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=28
+   66c90:	52802000 	mov	w0, #0x100                 	// #256
+   66c94:	97fef257 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=256
+   66c98:	12001c00 	and	w0, w0, #0xff
+   66c9c:	7100001f 	cmp	w0, #0x0
+   66ca0:	540003c0 	b.eq	66d18 <ddm_sendNewDeviceAddEvent@@Base+0x420>  // b.none
+   66ca4:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66ca8:	f9478c00 	ldr	x0, [x0, #3864]
+   66cac:	f94023a1 	ldr	x1, [x29, #64]
+   66cb0:	97fff41f 	bl	63d2c <ddm_unixClientSend@@Base>
+   66cb4:	7100001f 	cmp	w0, #0x0
+   66cb8:	540001a0 	b.eq	66cec <ddm_sendNewDeviceAddEvent@@Base+0x3f4>  // b.none
+   66cbc:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66cc0:	f9478c00 	ldr	x0, [x0, #3864]
+   66cc4:	91002002 	add	x2, x0, #0x8
+   66cc8:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66ccc:	91392001 	add	x1, x0, #0xe48
+   66cd0:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66cd4:	91084000 	add	x0, x0, #0x210
+   66cd8:	aa0203e3 	mov	x3, x2
+   66cdc:	aa0103e2 	mov	x2, x1
+   66ce0:	52806e01 	mov	w1, #0x370                 	// #880
+   66ce4:	97febdcf 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=880, x2='Unable to send New Device Added Event on unixPath[%s]'
+   66ce8:	1400000c 	b	66d18 <ddm_sendNewDeviceAddEvent@@Base+0x420>
+   66cec:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66cf0:	f9478c00 	ldr	x0, [x0, #3864]
+   66cf4:	91002002 	add	x2, x0, #0x8
+   66cf8:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66cfc:	91336001 	add	x1, x0, #0xcd8
+   66d00:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66d04:	91084000 	add	x0, x0, #0x210
+   66d08:	aa0203e3 	mov	x3, x2
+   66d0c:	aa0103e2 	mov	x2, x1
+   66d10:	52806e41 	mov	w1, #0x372                 	// #882
+   66d14:	97febac3 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=882, x2='New Device Added Sent to unix socket[%s]'
+   66d18:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66d1c:	913a0001 	add	x1, x0, #0xe80
+   66d20:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66d24:	91084000 	add	x0, x0, #0x210
+   66d28:	f94023a3 	ldr	x3, [x29, #64]
+   66d2c:	aa0103e2 	mov	x2, x1
+   66d30:	52806ea1 	mov	w1, #0x375                 	// #885
+   66d34:	97febabb 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=885, x2='New Device Added Event[%s]'
+   66d38:	f94023a0 	ldr	x0, [x29, #64]
+   66d3c:	97febbc5 	bl	15c50 <free@plt>
+   66d40:	b9002fbf 	str	wzr, [x29, #44]
+   66d44:	14000008 	b	66d64 <ddm_sendNewDeviceAddEvent@@Base+0x46c>
+   66d48:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66d4c:	912b0001 	add	x1, x0, #0xac0
+   66d50:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66d54:	91084000 	add	x0, x0, #0x210
+   66d58:	aa0103e2 	mov	x2, x1
+   66d5c:	52806f41 	mov	w1, #0x37a                 	// #890
+   66d60:	97febab0 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendNewDeviceAddEvent', x1=890, x2='Empty Payload Found. Discarding Event send to ws...'
+   66d64:	f94027a0 	ldr	x0, [x29, #72]
+   66d68:	97febb62 	bl	15af0 <cJSON_Delete@plt>
+   66d6c:	b9402fa0 	ldr	w0, [x29, #44]
+   66d70:	b0000321 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66d74:	f946b421 	ldr	x1, [x1, #3432]
+   66d78:	f94037a2 	ldr	x2, [x29, #104]
+   66d7c:	f9400021 	ldr	x1, [x1]
+   66d80:	ca010041 	eor	x1, x2, x1
+   66d84:	f100003f 	cmp	x1, #0x0
+   66d88:	54000040 	b.eq	66d90 <ddm_sendNewDeviceAddEvent@@Base+0x498>  // b.none
+   66d8c:	97febb1d 	bl	15a00 <__stack_chk_fail@plt>
+   66d90:	a8c77bfd 	ldp	x29, x30, [sp], #112
+   66d94:	d65f03c0 	ret
+
+0000000000066d98 <ddm_sendMultipleDeviceInfoEvent@@Base>:
+   66d98:	a9b97bfd 	stp	x29, x30, [sp, #-112]!
+   66d9c:	910003fd 	mov	x29, sp
+   66da0:	f9000fa0 	str	x0, [x29, #24]
+   66da4:	f9000ba1 	str	x1, [x29, #16]
+   66da8:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66dac:	f946b400 	ldr	x0, [x0, #3432]
+   66db0:	f9400001 	ldr	x1, [x0]
+   66db4:	f90037a1 	str	x1, [x29, #104]
+   66db8:	d2800001 	mov	x1, #0x0                   	// #0
+   66dbc:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66dc0:	f9469c00 	ldr	x0, [x0, #3384]
+   66dc4:	b9400000 	ldr	w0, [x0]
+   66dc8:	7100001f 	cmp	w0, #0x0
+   66dcc:	54000060 	b.eq	66dd8 <ddm_sendMultipleDeviceInfoEvent@@Base+0x40>  // b.none
+   66dd0:	52800000 	mov	w0, #0x0                   	// #0
+   66dd4:	140000ee 	b	6718c <ddm_sendMultipleDeviceInfoEvent@@Base+0x3f4>
+   66dd8:	f9400fa0 	ldr	x0, [x29, #24]
+   66ddc:	f100001f 	cmp	x0, #0x0
+   66de0:	54000141 	b.ne	66e08 <ddm_sendMultipleDeviceInfoEvent@@Base+0x70>  // b.any
+   66de4:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66de8:	9104c001 	add	x1, x0, #0x130
+   66dec:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66df0:	9108c000 	add	x0, x0, #0x230
+   66df4:	aa0103e2 	mov	x2, x1
+   66df8:	528070a1 	mov	w1, #0x385                 	// #901
+   66dfc:	97febd89 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=901, x2='Null pointer passed!'
+   66e00:	12800000 	mov	w0, #0xffffffff            	// #-1
+   66e04:	140000e2 	b	6718c <ddm_sendMultipleDeviceInfoEvent@@Base+0x3f4>
+   66e08:	12800000 	mov	w0, #0xffffffff            	// #-1
+   66e0c:	b9002fa0 	str	w0, [x29, #44]
+   66e10:	b90037bf 	str	wzr, [x29, #52]
+   66e14:	b90033bf 	str	wzr, [x29, #48]
+   66e18:	f9001fbf 	str	xzr, [x29, #56]
+   66e1c:	f90023bf 	str	xzr, [x29, #64]
+   66e20:	f90027bf 	str	xzr, [x29, #72]
+   66e24:	f9002bbf 	str	xzr, [x29, #80]
+   66e28:	f9400fa0 	ldr	x0, [x29, #24]
+   66e2c:	f9002fa0 	str	x0, [x29, #88]
+   66e30:	f9402fa0 	ldr	x0, [x29, #88]
+   66e34:	f9400000 	ldr	x0, [x0]
+   66e38:	b90037a0 	str	w0, [x29, #52]
+   66e3c:	b94037a0 	ldr	w0, [x29, #52]
+   66e40:	7100001f 	cmp	w0, #0x0
+   66e44:	54000141 	b.ne	66e6c <ddm_sendMultipleDeviceInfoEvent@@Base+0xd4>  // b.any
+   66e48:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66e4c:	9126c001 	add	x1, x0, #0x9b0
+   66e50:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66e54:	9108c000 	add	x0, x0, #0x230
+   66e58:	aa0103e2 	mov	x2, x1
+   66e5c:	52807201 	mov	w1, #0x390                 	// #912
+   66e60:	97febd70 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=912, x2='No Device in data'
+   66e64:	b9402fa0 	ldr	w0, [x29, #44]
+   66e68:	140000c9 	b	6718c <ddm_sendMultipleDeviceInfoEvent@@Base+0x3f4>
+   66e6c:	97febb29 	bl	15b10 <cJSON_CreateObject@plt>
+   66e70:	f90027a0 	str	x0, [x29, #72]
+   66e74:	b0000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   66e78:	f9469c00 	ldr	x0, [x0, #3384]
+   66e7c:	91016c01 	add	x1, x0, #0x5b
+   66e80:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66e84:	91158000 	add	x0, x0, #0x560
+   66e88:	aa0103e2 	mov	x2, x1
+   66e8c:	aa0003e1 	mov	x1, x0
+   66e90:	f94027a0 	ldr	x0, [x29, #72]
+   66e94:	97febb0f 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   66e98:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66e9c:	91348001 	add	x1, x0, #0xd20
+   66ea0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66ea4:	91214000 	add	x0, x0, #0x850
+   66ea8:	aa0103e2 	mov	x2, x1
+   66eac:	aa0003e1 	mov	x1, x0
+   66eb0:	f94027a0 	ldr	x0, [x29, #72]
+   66eb4:	97febb07 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='DeviceInfo'
+   66eb8:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66ebc:	91216001 	add	x1, x0, #0x858
+   66ec0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66ec4:	91218000 	add	x0, x0, #0x860
+   66ec8:	aa0103e2 	mov	x2, x1
+   66ecc:	aa0003e1 	mov	x1, x0
+   66ed0:	f94027a0 	ldr	x0, [x29, #72]
+   66ed4:	97febaff 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='version', x2='6.1'
+   66ed8:	97febdba 	bl	165c0 <cJSON_CreateArray@plt>
+   66edc:	f9002ba0 	str	x0, [x29, #80]
+   66ee0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66ee4:	9121a000 	add	x0, x0, #0x868
+   66ee8:	f9402ba2 	ldr	x2, [x29, #80]
+   66eec:	aa0003e1 	mov	x1, x0
+   66ef0:	f94027a0 	ldr	x0, [x29, #72]
+   66ef4:	97febd23 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='payload'
+   66ef8:	97ff0378 	bl	27cd8 <ddm_btreeRdLock@@Base>
+   66efc:	7100001f 	cmp	w0, #0x0
+   66f00:	54000180 	b.eq	66f30 <ddm_sendMultipleDeviceInfoEvent@@Base+0x198>  // b.none
+   66f04:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66f08:	9121c001 	add	x1, x0, #0x870
+   66f0c:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66f10:	9108c000 	add	x0, x0, #0x230
+   66f14:	aa0103e2 	mov	x2, x1
+   66f18:	528073c1 	mov	w1, #0x39e                 	// #926
+   66f1c:	97febd41 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=926, x2='btree lock failed\n'
+   66f20:	f94027a0 	ldr	x0, [x29, #72]
+   66f24:	97febaf3 	bl	15af0 <cJSON_Delete@plt>
+   66f28:	b9402fa0 	ldr	w0, [x29, #44]
+   66f2c:	14000098 	b	6718c <ddm_sendMultipleDeviceInfoEvent@@Base+0x3f4>
+   66f30:	b90033bf 	str	wzr, [x29, #48]
+   66f34:	14000029 	b	66fd8 <ddm_sendMultipleDeviceInfoEvent@@Base+0x240>
+   66f38:	b94033a1 	ldr	w1, [x29, #48]
+   66f3c:	aa0103e0 	mov	x0, x1
+   66f40:	d37ff800 	lsl	x0, x0, #1
+   66f44:	8b010000 	add	x0, x0, x1
+   66f48:	d37ef400 	lsl	x0, x0, #2
+   66f4c:	cb010000 	sub	x0, x0, x1
+   66f50:	d37cec00 	lsl	x0, x0, #4
+   66f54:	f9402fa1 	ldr	x1, [x29, #88]
+   66f58:	8b000020 	add	x0, x1, x0
+   66f5c:	91002000 	add	x0, x0, #0x8
+   66f60:	f90033a0 	str	x0, [x29, #96]
+   66f64:	f94033a0 	ldr	x0, [x29, #96]
+   66f68:	39406000 	ldrb	w0, [x0, #24]
+   66f6c:	7100041f 	cmp	w0, #0x1
+   66f70:	540002e1 	b.ne	66fcc <ddm_sendMultipleDeviceInfoEvent@@Base+0x234>  // b.any
+   66f74:	f9400ba0 	ldr	x0, [x29, #16]
+   66f78:	b9400000 	ldr	w0, [x0]
+   66f7c:	121a0000 	and	w0, w0, #0x40
+   66f80:	7100001f 	cmp	w0, #0x0
+   66f84:	54000240 	b.eq	66fcc <ddm_sendMultipleDeviceInfoEvent@@Base+0x234>  // b.none
+   66f88:	f94033a0 	ldr	x0, [x29, #96]
+   66f8c:	97ff0199 	bl	275f0 <ddm_getDeviceNode@@Base>
+   66f90:	f9001fa0 	str	x0, [x29, #56]
+   66f94:	f9401fa0 	ldr	x0, [x29, #56]
+   66f98:	f100001f 	cmp	x0, #0x0
+   66f9c:	54000121 	b.ne	66fc0 <ddm_sendMultipleDeviceInfoEvent@@Base+0x228>  // b.any
+   66fa0:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66fa4:	91278001 	add	x1, x0, #0x9e0
+   66fa8:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66fac:	9108c000 	add	x0, x0, #0x230
+   66fb0:	aa0103e2 	mov	x2, x1
+   66fb4:	52807501 	mov	w1, #0x3a8                 	// #936
+   66fb8:	97febd1a 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=936, x2='Unable to get node from btree'
+   66fbc:	14000004 	b	66fcc <ddm_sendMultipleDeviceInfoEvent@@Base+0x234>
+   66fc0:	f9401fa1 	ldr	x1, [x29, #56]
+   66fc4:	f9402ba0 	ldr	x0, [x29, #80]
+   66fc8:	97fff5dd 	bl	6473c <ddm_createDeviceInfo@@Base>
+   66fcc:	b94033a0 	ldr	w0, [x29, #48]
+   66fd0:	11000400 	add	w0, w0, #0x1
+   66fd4:	b90033a0 	str	w0, [x29, #48]
+   66fd8:	b94033a1 	ldr	w1, [x29, #48]
+   66fdc:	b94037a0 	ldr	w0, [x29, #52]
+   66fe0:	6b00003f 	cmp	w1, w0
+   66fe4:	54fffaa3 	b.cc	66f38 <ddm_sendMultipleDeviceInfoEvent@@Base+0x1a0>  // b.lo, b.ul, b.last
+   66fe8:	14000008 	b	67008 <ddm_sendMultipleDeviceInfoEvent@@Base+0x270>
+   66fec:	d0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   66ff0:	91222001 	add	x1, x0, #0x888
+   66ff4:	f0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   66ff8:	9108c000 	add	x0, x0, #0x230
+   66ffc:	aa0103e2 	mov	x2, x1
+   67000:	528075e1 	mov	w1, #0x3af                 	// #943
+   67004:	97febd07 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=943, x2='btree unlock failed\n'
+   67008:	97ff0372 	bl	27dd0 <ddm_btreeUnLock@@Base>
+   6700c:	7100001f 	cmp	w0, #0x0
+   67010:	54fffee1 	b.ne	66fec <ddm_sendMultipleDeviceInfoEvent@@Base+0x254>  // b.any
+   67014:	f9402ba0 	ldr	x0, [x29, #80]
+   67018:	97fff4dd 	bl	6438c <ddm_getJsonArraySize@@Base>
+   6701c:	7100001f 	cmp	w0, #0x0
+   67020:	54000a20 	b.eq	67164 <ddm_sendMultipleDeviceInfoEvent@@Base+0x3cc>  // b.none
+   67024:	f94027a0 	ldr	x0, [x29, #72]
+   67028:	97febd2e 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   6702c:	f90023a0 	str	x0, [x29, #64]
+   67030:	f94023a0 	ldr	x0, [x29, #64]
+   67034:	f100001f 	cmp	x0, #0x0
+   67038:	54000920 	b.eq	6715c <ddm_sendMultipleDeviceInfoEvent@@Base+0x3c4>  // b.none
+   6703c:	52800200 	mov	w0, #0x10                  	// #16
+   67040:	97fef16c 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=16
+   67044:	12001c00 	and	w0, w0, #0xff
+   67048:	7100001f 	cmp	w0, #0x0
+   6704c:	54000300 	b.eq	670ac <ddm_sendMultipleDeviceInfoEvent@@Base+0x314>  // b.none
+   67050:	f94023a0 	ldr	x0, [x29, #64]
+   67054:	97febcdb 	bl	163c0 <wsappl_send@plt>
+   67058:	7100001f 	cmp	w0, #0x0
+   6705c:	5400016a 	b.ge	67088 <ddm_sendMultipleDeviceInfoEvent@@Base+0x2f0>  // b.tcont
+   67060:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67064:	913a8001 	add	x1, x0, #0xea0
+   67068:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6706c:	9108c000 	add	x0, x0, #0x230
+   67070:	aa0103e2 	mov	x2, x1
+   67074:	528076c1 	mov	w1, #0x3b6                 	// #950
+   67078:	97febcea 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=950, x2='Unable to send multiple device info on websocket'
+   6707c:	52800220 	mov	w0, #0x11                  	// #17
+   67080:	97ff396d 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=17
+   67084:	1400000a 	b	670ac <ddm_sendMultipleDeviceInfoEvent@@Base+0x314>
+   67088:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6708c:	913b6001 	add	x1, x0, #0xed8
+   67090:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67094:	9108c000 	add	x0, x0, #0x230
+   67098:	aa0103e2 	mov	x2, x1
+   6709c:	52807741 	mov	w1, #0x3ba                 	// #954
+   670a0:	97feb9e0 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=954, x2='Multiple Device Info Sent to Websocket'
+   670a4:	52800200 	mov	w0, #0x10                  	// #16
+   670a8:	97ff3963 	bl	35634 <ddm_updateDebugInfo@@Base> ; heuristic args: x0=16
+   670ac:	52802000 	mov	w0, #0x100                 	// #256
+   670b0:	97fef150 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=256
+   670b4:	12001c00 	and	w0, w0, #0xff
+   670b8:	7100001f 	cmp	w0, #0x0
+   670bc:	540003c0 	b.eq	67134 <ddm_sendMultipleDeviceInfoEvent@@Base+0x39c>  // b.none
+   670c0:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   670c4:	f9478c00 	ldr	x0, [x0, #3864]
+   670c8:	f94023a1 	ldr	x1, [x29, #64]
+   670cc:	97fff318 	bl	63d2c <ddm_unixClientSend@@Base>
+   670d0:	7100001f 	cmp	w0, #0x0
+   670d4:	540001a0 	b.eq	67108 <ddm_sendMultipleDeviceInfoEvent@@Base+0x370>  // b.none
+   670d8:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   670dc:	f9478c00 	ldr	x0, [x0, #3864]
+   670e0:	91002002 	add	x2, x0, #0x8
+   670e4:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   670e8:	913c0001 	add	x1, x0, #0xf00
+   670ec:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   670f0:	9108c000 	add	x0, x0, #0x230
+   670f4:	aa0203e3 	mov	x3, x2
+   670f8:	aa0103e2 	mov	x2, x1
+   670fc:	52807801 	mov	w1, #0x3c0                 	// #960
+   67100:	97febcc8 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=960, x2='Unable to send multiple device Info on unixPath[%s]'
+   67104:	1400000c 	b	67134 <ddm_sendMultipleDeviceInfoEvent@@Base+0x39c>
+   67108:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6710c:	f9478c00 	ldr	x0, [x0, #3864]
+   67110:	91002002 	add	x2, x0, #0x8
+   67114:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67118:	913ce001 	add	x1, x0, #0xf38
+   6711c:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67120:	9108c000 	add	x0, x0, #0x230
+   67124:	aa0203e3 	mov	x3, x2
+   67128:	aa0103e2 	mov	x2, x1
+   6712c:	52807841 	mov	w1, #0x3c2                 	// #962
+   67130:	97feb9bc 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=962, x2='Multiple Device Info Sent to unix socket[%s]'
+   67134:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67138:	913da001 	add	x1, x0, #0xf68
+   6713c:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67140:	9108c000 	add	x0, x0, #0x230
+   67144:	f94023a3 	ldr	x3, [x29, #64]
+   67148:	aa0103e2 	mov	x2, x1
+   6714c:	528078a1 	mov	w1, #0x3c5                 	// #965
+   67150:	97feb9b4 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=965, x2='Multiple Device Info[%s]'
+   67154:	f94023a0 	ldr	x0, [x29, #64]
+   67158:	97febabe 	bl	15c50 <free@plt>
+   6715c:	b9002fbf 	str	wzr, [x29, #44]
+   67160:	14000008 	b	67180 <ddm_sendMultipleDeviceInfoEvent@@Base+0x3e8>
+   67164:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67168:	912b0001 	add	x1, x0, #0xac0
+   6716c:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67170:	9108c000 	add	x0, x0, #0x230
+   67174:	aa0103e2 	mov	x2, x1
+   67178:	52807941 	mov	w1, #0x3ca                 	// #970
+   6717c:	97feb9a9 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendMultipleDeviceInfoEvent', x1=970, x2='Empty Payload Found. Discarding Event send to ws...'
+   67180:	f94027a0 	ldr	x0, [x29, #72]
+   67184:	97feba5b 	bl	15af0 <cJSON_Delete@plt>
+   67188:	b9402fa0 	ldr	w0, [x29, #44]
+   6718c:	90000321 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   67190:	f946b421 	ldr	x1, [x1, #3432]
+   67194:	f94037a2 	ldr	x2, [x29, #104]
+   67198:	f9400021 	ldr	x1, [x1]
+   6719c:	ca010041 	eor	x1, x2, x1
+   671a0:	f100003f 	cmp	x1, #0x0
+   671a4:	54000040 	b.eq	671ac <ddm_sendMultipleDeviceInfoEvent@@Base+0x414>  // b.none
+   671a8:	97feba16 	bl	15a00 <__stack_chk_fail@plt>
+   671ac:	a8c77bfd 	ldp	x29, x30, [sp], #112
+   671b0:	d65f03c0 	ret
+
+00000000000671b4 <ddm_createSsidInfo@@Base>:
+   671b4:	a9ba7bfd 	stp	x29, x30, [sp, #-96]!
+   671b8:	910003fd 	mov	x29, sp
+   671bc:	f9000fa0 	str	x0, [x29, #24]
+   671c0:	f9000ba1 	str	x1, [x29, #16]
+   671c4:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   671c8:	f946b400 	ldr	x0, [x0, #3432]
+   671cc:	f9400001 	ldr	x1, [x0]
+   671d0:	f9002fa1 	str	x1, [x29, #88]
+   671d4:	d2800001 	mov	x1, #0x0                   	// #0
+   671d8:	f9400fa0 	ldr	x0, [x29, #24]
+   671dc:	f100001f 	cmp	x0, #0x0
+   671e0:	54000080 	b.eq	671f0 <ddm_createSsidInfo@@Base+0x3c>  // b.none
+   671e4:	f9400ba0 	ldr	x0, [x29, #16]
+   671e8:	f100001f 	cmp	x0, #0x0
+   671ec:	54000121 	b.ne	67210 <ddm_createSsidInfo@@Base+0x5c>  // b.any
+   671f0:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   671f4:	911d4001 	add	x1, x0, #0x750
+   671f8:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   671fc:	91094000 	add	x0, x0, #0x250
+   67200:	aa0103e2 	mov	x2, x1
+   67204:	52807a61 	mov	w1, #0x3d3                 	// #979
+   67208:	97febc86 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_createSsidInfo', x1=979, x2='NULL parameter passed.'
+   6720c:	14000070 	b	673cc <ddm_createSsidInfo@@Base+0x218>
+   67210:	a903ffbf 	stp	xzr, xzr, [x29, #56]
+   67214:	a904ffbf 	stp	xzr, xzr, [x29, #72]
+   67218:	f9400fa0 	ldr	x0, [x29, #24]
+   6721c:	f90017a0 	str	x0, [x29, #40]
+   67220:	97feba3c 	bl	15b10 <cJSON_CreateObject@plt>
+   67224:	f9001ba0 	str	x0, [x29, #48]
+   67228:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6722c:	910f0001 	add	x1, x0, #0x3c0
+   67230:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67234:	91158000 	add	x0, x0, #0x560
+   67238:	aa0103e2 	mov	x2, x1
+   6723c:	aa0003e1 	mov	x1, x0
+   67240:	f9401ba0 	ldr	x0, [x29, #48]
+   67244:	97feba23 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   67248:	9100e3a0 	add	x0, x29, #0x38
+   6724c:	d2800402 	mov	x2, #0x20                  	// #32
+   67250:	52800001 	mov	w1, #0x0                   	// #0
+   67254:	97feba87 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   67258:	f9400ba0 	ldr	x0, [x29, #16]
+   6725c:	b9400002 	ldr	w2, [x0]
+   67260:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67264:	91168001 	add	x1, x0, #0x5a0
+   67268:	9100e3a0 	add	x0, x29, #0x38
+   6726c:	2a0203e3 	mov	w3, w2
+   67270:	aa0103e2 	mov	x2, x1
+   67274:	d28003e1 	mov	x1, #0x1f                  	// #31
+   67278:	97febb96 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   6727c:	9100e3a1 	add	x1, x29, #0x38
+   67280:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67284:	913e2000 	add	x0, x0, #0xf88
+   67288:	aa0103e2 	mov	x2, x1
+   6728c:	aa0003e1 	mov	x1, x0
+   67290:	f9401ba0 	ldr	x0, [x29, #48]
+   67294:	97feba0f 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='radioindex'
+   67298:	9100e3a0 	add	x0, x29, #0x38
+   6729c:	d2800402 	mov	x2, #0x20                  	// #32
+   672a0:	52800001 	mov	w1, #0x0                   	// #0
+   672a4:	97feba73 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   672a8:	f9400ba0 	ldr	x0, [x29, #16]
+   672ac:	b9400402 	ldr	w2, [x0, #4]
+   672b0:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   672b4:	91168001 	add	x1, x0, #0x5a0
+   672b8:	9100e3a0 	add	x0, x29, #0x38
+   672bc:	2a0203e3 	mov	w3, w2
+   672c0:	aa0103e2 	mov	x2, x1
+   672c4:	d28003e1 	mov	x1, #0x1f                  	// #31
+   672c8:	97febb82 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%d'
+   672cc:	9100e3a1 	add	x1, x29, #0x38
+   672d0:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   672d4:	911e4000 	add	x0, x0, #0x790
+   672d8:	aa0103e2 	mov	x2, x1
+   672dc:	aa0003e1 	mov	x1, x0
+   672e0:	f9401ba0 	ldr	x0, [x29, #48]
+   672e4:	97feb9fb 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='ssidindex'
+   672e8:	f9400ba0 	ldr	x0, [x29, #16]
+   672ec:	91002001 	add	x1, x0, #0x8
+   672f0:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   672f4:	913e6000 	add	x0, x0, #0xf98
+   672f8:	aa0103e2 	mov	x2, x1
+   672fc:	aa0003e1 	mov	x1, x0
+   67300:	f9401ba0 	ldr	x0, [x29, #48]
+   67304:	97feb9f3 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='ssidname'
+   67308:	f9400ba0 	ldr	x0, [x29, #16]
+   6730c:	9100a401 	add	x1, x0, #0x29
+   67310:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67314:	9118c000 	add	x0, x0, #0x630
+   67318:	aa0103e2 	mov	x2, x1
+   6731c:	aa0003e1 	mov	x1, x0
+   67320:	f9401ba0 	ldr	x0, [x29, #48]
+   67324:	97feb9eb 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='band'
+   67328:	f9400ba0 	ldr	x0, [x29, #16]
+   6732c:	9100e801 	add	x1, x0, #0x3a
+   67330:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67334:	913ea000 	add	x0, x0, #0xfa8
+   67338:	aa0103e2 	mov	x2, x1
+   6733c:	aa0003e1 	mov	x1, x0
+   67340:	f9401ba0 	ldr	x0, [x29, #48]
+   67344:	97feb9e3 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='status'
+   67348:	9100e3a0 	add	x0, x29, #0x38
+   6734c:	d2800402 	mov	x2, #0x20                  	// #32
+   67350:	52800001 	mov	w1, #0x0                   	// #0
+   67354:	97feba47 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32
+   67358:	f9400ba0 	ldr	x0, [x29, #16]
+   6735c:	91002000 	add	x0, x0, #0x8
+   67360:	97ff9e20 	bl	4ebe0 <getMLOValue@@Base>
+   67364:	7100001f 	cmp	w0, #0x0
+   67368:	54000080 	b.eq	67378 <ddm_createSsidInfo@@Base+0x1c4>  // b.none
+   6736c:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67370:	913ec000 	add	x0, x0, #0xfb0
+   67374:	14000003 	b	67380 <ddm_createSsidInfo@@Base+0x1cc>
+   67378:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   6737c:	913ee000 	add	x0, x0, #0xfb8
+   67380:	b0000181 	adrp	x1, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67384:	9118a021 	add	x1, x1, #0x628
+   67388:	9100e3a4 	add	x4, x29, #0x38
+   6738c:	aa0003e3 	mov	x3, x0
+   67390:	aa0103e2 	mov	x2, x1
+   67394:	d28003e1 	mov	x1, #0x1f                  	// #31
+   67398:	aa0403e0 	mov	x0, x4
+   6739c:	97febb4d 	bl	160d0 <snprintf@plt> ; heuristic args: x1=31, x2='%s', x3='Disabled'
+   673a0:	9100e3a1 	add	x1, x29, #0x38
+   673a4:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   673a8:	913f2000 	add	x0, x0, #0xfc8
+   673ac:	aa0103e2 	mov	x2, x1
+   673b0:	aa0003e1 	mov	x1, x0
+   673b4:	f9401ba0 	ldr	x0, [x29, #48]
+   673b8:	97feb9c6 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='MLO'
+   673bc:	f9401ba1 	ldr	x1, [x29, #48]
+   673c0:	f94017a0 	ldr	x0, [x29, #40]
+   673c4:	97febbe7 	bl	16360 <cJSON_AddItemToArray@plt>
+   673c8:	d503201f 	nop
+   673cc:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   673d0:	f946b400 	ldr	x0, [x0, #3432]
+   673d4:	f9402fa1 	ldr	x1, [x29, #88]
+   673d8:	f9400000 	ldr	x0, [x0]
+   673dc:	ca000020 	eor	x0, x1, x0
+   673e0:	f100001f 	cmp	x0, #0x0
+   673e4:	54000040 	b.eq	673ec <ddm_createSsidInfo@@Base+0x238>  // b.none
+   673e8:	97feb986 	bl	15a00 <__stack_chk_fail@plt>
+   673ec:	a8c67bfd 	ldp	x29, x30, [sp], #96
+   673f0:	d65f03c0 	ret
+
+00000000000673f4 <ddm_sendSSIDInfoWS@@Base>:
+   673f4:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+   673f8:	910003fd 	mov	x29, sp
+   673fc:	f9000fa0 	str	x0, [x29, #24]
+   67400:	b90017a1 	str	w1, [x29, #20]
+   67404:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   67408:	f946b400 	ldr	x0, [x0, #3432]
+   6740c:	f9400001 	ldr	x1, [x0]
+   67410:	f90027a1 	str	x1, [x29, #72]
+   67414:	d2800001 	mov	x1, #0x0                   	// #0
+   67418:	12800000 	mov	w0, #0xffffffff            	// #-1
+   6741c:	b9002ba0 	str	w0, [x29, #40]
+   67420:	b9002fbf 	str	wzr, [x29, #44]
+   67424:	f9001bbf 	str	xzr, [x29, #48]
+   67428:	f9001fbf 	str	xzr, [x29, #56]
+   6742c:	f90023bf 	str	xzr, [x29, #64]
+   67430:	f9400fa0 	ldr	x0, [x29, #24]
+   67434:	f100001f 	cmp	x0, #0x0
+   67438:	54000141 	b.ne	67460 <ddm_sendSSIDInfoWS@@Base+0x6c>  // b.any
+   6743c:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67440:	9104c001 	add	x1, x0, #0x130
+   67444:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67448:	9109a000 	add	x0, x0, #0x268
+   6744c:	aa0103e2 	mov	x2, x1
+   67450:	52807f61 	mov	w1, #0x3fb                 	// #1019
+   67454:	97febbf3 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendSSIDInfoWS', x1=1019, x2='Null pointer passed!'
+   67458:	12800000 	mov	w0, #0xffffffff            	// #-1
+   6745c:	140000ac 	b	6770c <ddm_sendSSIDInfoWS@@Base+0x318>
+   67460:	b94017a0 	ldr	w0, [x29, #20]
+   67464:	7100001f 	cmp	w0, #0x0
+   67468:	54000141 	b.ne	67490 <ddm_sendSSIDInfoWS@@Base+0x9c>  // b.any
+   6746c:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67470:	913f4001 	add	x1, x0, #0xfd0
+   67474:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67478:	9109a000 	add	x0, x0, #0x268
+   6747c:	aa0103e2 	mov	x2, x1
+   67480:	52808021 	mov	w1, #0x401                 	// #1025
+   67484:	97febbe7 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendSSIDInfoWS', x1=1025, x2='total_ssid = 0. Hence returning \n'
+   67488:	12800000 	mov	w0, #0xffffffff            	// #-1
+   6748c:	140000a0 	b	6770c <ddm_sendSSIDInfoWS@@Base+0x318>
+   67490:	97feb9a0 	bl	15b10 <cJSON_CreateObject@plt>
+   67494:	f9001fa0 	str	x0, [x29, #56]
+   67498:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6749c:	f9469c00 	ldr	x0, [x0, #3384]
+   674a0:	91016c01 	add	x1, x0, #0x5b
+   674a4:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   674a8:	91158000 	add	x0, x0, #0x560
+   674ac:	aa0103e2 	mov	x2, x1
+   674b0:	aa0003e1 	mov	x1, x0
+   674b4:	f9401fa0 	ldr	x0, [x29, #56]
+   674b8:	97feb986 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='gw'
+   674bc:	b94017a0 	ldr	w0, [x29, #20]
+   674c0:	7100041f 	cmp	w0, #0x1
+   674c4:	54000141 	b.ne	674ec <ddm_sendSSIDInfoWS@@Base+0xf8>  // b.any
+   674c8:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   674cc:	913fe001 	add	x1, x0, #0xff8
+   674d0:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   674d4:	91214000 	add	x0, x0, #0x850
+   674d8:	aa0103e2 	mov	x2, x1
+   674dc:	aa0003e1 	mov	x1, x0
+   674e0:	f9401fa0 	ldr	x0, [x29, #56]
+   674e4:	97feb97b 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='SSIDInfoChange'
+   674e8:	14000009 	b	6750c <ddm_sendSSIDInfoWS@@Base+0x118>
+   674ec:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   674f0:	91002001 	add	x1, x0, #0x8
+   674f4:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   674f8:	91214000 	add	x0, x0, #0x850
+   674fc:	aa0103e2 	mov	x2, x1
+   67500:	aa0003e1 	mov	x1, x0
+   67504:	f9401fa0 	ldr	x0, [x29, #56]
+   67508:	97feb972 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='event', x2='SSIDInfo'
+   6750c:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67510:	91216001 	add	x1, x0, #0x858
+   67514:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67518:	91218000 	add	x0, x0, #0x860
+   6751c:	aa0103e2 	mov	x2, x1
+   67520:	aa0003e1 	mov	x1, x0
+   67524:	f9401fa0 	ldr	x0, [x29, #56]
+   67528:	97feb96a 	bl	15ad0 <cJSON_AddStringToObject@plt> ; heuristic args: x1='version', x2='6.1'
+   6752c:	97febc25 	bl	165c0 <cJSON_CreateArray@plt>
+   67530:	f90023a0 	str	x0, [x29, #64]
+   67534:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   67538:	9121a000 	add	x0, x0, #0x868
+   6753c:	f94023a2 	ldr	x2, [x29, #64]
+   67540:	aa0003e1 	mov	x1, x0
+   67544:	f9401fa0 	ldr	x0, [x29, #56]
+   67548:	97febb8e 	bl	16380 <cJSON_AddItemToObject@plt> ; heuristic args: x1='payload'
+   6754c:	b9002fbf 	str	wzr, [x29, #44]
+   67550:	14000011 	b	67594 <ddm_sendSSIDInfoWS@@Base+0x1a0>
+   67554:	b9402fa1 	ldr	w1, [x29, #44]
+   67558:	aa0103e0 	mov	x0, x1
+   6755c:	d37ef400 	lsl	x0, x0, #2
+   67560:	8b010000 	add	x0, x0, x1
+   67564:	d37ef400 	lsl	x0, x0, #2
+   67568:	cb010000 	sub	x0, x0, x1
+   6756c:	d37ef400 	lsl	x0, x0, #2
+   67570:	aa0003e1 	mov	x1, x0
+   67574:	f9400fa0 	ldr	x0, [x29, #24]
+   67578:	8b010000 	add	x0, x0, x1
+   6757c:	aa0003e1 	mov	x1, x0
+   67580:	f94023a0 	ldr	x0, [x29, #64]
+   67584:	97ffff0c 	bl	671b4 <ddm_createSsidInfo@@Base>
+   67588:	b9402fa0 	ldr	w0, [x29, #44]
+   6758c:	11000400 	add	w0, w0, #0x1
+   67590:	b9002fa0 	str	w0, [x29, #44]
+   67594:	b94017a0 	ldr	w0, [x29, #20]
+   67598:	b9402fa1 	ldr	w1, [x29, #44]
+   6759c:	6b00003f 	cmp	w1, w0
+   675a0:	54fffda3 	b.cc	67554 <ddm_sendSSIDInfoWS@@Base+0x160>  // b.lo, b.ul, b.last
+   675a4:	f94023a0 	ldr	x0, [x29, #64]
+   675a8:	97fff379 	bl	6438c <ddm_getJsonArraySize@@Base>
+   675ac:	7100001f 	cmp	w0, #0x0
+   675b0:	540009a0 	b.eq	676e4 <ddm_sendSSIDInfoWS@@Base+0x2f0>  // b.none
+   675b4:	f9401fa0 	ldr	x0, [x29, #56]
+   675b8:	97febbca 	bl	164e0 <cJSON_PrintUnformatted@plt>
+   675bc:	f9001ba0 	str	x0, [x29, #48]
+   675c0:	f9401ba0 	ldr	x0, [x29, #48]
+   675c4:	f100001f 	cmp	x0, #0x0
+   675c8:	540008a0 	b.eq	676dc <ddm_sendSSIDInfoWS@@Base+0x2e8>  // b.none
+   675cc:	52800200 	mov	w0, #0x10                  	// #16
+   675d0:	97fef008 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=16
+   675d4:	12001c00 	and	w0, w0, #0xff
+   675d8:	7100001f 	cmp	w0, #0x0
+   675dc:	54000280 	b.eq	6762c <ddm_sendSSIDInfoWS@@Base+0x238>  // b.none
+   675e0:	f9401ba0 	ldr	x0, [x29, #48]
+   675e4:	97febb77 	bl	163c0 <wsappl_send@plt>
+   675e8:	7100001f 	cmp	w0, #0x0
+   675ec:	5400012a 	b.ge	67610 <ddm_sendSSIDInfoWS@@Base+0x21c>  // b.tcont
+   675f0:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   675f4:	91006001 	add	x1, x0, #0x18
+   675f8:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   675fc:	9109a000 	add	x0, x0, #0x268
+   67600:	aa0103e2 	mov	x2, x1
+   67604:	52808441 	mov	w1, #0x422                 	// #1058
+   67608:	97feb886 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendSSIDInfoWS', x1=1058, x2='Unable to send SSIDInfo on websocket'
+   6760c:	14000008 	b	6762c <ddm_sendSSIDInfoWS@@Base+0x238>
+   67610:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67614:	91010001 	add	x1, x0, #0x40
+   67618:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6761c:	9109a000 	add	x0, x0, #0x268
+   67620:	aa0103e2 	mov	x2, x1
+   67624:	52808481 	mov	w1, #0x424                 	// #1060
+   67628:	97feb87e 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendSSIDInfoWS', x1=1060, x2='SSIDInfo Sent to Websocket'
+   6762c:	52802000 	mov	w0, #0x100                 	// #256
+   67630:	97feeff0 	bl	235f0 <ddm_isAsyncNotificationEnabled@@Base> ; heuristic args: x0=256
+   67634:	12001c00 	and	w0, w0, #0xff
+   67638:	7100001f 	cmp	w0, #0x0
+   6763c:	540003c0 	b.eq	676b4 <ddm_sendSSIDInfoWS@@Base+0x2c0>  // b.none
+   67640:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   67644:	f9478c00 	ldr	x0, [x0, #3864]
+   67648:	f9401ba1 	ldr	x1, [x29, #48]
+   6764c:	97fff1b8 	bl	63d2c <ddm_unixClientSend@@Base>
+   67650:	7100001f 	cmp	w0, #0x0
+   67654:	540001a0 	b.eq	67688 <ddm_sendSSIDInfoWS@@Base+0x294>  // b.none
+   67658:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6765c:	f9478c00 	ldr	x0, [x0, #3864]
+   67660:	91002002 	add	x2, x0, #0x8
+   67664:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67668:	91018001 	add	x1, x0, #0x60
+   6766c:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67670:	9109a000 	add	x0, x0, #0x268
+   67674:	aa0203e3 	mov	x3, x2
+   67678:	aa0103e2 	mov	x2, x1
+   6767c:	52808521 	mov	w1, #0x429                 	// #1065
+   67680:	97febb68 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_sendSSIDInfoWS', x1=1065, x2='Unable to send SSIDInfo on unixPath[%s]'
+   67684:	1400000c 	b	676b4 <ddm_sendSSIDInfoWS@@Base+0x2c0>
+   67688:	90000320 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6768c:	f9478c00 	ldr	x0, [x0, #3864]
+   67690:	91002002 	add	x2, x0, #0x8
+   67694:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   67698:	91022001 	add	x1, x0, #0x88
+   6769c:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   676a0:	9109a000 	add	x0, x0, #0x268
+   676a4:	aa0203e3 	mov	x3, x2
+   676a8:	aa0103e2 	mov	x2, x1
+   676ac:	52808561 	mov	w1, #0x42b                 	// #1067
+   676b0:	97feb85c 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendSSIDInfoWS', x1=1067, x2='SSIDInfo Sent to unix socket[%s]'
+   676b4:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   676b8:	9102c001 	add	x1, x0, #0xb0
+   676bc:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   676c0:	9109a000 	add	x0, x0, #0x268
+   676c4:	f9401ba3 	ldr	x3, [x29, #48]
+   676c8:	aa0103e2 	mov	x2, x1
+   676cc:	528085c1 	mov	w1, #0x42e                 	// #1070
+   676d0:	97feb854 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendSSIDInfoWS', x1=1070, x2='SSIDInfo[%s]'
+   676d4:	f9401ba0 	ldr	x0, [x29, #48]
+   676d8:	97feb95e 	bl	15c50 <free@plt>
+   676dc:	b9002bbf 	str	wzr, [x29, #40]
+   676e0:	14000008 	b	67700 <ddm_sendSSIDInfoWS@@Base+0x30c>
+   676e4:	b0000180 	adrp	x0, 98000 <_IO_stdin_used@@Base+0x16f68>
+   676e8:	912b0001 	add	x1, x0, #0xac0
+   676ec:	d0000180 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   676f0:	9109a000 	add	x0, x0, #0x268
+   676f4:	aa0103e2 	mov	x2, x1
+   676f8:	52808661 	mov	w1, #0x433                 	// #1075
+   676fc:	97feb849 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_sendSSIDInfoWS', x1=1075, x2='Empty Payload Found. Discarding Event send to ws...'
+   67700:	f9401fa0 	ldr	x0, [x29, #56]
+   67704:	97feb8fb 	bl	15af0 <cJSON_Delete@plt>
+   67708:	b9402ba0 	ldr	w0, [x29, #40]
+   6770c:	90000321 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   67710:	f946b421 	ldr	x1, [x1, #3432]
+   67714:	f94027a2 	ldr	x2, [x29, #72]
+   67718:	f9400021 	ldr	x1, [x1]
+   6771c:	ca010041 	eor	x1, x2, x1
+   67720:	f100003f 	cmp	x1, #0x0
+   67724:	54000040 	b.eq	6772c <ddm_sendSSIDInfoWS@@Base+0x338>  // b.none
+   67728:	97feb8b6 	bl	15a00 <__stack_chk_fail@plt>
+   6772c:	a8c57bfd 	ldp	x29, x30, [sp], #80
+   67730:	d65f03c0 	ret
+   67734:	d503201f 	nop
+   67738:	d11143ff 	sub	sp, sp, #0x450
+   6773c:	d2808002 	mov	x2, #0x400                 	// #1024

@@ -1,0 +1,94 @@
+{
+  "scope": "Static HJL code and owner-reported wired behavior; no device access or recovery test.",
+  "profile": "private-source://PROFILE-G6-HJL",
+  "hashes": {
+    "etc/datamodel.db": "3b89fe0d7ec566f75370409a48440d261e15e82037fd77ef88d00de46a81ba67",
+    "usr/bin/cfgmgr": "1d4f8f7d8b0d2cfdc381083aa3a3c3f28b4ab50158f97742cae378cdfba14277"
+  },
+  "fields": [
+    {
+      "object_id": 284,
+      "object_path": "InternetGatewayDevice.LANDevice.{i}.LANHostConfigManagement",
+      "parameter": "DHCPServerEnable",
+      "object_flags": "0x01",
+      "parameter_flags": "0xc0",
+      "export_subtree": "eligible"
+    },
+    {
+      "object_id": 285,
+      "object_path": "InternetGatewayDevice.LANDevice.{i}.LANHostConfigManagement.IPInterface.{i}",
+      "parameter": "IPInterfaceIPAddress",
+      "object_flags": "0x00",
+      "parameter_flags": "0x00",
+      "export_subtree": "eligible"
+    },
+    {
+      "object_id": 285,
+      "object_path": "InternetGatewayDevice.LANDevice.{i}.LANHostConfigManagement.IPInterface.{i}",
+      "parameter": "IPInterfaceSubnetMask",
+      "object_flags": "0x00",
+      "parameter_flags": "0x00",
+      "export_subtree": "eligible"
+    },
+    {
+      "object_id": 374,
+      "object_path": "InternetGatewayDevice.WANDevice.{i}.WANConnectionDevice.{i}.WANIPConnection.{i}",
+      "parameter": "ConnectionType",
+      "object_flags": "0x00",
+      "parameter_flags": "0x08",
+      "export_subtree": "eligible"
+    },
+    {
+      "object_id": 374,
+      "object_path": "InternetGatewayDevice.WANDevice.{i}.WANConnectionDevice.{i}.WANIPConnection.{i}",
+      "parameter": "PossibleConnectionTypes",
+      "object_flags": "0x00",
+      "parameter_flags": "0x01",
+      "export_subtree": "eligible"
+    },
+    {
+      "object_id": 374,
+      "object_path": "InternetGatewayDevice.WANDevice.{i}.WANConnectionDevice.{i}.WANIPConnection.{i}",
+      "parameter": "X_CT-COM_LanInterface_DHCPEnable",
+      "object_flags": "0x00",
+      "parameter_flags": "0xc0",
+      "export_subtree": "eligible"
+    },
+    {
+      "object_id": 404,
+      "object_path": "InternetGatewayDevice.WANDevice.{i}.WANConnectionDevice.{i}.WANPPPConnection.{i}",
+      "parameter": "ConnectionType",
+      "object_flags": "0x00",
+      "parameter_flags": "0x08",
+      "export_subtree": "eligible"
+    },
+    {
+      "object_id": 404,
+      "object_path": "InternetGatewayDevice.WANDevice.{i}.WANConnectionDevice.{i}.WANPPPConnection.{i}",
+      "parameter": "PossibleConnectionTypes",
+      "object_flags": "0x00",
+      "parameter_flags": "0x01",
+      "export_subtree": "eligible"
+    },
+    {
+      "object_id": 404,
+      "object_path": "InternetGatewayDevice.WANDevice.{i}.WANConnectionDevice.{i}.WANPPPConnection.{i}",
+      "parameter": "X_CT-COM_LanInterface_DHCPEnable",
+      "object_flags": "0x00",
+      "parameter_flags": "0xc0",
+      "export_subtree": "eligible"
+    }
+  ],
+  "calls": {
+    "pppoe_comparison": "cfgmgr 0x1ca310, byte cleared at 0x1ca32c after conditional branch",
+    "ip_bridged_comparison": "cfgmgr 0x1c2080 and 0x1d43c0",
+    "whole_device_mode": "separate WiFi WorkMode object 596; see AP-mode evidence"
+  },
+  "owner_observation": {
+    "upstream_subnet": "192.168.100.0/24 (reported address family; mask not independently read)",
+    "client_lease_when_connected": true,
+    "client_lease_when_disconnected": false,
+    "beacon_in_upstream_mac_list": false,
+    "webui_on_listed_upstream_addresses": false
+  }
+}

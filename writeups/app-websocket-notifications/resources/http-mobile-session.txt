@@ -1,0 +1,517 @@
+
+websoc_session_app.cgi:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000010c0 <CGIMain@@Base>:
+    10c0:	d11703ff 	sub	sp, sp, #0x5c0
+    10c4:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    10c8:	9125c000 	add	x0, x0, #0x970
+    10cc:	a9007bfd 	stp	x29, x30, [sp]
+    10d0:	910003fd 	mov	x29, sp
+    10d4:	a90153f3 	stp	x19, x20, [sp, #16]
+    10d8:	b0000094 	adrp	x20, 12000 <_fini@@Base+0x106ac>
+    10dc:	a9025bf5 	stp	x21, x22, [sp, #32]
+    10e0:	910243b3 	add	x19, x29, #0x90
+    10e4:	f947e681 	ldr	x1, [x20, #4040]
+    10e8:	9101e3b5 	add	x21, x29, #0x78
+    10ec:	a90363f7 	stp	x23, x24, [sp, #48]
+    10f0:	f9400022 	ldr	x2, [x1]
+    10f4:	f902dfa2 	str	x2, [x29, #1464]
+    10f8:	d2800002 	mov	x2, #0x0                   	// #0
+    10fc:	97ffff95 	bl	f50 <CGIWriteHead@plt> ; heuristic args: x0='Content-type:text/html;charset=UTF-8', x2=0
+    1100:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    1104:	91266000 	add	x0, x0, #0x998
+    1108:	97ffff92 	bl	f50 <CGIWriteHead@plt> ; heuristic args: x0='Cache-Control:private,max-age=0;'
+    110c:	a9097fbf 	stp	xzr, xzr, [x29, #144]
+    1110:	d2800501 	mov	x1, #0x28                  	// #40
+    1114:	a90a7fbf 	stp	xzr, xzr, [x29, #160]
+    1118:	a907ffbf 	stp	xzr, xzr, [x29, #120]
+    111c:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1120:	aa1303e0 	mov	x0, x19
+    1124:	91270042 	add	x2, x2, #0x9c0
+    1128:	b9008bbf 	str	wzr, [x29, #136]
+    112c:	f9005bbf 	str	xzr, [x29, #176]
+    1130:	97ffff6c 	bl	ee0 <set_str_value_from_post@plt> ; heuristic args: x1=40, x2='command'
+    1134:	d2800281 	mov	x1, #0x14                  	// #20
+    1138:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    113c:	aa1503e0 	mov	x0, x21
+    1140:	91272042 	add	x2, x2, #0x9c8
+    1144:	97ffff67 	bl	ee0 <set_str_value_from_post@plt> ; heuristic args: x1=20, x2='timeout'
+    1148:	aa1503e4 	mov	x4, x21
+    114c:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1150:	aa1303e3 	mov	x3, x19
+    1154:	91274042 	add	x2, x2, #0x9d0
+    1158:	52800021 	mov	w1, #0x1                   	// #1
+    115c:	528000a0 	mov	w0, #0x5                   	// #5
+    1160:	97ffff68 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=5, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app call entered %s:%s'
+    1164:	a90bffbf 	stp	xzr, xzr, [x29, #184]
+    1168:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    116c:	a90cffbf 	stp	xzr, xzr, [x29, #200]
+    1170:	91284021 	add	x1, x1, #0xa10
+    1174:	aa1303e0 	mov	x0, x19
+    1178:	f9006fbf 	str	xzr, [x29, #216]
+    117c:	97ffff31 	bl	e40 <strstr@plt> ; heuristic args: x1='Session_START'
+    1180:	b4000800 	cbz	x0, 1280 <CGIMain@@Base+0x1c0>
+    1184:	90000016 	adrp	x22, 1000 <json_object_object_add@plt>
+    1188:	912882d6 	add	x22, x22, #0xa20
+    118c:	aa1603e1 	mov	x1, x22
+    1190:	aa1303e0 	mov	x0, x19
+    1194:	97ffff2b 	bl	e40 <strstr@plt> ; heuristic args: x1='Mobile'
+    1198:	b4000580 	cbz	x0, 1248 <CGIMain@@Base+0x188>
+    119c:	3941e3a0 	ldrb	w0, [x29, #120]
+    11a0:	34000a00 	cbz	w0, 12e0 <CGIMain@@Base+0x220>
+    11a4:	52800001 	mov	w1, #0x0                   	// #0
+    11a8:	aa1503e0 	mov	x0, x21
+    11ac:	97ffff89 	bl	fd0 <valid_integer@plt> ; heuristic args: x1=0
+    11b0:	340000e0 	cbz	w0, 11cc <CGIMain@@Base+0x10c>
+    11b4:	52800142 	mov	w2, #0xa                   	// #10
+    11b8:	d2800001 	mov	x1, #0x0                   	// #0
+    11bc:	aa1503e0 	mov	x0, x21
+    11c0:	97ffff38 	bl	ea0 <strtol@plt> ; heuristic args: x1=0, x2=10
+    11c4:	7100101f 	cmp	w0, #0x4
+    11c8:	5400284c 	b.gt	16d0 <CGIMain@@Base+0x610>
+    11cc:	52800057 	mov	w23, #0x2                   	// #2
+    11d0:	52800036 	mov	w22, #0x1                   	// #1
+    11d4:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    11d8:	aa1503e3 	mov	x3, x21
+    11dc:	91292042 	add	x2, x2, #0xa48
+    11e0:	52800021 	mov	w1, #0x1                   	// #1
+    11e4:	52800060 	mov	w0, #0x3                   	// #3
+    11e8:	97ffff46 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app Invalid timeout=%s'
+    11ec:	2a1603e5 	mov	w5, w22
+    11f0:	aa1503e4 	mov	x4, x21
+    11f4:	aa1303e3 	mov	x3, x19
+    11f8:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    11fc:	913ca042 	add	x2, x2, #0xf28
+    1200:	52800021 	mov	w1, #0x1                   	// #1
+    1204:	528000a0 	mov	w0, #0x5                   	// #5
+    1208:	97ffff3e 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=5, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app command=%s timeout=%s result=%d', x5=1
+    120c:	2a1703e1 	mov	w1, w23
+    1210:	2a1603e0 	mov	w0, w22
+    1214:	97ffff57 	bl	f70 <app_result@plt> ; heuristic args: x0=1, x1=2
+    1218:	f947e694 	ldr	x20, [x20, #4040]
+    121c:	52800000 	mov	w0, #0x0                   	// #0
+    1220:	f942dfa2 	ldr	x2, [x29, #1464]
+    1224:	f9400281 	ldr	x1, [x20]
+    1228:	ca010041 	eor	x1, x2, x1
+    122c:	b50033a1 	cbnz	x1, 18a0 <CGIMain@@Base+0x7e0>
+    1230:	a94153f3 	ldp	x19, x20, [sp, #16]
+    1234:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    1238:	a94363f7 	ldp	x23, x24, [sp, #48]
+    123c:	a9407bfd 	ldp	x29, x30, [sp]
+    1240:	911703ff 	add	sp, sp, #0x5c0
+    1244:	d65f03c0 	ret
+    1248:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    124c:	aa1303e0 	mov	x0, x19
+    1250:	912a4021 	add	x1, x1, #0xa90
+    1254:	97fffefb 	bl	e40 <strstr@plt> ; heuristic args: x1='Session_STOP'
+    1258:	b40007c0 	cbz	x0, 1350 <CGIMain@@Base+0x290>
+    125c:	52800060 	mov	w0, #0x3                   	// #3
+    1260:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1264:	aa1303e3 	mov	x3, x19
+    1268:	91396042 	add	x2, x2, #0xe58
+    126c:	52800021 	mov	w1, #0x1                   	// #1
+    1270:	2a0003f7 	mov	w23, w0
+    1274:	52800036 	mov	w22, #0x1                   	// #1
+    1278:	97ffff22 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app Invalid command=%s'
+    127c:	17ffffdc 	b	11ec <CGIMain@@Base+0x12c>
+    1280:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1284:	aa1303e0 	mov	x0, x19
+    1288:	912a4021 	add	x1, x1, #0xa90
+    128c:	97fffeed 	bl	e40 <strstr@plt> ; heuristic args: x1='Session_STOP'
+    1290:	b4000600 	cbz	x0, 1350 <CGIMain@@Base+0x290>
+    1294:	90000016 	adrp	x22, 1000 <json_object_object_add@plt>
+    1298:	912882d6 	add	x22, x22, #0xa20
+    129c:	aa1603e1 	mov	x1, x22
+    12a0:	aa1303e0 	mov	x0, x19
+    12a4:	97fffee7 	bl	e40 <strstr@plt> ; heuristic args: x1='Mobile'
+    12a8:	b4fffda0 	cbz	x0, 125c <CGIMain@@Base+0x19c>
+    12ac:	9102e3b8 	add	x24, x29, #0xb8
+    12b0:	d2800503 	mov	x3, #0x28                  	// #40
+    12b4:	aa1603e5 	mov	x5, x22
+    12b8:	90000004 	adrp	x4, 1000 <json_object_object_add@plt>
+    12bc:	52800022 	mov	w2, #0x1                   	// #1
+    12c0:	912a8084 	add	x4, x4, #0xaa0
+    12c4:	aa0303e1 	mov	x1, x3
+    12c8:	aa1803e0 	mov	x0, x24
+    12cc:	52800017 	mov	w23, #0x0                   	// #0
+    12d0:	97ffff00 	bl	ed0 <__snprintf_chk@plt> ; heuristic args: x1=40, x2=1, x3=40, x4='Session_STOP{%s}', x5='Mobile'
+    12d4:	52800016 	mov	w22, #0x0                   	// #0
+    12d8:	1400000b 	b	1304 <CGIMain@@Base+0x244>
+    12dc:	d503201f 	nop
+    12e0:	52800017 	mov	w23, #0x0                   	// #0
+    12e4:	52800016 	mov	w22, #0x0                   	// #0
+    12e8:	9102e3b8 	add	x24, x29, #0xb8
+    12ec:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    12f0:	aa1303e3 	mov	x3, x19
+    12f4:	912a2042 	add	x2, x2, #0xa88
+    12f8:	d2800501 	mov	x1, #0x28                  	// #40
+    12fc:	aa1803e0 	mov	x0, x24
+    1300:	97ffff0c 	bl	f30 <snprintf@plt> ; heuristic args: x1=40, x2='%s'
+    1304:	aa1803e3 	mov	x3, x24
+    1308:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    130c:	913a6042 	add	x2, x2, #0xe98
+    1310:	52800021 	mov	w1, #0x1                   	// #1
+    1314:	528000a0 	mov	w0, #0x5                   	// #5
+    1318:	97fffefa 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=5, x1=1, x2='[cgi-app]:Web MobileApp websoc_session analyticsCmdBuf:%s'
+    131c:	aa1803e0 	mov	x0, x24
+    1320:	97ffff28 	bl	fc0 <nwa_notifyAnalyticsCommand@plt>
+    1324:	3100041f 	cmn	w0, #0x1
+    1328:	54fff621 	b.ne	11ec <CGIMain@@Base+0x12c>  // b.any
+    132c:	52800036 	mov	w22, #0x1                   	// #1
+    1330:	52800097 	mov	w23, #0x4                   	// #4
+    1334:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1338:	2a1603e1 	mov	w1, w22
+    133c:	913b6042 	add	x2, x2, #0xed8
+    1340:	52800060 	mov	w0, #0x3                   	// #3
+    1344:	97fffeef 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app error nwa_notifyAnalyticsCommand'
+    1348:	17ffffa9 	b	11ec <CGIMain@@Base+0x12c>
+    134c:	d503201f 	nop
+    1350:	a9046bb9 	stp	x25, x26, [x29, #64]
+    1354:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1358:	f9002bbb 	str	x27, [x29, #80]
+    135c:	aa1303e0 	mov	x0, x19
+    1360:	912ae021 	add	x1, x1, #0xab8
+    1364:	97fffeb7 	bl	e40 <strstr@plt> ; heuristic args: x1='Session_AUTH'
+    1368:	b4002a20 	cbz	x0, 18ac <CGIMain@@Base+0x7ec>
+    136c:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1370:	aa1303e0 	mov	x0, x19
+    1374:	91288021 	add	x1, x1, #0xa20
+    1378:	97fffeb2 	bl	e40 <strstr@plt> ; heuristic args: x1='Mobile'
+    137c:	b4002980 	cbz	x0, 18ac <CGIMain@@Base+0x7ec>
+    1380:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    1384:	912b2000 	add	x0, x0, #0xac8
+    1388:	97ffff0a 	bl	fb0 <CGIGetPost@plt> ; heuristic args: x0='name'
+    138c:	aa0003fb 	mov	x27, x0
+    1390:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    1394:	912b4000 	add	x0, x0, #0xad0
+    1398:	97ffff06 	bl	fb0 <CGIGetPost@plt> ; heuristic args: x0='pswd'
+    139c:	aa0003f9 	mov	x25, x0
+    13a0:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    13a4:	912b6000 	add	x0, x0, #0xad8
+    13a8:	97ffff02 	bl	fb0 <CGIGetPost@plt> ; heuristic args: x0='auth'
+    13ac:	a90e7fbf 	stp	xzr, xzr, [x29, #224]
+    13b0:	910843a3 	add	x3, x29, #0x210
+    13b4:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    13b8:	912b8042 	add	x2, x2, #0xae0
+    13bc:	aa0003fa 	mov	x26, x0
+    13c0:	52800021 	mov	w1, #0x1                   	// #1
+    13c4:	528000a0 	mov	w0, #0x5                   	// #5
+    13c8:	a90f7fbf 	stp	xzr, xzr, [x29, #240]
+    13cc:	a9107fbf 	stp	xzr, xzr, [x29, #256]
+    13d0:	a9117fbf 	stp	xzr, xzr, [x29, #272]
+    13d4:	a9127fbf 	stp	xzr, xzr, [x29, #288]
+    13d8:	a9137fbf 	stp	xzr, xzr, [x29, #304]
+    13dc:	a933fc7f 	stp	xzr, xzr, [x3, #-200]
+    13e0:	a934fc7f 	stp	xzr, xzr, [x3, #-184]
+    13e4:	a935fc7f 	stp	xzr, xzr, [x3, #-168]
+    13e8:	a936fc7f 	stp	xzr, xzr, [x3, #-152]
+    13ec:	a937fc7f 	stp	xzr, xzr, [x3, #-136]
+    13f0:	a938fc7f 	stp	xzr, xzr, [x3, #-120]
+    13f4:	a939fc7f 	stp	xzr, xzr, [x3, #-104]
+    13f8:	a93afc7f 	stp	xzr, xzr, [x3, #-88]
+    13fc:	b90143bf 	str	wzr, [x29, #320]
+    1400:	97fffec0 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=5, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app cmd:Session_AUTH entered'
+    1404:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1408:	aa1a03e0 	mov	x0, x26
+    140c:	912ca021 	add	x1, x1, #0xb28
+    1410:	97fffedc 	bl	f80 <strcmp@plt> ; heuristic args: x1='verify'
+    1414:	35001560 	cbnz	w0, 16c0 <CGIMain@@Base+0x600>
+    1418:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    141c:	aa1903e0 	mov	x0, x25
+    1420:	912cc021 	add	x1, x1, #0xb30
+    1424:	97fffed7 	bl	f80 <strcmp@plt> ; heuristic args: x1='FILE'
+    1428:	2a0003f6 	mov	w22, w0
+    142c:	35001860 	cbnz	w0, 1738 <CGIMain@@Base+0x678>
+    1430:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1434:	912ce042 	add	x2, x2, #0xb38
+    1438:	52800021 	mov	w1, #0x1                   	// #1
+    143c:	528000a0 	mov	w0, #0x5                   	// #5
+    1440:	97fffeb0 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=5, x1=1, x2='[cgi-app]: Auth Pswd is read from file'
+    1444:	910383b7 	add	x23, x29, #0xe0
+    1448:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    144c:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    1450:	912d8021 	add	x1, x1, #0xb60
+    1454:	912da000 	add	x0, x0, #0xb68
+    1458:	97fffec2 	bl	f60 <fopen@plt> ; heuristic args: x0='/tmp/ws_auth_pswd.txt', x1='r'
+    145c:	aa0003f8 	mov	x24, x0
+    1460:	b4001ac0 	cbz	x0, 17b8 <CGIMain@@Base+0x6f8>
+    1464:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    1468:	910523a1 	add	x1, x29, #0x148
+    146c:	912ec000 	add	x0, x0, #0xbb0
+    1470:	f9002fbc 	str	x28, [x29, #88]
+    1474:	a90607a0 	stp	x0, x1, [x29, #96]
+    1478:	9000001c 	adrp	x28, 1000 <json_object_object_add@plt>
+    147c:	912ea39c 	add	x28, x28, #0xba8
+    1480:	14000004 	b	1490 <CGIMain@@Base+0x3d0>
+    1484:	d503201f 	nop
+    1488:	394383a0 	ldrb	w0, [x29, #224]
+    148c:	35001660 	cbnz	w0, 1758 <CGIMain@@Base+0x698>
+    1490:	aa1803e2 	mov	x2, x24
+    1494:	52800c61 	mov	w1, #0x63                  	// #99
+    1498:	aa1703e0 	mov	x0, x23
+    149c:	97fffebd 	bl	f90 <fgets@plt> ; heuristic args: x1=99
+    14a0:	b5ffff40 	cbnz	x0, 1488 <CGIMain@@Base+0x3c8>
+    14a4:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    14a8:	912f6042 	add	x2, x2, #0xbd8
+    14ac:	52800021 	mov	w1, #0x1                   	// #1
+    14b0:	52800060 	mov	w0, #0x3                   	// #3
+    14b4:	97fffe93 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]: close password file'
+    14b8:	aa1803e0 	mov	x0, x24
+    14bc:	97fffe71 	bl	e80 <fclose@plt>
+    14c0:	97fffea0 	bl	f40 <json_object_new_object@plt>
+    14c4:	aa0003f8 	mov	x24, x0
+    14c8:	b4001660 	cbz	x0, 1794 <CGIMain@@Base+0x6d4>
+    14cc:	97fffe9d 	bl	f40 <json_object_new_object@plt>
+    14d0:	aa0003fc 	mov	x28, x0
+    14d4:	b4001820 	cbz	x0, 17d8 <CGIMain@@Base+0x718>
+    14d8:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    14dc:	91320042 	add	x2, x2, #0xc80
+    14e0:	52800021 	mov	w1, #0x1                   	// #1
+    14e4:	528000a0 	mov	w0, #0x5                   	// #5
+    14e8:	97fffe86 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=5, x1=1, x2='[cgi-app]:for  Mobileapp WebSocket auth verify request.\n'
+    14ec:	aa1b03e0 	mov	x0, x27
+    14f0:	97fffe58 	bl	e50 <json_object_new_string@plt>
+    14f4:	aa0003e2 	mov	x2, x0
+    14f8:	910523a0 	add	x0, x29, #0x148
+    14fc:	f90037a2 	str	x2, [x29, #104]
+    1500:	97fffe54 	bl	e50 <json_object_new_string@plt>
+    1504:	aa0003f7 	mov	x23, x0
+    1508:	f94037a2 	ldr	x2, [x29, #104]
+    150c:	aa1c03e0 	mov	x0, x28
+    1510:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1514:	91330021 	add	x1, x1, #0xcc0
+    1518:	97fffeba 	bl	1000 <json_object_object_add@plt> ; heuristic args: x1='accountName'
+    151c:	aa1703e2 	mov	x2, x23
+    1520:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1524:	91334021 	add	x1, x1, #0xcd0
+    1528:	aa1c03e0 	mov	x0, x28
+    152c:	97fffeb5 	bl	1000 <json_object_object_add@plt> ; heuristic args: x1='credential'
+    1530:	90000017 	adrp	x23, 1000 <json_object_object_add@plt>
+    1534:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    1538:	91338000 	add	x0, x0, #0xce0
+    153c:	97fffe45 	bl	e50 <json_object_new_string@plt> ; heuristic args: x0='VERIFY'
+    1540:	aa0003e2 	mov	x2, x0
+    1544:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1548:	9133a021 	add	x1, x1, #0xce8
+    154c:	aa1803e0 	mov	x0, x24
+    1550:	97fffeac 	bl	1000 <json_object_object_add@plt> ; heuristic args: x1='method'
+    1554:	9133c2e0 	add	x0, x23, #0xcf0
+    1558:	f90037a0 	str	x0, [x29, #104]
+    155c:	97fffe95 	bl	fb0 <CGIGetPost@plt> ; heuristic args: x0='sessionId'
+    1560:	aa0003f7 	mov	x23, x0
+    1564:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    1568:	91340000 	add	x0, x0, #0xd00
+    156c:	97fffe39 	bl	e50 <json_object_new_string@plt> ; heuristic args: x0='account'
+    1570:	aa0003e2 	mov	x2, x0
+    1574:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1578:	91342021 	add	x1, x1, #0xd08
+    157c:	aa1803e0 	mov	x0, x24
+    1580:	97fffea0 	bl	1000 <json_object_object_add@plt> ; heuristic args: x1='resource'
+    1584:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    1588:	91346000 	add	x0, x0, #0xd18
+    158c:	97fffe31 	bl	e50 <json_object_new_string@plt> ; heuristic args: x0='ClearText'
+    1590:	aa0003e2 	mov	x2, x0
+    1594:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1598:	9134a021 	add	x1, x1, #0xd28
+    159c:	aa1803e0 	mov	x0, x24
+    15a0:	97fffe98 	bl	1000 <json_object_object_add@plt> ; heuristic args: x1='authmode'
+    15a4:	90000000 	adrp	x0, 1000 <json_object_object_add@plt>
+    15a8:	9134e000 	add	x0, x0, #0xd38
+    15ac:	97fffe29 	bl	e50 <json_object_new_string@plt> ; heuristic args: x0='MAPP_CGI'
+    15b0:	aa0003e2 	mov	x2, x0
+    15b4:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    15b8:	aa1803e0 	mov	x0, x24
+    15bc:	91352021 	add	x1, x1, #0xd48
+    15c0:	97fffe90 	bl	1000 <json_object_object_add@plt> ; heuristic args: x1='source'
+    15c4:	b4000137 	cbz	x23, 15e8 <CGIMain@@Base+0x528>
+    15c8:	aa1703e0 	mov	x0, x23
+    15cc:	97fffe21 	bl	e50 <json_object_new_string@plt>
+    15d0:	f94037a1 	ldr	x1, [x29, #104]
+    15d4:	aa0003e2 	mov	x2, x0
+    15d8:	aa1803e0 	mov	x0, x24
+    15dc:	97fffe89 	bl	1000 <json_object_object_add@plt>
+    15e0:	aa1703e0 	mov	x0, x23
+    15e4:	97fffe33 	bl	eb0 <free@plt>
+    15e8:	910723b7 	add	x23, x29, #0x1c8
+    15ec:	aa1c03e2 	mov	x2, x28
+    15f0:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    15f4:	aa1803e0 	mov	x0, x24
+    15f8:	91354021 	add	x1, x1, #0xd50
+    15fc:	97fffe81 	bl	1000 <json_object_object_add@plt> ; heuristic args: x1='data'
+    1600:	d2803e82 	mov	x2, #0x1f4                 	// #500
+    1604:	52800001 	mov	w1, #0x0                   	// #0
+    1608:	aa1703e0 	mov	x0, x23
+    160c:	97fffe2d 	bl	ec0 <memset@plt> ; heuristic args: x1=0, x2=500
+    1610:	d2803e82 	mov	x2, #0x1f4                 	// #500
+    1614:	52800001 	mov	w1, #0x0                   	// #0
+    1618:	910f03bc 	add	x28, x29, #0x3c0
+    161c:	aa1c03e0 	mov	x0, x28
+    1620:	97fffe28 	bl	ec0 <memset@plt> ; heuristic args: x1=0, x2=500
+    1624:	aa1803e0 	mov	x0, x24
+    1628:	97fffe7a 	bl	1010 <json_object_to_json_string@plt>
+    162c:	aa0003e1 	mov	x1, x0
+    1630:	d2803e62 	mov	x2, #0x1f3                 	// #499
+    1634:	aa1703e0 	mov	x0, x23
+    1638:	97fffe3a 	bl	f20 <strncpy@plt> ; heuristic args: x2=499
+    163c:	aa1803e0 	mov	x0, x24
+    1640:	97fffe14 	bl	e90 <json_object_put@plt>
+    1644:	aa1c03e1 	mov	x1, x28
+    1648:	aa1703e0 	mov	x0, x23
+    164c:	97fffe31 	bl	f10 <nal_handleUserAccount@plt>
+    1650:	3100041f 	cmn	w0, #0x1
+    1654:	54000ea0 	b.eq	1828 <CGIMain@@Base+0x768>  // b.none
+    1658:	394f03a0 	ldrb	w0, [x29, #960]
+    165c:	34000d40 	cbz	w0, 1804 <CGIMain@@Base+0x744>
+    1660:	90000001 	adrp	x1, 1000 <json_object_object_add@plt>
+    1664:	aa1c03e0 	mov	x0, x28
+    1668:	91378021 	add	x1, x1, #0xde0
+    166c:	97fffdf5 	bl	e40 <strstr@plt> ; heuristic args: x1='200'
+    1670:	b4000ee0 	cbz	x0, 184c <CGIMain@@Base+0x78c>
+    1674:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1678:	52800021 	mov	w1, #0x1                   	// #1
+    167c:	9137a042 	add	x2, x2, #0xde8
+    1680:	52800060 	mov	w0, #0x3                   	// #3
+    1684:	97fffe1f 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]: returns  nal_handleUserAccount valid StatusCode'
+    1688:	f9402fbc 	ldr	x28, [x29, #88]
+    168c:	52800017 	mov	w23, #0x0                   	// #0
+    1690:	b400007b 	cbz	x27, 169c <CGIMain@@Base+0x5dc>
+    1694:	aa1b03e0 	mov	x0, x27
+    1698:	97fffe06 	bl	eb0 <free@plt>
+    169c:	b4000079 	cbz	x25, 16a8 <CGIMain@@Base+0x5e8>
+    16a0:	aa1903e0 	mov	x0, x25
+    16a4:	97fffe03 	bl	eb0 <free@plt>
+    16a8:	aa1a03e0 	mov	x0, x26
+    16ac:	9102e3b8 	add	x24, x29, #0xb8
+    16b0:	97fffe00 	bl	eb0 <free@plt>
+    16b4:	f9402bbb 	ldr	x27, [x29, #80]
+    16b8:	a9446bb9 	ldp	x25, x26, [x29, #64]
+    16bc:	17ffff12 	b	1304 <CGIMain@@Base+0x244>
+    16c0:	52800017 	mov	w23, #0x0                   	// #0
+    16c4:	52800016 	mov	w22, #0x0                   	// #0
+    16c8:	17fffff2 	b	1690 <CGIMain@@Base+0x5d0>
+    16cc:	d503201f 	nop
+    16d0:	d2800001 	mov	x1, #0x0                   	// #0
+    16d4:	52800142 	mov	w2, #0xa                   	// #10
+    16d8:	aa1503e0 	mov	x0, x21
+    16dc:	97fffdf1 	bl	ea0 <strtol@plt> ; heuristic args: x1=0, x2=10
+    16e0:	528a3001 	mov	w1, #0x5180                	// #20864
+    16e4:	72a00021 	movk	w1, #0x1, lsl #16
+    16e8:	6b01001f 	cmp	w0, w1
+    16ec:	54ffd70c 	b.gt	11cc <CGIMain@@Base+0x10c>
+    16f0:	52800142 	mov	w2, #0xa                   	// #10
+    16f4:	d2800001 	mov	x1, #0x0                   	// #0
+    16f8:	aa1503e0 	mov	x0, x21
+    16fc:	9102e3b8 	add	x24, x29, #0xb8
+    1700:	97fffde8 	bl	ea0 <strtol@plt> ; heuristic args: x1=0, x2=10
+    1704:	52800017 	mov	w23, #0x0                   	// #0
+    1708:	2a0003e6 	mov	w6, w0
+    170c:	d2800503 	mov	x3, #0x28                  	// #40
+    1710:	aa1603e5 	mov	x5, x22
+    1714:	90000004 	adrp	x4, 1000 <json_object_object_add@plt>
+    1718:	52800022 	mov	w2, #0x1                   	// #1
+    171c:	9128a084 	add	x4, x4, #0xa28
+    1720:	aa0303e1 	mov	x1, x3
+    1724:	aa1803e0 	mov	x0, x24
+    1728:	52800016 	mov	w22, #0x0                   	// #0
+    172c:	97fffde9 	bl	ed0 <__snprintf_chk@plt> ; heuristic args: x1=40, x2=1, x3=40, x4='Session_START{%s,timeout=%d}', x5=0
+    1730:	17fffef5 	b	1304 <CGIMain@@Base+0x244>
+    1734:	d503201f 	nop
+    1738:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    173c:	52800021 	mov	w1, #0x1                   	// #1
+    1740:	912fe042 	add	x2, x2, #0xbf8
+    1744:	52800060 	mov	w0, #0x3                   	// #3
+    1748:	528001b7 	mov	w23, #0xd                   	// #13
+    174c:	97fffded 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]: pswd received is not FILE, it should be FILE'
+    1750:	52800036 	mov	w22, #0x1                   	// #1
+    1754:	17ffffcf 	b	1690 <CGIMain@@Base+0x5d0>
+    1758:	aa1703e0 	mov	x0, x23
+    175c:	97fffdc1 	bl	e60 <strlen@plt> ; heuristic args: x0=13
+    1760:	d1000400 	sub	x0, x0, #0x1
+    1764:	38606ae1 	ldrb	w1, [x23, x0]
+    1768:	7100283f 	cmp	w1, #0xa
+    176c:	54000041 	b.ne	1774 <CGIMain@@Base+0x6b4>  // b.any
+    1770:	38206aff 	strb	wzr, [x23, x0]
+    1774:	aa1c03e1 	mov	x1, x28
+    1778:	aa1703e0 	mov	x0, x23
+    177c:	97fffdb1 	bl	e40 <strstr@plt> ; heuristic args: x0=13
+    1780:	b40007a0 	cbz	x0, 1874 <CGIMain@@Base+0x7b4>
+    1784:	a9460ba1 	ldp	x1, x2, [x29, #96]
+    1788:	aa1703e0 	mov	x0, x23
+    178c:	97fffe19 	bl	ff0 <sscanf@plt> ; heuristic args: x0=13
+    1790:	17ffff40 	b	1490 <CGIMain@@Base+0x3d0>
+    1794:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1798:	52800021 	mov	w1, #0x1                   	// #1
+    179c:	9130c042 	add	x2, x2, #0xc30
+    17a0:	52800060 	mov	w0, #0x3                   	// #3
+    17a4:	528000b7 	mov	w23, #0x5                   	// #5
+    17a8:	97fffdd6 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app Json object allocation failed'
+    17ac:	52800036 	mov	w22, #0x1                   	// #1
+    17b0:	f9402fbc 	ldr	x28, [x29, #88]
+    17b4:	17ffffb7 	b	1690 <CGIMain@@Base+0x5d0>
+    17b8:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    17bc:	52800021 	mov	w1, #0x1                   	// #1
+    17c0:	912e0042 	add	x2, x2, #0xb80
+    17c4:	52800060 	mov	w0, #0x3                   	// #3
+    17c8:	52800197 	mov	w23, #0xc                   	// #12
+    17cc:	97fffdcd 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]: Auth pswd file open failed'
+    17d0:	52800036 	mov	w22, #0x1                   	// #1
+    17d4:	17ffffaf 	b	1690 <CGIMain@@Base+0x5d0>
+    17d8:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    17dc:	9130c042 	add	x2, x2, #0xc30
+    17e0:	52800021 	mov	w1, #0x1                   	// #1
+    17e4:	52800060 	mov	w0, #0x3                   	// #3
+    17e8:	97fffdc6 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app Json object allocation failed'
+    17ec:	528000b7 	mov	w23, #0x5                   	// #5
+    17f0:	aa1803e0 	mov	x0, x24
+    17f4:	52800036 	mov	w22, #0x1                   	// #1
+    17f8:	97fffda6 	bl	e90 <json_object_put@plt>
+    17fc:	f9402fbc 	ldr	x28, [x29, #88]
+    1800:	17ffffa4 	b	1690 <CGIMain@@Base+0x5d0>
+    1804:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1808:	52800021 	mov	w1, #0x1                   	// #1
+    180c:	91368042 	add	x2, x2, #0xda0
+    1810:	52800060 	mov	w0, #0x3                   	// #3
+    1814:	528000f7 	mov	w23, #0x7                   	// #7
+    1818:	97fffdba 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app  resStr  fail'
+    181c:	52800036 	mov	w22, #0x1                   	// #1
+    1820:	f9402fbc 	ldr	x28, [x29, #88]
+    1824:	17ffff9b 	b	1690 <CGIMain@@Base+0x5d0>
+    1828:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    182c:	52800021 	mov	w1, #0x1                   	// #1
+    1830:	91356042 	add	x2, x2, #0xd58
+    1834:	52800060 	mov	w0, #0x3                   	// #3
+    1838:	528000d7 	mov	w23, #0x6                   	// #6
+    183c:	97fffdb1 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]:Web MobileApp websoc_session_app error nal_handleUserAccount'
+    1840:	52800036 	mov	w22, #0x1                   	// #1
+    1844:	f9402fbc 	ldr	x28, [x29, #88]
+    1848:	17ffff92 	b	1690 <CGIMain@@Base+0x5d0>
+    184c:	aa1c03e3 	mov	x3, x28
+    1850:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1854:	52800021 	mov	w1, #0x1                   	// #1
+    1858:	9138a042 	add	x2, x2, #0xe28
+    185c:	52800060 	mov	w0, #0x3                   	// #3
+    1860:	52800117 	mov	w23, #0x8                   	// #8
+    1864:	97fffda7 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]: returns  nal_handleUserAccount %s'
+    1868:	52800036 	mov	w22, #0x1                   	// #1
+    186c:	f9402fbc 	ldr	x28, [x29, #88]
+    1870:	17ffff88 	b	1690 <CGIMain@@Base+0x5d0>
+    1874:	90000002 	adrp	x2, 1000 <json_object_object_add@plt>
+    1878:	912ee042 	add	x2, x2, #0xbb8
+    187c:	52800021 	mov	w1, #0x1                   	// #1
+    1880:	52800060 	mov	w0, #0x3                   	// #3
+    1884:	97fffd9f 	bl	f00 <__syslog_chk@plt> ; heuristic args: x0=3, x1=1, x2='[cgi-app]: Auth pswd file empty'
+    1888:	52800197 	mov	w23, #0xc                   	// #12
+    188c:	aa1803e0 	mov	x0, x24
+    1890:	52800036 	mov	w22, #0x1                   	// #1
+    1894:	97fffd7b 	bl	e80 <fclose@plt>
+    1898:	f9402fbc 	ldr	x28, [x29, #88]
+    189c:	17ffff7d 	b	1690 <CGIMain@@Base+0x5d0>
+    18a0:	a9046bb9 	stp	x25, x26, [x29, #64]
+    18a4:	a90573bb 	stp	x27, x28, [x29, #80]
+    18a8:	97fffd72 	bl	e70 <__stack_chk_fail@plt>
+    18ac:	a9446bb9 	ldp	x25, x26, [x29, #64]
+    18b0:	f9402bbb 	ldr	x27, [x29, #80]
+    18b4:	17fffe6a 	b	125c <CGIMain@@Base+0x19c>

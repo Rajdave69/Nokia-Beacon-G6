@@ -1,0 +1,1451 @@
+Heuristic literal/GOT annotations only; not a complete data-flow analysis.
+
+private-source://PROFILE-G6-HJL/usr/bin/ai-agent:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000ab74 <.text+0x72f4>:
+    ab74:	d11083ff 	sub	sp, sp, #0x420
+    ab78:	a9017bfd 	stp	x29, x30, [sp, #16]
+    ab7c:	910043fd 	add	x29, sp, #0x10
+    ab80:	a90253f3 	stp	x19, x20, [sp, #32]
+    ab84:	f00000f4 	adrp	x20, 29000 <_fini@@Base+0x13818>
+    ab88:	b9008fa0 	str	w0, [x29, #140]
+    ab8c:	f0000053 	adrp	x19, 15000 <csrv_stop_timer@plt+0x11790>
+    ab90:	f947ce80 	ldr	x0, [x20, #3992]  ; GOT __stack_chk_guard@GLIBC_2.17
+    ab94:	a9035bf5 	stp	x21, x22, [sp, #48]
+    ab98:	9122be75 	add	x21, x19, #0x8af  ; '/tmp/ai-agent.log'
+    ab9c:	f9400001 	ldr	x1, [x0]
+    aba0:	f90207a1 	str	x1, [x29, #1032]
+    aba4:	d2800001 	mov	x1, #0x0                   	// #0
+    aba8:	a9056bf9 	stp	x25, x26, [sp, #80]
+    abac:	9104a3b9 	add	x25, x29, #0x128
+    abb0:	a90463f7 	stp	x23, x24, [sp, #64]
+    abb4:	a90673fb 	stp	x27, x28, [sp, #96]
+    abb8:	aa1903e1 	mov	x1, x25
+    abbc:	aa1503e0 	mov	x0, x21
+    abc0:	94002b04 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    abc4:	f9003fb4 	str	x20, [x29, #120]
+    abc8:	35000320 	cbnz	w0, ac2c <csrv_stop_timer@plt+0x73bc>
+    abcc:	f940afa0 	ldr	x0, [x29, #344]
+    abd0:	f142001f 	cmp	x0, #0x80, lsl #12
+    abd4:	540002cd 	b.le	ac2c <csrv_stop_timer@plt+0x73bc>
+    abd8:	f0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    abdc:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    abe0:	97ffe1d8 	bl	3340 <remove@plt>
+    abe4:	910c23b4 	add	x20, x29, #0x308
+    abe8:	f0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    abec:	aa1503e0 	mov	x0, x21
+    abf0:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    abf4:	97ffe20b 	bl	3420 <rename@plt>
+    abf8:	d2801002 	mov	x2, #0x80                  	// #128
+    abfc:	52800001 	mov	w1, #0x0                   	// #0
+    ac00:	aa1403e0 	mov	x0, x20
+    ac04:	97ffe187 	bl	3220 <memset@plt>
+    ac08:	aa1503e4 	mov	x4, x21
+    ac0c:	f0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    ac10:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    ac14:	d2801002 	mov	x2, #0x80                  	// #128
+    ac18:	52800021 	mov	w1, #0x1                   	// #1
+    ac1c:	aa1403e0 	mov	x0, x20
+    ac20:	97ffe170 	bl	31e0 <__sprintf_chk@plt>
+    ac24:	aa1403e0 	mov	x0, x20
+    ac28:	97ffe26a 	bl	35d0 <system@plt>
+    ac2c:	f0000074 	adrp	x20, 19000 <_fini@@Base+0x3818>
+    ac30:	9122be60 	add	x0, x19, #0x8af  ; '/tmp/ai-agent.log'
+    ac34:	91041281 	add	x1, x20, #0x104
+    ac38:	97ffe26a 	bl	35e0 <fopen@plt>
+    ac3c:	aa0003f5 	mov	x21, x0
+    ac40:	b4000300 	cbz	x0, aca0 <csrv_stop_timer@plt+0x7430>
+    ac44:	d2800000 	mov	x0, #0x0                   	// #0
+    ac48:	97ffe232 	bl	3510 <time@plt>
+    ac4c:	f90053a0 	str	x0, [x29, #160]
+    ac50:	910283a0 	add	x0, x29, #0xa0
+    ac54:	97ffe133 	bl	3120 <ctime@plt>
+    ac58:	aa0003e3 	mov	x3, x0
+    ac5c:	b9408fa1 	ldr	w1, [x29, #140]
+    ac60:	f0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    ac64:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    ac68:	b90003e1 	str	w1, [sp]
+    ac6c:	910860c6 	add	x6, x6, #0x218  ; 'perform_full_scan'
+    ac70:	90000065 	adrp	x5, 16000 <_fini@@Base+0x818>
+    ac74:	f0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    ac78:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    ac7c:	9131bc84 	add	x4, x4, #0xc6f  ; 'DEBUG'
+    ac80:	b0000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    ac84:	9125d442 	add	x2, x2, #0x975  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  Perform full scan =%d\n'
+    ac88:	5280f627 	mov	w7, #0x7b1                 	// #1969
+    ac8c:	52800021 	mov	w1, #0x1                   	// #1
+    ac90:	aa1503e0 	mov	x0, x21
+    ac94:	97ffe173 	bl	3260 <__fprintf_chk@plt>
+    ac98:	aa1503e0 	mov	x0, x21
+    ac9c:	97ffe13d 	bl	3190 <fclose@plt>
+    aca0:	d2802682 	mov	x2, #0x134                 	// #308
+    aca4:	52800001 	mov	w1, #0x0                   	// #0
+    aca8:	aa1903e0 	mov	x0, x25
+    acac:	f9004fbf 	str	xzr, [x29, #152]
+    acb0:	97ffe15c 	bl	3220 <memset@plt>
+    acb4:	390a03bf 	strb	wzr, [x29, #640]
+    acb8:	9108c3a0 	add	x0, x29, #0x230
+    acbc:	a9037c1f 	stp	xzr, xzr, [x0, #48]
+    acc0:	a9047c1f 	stp	xzr, xzr, [x0, #64]
+    acc4:	910983a0 	add	x0, x29, #0x260
+    acc8:	f90043a0 	str	x0, [x29, #128]
+    accc:	97ffe221 	bl	3550 <nal_getNodeMac@plt>
+    acd0:	340008c0 	cbz	w0, ade8 <csrv_stop_timer@plt+0x7578>
+    acd4:	9122be76 	add	x22, x19, #0x8af  ; '/tmp/ai-agent.log'
+    acd8:	9102a3a1 	add	x1, x29, #0xa8
+    acdc:	aa1603e0 	mov	x0, x22
+    ace0:	94002abc 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    ace4:	35000320 	cbnz	w0, ad48 <csrv_stop_timer@plt+0x74d8>
+    ace8:	f9406fa0 	ldr	x0, [x29, #216]
+    acec:	f142001f 	cmp	x0, #0x80, lsl #12
+    acf0:	540002cd 	b.le	ad48 <csrv_stop_timer@plt+0x74d8>
+    acf4:	f0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    acf8:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    acfc:	97ffe191 	bl	3340 <remove@plt>
+    ad00:	910c23b5 	add	x21, x29, #0x308
+    ad04:	f0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    ad08:	aa1603e0 	mov	x0, x22
+    ad0c:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    ad10:	97ffe1c4 	bl	3420 <rename@plt>
+    ad14:	d2801002 	mov	x2, #0x80                  	// #128
+    ad18:	52800001 	mov	w1, #0x0                   	// #0
+    ad1c:	aa1503e0 	mov	x0, x21
+    ad20:	97ffe140 	bl	3220 <memset@plt>
+    ad24:	aa1603e4 	mov	x4, x22
+    ad28:	f0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    ad2c:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    ad30:	d2801002 	mov	x2, #0x80                  	// #128
+    ad34:	52800021 	mov	w1, #0x1                   	// #1
+    ad38:	aa1503e0 	mov	x0, x21
+    ad3c:	97ffe129 	bl	31e0 <__sprintf_chk@plt>
+    ad40:	aa1503e0 	mov	x0, x21
+    ad44:	97ffe223 	bl	35d0 <system@plt>
+    ad48:	9122be60 	add	x0, x19, #0x8af  ; '/tmp/ai-agent.log'
+    ad4c:	91041281 	add	x1, x20, #0x104
+    ad50:	97ffe224 	bl	35e0 <fopen@plt>
+    ad54:	aa0003f3 	mov	x19, x0
+    ad58:	b40002c0 	cbz	x0, adb0 <csrv_stop_timer@plt+0x7540>
+    ad5c:	d2800000 	mov	x0, #0x0                   	// #0
+    ad60:	97ffe1ec 	bl	3510 <time@plt>
+    ad64:	f90053a0 	str	x0, [x29, #160]
+    ad68:	910283a0 	add	x0, x29, #0xa0
+    ad6c:	97ffe0ed 	bl	3120 <ctime@plt>
+    ad70:	aa0003e3 	mov	x3, x0
+    ad74:	f0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    ad78:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    ad7c:	90000065 	adrp	x5, 16000 <_fini@@Base+0x818>
+    ad80:	f0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    ad84:	b0000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    ad88:	910860c6 	add	x6, x6, #0x218  ; 'perform_full_scan'
+    ad8c:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    ad90:	91276484 	add	x4, x4, #0x9d9  ; 'ERROR'
+    ad94:	9126d842 	add	x2, x2, #0x9b6  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  nal call failed for getting mac\n'
+    ad98:	5280f8a7 	mov	w7, #0x7c5                 	// #1989
+    ad9c:	52800021 	mov	w1, #0x1                   	// #1
+    ada0:	aa1303e0 	mov	x0, x19
+    ada4:	97ffe12f 	bl	3260 <__fprintf_chk@plt>
+    ada8:	aa1303e0 	mov	x0, x19
+    adac:	97ffe0f9 	bl	3190 <fclose@plt>
+    adb0:	f9403fa0 	ldr	x0, [x29, #120]
+    adb4:	f947cc00 	ldr	x0, [x0, #3992]
+    adb8:	f94207a1 	ldr	x1, [x29, #1032]
+    adbc:	f9400000 	ldr	x0, [x0]
+    adc0:	ca000020 	eor	x0, x1, x0
+    adc4:	b5002a20 	cbnz	x0, b308 <csrv_stop_timer@plt+0x7a98>
+    adc8:	a94253f3 	ldp	x19, x20, [sp, #32]
+    adcc:	a9435bf5 	ldp	x21, x22, [sp, #48]
+    add0:	a94463f7 	ldp	x23, x24, [sp, #64]
+    add4:	a9456bf9 	ldp	x25, x26, [sp, #80]
+    add8:	a94673fb 	ldp	x27, x28, [sp, #96]
+    addc:	a9417bfd 	ldp	x29, x30, [sp, #16]
+    ade0:	911083ff 	add	sp, sp, #0x420
+    ade4:	d65f03c0 	ret
+    ade8:	90000118 	adrp	x24, 2a000 <_fini@@Base+0x14818>
+    adec:	910d4318 	add	x24, x24, #0x350
+    adf0:	91054300 	add	x0, x24, #0x150
+    adf4:	d2800017 	mov	x23, #0x0                   	// #0
+    adf8:	f9003ba0 	str	x0, [x29, #112]
+    adfc:	b0000060 	adrp	x0, 17000 <_fini@@Base+0x1818>
+    ae00:	91280400 	add	x0, x0, #0xa01  ; "Device.WiFi.DataElements.Network.Device.[ID=='%s'].Radio.[ID=='%s'].MultiAPRadio.FullScan()"
+    ae04:	f90037a0 	str	x0, [x29, #104]
+    ae08:	b9408fa0 	ldr	w0, [x29, #140]
+    ae0c:	6b17001f 	cmp	w0, w23
+    ae10:	54003e61 	b.ne	b5dc <csrv_stop_timer@plt+0x7d6c>  // b.any
+    ae14:	d2803615 	mov	x21, #0x1b0                 	// #432
+    ae18:	9b157ef5 	mul	x21, x23, x21
+    ae1c:	8b150316 	add	x22, x24, x21
+    ae20:	394012c0 	ldrb	w0, [x22, #4]
+    ae24:	34003dc0 	cbz	w0, b5dc <csrv_stop_timer@plt+0x7d6c>
+    ae28:	b8786aa0 	ldr	w0, [x21, x24]
+    ae2c:	aa1903e1 	mov	x1, x25
+    ae30:	97ffe184 	bl	3440 <ussa_getRadioInfo@plt>
+    ae34:	35fffbe0 	cbnz	w0, adb0 <csrv_stop_timer@plt+0x7540>
+    ae38:	b9412fa1 	ldr	w1, [x29, #300]
+    ae3c:	910542c0 	add	x0, x22, #0x150  ; ' %s:%d |  Can not open %s \n\n'
+    ae40:	b90152c1 	str	w1, [x22, #336]
+    ae44:	910803a1 	add	x1, x29, #0x200
+    ae48:	910c23ba 	add	x26, x29, #0x308
+    ae4c:	b852e021 	ldur	w1, [x1, #-210]
+    ae50:	b8002001 	stur	w1, [x0, #2]
+    ae54:	f9403ba0 	ldr	x0, [x29, #112]
+    ae58:	d28000c1 	mov	x1, #0x6                   	// #6
+    ae5c:	8b150000 	add	x0, x0, x21
+    ae60:	94002281 	bl	13864 <csrv_stop_timer@plt+0xfff4>
+    ae64:	f94037a4 	ldr	x4, [x29, #104]
+    ae68:	aa0003e6 	mov	x6, x0
+    ae6c:	f94043a5 	ldr	x5, [x29, #128]
+    ae70:	d2802003 	mov	x3, #0x100                 	// #256
+    ae74:	aa0303e1 	mov	x1, x3
+    ae78:	52800022 	mov	w2, #0x1                   	// #1
+    ae7c:	aa1a03e0 	mov	x0, x26
+    ae80:	9102a3b5 	add	x21, x29, #0xa8
+    ae84:	97ffe0ff 	bl	3280 <__snprintf_chk@plt>
+    ae88:	97ffe0be 	bl	3180 <cJSON_CreateObject@plt>
+    ae8c:	aa0003f6 	mov	x22, x0
+    ae90:	b5000680 	cbnz	x0, af60 <csrv_stop_timer@plt+0x76f0>
+    ae94:	9122be76 	add	x22, x19, #0x8af
+    ae98:	aa1503e1 	mov	x1, x21
+    ae9c:	aa1603e0 	mov	x0, x22
+    aea0:	94002a4c 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    aea4:	35000320 	cbnz	w0, af08 <csrv_stop_timer@plt+0x7698>
+    aea8:	f9406fa0 	ldr	x0, [x29, #216]
+    aeac:	f142001f 	cmp	x0, #0x80, lsl #12
+    aeb0:	540002cd 	b.le	af08 <csrv_stop_timer@plt+0x7698>
+    aeb4:	f0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    aeb8:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    aebc:	97ffe121 	bl	3340 <remove@plt>
+    aec0:	910a23b5 	add	x21, x29, #0x288
+    aec4:	f0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    aec8:	aa1603e0 	mov	x0, x22
+    aecc:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    aed0:	97ffe154 	bl	3420 <rename@plt>
+    aed4:	d2801002 	mov	x2, #0x80                  	// #128
+    aed8:	52800001 	mov	w1, #0x0                   	// #0
+    aedc:	aa1503e0 	mov	x0, x21
+    aee0:	97ffe0d0 	bl	3220 <memset@plt>
+    aee4:	aa1603e4 	mov	x4, x22
+    aee8:	f0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    aeec:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    aef0:	d2801002 	mov	x2, #0x80                  	// #128
+    aef4:	52800021 	mov	w1, #0x1                   	// #1
+    aef8:	aa1503e0 	mov	x0, x21
+    aefc:	97ffe0b9 	bl	31e0 <__sprintf_chk@plt>
+    af00:	aa1503e0 	mov	x0, x21
+    af04:	97ffe1b3 	bl	35d0 <system@plt>
+    af08:	9122be60 	add	x0, x19, #0x8af
+    af0c:	91041281 	add	x1, x20, #0x104
+    af10:	97ffe1b4 	bl	35e0 <fopen@plt>
+    af14:	aa0003f3 	mov	x19, x0
+    af18:	b4fff4c0 	cbz	x0, adb0 <csrv_stop_timer@plt+0x7540>
+    af1c:	d2800000 	mov	x0, #0x0                   	// #0
+    af20:	97ffe17c 	bl	3510 <time@plt>
+    af24:	f90053a0 	str	x0, [x29, #160]
+    af28:	910283a0 	add	x0, x29, #0xa0
+    af2c:	97ffe07d 	bl	3120 <ctime@plt>
+    af30:	5280fb27 	mov	w7, #0x7d9                 	// #2009
+    af34:	f0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    af38:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    af3c:	90000065 	adrp	x5, 16000 <_fini@@Base+0x818>
+    af40:	f0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    af44:	b0000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    af48:	910860c6 	add	x6, x6, #0x218  ; 'perform_full_scan'
+    af4c:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    af50:	91276484 	add	x4, x4, #0x9d9  ; 'ERROR'
+    af54:	aa0003e3 	mov	x3, x0
+    af58:	91297442 	add	x2, x2, #0xa5d  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |   cJSON Fail to CreateObject.\n\n'
+    af5c:	17ffff90 	b	ad9c <csrv_stop_timer@plt+0x752c>
+    af60:	b0000060 	adrp	x0, 17000 <_fini@@Base+0x1818>
+    af64:	912a9800 	add	x0, x0, #0xaa6  ; '548011866960'
+    af68:	97ffe17e 	bl	3560 <cJSON_CreateString@plt>
+    af6c:	aa0003e2 	mov	x2, x0
+    af70:	b0000061 	adrp	x1, 17000 <_fini@@Base+0x1818>
+    af74:	912acc21 	add	x1, x1, #0xab3  ; 'refID'
+    af78:	aa1603e0 	mov	x0, x22
+    af7c:	97ffe1b9 	bl	3660 <cJSON_AddItemToObject@plt>
+    af80:	b0000060 	adrp	x0, 17000 <_fini@@Base+0x1818>
+    af84:	912ae400 	add	x0, x0, #0xab9  ; 'Operation'
+    af88:	97ffe176 	bl	3560 <cJSON_CreateString@plt>
+    af8c:	aa0003e2 	mov	x2, x0
+    af90:	b0000061 	adrp	x1, 17000 <_fini@@Base+0x1818>
+    af94:	912b0c21 	add	x1, x1, #0xac3  ; 'message_type'
+    af98:	aa1603e0 	mov	x0, x22
+    af9c:	97ffe1b1 	bl	3660 <cJSON_AddItemToObject@plt>
+    afa0:	aa1a03e0 	mov	x0, x26
+    afa4:	97ffe16f 	bl	3560 <cJSON_CreateString@plt>
+    afa8:	aa0003e2 	mov	x2, x0
+    afac:	b0000061 	adrp	x1, 17000 <_fini@@Base+0x1818>
+    afb0:	aa1603e0 	mov	x0, x22
+    afb4:	912b4021 	add	x1, x1, #0xad0  ; 'param_path'
+    afb8:	97ffe1aa 	bl	3660 <cJSON_AddItemToObject@plt>
+    afbc:	97ffe071 	bl	3180 <cJSON_CreateObject@plt>
+    afc0:	aa0003fa 	mov	x26, x0
+    afc4:	b5000540 	cbnz	x0, b06c <csrv_stop_timer@plt+0x77fc>
+    afc8:	9122be76 	add	x22, x19, #0x8af  ; 'd |  ussa_getNeighborAPInfo ret = %d , napNums=%d\n'
+    afcc:	aa1503e1 	mov	x1, x21
+    afd0:	aa1603e0 	mov	x0, x22
+    afd4:	940029ff 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    afd8:	35000320 	cbnz	w0, b03c <csrv_stop_timer@plt+0x77cc>
+    afdc:	f9406fa0 	ldr	x0, [x29, #216]
+    afe0:	f142001f 	cmp	x0, #0x80, lsl #12
+    afe4:	540002cd 	b.le	b03c <csrv_stop_timer@plt+0x77cc>
+    afe8:	f0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    afec:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    aff0:	97ffe0d4 	bl	3340 <remove@plt>
+    aff4:	910a23b5 	add	x21, x29, #0x288
+    aff8:	f0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    affc:	aa1603e0 	mov	x0, x22
+    b000:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    b004:	97ffe107 	bl	3420 <rename@plt>
+    b008:	d2801002 	mov	x2, #0x80                  	// #128
+    b00c:	52800001 	mov	w1, #0x0                   	// #0
+    b010:	aa1503e0 	mov	x0, x21
+    b014:	97ffe083 	bl	3220 <memset@plt>
+    b018:	aa1603e4 	mov	x4, x22
+    b01c:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    b020:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    b024:	d2801002 	mov	x2, #0x80                  	// #128
+    b028:	52800021 	mov	w1, #0x1                   	// #1
+    b02c:	aa1503e0 	mov	x0, x21
+    b030:	97ffe06c 	bl	31e0 <__sprintf_chk@plt>
+    b034:	aa1503e0 	mov	x0, x21
+    b038:	97ffe166 	bl	35d0 <system@plt>
+    b03c:	9122be60 	add	x0, x19, #0x8af  ; 'd |  ussa_getNeighborAPInfo ret = %d , napNums=%d\n'
+    b040:	91041281 	add	x1, x20, #0x104
+    b044:	97ffe167 	bl	35e0 <fopen@plt>
+    b048:	aa0003f3 	mov	x19, x0
+    b04c:	b4ffeb20 	cbz	x0, adb0 <csrv_stop_timer@plt+0x7540>
+    b050:	d2800000 	mov	x0, #0x0                   	// #0
+    b054:	97ffe12f 	bl	3510 <time@plt>
+    b058:	f90053a0 	str	x0, [x29, #160]
+    b05c:	910283a0 	add	x0, x29, #0xa0
+    b060:	97ffe030 	bl	3120 <ctime@plt>
+    b064:	5280fc27 	mov	w7, #0x7e1                 	// #2017
+    b068:	17ffffb3 	b	af34 <csrv_stop_timer@plt+0x76c4>
+    b06c:	aa0003e2 	mov	x2, x0
+    b070:	90000061 	adrp	x1, 17000 <_fini@@Base+0x1818>
+    b074:	aa1603e0 	mov	x0, x22
+    b078:	912b6c21 	add	x1, x1, #0xadb  ; 'Input'
+    b07c:	97ffe179 	bl	3660 <cJSON_AddItemToObject@plt>
+    b080:	aa1a03e0 	mov	x0, x26
+    b084:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b088:	90000061 	adrp	x1, 17000 <_fini@@Base+0x1818>
+    b08c:	912b8442 	add	x2, x2, #0xae1  ; '200'
+    b090:	912bb021 	add	x1, x1, #0xaec  ; 'DwellTime'
+    b094:	97ffe033 	bl	3160 <cJSON_AddStringToObject@plt>
+    b098:	aa1a03e0 	mov	x0, x26
+    b09c:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b0a0:	90000061 	adrp	x1, 17000 <_fini@@Base+0x1818>
+    b0a4:	912b9442 	add	x2, x2, #0xae5  ; '300'
+    b0a8:	912ba421 	add	x1, x1, #0xae9  ; 'DFSDwellTime'
+    b0ac:	97ffe02d 	bl	3160 <cJSON_AddStringToObject@plt>
+    b0b0:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b0b4:	90000061 	adrp	x1, 17000 <_fini@@Base+0x1818>
+    b0b8:	912bd842 	add	x2, x2, #0xaf6  ; '100'
+    b0bc:	912be821 	add	x1, x1, #0xafa  ; 'HomeTime'
+    b0c0:	aa1a03e0 	mov	x0, x26
+    b0c4:	97ffe027 	bl	3160 <cJSON_AddStringToObject@plt>
+    b0c8:	aa1603e0 	mov	x0, x22
+    b0cc:	97ffe119 	bl	3530 <cJSON_Print@plt>
+    b0d0:	aa0003fa 	mov	x26, x0
+    b0d4:	97ffdfff 	bl	30d0 <strlen@plt>
+    b0d8:	91000400 	add	x0, x0, #0x1  ; ' |  ussa_getNeighborAPInfo ret = %d , napNums=%d\n'
+    b0dc:	97ffe175 	bl	36b0 <malloc@plt>
+    b0e0:	aa0003f6 	mov	x22, x0
+    b0e4:	aa1a03e0 	mov	x0, x26
+    b0e8:	97ffdffa 	bl	30d0 <strlen@plt>
+    b0ec:	aa1a03e1 	mov	x1, x26
+    b0f0:	aa0003e2 	mov	x2, x0
+    b0f4:	aa1603e0 	mov	x0, x22
+    b0f8:	97ffe0c6 	bl	3410 <strncpy@plt>
+    b0fc:	aa1a03e0 	mov	x0, x26
+    b100:	9122be7a 	add	x26, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b104:	97ffdff3 	bl	30d0 <strlen@plt>
+    b108:	38206adf 	strb	wzr, [x22, x0]
+    b10c:	aa1503e1 	mov	x1, x21
+    b110:	aa1a03e0 	mov	x0, x26
+    b114:	940029af 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    b118:	35000320 	cbnz	w0, b17c <csrv_stop_timer@plt+0x790c>
+    b11c:	f9406fa0 	ldr	x0, [x29, #216]
+    b120:	f142001f 	cmp	x0, #0x80, lsl #12
+    b124:	540002cd 	b.le	b17c <csrv_stop_timer@plt+0x790c>
+    b128:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    b12c:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    b130:	97ffe084 	bl	3340 <remove@plt>
+    b134:	910a23bc 	add	x28, x29, #0x288
+    b138:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    b13c:	aa1a03e0 	mov	x0, x26
+    b140:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    b144:	97ffe0b7 	bl	3420 <rename@plt>
+    b148:	d2801002 	mov	x2, #0x80                  	// #128
+    b14c:	52800001 	mov	w1, #0x0                   	// #0
+    b150:	aa1c03e0 	mov	x0, x28
+    b154:	97ffe033 	bl	3220 <memset@plt>
+    b158:	aa1a03e4 	mov	x4, x26
+    b15c:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    b160:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    b164:	d2801002 	mov	x2, #0x80                  	// #128
+    b168:	52800021 	mov	w1, #0x1                   	// #1
+    b16c:	aa1c03e0 	mov	x0, x28
+    b170:	97ffe01c 	bl	31e0 <__sprintf_chk@plt>
+    b174:	aa1c03e0 	mov	x0, x28
+    b178:	97ffe116 	bl	35d0 <system@plt>
+    b17c:	91041281 	add	x1, x20, #0x104
+    b180:	9122be60 	add	x0, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b184:	97ffe117 	bl	35e0 <fopen@plt>
+    b188:	aa0003fa 	mov	x26, x0
+    b18c:	b40002e0 	cbz	x0, b1e8 <csrv_stop_timer@plt+0x7978>
+    b190:	d2800000 	mov	x0, #0x0                   	// #0
+    b194:	97ffe0df 	bl	3510 <time@plt>
+    b198:	f90053a0 	str	x0, [x29, #160]
+    b19c:	910283a0 	add	x0, x29, #0xa0
+    b1a0:	97ffdfe0 	bl	3120 <ctime@plt>
+    b1a4:	f90003f6 	str	x22, [sp]
+    b1a8:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    b1ac:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    b1b0:	aa0003e3 	mov	x3, x0
+    b1b4:	910860c6 	add	x6, x6, #0x218  ; 'perform_full_scan'
+    b1b8:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    b1bc:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    b1c0:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    b1c4:	91243c84 	add	x4, x4, #0x90f  ; 'INFO'
+    b1c8:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b1cc:	912c0c42 	add	x2, x2, #0xb03  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  FullScan Req payload : %s\n\n'
+    b1d0:	5280fda7 	mov	w7, #0x7ed                 	// #2029
+    b1d4:	52800021 	mov	w1, #0x1                   	// #1
+    b1d8:	aa1a03e0 	mov	x0, x26
+    b1dc:	97ffe021 	bl	3260 <__fprintf_chk@plt>
+    b1e0:	aa1a03e0 	mov	x0, x26
+    b1e4:	97ffdfeb 	bl	3190 <fclose@plt>
+    b1e8:	910263a1 	add	x1, x29, #0x98
+    b1ec:	aa1603e0 	mov	x0, x22
+    b1f0:	9122be7a 	add	x26, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b1f4:	97ffe09f 	bl	3470 <nwa_DataElementsRequest@plt>
+    b1f8:	aa1503e1 	mov	x1, x21
+    b1fc:	2a0003fc 	mov	w28, w0
+    b200:	aa1a03e0 	mov	x0, x26
+    b204:	94002973 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    b208:	35000340 	cbnz	w0, b270 <csrv_stop_timer@plt+0x7a00>
+    b20c:	f9406fa0 	ldr	x0, [x29, #216]
+    b210:	f142001f 	cmp	x0, #0x80, lsl #12
+    b214:	540002ed 	b.le	b270 <csrv_stop_timer@plt+0x7a00>
+    b218:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    b21c:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    b220:	97ffe048 	bl	3340 <remove@plt>
+    b224:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    b228:	aa1a03e0 	mov	x0, x26
+    b22c:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    b230:	97ffe07c 	bl	3420 <rename@plt>
+    b234:	910a23a5 	add	x5, x29, #0x288
+    b238:	d2801002 	mov	x2, #0x80                  	// #128
+    b23c:	aa0503fb 	mov	x27, x5
+    b240:	52800001 	mov	w1, #0x0                   	// #0
+    b244:	aa0503e0 	mov	x0, x5
+    b248:	97ffdff6 	bl	3220 <memset@plt>
+    b24c:	aa1a03e4 	mov	x4, x26
+    b250:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    b254:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    b258:	d2801002 	mov	x2, #0x80                  	// #128
+    b25c:	52800021 	mov	w1, #0x1                   	// #1
+    b260:	aa1b03e0 	mov	x0, x27
+    b264:	97ffdfdf 	bl	31e0 <__sprintf_chk@plt>
+    b268:	aa1b03e0 	mov	x0, x27
+    b26c:	97ffe0d9 	bl	35d0 <system@plt>
+    b270:	91041281 	add	x1, x20, #0x104
+    b274:	9122be60 	add	x0, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b278:	97ffe0da 	bl	35e0 <fopen@plt>
+    b27c:	aa0003fa 	mov	x26, x0
+    b280:	b40002e0 	cbz	x0, b2dc <csrv_stop_timer@plt+0x7a6c>
+    b284:	d2800000 	mov	x0, #0x0                   	// #0
+    b288:	97ffe0a2 	bl	3510 <time@plt>
+    b28c:	f90053a0 	str	x0, [x29, #160]
+    b290:	910283a0 	add	x0, x29, #0xa0
+    b294:	97ffdfa3 	bl	3120 <ctime@plt>
+    b298:	b90003fc 	str	w28, [sp]
+    b29c:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    b2a0:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    b2a4:	aa0003e3 	mov	x3, x0
+    b2a8:	910860c6 	add	x6, x6, #0x218  ; 'perform_full_scan'
+    b2ac:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    b2b0:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    b2b4:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    b2b8:	9131bc84 	add	x4, x4, #0xc6f  ; 'DEBUG'
+    b2bc:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b2c0:	912d2442 	add	x2, x2, #0xb49  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  ret2=%d\n'
+    b2c4:	5280fe07 	mov	w7, #0x7f0                 	// #2032
+    b2c8:	52800021 	mov	w1, #0x1                   	// #1
+    b2cc:	aa1a03e0 	mov	x0, x26
+    b2d0:	97ffdfe4 	bl	3260 <__fprintf_chk@plt>
+    b2d4:	aa1a03e0 	mov	x0, x26
+    b2d8:	97ffdfae 	bl	3190 <fclose@plt>
+    b2dc:	340002bc 	cbz	w28, b330 <csrv_stop_timer@plt+0x7ac0>
+    b2e0:	90000061 	adrp	x1, 17000 <_fini@@Base+0x1818>
+    b2e4:	52800020 	mov	w0, #0x1                   	// #1
+    b2e8:	912df021 	add	x1, x1, #0xb7c  ; 'Rpc : nwa_DataElementsRequest failed !!!\n'
+    b2ec:	97ffe145 	bl	3800 <__printf_chk@plt>
+    b2f0:	f9403fa0 	ldr	x0, [x29, #120]
+    b2f4:	f947cc00 	ldr	x0, [x0, #3992]
+    b2f8:	f94207a1 	ldr	x1, [x29, #1032]
+    b2fc:	f9400000 	ldr	x0, [x0]
+    b300:	ca000020 	eor	x0, x1, x0
+    b304:	b4000040 	cbz	x0, b30c <csrv_stop_timer@plt+0x7a9c>
+    b308:	97ffdf7a 	bl	30f0 <__stack_chk_fail@plt>
+    b30c:	a94253f3 	ldp	x19, x20, [sp, #32]
+    b310:	aa1603e0 	mov	x0, x22
+    b314:	a94463f7 	ldp	x23, x24, [sp, #64]
+    b318:	a9435bf5 	ldp	x21, x22, [sp, #48]
+    b31c:	a9456bf9 	ldp	x25, x26, [sp, #80]
+    b320:	a94673fb 	ldp	x27, x28, [sp, #96]
+    b324:	a9417bfd 	ldp	x29, x30, [sp, #16]
+    b328:	911083ff 	add	sp, sp, #0x420
+    b32c:	17ffdfb9 	b	3210 <free@plt>
+    b330:	9122be7a 	add	x26, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b334:	aa1503e1 	mov	x1, x21
+    b338:	aa1a03e0 	mov	x0, x26
+    b33c:	94002925 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    b340:	35000320 	cbnz	w0, b3a4 <csrv_stop_timer@plt+0x7b34>
+    b344:	f9406fa0 	ldr	x0, [x29, #216]
+    b348:	f142001f 	cmp	x0, #0x80, lsl #12
+    b34c:	540002cd 	b.le	b3a4 <csrv_stop_timer@plt+0x7b34>
+    b350:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    b354:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    b358:	97ffdffa 	bl	3340 <remove@plt>
+    b35c:	910a23bc 	add	x28, x29, #0x288
+    b360:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    b364:	aa1a03e0 	mov	x0, x26
+    b368:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    b36c:	97ffe02d 	bl	3420 <rename@plt>
+    b370:	d2801002 	mov	x2, #0x80                  	// #128
+    b374:	52800001 	mov	w1, #0x0                   	// #0
+    b378:	aa1c03e0 	mov	x0, x28
+    b37c:	97ffdfa9 	bl	3220 <memset@plt>
+    b380:	aa1a03e4 	mov	x4, x26
+    b384:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    b388:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    b38c:	d2801002 	mov	x2, #0x80                  	// #128
+    b390:	52800021 	mov	w1, #0x1                   	// #1
+    b394:	aa1c03e0 	mov	x0, x28
+    b398:	97ffdf92 	bl	31e0 <__sprintf_chk@plt>
+    b39c:	aa1c03e0 	mov	x0, x28
+    b3a0:	97ffe08c 	bl	35d0 <system@plt>
+    b3a4:	91041281 	add	x1, x20, #0x104
+    b3a8:	9122be60 	add	x0, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b3ac:	97ffe08d 	bl	35e0 <fopen@plt>
+    b3b0:	aa0003fa 	mov	x26, x0
+    b3b4:	b4000300 	cbz	x0, b414 <csrv_stop_timer@plt+0x7ba4>
+    b3b8:	d2800000 	mov	x0, #0x0                   	// #0
+    b3bc:	97ffe055 	bl	3510 <time@plt>
+    b3c0:	f90053a0 	str	x0, [x29, #160]
+    b3c4:	910283a0 	add	x0, x29, #0xa0
+    b3c8:	97ffdf56 	bl	3120 <ctime@plt>
+    b3cc:	aa0003e3 	mov	x3, x0
+    b3d0:	f9404fa1 	ldr	x1, [x29, #152]
+    b3d4:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    b3d8:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    b3dc:	f90003e1 	str	x1, [sp]
+    b3e0:	910860c6 	add	x6, x6, #0x218  ; 'perform_full_scan'
+    b3e4:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    b3e8:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    b3ec:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    b3f0:	9131bc84 	add	x4, x4, #0xc6f  ; 'DEBUG'
+    b3f4:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b3f8:	912e9842 	add	x2, x2, #0xba6  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  Result address: %p\r\n\n'
+    b3fc:	5280fee7 	mov	w7, #0x7f7                 	// #2039
+    b400:	52800021 	mov	w1, #0x1                   	// #1
+    b404:	aa1a03e0 	mov	x0, x26
+    b408:	97ffdf96 	bl	3260 <__fprintf_chk@plt>
+    b40c:	aa1a03e0 	mov	x0, x26
+    b410:	97ffdf60 	bl	3190 <fclose@plt>
+    b414:	9122be7a 	add	x26, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b418:	aa1503e1 	mov	x1, x21
+    b41c:	aa1a03e0 	mov	x0, x26
+    b420:	940028ec 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    b424:	35000320 	cbnz	w0, b488 <csrv_stop_timer@plt+0x7c18>
+    b428:	f9406fa0 	ldr	x0, [x29, #216]
+    b42c:	f142001f 	cmp	x0, #0x80, lsl #12
+    b430:	540002cd 	b.le	b488 <csrv_stop_timer@plt+0x7c18>
+    b434:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    b438:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    b43c:	97ffdfc1 	bl	3340 <remove@plt>
+    b440:	910a23bc 	add	x28, x29, #0x288
+    b444:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    b448:	aa1a03e0 	mov	x0, x26
+    b44c:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    b450:	97ffdff4 	bl	3420 <rename@plt>
+    b454:	d2801002 	mov	x2, #0x80                  	// #128
+    b458:	52800001 	mov	w1, #0x0                   	// #0
+    b45c:	aa1c03e0 	mov	x0, x28
+    b460:	97ffdf70 	bl	3220 <memset@plt>
+    b464:	aa1a03e4 	mov	x4, x26
+    b468:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    b46c:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    b470:	d2801002 	mov	x2, #0x80                  	// #128
+    b474:	52800021 	mov	w1, #0x1                   	// #1
+    b478:	aa1c03e0 	mov	x0, x28
+    b47c:	97ffdf59 	bl	31e0 <__sprintf_chk@plt>
+    b480:	aa1c03e0 	mov	x0, x28
+    b484:	97ffe053 	bl	35d0 <system@plt>
+    b488:	91041281 	add	x1, x20, #0x104
+    b48c:	9122be60 	add	x0, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b490:	97ffe054 	bl	35e0 <fopen@plt>
+    b494:	aa0003fa 	mov	x26, x0
+    b498:	b40002c0 	cbz	x0, b4f0 <csrv_stop_timer@plt+0x7c80>
+    b49c:	d2800000 	mov	x0, #0x0                   	// #0
+    b4a0:	97ffe01c 	bl	3510 <time@plt>
+    b4a4:	f90053a0 	str	x0, [x29, #160]
+    b4a8:	910283a0 	add	x0, x29, #0xa0
+    b4ac:	97ffdf1d 	bl	3120 <ctime@plt>
+    b4b0:	aa0003e3 	mov	x3, x0
+    b4b4:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    b4b8:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    b4bc:	910860c6 	add	x6, x6, #0x218  ; 'perform_full_scan'
+    b4c0:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    b4c4:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    b4c8:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    b4cc:	9131bc84 	add	x4, x4, #0xc6f  ; 'DEBUG'
+    b4d0:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b4d4:	912f9842 	add	x2, x2, #0xbe6  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  Result : \r\n\n'
+    b4d8:	5280ff07 	mov	w7, #0x7f8                 	// #2040
+    b4dc:	52800021 	mov	w1, #0x1                   	// #1
+    b4e0:	aa1a03e0 	mov	x0, x26
+    b4e4:	97ffdf5f 	bl	3260 <__fprintf_chk@plt>
+    b4e8:	aa1a03e0 	mov	x0, x26
+    b4ec:	97ffdf29 	bl	3190 <fclose@plt>
+    b4f0:	9122be7a 	add	x26, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b4f4:	aa1503e1 	mov	x1, x21
+    b4f8:	aa1a03e0 	mov	x0, x26
+    b4fc:	940028b5 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    b500:	35000320 	cbnz	w0, b564 <csrv_stop_timer@plt+0x7cf4>
+    b504:	f9406fa0 	ldr	x0, [x29, #216]
+    b508:	f142001f 	cmp	x0, #0x80, lsl #12
+    b50c:	540002cd 	b.le	b564 <csrv_stop_timer@plt+0x7cf4>
+    b510:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    b514:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    b518:	97ffdf8a 	bl	3340 <remove@plt>
+    b51c:	910a23b5 	add	x21, x29, #0x288
+    b520:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    b524:	aa1a03e0 	mov	x0, x26
+    b528:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    b52c:	97ffdfbd 	bl	3420 <rename@plt>
+    b530:	d2801002 	mov	x2, #0x80                  	// #128
+    b534:	52800001 	mov	w1, #0x0                   	// #0
+    b538:	aa1503e0 	mov	x0, x21
+    b53c:	97ffdf39 	bl	3220 <memset@plt>
+    b540:	aa1a03e4 	mov	x4, x26
+    b544:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    b548:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    b54c:	d2801002 	mov	x2, #0x80                  	// #128
+    b550:	52800021 	mov	w1, #0x1                   	// #1
+    b554:	aa1503e0 	mov	x0, x21
+    b558:	97ffdf22 	bl	31e0 <__sprintf_chk@plt>
+    b55c:	aa1503e0 	mov	x0, x21
+    b560:	97ffe01c 	bl	35d0 <system@plt>
+    b564:	91041281 	add	x1, x20, #0x104
+    b568:	9122be60 	add	x0, x19, #0x8af  ; '         vapInfo[%d]->status   = %d         \n            vapInfo[%d]->staNums  = %d         \n            vapInfo[%d]->band     = %d         \n            \n'
+    b56c:	97ffe01d 	bl	35e0 <fopen@plt>
+    b570:	aa0003f5 	mov	x21, x0
+    b574:	b4000300 	cbz	x0, b5d4 <csrv_stop_timer@plt+0x7d64>
+    b578:	d2800000 	mov	x0, #0x0                   	// #0
+    b57c:	97ffdfe5 	bl	3510 <time@plt>
+    b580:	f90053a0 	str	x0, [x29, #160]
+    b584:	910283a0 	add	x0, x29, #0xa0
+    b588:	97ffdee6 	bl	3120 <ctime@plt>
+    b58c:	aa0003e3 	mov	x3, x0
+    b590:	f9404fa1 	ldr	x1, [x29, #152]
+    b594:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    b598:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    b59c:	f90003e1 	str	x1, [sp]
+    b5a0:	910860c6 	add	x6, x6, #0x218  ; 'perform_full_scan'
+    b5a4:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    b5a8:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    b5ac:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    b5b0:	9131bc84 	add	x4, x4, #0xc6f  ; 'DEBUG'
+    b5b4:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b5b8:	91307442 	add	x2, x2, #0xc1d  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |              %s\r\n\n'
+    b5bc:	5280ff27 	mov	w7, #0x7f9                 	// #2041
+    b5c0:	52800021 	mov	w1, #0x1                   	// #1
+    b5c4:	aa1503e0 	mov	x0, x21
+    b5c8:	97ffdf26 	bl	3260 <__fprintf_chk@plt>
+    b5cc:	aa1503e0 	mov	x0, x21
+    b5d0:	97ffdef0 	bl	3190 <fclose@plt>
+    b5d4:	aa1603e0 	mov	x0, x22
+    b5d8:	97ffdf0e 	bl	3210 <free@plt>
+    b5dc:	910006f7 	add	x23, x23, #0x1
+    b5e0:	f1001aff 	cmp	x23, #0x6
+    b5e4:	54ffc121 	b.ne	ae08 <csrv_stop_timer@plt+0x7598>  // b.any
+    b5e8:	17fffdf2 	b	adb0 <csrv_stop_timer@plt+0x7540>
+    b5ec:	d10443ff 	sub	sp, sp, #0x110
+    b5f0:	d14057ff 	sub	sp, sp, #0x15, lsl #12
+    b5f4:	a9017bfd 	stp	x29, x30, [sp, #16]
+    b5f8:	910043fd 	add	x29, sp, #0x10
+    b5fc:	914053a2 	add	x2, x29, #0x14, lsl #12
+    b600:	91014042 	add	x2, x2, #0x50  ; '7s | %-15s | %s:%d |  Agent scan date not ready\n'
+    b604:	b9008fa0 	str	w0, [x29, #140]
+    b608:	d00000e0 	adrp	x0, 29000 <_fini@@Base+0x13818>
+    b60c:	a90253f3 	stp	x19, x20, [sp, #32]
+    b610:	aa0103f3 	mov	x19, x1
+    b614:	f947cc01 	ldr	x1, [x0, #3992]  ; GOT __stack_chk_guard@GLIBC_2.17
+    b618:	a9035bf5 	stp	x21, x22, [sp, #48]
+    b61c:	a90463f7 	stp	x23, x24, [sp, #64]
+    b620:	a9056bf9 	stp	x25, x26, [sp, #80]
+    b624:	a90673fb 	stp	x27, x28, [sp, #96]
+    b628:	f9400023 	ldr	x3, [x1]
+    b62c:	f9085443 	str	x3, [x2, #4264]
+    b630:	d2800003 	mov	x3, #0x0                   	// #0
+    b634:	f90043a0 	str	x0, [x29, #128]
+    b638:	b4003eb3 	cbz	x19, be0c <csrv_stop_timer@plt+0x859c>
+    b63c:	f00000f4 	adrp	x20, 2a000 <_fini@@Base+0x14818>
+    b640:	91004280 	add	x0, x20, #0x10
+    b644:	b9408fa1 	ldr	w1, [x29, #140]
+    b648:	b900f001 	str	w1, [x0, #240]
+    b64c:	90001c20 	adrp	x0, 38f000 <_fini@@Base+0x379818>
+    b650:	394dc000 	ldrb	w0, [x0, #880]
+    b654:	34003dc0 	cbz	w0, be0c <csrv_stop_timer@plt+0x859c>
+    b658:	97ffea7f 	bl	6054 <csrv_stop_timer@plt+0x27e4>
+    b65c:	72001c1f 	tst	w0, #0xff
+    b660:	54000741 	b.ne	b748 <csrv_stop_timer@plt+0x7ed8>  // b.any
+    b664:	d0000054 	adrp	x20, 15000 <csrv_stop_timer@plt+0x11790>
+    b668:	9122be95 	add	x21, x20, #0x8af  ; '/tmp/ai-agent.log'
+    b66c:	910503a1 	add	x1, x29, #0x140
+    b670:	aa1503e0 	mov	x0, x21
+    b674:	94002857 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    b678:	35000340 	cbnz	w0, b6e0 <csrv_stop_timer@plt+0x7e70>
+    b67c:	f940bba0 	ldr	x0, [x29, #368]
+    b680:	f142001f 	cmp	x0, #0x80, lsl #12
+    b684:	540002ed 	b.le	b6e0 <csrv_stop_timer@plt+0x7e70>
+    b688:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    b68c:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    b690:	97ffdf2c 	bl	3340 <remove@plt>
+    b694:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    b698:	aa1503e0 	mov	x0, x21
+    b69c:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    b6a0:	97ffdf60 	bl	3420 <rename@plt>
+    b6a4:	d28cd301 	mov	x1, #0x6698                	// #26264
+    b6a8:	8b0103b3 	add	x19, x29, x1
+    b6ac:	d2801002 	mov	x2, #0x80                  	// #128
+    b6b0:	52800001 	mov	w1, #0x0                   	// #0
+    b6b4:	aa1303e0 	mov	x0, x19
+    b6b8:	97ffdeda 	bl	3220 <memset@plt>
+    b6bc:	aa1503e4 	mov	x4, x21
+    b6c0:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    b6c4:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    b6c8:	d2801002 	mov	x2, #0x80                  	// #128
+    b6cc:	52800021 	mov	w1, #0x1                   	// #1
+    b6d0:	aa1303e0 	mov	x0, x19
+    b6d4:	97ffdec3 	bl	31e0 <__sprintf_chk@plt>
+    b6d8:	aa1303e0 	mov	x0, x19
+    b6dc:	97ffdfbd 	bl	35d0 <system@plt>
+    b6e0:	d0000061 	adrp	x1, 19000 <_fini@@Base+0x3818>
+    b6e4:	9122be80 	add	x0, x20, #0x8af  ; '/tmp/ai-agent.log'
+    b6e8:	91041021 	add	x1, x1, #0x104
+    b6ec:	97ffdfbd 	bl	35e0 <fopen@plt>
+    b6f0:	aa0003f3 	mov	x19, x0
+    b6f4:	b40038c0 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    b6f8:	d2800000 	mov	x0, #0x0                   	// #0
+    b6fc:	97ffdf85 	bl	3510 <time@plt>
+    b700:	f9005fa0 	str	x0, [x29, #184]
+    b704:	9102e3a0 	add	x0, x29, #0xb8
+    b708:	97ffde86 	bl	3120 <ctime@plt>
+    b70c:	aa0003e3 	mov	x3, x0
+    b710:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    b714:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    b718:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    b71c:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    b720:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    b724:	9108c0c6 	add	x6, x6, #0x230  ; 'process_sensing_broadcast'
+    b728:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    b72c:	91243c84 	add	x4, x4, #0x90f  ; 'INFO'
+    b730:	91316442 	add	x2, x2, #0xc59  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  Agent scan date not ready\n'
+    b734:	52810147 	mov	w7, #0x80a                 	// #2058
+    b738:	52800021 	mov	w1, #0x1                   	// #1
+    b73c:	aa1303e0 	mov	x0, x19
+    b740:	97ffdec8 	bl	3260 <__fprintf_chk@plt>
+    b744:	140001b0 	b	be04 <csrv_stop_timer@plt+0x8594>
+    b748:	9109e3bb 	add	x27, x29, #0x278
+    b74c:	d2803e82 	mov	x2, #0x1f4                 	// #500
+    b750:	52800001 	mov	w1, #0x0                   	// #0
+    b754:	aa1b03e0 	mov	x0, x27
+    b758:	97ffdeb2 	bl	3220 <memset@plt>
+    b75c:	a91c7fbf 	stp	xzr, xzr, [x29, #448]
+    b760:	d28c4502 	mov	x2, #0x6228                	// #25128
+    b764:	52800001 	mov	w1, #0x0                   	// #0
+    b768:	a91d7fbf 	stp	xzr, xzr, [x29, #464]
+    b76c:	9111c3a0 	add	x0, x29, #0x470
+    b770:	a91e7fbf 	stp	xzr, xzr, [x29, #480]
+    b774:	90000075 	adrp	x21, 17000 <_fini@@Base+0x1818>
+    b778:	7903e3bf 	strh	wzr, [x29, #496]
+    b77c:	97ffdea9 	bl	3220 <memset@plt>
+    b780:	d29d4c02 	mov	x2, #0xea60                	// #60000
+    b784:	52800001 	mov	w1, #0x0                   	// #0
+    b788:	d28cd300 	mov	x0, #0x6698                	// #26264
+    b78c:	8b0003a0 	add	x0, x29, x0
+    b790:	97ffdea4 	bl	3220 <memset@plt>
+    b794:	91327aa1 	add	x1, x21, #0xc9e  ; 'neighbor_scan_24'
+    b798:	aa1303e0 	mov	x0, x19
+    b79c:	97ffde99 	bl	3200 <cJSON_GetObjectItem@plt>
+    b7a0:	f90057b5 	str	x21, [x29, #168]
+    b7a4:	b4003340 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    b7a8:	90000075 	adrp	x21, 17000 <_fini@@Base+0x1818>
+    b7ac:	aa1303e0 	mov	x0, x19
+    b7b0:	9132bea1 	add	x1, x21, #0xcaf  ; 'channel_survey_24'
+    b7b4:	97ffde93 	bl	3200 <cJSON_GetObjectItem@plt>
+    b7b8:	f9004fb5 	str	x21, [x29, #152]
+    b7bc:	b4003280 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    b7c0:	90000075 	adrp	x21, 17000 <_fini@@Base+0x1818>
+    b7c4:	aa1303e0 	mov	x0, x19
+    b7c8:	913306a1 	add	x1, x21, #0xcc1  ; 'neighbor_scan_5'
+    b7cc:	97ffde8d 	bl	3200 <cJSON_GetObjectItem@plt>
+    b7d0:	f9003fb5 	str	x21, [x29, #120]
+    b7d4:	b40031c0 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    b7d8:	90000075 	adrp	x21, 17000 <_fini@@Base+0x1818>
+    b7dc:	aa1303e0 	mov	x0, x19
+    b7e0:	913346a1 	add	x1, x21, #0xcd1  ; 'channel_survey_5'
+    b7e4:	97ffde87 	bl	3200 <cJSON_GetObjectItem@plt>
+    b7e8:	f9003bb5 	str	x21, [x29, #112]
+    b7ec:	b4003100 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    b7f0:	90000075 	adrp	x21, 17000 <_fini@@Base+0x1818>
+    b7f4:	aa1303e0 	mov	x0, x19
+    b7f8:	91338aa1 	add	x1, x21, #0xce2  ; 'buddies_discover'
+    b7fc:	97ffde81 	bl	3200 <cJSON_GetObjectItem@plt>
+    b800:	f90037b5 	str	x21, [x29, #104]
+    b804:	b4003040 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    b808:	f0000055 	adrp	x21, 16000 <_fini@@Base+0x818>
+    b80c:	aa1303e0 	mov	x0, x19
+    b810:	91100aa1 	add	x1, x21, #0x402  ; 'channels'
+    b814:	97ffde7b 	bl	3200 <cJSON_GetObjectItem@plt>
+    b818:	f90053b5 	str	x21, [x29, #160]
+    b81c:	b4002f80 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    b820:	9000007c 	adrp	x28, 17000 <_fini@@Base+0x1818>
+    b824:	aa1303e0 	mov	x0, x19
+    b828:	9133cf81 	add	x1, x28, #0xcf3  ; 'ssids'
+    b82c:	97ffde75 	bl	3200 <cJSON_GetObjectItem@plt>
+    b830:	b4002ee0 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    b834:	aa1303e0 	mov	x0, x19
+    b838:	910503b9 	add	x25, x29, #0x140
+    b83c:	97ffdf3d 	bl	3530 <cJSON_Print@plt>
+    b840:	d0000056 	adrp	x22, 15000 <csrv_stop_timer@plt+0x11790>
+    b844:	aa0003f7 	mov	x23, x0
+    b848:	d000007a 	adrp	x26, 19000 <_fini@@Base+0x3818>
+    b84c:	b4000780 	cbz	x0, b93c <csrv_stop_timer@plt+0x80cc>
+    b850:	9122bed8 	add	x24, x22, #0x8af  ; '/tmp/ai-agent.log'
+    b854:	aa1903e1 	mov	x1, x25
+    b858:	aa1803e0 	mov	x0, x24
+    b85c:	940027dd 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    b860:	35000340 	cbnz	w0, b8c8 <csrv_stop_timer@plt+0x8058>
+    b864:	f940bba0 	ldr	x0, [x29, #368]
+    b868:	f142001f 	cmp	x0, #0x80, lsl #12
+    b86c:	540002ed 	b.le	b8c8 <csrv_stop_timer@plt+0x8058>
+    b870:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    b874:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    b878:	97ffdeb2 	bl	3340 <remove@plt>
+    b87c:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    b880:	aa1803e0 	mov	x0, x24
+    b884:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    b888:	97ffdee6 	bl	3420 <rename@plt>
+    b88c:	9107e3a5 	add	x5, x29, #0x1f8
+    b890:	d2801002 	mov	x2, #0x80                  	// #128
+    b894:	aa0503f5 	mov	x21, x5
+    b898:	52800001 	mov	w1, #0x0                   	// #0
+    b89c:	aa0503e0 	mov	x0, x5
+    b8a0:	97ffde60 	bl	3220 <memset@plt>
+    b8a4:	aa1803e4 	mov	x4, x24
+    b8a8:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    b8ac:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    b8b0:	d2801002 	mov	x2, #0x80                  	// #128
+    b8b4:	52800021 	mov	w1, #0x1                   	// #1
+    b8b8:	aa1503e0 	mov	x0, x21
+    b8bc:	97ffde49 	bl	31e0 <__sprintf_chk@plt>
+    b8c0:	aa1503e0 	mov	x0, x21
+    b8c4:	97ffdf43 	bl	35d0 <system@plt>
+    b8c8:	91041341 	add	x1, x26, #0x104
+    b8cc:	9122bec0 	add	x0, x22, #0x8af  ; '/tmp/ai-agent.log'
+    b8d0:	97ffdf44 	bl	35e0 <fopen@plt>
+    b8d4:	aa0003f8 	mov	x24, x0
+    b8d8:	b40002e0 	cbz	x0, b934 <csrv_stop_timer@plt+0x80c4>
+    b8dc:	d2800000 	mov	x0, #0x0                   	// #0
+    b8e0:	97ffdf0c 	bl	3510 <time@plt>
+    b8e4:	f9005fa0 	str	x0, [x29, #184]
+    b8e8:	9102e3a0 	add	x0, x29, #0xb8
+    b8ec:	97ffde0d 	bl	3120 <ctime@plt>
+    b8f0:	f90003f7 	str	x23, [sp]
+    b8f4:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    b8f8:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    b8fc:	aa0003e3 	mov	x3, x0
+    b900:	9108c0c6 	add	x6, x6, #0x230  ; 'process_sensing_broadcast'
+    b904:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    b908:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    b90c:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    b910:	9131bc84 	add	x4, x4, #0xc6f  ; 'DEBUG'
+    b914:	f0000042 	adrp	x2, 16000 <_fini@@Base+0x818>
+    b918:	91360c42 	add	x2, x2, #0xd83  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  msh json is %s\n'
+    b91c:	52810567 	mov	w7, #0x82b                 	// #2091
+    b920:	52800021 	mov	w1, #0x1                   	// #1
+    b924:	aa1803e0 	mov	x0, x24
+    b928:	97ffde4e 	bl	3260 <__fprintf_chk@plt>
+    b92c:	aa1803e0 	mov	x0, x24
+    b930:	97ffde18 	bl	3190 <fclose@plt>
+    b934:	aa1703e0 	mov	x0, x23
+    b938:	97ffded2 	bl	3480 <cJSON_free@plt>
+    b93c:	f94053a0 	ldr	x0, [x29, #160]
+    b940:	f00000f5 	adrp	x21, 2a000 <_fini@@Base+0x14818>
+    b944:	91100801 	add	x1, x0, #0x402
+    b948:	aa1303e0 	mov	x0, x19
+    b94c:	97ffdf61 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    b950:	f9401004 	ldr	x4, [x0, #32]
+    b954:	910703a1 	add	x1, x29, #0x1c0
+    b958:	f9004ba1 	str	x1, [x29, #144]
+    b95c:	d2800643 	mov	x3, #0x32                  	// #50
+    b960:	52800022 	mov	w2, #0x1                   	// #1
+    b964:	f9404ba0 	ldr	x0, [x29, #144]
+    b968:	aa0303e1 	mov	x1, x3
+    b96c:	97ffde45 	bl	3280 <__snprintf_chk@plt>
+    b970:	9133cf81 	add	x1, x28, #0xcf3  ; 'ssids'
+    b974:	aa1303e0 	mov	x0, x19
+    b978:	97ffdf56 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    b97c:	f9401004 	ldr	x4, [x0, #32]
+    b980:	d2803e83 	mov	x3, #0x1f4                 	// #500
+    b984:	52800022 	mov	w2, #0x1                   	// #1
+    b988:	aa0303e1 	mov	x1, x3
+    b98c:	aa1b03e0 	mov	x0, x27
+    b990:	97ffde3c 	bl	3280 <__snprintf_chk@plt>
+    b994:	910d42a0 	add	x0, x21, #0x350
+    b998:	39689000 	ldrb	w0, [x0, #2596]
+    b99c:	34003ba0 	cbz	w0, c110 <csrv_stop_timer@plt+0x88a0>
+    b9a0:	90000060 	adrp	x0, 17000 <_fini@@Base+0x1818>
+    b9a4:	9133e417 	add	x23, x0, #0xcf9
+    b9a8:	aa1703e1 	mov	x1, x23
+    b9ac:	aa1b03e0 	mov	x0, x27
+    b9b0:	97ffdf20 	bl	3630 <strcmp@plt>
+    b9b4:	2a0003f3 	mov	w19, w0
+    b9b8:	340000c0 	cbz	w0, b9d0 <csrv_stop_timer@plt+0x8160>
+    b9bc:	f9404ba0 	ldr	x0, [x29, #144]
+    b9c0:	aa1703e1 	mov	x1, x23
+    b9c4:	97ffdf1b 	bl	3630 <strcmp@plt>
+    b9c8:	7100001f 	cmp	w0, #0x0
+    b9cc:	1a9f07f3 	cset	w19, ne	// ne = any
+    b9d0:	910d42a0 	add	x0, x21, #0x350
+    b9d4:	b94c8818 	ldr	w24, [x0, #3208]
+    b9d8:	b9401280 	ldr	w0, [x20, #16]
+    b9dc:	3100041f 	cmn	w0, #0x1
+    b9e0:	540004c1 	b.ne	ba78 <csrv_stop_timer@plt+0x8208>  // b.any
+    b9e4:	52800003 	mov	w3, #0x0                   	// #0
+    b9e8:	52800002 	mov	w2, #0x0                   	// #0
+    b9ec:	b0ffffc1 	adrp	x1, 4000 <csrv_stop_timer@plt+0x790>
+    b9f0:	529d4c00 	mov	w0, #0xea60                	// #60000
+    b9f4:	9138a021 	add	x1, x1, #0xe28
+    b9f8:	52800037 	mov	w23, #0x1                   	// #1
+    b9fc:	97ffdd85 	bl	3010 <csrv_start_timer@plt>
+    ba00:	b9001280 	str	w0, [x20, #16]
+    ba04:	9100429c 	add	x28, x20, #0x10
+    ba08:	b9400780 	ldr	w0, [x28, #4]
+    ba0c:	3100041f 	cmn	w0, #0x1
+    ba10:	54000381 	b.ne	ba80 <csrv_stop_timer@plt+0x8210>  // b.any
+    ba14:	7100031f 	cmp	w24, #0x0
+    ba18:	52800003 	mov	w3, #0x0                   	// #0
+    ba1c:	1a9f17f8 	cset	w24, eq	// eq = none
+    ba20:	52800002 	mov	w2, #0x0                   	// #0
+    ba24:	b0ffffc1 	adrp	x1, 4000 <csrv_stop_timer@plt+0x790>
+    ba28:	529d4c00 	mov	w0, #0xea60                	// #60000
+    ba2c:	913e0021 	add	x1, x1, #0xf80
+    ba30:	97ffdd78 	bl	3010 <csrv_start_timer@plt>
+    ba34:	b9000780 	str	w0, [x28, #4]
+    ba38:	91004294 	add	x20, x20, #0x10
+    ba3c:	b9400a80 	ldr	w0, [x20, #8]
+    ba40:	3100041f 	cmn	w0, #0x1
+    ba44:	54002021 	b.ne	be48 <csrv_stop_timer@plt+0x85d8>  // b.any
+    ba48:	52800003 	mov	w3, #0x0                   	// #0
+    ba4c:	52800002 	mov	w2, #0x0                   	// #0
+    ba50:	d0ffffc1 	adrp	x1, 5000 <csrv_stop_timer@plt+0x1790>
+    ba54:	529d4c00 	mov	w0, #0xea60                	// #60000
+    ba58:	91037021 	add	x1, x1, #0xdc
+    ba5c:	5280003c 	mov	w28, #0x1                   	// #1
+    ba60:	97ffdd6c 	bl	3010 <csrv_start_timer@plt>
+    ba64:	b9000a80 	str	w0, [x20, #8]
+    ba68:	b9009bbf 	str	wzr, [x29, #152]
+    ba6c:	b900a3bf 	str	wzr, [x29, #160]
+    ba70:	b900abbf 	str	wzr, [x29, #168]
+    ba74:	1400005d 	b	bbe8 <csrv_stop_timer@plt+0x8378>
+    ba78:	52800017 	mov	w23, #0x0                   	// #0
+    ba7c:	17ffffe2 	b	ba04 <csrv_stop_timer@plt+0x8194>
+    ba80:	52800018 	mov	w24, #0x0                   	// #0
+    ba84:	17ffffed 	b	ba38 <csrv_stop_timer@plt+0x81c8>
+    ba88:	aa1c03e1 	mov	x1, x28
+    ba8c:	aa1303e0 	mov	x0, x19
+    ba90:	97ffdf10 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    ba94:	b9402800 	ldr	w0, [x0, #40]
+    ba98:	b900aba0 	str	w0, [x29, #168]
+    ba9c:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    baa0:	9134305c 	add	x28, x2, #0xd0c  ; 'channel_survey_6'
+    baa4:	aa1c03e1 	mov	x1, x28
+    baa8:	aa1303e0 	mov	x0, x19
+    baac:	97ffdf09 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    bab0:	b4001c00 	cbz	x0, be30 <csrv_stop_timer@plt+0x85c0>
+    bab4:	aa1c03e1 	mov	x1, x28
+    bab8:	aa1303e0 	mov	x0, x19
+    babc:	97ffdf05 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    bac0:	b940281c 	ldr	w28, [x0, #40]
+    bac4:	f94037a0 	ldr	x0, [x29, #104]
+    bac8:	91338801 	add	x1, x0, #0xce2
+    bacc:	aa1303e0 	mov	x0, x19
+    bad0:	97ffdf00 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    bad4:	aa0003e2 	mov	x2, x0
+    bad8:	90000060 	adrp	x0, 17000 <_fini@@Base+0x1818>
+    badc:	f9003fa2 	str	x2, [x29, #120]
+    bae0:	9133e401 	add	x1, x0, #0xcf9
+    bae4:	aa1b03e0 	mov	x0, x27
+    bae8:	97ffded2 	bl	3630 <strcmp@plt>
+    baec:	2a0003f3 	mov	w19, w0
+    baf0:	340000e0 	cbz	w0, bb0c <csrv_stop_timer@plt+0x829c>
+    baf4:	91004280 	add	x0, x20, #0x10
+    baf8:	f9403fa2 	ldr	x2, [x29, #120]
+    bafc:	b940f400 	ldr	w0, [x0, #244]
+    bb00:	b9402853 	ldr	w19, [x2, #40]
+    bb04:	3100041f 	cmn	w0, #0x1
+    bb08:	1a9f0273 	csel	w19, w19, wzr, eq	// eq = none
+    bb0c:	910d42a0 	add	x0, x21, #0x350
+    bb10:	39689401 	ldrb	w1, [x0, #2597]
+    bb14:	34000061 	cbz	w1, bb20 <csrv_stop_timer@plt+0x82b0>
+    bb18:	3928941f 	strb	wzr, [x0, #2597]
+    bb1c:	52800037 	mov	w23, #0x1                   	// #1
+    bb20:	910d42a0 	add	x0, x21, #0x350
+    bb24:	39689801 	ldrb	w1, [x0, #2598]
+    bb28:	34000061 	cbz	w1, bb34 <csrv_stop_timer@plt+0x82c4>
+    bb2c:	3928981f 	strb	wzr, [x0, #2598]
+    bb30:	52800038 	mov	w24, #0x1                   	// #1
+    bb34:	910d42a0 	add	x0, x21, #0x350
+    bb38:	39689c01 	ldrb	w1, [x0, #2599]
+    bb3c:	34000061 	cbz	w1, bb48 <csrv_stop_timer@plt+0x82d8>
+    bb40:	39289c1f 	strb	wzr, [x0, #2599]
+    bb44:	5280003c 	mov	w28, #0x1                   	// #1
+    bb48:	710006ff 	cmp	w23, #0x1
+    bb4c:	54000161 	b.ne	bb78 <csrv_stop_timer@plt+0x8308>  // b.any
+    bb50:	b9401280 	ldr	w0, [x20, #16]
+    bb54:	3100041f 	cmn	w0, #0x1
+    bb58:	54001701 	b.ne	be38 <csrv_stop_timer@plt+0x85c8>  // b.any
+    bb5c:	52800003 	mov	w3, #0x0                   	// #0
+    bb60:	52800002 	mov	w2, #0x0                   	// #0
+    bb64:	b0ffffc1 	adrp	x1, 4000 <csrv_stop_timer@plt+0x790>
+    bb68:	529d4c00 	mov	w0, #0xea60                	// #60000
+    bb6c:	9138a021 	add	x1, x1, #0xe28
+    bb70:	97ffdd28 	bl	3010 <csrv_start_timer@plt>
+    bb74:	b9001280 	str	w0, [x20, #16]
+    bb78:	7100071f 	cmp	w24, #0x1
+    bb7c:	540001c1 	b.ne	bbb4 <csrv_stop_timer@plt+0x8344>  // b.any
+    bb80:	91004285 	add	x5, x20, #0x10
+    bb84:	b94004a0 	ldr	w0, [x5, #4]
+    bb88:	3100041f 	cmn	w0, #0x1
+    bb8c:	540015a1 	b.ne	be40 <csrv_stop_timer@plt+0x85d0>  // b.any
+    bb90:	f9003fa5 	str	x5, [x29, #120]
+    bb94:	52800003 	mov	w3, #0x0                   	// #0
+    bb98:	52800002 	mov	w2, #0x0                   	// #0
+    bb9c:	b0ffffc1 	adrp	x1, 4000 <csrv_stop_timer@plt+0x790>
+    bba0:	529d4c00 	mov	w0, #0xea60                	// #60000
+    bba4:	913e0021 	add	x1, x1, #0xf80
+    bba8:	97ffdd1a 	bl	3010 <csrv_start_timer@plt>
+    bbac:	f9403fa5 	ldr	x5, [x29, #120]
+    bbb0:	b90004a0 	str	w0, [x5, #4]
+    bbb4:	7100079f 	cmp	w28, #0x1
+    bbb8:	54000181 	b.ne	bbe8 <csrv_stop_timer@plt+0x8378>  // b.any
+    bbbc:	91004294 	add	x20, x20, #0x10
+    bbc0:	b9400a80 	ldr	w0, [x20, #8]
+    bbc4:	3100041f 	cmn	w0, #0x1
+    bbc8:	54001441 	b.ne	be50 <csrv_stop_timer@plt+0x85e0>  // b.any
+    bbcc:	52800003 	mov	w3, #0x0                   	// #0
+    bbd0:	52800002 	mov	w2, #0x0                   	// #0
+    bbd4:	d0ffffc1 	adrp	x1, 5000 <csrv_stop_timer@plt+0x1790>
+    bbd8:	529d4c00 	mov	w0, #0xea60                	// #60000
+    bbdc:	91037021 	add	x1, x1, #0xdc
+    bbe0:	97ffdd0c 	bl	3010 <csrv_start_timer@plt>
+    bbe4:	b9000a80 	str	w0, [x20, #8]
+    bbe8:	910d42b4 	add	x20, x21, #0x350
+    bbec:	394283a1 	ldrb	w1, [x29, #160]
+    bbf0:	d2800802 	mov	x2, #0x40                  	// #64
+    bbf4:	9128be80 	add	x0, x20, #0xa2f
+    bbf8:	3928a281 	strb	w1, [x20, #2600]
+    bbfc:	394263a1 	ldrb	w1, [x29, #152]
+    bc00:	3928a681 	strb	w1, [x20, #2601]
+    bc04:	3942a3a1 	ldrb	w1, [x29, #168]
+    bc08:	3928aa81 	strb	w1, [x20, #2602]
+    bc0c:	f9404ba1 	ldr	x1, [x29, #144]
+    bc10:	3928ae97 	strb	w23, [x20, #2603]
+    bc14:	3928b298 	strb	w24, [x20, #2604]
+    bc18:	3928b69c 	strb	w28, [x20, #2605]
+    bc1c:	3928ba93 	strb	w19, [x20, #2606]
+    bc20:	97ffddfc 	bl	3410 <strncpy@plt>
+    bc24:	d2800802 	mov	x2, #0x40                  	// #64
+    bc28:	aa1b03e1 	mov	x1, x27
+    bc2c:	912a4e80 	add	x0, x20, #0xa93
+    bc30:	9122bed4 	add	x20, x22, #0x8af  ; '/tmp/ai-agent.log'
+    bc34:	97ffddf7 	bl	3410 <strncpy@plt>
+    bc38:	aa1903e1 	mov	x1, x25
+    bc3c:	aa1403e0 	mov	x0, x20
+    bc40:	940026e4 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    bc44:	35000320 	cbnz	w0, bca8 <csrv_stop_timer@plt+0x8438>
+    bc48:	f940bba0 	ldr	x0, [x29, #368]
+    bc4c:	f142001f 	cmp	x0, #0x80, lsl #12
+    bc50:	540002cd 	b.le	bca8 <csrv_stop_timer@plt+0x8438>
+    bc54:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    bc58:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    bc5c:	97ffddb9 	bl	3340 <remove@plt>
+    bc60:	9107e3b3 	add	x19, x29, #0x1f8
+    bc64:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    bc68:	aa1403e0 	mov	x0, x20
+    bc6c:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    bc70:	97ffddec 	bl	3420 <rename@plt>
+    bc74:	d2801002 	mov	x2, #0x80                  	// #128
+    bc78:	52800001 	mov	w1, #0x0                   	// #0
+    bc7c:	aa1303e0 	mov	x0, x19
+    bc80:	97ffdd68 	bl	3220 <memset@plt>
+    bc84:	aa1403e4 	mov	x4, x20
+    bc88:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    bc8c:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    bc90:	d2801002 	mov	x2, #0x80                  	// #128
+    bc94:	52800021 	mov	w1, #0x1                   	// #1
+    bc98:	aa1303e0 	mov	x0, x19
+    bc9c:	97ffdd51 	bl	31e0 <__sprintf_chk@plt>
+    bca0:	aa1303e0 	mov	x0, x19
+    bca4:	97ffde4b 	bl	35d0 <system@plt>
+    bca8:	91041341 	add	x1, x26, #0x104
+    bcac:	9122bec0 	add	x0, x22, #0x8af  ; '/tmp/ai-agent.log'
+    bcb0:	97ffde4c 	bl	35e0 <fopen@plt>
+    bcb4:	aa0003f3 	mov	x19, x0
+    bcb8:	b4000300 	cbz	x0, bd18 <csrv_stop_timer@plt+0x84a8>
+    bcbc:	d2800000 	mov	x0, #0x0                   	// #0
+    bcc0:	97ffde14 	bl	3510 <time@plt>
+    bcc4:	f9005fa0 	str	x0, [x29, #184]
+    bcc8:	9102e3a0 	add	x0, x29, #0xb8
+    bccc:	97ffdd15 	bl	3120 <ctime@plt>
+    bcd0:	aa0003e3 	mov	x3, x0
+    bcd4:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    bcd8:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    bcdc:	d2801001 	mov	x1, #0x80                  	// #128
+    bce0:	9108c0c6 	add	x6, x6, #0x230  ; 'process_sensing_broadcast'
+    bce4:	f90003e1 	str	x1, [sp]
+    bce8:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    bcec:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    bcf0:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    bcf4:	91243c84 	add	x4, x4, #0x90f  ; 'INFO'
+    bcf8:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    bcfc:	91347442 	add	x2, x2, #0xd1d  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  nal get sensing leng = %d\n'
+    bd00:	52811187 	mov	w7, #0x88c                 	// #2188
+    bd04:	52800021 	mov	w1, #0x1                   	// #1
+    bd08:	aa1303e0 	mov	x0, x19
+    bd0c:	97ffdd55 	bl	3260 <__fprintf_chk@plt>
+    bd10:	aa1303e0 	mov	x0, x19
+    bd14:	97ffdd1f 	bl	3190 <fclose@plt>
+    bd18:	910303b4 	add	x20, x29, #0xc0
+    bd1c:	aa1403e0 	mov	x0, x20
+    bd20:	97fffb76 	bl	aaf8 <csrv_stop_timer@plt+0x7288>
+    bd24:	2a0003f7 	mov	w23, w0
+    bd28:	34000980 	cbz	w0, be58 <csrv_stop_timer@plt+0x85e8>
+    bd2c:	9122bed4 	add	x20, x22, #0x8af  ; '/tmp/ai-agent.log'
+    bd30:	aa1903e1 	mov	x1, x25
+    bd34:	aa1403e0 	mov	x0, x20
+    bd38:	940026a6 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    bd3c:	35000320 	cbnz	w0, bda0 <csrv_stop_timer@plt+0x8530>
+    bd40:	f940bba0 	ldr	x0, [x29, #368]
+    bd44:	f142001f 	cmp	x0, #0x80, lsl #12
+    bd48:	540002cd 	b.le	bda0 <csrv_stop_timer@plt+0x8530>
+    bd4c:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    bd50:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    bd54:	97ffdd7b 	bl	3340 <remove@plt>
+    bd58:	9107e3b3 	add	x19, x29, #0x1f8
+    bd5c:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    bd60:	aa1403e0 	mov	x0, x20
+    bd64:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    bd68:	97ffddae 	bl	3420 <rename@plt>
+    bd6c:	d2801002 	mov	x2, #0x80                  	// #128
+    bd70:	52800001 	mov	w1, #0x0                   	// #0
+    bd74:	aa1303e0 	mov	x0, x19
+    bd78:	97ffdd2a 	bl	3220 <memset@plt>
+    bd7c:	aa1403e4 	mov	x4, x20
+    bd80:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    bd84:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    bd88:	d2801002 	mov	x2, #0x80                  	// #128
+    bd8c:	52800021 	mov	w1, #0x1                   	// #1
+    bd90:	aa1303e0 	mov	x0, x19
+    bd94:	97ffdd13 	bl	31e0 <__sprintf_chk@plt>
+    bd98:	aa1303e0 	mov	x0, x19
+    bd9c:	97ffde0d 	bl	35d0 <system@plt>
+    bda0:	91041341 	add	x1, x26, #0x104
+    bda4:	9122bec0 	add	x0, x22, #0x8af  ; '/tmp/ai-agent.log'
+    bda8:	97ffde0e 	bl	35e0 <fopen@plt>
+    bdac:	aa0003f3 	mov	x19, x0
+    bdb0:	b40002e0 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    bdb4:	d2800000 	mov	x0, #0x0                   	// #0
+    bdb8:	97ffddd6 	bl	3510 <time@plt>
+    bdbc:	f9005fa0 	str	x0, [x29, #184]
+    bdc0:	9102e3a0 	add	x0, x29, #0xb8
+    bdc4:	97ffdcd7 	bl	3120 <ctime@plt>
+    bdc8:	b90003f7 	str	w23, [sp]
+    bdcc:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    bdd0:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    bdd4:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    bdd8:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    bddc:	aa0003e3 	mov	x3, x0
+    bde0:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    bde4:	52811207 	mov	w7, #0x890                 	// #2192
+    bde8:	9108c0c6 	add	x6, x6, #0x230  ; 'process_sensing_broadcast'
+    bdec:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    bdf0:	91276484 	add	x4, x4, #0x9d9  ; 'ERROR'
+    bdf4:	91358842 	add	x2, x2, #0xd62  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  nal_get_sensing failed : %d\n'
+    bdf8:	52800021 	mov	w1, #0x1                   	// #1
+    bdfc:	aa1303e0 	mov	x0, x19
+    be00:	97ffdd18 	bl	3260 <__fprintf_chk@plt>
+    be04:	aa1303e0 	mov	x0, x19
+    be08:	97ffdce2 	bl	3190 <fclose@plt>
+    be0c:	f94043a0 	ldr	x0, [x29, #128]
+    be10:	914053a1 	add	x1, x29, #0x14, lsl #12
+    be14:	91014021 	add	x1, x1, #0x50  ; 't> %.19s | %-7s | %-15s | %s:%d |  msg len exceeds buffer length !!! \n'
+    be18:	f947cc00 	ldr	x0, [x0, #3992]
+    be1c:	f9485422 	ldr	x2, [x1, #4264]
+    be20:	f9400000 	ldr	x0, [x0]
+    be24:	ca000040 	eor	x0, x2, x0
+    be28:	b4001b00 	cbz	x0, c188 <csrv_stop_timer@plt+0x8918>
+    be2c:	97ffdcb1 	bl	30f0 <__stack_chk_fail@plt>
+    be30:	5280003c 	mov	w28, #0x1                   	// #1
+    be34:	17ffff24 	b	bac4 <csrv_stop_timer@plt+0x8254>
+    be38:	52800017 	mov	w23, #0x0                   	// #0
+    be3c:	17ffff4f 	b	bb78 <csrv_stop_timer@plt+0x8308>
+    be40:	52800018 	mov	w24, #0x0                   	// #0
+    be44:	17ffff5c 	b	bbb4 <csrv_stop_timer@plt+0x8344>
+    be48:	5280001c 	mov	w28, #0x0                   	// #0
+    be4c:	17ffff07 	b	ba68 <csrv_stop_timer@plt+0x81f8>
+    be50:	5280001c 	mov	w28, #0x0                   	// #0
+    be54:	17ffff65 	b	bbe8 <csrv_stop_timer@plt+0x8378>
+    be58:	9122bed7 	add	x23, x22, #0x8af  ; '/tmp/ai-agent.log'
+    be5c:	aa1903e1 	mov	x1, x25
+    be60:	aa1703e0 	mov	x0, x23
+    be64:	9400265b 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    be68:	35000320 	cbnz	w0, becc <csrv_stop_timer@plt+0x865c>
+    be6c:	f940bba0 	ldr	x0, [x29, #368]
+    be70:	f142001f 	cmp	x0, #0x80, lsl #12
+    be74:	540002cd 	b.le	becc <csrv_stop_timer@plt+0x865c>
+    be78:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    be7c:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    be80:	97ffdd30 	bl	3340 <remove@plt>
+    be84:	9107e3b3 	add	x19, x29, #0x1f8
+    be88:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    be8c:	aa1703e0 	mov	x0, x23
+    be90:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    be94:	97ffdd63 	bl	3420 <rename@plt>
+    be98:	d2801002 	mov	x2, #0x80                  	// #128
+    be9c:	52800001 	mov	w1, #0x0                   	// #0
+    bea0:	aa1303e0 	mov	x0, x19
+    bea4:	97ffdcdf 	bl	3220 <memset@plt>
+    bea8:	aa1703e4 	mov	x4, x23
+    beac:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    beb0:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    beb4:	d2801002 	mov	x2, #0x80                  	// #128
+    beb8:	52800021 	mov	w1, #0x1                   	// #1
+    bebc:	aa1303e0 	mov	x0, x19
+    bec0:	97ffdcc8 	bl	31e0 <__sprintf_chk@plt>
+    bec4:	aa1303e0 	mov	x0, x19
+    bec8:	97ffddc2 	bl	35d0 <system@plt>
+    becc:	91041341 	add	x1, x26, #0x104
+    bed0:	9122bec0 	add	x0, x22, #0x8af  ; '/tmp/ai-agent.log'
+    bed4:	97ffddc3 	bl	35e0 <fopen@plt>
+    bed8:	aa0003f3 	mov	x19, x0
+    bedc:	b40002c0 	cbz	x0, bf34 <csrv_stop_timer@plt+0x86c4>
+    bee0:	d2800000 	mov	x0, #0x0                   	// #0
+    bee4:	97ffdd8b 	bl	3510 <time@plt>
+    bee8:	f9005fa0 	str	x0, [x29, #184]
+    beec:	9102e3a0 	add	x0, x29, #0xb8
+    bef0:	97ffdc8c 	bl	3120 <ctime@plt>
+    bef4:	aa0003e3 	mov	x3, x0
+    bef8:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    befc:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    bf00:	9108c0c6 	add	x6, x6, #0x230  ; 'process_sensing_broadcast'
+    bf04:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    bf08:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    bf0c:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    bf10:	91243c84 	add	x4, x4, #0x90f  ; 'INFO'
+    bf14:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    bf18:	9136a442 	add	x2, x2, #0xda9  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  convert sensing to json\n'
+    bf1c:	52811287 	mov	w7, #0x894                 	// #2196
+    bf20:	52800021 	mov	w1, #0x1                   	// #1
+    bf24:	aa1303e0 	mov	x0, x19
+    bf28:	97ffdcce 	bl	3260 <__fprintf_chk@plt>
+    bf2c:	aa1303e0 	mov	x0, x19
+    bf30:	97ffdc98 	bl	3190 <fclose@plt>
+    bf34:	aa1403e0 	mov	x0, x20
+    bf38:	940013dd 	bl	10eac <csrv_stop_timer@plt+0xd63c>
+    bf3c:	aa0003f4 	mov	x20, x0
+    bf40:	b5000680 	cbnz	x0, c010 <csrv_stop_timer@plt+0x87a0>
+    bf44:	9122bed4 	add	x20, x22, #0x8af  ; '/tmp/ai-agent.log'
+    bf48:	aa1903e1 	mov	x1, x25
+    bf4c:	aa1403e0 	mov	x0, x20
+    bf50:	94002620 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    bf54:	35000320 	cbnz	w0, bfb8 <csrv_stop_timer@plt+0x8748>
+    bf58:	f940bba0 	ldr	x0, [x29, #368]
+    bf5c:	f142001f 	cmp	x0, #0x80, lsl #12
+    bf60:	540002cd 	b.le	bfb8 <csrv_stop_timer@plt+0x8748>
+    bf64:	d0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    bf68:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    bf6c:	97ffdcf5 	bl	3340 <remove@plt>
+    bf70:	9107e3b3 	add	x19, x29, #0x1f8
+    bf74:	d0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    bf78:	aa1403e0 	mov	x0, x20
+    bf7c:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    bf80:	97ffdd28 	bl	3420 <rename@plt>
+    bf84:	d2801002 	mov	x2, #0x80                  	// #128
+    bf88:	52800001 	mov	w1, #0x0                   	// #0
+    bf8c:	aa1303e0 	mov	x0, x19
+    bf90:	97ffdca4 	bl	3220 <memset@plt>
+    bf94:	aa1403e4 	mov	x4, x20
+    bf98:	d0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    bf9c:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    bfa0:	d2801002 	mov	x2, #0x80                  	// #128
+    bfa4:	52800021 	mov	w1, #0x1                   	// #1
+    bfa8:	aa1303e0 	mov	x0, x19
+    bfac:	97ffdc8d 	bl	31e0 <__sprintf_chk@plt>
+    bfb0:	aa1303e0 	mov	x0, x19
+    bfb4:	97ffdd87 	bl	35d0 <system@plt>
+    bfb8:	91041341 	add	x1, x26, #0x104
+    bfbc:	9122bec0 	add	x0, x22, #0x8af  ; '/tmp/ai-agent.log'
+    bfc0:	97ffdd88 	bl	35e0 <fopen@plt>
+    bfc4:	aa0003f3 	mov	x19, x0
+    bfc8:	b4fff220 	cbz	x0, be0c <csrv_stop_timer@plt+0x859c>
+    bfcc:	d2800000 	mov	x0, #0x0                   	// #0
+    bfd0:	97ffdd50 	bl	3510 <time@plt>
+    bfd4:	f9005fa0 	str	x0, [x29, #184]
+    bfd8:	9102e3a0 	add	x0, x29, #0xb8
+    bfdc:	97ffdc51 	bl	3120 <ctime@plt>
+    bfe0:	aa0003e3 	mov	x3, x0
+    bfe4:	d0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    bfe8:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    bfec:	f0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    bff0:	d0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    bff4:	90000062 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    bff8:	528112e7 	mov	w7, #0x897                 	// #2199
+    bffc:	9108c0c6 	add	x6, x6, #0x230  ; 'process_sensing_broadcast'
+    c000:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    c004:	91276484 	add	x4, x4, #0x9d9  ; 'ERROR'
+    c008:	9137b042 	add	x2, x2, #0xdec  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  convert sensing to json failed\n'
+    c00c:	17fffdcb 	b	b738 <csrv_stop_timer@plt+0x7ec8>
+    c010:	9122bed7 	add	x23, x22, #0x8af  ; '/tmp/ai-agent.log'
+    c014:	aa1903e1 	mov	x1, x25
+    c018:	aa1703e0 	mov	x0, x23
+    c01c:	940025ed 	bl	157d0 <csrv_stop_timer@plt+0x11f60>
+    c020:	35000320 	cbnz	w0, c084 <csrv_stop_timer@plt+0x8814>
+    c024:	f940bba0 	ldr	x0, [x29, #368]
+    c028:	f142001f 	cmp	x0, #0x80, lsl #12
+    c02c:	540002cd 	b.le	c084 <csrv_stop_timer@plt+0x8814>
+    c030:	b0000040 	adrp	x0, 15000 <csrv_stop_timer@plt+0x11790>
+    c034:	91230400 	add	x0, x0, #0x8c1  ; '/tmp/ai-agent.log.old.gz'
+    c038:	97ffdcc2 	bl	3340 <remove@plt>
+    c03c:	9107e3b3 	add	x19, x29, #0x1f8
+    c040:	b0000041 	adrp	x1, 15000 <csrv_stop_timer@plt+0x11790>
+    c044:	aa1703e0 	mov	x0, x23
+    c048:	91236821 	add	x1, x1, #0x8da  ; '/tmp/ai-agent.log.old'
+    c04c:	97ffdcf5 	bl	3420 <rename@plt>
+    c050:	d2801002 	mov	x2, #0x80                  	// #128
+    c054:	52800001 	mov	w1, #0x0                   	// #0
+    c058:	aa1303e0 	mov	x0, x19
+    c05c:	97ffdc71 	bl	3220 <memset@plt>
+    c060:	aa1703e4 	mov	x4, x23
+    c064:	b0000043 	adrp	x3, 15000 <csrv_stop_timer@plt+0x11790>
+    c068:	9123c063 	add	x3, x3, #0x8f0  ; 'gzip %s.old'
+    c06c:	d2801002 	mov	x2, #0x80                  	// #128
+    c070:	52800021 	mov	w1, #0x1                   	// #1
+    c074:	aa1303e0 	mov	x0, x19
+    c078:	97ffdc5a 	bl	31e0 <__sprintf_chk@plt>
+    c07c:	aa1303e0 	mov	x0, x19
+    c080:	97ffdd54 	bl	35d0 <system@plt>
+    c084:	91041341 	add	x1, x26, #0x104
+    c088:	9122bec0 	add	x0, x22, #0x8af  ; '/tmp/ai-agent.log'
+    c08c:	97ffdd55 	bl	35e0 <fopen@plt>
+    c090:	aa0003f3 	mov	x19, x0
+    c094:	b40002c0 	cbz	x0, c0ec <csrv_stop_timer@plt+0x887c>
+    c098:	d2800000 	mov	x0, #0x0                   	// #0
+    c09c:	97ffdd1d 	bl	3510 <time@plt>
+    c0a0:	f9005fa0 	str	x0, [x29, #184]
+    c0a4:	9102e3a0 	add	x0, x29, #0xb8
+    c0a8:	97ffdc1e 	bl	3120 <ctime@plt>
+    c0ac:	aa0003e3 	mov	x3, x0
+    c0b0:	b0000046 	adrp	x6, 15000 <csrv_stop_timer@plt+0x11790>
+    c0b4:	913be0c6 	add	x6, x6, #0xef8  ; 'agent_is_valid_radio'
+    c0b8:	9108c0c6 	add	x6, x6, #0x230  ; 'process_sensing_broadcast'
+    c0bc:	d0000045 	adrp	x5, 16000 <_fini@@Base+0x818>
+    c0c0:	b0000044 	adrp	x4, 15000 <csrv_stop_timer@plt+0x11790>
+    c0c4:	910694a5 	add	x5, x5, #0x1a5  ; 'ai-agent.c'
+    c0c8:	91243c84 	add	x4, x4, #0x90f  ; 'INFO'
+    c0cc:	f0000042 	adrp	x2, 17000 <_fini@@Base+0x1818>
+    c0d0:	9138d842 	add	x2, x2, #0xe36  ; 'AI Agent> %.19s | %-7s | %-15s | %s:%d |  convert sensing to json end\n'
+    c0d4:	52811367 	mov	w7, #0x89b                 	// #2203
+    c0d8:	52800021 	mov	w1, #0x1                   	// #1
+    c0dc:	aa1303e0 	mov	x0, x19
+    c0e0:	97ffdc60 	bl	3260 <__fprintf_chk@plt>
+    c0e4:	aa1303e0 	mov	x0, x19
+    c0e8:	97ffdc2a 	bl	3190 <fclose@plt>
+    c0ec:	910d42b5 	add	x21, x21, #0x350
+    c0f0:	b9408fa0 	ldr	w0, [x29, #140]
+    c0f4:	aa1403e1 	mov	x1, x20
+    c0f8:	396892a2 	ldrb	w2, [x21, #2596]
+    c0fc:	940003d8 	bl	d05c <csrv_stop_timer@plt+0x97ec>
+    c100:	396892a0 	ldrb	w0, [x21, #2596]
+    c104:	34ffe840 	cbz	w0, be0c <csrv_stop_timer@plt+0x859c>
+    c108:	392892bf 	strb	wzr, [x21, #2596]
+    c10c:	17ffff40 	b	be0c <csrv_stop_timer@plt+0x859c>
+    c110:	f94057a0 	ldr	x0, [x29, #168]
+    c114:	f000005c 	adrp	x28, 17000 <_fini@@Base+0x1818>
+    c118:	9133f39c 	add	x28, x28, #0xcfc  ; 'neighbor_scan_6'
+    c11c:	91327801 	add	x1, x0, #0xc9e
+    c120:	aa1303e0 	mov	x0, x19
+    c124:	97ffdd6b 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    c128:	b9402800 	ldr	w0, [x0, #40]
+    c12c:	b900a3a0 	str	w0, [x29, #160]
+    c130:	f9404fa0 	ldr	x0, [x29, #152]
+    c134:	9132bc01 	add	x1, x0, #0xcaf
+    c138:	aa1303e0 	mov	x0, x19
+    c13c:	97ffdd65 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    c140:	b9402817 	ldr	w23, [x0, #40]
+    c144:	f9403fa0 	ldr	x0, [x29, #120]
+    c148:	91330401 	add	x1, x0, #0xcc1
+    c14c:	aa1303e0 	mov	x0, x19
+    c150:	97ffdd60 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    c154:	b9402800 	ldr	w0, [x0, #40]
+    c158:	b9009ba0 	str	w0, [x29, #152]
+    c15c:	f9403ba0 	ldr	x0, [x29, #112]
+    c160:	91334401 	add	x1, x0, #0xcd1
+    c164:	aa1303e0 	mov	x0, x19
+    c168:	97ffdd5a 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    c16c:	b9402818 	ldr	w24, [x0, #40]
+    c170:	aa1c03e1 	mov	x1, x28
+    c174:	aa1303e0 	mov	x0, x19
+    c178:	97ffdd56 	bl	36d0 <cJSON_GetObjectItemCaseSensitive@plt>
+    c17c:	b5ffc860 	cbnz	x0, ba88 <csrv_stop_timer@plt+0x8218>
+    c180:	b900abbf 	str	wzr, [x29, #168]
+    c184:	17fffe46 	b	ba9c <csrv_stop_timer@plt+0x822c>
+    c188:	a94253f3 	ldp	x19, x20, [sp, #32]
+    c18c:	a9435bf5 	ldp	x21, x22, [sp, #48]
+    c190:	a94463f7 	ldp	x23, x24, [sp, #64]
+    c194:	a9456bf9 	ldp	x25, x26, [sp, #80]
+    c198:	a94673fb 	ldp	x27, x28, [sp, #96]
+    c19c:	a9417bfd 	ldp	x29, x30, [sp, #16]
+    c1a0:	910443ff 	add	sp, sp, #0x110
+    c1a4:	914057ff 	add	sp, sp, #0x15, lsl #12
+    c1a8:	d65f03c0 	ret
+    c1ac:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    c1b0:	b00000e2 	adrp	x2, 29000 <_fini@@Base+0x13818>
+    c1b4:	910003fd 	mov	x29, sp
+    c1b8:	f947cc42 	ldr	x2, [x2, #3992]  ; GOT __stack_chk_guard@GLIBC_2.17
+    c1bc:	f9400043 	ldr	x3, [x2]
+    c1c0:	f9000fa3 	str	x3, [x29, #24]
+    c1c4:	d2800003 	mov	x3, #0x0                   	// #0
+    c1c8:	b4000101 	cbz	x1, c1e8 <csrv_stop_timer@plt+0x8978>
+    c1cc:	f9400fa3 	ldr	x3, [x29, #24]
+    c1d0:	f9400042 	ldr	x2, [x2]
+    c1d4:	ca020062 	eor	x2, x3, x2
+    c1d8:	b4000042 	cbz	x2, c1e0 <csrv_stop_timer@plt+0x8970>
+    c1dc:	97ffdbc5 	bl	30f0 <__stack_chk_fail@plt>
+    c1e0:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    c1e4:	17fff574 	b	97b4 <csrv_stop_timer@plt+0x5f44>
+    c1e8:	f9400fa1 	ldr	x1, [x29, #24]
+    c1ec:	f9400040 	ldr	x0, [x2]
+    c1f0:	ca000020 	eor	x0, x1, x0
+    c1f4:	b5ffff40 	cbnz	x0, c1dc <csrv_stop_timer@plt+0x896c>
+    c1f8:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    c1fc:	d65f03c0 	ret

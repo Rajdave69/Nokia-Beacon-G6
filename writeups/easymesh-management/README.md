@@ -1,5 +1,7 @@
 # Following ECD and apcloud into EasyMesh management
 
+This article follows EasyMesh topology, steering, backhaul and radio management through ECD and the packaged apcloud agent. The separate [mesh-messaging writeup](../mesh-messaging/README.md) examines the optimizer's TCP 37591 protocol between `ai_controller` and `ai-agent`, carrying measurements and scan instructions. Their processes, interfaces and evidence are distinct.
+
 `ecd` is the Beacon's local edge controller for the EasyMesh stack. It maintains the mesh topology 
 and has management interfaces for steering, backhaul policy and radio configuration. This gives us 
 more than another telemetry stream, although a registered operation is not the same as a successfully 
@@ -29,9 +31,15 @@ flowchart TD
     U -.-> M
 ```
 
-ECD is separate from [ACI](../aci-wifi-optimizer/README.md), TCP 37591 and the WebSocket notification service. The observed HTTP listener is local to the router. It is not a LAN or WAN management endpoint at that address, and this investigation did not expose it through a relay or change its bind address.
+ECD is separate from [ACI](../aci-wifi-optimizer/README.md), TCP 37591 and the WebSocket notification service. The observed HTTP listener is 
+local to the router. It is not a LAN or WAN management endpoint at that address, and this investigation did 
+not expose it through a relay or change its bind address.
 
-`run_ecd.sh` calls this the Technicolor EasyMesh stack. It exits when `/configs/em_no_auto_startup_flag` exists, optionally sources `$HOME/ecd.conf`, then executes `/usr/bin/ecd`. The packaged `ECD.pcd` has `ACTIVE=NO` and system-init/NVA dependencies; that does not override the fact that ECD is running on this unit. Both REST override files, `/configs/easymesh/rest_listen_address` and `rest_listen_port`, were missing. The effective listener was established from the live socket owner, rather than guessed from those filenames.
+`run_ecd.sh` calls this the Technicolor EasyMesh stack. It exits when `/configs/em_no_auto_startup_flag` exists, 
+optionally sources `$HOME/ecd.conf`, then executes `/usr/bin/ecd`. The packaged `ECD.pcd` has `ACTIVE=NO` and 
+system-init/NVA dependencies; that does not override the fact that ECD is running on this unit. Both REST override
+files, `/configs/easymesh/rest_listen_address` and `rest_listen_port`, were missing. The effective listener was 
+established from the live socket owner, rather than guessed from those filenames.
 
 ## Reading the topology
 
@@ -50,24 +58,36 @@ Both returned HTTP 200. The version response was:
 {"version":"1.16.15","id":""}
 ```
 
-The topology response has an `aps` array. Each AP can describe its identity, IP/MAC addresses, software, uptime, gateway role, backhaul state and quality, route cost, links and SSIDs. The live response contained one AP and two backhaul SSID entries. Its serial identified the current device as G6-A. [The aliased sample](resources/topology-sample.json) preserves all returned fields, and [the normalized capture](resources/live-captures.json) retains the complete shell output.
+The topology response has an `aps` array. Each AP can describe its identity, IP/MAC addresses, software, 
+uptime, gateway role, backhaul state and quality, route cost, links and SSIDs. The live response contained 
+one AP and two backhaul SSID entries. Its serial identified the current device as G6-A. [The aliased sample](resources/topology-sample.json)
+preserves all returned fields, and [the normalized capture](resources/live-captures.json) retains the complete shell output.
 
-These are useful for collecting fleet inventory, spotting missing extenders, following backhaul changes and comparing the controller's view with ACI's channel scores. Identity and SSID fields make the unredacted response private. The response is cached controller data: an `encrypted:false` field, for example, is not an independently verified statement about the radio's actual Wi-Fi security.
+These are useful for collecting fleet inventory, spotting missing extenders, following backhaul changes and
+comparing the controller's view with ACI's channel scores. Identity and SSID fields make the unredacted
+response private. The response is cached controller data: an `encrypted:false` field, for example, is not
+an independently verified statement about the radio's actual Wi-Fi security.
+
 
 ## The management surface
 
-We recovered the actual native REST registrations, including their HTTP methods and callback addresses. The two G6 builds have the same **68 static initializer registrations**. That count excludes the separately constructed server utility routes. The [complete catalogue](resources/route-catalog.md) and per-profile JSON retain every recovered registration.
+We recovered the actual native REST registrations, including their HTTP methods and callback addresses.
+The two G6 builds have the same **68 static initializer registrations**. That count excludes the separately
+constructed server utility routes. The [complete catalogue](resources/route-catalog.md) and per-profile JSON retain every recovered
+registration.
 
-| Family | Registered operations | What is established |
-| --- | --- | --- |
-| Inventory | Version, topology, AP information, capabilities, graph, metrics and configuration views | Version and topology were queried live; the other handlers need individual schema/side-effect review. |
-| Client steering | Steering requests, global/per-AP enablement, idle steering, RSSI thresholds, roaming margins, backoff and ping-pong policies | Native POST registrations; exact request bodies, target selection and live outcomes remain untested. |
-| Backhaul | Steering, enable flags, dynamic band switching, fronthaul management | Native GET/PUT registrations; effects and persistence remain untested. |
-| Measurements | Channel scans, CAC requests/termination, AP metric queries and scan policies | Some action routes are registered as **GET**. A GET name or method does not make an endpoint read-only. |
-| Radio/configuration | Current-channel information, RRM, configuration database and policy settings | Needs careful separation of cached-model updates from actual hardware configuration. |
-| Diagnostics | Logging controls and debug views | Logging setters and server utility routes were not exercised. |
+| Family              | Registered operations                                                                                                        | What is established                                                                                     |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Inventory           | Version, topology, AP information, capabilities, graph, metrics and configuration views                                      | Version and topology were queried live; the other handlers need individual schema/side-effect review.   |
+| Client steering     | Steering requests, global/per-AP enablement, idle steering, RSSI thresholds, roaming margins, backoff and ping-pong policies | Native POST registrations; exact request bodies, target selection and live outcomes remain untested.    |
+| Backhaul            | Steering, enable flags, dynamic band switching, fronthaul management                                                         | Native GET/PUT registrations; effects and persistence remain untested.                                  |
+| Measurements        | Channel scans, CAC requests/termination, AP metric queries and scan policies                                                 | Some action routes are registered as **GET**. A GET name or method does not make an endpoint read-only. |
+| Radio/configuration | Current-channel information, RRM, configuration database and policy settings                                                 | Needs careful separation of cached-model updates from actual hardware configuration.                    |
+| Diagnostics         | Logging controls and debug views                                                                                             | Logging setters and server utility routes were not exercised.                                           |
 
-Do not run a crawler against `/debug/*`. In particular, `/debug/ch_scan_request`, `/debug/cac_request` and `/debug/cac_termination` are registered GET operations that can request work. `/quit` also exists among the server's utility routes and was not invoked.
+Do not run a crawler against `/debug/*`. In particular, `/debug/ch_scan_request`, `/debug/cac_request` 
+and `/debug/cac_termination` are registered GET operations that can request work. `/quit` also exists 
+among the server's utility routes and was not invoked.
 
 ## The channel path differs from ACI's stub
 
@@ -75,7 +95,7 @@ ACI's registered `setForceChannel` callback does nothing in the three captured b
 
 The G6 HJL D-Bus wrapper sends `ecd_setradiochannel_rpc` to destination `nokia.ecdd`, path `/nokia/ecd/application`, interface `nokia.ecd.application`. It serializes a **52-byte request** and expects a status plus a **12-byte result**, with a 15-second method-call timeout. These are firmware structures, not 52 characters of JSON or process pointers usable remotely.
 
-The server registration binds this method through a callback table. The bound callback validates pointers and submits a queued operation with request/result sizes 52/12. Separately, the worker's channel handler calls `ConfigurationMinder::set_channel_power_configuration`. That implementation validates channel/bandwidth, consults provisioning state, submits a channel-selection event and has branches that update default-channel/default-bandwidth state. The named default setters themselves update RAM; they do not directly save configuration. The evidence retains the exact registration, queue submission, worker call sites and implementation. The follow-up resolves opcode5 through the native jump table to that worker, including its separate result socket pair. Downstream RF behavior and cancellation remain untested.
+The server registration binds this method through a callback table. The bound callback validates pointers and submits a queued operation with request/result sizes 52/12. Separately, the worker's channel handler calls `ConfigurationMinder::set_channel_power_configuration`. That implementation validates channel/bandwidth, consults provisioning state, submits a channel-selection event and has branches that update default-channel/default-bandwidth state. The named default setters themselves update RAM; they do not directly save configuration. The evidence retains the exact registration, queue submission, worker call sites and implementation. The native jump table routes opcode 5 to that worker, which returns results through a separate socket pair. Downstream RF behavior and cancellation remain untested.
 
 This is a credible control path to investigate further, with potential persistent effects. We have not sent it a channel request, established every field's accepted values, or demonstrated an RF change. The main field layout is now decoded below. The REST route `/debug/current-op-channel` is also not a verified shortcut: its handler parses channel information and reaches internal data updates; its complete downstream hardware effect is unresolved.
 
@@ -111,11 +131,11 @@ The saved UCI template has `status.enabled=0`, TLS/CA settings, a development cl
 
 ## Comparing firmware
 
-| Saved profile | ECD version | Static initializer registrations | apcloud in selected root |
-| --- | --- | --- | --- |
-| G6 IJL.J03 | 1.14.22 | 68 | Present |
-| G6 HJL.L91 | 1.16.15 | 68 | Present; absent from the checked live process list |
-| Beacon 9 JJM.K44 | 1.19.13f | 71 | No matching executable, configuration or package paths found |
+| Saved profile    | ECD version | Static initializer registrations | apcloud in selected root                                     |
+|------------------|-------------|----------------------------------|--------------------------------------------------------------|
+| G6 IJL.J03       | 1.14.22     | 68                               | Present                                                      |
+| G6 HJL.L91       | 1.16.15     | 68                               | Present; absent from the checked live process list           |
+| Beacon 9 JJM.K44 | 1.19.13f    | 71                               | No matching executable, configuration or package paths found |
 
 The Beacon 9 adds PUT registrations for `/debug/rrm_threshold`, `/debug/bh-rrm-threshold` and `/debug/bh-nb-age-time`; every recovered G6 method/path pair is retained. This is a comparison of registered surfaces, not proof that all shared handlers behave identically. We have not obtained a G6 25.xx build or queried the Beacon 9's live ECD API, so these differences cannot all be assigned to the firmware generation alone.
 

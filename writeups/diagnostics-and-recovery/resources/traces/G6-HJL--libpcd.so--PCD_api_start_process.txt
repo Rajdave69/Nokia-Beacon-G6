@@ -1,0 +1,12 @@
+
+PCD_api_start_process:
+00001728: fe0f1ef8  str x30, [sp, #-0x20]!
+0000172c: e00f00f9  str x0, [sp, #0x18]
+00001730: e10b00f9  str x1, [sp, #0x10]
+00001734: 03008012  mov w3, #-1
+00001738: e20b40f9  ldr x2, [sp, #0x10]
+0000173c: 01008052  mov w1, #0
+00001740: e00f40f9  ldr x0, [sp, #0x18]
+00001744: 24ffff97  bl #0x13d4 ; heuristic 0x13d4 {"x1": 0, "x3": -1}
+00001748: fe0742f8  ldr x30, [sp], #0x20
+0000174c: c0035fd6  ret 

@@ -1,0 +1,94 @@
+
+PCD_failure_action_REBOOT:
+00404fc8: ff0305d1  sub sp, sp, #0x140
+00404fcc: fe0b00f9  str x30, [sp, #0x10]
+00404fd0: e01700f9  str x0, [sp, #0x28]
+00404fd4: ff3f01b9  str wzr, [sp, #0x13c]
+00404fd8: e01740f9  ldr x0, [sp, #0x28]
+00404fdc: 001c42b9  ldr w0, [x0, #0x21c]
+00404fe0: 1f040031  cmn w0, #1
+00404fe4: e1000054  b.ne #0x405000
+00404fe8: e01740f9  ldr x0, [sp, #0x28]
+00404fec: 003042b9  ldr w0, [x0, #0x230]
+00404ff0: 41008052  mov w1, #2
+00404ff4: 1f080071  cmp w0, #2
+00404ff8: 0090811a  csel w0, w0, w1, ls
+00404ffc: 02000014  b #0x405004
+00405000: 00008052  mov w0, #0
+00405004: e03b01b9  str w0, [sp, #0x138]
+00405008: e01740f9  ldr x0, [sp, #0x28]
+0040500c: 004442b9  ldr w0, [x0, #0x244]
+00405010: 1f180071  cmp w0, #6
+00405014: c0000054  b.eq #0x40502c
+00405018: 1f1c0071  cmp w0, #7
+0040501c: 40010054  b.eq #0x405044
+00405020: 1f140071  cmp w0, #5
+00405024: a0000054  b.eq #0x405038
+00405028: 0a000014  b #0x405050
+0040502c: 60008052  mov w0, #3
+00405030: e03f01b9  str w0, [sp, #0x13c]
+00405034: 07000014  b #0x405050
+00405038: a0008052  mov w0, #5
+0040503c: e03f01b9  str w0, [sp, #0x13c]
+00405040: 04000014  b #0x405050
+00405044: 80008052  mov w0, #4
+00405048: e03f01b9  str w0, [sp, #0x13c]
+0040504c: 1f2003d5  nop 
+00405050: 10ffff97  bl #0x404c90 ; heuristic PCD_exception_listen {"x0": 4, "x1": 2}
+00405054: e13b41b9  ldr w1, [sp, #0x138]
+00405058: e00301aa  mov x0, x1
+0040505c: 00f07dd3  lsl x0, x0, #3
+00405060: 0000018b  add x0, x0, x1
+00405064: 00f47ed3  lsl x0, x0, #2
+00405068: 00c00691  add x0, x0, #0x1b0
+0040506c: e11740f9  ldr x1, [sp, #0x28]
+00405070: 2000008b  add x0, x1, x0
+00405074: 04100091  add x4, x0, #4
+00405078: e13b41b9  ldr w1, [sp, #0x138]
+0040507c: e00301aa  mov x0, x1
+00405080: 00f07dd3  lsl x0, x0, #3
+00405084: 0000018b  add x0, x0, x1
+00405088: 00f47ed3  lsl x0, x0, #2
+0040508c: 00000791  add x0, x0, #0x1c0
+00405090: e11740f9  ldr x1, [sp, #0x28]
+00405094: 2000008b  add x0, x1, x0
+00405098: 05100091  add x5, x0, #4
+0040509c: 400000b0  adrp x0, #0x40e000
+004050a0: 03200591  add x3, x0, #0x148
+004050a4: 400000b0  adrp x0, #0x40e000
+004050a8: 02400591  add x2, x0, #0x150
+004050ac: 400000b0  adrp x0, #0x40e000
+004050b0: 01400691  add x1, x0, #0x190
+004050b4: e8e30091  add x8, sp, #0x38
+004050b8: 400000b0  adrp x0, #0x40e000
+004050bc: 00200691  add x0, x0, #0x188
+004050c0: e00300f9  str x0, [sp]
+004050c4: e70305aa  mov x7, x5
+004050c8: e60304aa  mov x6, x4
+004050cc: e53f41b9  ldr w5, [sp, #0x13c]
+004050d0: e40303aa  mov x4, x3
+004050d4: e30302aa  mov x3, x2
+004050d8: e20301aa  mov x2, x1
+004050dc: e11f80d2  mov x1, #0xff
+004050e0: e00308aa  mov x0, x8
+004050e4: 57f8ff97  bl #0x403240 ; heuristic snprintf@plt {"x1": 255, "x2": "%s%sStatus:%d\nModuleID:%s_%s\nReboot System%s", "x3": "pcd: ", "x4": "Info: "}
+004050e8: e0000090  adrp x0, #0x421000
+004050ec: 00d847f9  ldr x0, [x0, #0xfb0]
+004050f0: 000040b9  ldr w0, [x0]
+004050f4: 1f000071  cmp w0, #0
+004050f8: c0000054  b.eq #0x405110
+004050fc: e0000090  adrp x0, #0x421000
+00405100: 00dc47f9  ldr x0, [x0, #0xfb8]
+00405104: 010040f9  ldr x1, [x0]
+00405108: e0e30091  add x0, sp, #0x38
+0040510c: 11f8ff97  bl #0x403150 ; heuristic fputs@plt {}
+00405110: e0e30091  add x0, sp, #0x38
+00405114: 21008052  mov w1, #1
+00405118: c9fbff97  bl #0x40403c ; heuristic PCD_errlog_log {"x1": 1}
+0040511c: 5df8ff97  bl #0x403290 ; heuristic getpid@plt {}
+00405120: e1018052  mov w1, #0xf
+00405124: 2bf8ff97  bl #0x4031d0 ; heuristic kill@plt {"x1": 15}
+00405128: 000080d2  mov x0, #0
+0040512c: fe0b40f9  ldr x30, [sp, #0x10]
+00405130: ff030591  add sp, sp, #0x140
+00405134: c0035fd6  ret 

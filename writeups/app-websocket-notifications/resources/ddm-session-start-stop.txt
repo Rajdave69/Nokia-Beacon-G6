@@ -1,0 +1,155 @@
+
+ddm:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000002451c <ddm_handleSessionStart@@Base>:
+   2451c:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+   24520:	910003fd 	mov	x29, sp
+   24524:	f9000fa0 	str	x0, [x29, #24]
+   24528:	f0000520 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   2452c:	f946b400 	ldr	x0, [x0, #3432]
+   24530:	f9400001 	ldr	x1, [x0]
+   24534:	f9001fa1 	str	x1, [x29, #56]
+   24538:	d2800001 	mov	x1, #0x0                   	// #0
+   2453c:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   24540:	911ba001 	add	x1, x0, #0x6e8
+   24544:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   24548:	913ea000 	add	x0, x0, #0xfa8
+   2454c:	aa0103e2 	mov	x2, x1
+   24550:	52805aa1 	mov	w1, #0x2d5                 	// #725
+   24554:	97ffc4b3 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_handleSessionStart', x1=725, x2='Entered ddm_handleSessionStart\n'
+   24558:	f9400fa0 	ldr	x0, [x29, #24]
+   2455c:	f100001f 	cmp	x0, #0x0
+   24560:	54000121 	b.ne	24584 <ddm_handleSessionStart@@Base+0x68>  // b.any
+   24564:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   24568:	911c2001 	add	x1, x0, #0x708
+   2456c:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   24570:	913ea000 	add	x0, x0, #0xfa8
+   24574:	aa0103e2 	mov	x2, x1
+   24578:	52805b01 	mov	w1, #0x2d8                 	// #728
+   2457c:	97ffc7a9 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_handleSessionStart', x1=728, x2='Invalid data for session start'
+   24580:	14000043 	b	2468c <ddm_handleSessionStart@@Base+0x170>
+   24584:	b9002fbf 	str	wzr, [x29, #44]
+   24588:	f9400fa0 	ldr	x0, [x29, #24]
+   2458c:	f9001ba0 	str	x0, [x29, #48]
+   24590:	f9401ba0 	ldr	x0, [x29, #48]
+   24594:	b9400002 	ldr	w2, [x0]
+   24598:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   2459c:	911ca001 	add	x1, x0, #0x728
+   245a0:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   245a4:	913ea000 	add	x0, x0, #0xfa8
+   245a8:	2a0203e3 	mov	w3, w2
+   245ac:	aa0103e2 	mov	x2, x1
+   245b0:	52805c01 	mov	w1, #0x2e0                 	// #736
+   245b4:	97ffc49b 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_handleSessionStart', x1=736, x2='session start [%d]'
+   245b8:	f9401ba0 	ldr	x0, [x29, #48]
+   245bc:	b9400000 	ldr	w0, [x0]
+   245c0:	7100041f 	cmp	w0, #0x1
+   245c4:	54000640 	b.eq	2468c <ddm_handleSessionStart@@Base+0x170>  // b.none
+   245c8:	f9401ba0 	ldr	x0, [x29, #48]
+   245cc:	b9400000 	ldr	w0, [x0]
+   245d0:	7100401f 	cmp	w0, #0x10
+   245d4:	540005c1 	b.ne	2468c <ddm_handleSessionStart@@Base+0x170>  // b.any
+   245d8:	f9401ba0 	ldr	x0, [x29, #48]
+   245dc:	b9400400 	ldr	w0, [x0, #4]
+   245e0:	7100001f 	cmp	w0, #0x0
+   245e4:	540002cd 	b.le	2463c <ddm_handleSessionStart@@Base+0x120>
+   245e8:	52800200 	mov	w0, #0x10                  	// #16
+   245ec:	97fffbb4 	bl	234bc <ddm_setAsyncNotification@@Base> ; heuristic args: x0=16
+   245f0:	d2800000 	mov	x0, #0x0                   	// #0
+   245f4:	97ffc6df 	bl	16170 <time@plt> ; heuristic args: x0=0
+   245f8:	aa0003e1 	mov	x1, x0
+   245fc:	f0000520 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   24600:	f9469000 	ldr	x0, [x0, #3360]
+   24604:	f9000001 	str	x1, [x0]
+   24608:	f9401ba0 	ldr	x0, [x29, #48]
+   2460c:	b9400400 	ldr	w0, [x0, #4]
+   24610:	2a0003e1 	mov	w1, w0
+   24614:	f0000520 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   24618:	f9472000 	ldr	x0, [x0, #3648]
+   2461c:	b9000001 	str	w1, [x0]
+   24620:	f9401ba0 	ldr	x0, [x29, #48]
+   24624:	b9400002 	ldr	w2, [x0]
+   24628:	f9401ba0 	ldr	x0, [x29, #48]
+   2462c:	b9400400 	ldr	w0, [x0, #4]
+   24630:	2a0003e1 	mov	w1, w0
+   24634:	2a0203e0 	mov	w0, w2
+   24638:	97fff59c 	bl	21ca8 <ddm_sessionTimerUpdate@@Base>
+   2463c:	9400004a 	bl	24764 <ddm_getAllLanPhyrateJson@@Base>
+   24640:	9400193d 	bl	2ab34 <ddm_updateAllDevCap@@Base>
+   24644:	f0000520 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   24648:	f947b000 	ldr	x0, [x0, #3936]
+   2464c:	f9400000 	ldr	x0, [x0]
+   24650:	94010424 	bl	656e0 <ddm_sendAllDeviceInfo@@Base>
+   24654:	7100001f 	cmp	w0, #0x0
+   24658:	54000100 	b.eq	24678 <ddm_handleSessionStart@@Base+0x15c>  // b.none
+   2465c:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   24660:	911d0001 	add	x1, x0, #0x740
+   24664:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   24668:	913ea000 	add	x0, x0, #0xfa8
+   2466c:	aa0103e2 	mov	x2, x1
+   24670:	52806361 	mov	w1, #0x31b                 	// #795
+   24674:	97ffc76b 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_handleSessionStart', x1=795, x2='Unable to form All device Info JSON'
+   24678:	b9402fa0 	ldr	w0, [x29, #44]
+   2467c:	321c0000 	orr	w0, w0, #0x10
+   24680:	b9002fa0 	str	w0, [x29, #44]
+   24684:	b9402fa0 	ldr	w0, [x29, #44]
+   24688:	94000748 	bl	263a8 <handleAsyncSSIDUpdate@@Base>
+   2468c:	f0000520 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   24690:	f946b400 	ldr	x0, [x0, #3432]
+   24694:	f9401fa1 	ldr	x1, [x29, #56]
+   24698:	f9400000 	ldr	x0, [x0]
+   2469c:	ca000020 	eor	x0, x1, x0
+   246a0:	f100001f 	cmp	x0, #0x0
+   246a4:	54000040 	b.eq	246ac <ddm_handleSessionStart@@Base+0x190>  // b.none
+   246a8:	97ffc4d6 	bl	15a00 <__stack_chk_fail@plt>
+   246ac:	a8c47bfd 	ldp	x29, x30, [sp], #64
+   246b0:	d65f03c0 	ret
+
+00000000000246b4 <ddm_handleSessionStop@@Base>:
+   246b4:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+   246b8:	910003fd 	mov	x29, sp
+   246bc:	f9000fa0 	str	x0, [x29, #24]
+   246c0:	f0000520 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   246c4:	f946b400 	ldr	x0, [x0, #3432]
+   246c8:	f9400001 	ldr	x1, [x0]
+   246cc:	f90017a1 	str	x1, [x29, #40]
+   246d0:	d2800001 	mov	x1, #0x0                   	// #0
+   246d4:	f9400fa0 	ldr	x0, [x29, #24]
+   246d8:	f100001f 	cmp	x0, #0x0
+   246dc:	54000121 	b.ne	24700 <ddm_handleSessionStop@@Base+0x4c>  // b.any
+   246e0:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   246e4:	911da001 	add	x1, x0, #0x768
+   246e8:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   246ec:	913f0000 	add	x0, x0, #0xfc0
+   246f0:	aa0103e2 	mov	x2, x1
+   246f4:	52806761 	mov	w1, #0x33b                 	// #827
+   246f8:	97ffc74a 	bl	16420 <nalLogError@plt> ; heuristic args: x0='ddm_handleSessionStop', x1=827, x2='Invalid data for session stop'
+   246fc:	14000010 	b	2473c <ddm_handleSessionStop@@Base+0x88>
+   24700:	f9400fa0 	ldr	x0, [x29, #24]
+   24704:	f90013a0 	str	x0, [x29, #32]
+   24708:	f94013a0 	ldr	x0, [x29, #32]
+   2470c:	b9400002 	ldr	w2, [x0]
+   24710:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   24714:	911e2001 	add	x1, x0, #0x788
+   24718:	b0000300 	adrp	x0, 85000 <_IO_stdin_used@@Base+0x3f68>
+   2471c:	913f0000 	add	x0, x0, #0xfc0
+   24720:	2a0203e3 	mov	w3, w2
+   24724:	aa0103e2 	mov	x2, x1
+   24728:	52806821 	mov	w1, #0x341                 	// #833
+   2472c:	97ffc43d 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='ddm_handleSessionStop', x1=833, x2='session stop [%d]'
+   24730:	f94013a0 	ldr	x0, [x29, #32]
+   24734:	b9400000 	ldr	w0, [x0]
+   24738:	97fff3d8 	bl	21698 <ddm_stopSessionTimer@@Base>
+   2473c:	f0000520 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   24740:	f946b400 	ldr	x0, [x0, #3432]
+   24744:	f94017a1 	ldr	x1, [x29, #40]
+   24748:	f9400000 	ldr	x0, [x0]
+   2474c:	ca000020 	eor	x0, x1, x0
+   24750:	f100001f 	cmp	x0, #0x0
+   24754:	54000040 	b.eq	2475c <ddm_handleSessionStop@@Base+0xa8>  // b.none
+   24758:	97ffc4aa 	bl	15a00 <__stack_chk_fail@plt>
+   2475c:	a8c37bfd 	ldp	x29, x30, [sp], #48
+   24760:	d65f03c0 	ret

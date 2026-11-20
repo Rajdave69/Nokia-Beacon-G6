@@ -1,88 +1,63 @@
-# One router, several passwords: mapping the Beacon G6 authentication paths
+# Which credential opens which part of HomeOS?
 
-## How the confusion started
+A password that works in the WebUI may fail at a Linux login or the UART console. That can be surprising when both prompts say `superadmin`, or when the same serial cable exposes several prompts during a boot. The useful question is **which program is asking, and what does it check?**
 
-The router had an `admin` login in the browser, a `superadmin` login, a Linux account also called `superadmin`, another Linux account called `ONTUSER`, a password prompt at `NOKIA > en`, and a `Password2` prompt after `Cortina# shell`. It would be tempting to look for a master password that controls all of these. Our tests showed why that assumption breaks down.
+This article is a map for identifying a prompt and understanding the effect of changing its credential. It does not publish device passwords or assume that privileged access to one interface unlocks the others. The main account observations are from Beacon G6 HomeOS 24.04 `HJL.L91p01`; comparisons with G6 HomeOS 24.02 `IJL.J03p01` and Beacon 9 HomeOS 25.03 `JJM.K44p01` are identified where relevant. Provisioning and account state can also differ between units.
 
-The most revealing experiment was simple: after changing the **WebUI** `superadmin` password, the browser accepted the new plaintext, but the **Linux** `superadmin` account did not. We traced the values and discovered that the mutable WebUI hash had changed while the factory preset hash and the Linux shadow hash still agreed. This document starts with that observation and shows how the other credential paths fit around it.
+## Start with the interface, not the username
 
-Before continuing, remember that the router passes through several separate environments. U-Boot is firmware running before Linux; `Cortina#` is a user-space routing CLI after Linux boots; `/bin/sh` is a Linux shell; and the WebUI is an application client of the configuration system. Sharing a username or serial cable does not make their authentication mechanisms identical.
+| Where the prompt appears | Who checks it in the examined G6 24.04 firmware | What successful authentication provides |
+| --- | --- | --- |
+| WebUI `admin` | Web management authentication using the current Account data-model credential | The normal WebUI, subject to its role policy |
+| WebUI `superadmin` | Web management authentication using the current WebAccount credential | The privileged WebUI, subject to its role policy |
+| Linux account login | Linux authentication using the relevant account's verifier in `/etc/shadow` | That account's configured UID, groups and login shell, if the service permits login |
+| `NOKIA > en` | The pre-Linux U-Boot gate, using `EXT_BOOT_PWD` when populated or a fallback path | The full `VENUS#` bootloader prompt |
+| `Cortina# shell` / `Password2` | Nokia's Linux `sec_cli` signature verifier | An authorized Linux shell through that CLI path |
 
-## The account map we established
+A reachable service and permission to use an account are additional conditions. An account with UID 0 does not prove that SSH is enabled, that remote login is allowed or that its password will pass another prompt. The [stock access-control writeup](../stock-access-controls/README.md) covers the service side.
 
-| Interface                         | Account or prompt              | Verifier on the examined firmware                                         | Consequence of successful authentication         |
-|-----------------------------------|--------------------------------|---------------------------------------------------------------------------|--------------------------------------------------|
-| Browser WebUI                     | `admin`                        | Current `X_Authentication.Account.Password` data-model hash               | Normal management interface                      |
-| Browser WebUI                     | `superadmin`                   | Mutable `X_Authentication.WebAccount.Password` hash                       | Privileged WebUI interface                       |
-| Linux login                       | `ONTUSER`                      | SHA-256-crypt entry in `/etc/shadow`                                      | UID 0 account configured for `/bin/sh`           |
-| Linux login                       | `superadmin`                   | Factory/preset SHA-256-crypt entry in `/etc/shadow`                       | UID 0 account configured for `/usr/bin/vtysh`    |
-| Bootloader, before Linux          | `NOKIA > en`                   | `EXT_BOOT_PWD` verifier from `extfs` `SECURITY`                           | Full `VENUS#` U-Boot prompt                      |
-| UART after Linux starts           | `Cortina# shell` / `Password2` | ECC signature checked by `sec_cli`                                        | Authorized launch of a Linux shell               |
-| Optional custom development setup | TCP/2323 Telnet                | No login verifier *if the author deliberately installs that modification* | Direct development shell; **not stock behavior** |
+## Why two accounts can share a name but not a password
 
-The precise service configuration matters: a Linux account existing with UID 0 does not imply that SSH is enabled or allows that account to log in. A valid password and a reachable login service are separate requirements.
+I changed the G6 HomeOS 24.04 WebUI `superadmin` password and compared the stored values. The new password verified against the mutable WebUI `WebAccount.Password` field. The WebUI preset and Linux `superadmin` shadow entry remained equal to the factory `EXT_WEB_MGNT_PWD` verifier.
 
-## The experiment that separated the two `superadmin` accounts
+That result explains why a successful browser password change did not also change the Linux login. A factory verifier can initially be copied into multiple destinations; later, the current WebUI field and the Linux account can change independently. This is the observed path and state on the examined unit, not a promise about every password-changing mechanism. [Factory data and provisioning](../configuration-and-provisioning/README.md).
 
-First, we extracted the factory `SECURITY` record through `libextfs.so`. The field `EXT_WEB_MGNT_PWD` held a SHA-256-crypt hash. That exact hash appeared in the Linux `superadmin` shadow entry. In the data model it also appeared at `InternetGatewayDevice.X_Authentication.WebAccount.PresetPassword`.
+The ordinary `cfgcli` display masks password fields. A masked result is not the stored hash or proof that two hidden fields match. Keep any raw verifier, exported configuration or credential private.
 
-Next we changed the WebUI `superadmin` password and read the stored values again. The normal `cfgcli` display masked password fields, so the comparison required a read-only diagnostic using `cfg_GetParamValueByUri()` in `libcfg.so`. It showed that `WebAccount.Password` now held a different hash while `PresetPassword` and the Linux shadow value remained unchanged. The new plaintext verified against the first but not the others.
+## UART can present two different checks
 
-That is why the [WebUI password tutorial](../../tutorials/set-webui-superadmin-password/README.MD) changes only the mutable `WebAccount.Password` field. It neither promises nor attempts to rotate Linux's factory `superadmin` credential.
+The UART is a communication channel, not an account. During boot it can present the restricted `NOKIA >` prompt; after Linux starts it can present the `Cortina#` CLI. These belong to different programs.
 
-## Why `ONTUSER` was a different discovery
+At `NOKIA >`, the examined G6 bootloader compares a transformed candidate with the stored `EXT_BOOT_PWD` verifier when that field is present. Its fallback is a separate branch; reconstructing a fallback candidate does not mean that branch was used on a device with a stored verifier. Successful `en` authentication reaches U-Boot, before Linux.
 
-`ONTUSER` looked like another factory account. The installed `/etc/passwd` entry had UID 0, GID 102, and `/bin/sh`. Its shadow entry used SHA-256-crypt like the Linux `superadmin` account, but the *source* of its plaintext was different.
+At `Cortina#`, `shell` invokes the Linux `sec_cli` path and requests `Password2`. In the examined G6 24.04 build, this is an ECC signature check over the local `keysrc1` message, using a public key in the firmware. It is not a Linux shadow-password check. The stock private signing key was not recovered. The [boot and console investigation](../boot-and-console/README.md) follows both gates and their test limits.
 
-We first reconstructed the generic `gen_varlen_ontupw()` function using security-database key material and a serial-based seed. The reconstructed output matched a genuine call to the ARM64 function but failed against the installed ONTUSER hash. Searching for the code that **wrote the account** then led us to `cfgmgr` and its version-derived debug-user routine. It combined an `IMAGEVERSION` release code with built-in deprecated `key2` material from `libsec_engine.so`. The resulting candidate matched the shadow hash exactly.
+There is also a [stock U-Boot recovery route](../uart-recovery-from-uboot/README.md): with full U-Boot access, the tested G6 24.04 stock image was booted into a PID 1 shell. That route changes the initial Linux process; it does not change the normal `Password2` verifier.
 
-We also discovered that the account-update code recognizes an optional `EXT_DBG_PWD` factory override, selected through `InternetGatewayDevice.DeviceInfo.X_CT-COM_ServiceManage.DebugRnPassEnable`. The G6 creates ONTUSER with the generated password first, then tests the flag before attempting the override. A false flag therefore leaves the generated credential in place; it does not disable account creation. We did not observe `EXT_DBG_PWD` on the examined unit. A different configuration could enable the flag and supply a usable factory hash, so the version algorithm does not guarantee universal login.
+## Linux privilege is not the same as interface access
 
-A comparison with the newer Beacon 9 firmware made that limit more concrete. Its version-derived generator and selected key2 bytes remained, but the normal boot and settings-change callers reached a no-op instead of the working G6 account creator. Both images retained the same defaults for `DebugRnPassEnable` and `LimitAccount_ONTUSER`. The difference was established by following the account writer, not by either setting's name or the presence of the generator.
+On the examined G6 24.04 unit, Linux `ONTUSER` and `superadmin` both had UID 0, but their configured login shells differed: `/bin/sh` and `/usr/bin/vtysh`, respectively. UID identifies the process's Linux user privilege; the account name, primary group, login shell and service policy are separate properties.
 
-The full sequence, including the failed hypothesis, is documented in [the credential investigation](../credential-reverse-engineering/README.md).
-
-## Why `Password2` is not another Linux password
-
-At `Cortina#`, the `shell` command passes to the `sec_cli` security utility and requests `Password2`. Inspecting that path showed that the stock firmware verifies a Base64-encoded ECC signature over the router's `keysrc1` string, with SHA-256 and a public key in `/usr/etc/ecc_pub.pem`. The original private signing key was not present in the examined runtime filesystem.
-
-An ordinary Linux password hash answers whether a typed plaintext matches a saved verifier. The UART signature check instead answers whether an appropriate private signing key authorized a particular device-specific message. No amount of reading `/etc/shadow` explains `Password2`, and replacing the ECC public key does not change a Linux user's password. The [boot and console writeup](../boot-and-console/README.md) follows the discovery of this mechanism.
-
-## U-Boot's `en` gate uses a short verifier in flash
-
-The pre-Linux `NOKIA >` interpreter accepts an `en` command. In the active branch we traced, U-Boot retrieves `EXT_BOOT_PWD` from the `SECURITY` record and compares it with the first twelve Base64 characters of the SHA-256 digest of the typed candidate. This is a different transformation and storage location from the Linux `$5$` hashes.
-
-We also recovered a BLDR-derived fallback routine, but its candidate did not unlock the examined router because the factory `EXT_BOOT_PWD` value was present. That experiment is useful precisely because it prevents treating the fallback as the default. Changing this verifier affects the U-Boot gate, not `ONTUSER`, `Password2`, or the browser accounts.
-
-## A short key glossary, with evidence
-
-The firmware uses similarly named values that have different jobs. `key14` was recovered by decrypting the static and runtime security databases; it consisted of six 32-byte slots used by generic password generators. `key2` was a separate 32-byte constant compiled into `libsec_engine.so`; the actual Linux `ONTUSER` routine selects it because its call to `CS_getSha256Str()` supplies a null optional key. `EXT_DBG_PWD` is a potential provisioned password-hash override, not an embedded key. `EXT_WEB_MGNT_PWD` is the factory management hash that matched the Linux `superadmin` and WebUI preset verifiers.
-
-The names are unfortunate, but the role of each value is established by the code that consumes it. This distinction prevented an entire branch of incorrect password derivations.
-
-## Privilege level is not a prompt name
-
-A Linux process's **UID** and **GID** are independent. Both `ONTUSER` and Linux `superadmin` had UID 0 on the examined unit, even though neither was literally named `root`. `ONTUSER` used GID 102 (`wheel`) as its primary group. This distinction explains why the author's optional development Telnet setup explicitly requested UID **and** GID 0. It does not mean that setting GID 0 is required for every privileged Linux operation.
-
-For basic account inventory, without disclosing password hashes:
+For a basic inventory on a device you already administer, account metadata can be inspected without printing password hashes:
 
 ```sh
 grep -E '^(ONTUSER|superadmin):' /etc/passwd
 id
 ```
 
-For configuration-path inspection, without assuming the output will reveal a hash:
+The existence of a Linux account does not establish its credential on another build. The G6 HomeOS 24.04 and Beacon 9 HomeOS 25.03 account-writer paths differ, despite some shared schema names. The [credential investigation](../credential-reverse-engineering/README.md) records the build-specific evidence and provisioning limits.
 
-```sh
-cfgcli -h
-```
+A custom development Telnet service can be configured differently from stock, including without a login check. Its presence or absence describes that installation; it is not evidence of a default stock backdoor.
 
-## Putting the findings together
+## What a change actually changes
 
-The unifying lesson is that the G6 has multiple **sources** of credentials and multiple **verifiers**. A factory field can be copied into Linux and into a WebUI preset; a current WebUI field can subsequently change; a debug user can use a version-derived password; U-Boot can check its own truncated digest; and a support shell can demand a signature.
+| Action | Direct target | Do not infer |
+| --- | --- | --- |
+| Change the WebUI `superadmin` password through its normal setter | Current WebUI management credential | That Linux shadow, the factory preset or U-Boot verifier also changed |
+| Change a Linux account password | That account's Linux verifier | That WebUI authentication or `Password2` changed |
+| Change `EXT_BOOT_PWD` through the supported record workflow | The bootloader's stored `en` verifier | That Linux or the WebUI changed |
+| Replace a runtime `Password2` verification component on a development unit | The selected Linux CLI verification path | That Nokia's private signing key was recovered or the bootloader was replaced |
 
-Before changing or generating any credential, ask two questions: which program accepts this login, and where does it obtain the value it checks? The other writeups answer those questions step by step instead of treating every privileged prompt as a route to the same password.
+Changing a verifier and changing the underlying service's access policy are different operations. A credential can be valid while the interface is disabled or blocked, and a setting can persist differently across reboot, reset or a bank change. The [WebUI password tutorial](../../tutorials/set-webui-superadmin-password/README.MD), [U-Boot tutorial](../../tutorials/unlock-uboot-en-console/README.MD) and [UART shell tutorial](../../tutorials/unlock-uart-root-shell/README.MD) describe their respective tested scopes.
 
-## Second-unit comparison
-
-The [two-G6 comparison](../comparing-other-g6-routers/README.md) separates unit-specific factory records and Password2 messages from shared current-build ONTUSER calculations, root templates and configuration key7_2. It also traces the older IJL.J03 slot. A shared key or account name still does not merge these credential paths.
+The [research knowledgebase](../../knowledgebases/password-reverse-engineering.md) retains the source traces and negative results; the [security-key inventory](../security-keys/README.md) explains security materials used by individual consumers.

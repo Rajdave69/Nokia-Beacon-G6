@@ -1,0 +1,1115 @@
+
+libwebsocket.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000004450 <parseHeaders@@Base>:
+    4450:	a9af7bfd 	stp	x29, x30, [sp, #-272]!
+    4454:	910003fd 	mov	x29, sp
+    4458:	a9046bf9 	stp	x25, x26, [sp, #64]
+    445c:	b00000d9 	adrp	x25, 1d000 <_fini@@Base+0x11b18>
+    4460:	a90153f3 	stp	x19, x20, [sp, #16]
+    4464:	aa0103fa 	mov	x26, x1
+    4468:	f947f323 	ldr	x3, [x25, #4064]
+    446c:	a9025bf5 	stp	x21, x22, [sp, #32]
+    4470:	f0000036 	adrp	x22, b000 <handleClient@@Base+0x5d0>
+    4474:	a90363f7 	stp	x23, x24, [sp, #48]
+    4478:	9120c2c1 	add	x1, x22, #0x830
+    447c:	a90573fb 	stp	x27, x28, [sp, #80]
+    4480:	b9006fa2 	str	w2, [x29, #108]
+    4484:	f9400062 	ldr	x2, [x3]
+    4488:	f90087a2 	str	x2, [x29, #264]
+    448c:	d2800002 	mov	x2, #0x0                   	// #0
+    4490:	f9401354 	ldr	x20, [x26, #32]
+    4494:	97fffbf7 	bl	3470 <strtok@plt> ; heuristic args: x1='\r\n', x2=0
+    4498:	b40043a0 	cbz	x0, 4d0c <parseHeaders@@Base+0x8bc>
+    449c:	f9002280 	str	x0, [x20, #64]
+    44a0:	aa0003f3 	mov	x19, x0
+    44a4:	97fffbf7 	bl	3480 <strlen@plt>
+    44a8:	aa0003f5 	mov	x21, x0
+    44ac:	b9008695 	str	w21, [x20, #132]
+    44b0:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    44b4:	d28000a2 	mov	x2, #0x5                   	// #5
+    44b8:	aa1303e1 	mov	x1, x19
+    44bc:	91178000 	add	x0, x0, #0x5e0
+    44c0:	97fffd78 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='GET /', x2=5
+    44c4:	35003280 	cbnz	w0, 4b14 <parseHeaders@@Base+0x6c4>
+    44c8:	93407ea1 	sxtw	x1, w21
+    44cc:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    44d0:	d1002421 	sub	x1, x1, #0x9
+    44d4:	d2800122 	mov	x2, #0x9                   	// #9
+    44d8:	8b010261 	add	x1, x19, x1
+    44dc:	9117a000 	add	x0, x0, #0x5e8
+    44e0:	97fffd70 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0=' HTTP/1.1', x2=9
+    44e4:	35003180 	cbnz	w0, 4b14 <parseHeaders@@Base+0x6c4>
+    44e8:	510032a1 	sub	w1, w21, #0xc
+    44ec:	91001260 	add	x0, x19, #0x4
+    44f0:	97fffc3c 	bl	35e0 <getMemory@plt>
+    44f4:	b4002920 	cbz	x0, 4a18 <parseHeaders@@Base+0x5c8>
+    44f8:	b9808682 	ldrsw	x2, [x20, #132]
+    44fc:	f0000035 	adrp	x21, b000 <handleClient@@Base+0x5d0>
+    4500:	911a22b5 	add	x21, x21, #0x688
+    4504:	f0000037 	adrp	x23, b000 <handleClient@@Base+0x5d0>
+    4508:	8b020002 	add	x2, x0, x2
+    450c:	f0000038 	adrp	x24, b000 <handleClient@@Base+0x5d0>
+    4510:	911a82f7 	add	x23, x23, #0x6a0
+    4514:	911ac318 	add	x24, x24, #0x6b0
+    4518:	381f305f 	sturb	wzr, [x2, #-13]
+    451c:	f9002e80 	str	x0, [x20, #88]
+    4520:	97fffbd8 	bl	3480 <strlen@plt>
+    4524:	b9008a80 	str	w0, [x20, #136]
+    4528:	d28002e2 	mov	x2, #0x17                  	// #23
+    452c:	aa1303e1 	mov	x1, x19
+    4530:	aa1503e0 	mov	x0, x21
+    4534:	97fffd5b 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Sec-WebSocket-Version: ', x2=23
+    4538:	34000280 	cbz	w0, 4588 <parseHeaders@@Base+0x138>
+    453c:	d2800122 	mov	x2, #0x9                   	// #9
+    4540:	aa1303e1 	mov	x1, x19
+    4544:	aa1703e0 	mov	x0, x23
+    4548:	97fffd56 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Upgrade: ', x2=9
+    454c:	350004e0 	cbnz	w0, 45e8 <parseHeaders@@Base+0x198>
+    4550:	91002660 	add	x0, x19, #0x9
+    4554:	f9001e80 	str	x0, [x20, #56]
+    4558:	97fffbca 	bl	3480 <strlen@plt>
+    455c:	b9007a80 	str	w0, [x20, #120]
+    4560:	9120c2c1 	add	x1, x22, #0x830
+    4564:	d2800000 	mov	x0, #0x0                   	// #0
+    4568:	97fffbc2 	bl	3470 <strtok@plt> ; heuristic args: x0=0, x1='\r\n'
+    456c:	b4000300 	cbz	x0, 45cc <parseHeaders@@Base+0x17c>
+    4570:	aa0003f3 	mov	x19, x0
+    4574:	d28002e2 	mov	x2, #0x17                  	// #23
+    4578:	aa1303e1 	mov	x1, x19
+    457c:	aa1503e0 	mov	x0, x21
+    4580:	97fffd48 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Sec-WebSocket-Version: ', x2=23
+    4584:	35fffdc0 	cbnz	w0, 453c <parseHeaders@@Base+0xec>
+    4588:	52800142 	mov	w2, #0xa                   	// #10
+    458c:	d2800001 	mov	x1, #0x0                   	// #0
+    4590:	91005e60 	add	x0, x19, #0x17
+    4594:	97fffd1f 	bl	3a10 <strtol@plt> ; heuristic args: x1=0, x2=10
+    4598:	b9006a80 	str	w0, [x20, #104]
+    459c:	71001c1f 	cmp	w0, #0x7
+    45a0:	540004c0 	b.eq	4638 <parseHeaders@@Base+0x1e8>  // b.none
+    45a4:	7100201f 	cmp	w0, #0x8
+    45a8:	54000b00 	b.eq	4708 <parseHeaders@@Base+0x2b8>  // b.none
+    45ac:	7100341f 	cmp	w0, #0xd
+    45b0:	54fffd81 	b.ne	4560 <parseHeaders@@Base+0x110>  // b.any
+    45b4:	52800020 	mov	w0, #0x1                   	// #1
+    45b8:	b9008e80 	str	w0, [x20, #140]
+    45bc:	9120c2c1 	add	x1, x22, #0x830
+    45c0:	d2800000 	mov	x0, #0x0                   	// #0
+    45c4:	97fffbab 	bl	3470 <strtok@plt> ; heuristic args: x0=0, x1='\r\n'
+    45c8:	b5fffd40 	cbnz	x0, 4570 <parseHeaders@@Base+0x120>
+    45cc:	b9408e95 	ldr	w21, [x20, #140]
+    45d0:	f9400280 	ldr	x0, [x20]
+    45d4:	710012bf 	cmp	w21, #0x4
+    45d8:	54000380 	b.eq	4648 <parseHeaders@@Base+0x1f8>  // b.none
+    45dc:	b50003a0 	cbnz	x0, 4650 <parseHeaders@@Base+0x200>
+    45e0:	14000022 	b	4668 <parseHeaders@@Base+0x218>
+    45e4:	d503201f 	nop
+    45e8:	d2800102 	mov	x2, #0x8                   	// #8
+    45ec:	aa1303e1 	mov	x1, x19
+    45f0:	aa1803e0 	mov	x0, x24
+    45f4:	97fffd2b 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Origin: ', x2=8
+    45f8:	350000c0 	cbnz	w0, 4610 <parseHeaders@@Base+0x1c0>
+    45fc:	91002260 	add	x0, x19, #0x8
+    4600:	f9001a80 	str	x0, [x20, #48]
+    4604:	97fffb9f 	bl	3480 <strlen@plt>
+    4608:	b9007680 	str	w0, [x20, #116]
+    460c:	17ffffd5 	b	4560 <parseHeaders@@Base+0x110>
+    4610:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4614:	d2800182 	mov	x2, #0xc                   	// #12
+    4618:	aa1303e1 	mov	x1, x19
+    461c:	911b0000 	add	x0, x0, #0x6c0
+    4620:	97fffd20 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Connection: ', x2=12
+    4624:	35000420 	cbnz	w0, 46a8 <parseHeaders@@Base+0x258>
+    4628:	91003260 	add	x0, x19, #0xc
+    462c:	f9000680 	str	x0, [x20, #8]
+    4630:	17ffffcc 	b	4560 <parseHeaders@@Base+0x110>
+    4634:	d503201f 	nop
+    4638:	52800060 	mov	w0, #0x3                   	// #3
+    463c:	b9008e80 	str	w0, [x20, #140]
+    4640:	17ffffc8 	b	4560 <parseHeaders@@Base+0x110>
+    4644:	d503201f 	nop
+    4648:	f9001693 	str	x19, [x20, #40]
+    464c:	b4000800 	cbz	x0, 474c <parseHeaders@@Base+0x2fc>
+    4650:	b9406fa2 	ldr	w2, [x29, #108]
+    4654:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4658:	91200021 	add	x1, x1, #0x800
+    465c:	97fffc09 	bl	3680 <isNeedleInHaystack@plt> ; heuristic args: x0=3, x1='/tmp/ws_hosts.dat'
+    4660:	37f82ae0 	tbnz	w0, #31, 4bbc <parseHeaders@@Base+0x76c>
+    4664:	b9408e95 	ldr	w21, [x20, #140]
+    4668:	350006f5 	cbnz	w21, 4744 <parseHeaders@@Base+0x2f4>
+    466c:	b9406a80 	ldr	w0, [x20, #104]
+    4670:	35000060 	cbnz	w0, 467c <parseHeaders@@Base+0x22c>
+    4674:	f9400e80 	ldr	x0, [x20, #24]
+    4678:	b4001fe0 	cbz	x0, 4a74 <parseHeaders@@Base+0x624>
+    467c:	528000c0 	mov	w0, #0x6                   	// #6
+    4680:	b9008e80 	str	w0, [x20, #140]
+    4684:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4688:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    468c:	aa1a03e2 	mov	x2, x26
+    4690:	9121a021 	add	x1, x1, #0x868
+    4694:	91224000 	add	x0, x0, #0x890
+    4698:	12800016 	mov	w22, #0xffffffff            	// #-1
+    469c:	97fffd15 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='Received a HTTP Request. We are not yet ready to handle these.\n', x1='HTTP/1.1 501 Not Implemented\r\n\r\n'
+    46a0:	14000079 	b	4884 <parseHeaders@@Base+0x434>
+    46a4:	d503201f 	nop
+    46a8:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    46ac:	d2800302 	mov	x2, #0x18                  	// #24
+    46b0:	aa1303e1 	mov	x1, x19
+    46b4:	911b4000 	add	x0, x0, #0x6d0
+    46b8:	97fffcfa 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Sec-WebSocket-Protocol: ', x2=24
+    46bc:	350002e0 	cbnz	w0, 4718 <parseHeaders@@Base+0x2c8>
+    46c0:	9100627b 	add	x27, x19, #0x18
+    46c4:	f000003c 	adrp	x28, b000 <handleClient@@Base+0x5d0>
+    46c8:	911bc39c 	add	x28, x28, #0x6f0
+    46cc:	aa1b03e0 	mov	x0, x27
+    46d0:	aa1c03e1 	mov	x1, x28
+    46d4:	97fffd3f 	bl	3bd0 <strstr@plt> ; heuristic args: x1='chat'
+    46d8:	b4001100 	cbz	x0, 48f8 <parseHeaders@@Base+0x4a8>
+    46dc:	52800020 	mov	w0, #0x1                   	// #1
+    46e0:	528000a1 	mov	w1, #0x5                   	// #5
+    46e4:	b9009280 	str	w0, [x20, #144]
+    46e8:	aa1c03e0 	mov	x0, x28
+    46ec:	97fffbbd 	bl	35e0 <getMemory@plt> ; heuristic args: x0='chat', x1=5
+    46f0:	f9003280 	str	x0, [x20, #96]
+    46f4:	b4001920 	cbz	x0, 4a18 <parseHeaders@@Base+0x5c8>
+    46f8:	97fffb62 	bl	3480 <strlen@plt>
+    46fc:	b9007280 	str	w0, [x20, #112]
+    4700:	17ffff98 	b	4560 <parseHeaders@@Base+0x110>
+    4704:	d503201f 	nop
+    4708:	52800040 	mov	w0, #0x2                   	// #2
+    470c:	b9008e80 	str	w0, [x20, #140]
+    4710:	17ffff94 	b	4560 <parseHeaders@@Base+0x110>
+    4714:	d503201f 	nop
+    4718:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    471c:	d28002c2 	mov	x2, #0x16                  	// #22
+    4720:	aa1303e1 	mov	x1, x19
+    4724:	911c0000 	add	x0, x0, #0x700
+    4728:	97fffcde 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Sec-WebSocket-Origin: ', x2=22
+    472c:	35000ca0 	cbnz	w0, 48c0 <parseHeaders@@Base+0x470>
+    4730:	91005a60 	add	x0, x19, #0x16
+    4734:	f9001a80 	str	x0, [x20, #48]
+    4738:	97fffb52 	bl	3480 <strlen@plt>
+    473c:	b9007680 	str	w0, [x20, #116]
+    4740:	17ffff88 	b	4560 <parseHeaders@@Base+0x110>
+    4744:	71001abf 	cmp	w21, #0x6
+    4748:	54fff9e0 	b.eq	4684 <parseHeaders@@Base+0x234>  // b.none
+    474c:	f9401e81 	ldr	x1, [x20, #56]
+    4750:	b4002461 	cbz	x1, 4bdc <parseHeaders@@Base+0x78c>
+    4754:	f9400280 	ldr	x0, [x20]
+    4758:	b4002420 	cbz	x0, 4bdc <parseHeaders@@Base+0x78c>
+    475c:	f9400693 	ldr	x19, [x20, #8]
+    4760:	b40023f3 	cbz	x19, 4bdc <parseHeaders@@Base+0x78c>
+    4764:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4768:	d2800122 	mov	x2, #0x9                   	// #9
+    476c:	91252000 	add	x0, x0, #0x948
+    4770:	97fffccc 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='websocket', x2=9
+    4774:	2a0003f6 	mov	w22, w0
+    4778:	350026c0 	cbnz	w0, 4c50 <parseHeaders@@Base+0x800>
+    477c:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4780:	aa1303e0 	mov	x0, x19
+    4784:	9125c021 	add	x1, x1, #0x970
+    4788:	97fffd12 	bl	3bd0 <strstr@plt> ; heuristic args: x1='Upgrade'
+    478c:	b4002b00 	cbz	x0, 4cec <parseHeaders@@Base+0x89c>
+    4790:	710012bf 	cmp	w21, #0x4
+    4794:	54000e80 	b.eq	4964 <parseHeaders@@Base+0x514>  // b.none
+    4798:	510006a0 	sub	w0, w21, #0x1
+    479c:	7100081f 	cmp	w0, #0x2
+    47a0:	540014c8 	b.hi	4a38 <parseHeaders@@Base+0x5e8>  // b.pmore
+    47a4:	f9400a80 	ldr	x0, [x20, #16]
+    47a8:	910003f5 	mov	x21, sp
+    47ac:	b4002840 	cbz	x0, 4cb4 <parseHeaders@@Base+0x864>
+    47b0:	97fffb34 	bl	3480 <strlen@plt>
+    47b4:	11009018 	add	w24, w0, #0x24
+    47b8:	93407f02 	sxtw	x2, w24
+    47bc:	93407c17 	sxtw	x23, w0
+    47c0:	91003c43 	add	x3, x2, #0xf
+    47c4:	52800001 	mov	w1, #0x0                   	// #0
+    47c8:	927cec63 	and	x3, x3, #0xfffffffffffffff0
+    47cc:	f9003bbf 	str	xzr, [x29, #112]
+    47d0:	cb2363ff 	sub	sp, sp, x3
+    47d4:	910283b3 	add	x19, x29, #0xa0
+    47d8:	910003e0 	mov	x0, sp
+    47dc:	97fffbe5 	bl	3770 <memset@plt> ; heuristic args: x1=0
+    47e0:	a908ffbf 	stp	xzr, xzr, [x29, #136]
+    47e4:	b9009bbf 	str	wzr, [x29, #152]
+    47e8:	aa1703e2 	mov	x2, x23
+    47ec:	910003e0 	mov	x0, sp
+    47f0:	f9400a81 	ldr	x1, [x20, #16]
+    47f4:	97fffb1b 	bl	3460 <memcpy@plt>
+    47f8:	f0000026 	adrp	x6, b000 <handleClient@@Base+0x5d0>
+    47fc:	912a20c6 	add	x6, x6, #0xa88
+    4800:	8b3763e1 	add	x1, sp, x23
+    4804:	aa1303e0 	mov	x0, x19
+    4808:	a9410cc2 	ldp	x2, x3, [x6, #16]
+    480c:	a9010c22 	stp	x2, x3, [x1, #16]
+    4810:	a94014c4 	ldp	x4, x5, [x6]
+    4814:	a9001424 	stp	x4, x5, [x1]
+    4818:	b94020c6 	ldr	w6, [x6, #32]
+    481c:	b9002026 	str	w6, [x1, #32]
+    4820:	97fffc58 	bl	3980 <SHA1Reset@plt>
+    4824:	2a1803e2 	mov	w2, w24
+    4828:	910003e1 	mov	x1, sp
+    482c:	aa1303e0 	mov	x0, x19
+    4830:	97fffcf4 	bl	3c00 <SHA1Input@plt>
+    4834:	aa1303e0 	mov	x0, x19
+    4838:	97fffb9e 	bl	36b0 <SHA1Result@plt>
+    483c:	340024a0 	cbz	w0, 4cd0 <parseHeaders@@Base+0x880>
+    4840:	910223a0 	add	x0, x29, #0x88
+    4844:	d2800001 	mov	x1, #0x0                   	// #0
+    4848:	b8616a62 	ldr	w2, [x19, x1]
+    484c:	5ac00842 	rev	w2, w2
+    4850:	b8216802 	str	w2, [x0, x1]
+    4854:	91001021 	add	x1, x1, #0x4
+    4858:	f100503f 	cmp	x1, #0x14
+    485c:	54ffff61 	b.ne	4848 <parseHeaders@@Base+0x3f8>  // b.any
+    4860:	9101c3a2 	add	x2, x29, #0x70
+    4864:	97fffc9f 	bl	3ae0 <base64_encode_alloc@plt> ; heuristic args: x1=4
+    4868:	b4002140 	cbz	x0, 4c90 <parseHeaders@@Base+0x840>
+    486c:	f9403ba0 	ldr	x0, [x29, #112]
+    4870:	b40025e0 	cbz	x0, 4d2c <parseHeaders@@Base+0x8dc>
+    4874:	f9002680 	str	x0, [x20, #72]
+    4878:	97fffb02 	bl	3480 <strlen@plt>
+    487c:	b9007e80 	str	w0, [x20, #124]
+    4880:	910002bf 	mov	sp, x21
+    4884:	f947f339 	ldr	x25, [x25, #4064]
+    4888:	2a1603e0 	mov	w0, w22
+    488c:	f94087a2 	ldr	x2, [x29, #264]
+    4890:	f9400321 	ldr	x1, [x25]
+    4894:	ca010041 	eor	x1, x2, x1
+    4898:	b5002581 	cbnz	x1, 4d48 <parseHeaders@@Base+0x8f8>
+    489c:	910003bf 	mov	sp, x29
+    48a0:	a94153f3 	ldp	x19, x20, [sp, #16]
+    48a4:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    48a8:	a94363f7 	ldp	x23, x24, [sp, #48]
+    48ac:	a9446bf9 	ldp	x25, x26, [sp, #64]
+    48b0:	a94573fb 	ldp	x27, x28, [sp, #80]
+    48b4:	a8d17bfd 	ldp	x29, x30, [sp], #272
+    48b8:	d65f03c0 	ret
+    48bc:	d503201f 	nop
+    48c0:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    48c4:	d2800262 	mov	x2, #0x13                  	// #19
+    48c8:	aa1303e1 	mov	x1, x19
+    48cc:	911c6000 	add	x0, x0, #0x718
+    48d0:	97fffc74 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Sec-WebSocket-Key: ', x2=19
+    48d4:	35000260 	cbnz	w0, 4920 <parseHeaders@@Base+0x4d0>
+    48d8:	b1004e7c 	adds	x28, x19, #0x13
+    48dc:	54ffe420 	b.eq	4560 <parseHeaders@@Base+0x110>  // b.none
+    48e0:	aa1c03e0 	mov	x0, x28
+    48e4:	97fffae7 	bl	3480 <strlen@plt>
+    48e8:	f102001f 	cmp	x0, #0x80
+    48ec:	54001928 	b.hi	4c10 <parseHeaders@@Base+0x7c0>  // b.pmore
+    48f0:	f9000a9c 	str	x28, [x20, #16]
+    48f4:	17ffff1b 	b	4560 <parseHeaders@@Base+0x110>
+    48f8:	f000003c 	adrp	x28, b000 <handleClient@@Base+0x5d0>
+    48fc:	911be39c 	add	x28, x28, #0x6f8
+    4900:	aa1c03e1 	mov	x1, x28
+    4904:	aa1b03e0 	mov	x0, x27
+    4908:	97fffcb2 	bl	3bd0 <strstr@plt> ; heuristic args: x1='echo'
+    490c:	b4ffe2a0 	cbz	x0, 4560 <parseHeaders@@Base+0x110>
+    4910:	52800040 	mov	w0, #0x2                   	// #2
+    4914:	528000a1 	mov	w1, #0x5                   	// #5
+    4918:	b9009280 	str	w0, [x20, #144]
+    491c:	17ffff73 	b	46e8 <parseHeaders@@Base+0x298>
+    4920:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4924:	d2800342 	mov	x2, #0x1a                  	// #26
+    4928:	aa1303e1 	mov	x1, x19
+    492c:	911da000 	add	x0, x0, #0x768
+    4930:	97fffc5c 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Sec-WebSocket-Extensions: ', x2=26
+    4934:	34000960 	cbz	w0, 4a60 <parseHeaders@@Base+0x610>
+    4938:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    493c:	d28000c2 	mov	x2, #0x6                   	// #6
+    4940:	aa1303e1 	mov	x1, x19
+    4944:	911e2000 	add	x0, x0, #0x788
+    4948:	97fffc56 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Host: ', x2=6
+    494c:	35000b60 	cbnz	w0, 4ab8 <parseHeaders@@Base+0x668>
+    4950:	91001a60 	add	x0, x19, #0x6
+    4954:	f9000280 	str	x0, [x20]
+    4958:	97fffaca 	bl	3480 <strlen@plt>
+    495c:	b9006e80 	str	w0, [x20, #108]
+    4960:	17ffff00 	b	4560 <parseHeaders@@Base+0x110>
+    4964:	f9400e93 	ldr	x19, [x20, #24]
+    4968:	b4001853 	cbz	x19, 4c70 <parseHeaders@@Base+0x820>
+    496c:	f9401280 	ldr	x0, [x20, #32]
+    4970:	b4001800 	cbz	x0, 4c70 <parseHeaders@@Base+0x820>
+    4974:	f9401680 	ldr	x0, [x20, #40]
+    4978:	b40017c0 	cbz	x0, 4c70 <parseHeaders@@Base+0x820>
+    497c:	aa1303e0 	mov	x0, x19
+    4980:	97fffac0 	bl	3480 <strlen@plt>
+    4984:	2a0003e1 	mov	w1, w0
+    4988:	aa1303e0 	mov	x0, x19
+    498c:	97fffb11 	bl	35d0 <generateKey@plt>
+    4990:	f9401293 	ldr	x19, [x20, #32]
+    4994:	5ac00815 	rev	w21, w0
+    4998:	aa1303e0 	mov	x0, x19
+    499c:	97fffab9 	bl	3480 <strlen@plt>
+    49a0:	2a0003e1 	mov	w1, w0
+    49a4:	aa1303e0 	mov	x0, x19
+    49a8:	97fffb0a 	bl	35d0 <generateKey@plt>
+    49ac:	5ac00801 	rev	w1, w0
+    49b0:	710002bf 	cmp	w21, #0x0
+    49b4:	7a401824 	ccmp	w1, #0x0, #0x4, ne	// ne = any
+    49b8:	540013c0 	b.eq	4c30 <parseHeaders@@Base+0x7e0>  // b.none
+    49bc:	f9401682 	ldr	x2, [x20, #40]
+    49c0:	9101e3b7 	add	x23, x29, #0x78
+    49c4:	aa1703e3 	mov	x3, x23
+    49c8:	910283b3 	add	x19, x29, #0xa0
+    49cc:	2a1503e0 	mov	w0, w21
+    49d0:	910223b5 	add	x21, x29, #0x88
+    49d4:	97fffc83 	bl	3be0 <concate@plt>
+    49d8:	aa1303e0 	mov	x0, x19
+    49dc:	97fffcd1 	bl	3d20 <md5_init@plt>
+    49e0:	52800202 	mov	w2, #0x10                  	// #16
+    49e4:	aa1703e1 	mov	x1, x23
+    49e8:	aa1303e0 	mov	x0, x19
+    49ec:	97fffc99 	bl	3c50 <md5_append@plt> ; heuristic args: x2=16
+    49f0:	aa1503e1 	mov	x1, x21
+    49f4:	aa1303e0 	mov	x0, x19
+    49f8:	97fffaae 	bl	34b0 <md5_finish@plt>
+    49fc:	52800201 	mov	w1, #0x10                  	// #16
+    4a00:	aa1503e0 	mov	x0, x21
+    4a04:	97fffaf7 	bl	35e0 <getMemory@plt> ; heuristic args: x1=16
+    4a08:	f9002680 	str	x0, [x20, #72]
+    4a0c:	52800201 	mov	w1, #0x10                  	// #16
+    4a10:	b9007e81 	str	w1, [x20, #124]
+    4a14:	b5fff380 	cbnz	x0, 4884 <parseHeaders@@Base+0x434>
+    4a18:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4a1c:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4a20:	aa1a03e2 	mov	x2, x26
+    4a24:	91192021 	add	x1, x1, #0x648
+    4a28:	9119a000 	add	x0, x0, #0x668
+    4a2c:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4a30:	97fffc30 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="Couldn't allocate memory.", x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    4a34:	17ffff94 	b	4884 <parseHeaders@@Base+0x434>
+    4a38:	710016bf 	cmp	w21, #0x5
+    4a3c:	54fff240 	b.eq	4884 <parseHeaders@@Base+0x434>  // b.none
+    4a40:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4a44:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4a48:	aa1a03e2 	mov	x2, x26
+    4a4c:	91192021 	add	x1, x1, #0x648
+    4a50:	912c6000 	add	x0, x0, #0xb18
+    4a54:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4a58:	97fffc26 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='Something very wierd happened!?', x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    4a5c:	17ffff8a 	b	4884 <parseHeaders@@Base+0x434>
+    4a60:	91006a60 	add	x0, x19, #0x1a
+    4a64:	f9002a80 	str	x0, [x20, #80]
+    4a68:	97fffa86 	bl	3480 <strlen@plt>
+    4a6c:	b9008280 	str	w0, [x20, #128]
+    4a70:	17fffebc 	b	4560 <parseHeaders@@Base+0x110>
+    4a74:	f9401280 	ldr	x0, [x20, #32]
+    4a78:	b5ffe020 	cbnz	x0, 467c <parseHeaders@@Base+0x22c>
+    4a7c:	f9401680 	ldr	x0, [x20, #40]
+    4a80:	b5ffdfe0 	cbnz	x0, 467c <parseHeaders@@Base+0x22c>
+    4a84:	f9400a80 	ldr	x0, [x20, #16]
+    4a88:	b5ffdfa0 	cbnz	x0, 467c <parseHeaders@@Base+0x22c>
+    4a8c:	f9401e81 	ldr	x1, [x20, #56]
+    4a90:	b4ffdf61 	cbz	x1, 467c <parseHeaders@@Base+0x22c>
+    4a94:	f9400680 	ldr	x0, [x20, #8]
+    4a98:	b4ffdf20 	cbz	x0, 467c <parseHeaders@@Base+0x22c>
+    4a9c:	f9400280 	ldr	x0, [x20]
+    4aa0:	b4ffdee0 	cbz	x0, 467c <parseHeaders@@Base+0x22c>
+    4aa4:	f9401a82 	ldr	x2, [x20, #48]
+    4aa8:	b4ffdea2 	cbz	x2, 467c <parseHeaders@@Base+0x22c>
+    4aac:	528000b5 	mov	w21, #0x5                   	// #5
+    4ab0:	b9008e95 	str	w21, [x20, #140]
+    4ab4:	17ffff29 	b	4758 <parseHeaders@@Base+0x308>
+    4ab8:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4abc:	d2800282 	mov	x2, #0x14                  	// #20
+    4ac0:	aa1303e1 	mov	x1, x19
+    4ac4:	911e4000 	add	x0, x0, #0x790
+    4ac8:	97fffbf6 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='WebSocket-Protocol: ', x2=20
+    4acc:	35000340 	cbnz	w0, 4b34 <parseHeaders@@Base+0x6e4>
+    4ad0:	91005263 	add	x3, x19, #0x14
+    4ad4:	528000a2 	mov	w2, #0x5                   	// #5
+    4ad8:	b9008e82 	str	w2, [x20, #140]
+    4adc:	f000003c 	adrp	x28, b000 <handleClient@@Base+0x5d0>
+    4ae0:	911bc39c 	add	x28, x28, #0x6f0
+    4ae4:	aa0303e0 	mov	x0, x3
+    4ae8:	f90033a3 	str	x3, [x29, #96]
+    4aec:	aa1c03e1 	mov	x1, x28
+    4af0:	b9006ba2 	str	w2, [x29, #104]
+    4af4:	97fffc37 	bl	3bd0 <strstr@plt> ; heuristic args: x1='chat', x2=5
+    4af8:	b9406ba2 	ldr	w2, [x29, #104]
+    4afc:	f94033a3 	ldr	x3, [x29, #96]
+    4b00:	b4000460 	cbz	x0, 4b8c <parseHeaders@@Base+0x73c>
+    4b04:	52800020 	mov	w0, #0x1                   	// #1
+    4b08:	2a0203e1 	mov	w1, w2
+    4b0c:	b9009280 	str	w0, [x20, #144]
+    4b10:	17fffef6 	b	46e8 <parseHeaders@@Base+0x298>
+    4b14:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4b18:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4b1c:	aa1a03e2 	mov	x2, x26
+    4b20:	9117e021 	add	x1, x1, #0x5f8
+    4b24:	91186000 	add	x0, x0, #0x618
+    4b28:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4b2c:	97fffbf1 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='The headerline of the request was invalid.', x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4b30:	17ffff55 	b	4884 <parseHeaders@@Base+0x434>
+    4b34:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4b38:	d2800282 	mov	x2, #0x14                  	// #20
+    4b3c:	aa1303e1 	mov	x1, x19
+    4b40:	911ea000 	add	x0, x0, #0x7a8
+    4b44:	97fffbd7 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Sec-WebSocket-Key1: ', x2=20
+    4b48:	34000180 	cbz	w0, 4b78 <parseHeaders@@Base+0x728>
+    4b4c:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4b50:	d2800282 	mov	x2, #0x14                  	// #20
+    4b54:	aa1303e1 	mov	x1, x19
+    4b58:	911f0000 	add	x0, x0, #0x7c0
+    4b5c:	97fffbd1 	bl	3aa0 <strncasecmp@plt> ; heuristic args: x0='Sec-WebSocket-Key2: ', x2=20
+    4b60:	35ffd000 	cbnz	w0, 4560 <parseHeaders@@Base+0x110>
+    4b64:	52800081 	mov	w1, #0x4                   	// #4
+    4b68:	91005260 	add	x0, x19, #0x14
+    4b6c:	b9008e81 	str	w1, [x20, #140]
+    4b70:	f9001280 	str	x0, [x20, #32]
+    4b74:	17fffe7b 	b	4560 <parseHeaders@@Base+0x110>
+    4b78:	52800081 	mov	w1, #0x4                   	// #4
+    4b7c:	91005260 	add	x0, x19, #0x14
+    4b80:	b9008e81 	str	w1, [x20, #140]
+    4b84:	f9000e80 	str	x0, [x20, #24]
+    4b88:	17fffe76 	b	4560 <parseHeaders@@Base+0x110>
+    4b8c:	f000003c 	adrp	x28, b000 <handleClient@@Base+0x5d0>
+    4b90:	911be39c 	add	x28, x28, #0x6f8
+    4b94:	aa1c03e1 	mov	x1, x28
+    4b98:	aa0303e0 	mov	x0, x3
+    4b9c:	b90063a2 	str	w2, [x29, #96]
+    4ba0:	97fffc0c 	bl	3bd0 <strstr@plt> ; heuristic args: x1='echo'
+    4ba4:	b4ffcde0 	cbz	x0, 4560 <parseHeaders@@Base+0x110>
+    4ba8:	b94063a2 	ldr	w2, [x29, #96]
+    4bac:	52800040 	mov	w0, #0x2                   	// #2
+    4bb0:	b9009280 	str	w0, [x20, #144]
+    4bb4:	2a0203e1 	mov	w1, w2
+    4bb8:	17fffecc 	b	46e8 <parseHeaders@@Base+0x298>
+    4bbc:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4bc0:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4bc4:	aa1a03e2 	mov	x2, x26
+    4bc8:	91206021 	add	x1, x1, #0x818
+    4bcc:	9120e000 	add	x0, x0, #0x838
+    4bd0:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4bd4:	97fffbc7 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='The requested host is not accepted by us.', x1='HTTP/1.1 403 Forbidden\r\n\r\n'
+    4bd8:	17ffff2b 	b	4884 <parseHeaders@@Base+0x434>
+    4bdc:	f9400742 	ldr	x2, [x26, #8]
+    4be0:	528000e0 	mov	w0, #0x7                   	// #7
+    4be4:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4be8:	91234021 	add	x1, x1, #0x8d0
+    4bec:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4bf0:	97fffbb4 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=7, x1='[%s]The client did not send the required websocket headers.'
+    4bf4:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4bf8:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4bfc:	aa1a03e2 	mov	x2, x26
+    4c00:	9117e021 	add	x1, x1, #0x5f8
+    4c04:	91244000 	add	x0, x0, #0x910
+    4c08:	97fffbba 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='The client did not send the required websocket headers.', x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4c0c:	17ffff1e 	b	4884 <parseHeaders@@Base+0x434>
+    4c10:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4c14:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4c18:	aa1a03e2 	mov	x2, x26
+    4c1c:	91192021 	add	x1, x1, #0x648
+    4c20:	911cc000 	add	x0, x0, #0x730
+    4c24:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4c28:	97fffbb2 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="Couldn't parse Sec-WebSocket-Key .Invalid length", x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    4c2c:	17ffff16 	b	4884 <parseHeaders@@Base+0x434>
+    4c30:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4c34:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4c38:	aa1a03e2 	mov	x2, x26
+    4c3c:	9117e021 	add	x1, x1, #0x5f8
+    4c40:	9127e000 	add	x0, x0, #0x9f8
+    4c44:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4c48:	97fffbaa 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='The keys sent in the header was invalid.', x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4c4c:	17ffff0e 	b	4884 <parseHeaders@@Base+0x434>
+    4c50:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4c54:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4c58:	aa1a03e2 	mov	x2, x26
+    4c5c:	9117e021 	add	x1, x1, #0x5f8
+    4c60:	91256000 	add	x0, x0, #0x958
+    4c64:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4c68:	97fffba2 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='Unknown upgrade value.', x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4c6c:	17ffff06 	b	4884 <parseHeaders@@Base+0x434>
+    4c70:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4c74:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4c78:	aa1a03e2 	mov	x2, x26
+    4c7c:	9117e021 	add	x1, x1, #0x5f8
+    4c80:	91266000 	add	x0, x0, #0x998
+    4c84:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4c88:	97fffb9a 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="hybi-00: didn't receive all the headers required  to evaluate if the handshake was valid", x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4c8c:	17fffefe 	b	4884 <parseHeaders@@Base+0x434>
+    4c90:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4c94:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4c98:	aa1a03e2 	mov	x2, x26
+    4c9c:	9117e021 	add	x1, x1, #0x5f8
+    4ca0:	912b8000 	add	x0, x0, #0xae0
+    4ca4:	97fffb93 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='The input length was greater than the output length', x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4ca8:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4cac:	910002bf 	mov	sp, x21
+    4cb0:	17fffef5 	b	4884 <parseHeaders@@Base+0x434>
+    4cb4:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4cb8:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4cbc:	aa1a03e2 	mov	x2, x26
+    4cc0:	9117e021 	add	x1, x1, #0x5f8
+    4cc4:	9128a000 	add	x0, x0, #0xa28
+    4cc8:	97fffb8a 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="RFC6455: didn't receive all the headers required  to evaluate if the handshake was valid", x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4ccc:	17fffff7 	b	4ca8 <parseHeaders@@Base+0x858>
+    4cd0:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4cd4:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4cd8:	aa1a03e2 	mov	x2, x26
+    4cdc:	91192021 	add	x1, x1, #0x648
+    4ce0:	912ac000 	add	x0, x0, #0xab0
+    4ce4:	97fffb83 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='Was not able to do SHA1-hash of the key.', x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    4ce8:	17fffff0 	b	4ca8 <parseHeaders@@Base+0x858>
+    4cec:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4cf0:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4cf4:	aa1a03e2 	mov	x2, x26
+    4cf8:	9117e021 	add	x1, x1, #0x5f8
+    4cfc:	9125e000 	add	x0, x0, #0x978
+    4d00:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4d04:	97fffb7b 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='Unknown connection value.', x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4d08:	17fffedf 	b	4884 <parseHeaders@@Base+0x434>
+    4d0c:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4d10:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4d14:	aa1a03e2 	mov	x2, x26
+    4d18:	9117e021 	add	x1, x1, #0x5f8
+    4d1c:	911f6000 	add	x0, x0, #0x7d8
+    4d20:	12800016 	mov	w22, #0xffffffff            	// #-1
+    4d24:	97fffb73 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='The parsing of the headers went wrong.', x1='HTTP/1.1 400 Bad Request\r\n\r\n'
+    4d28:	17fffed7 	b	4884 <parseHeaders@@Base+0x434>
+    4d2c:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4d30:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4d34:	aa1a03e2 	mov	x2, x26
+    4d38:	91192021 	add	x1, x1, #0x648
+    4d3c:	9119a000 	add	x0, x0, #0x668
+    4d40:	97fffb6c 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="Couldn't allocate memory.", x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    4d44:	17ffffd9 	b	4ca8 <parseHeaders@@Base+0x858>
+    4d48:	97fffad6 	bl	38a0 <__stack_chk_fail@plt>
+    4d4c:	d503201f 	nop
+
+0000000000004d50 <sendHandshake@@Base>:
+    4d50:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+    4d54:	910003fd 	mov	x29, sp
+    4d58:	f9000ff4 	str	x20, [sp, #24]
+    4d5c:	aa0003f4 	mov	x20, x0
+    4d60:	f9401000 	ldr	x0, [x0, #32]
+    4d64:	b9408c01 	ldr	w1, [x0, #140]
+    4d68:	7100003f 	cmp	w1, #0x0
+    4d6c:	7a461824 	ccmp	w1, #0x6, #0x4, ne	// ne = any
+    4d70:	54003ee0 	b.eq	554c <sendHandshake@@Base+0x7fc>  // b.none
+    4d74:	f9000bb3 	str	x19, [x29, #16]
+    4d78:	51000422 	sub	w2, w1, #0x1
+    4d7c:	f90013b5 	str	x21, [x29, #32]
+    4d80:	7100085f 	cmp	w2, #0x2
+    4d84:	54000fa8 	b.hi	4f78 <sendHandshake@@Base+0x228>  // b.pmore
+    4d88:	b9409001 	ldr	w1, [x0, #144]
+    4d8c:	b9407c02 	ldr	w2, [x0, #124]
+    4d90:	f90017b6 	str	x22, [x29, #40]
+    4d94:	b9407816 	ldr	w22, [x0, #120]
+    4d98:	0b0202d6 	add	w22, w22, w2
+    4d9c:	110172d6 	add	w22, w22, #0x5c
+    4da0:	35000bc1 	cbnz	w1, 4f18 <sendHandshake@@Base+0x1c8>
+    4da4:	90000040 	adrp	x0, c000 <_fini@@Base+0xb18>
+    4da8:	2a1603e1 	mov	w1, w22
+    4dac:	91050000 	add	x0, x0, #0x140
+    4db0:	97fffa0c 	bl	35e0 <getMemory@plt> ; heuristic args: x0=49472
+    4db4:	aa0003f3 	mov	x19, x0
+    4db8:	b4003da0 	cbz	x0, 556c <sendHandshake@@Base+0x81c>
+    4dbc:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4dc0:	f0000026 	adrp	x6, b000 <handleClient@@Base+0x5d0>
+    4dc4:	912da021 	add	x1, x1, #0xb68
+    4dc8:	911a80c6 	add	x6, x6, #0x6a0
+    4dcc:	f9001bb7 	str	x23, [x29, #48]
+    4dd0:	9100ac00 	add	x0, x0, #0x2b
+    4dd4:	a9401424 	ldp	x4, x5, [x1]
+    4dd8:	a9001664 	stp	x4, x5, [x19]
+    4ddc:	a9410c22 	ldp	x2, x3, [x1, #16]
+    4de0:	a9010e62 	stp	x2, x3, [x19, #16]
+    4de4:	79404028 	ldrh	w8, [x1, #32]
+    4de8:	f94000c7 	ldr	x7, [x6]
+    4dec:	394020c1 	ldrb	w1, [x6, #8]
+    4df0:	f8022267 	stur	x7, [x19, #34]
+    4df4:	79004268 	strh	w8, [x19, #32]
+    4df8:	3900aa61 	strb	w1, [x19, #42]
+    4dfc:	f9401281 	ldr	x1, [x20, #32]
+    4e00:	b9807822 	ldrsw	x2, [x1, #120]
+    4e04:	f9401c21 	ldr	x1, [x1, #56]
+    4e08:	97fff996 	bl	3460 <memcpy@plt> ; heuristic args: x6='Upgrade: '
+    4e0c:	f9401281 	ldr	x1, [x20, #32]
+    4e10:	f0000022 	adrp	x2, b000 <handleClient@@Base+0x5d0>
+    4e14:	9120c042 	add	x2, x2, #0x830
+    4e18:	f0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    4e1c:	912e4000 	add	x0, x0, #0xb90
+    4e20:	b9407821 	ldr	w1, [x1, #120]
+    4e24:	79400057 	ldrh	w23, [x2]
+    4e28:	1100ac25 	add	w5, w1, #0x2b
+    4e2c:	1100b422 	add	w2, w1, #0x2d
+    4e30:	8b22c262 	add	x2, x19, w2, sxtw
+    4e34:	f840d004 	ldur	x4, [x0, #13]
+    4e38:	a9401c06 	ldp	x6, x7, [x0]
+    4e3c:	7825ca77 	strh	w23, [x19, w5, sxtw]
+    4e40:	a9001c46 	stp	x6, x7, [x2]
+    4e44:	11010820 	add	w0, w1, #0x42
+    4e48:	f800d044 	stur	x4, [x2, #13]
+    4e4c:	8b20c263 	add	x3, x19, w0, sxtw
+    4e50:	f9401282 	ldr	x2, [x20, #32]
+    4e54:	b9409042 	ldr	w2, [x2, #144]
+    4e58:	35000682 	cbnz	w2, 4f28 <sendHandshake@@Base+0x1d8>
+    4e5c:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4e60:	912ea021 	add	x1, x1, #0xba8
+    4e64:	11005815 	add	w21, w0, #0x16
+    4e68:	8b35c260 	add	x0, x19, w21, sxtw
+    4e6c:	a9401424 	ldp	x4, x5, [x1]
+    4e70:	a9001464 	stp	x4, x5, [x3]
+    4e74:	f840e021 	ldur	x1, [x1, #14]
+    4e78:	f800e061 	stur	x1, [x3, #14]
+    4e7c:	f9401281 	ldr	x1, [x20, #32]
+    4e80:	b9807c22 	ldrsw	x2, [x1, #124]
+    4e84:	f9402421 	ldr	x1, [x1, #72]
+    4e88:	97fff976 	bl	3460 <memcpy@plt>
+    4e8c:	f9401283 	ldr	x3, [x20, #32]
+    4e90:	b00000c0 	adrp	x0, 1d000 <_fini@@Base+0x11b18>
+    4e94:	f0000022 	adrp	x2, b000 <handleClient@@Base+0x5d0>
+    4e98:	91184042 	add	x2, x2, #0x610
+    4e9c:	f947e001 	ldr	x1, [x0, #4032]
+    4ea0:	b9407c60 	ldr	w0, [x3, #124]
+    4ea4:	b9400042 	ldr	w2, [x2]
+    4ea8:	0b0002a0 	add	w0, w21, w0
+    4eac:	11001015 	add	w21, w0, #0x4
+    4eb0:	b820ca62 	str	w2, [x19, w0, sxtw]
+    4eb4:	f9400020 	ldr	x0, [x1]
+    4eb8:	97fffb22 	bl	3b40 <fflush@plt>
+    4ebc:	6b1502df 	cmp	w22, w21
+    4ec0:	54003201 	b.ne	5500 <sendHandshake@@Base+0x7b0>  // b.any
+    4ec4:	f9400682 	ldr	x2, [x20, #8]
+    4ec8:	aa1303e3 	mov	x3, x19
+    4ecc:	528000e0 	mov	w0, #0x7                   	// #7
+    4ed0:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4ed4:	9132a021 	add	x1, x1, #0xca8
+    4ed8:	97fffafa 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=7, x1='[%s]Server responds with the following headers:\n%s\n'
+    4edc:	b9400280 	ldr	w0, [x20]
+    4ee0:	93407ea2 	sxtw	x2, w21
+    4ee4:	aa1303e1 	mov	x1, x19
+    4ee8:	52800003 	mov	w3, #0x0                   	// #0
+    4eec:	97fffaf1 	bl	3ab0 <send@plt> ; heuristic args: x3=0
+    4ef0:	aa1303e0 	mov	x0, x19
+    4ef4:	97fffadb 	bl	3a60 <free@plt>
+    4ef8:	a9425bb5 	ldp	x21, x22, [x29, #32]
+    4efc:	52800000 	mov	w0, #0x0                   	// #0
+    4f00:	f9400bb3 	ldr	x19, [x29, #16]
+    4f04:	f9401bb7 	ldr	x23, [x29, #48]
+    4f08:	f9400ff4 	ldr	x20, [sp, #24]
+    4f0c:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    4f10:	d65f03c0 	ret
+    4f14:	d503201f 	nop
+    4f18:	b9407000 	ldr	w0, [x0, #112]
+    4f1c:	11006800 	add	w0, w0, #0x1a
+    4f20:	0b0002d6 	add	w22, w22, w0
+    4f24:	17ffffa0 	b	4da4 <sendHandshake@@Base+0x54>
+    4f28:	f0000022 	adrp	x2, b000 <handleClient@@Base+0x5d0>
+    4f2c:	911b4042 	add	x2, x2, #0x6d0
+    4f30:	11016835 	add	w21, w1, #0x5a
+    4f34:	8b35c260 	add	x0, x19, w21, sxtw
+    4f38:	f9400841 	ldr	x1, [x2, #16]
+    4f3c:	a9401444 	ldp	x4, x5, [x2]
+    4f40:	a9001464 	stp	x4, x5, [x3]
+    4f44:	f9000861 	str	x1, [x3, #16]
+    4f48:	f9401281 	ldr	x1, [x20, #32]
+    4f4c:	b9807022 	ldrsw	x2, [x1, #112]
+    4f50:	f9403021 	ldr	x1, [x1, #96]
+    4f54:	97fff943 	bl	3460 <memcpy@plt>
+    4f58:	f9401280 	ldr	x0, [x20, #32]
+    4f5c:	b9407001 	ldr	w1, [x0, #112]
+    4f60:	0b0102a1 	add	w1, w21, w1
+    4f64:	11000820 	add	w0, w1, #0x2
+    4f68:	8b20c263 	add	x3, x19, w0, sxtw
+    4f6c:	7821ca77 	strh	w23, [x19, w1, sxtw]
+    4f70:	17ffffbb 	b	4e5c <sendHandshake@@Base+0x10c>
+    4f74:	d503201f 	nop
+    4f78:	7100103f 	cmp	w1, #0x4
+    4f7c:	54001320 	b.eq	51e0 <sendHandshake@@Base+0x490>  // b.none
+    4f80:	7100143f 	cmp	w1, #0x5
+    4f84:	54000260 	b.eq	4fd0 <sendHandshake@@Base+0x280>  // b.none
+    4f88:	f9400682 	ldr	x2, [x20, #8]
+    4f8c:	d2800003 	mov	x3, #0x0                   	// #0
+    4f90:	528000e0 	mov	w0, #0x7                   	// #7
+    4f94:	f0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    4f98:	9132a021 	add	x1, x1, #0xca8
+    4f9c:	97fffac9 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=7, x1='[%s]Server responds with the following headers:\n%s\n', x3=0
+    4fa0:	b9400280 	ldr	w0, [x20]
+    4fa4:	52800003 	mov	w3, #0x0                   	// #0
+    4fa8:	d2800002 	mov	x2, #0x0                   	// #0
+    4fac:	d2800001 	mov	x1, #0x0                   	// #0
+    4fb0:	97fffac0 	bl	3ab0 <send@plt> ; heuristic args: x1=0, x2=0, x3=0
+    4fb4:	f9400bb3 	ldr	x19, [x29, #16]
+    4fb8:	52800000 	mov	w0, #0x0                   	// #0
+    4fbc:	f94013b5 	ldr	x21, [x29, #32]
+    4fc0:	f9400ff4 	ldr	x20, [sp, #24]
+    4fc4:	a8c47bfd 	ldp	x29, x30, [sp], #64
+    4fc8:	d65f03c0 	ret
+    4fcc:	d503201f 	nop
+    4fd0:	b9406c03 	ldr	w3, [x0, #108]
+    4fd4:	b9408802 	ldr	w2, [x0, #136]
+    4fd8:	f9401801 	ldr	x1, [x0, #48]
+    4fdc:	f90017b6 	str	x22, [x29, #40]
+    4fe0:	b9407816 	ldr	w22, [x0, #120]
+    4fe4:	11018ed6 	add	w22, w22, #0x63
+    4fe8:	0b0302d6 	add	w22, w22, w3
+    4fec:	0b0202d6 	add	w22, w22, w2
+    4ff0:	11001ad6 	add	w22, w22, #0x6
+    4ff4:	b4000081 	cbz	x1, 5004 <sendHandshake@@Base+0x2b4>
+    4ff8:	b9407401 	ldr	w1, [x0, #116]
+    4ffc:	11005021 	add	w1, w1, #0x14
+    5000:	0b0102d6 	add	w22, w22, w1
+    5004:	b9409001 	ldr	w1, [x0, #144]
+    5008:	35002241 	cbnz	w1, 5450 <sendHandshake@@Base+0x700>
+    500c:	f0000020 	adrp	x0, c000 <_fini@@Base+0xb18>
+    5010:	2a1603e1 	mov	w1, w22
+    5014:	91050000 	add	x0, x0, #0x140
+    5018:	97fff972 	bl	35e0 <getMemory@plt> ; heuristic args: x0=49472
+    501c:	aa0003f3 	mov	x19, x0
+    5020:	b4002a60 	cbz	x0, 556c <sendHandshake@@Base+0x81c>
+    5024:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    5028:	d0000026 	adrp	x6, b000 <handleClient@@Base+0x5d0>
+    502c:	91312021 	add	x1, x1, #0xc48
+    5030:	911a80c6 	add	x6, x6, #0x6a0
+    5034:	a90363b7 	stp	x23, x24, [x29, #48]
+    5038:	9100d400 	add	x0, x0, #0x35
+    503c:	d0000037 	adrp	x23, b000 <handleClient@@Base+0x5d0>
+    5040:	a9401424 	ldp	x4, x5, [x1]
+    5044:	a9001664 	stp	x4, x5, [x19]
+    5048:	a9410c22 	ldp	x2, x3, [x1, #16]
+    504c:	a9010e62 	stp	x2, x3, [x19, #16]
+    5050:	b9402828 	ldr	w8, [x1, #40]
+    5054:	f9401029 	ldr	x9, [x1, #32]
+    5058:	f94000c7 	ldr	x7, [x6]
+    505c:	394020c1 	ldrb	w1, [x6, #8]
+    5060:	f802c267 	stur	x7, [x19, #44]
+    5064:	3900d261 	strb	w1, [x19, #52]
+    5068:	f9001269 	str	x9, [x19, #32]
+    506c:	b9002a68 	str	w8, [x19, #40]
+    5070:	f9401281 	ldr	x1, [x20, #32]
+    5074:	b9807822 	ldrsw	x2, [x1, #120]
+    5078:	f9401c21 	ldr	x1, [x1, #56]
+    507c:	97fff8f9 	bl	3460 <memcpy@plt> ; heuristic args: x6='Upgrade: '
+    5080:	f9401281 	ldr	x1, [x20, #32]
+    5084:	9120c2e2 	add	x2, x23, #0x830
+    5088:	d0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    508c:	912e4000 	add	x0, x0, #0xb90
+    5090:	79400058 	ldrh	w24, [x2]
+    5094:	b9407821 	ldr	w1, [x1, #120]
+    5098:	a9401c06 	ldp	x6, x7, [x0]
+    509c:	1100d424 	add	w4, w1, #0x35
+    50a0:	1100dc22 	add	w2, w1, #0x37
+    50a4:	f840d003 	ldur	x3, [x0, #13]
+    50a8:	8b22c262 	add	x2, x19, w2, sxtw
+    50ac:	11013020 	add	w0, w1, #0x4c
+    50b0:	7824ca78 	strh	w24, [x19, w4, sxtw]
+    50b4:	8b20c265 	add	x5, x19, w0, sxtw
+    50b8:	a9001c46 	stp	x6, x7, [x2]
+    50bc:	f800d043 	stur	x3, [x2, #13]
+    50c0:	f9401282 	ldr	x2, [x20, #32]
+    50c4:	f9401842 	ldr	x2, [x2, #48]
+    50c8:	b4000262 	cbz	x2, 5114 <sendHandshake@@Base+0x3c4>
+    50cc:	d0000024 	adrp	x4, b000 <handleClient@@Base+0x5d0>
+    50d0:	9131e084 	add	x4, x4, #0xc78
+    50d4:	11017835 	add	w21, w1, #0x5e
+    50d8:	8b35c260 	add	x0, x19, w21, sxtw
+    50dc:	a9400c82 	ldp	x2, x3, [x4]
+    50e0:	a9000ca2 	stp	x2, x3, [x5]
+    50e4:	79402081 	ldrh	w1, [x4, #16]
+    50e8:	790020a1 	strh	w1, [x5, #16]
+    50ec:	f9401281 	ldr	x1, [x20, #32]
+    50f0:	b9807422 	ldrsw	x2, [x1, #116]
+    50f4:	f9401821 	ldr	x1, [x1, #48]
+    50f8:	97fff8da 	bl	3460 <memcpy@plt> ; heuristic args: x4='WebSocket-Origin: '
+    50fc:	f9401280 	ldr	x0, [x20, #32]
+    5100:	b9407401 	ldr	w1, [x0, #116]
+    5104:	0b0102a1 	add	w1, w21, w1
+    5108:	11000820 	add	w0, w1, #0x2
+    510c:	8b20c265 	add	x5, x19, w0, sxtw
+    5110:	7821ca78 	strh	w24, [x19, w1, sxtw]
+    5114:	d0000024 	adrp	x4, b000 <handleClient@@Base+0x5d0>
+    5118:	91324084 	add	x4, x4, #0xc90
+    511c:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    5120:	91310021 	add	x1, x1, #0xc40
+    5124:	11005006 	add	w6, w0, #0x14
+    5128:	11006415 	add	w21, w0, #0x19
+    512c:	a9400c82 	ldp	x2, x3, [x4]
+    5130:	8b26c260 	add	x0, x19, w6, sxtw
+    5134:	b9401084 	ldr	w4, [x4, #16]
+    5138:	a9000ca2 	stp	x2, x3, [x5]
+    513c:	b90010a4 	str	w4, [x5, #16]
+    5140:	b9400022 	ldr	w2, [x1]
+    5144:	b826ca62 	str	w2, [x19, w6, sxtw]
+    5148:	b8401021 	ldur	w1, [x1, #1]
+    514c:	b8001001 	stur	w1, [x0, #1]
+    5150:	8b35c260 	add	x0, x19, w21, sxtw
+    5154:	f9401281 	ldr	x1, [x20, #32]
+    5158:	b9806c22 	ldrsw	x2, [x1, #108]
+    515c:	f9400021 	ldr	x1, [x1]
+    5160:	97fff8c0 	bl	3460 <memcpy@plt>
+    5164:	f9401280 	ldr	x0, [x20, #32]
+    5168:	b9808802 	ldrsw	x2, [x0, #136]
+    516c:	f9402c01 	ldr	x1, [x0, #88]
+    5170:	b9406c00 	ldr	w0, [x0, #108]
+    5174:	0b0002b5 	add	w21, w21, w0
+    5178:	8b35c260 	add	x0, x19, w21, sxtw
+    517c:	97fff8b9 	bl	3460 <memcpy@plt>
+    5180:	f9401280 	ldr	x0, [x20, #32]
+    5184:	9120c2e1 	add	x1, x23, #0x830
+    5188:	79400038 	ldrh	w24, [x1]
+    518c:	b9408800 	ldr	w0, [x0, #136]
+    5190:	0b0002a0 	add	w0, w21, w0
+    5194:	11000815 	add	w21, w0, #0x2
+    5198:	8b35c261 	add	x1, x19, w21, sxtw
+    519c:	7820ca78 	strh	w24, [x19, w0, sxtw]
+    51a0:	f9401282 	ldr	x2, [x20, #32]
+    51a4:	b9409042 	ldr	w2, [x2, #144]
+    51a8:	350015c2 	cbnz	w2, 5460 <sendHandshake@@Base+0x710>
+    51ac:	9120c2f7 	add	x23, x23, #0x830
+    51b0:	900000c0 	adrp	x0, 1d000 <_fini@@Base+0x11b18>
+    51b4:	11000ab5 	add	w21, w21, #0x2
+    51b8:	f947e000 	ldr	x0, [x0, #4032]
+    51bc:	794002e2 	ldrh	w2, [x23]
+    51c0:	79000022 	strh	w2, [x1]
+    51c4:	f9400000 	ldr	x0, [x0]
+    51c8:	97fffa5e 	bl	3b40 <fflush@plt>
+    51cc:	6b1502df 	cmp	w22, w21
+    51d0:	54001241 	b.ne	5418 <sendHandshake@@Base+0x6c8>  // b.any
+    51d4:	f9401fb8 	ldr	x24, [x29, #56]
+    51d8:	17ffff3b 	b	4ec4 <sendHandshake@@Base+0x174>
+    51dc:	d503201f 	nop
+    51e0:	b9406c04 	ldr	w4, [x0, #108]
+    51e4:	b9407c03 	ldr	w3, [x0, #124]
+    51e8:	b9408802 	ldr	w2, [x0, #136]
+    51ec:	f9401801 	ldr	x1, [x0, #48]
+    51f0:	f90017b6 	str	x22, [x29, #40]
+    51f4:	b9407816 	ldr	w22, [x0, #120]
+    51f8:	11019ad6 	add	w22, w22, #0x66
+    51fc:	0b0402d6 	add	w22, w22, w4
+    5200:	0b0302d6 	add	w22, w22, w3
+    5204:	0b0202d6 	add	w22, w22, w2
+    5208:	11001ad6 	add	w22, w22, #0x6
+    520c:	b4000081 	cbz	x1, 521c <sendHandshake@@Base+0x4cc>
+    5210:	b9407401 	ldr	w1, [x0, #116]
+    5214:	11006021 	add	w1, w1, #0x18
+    5218:	0b0102d6 	add	w22, w22, w1
+    521c:	b9409001 	ldr	w1, [x0, #144]
+    5220:	34000081 	cbz	w1, 5230 <sendHandshake@@Base+0x4e0>
+    5224:	b9407000 	ldr	w0, [x0, #112]
+    5228:	11006800 	add	w0, w0, #0x1a
+    522c:	0b0002d6 	add	w22, w22, w0
+    5230:	f0000020 	adrp	x0, c000 <_fini@@Base+0xb18>
+    5234:	2a1603e1 	mov	w1, w22
+    5238:	91050000 	add	x0, x0, #0x140
+    523c:	97fff8e9 	bl	35e0 <getMemory@plt> ; heuristic args: x0=49472
+    5240:	aa0003f3 	mov	x19, x0
+    5244:	b4001940 	cbz	x0, 556c <sendHandshake@@Base+0x81c>
+    5248:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    524c:	912fc021 	add	x1, x1, #0xbf0
+    5250:	d0000026 	adrp	x6, b000 <handleClient@@Base+0x5d0>
+    5254:	911a80c6 	add	x6, x6, #0x6a0
+    5258:	a90363b7 	stp	x23, x24, [x29, #48]
+    525c:	9100d000 	add	x0, x0, #0x34
+    5260:	f9401022 	ldr	x2, [x1, #32]
+    5264:	d0000037 	adrp	x23, b000 <handleClient@@Base+0x5d0>
+    5268:	f9001262 	str	x2, [x19, #32]
+    526c:	a9401424 	ldp	x4, x5, [x1]
+    5270:	a9001664 	stp	x4, x5, [x19]
+    5274:	a9410c22 	ldp	x2, x3, [x1, #16]
+    5278:	a9010e62 	stp	x2, x3, [x19, #16]
+    527c:	b8427028 	ldur	w8, [x1, #39]
+    5280:	f94000c7 	ldr	x7, [x6]
+    5284:	394020c1 	ldrb	w1, [x6, #8]
+    5288:	f802b267 	stur	x7, [x19, #43]
+    528c:	b8027268 	stur	w8, [x19, #39]
+    5290:	3900ce61 	strb	w1, [x19, #51]
+    5294:	f9401281 	ldr	x1, [x20, #32]
+    5298:	b9807822 	ldrsw	x2, [x1, #120]
+    529c:	f9401c21 	ldr	x1, [x1, #56]
+    52a0:	97fff870 	bl	3460 <memcpy@plt> ; heuristic args: x6='Upgrade: '
+    52a4:	f9401281 	ldr	x1, [x20, #32]
+    52a8:	9120c2e2 	add	x2, x23, #0x830
+    52ac:	d0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    52b0:	912e4000 	add	x0, x0, #0xb90
+    52b4:	79400058 	ldrh	w24, [x2]
+    52b8:	b9407821 	ldr	w1, [x1, #120]
+    52bc:	a9401c06 	ldp	x6, x7, [x0]
+    52c0:	1100d024 	add	w4, w1, #0x34
+    52c4:	1100d822 	add	w2, w1, #0x36
+    52c8:	f840d003 	ldur	x3, [x0, #13]
+    52cc:	8b22c262 	add	x2, x19, w2, sxtw
+    52d0:	11012c20 	add	w0, w1, #0x4b
+    52d4:	7824ca78 	strh	w24, [x19, w4, sxtw]
+    52d8:	8b20c265 	add	x5, x19, w0, sxtw
+    52dc:	a9001c46 	stp	x6, x7, [x2]
+    52e0:	f800d043 	stur	x3, [x2, #13]
+    52e4:	f9401282 	ldr	x2, [x20, #32]
+    52e8:	f9401842 	ldr	x2, [x2, #48]
+    52ec:	b4000262 	cbz	x2, 5338 <sendHandshake@@Base+0x5e8>
+    52f0:	d0000024 	adrp	x4, b000 <handleClient@@Base+0x5d0>
+    52f4:	911c0084 	add	x4, x4, #0x700
+    52f8:	11018435 	add	w21, w1, #0x61
+    52fc:	8b35c260 	add	x0, x19, w21, sxtw
+    5300:	a9400c82 	ldp	x2, x3, [x4]
+    5304:	a9000ca2 	stp	x2, x3, [x5]
+    5308:	f840e081 	ldur	x1, [x4, #14]
+    530c:	f800e0a1 	stur	x1, [x5, #14]
+    5310:	f9401281 	ldr	x1, [x20, #32]
+    5314:	b9807422 	ldrsw	x2, [x1, #116]
+    5318:	f9401821 	ldr	x1, [x1, #48]
+    531c:	97fff851 	bl	3460 <memcpy@plt> ; heuristic args: x4='Sec-WebSocket-Origin: '
+    5320:	f9401280 	ldr	x0, [x20, #32]
+    5324:	b9407401 	ldr	w1, [x0, #116]
+    5328:	0b0102a1 	add	w1, w21, w1
+    532c:	11000820 	add	w0, w1, #0x2
+    5330:	8b20c265 	add	x5, x19, w0, sxtw
+    5334:	7821ca78 	strh	w24, [x19, w1, sxtw]
+    5338:	d0000024 	adrp	x4, b000 <handleClient@@Base+0x5d0>
+    533c:	91308084 	add	x4, x4, #0xc20
+    5340:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    5344:	91310021 	add	x1, x1, #0xc40
+    5348:	11006006 	add	w6, w0, #0x18
+    534c:	11007415 	add	w21, w0, #0x1d
+    5350:	a9400c82 	ldp	x2, x3, [x4]
+    5354:	8b26c260 	add	x0, x19, w6, sxtw
+    5358:	f9400884 	ldr	x4, [x4, #16]
+    535c:	a9000ca2 	stp	x2, x3, [x5]
+    5360:	f90008a4 	str	x4, [x5, #16]
+    5364:	b9400022 	ldr	w2, [x1]
+    5368:	b826ca62 	str	w2, [x19, w6, sxtw]
+    536c:	b8401021 	ldur	w1, [x1, #1]
+    5370:	b8001001 	stur	w1, [x0, #1]
+    5374:	8b35c260 	add	x0, x19, w21, sxtw
+    5378:	f9401281 	ldr	x1, [x20, #32]
+    537c:	b9806c22 	ldrsw	x2, [x1, #108]
+    5380:	f9400021 	ldr	x1, [x1]
+    5384:	97fff837 	bl	3460 <memcpy@plt>
+    5388:	f9401280 	ldr	x0, [x20, #32]
+    538c:	b9808802 	ldrsw	x2, [x0, #136]
+    5390:	f9402c01 	ldr	x1, [x0, #88]
+    5394:	b9406c00 	ldr	w0, [x0, #108]
+    5398:	0b0002b5 	add	w21, w21, w0
+    539c:	8b35c260 	add	x0, x19, w21, sxtw
+    53a0:	97fff830 	bl	3460 <memcpy@plt>
+    53a4:	f9401280 	ldr	x0, [x20, #32]
+    53a8:	9120c2e1 	add	x1, x23, #0x830
+    53ac:	79400038 	ldrh	w24, [x1]
+    53b0:	b9408800 	ldr	w0, [x0, #136]
+    53b4:	0b0002a0 	add	w0, w21, w0
+    53b8:	11000815 	add	w21, w0, #0x2
+    53bc:	8b35c261 	add	x1, x19, w21, sxtw
+    53c0:	7820ca78 	strh	w24, [x19, w0, sxtw]
+    53c4:	f9401282 	ldr	x2, [x20, #32]
+    53c8:	b9409042 	ldr	w2, [x2, #144]
+    53cc:	35000722 	cbnz	w2, 54b0 <sendHandshake@@Base+0x760>
+    53d0:	9120c2f7 	add	x23, x23, #0x830
+    53d4:	11000ab5 	add	w21, w21, #0x2
+    53d8:	8b35c260 	add	x0, x19, w21, sxtw
+    53dc:	794002e2 	ldrh	w2, [x23]
+    53e0:	79000022 	strh	w2, [x1]
+    53e4:	f9401281 	ldr	x1, [x20, #32]
+    53e8:	b9807c22 	ldrsw	x2, [x1, #124]
+    53ec:	f9402421 	ldr	x1, [x1, #72]
+    53f0:	97fff81c 	bl	3460 <memcpy@plt>
+    53f4:	900000c0 	adrp	x0, 1d000 <_fini@@Base+0x11b18>
+    53f8:	f9401281 	ldr	x1, [x20, #32]
+    53fc:	f947e000 	ldr	x0, [x0, #4032]
+    5400:	b9407c21 	ldr	w1, [x1, #124]
+    5404:	f9400000 	ldr	x0, [x0]
+    5408:	0b0102b5 	add	w21, w21, w1
+    540c:	97fff9cd 	bl	3b40 <fflush@plt>
+    5410:	6b1502df 	cmp	w22, w21
+    5414:	54ffee00 	b.eq	51d4 <sendHandshake@@Base+0x484>  // b.none
+    5418:	aa1303e0 	mov	x0, x19
+    541c:	97fff991 	bl	3a60 <free@plt>
+    5420:	aa1403e2 	mov	x2, x20
+    5424:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    5428:	d0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    542c:	91192021 	add	x1, x1, #0x648
+    5430:	912f4000 	add	x0, x0, #0xbd0
+    5434:	97fff9af 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="We've fucked the counting up!", x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    5438:	12800000 	mov	w0, #0xffffffff            	// #-1
+    543c:	f9400bb3 	ldr	x19, [x29, #16]
+    5440:	a9425bb5 	ldp	x21, x22, [x29, #32]
+    5444:	a94363b7 	ldp	x23, x24, [x29, #48]
+    5448:	17fffeb0 	b	4f08 <sendHandshake@@Base+0x1b8>
+    544c:	d503201f 	nop
+    5450:	b9407000 	ldr	w0, [x0, #112]
+    5454:	11005800 	add	w0, w0, #0x16
+    5458:	0b0002d6 	add	w22, w22, w0
+    545c:	17fffeec 	b	500c <sendHandshake@@Base+0x2bc>
+    5460:	d0000024 	adrp	x4, b000 <handleClient@@Base+0x5d0>
+    5464:	911e4084 	add	x4, x4, #0x790
+    5468:	11005815 	add	w21, w0, #0x16
+    546c:	8b35c260 	add	x0, x19, w21, sxtw
+    5470:	a9400c82 	ldp	x2, x3, [x4]
+    5474:	a9000c22 	stp	x2, x3, [x1]
+    5478:	b9401084 	ldr	w4, [x4, #16]
+    547c:	b9001024 	str	w4, [x1, #16]
+    5480:	f9401281 	ldr	x1, [x20, #32]
+    5484:	b9807022 	ldrsw	x2, [x1, #112]
+    5488:	f9403021 	ldr	x1, [x1, #96]
+    548c:	97fff7f5 	bl	3460 <memcpy@plt>
+    5490:	f9401280 	ldr	x0, [x20, #32]
+    5494:	b9407000 	ldr	w0, [x0, #112]
+    5498:	0b0002a0 	add	w0, w21, w0
+    549c:	11000815 	add	w21, w0, #0x2
+    54a0:	8b35c261 	add	x1, x19, w21, sxtw
+    54a4:	7820ca78 	strh	w24, [x19, w0, sxtw]
+    54a8:	17ffff41 	b	51ac <sendHandshake@@Base+0x45c>
+    54ac:	d503201f 	nop
+    54b0:	d0000024 	adrp	x4, b000 <handleClient@@Base+0x5d0>
+    54b4:	911b4084 	add	x4, x4, #0x6d0
+    54b8:	11006815 	add	w21, w0, #0x1a
+    54bc:	8b35c260 	add	x0, x19, w21, sxtw
+    54c0:	a9400c82 	ldp	x2, x3, [x4]
+    54c4:	a9000c22 	stp	x2, x3, [x1]
+    54c8:	f9400884 	ldr	x4, [x4, #16]
+    54cc:	f9000824 	str	x4, [x1, #16]
+    54d0:	f9401281 	ldr	x1, [x20, #32]
+    54d4:	b9807022 	ldrsw	x2, [x1, #112]
+    54d8:	f9403021 	ldr	x1, [x1, #96]
+    54dc:	97fff7e1 	bl	3460 <memcpy@plt>
+    54e0:	f9401280 	ldr	x0, [x20, #32]
+    54e4:	b9407000 	ldr	w0, [x0, #112]
+    54e8:	0b0002a0 	add	w0, w21, w0
+    54ec:	11000815 	add	w21, w0, #0x2
+    54f0:	8b35c261 	add	x1, x19, w21, sxtw
+    54f4:	7820ca78 	strh	w24, [x19, w0, sxtw]
+    54f8:	17ffffb6 	b	53d0 <sendHandshake@@Base+0x680>
+    54fc:	d503201f 	nop
+    5500:	2a1503e3 	mov	w3, w21
+    5504:	2a1603e2 	mov	w2, w22
+    5508:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    550c:	912f0021 	add	x1, x1, #0xbc0
+    5510:	52800020 	mov	w0, #0x1                   	// #1
+    5514:	97fff88b 	bl	3740 <__printf_chk@plt> ; heuristic args: x0=1, x1='run: %d,%d\n'
+    5518:	aa1303e0 	mov	x0, x19
+    551c:	97fff951 	bl	3a60 <free@plt>
+    5520:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    5524:	d0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    5528:	aa1403e2 	mov	x2, x20
+    552c:	912f4000 	add	x0, x0, #0xbd0
+    5530:	91192021 	add	x1, x1, #0x648
+    5534:	97fff96f 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="We've fucked the counting up!", x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    5538:	12800000 	mov	w0, #0xffffffff            	// #-1
+    553c:	f9400bb3 	ldr	x19, [x29, #16]
+    5540:	a9425bb5 	ldp	x21, x22, [x29, #32]
+    5544:	f9401bb7 	ldr	x23, [x29, #48]
+    5548:	17fffe70 	b	4f08 <sendHandshake@@Base+0x1b8>
+    554c:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    5550:	d0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    5554:	aa1403e2 	mov	x2, x20
+    5558:	912ce000 	add	x0, x0, #0xb38
+    555c:	91192021 	add	x1, x1, #0x648
+    5560:	97fff964 	bl	3af0 <handshake_error@plt> ; heuristic args: x0='Type is not known, we fucked up somewhere.', x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    5564:	12800000 	mov	w0, #0xffffffff            	// #-1
+    5568:	17fffe68 	b	4f08 <sendHandshake@@Base+0x1b8>
+    556c:	d0000021 	adrp	x1, b000 <handleClient@@Base+0x5d0>
+    5570:	d0000020 	adrp	x0, b000 <handleClient@@Base+0x5d0>
+    5574:	aa1403e2 	mov	x2, x20
+    5578:	9119a000 	add	x0, x0, #0x668
+    557c:	91192021 	add	x1, x1, #0x648
+    5580:	97fff95c 	bl	3af0 <handshake_error@plt> ; heuristic args: x0="Couldn't allocate memory.", x1='HTTP/1.1 500 Internal Error\r\n\r\n'
+    5584:	12800000 	mov	w0, #0xffffffff            	// #-1
+    5588:	f9400bb3 	ldr	x19, [x29, #16]
+    558c:	a9425bb5 	ldp	x21, x22, [x29, #32]
+    5590:	17fffe5e 	b	4f08 <sendHandshake@@Base+0x1b8>
+    5594:	d503201f 	nop

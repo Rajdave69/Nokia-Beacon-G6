@@ -26,7 +26,12 @@ def device_serial(alias):
 
 @functools.lru_cache(maxsize=1)
 def replacement_pattern():
-    return re.compile('|'.join(re.escape(x) for x in sorted(registry()['replacements'],key=len,reverse=True)))
+    def pattern(key):
+        escaped = re.escape(key)
+        if re.fullmatch(r'(?:[0-9a-f]{8}|[0-9a-f]{16}|[0-9a-f]{24})', key, re.I):
+            return r'(?<!0[xX])(?<![0-9A-Fa-f])' + escaped + r'(?![0-9A-Fa-f])'
+        return escaped
+    return re.compile('|'.join(pattern(key) for key in sorted(registry()['replacements'], key=len, reverse=True)))
 
 def source_path(value):
     if value.startswith('private-source://'):
@@ -66,7 +71,7 @@ def public_record(value):
     if isinstance(value,dict):
         result={}
         for k,v in value.items():
-            if k=='source' and isinstance(v,str) and ('/config-private/' in v or '/router-flash-' in v) and v not in registry()['replacements'] and not any(v==p or v.startswith(p+'/') for p in registry().get('private_source_roots',{}).values()):
+            if k=='source' and isinstance(v,str) and ('/config-private/' in v or '/dumped-firmware/' in v or '/router-flash-' in v) and v not in registry()['replacements'] and not any(v==p or v.startswith(p+'/') for p in registry().get('private_source_roots',{}).values()):
                 raise ValueError('Register the new private source path before publishing this report')
             p=public_record(v)
             if k=='device':p={'first':'G6-A','second':'G6-B','third':'G6-C','fourth':'G6-D','Beacon9':'B9-A'}.get(p,p)
@@ -93,6 +98,9 @@ def original_source_path(value,expected_sha256):
     p=source_path(value)
     if p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==expected_sha256:return p
     if p.is_relative_to(ROOT):
-        previous=ROOT/'config-private/publication-prep-20261028/working'/p.relative_to(ROOT)
-        if previous.is_file() and hashlib.sha256(previous.read_bytes()).hexdigest()==expected_sha256:return previous
+        for snapshot in ('config-private/publication-redaction-20261116/originals',
+                         'config-private/publication-prep-20261028/working',
+                         'config-private/firmware-path-migration-20261113/originals'):
+            previous=ROOT/snapshot/p.relative_to(ROOT)
+            if previous.is_file() and hashlib.sha256(previous.read_bytes()).hexdigest()==expected_sha256:return previous
     raise ValueError('Original evidence fingerprint does not match current source or its private publication snapshot')

@@ -1,0 +1,36 @@
+
+PCD_process_reboot:
+0040be28: fe0f1bf8  str x30, [sp, #-0x50]!
+0040be2c: a00000d0  adrp x0, #0x421000
+0040be30: 00cc47f9  ldr x0, [x0, #0xf98]
+0040be34: 000040b9  ldr w0, [x0]
+0040be38: 1f000071  cmp w0, #0
+0040be3c: 01010054  b.ne #0x40be5c
+0040be40: e1018052  mov w1, #0xf
+0040be44: 00008052  mov w0, #0
+0040be48: e2dcff97  bl #0x4031d0 ; heuristic kill@plt {"x0": 0, "x1": 15}
+0040be4c: 20000090  adrp x0, #0x40f000
+0040be50: 00c02591  add x0, x0, #0x970
+0040be54: 4bddff97  bl #0x403380 ; heuristic system@plt {"x0": "reboot -f"}
+0040be58: 14000014  b #0x40bea8
+0040be5c: 20000090  adrp x0, #0x40f000
+0040be60: 01002691  add x1, x0, #0x980
+0040be64: e0630091  add x0, sp, #0x18
+0040be68: 220c40a9  ldp x2, x3, [x1]
+0040be6c: 020c00a9  stp x2, x3, [x0]
+0040be70: 220c41a9  ldp x2, x3, [x1, #0x10]
+0040be74: 020c01a9  stp x2, x3, [x0, #0x10]
+0040be78: 221040f9  ldr x2, [x1, #0x20]
+0040be7c: 021000f9  str x2, [x0, #0x20]
+0040be80: 216042f8  ldur x1, [x1, #0x26]
+0040be84: 016002f8  stur x1, [x0, #0x26]
+0040be88: e0630091  add x0, sp, #0x18
+0040be8c: c20580d2  mov x2, #0x2e
+0040be90: e10300aa  mov x1, x0
+0040be94: 40008052  mov w0, #2
+0040be98: 56ddff97  bl #0x4033f0 ; heuristic write@plt {"x0": 2, "x2": 46}
+0040be9c: e04f00b9  str w0, [sp, #0x4c]
+0040bea0: 20008052  mov w0, #1
+0040bea4: afdcff97  bl #0x403160 ; heuristic exit@plt {"x0": 1}
+0040bea8: fe0745f8  ldr x30, [sp], #0x50
+0040beac: c0035fd6  ret 

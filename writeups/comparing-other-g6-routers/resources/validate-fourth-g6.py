@@ -48,7 +48,7 @@ def main():
  walk(e)
  for name,item in refs.items():
   p=source_path(name);raw=p.read_bytes();assert len(raw)==item['bytes'] and hashlib.sha256(raw).hexdigest()==item['sha256'],name
- decoder=load(ROOT/'writeups/configuration-import-export/resources/stored-database/decrypt-stored-config.py','decoder');key=decoder.derive_key10(_publication_input('RESEARCH-INPUT-0443ABB2A31F').encode(),b'241021')
+ decoder=load(ROOT/'writeups/stored-configuration-database/resources/decrypt-stored-config.py','decoder');key=decoder.derive_key10(_publication_input('RESEARCH-INPUT-0443ABB2A31F').encode(),b'241021')
  for item in w['stored_databases']:
   raw,meta=decoder.decrypt_stored(source_path(item['input']['source']).read_bytes(),key);assert raw==source_path(item['decoded']['source']).read_bytes() and meta==item['metadata']
  for item in e['operator_package_format_observation']:

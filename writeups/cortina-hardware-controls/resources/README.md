@@ -2,6 +2,16 @@
 
 These tools run on the workstation and do not connect to the router. Firmware/runtime dependencies and raw captures remain private. Source references use the existing device/profile alias system.
 
+## Find the evidence for a question
+
+| Question | Start with |
+| --- | --- |
+| Which port or PHY is this? | [Effective board configuration](effective-board-config.json) and [FIT device tree](board-resources.json) |
+| What does this command call? | [SDK dispatch and trace selection](dispatch-and-traces.json) and [trace manifest](trace-manifest.json) |
+| How does a getter encode its arguments? | [Getter ABI](getter-abi.md) and the [fixture results](sdk-fixture-results.json) |
+| Does a command number change across builds? | [Cross-build comparison](cross-build-comparison.json) |
+| Which modules call other modules? | [Full relocation call graph](module-callgraph.json) (24 MiB) |
+
 ## Reading the records
 
 | Record | Contents |

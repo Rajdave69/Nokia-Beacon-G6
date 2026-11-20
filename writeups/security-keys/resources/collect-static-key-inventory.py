@@ -7,7 +7,7 @@ from publication_aliases import public_record
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--root',action='append',required=True,help='LABEL=EXTRACTED_ROOT');ap.add_argument('--out',type=Path,required=True);a=ap.parse_args()
  if a.out.exists():raise FileExistsError(a.out)
- spec=importlib.util.spec_from_file_location('prepare',ROOT/'webui/scripts/prepare-config-keys.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);stores={};sources={}
+ spec=importlib.util.spec_from_file_location('prepare',ROOT/'network-services/webui/scripts/prepare-config-keys.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);stores={};sources={}
  for argument in a.root:
   label,sep,path=argument.partition('=')
   if not sep or not label or label in stores:raise ValueError('unique LABEL=PATH required')

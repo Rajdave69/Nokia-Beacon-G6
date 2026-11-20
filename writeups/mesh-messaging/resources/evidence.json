@@ -1,0 +1,264 @@
+{
+  "date": "2026-10-28",
+  "scope": "Offline stock-file inspection and host readelf/nm/objdump only. No native firmware execution, QEMU, network socket, protocol traffic, reset or configuration change. Owner live observation retained separately.",
+  "profiles": {
+    "HJL": {
+      "buildinfo": {
+        "UNIT_TYPE": "beacon_g6",
+        "PRODUCTCLASS": "beacon_g6",
+        "IMAGEVERSION": "3FE49996HJLL91",
+        "SOFTWAREVERSION": "HJL.L91p01",
+        "DOTDIGITVERSION": "1.2404.491",
+        "COPYRIGHT": "NOKIA",
+        "WHOBUILD": "buildmgr",
+        "RELEASE": "0.0.0",
+        "BUILDDATE": "20241227",
+        "BUILDSTAMP": "20241227121143CST",
+        "REPO": "master",
+        "NODE": "6ecd395cc34fb4ddb25fd3ebce43d91b5126b01c",
+        "SIGNER": "NCG",
+        "SIGN": "y",
+        "ENCRYPT": "n",
+        "UBOOTVERSION": "",
+        "SDKVERSION": "cortina_venus.R1.1.1.6",
+        "HOMEOSVERSION": "24.04.00"
+      },
+      "files": {
+        "usr/bin/ai_controller": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/ai_controller",
+          "bytes": 484112,
+          "sha256": "8e5903569e24c9ed7dcddf6e24036a03d7abf2748e5a20ccac61eefe9047aa25",
+          "present": true
+        },
+        "usr/bin/ai-agent": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/ai-agent",
+          "bytes": 109192,
+          "sha256": "5d5f1955cf2bcbed120588dd36c8db909ec1cffa61626e9ea8d7aca39d8d4264",
+          "present": true
+        },
+        "usr/lib/libmeshmsg.so": {
+          "source": "private-source://PROFILE-G6-HJL/usr/lib/libmeshmsg.so",
+          "bytes": 79560,
+          "sha256": "71cd97fbbe8c89e2c8f3a957753ffb2ab5dd76ecb1de3bc5ccac450dc3e9c8ed",
+          "present": true
+        },
+        "usr/bin/cfgmgr": {
+          "source": "private-source://SOURCE-143/cfgmgr",
+          "bytes": 3212464,
+          "sha256": "1d4f8f7d8b0d2cfdc381083aa3a3c3f28b4ab50158f97742cae378cdfba14277",
+          "present": true
+        },
+        "etc/buildinfo": {
+          "source": "private-source://PROFILE-G6-HJL/etc/buildinfo",
+          "bytes": 378,
+          "sha256": "d7b2d02c704bfb37c456c45feb401c68e6bc8840a748927e792849f3caedb09e",
+          "present": true
+        },
+        "etc/pcd/ai_controller.pcd": {
+          "source": "private-source://PROFILE-G6-HJL/etc/pcd/ai_controller.pcd",
+          "bytes": 5252,
+          "sha256": "00af3e2d0604be3916d7b409e651facdbe7833e9d4a8966bfb2cfb9fb1d17f1d",
+          "present": true
+        },
+        "etc/pcd/ai_agent.pcd": {
+          "source": "private-source://PROFILE-G6-HJL/etc/pcd/ai_agent.pcd",
+          "bytes": 5175,
+          "sha256": "595a91de8b27f07cc13b1b0bc2f9158c11eef348ba49108f20cff056b3b45806",
+          "present": true
+        },
+        "usr/bin/run_aicontroller.sh": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/run_aicontroller.sh",
+          "bytes": 857,
+          "sha256": "a292523bff68b36c5e65bfd566a040610da61b23375316ea36d2b87c522aa71d",
+          "present": true
+        },
+        "usr/bin/run_aiagent.sh": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/run_aiagent.sh",
+          "bytes": 419,
+          "sha256": "258baa1ca17a0a99ece5c65bd1217391e3f524ae12fd647c21b426cd6eccf5b6",
+          "present": true
+        }
+      },
+      "port_constants": {
+        "usr/bin/ai_controller": {
+          "instruction": "54c30:\t128da501 \tmov\tw1, #0xffff92d7            \t// #-27945",
+          "unsigned_low16_port": 37591,
+          "signed_promoted_value": -27945
+        },
+        "usr/bin/ai-agent": {
+          "instruction": "1471c:\t128da500 \tmov\tw0, #0xffff92d7            \t// #-27945",
+          "unsigned_low16_port": 37591,
+          "signed_promoted_value": -27945
+        }
+      },
+      "libmeshmsg_needed": [
+        "libcsrv_timer.so",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "required_transport_symbols": [
+        "mm_start_service_server",
+        "mm_create_client_channel",
+        "mm_register_actor",
+        "login_msg_received",
+        "tcp_impl_receive_with_timeout",
+        "tcp_impl_send_with_timeout"
+      ],
+      "cfgmgr_firewall_template": {
+        "file_offset": "0x292c2a",
+        "template": "-I %s -i br+ -p tcp --dport 37591 -j ACCEPT",
+        "limit": "Packaged rule template, not proof of live installation or every operator/build branch."
+      }
+    },
+    "IJL": {
+      "buildinfo": {
+        "UNIT_TYPE": "beacon_g6",
+        "PRODUCTCLASS": "beacon_g6",
+        "IMAGEVERSION": "3FE49996IJLJ03",
+        "SOFTWAREVERSION": "IJL.J03p01",
+        "DOTDIGITVERSION": "1.2402.303",
+        "COPYRIGHT": "NOKIA",
+        "WHOBUILD": "buildmgr",
+        "RELEASE": "0.0.0",
+        "BUILDDATE": "20240702",
+        "BUILDSTAMP": "20240702234215CST",
+        "REPO": "master",
+        "NODE": "3237f11e41d29b467b2cafbfd6093b74a709d70b",
+        "SIGNER": "NCG",
+        "SIGN": "y",
+        "ENCRYPT": "n",
+        "UBOOTVERSION": "",
+        "SDKVERSION": "cortina_venus.R1.1.1.6",
+        "HOMEOSVERSION": "24.02.00"
+      },
+      "files": {
+        "usr/bin/ai_controller": {
+          "source": "private-source://PROFILE-G6-IJL/usr/bin/ai_controller",
+          "bytes": 327248,
+          "sha256": "02a15c1b4a0daf07585fae685340ce2982506c32f4449224fd4e90e95f290689",
+          "present": true
+        },
+        "usr/bin/ai-agent": {
+          "source": "private-source://PROFILE-G6-IJL/usr/bin/ai-agent",
+          "bytes": 88488,
+          "sha256": "7837eb780b60247e18652f0ff18fdf2f8d929bc43b946db08ff2239053338c4a",
+          "present": true
+        },
+        "usr/lib/libmeshmsg.so": {
+          "source": "private-source://PROFILE-G6-IJL/usr/lib/libmeshmsg.so",
+          "bytes": 75456,
+          "sha256": "7fea4fcba98358e62ac47123715901954d461f9afcca6b47631712f9dd8f21f4",
+          "present": true
+        },
+        "usr/bin/cfgmgr": {
+          "source": "private-source://SOURCE-135/cfgmgr",
+          "bytes": 3521648,
+          "sha256": "b315ee60f91356dfc607146df51216426d0aae7aa6eddb994fedd804ebd944df",
+          "present": true
+        },
+        "etc/buildinfo": {
+          "source": "private-source://PROFILE-G6-IJL/etc/buildinfo",
+          "bytes": 378,
+          "sha256": "5d985f164888825487905f4cb89e4c187d8181bc7b98e2c5e5ef6f33ba58f53b",
+          "present": true
+        },
+        "etc/pcd/ai_controller.pcd": {
+          "source": "private-source://PROFILE-G6-IJL/etc/pcd/ai_controller.pcd",
+          "present": false
+        },
+        "etc/pcd/ai_agent.pcd": {
+          "source": "private-source://PROFILE-G6-IJL/etc/pcd/ai_agent.pcd",
+          "present": false
+        },
+        "usr/bin/run_aicontroller.sh": {
+          "source": "private-source://PROFILE-G6-IJL/usr/bin/run_aicontroller.sh",
+          "present": false
+        },
+        "usr/bin/run_aiagent.sh": {
+          "source": "private-source://PROFILE-G6-IJL/usr/bin/run_aiagent.sh",
+          "present": false
+        }
+      },
+      "port_constants": {
+        "usr/bin/ai_controller": {
+          "instruction": "33510:\t128da501 \tmov\tw1, #0xffff92d7            \t// #-27945",
+          "unsigned_low16_port": 37591,
+          "signed_promoted_value": -27945
+        },
+        "usr/bin/ai-agent": {
+          "instruction": "fa7c:\t128da500 \tmov\tw0, #0xffff92d7            \t// #-27945",
+          "unsigned_low16_port": 37591,
+          "signed_promoted_value": -27945
+        }
+      },
+      "libmeshmsg_needed": [
+        "libcsrv_timer.so",
+        "librt.so.1",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "required_transport_symbols": [
+        "mm_start_service_server",
+        "mm_create_client_channel",
+        "mm_register_actor",
+        "login_msg_received",
+        "tcp_impl_receive_with_timeout",
+        "tcp_impl_send_with_timeout"
+      ],
+      "cfgmgr_firewall_template": {
+        "file_offset": "0x2dc18c",
+        "template": "-I %s -i br+ -p tcp --dport 37591 -j ACCEPT",
+        "limit": "Packaged rule template, not proof of live installation or every operator/build branch."
+      }
+    }
+  },
+  "HJL_request_type_jump_table": {
+    "table_va": "0x70d00",
+    "signed_byte_base_va": "0x554cc",
+    "scale": 4,
+    "targets": {
+      "0": "0x55538",
+      "1": "0x55670",
+      "2": "0x55670",
+      "3": "0x55670",
+      "4": "0x55670",
+      "5": "0x5563c",
+      "6": "0x55580",
+      "7": "0x55538",
+      "8": "0x55670",
+      "9": "0x55670",
+      "10": "0x555bc"
+    }
+  },
+  "HJL_reviewed_callbacks": {
+    "controller_start": "0x54b24",
+    "server_port_argument": "0x54c30",
+    "mm_start_service_server_call": "0x54c3c",
+    "controller_actor": "0x545c0",
+    "controller_business_callback": "0x553ec",
+    "controller_callback_install": "0x5631c..0x56324",
+    "agent_start": "0x146b8",
+    "agent_actor": "0x13f10",
+    "agent_business_callback": "0xc200",
+    "agent_callback_install": "0xcec0..0xcecc",
+    "agent_scan_config": "0xb5ec",
+    "agent_scan_enable": "0x97b4",
+    "agent_scan_enable_wrapper": "0xc1ac"
+  },
+  "transport_symbol_addresses_compared": false,
+  "different_binary_hashes": {
+    "usr/bin/ai_controller": true,
+    "usr/bin/ai-agent": true,
+    "usr/lib/libmeshmsg.so": true
+  },
+  "limits": [
+    "Jump-table/callback addresses above are for HJL only.",
+    "Import absence alone does not prove authentication absence; the manual login/actor/application-path review is documented separately.",
+    "No assumption that every agent action is accepted by the inbound controller endpoint.",
+    "No live firmware version, physical G6 alias, on-wire packet trace or successful third-party protocol session supplied."
+  ]
+}

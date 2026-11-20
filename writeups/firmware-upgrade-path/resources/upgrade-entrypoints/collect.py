@@ -3,6 +3,17 @@
 Requires Python 3, capstone, readelf and rg on the analyst host.
 The ELF annotation is a linear reference aid, not path-sensitive execution proof.
 """
+from pathlib import Path as _PublicationPath
+import json as _publication_json
+import re as _publication_re
+
+def _publication_input(alias):
+    project = next(p for p in _PublicationPath(__file__).resolve().parents
+                   if (p / 'writeups').is_dir())
+    registry = (project / 'writeups/README.private.md').read_text(encoding='utf-8')
+    payload = _publication_re.search(r'```json\s*\n(.*?)\n```', registry, _publication_re.S)
+    return _publication_json.loads(payload[1])['private_values'][alias]
+
 import argparse, contextlib, hashlib, io, json, re, subprocess
 from pathlib import Path
 import sys
@@ -30,8 +41,8 @@ PATTERN=re.compile(r'(?i)(swdl_|swug|sysupgrade|imageTool|upgrade|firmware|'
  r'AutoActivate|DownloadURL|TargetFileName|SHBRSWUG|NBNX|G-010G-D|U-040X-A|https?://|'
  r'triggerDownloadFromPortal|activateFirmwareFromPortal|mobileAppRGWUpgrade)')
 SOURCE_ROOTS={
- 'old':'router-flash-ALCLFD4B5342/beacon-g6-clean-dumps-20261022-192444 (inactive rootfs0 IJL.J03)',
- 'new':'router-flash-ALCLFD4B5342/beacon-g6-clean-dumps-20261022-192444 (active rootfs1 HJL.L91)'}
+ 'old':_publication_input('RESEARCH-INPUT-953CD47DBDDC'),
+ 'new':_publication_input('RESEARCH-INPUT-33B310A7E13C')}
 
 def identity(p):
  d=p.read_bytes()

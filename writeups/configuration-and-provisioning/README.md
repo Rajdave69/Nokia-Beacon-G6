@@ -1,119 +1,124 @@
-# Following the Beacon G6's factory data and password stores
+# From factory data to the Beacon G6's account settings
 
-## A password appeared in three places. Which was the original?
+Where does a router's factory login come from, and what happens to it when you change a password? On the examined Beacon G6, the answer is spread across factory records, operator-specific rules, the WebUI configuration database and Linux's account files. These are related stores, but they do not remain one synchronized password.
 
-The configuration system became interesting when I compared the privileged WebUI `superadmin` account with the Linux `superadmin` account. Both were be called `superadmin`, and both initially appeared to use the same factory credential. After changing the WebUI password, however, the Linux account didn't accept the new value. That suggested the router was not maintaining one single password shared across all interfaces.
+I found a useful example in the `superadmin` account. Before a WebUI password change, the factory management verifier matched both the WebUI's preset value and the Linux account's saved verifier. After the change, the WebUI's **current** value differed while the preset and Linux values still matched the factory record. The change had succeeded; it was applied to a different destination.
 
-The natural approach would be to inspect `/etc/shadow`, but it only tells us what Linux currently verifies. It does not explain from where the factory value originated, whether a different program has copied it, or which branch an operator's preconfiguration rules selected. To answer those questions, we had to map several separate stores.
+This article follows that result back to the factory data and the BOQA provisioning policy, then forward to the settings used at login. The findings concern the examined G6 firmware and captured device state; a packaged policy, an offline trace and a live account observation are identified separately. Device names use the project's [shared aliases](../README.md#device-aliases). The [provisioning pipeline](../provisioning-pipeline/README.md) follows a related but distinct question: how operator configuration recipes reach management services.
 
-## Four stores, not four spellings of the same file
+## What provisioning adds to firmware
 
-The examined firmware exposed device identity through an **RI** interface, factory security information through a logical **`SECURITY` object in `extfs`**, current management settings through a **data-model database**, and Linux login credentials through **`/etc/passwd` and `/etc/shadow`**. These hold overlapping concepts but are not aliases.
+A firmware image provides programs, default definitions and rules. A particular device also needs an identity and settings appropriate to its hardware and operator. **Provisioning** is the process of supplying or selecting that information so the software can initialize or manage the device.
 
-| Source                                | What we found there                                                      | Main consumer                                 |
-|---------------------------------------|--------------------------------------------------------------------------|-----------------------------------------------|
-| RI / device identity                  | `G984Serial`, programming date, operator ID, label code, hardware fields | Provisioning and selected generators          |
-| `extfs` → `SECURITY`                  | `EXT_BOOT_PWD`, `EXT_WEB_PWD`, `EXT_WEB_MGNT_PWD`, variable fields       | Bootloader, provisioning, management defaults |
-| `InternetGatewayDevice...` data model | Current WebUI password and factory preset password in distinct fields    | WebUI/configuration services like TR-069      |
-| `/etc/passwd` and `/etc/shadow`       | Linux account identity and final password hashes                         | Linux login/authentication                    |
+Inputs can come from several places: factory-written identity and security records, defaults packaged with the firmware, and operator-specific configuration. The resulting settings can be copied into databases or account files for individual services. Once those destinations are writable, a later change to one copy does not necessarily change the original source or every other copy.
 
-A factory hash can be read from the first or second store, copied into the third, and eventually installed into the fourth. If the WebUI later rotates only its current password, the other copies need not change.
+The G6 investigation found four useful layers:
 
-## Finding the physical storage without mistaking it for a file
+| Layer                     | What it holds in the examined G6                                                        | Why it matters                                                                                         |
+|---------------------------|-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| **RI identity**           | Device and operator fields such as serial, programming date, operator ID and label code | Supplies identity and inputs used by provisioning rules; it is not the current WebUI account database. |
+| **`extfs` / `SECURITY`**  | Factory security fields, including boot and WebUI-related verifiers                     | Supplies values selected by particular consumers; the fields do not all use the same format.           |
+| **Management data model** | Named settings, including current and preset WebUI password fields                      | Gives management services their own stored configuration, separate from the factory record.            |
+| **Linux account files**   | Account metadata in `/etc/passwd` and password verifiers in `/etc/shadow`               | Controls Linux account authentication, not every password prompt on the device.                        |
 
-The raw NAND table contained a partition named `RI` and another named `extfs`. The latter was `mtd9` on the unit analyzed. We initially wanted to inspect `EXT_WEB_MGNT_PWD`, but it was not a normal plaintext file named `EXT_WEB_MGNT_PWD` and was not safe to locate by searching for a string and writing to its guessed raw NAND offset.
+A **data model** is an organized set of named configuration and state parameters. A path such as `InternetGatewayDevice.X_Authentication.WebAccount.Password` identifies a parameter in that model; it is not a filesystem path.
 
-The crucial finding was `/usr/lib/libextfs.so`, which exported logical record functions such as `extfs_get()` and `extfs_set()`. We wrote a read-only helper against this interface, requested the record named `SECURITY`, and parsed its serialized fields. The retrieved logical object was 8192 bytes. The successful parse showed an operator ID and several password-related fields, including `EXT_WEB_PWD`, `EXT_WEB_MGNT_PWD`, `EXT_BOOT_PWD`, and variables such as `EXT_MD5_VAR` and `EXT_SHA256_VAR`.
+The direction of copying matters. A factory verifier can be selected as a default and appear in more than one destination, but seeing equal values does not make those stores aliases. Once the current WebUI value changes, the preset and Linux account can remain unchanged.
 
-Before working with raw flash on a different unit, identify the named partition from that unit's own table:
+## Finding factory fields inside `extfs`
+
+The captured NAND layout has a partition named `RI` and another named `extfs`. On the examined unit, `extfs` appeared as `mtd9`, but the number should be checked on each device. More importantly, a field such as `EXT_WEB_MGNT_PWD` is not a normal file with that name or a reliable raw flash offset.
+
+Nokia's `/usr/lib/libextfs.so` exports functions for working with named logical records. I used a read-only helper to request `SECURITY` and parse the returned fields. The logical object was 8,192 bytes; that is the size of the retrieved record, not the size of a complete `extfs` partition backup. The record included `EXT_WEB_PWD`, `EXT_WEB_MGNT_PWD`, `EXT_BOOT_PWD` and other protected variable fields.
+
+On a device you already administer, the following only identifies partitions; it does not read or modify their contents:
 
 ```sh
 cat /proc/mtd
 grep '"extfs"' /proc/mtd
 ```
 
-The existence of a logical API mattered. It meant that experiments could operate at the level of named records, with backups and readback, instead of assuming that an arbitrary MTD file offset was stable across builds.
+The [storage and flash writeup](../storage-and-flash/README.md) explains the difference between the logical record and the raw partition. Finding a string in a flash dump is not a reason to assume a guessed byte offset is safe to write.
 
-## Why the field suffix `PWD` was not enough
+## Similar names, different verifiers
 
-The values in `SECURITY` did not all mean “a password in plaintext.” On the examined unit `EXT_WEB_PWD` and `EXT_WEB_MGNT_PWD` were Linux-style SHA-256-crypt hashes recognizable by the `$5$` prefix. By contrast, `EXT_BOOT_PWD` was a twelve-character value: U-Boot treated it as the first twelve Base64 characters of a SHA-256 digest of the entered `en` password.
+The suffix `PWD` does not tell us whether a field is plaintext, what it protects or how it is checked. The consumer provides that context.
 
-The significance came from comparing the *consumers*, not the labels. The `EXT_WEB_PWD` (WebUI admin account) hash verified against the unit's label code, while `EXT_WEB_MGNT_PWD` matched the Linux `superadmin` shadow entry and the WebUI's **preset** password field. That three-way equality was our first strong evidence that the factory management hash was being copied into multiple destinations.
+| Field in the examined `SECURITY` record | Observed format or use                                                                                                           |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `EXT_WEB_PWD`                           | A SHA-256-crypt verifier, recognizable by its `$5$` prefix, associated with the WebUI `admin` default in the examined policy.    |
+| `EXT_WEB_MGNT_PWD`                      | A SHA-256-crypt verifier associated with the WebUI `superadmin` preset and the Linux `superadmin` account in the examined state. |
+| `EXT_BOOT_PWD`                          | A twelve-character verifier used by the bootloader's `en` check; it is not a Linux SHA-256-crypt entry.                          |
 
-Another possible field, `EXT_DBG_PWD`, was referenced by the account-update logic as a provisioned debug-password override but was **absent in the captured SECURITY record**. The absence was important later when the firmware-version-derived Linux `ONTUSER` password matched the live shadow hash.
+On the first examined G6, the `EXT_WEB_PWD` verifier checked against that unit's label code. The factory management verifier matched the WebUI preset and Linux `superadmin` shadow entry. The [G6 comparison](../comparing-other-g6-routers/README.md) found the same source distinctions in a second unit, including a different salted management verifier. Those observations do not establish a common plaintext or a factory `superadmin` generation formula.
 
-Following that reader further revealed another condition: `InternetGatewayDevice.DeviceInfo.X_CT-COM_ServiceManage.DebugRnPassEnable`. The G6's `cfgUtlAddDebugUser()` first generates the version-derived password and recreates ONTUSER, then checks this flag. When it is false, the generated credential remains. When it is true, the routine attempts to read `EXT_DBG_PWD` and replaces the ONTUSER hash in `/tmp/shadow` if the value is usable. An absent or invalid field leaves the generated entry in place.
+This distinction, though, is completely dependent on your operator policy. My BOQA router sets the label password as the admin (NormalUser) as well, but other operator paths may set a global default password and ask the user to set one on first login.
 
-The flag therefore controls the factory-override attempt, rather than whether the G6 creates the account. Its schema default is false; the similarly named `LimitAccount_ONTUSER` defaults to true. Both defaults also appear in the examined Beacon 9 image, even though that build's normal debug-account updater is a no-op. A schema field and a provisioned hash are only useful to this credential path if the account writer actually consumes them. The [credential investigation](../credential-reverse-engineering/README.md#the-flag-that-controls-the-factory-override) follows that comparison and its limits.
+The bootloader uses a different comparison: it hashes the entered candidate with SHA-256, Base64-encodes the digest and compares the first twelve characters to `EXT_BOOT_PWD` on the populated-field path. The [boot and console writeup](../boot-and-console/README.md) explains that gate and its fallback. A shared storage record does not make these fields interchangeable.
 
-## The preconfiguration file that seemed to contradict the hashes
+## How an operator rule selects the factory defaults
 
-The firmware contained `preconfiguration_global.xml`, but it could not be read as ordinary XML directly from its stored representation: the resource was encrypted and compressed. Once decoded, it exposed operator-specific defaults, including an account-generation policy for the BOQA branch.
+The G6 firmware contains `preconfiguration_global.xml`, a collection of default and operator-specific rules. Although named XML, the stored resource was encrypted and compressed. Decoding it exposed the BOQA branch used in the examined context, including rules for the WebUI `admin` and `superadmin` accounts.
 
-That branch enabled a setting spelled `KeepLablePassword` in the firmware, mapped through an `AccountKeepLablePwd` option. It also contained descriptions of the WebUI `admin` and `superadmin` accounts and a `genpwd_longpasswd` rule. At first this seemed to imply that the normal generator was the source of the active account hashes. We tested the generic management generator against the real firmware and found that its results did not match those hashes.
+A rule named `genpwd_longpasswd` initially looked like an explanation for the factory account values. A generic management-password generator also existed and could be reproduced against the firmware's library, but its output did not match the examined factory hashes. The missing step was to follow **which branch consumes the rule**, not just which generator is present.
 
-The missing piece was control flow. The corresponding handler in `libdbgen.so` **bypassed ordinary regeneration when `KeepLablePassword` was true** and instead selected the factory fields from the `SECURITY` object. The XML was not lying, and the generator was not broken: we had initially read a possible rule without checking which runtime branch the operator enabled.
+The BOQA preconfiguration enables `KeepLablePassword`, the spelling used by the firmware, through an `AccountKeepLablePwd` option. The traced handler in `libdbgen.so` selects factory WebUI verifier fields from `SECURITY` for this path rather than using the ordinary regeneration result. Thus a generator can be present and functional while a device's selected policy uses a provisioned verifier instead.
 
-This is the reason the exact operator ID matters. The same compiled binary can contain branches for multiple providers; the branch that exists in a disassembly is not necessarily the one this device executes.
+This is a trace of the relevant BOQA policy and handler, supported by the observed matching values; it is not a claim that every device applies the same branch at every startup. The operator ID, product conditions, available factory fields and actual caller all matter. A rule's presence in an XML file does not prove it was selected or that every resulting setting is still current. The [operator policy writeup](../operator-profiles-and-credential-policy/README.md) compares the selectors and their limits.
 
-## Proving that the WebUI had a current and a preset value
+## Following the `superadmin` verifier after a password change
 
-The important data-model paths were `InternetGatewayDevice.X_Authentication.WebAccount.Password` and `InternetGatewayDevice.X_Authentication.WebAccount.PresetPassword`. The former was mutable; the latter held a factory/preset verifier on the examined build. The ordinary `cfgcli -g` output for password fields was masked, which initially obscured that distinction.
+Two management parameters were decisive:
 
-We built a read-only diagnostic calling `cfg_GetParamValueByUri()` from `libcfg.so` rather than relying on `cfgcli`'s displayed string. It showed that the current WebUI hash had changed to a new SHA-256-crypt value after password rotation. The preset remained identical to `EXT_WEB_MGNT_PWD` and Linux `/etc/shadow` for `superadmin`.
+```text
+InternetGatewayDevice.X_Authentication.WebAccount.Password
+InternetGatewayDevice.X_Authentication.WebAccount.PresetPassword
+```
 
-Independent verification of the new WebUI plaintext against the mutable hash confirmed that the browser's new password was indeed stored there. Yet the Linux account retained the factory verifier. This was decisive evidence for **two credential paths**, rather than a password change that had somehow failed.
+The first is the mutable WebUI password value. The second held the factory/preset verifier in the examined state. The normal `cfgcli -g` display masks password output, so it did not itself show whether the underlying values were equal.
 
-You can inspect the management tool's ordinary read behavior without exposing secrets:
+I used a read-only diagnostic calling `cfg_GetParamValueByUri()` from `libcfg.so` to compare the underlying values. After a deliberate WebUI password change, the new WebUI password verified against the mutable field. The preset field still matched `EXT_WEB_MGNT_PWD`, as did the Linux `superadmin` shadow entry. This establishes separate destinations for that observation; it does not establish that every password-changing route on every build leaves Linux unchanged.
+
+```mermaid
+flowchart LR
+    F[Factory SECURITY verifier] --> P[WebUI preset]
+    F --> L[Linux superadmin verifier]
+    P -. initially matching .-> W[Current WebUI verifier]
+    C[WebUI password change] --> W
+```
+
+The arrows show the selected source and observed relationship, not a claim that all copies are rewritten on every boot. In particular, the dotted relationship represents the initially matching values; the password change updated the current WebUI value and did not make the three stores one live-synchronized object.
+
+For ordinary, masked inspection of the current field:
 
 ```sh
-cfgcli -h
 cfgcli -g 'InternetGatewayDevice.X_Authentication.WebAccount.Password'
 ```
 
-The masked output alone does not tell you the actual hash; it is an intentional presentation-layer limitation.
+A masked response is a presentation choice; by itself it does not establish the stored format or equality with another field. Avoid publishing hashes or device-specific credentials when collecting evidence. The [credential map](../credential-map/README.md) distinguishes the login interfaces and their consumers.
 
-## The other security database: `sec.key`, `sedb.conf`, and `key14`
+## Changing a password and storing a verifier are different operations
 
-The firmware also had *encrypted security-engine configuration*, separate from the logical `extfs` record. Two files mattered: `/usr/etc/sec.key`, the static database, and `/tmp/sedb.conf`, the runtime database. The latter depended on `/tmp/secKeySrc.conf` values called `keysrc1` and `keysrc2`.
+The data-model value is stored as a crypt verifier, but the normal HJL setter accepts a new **plaintext** password and invokes a runtime callback that applies policy and hashes it. In the captured BOQA policy, supplying a 63-character `$5$` verifier to that normal path fails the illegal-character and length rules. The `-f` option does not skip that callback.
 
-Decompilation of the security-engine routines uncovered the file format and derivation path. The examined container used a `0xff` marker, an eight-byte salt, AES-256-CBC ciphertext, and plaintext protected by a SHA-256 integrity check. The code derived decryption material using PBKDF2-HMAC-SHA256 and a short iteration count of 100 in the observed path. The static derivation used a firmware version source from `/usr/etc/se.conf`; the runtime derivation combined the key-source values, using a four-byte salt identified in the implementation as `key6`. The details were validated by successfully decrypting **both** databases and passing their integrity checks.
+This distinction matters when reading a stored value or designing a restore: a representation accepted in storage is not automatically valid input to a setter. The [WebUI password tutorial](../../tutorials/set-webui-superadmin-password/README.MD) documents the corrected plaintext setter and immediate-save option. A separate raw-verifier restoration path has its own conditions and should not be assumed to have the semantics of an ordinary password change.
 
-One particularly useful negative result was that the recovered `key14` material was the same in both decrypted files. We had suspected a mismatch between static and runtime keys might explain why a generic password generator disagreed with `/etc/shadow`. The matching plaintext ruled out that explanation for the examined unit.
+## Security-engine files are another layer
 
-`key14` itself contained 192 bytes: six 32-byte slots associated with MGNT, WLAN, OMCI, VTYSH, ONTUSER, and BLDR. Generic generators selected a slot, reversed the order of its eight 4-byte *words* (without reversing the bytes inside each word), combined the transformed data with an input seed, and applied digest/encoding/character rules. We reproduced these functions and then checked them against the real ARM64 library. This taught us how the generic generators worked, but not yet which ones controlled the active Linux accounts.
+The logical `SECURITY` object is not the same thing as the security engine's packaged or runtime databases. The examined firmware used `/usr/etc/sec.key` as a static database and `/tmp/sedb.conf` as a runtime database, with runtime source values in `/tmp/secKeySrc.conf`. These files serve key consumers; their presence does not mean that every credential is derived from one shared key or stored in one format.
 
-## Why `key2` is not another name for `key14`
+The examined security container uses a marker, an eight-byte salt and AES-256-CBC ciphertext, with a SHA-256 integrity check over the plaintext. The traced derivation uses PBKDF2-HMAC-SHA256 with 100 iterations in that path. Static and runtime decryption use different source inputs. Both captured databases decrypted and passed their integrity checks.
 
-The eventual Linux `ONTUSER` discovery used a different key mechanism. In `cfgmgr`, the debug-user routine constructed a seed from the image version and passed **no optional key** to `CS_getSha256Str()`. The security library then selected *deprecated key index 2*, an embedded 32-byte constant we call `key2`. It is not the ONTUSER slot of decrypted `key14`.
+For the investigated unit, the recovered `key14` material matched between those two decoded databases. It includes material used by generic password-generation functions, including the management generator. That equality ruled out a static-versus-runtime `key14` mismatch as the explanation for the tested management generator's disagreement with the factory management verifier; the BOQA policy's factory-field branch provides the relevant distinction. The [security-key inventory](../security-keys/README.md) covers other keys and consumers without treating them as interchangeable.
 
-That distinction was central to resolving the original failed hypothesis. Both mechanisms exist in the firmware, and both can generate password-like text, but the account writer selected the second one. The [credential investigation](../credential-reverse-engineering/README.md) gives the complete chronology, including the independently verified `/etc/shadow` result.
+## Operator recipes and saved settings are separate again
 
-## What we know, and what we still don't
+The captured `ENC_CFGBOQA112` and `ENC_CFGBOQA114.org` files add another provisioning layer. Offline decoding showed that six captured 114 copies from four G6s contain the same operator recipe, even though the locally encrypted files differ. The recipe requests USP/MQTT management settings and uses a placeholder whose traced source is the default Wi-Fi preconfiguration accessor. That placeholder is not the Linux management password.
 
-We traced the factory `superadmin` **hash-storage and copying chain** through provisioning, SECURITY, the WebUI preset field, and Linux `/etc/shadow`. We did *not* identify runtime code that reconstructs the factory plaintext from the unit's serial number, MAC address, label code, or the tested generic management generator. Manufacturing-time generation is a plausible explanation, not a proven algorithm.
+A recipe expresses requested settings; its presence does not prove when it was applied or that a management connection is active. The [provisioning-pipeline writeup](../provisioning-pipeline/README.md) follows the recipe, local encryption, retained configuration and agent state, with the offline and live limits kept separate.
 
-That unresolved step is why this documentation does not promise a factory `superadmin` password generator. The practical WebUI tutorial changes only the mutable data-model field, rather than pretending the factory hash can be reversed.
+## What remains unknown
 
-One interesting observation though was that a Beacon G6 and a Beacon 9, with the same operator codes but vastly different firmware versions had the same `root` user hash. This could suggest either a universal root password, or a per-operator root password. 
+The evidence supports the factory-verifier selection and the observed current/preset/Linux comparison. It does not identify runtime code that reconstructs the original factory `superadmin` plaintext from the examined serial, MAC address, label code or tested generic management generator. The verifier may have been provisioned during manufacture or produced elsewhere, but its origin is not established. A matching hash is evidence of a relationship between stored values, not a recovered plaintext-generation algorithm.
 
-The broader conclusion is that the Beacon G6 has several layers of defaults and state, and the direction of copying matters. A precomputed field being read by a daemon is not proof that the daemon originally generated its plaintext. A change to a mutable copy is not a change to the factory source. Understanding these boundaries made the rest of the credentials understandable.
-
-For the physical location of these records see [storage and flash](../storage-and-flash/README.md); for the exact interfaces they protect see [credential map](../credential-map/README.md).
-
-## What the second factory record established
-
-The [second-G6 comparison](../comparing-other-g6-routers/README.md) verifies both factory admin hashes against their own label codes and finds different salted factory superadmin hashes. It also confirms the shared root template and shared key7_2/key14/key17 across the two current devices and older IJL.J03 firmware. The new sample supports the same source distinctions; it does not recover a factory superadmin plaintext generator.
-
-## Setter input and stored password format
-
-The WebAccount password is stored as a crypt verifier, but the normal HJL setter accepts the new plaintext password. Its runtime callback applies the configured password rules before hashing. With the captured BOQA policy enabled, a 63-character `$5$` hash fails the illegal-character and length rules. `-f` does not skip that callback. The [corrected shell tutorial](../../tutorials/set-webui-superadmin-password/README.md) uses plaintext and requests immediate database saving; the owner has not yet reported the corrected command succeeding live.
-
-## How the operator recipes fit these stores
-
-The [provisioning reconstruction](../provisioning-pipeline/README.md) now decodes
-the captured CFGBOQA112/114 files. All six 114 copies contain a common Ooredoo
-USP/MQTT recipe, protected locally using each unit's key10. Its `%P` credential
-comes through the default Wi-Fi preconfiguration accessor; it is not the factory
-Linux management password. The follow-up connects these recipes to remote KV
-files, agent state and backup/reset policy, while retaining their distinct roles.
+For exact source traces and test inputs, start with the [password research knowledgebase](../../knowledgebases/password-reverse-engineering.md), its [source record](../../knowledgebases/source-records/password-reverse-engineering.json) and the [current research state](../../knowledgebases/research-state.json). Those technical records include wider credential research; the [configuration import and export writeup](../configuration-import-export/README.md) separately explains what a WebUI backup can carry.

@@ -1,0 +1,345 @@
+
+libwebsocket.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000000a1d0 <ws_authenticateClient@@Base>:
+    a1d0:	d2844c10 	mov	x16, #0x2260                	// #8800
+    a1d4:	cb3063ff 	sub	sp, sp, x16
+    a1d8:	a9007bfd 	stp	x29, x30, [sp]
+    a1dc:	910003fd 	mov	x29, sp
+    a1e0:	a90153f3 	stp	x19, x20, [sp, #16]
+    a1e4:	aa0103f3 	mov	x19, x1
+    a1e8:	f0000094 	adrp	x20, 1d000 <_fini@@Base+0x11b18>
+    a1ec:	a90363f7 	stp	x23, x24, [sp, #48]
+    a1f0:	a9025bf5 	stp	x21, x22, [sp, #32]
+    a1f4:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a1f8:	f947f283 	ldr	x3, [x20, #4064]
+    a1fc:	91390021 	add	x1, x1, #0xe40
+    a200:	f9400662 	ldr	x2, [x19, #8]
+    a204:	910963b5 	add	x21, x29, #0x258
+    a208:	f9400064 	ldr	x4, [x3]
+    a20c:	f9112fa4 	str	x4, [x29, #8792]
+    a210:	d2800004 	mov	x4, #0x0                   	// #0
+    a214:	f90023f9 	str	x25, [sp, #64]
+    a218:	aa0003f9 	mov	x25, x0
+    a21c:	528000c0 	mov	w0, #0x6                   	// #6
+    a220:	910183b7 	add	x23, x29, #0x60
+    a224:	910143b8 	add	x24, x29, #0x50
+    a228:	97ffe626 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[%s]Waiting for username and password from client.\n', x4=0
+    a22c:	d2840002 	mov	x2, #0x2000                	// #8192
+    a230:	52800001 	mov	w1, #0x0                   	// #0
+    a234:	aa1503e0 	mov	x0, x21
+    a238:	97ffe54e 	bl	3770 <memset@plt> ; heuristic args: x1=0, x2=8192
+    a23c:	d2803e82 	mov	x2, #0x1f4                 	// #500
+    a240:	52800001 	mov	w1, #0x0                   	// #0
+    a244:	aa1703e0 	mov	x0, x23
+    a248:	97ffe54a 	bl	3770 <memset@plt> ; heuristic args: x1=0, x2=500
+    a24c:	f947c685 	ldr	x5, [x20, #3976]
+    a250:	52800204 	mov	w4, #0x10                  	// #16
+    a254:	b9400260 	ldr	w0, [x19]
+    a258:	aa1803e3 	mov	x3, x24
+    a25c:	52800282 	mov	w2, #0x14                  	// #20
+    a260:	52800021 	mov	w1, #0x1                   	// #1
+    a264:	b98000a5 	ldrsw	x5, [x5]
+    a268:	a9057fa5 	stp	x5, xzr, [x29, #80]
+    a26c:	97ffe509 	bl	3690 <setsockopt@plt> ; heuristic args: x1=1, x2=20, x4=16
+    a270:	37f82300 	tbnz	w0, #31, a6d0 <ws_authenticateClient@@Base+0x500>
+    a274:	d2800002 	mov	x2, #0x0                   	// #0
+    a278:	aa1503e1 	mov	x1, x21
+    a27c:	aa1303e0 	mov	x0, x19
+    a280:	97ffe5cc 	bl	39b0 <communicate@plt> ; heuristic args: x2=0
+    a284:	35000a60 	cbnz	w0, a3d0 <ws_authenticateClient@@Base+0x200>
+    a288:	f947ea95 	ldr	x21, [x20, #4048]
+    a28c:	f94002a0 	ldr	x0, [x21]
+    a290:	97ffe520 	bl	3710 <ws_updateBlockedIPList@plt>
+    a294:	f9401660 	ldr	x0, [x19, #40]
+    a298:	aa1703e2 	mov	x2, x23
+    a29c:	f9400661 	ldr	x1, [x19, #8]
+    a2a0:	f9401000 	ldr	x0, [x0, #32]
+    a2a4:	97ffe5eb 	bl	3a50 <validateClientUsernamePassword@plt>
+    a2a8:	2a0003f6 	mov	w22, w0
+    a2ac:	7100041f 	cmp	w0, #0x1
+    a2b0:	54001040 	b.eq	a4b8 <ws_authenticateClient@@Base+0x2e8>  // b.none
+    a2b4:	528000c0 	mov	w0, #0x6                   	// #6
+    a2b8:	71002adf 	cmp	w22, #0xa
+    a2bc:	f9400662 	ldr	x2, [x19, #8]
+    a2c0:	54000b00 	b.eq	a420 <ws_authenticateClient@@Base+0x250>  // b.none
+    a2c4:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a2c8:	91026021 	add	x1, x1, #0x98
+    a2cc:	97ffe5fd 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[Unauthorized][%s]Client Unauthorized\n'
+    a2d0:	f947e280 	ldr	x0, [x20, #4032]
+    a2d4:	f9400000 	ldr	x0, [x0]
+    a2d8:	97ffe61a 	bl	3b40 <fflush@plt>
+    a2dc:	f9400661 	ldr	x1, [x19, #8]
+    a2e0:	aa1503e0 	mov	x0, x21
+    a2e4:	97ffe53f 	bl	37e0 <ws_blockListAdd@plt>
+    a2e8:	97ffe51e 	bl	3760 <message_new@plt>
+    a2ec:	aa0003f5 	mov	x21, x0
+    a2f0:	d2800202 	mov	x2, #0x10                  	// #16
+    a2f4:	d2800021 	mov	x1, #0x1                   	// #1
+    a2f8:	d2800220 	mov	x0, #0x11                  	// #17
+    a2fc:	f90006a2 	str	x2, [x21, #8]
+    a300:	97ffe544 	bl	3810 <calloc@plt> ; heuristic args: x0=17, x1=1, x2=16
+    a304:	aa0003f6 	mov	x22, x0
+    a308:	b4001f80 	cbz	x0, a6f8 <ws_authenticateClient@@Base+0x528>
+    a30c:	f94006a2 	ldr	x2, [x21, #8]
+    a310:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a314:	91030021 	add	x1, x1, #0xc0
+    a318:	d2800223 	mov	x3, #0x11                  	// #17
+    a31c:	97ffe4b9 	bl	3600 <__memcpy_chk@plt> ; heuristic args: x1='401 Unauthorized', x3=17
+    a320:	f90012b6 	str	x22, [x21, #32]
+    a324:	aa1503e0 	mov	x0, x21
+    a328:	97ffe526 	bl	37c0 <encodeMessage@plt>
+    a32c:	34000120 	cbz	w0, a350 <ws_authenticateClient@@Base+0x180>
+    a330:	aa1503e0 	mov	x0, x21
+    a334:	97ffe5bb 	bl	3a20 <message_free@plt>
+    a338:	aa1503e0 	mov	x0, x21
+    a33c:	97ffe5c9 	bl	3a60 <free@plt>
+    a340:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a344:	52800060 	mov	w0, #0x3                   	// #3
+    a348:	913d0021 	add	x1, x1, #0xf40
+    a34c:	97ffe5dd 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='ClientAuthentication, Error in encoding message.'
+    a350:	aa1503e1 	mov	x1, x21
+    a354:	aa1303e0 	mov	x0, x19
+    a358:	97ffe492 	bl	35a0 <ws_send@plt>
+    a35c:	52800016 	mov	w22, #0x0                   	// #0
+    a360:	aa1503e0 	mov	x0, x21
+    a364:	97ffe5af 	bl	3a20 <message_free@plt>
+    a368:	aa1503e0 	mov	x0, x21
+    a36c:	97ffe5bd 	bl	3a60 <free@plt>
+    a370:	b9400260 	ldr	w0, [x19]
+    a374:	52800041 	mov	w1, #0x2                   	// #2
+    a378:	97ffe53e 	bl	3870 <shutdown@plt> ; heuristic args: x1=2
+    a37c:	aa1303e0 	mov	x0, x19
+    a380:	97ffe57c 	bl	3970 <client_free@plt>
+    a384:	b9400260 	ldr	w0, [x19]
+    a388:	97ffe552 	bl	38d0 <close@plt>
+    a38c:	aa1303e0 	mov	x0, x19
+    a390:	97ffe5b4 	bl	3a60 <free@plt>
+    a394:	f947f294 	ldr	x20, [x20, #4064]
+    a398:	2a1603e0 	mov	w0, w22
+    a39c:	f9512fa2 	ldr	x2, [x29, #8792]
+    a3a0:	f9400281 	ldr	x1, [x20]
+    a3a4:	ca010041 	eor	x1, x2, x1
+    a3a8:	b5001b41 	cbnz	x1, a710 <ws_authenticateClient@@Base+0x540>
+    a3ac:	a94153f3 	ldp	x19, x20, [sp, #16]
+    a3b0:	d2844c10 	mov	x16, #0x2260                	// #8800
+    a3b4:	a9425bf5 	ldp	x21, x22, [sp, #32]
+    a3b8:	a94363f7 	ldp	x23, x24, [sp, #48]
+    a3bc:	a9407bfd 	ldp	x29, x30, [sp]
+    a3c0:	f94023f9 	ldr	x25, [sp, #64]
+    a3c4:	8b3063ff 	add	sp, sp, x16
+    a3c8:	d65f03c0 	ret
+    a3cc:	d503201f 	nop
+    a3d0:	f9400662 	ldr	x2, [x19, #8]
+    a3d4:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a3d8:	913b0021 	add	x1, x1, #0xec0
+    a3dc:	528000c0 	mov	w0, #0x6                   	// #6
+    a3e0:	97ffe5b8 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[%s][Timeout]Authentication Timeout Shutting client down.\n'
+    a3e4:	97ffe4df 	bl	3760 <message_new@plt>
+    a3e8:	aa0003f5 	mov	x21, x0
+    a3ec:	d2800262 	mov	x2, #0x13                  	// #19
+    a3f0:	d2800021 	mov	x1, #0x1                   	// #1
+    a3f4:	d2800280 	mov	x0, #0x14                  	// #20
+    a3f8:	f90006a2 	str	x2, [x21, #8]
+    a3fc:	97ffe505 	bl	3810 <calloc@plt> ; heuristic args: x0=20, x1=1, x2=19
+    a400:	aa0003f6 	mov	x22, x0
+    a404:	b40017a0 	cbz	x0, a6f8 <ws_authenticateClient@@Base+0x528>
+    a408:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a40c:	d2800283 	mov	x3, #0x14                  	// #20
+    a410:	913ca021 	add	x1, x1, #0xf28
+    a414:	f94006a2 	ldr	x2, [x21, #8]
+    a418:	17ffffc1 	b	a31c <ws_authenticateClient@@Base+0x14c>
+    a41c:	d503201f 	nop
+    a420:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a424:	9100c021 	add	x1, x1, #0x30
+    a428:	97ffe5a6 	bl	3ac0 <ws_log@plt> ; heuristic args: x1='[WS_NOT_CONFIGURED][%s]Can Not Authenticate Client, Server not yet configured.\n', x3=20
+    a42c:	f947e280 	ldr	x0, [x20, #4032]
+    a430:	f9400000 	ldr	x0, [x0]
+    a434:	97ffe5c3 	bl	3b40 <fflush@plt>
+    a438:	97ffe4ca 	bl	3760 <message_new@plt>
+    a43c:	aa0003f5 	mov	x21, x0
+    a440:	d28002e2 	mov	x2, #0x17                  	// #23
+    a444:	d2800021 	mov	x1, #0x1                   	// #1
+    a448:	d2800300 	mov	x0, #0x18                  	// #24
+    a44c:	f90006a2 	str	x2, [x21, #8]
+    a450:	97ffe4f0 	bl	3810 <calloc@plt> ; heuristic args: x0=24, x1=1, x2=23
+    a454:	aa0003f6 	mov	x22, x0
+    a458:	b40010c0 	cbz	x0, a670 <ws_authenticateClient@@Base+0x4a0>
+    a45c:	f94006a2 	ldr	x2, [x21, #8]
+    a460:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a464:	91020021 	add	x1, x1, #0x80
+    a468:	d2800303 	mov	x3, #0x18                  	// #24
+    a46c:	97ffe465 	bl	3600 <__memcpy_chk@plt> ; heuristic args: x1='503 Service Unavailable', x3=24
+    a470:	f90012b6 	str	x22, [x21, #32]
+    a474:	aa1503e0 	mov	x0, x21
+    a478:	97ffe4d2 	bl	37c0 <encodeMessage@plt>
+    a47c:	340008e0 	cbz	w0, a598 <ws_authenticateClient@@Base+0x3c8>
+    a480:	aa1503e0 	mov	x0, x21
+    a484:	97ffe567 	bl	3a20 <message_free@plt>
+    a488:	aa1503e0 	mov	x0, x21
+    a48c:	97ffe575 	bl	3a60 <free@plt>
+    a490:	52800060 	mov	w0, #0x3                   	// #3
+    a494:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a498:	913d0021 	add	x1, x1, #0xf40
+    a49c:	97ffe589 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='ClientAuthentication, Error in encoding message.'
+    a4a0:	b9400260 	ldr	w0, [x19]
+    a4a4:	52800041 	mov	w1, #0x2                   	// #2
+    a4a8:	52800016 	mov	w22, #0x0                   	// #0
+    a4ac:	97ffe4f1 	bl	3870 <shutdown@plt> ; heuristic args: x1=2
+    a4b0:	17ffffb9 	b	a394 <ws_authenticateClient@@Base+0x1c4>
+    a4b4:	d503201f 	nop
+    a4b8:	aa1303e1 	mov	x1, x19
+    a4bc:	aa1903e0 	mov	x0, x25
+    a4c0:	97ffe590 	bl	3b00 <list_add@plt>
+    a4c4:	f94002a0 	ldr	x0, [x21]
+    a4c8:	f9400661 	ldr	x1, [x19, #8]
+    a4cc:	97ffe419 	bl	3530 <ws_removeBlockedIP@plt>
+    a4d0:	aa1903e0 	mov	x0, x25
+    a4d4:	97ffe403 	bl	34e0 <ws_checkMaxUsers@plt>
+    a4d8:	34000b00 	cbz	w0, a638 <ws_authenticateClient@@Base+0x468>
+    a4dc:	f90027ba 	str	x26, [x29, #72]
+    a4e0:	97ffe4a0 	bl	3760 <message_new@plt>
+    a4e4:	aa0003f5 	mov	x21, x0
+    a4e8:	394183a0 	ldrb	w0, [x29, #96]
+    a4ec:	350006e0 	cbnz	w0, a5c8 <ws_authenticateClient@@Base+0x3f8>
+    a4f0:	d28000d7 	mov	x23, #0x6                   	// #6
+    a4f4:	f90006b7 	str	x23, [x21, #8]
+    a4f8:	d2800021 	mov	x1, #0x1                   	// #1
+    a4fc:	d28000e0 	mov	x0, #0x7                   	// #7
+    a500:	97ffe4c4 	bl	3810 <calloc@plt> ; heuristic args: x0=7, x1=1
+    a504:	aa0003fa 	mov	x26, x0
+    a508:	b4000f60 	cbz	x0, a6f4 <ws_authenticateClient@@Base+0x524>
+    a50c:	f94006a2 	ldr	x2, [x21, #8]
+    a510:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a514:	91042021 	add	x1, x1, #0x108
+    a518:	97ffe3d2 	bl	3460 <memcpy@plt> ; heuristic args: x1='200 OK'
+    a51c:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a520:	2a1703e0 	mov	w0, w23
+    a524:	91044021 	add	x1, x1, #0x110
+    a528:	97ffe566 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='ACCESS_OK is returned to ws client \n'
+    a52c:	f90012ba 	str	x26, [x21, #32]
+    a530:	aa1503e0 	mov	x0, x21
+    a534:	97ffe4a3 	bl	37c0 <encodeMessage@plt>
+    a538:	35000ac0 	cbnz	w0, a690 <ws_authenticateClient@@Base+0x4c0>
+    a53c:	aa1503e2 	mov	x2, x21
+    a540:	aa1303e1 	mov	x1, x19
+    a544:	aa1903e0 	mov	x0, x25
+    a548:	97ffe4e6 	bl	38e0 <list_multicast_one@plt>
+    a54c:	aa1503e0 	mov	x0, x21
+    a550:	97ffe534 	bl	3a20 <message_free@plt>
+    a554:	aa1503e0 	mov	x0, x21
+    a558:	97ffe542 	bl	3a60 <free@plt>
+    a55c:	b9400260 	ldr	w0, [x19]
+    a560:	52800204 	mov	w4, #0x10                  	// #16
+    a564:	aa1803e3 	mov	x3, x24
+    a568:	52800282 	mov	w2, #0x14                  	// #20
+    a56c:	52800021 	mov	w1, #0x1                   	// #1
+    a570:	f9002bbf 	str	xzr, [x29, #80]
+    a574:	97ffe447 	bl	3690 <setsockopt@plt> ; heuristic args: x1=1, x2=20, x4=16
+    a578:	37f80a00 	tbnz	w0, #31, a6b8 <ws_authenticateClient@@Base+0x4e8>
+    a57c:	f9400662 	ldr	x2, [x19, #8]
+    a580:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a584:	528000c0 	mov	w0, #0x6                   	// #6
+    a588:	91000021 	add	x1, x1, #0x0
+    a58c:	97ffe54d 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[Login Successful][%s]Client login successful\n'
+    a590:	f94027ba 	ldr	x26, [x29, #72]
+    a594:	17ffff80 	b	a394 <ws_authenticateClient@@Base+0x1c4>
+    a598:	aa1503e1 	mov	x1, x21
+    a59c:	aa1303e0 	mov	x0, x19
+    a5a0:	97ffe400 	bl	35a0 <ws_send@plt>
+    a5a4:	52800016 	mov	w22, #0x0                   	// #0
+    a5a8:	aa1503e0 	mov	x0, x21
+    a5ac:	97ffe51d 	bl	3a20 <message_free@plt>
+    a5b0:	aa1503e0 	mov	x0, x21
+    a5b4:	97ffe52b 	bl	3a60 <free@plt>
+    a5b8:	b9400260 	ldr	w0, [x19]
+    a5bc:	52800041 	mov	w1, #0x2                   	// #2
+    a5c0:	97ffe4ac 	bl	3870 <shutdown@plt> ; heuristic args: x1=2
+    a5c4:	17ffff74 	b	a394 <ws_authenticateClient@@Base+0x1c4>
+    a5c8:	aa1703e0 	mov	x0, x23
+    a5cc:	97ffe3ad 	bl	3480 <strlen@plt> ; heuristic args: x0=6
+    a5d0:	91001801 	add	x1, x0, #0x6
+    a5d4:	f90006a1 	str	x1, [x21, #8]
+    a5d8:	91001c00 	add	x0, x0, #0x7
+    a5dc:	d2800021 	mov	x1, #0x1                   	// #1
+    a5e0:	97ffe48c 	bl	3810 <calloc@plt> ; heuristic args: x1=1
+    a5e4:	aa0003fa 	mov	x26, x0
+    a5e8:	b4000860 	cbz	x0, a6f4 <ws_authenticateClient@@Base+0x524>
+    a5ec:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a5f0:	91036021 	add	x1, x1, #0xd8
+    a5f4:	aa1703e0 	mov	x0, x23
+    a5f8:	b9400022 	ldr	w2, [x1]
+    a5fc:	b8402021 	ldur	w1, [x1, #2]
+    a600:	b9000342 	str	w2, [x26]
+    a604:	b8002341 	stur	w1, [x26, #2]
+    a608:	97ffe39e 	bl	3480 <strlen@plt> ; heuristic args: x0=6
+    a60c:	aa0003e2 	mov	x2, x0
+    a610:	aa1703e1 	mov	x1, x23
+    a614:	aa1a03e0 	mov	x0, x26
+    a618:	97ffe55a 	bl	3b80 <strncat@plt> ; heuristic args: x1=6
+    a61c:	f0000001 	adrp	x1, d000 <_fini@@Base+0x1b18>
+    a620:	aa1a03e2 	mov	x2, x26
+    a624:	91038021 	add	x1, x1, #0xe0
+    a628:	528000c0 	mov	w0, #0x6                   	// #6
+    a62c:	97ffe525 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='nonce is returned to ws client [%s]\n'
+    a630:	17ffffbf 	b	a52c <ws_authenticateClient@@Base+0x35c>
+    a634:	d503201f 	nop
+    a638:	f9400662 	ldr	x2, [x19, #8]
+    a63c:	528000c0 	mov	w0, #0x6                   	// #6
+    a640:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a644:	913de021 	add	x1, x1, #0xf78
+    a648:	52800016 	mov	w22, #0x0                   	// #0
+    a64c:	97ffe51d 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=6, x1='[MAX CON LIMIT][%s]Max Connections Limit Reached\n'
+    a650:	f9400661 	ldr	x1, [x19, #8]
+    a654:	d0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    a658:	913ec000 	add	x0, x0, #0xfb0
+    a65c:	97ffe3a9 	bl	3500 <ws_notifyClient@plt> ; heuristic args: x0='509 Client Limit Exceeded'
+    a660:	aa1303e1 	mov	x1, x19
+    a664:	aa1903e0 	mov	x0, x25
+    a668:	97ffe5a6 	bl	3d00 <list_remove@plt>
+    a66c:	17ffff4a 	b	a394 <ws_authenticateClient@@Base+0x1c4>
+    a670:	52800060 	mov	w0, #0x3                   	// #3
+    a674:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a678:	913c0021 	add	x1, x1, #0xf00
+    a67c:	97ffe511 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='ClientAuthentication, malloc failed.\n'
+    a680:	b9400260 	ldr	w0, [x19]
+    a684:	52800041 	mov	w1, #0x2                   	// #2
+    a688:	97ffe47a 	bl	3870 <shutdown@plt> ; heuristic args: x1=2
+    a68c:	17ffff42 	b	a394 <ws_authenticateClient@@Base+0x1c4>
+    a690:	aa1503e0 	mov	x0, x21
+    a694:	97ffe4e3 	bl	3a20 <message_free@plt>
+    a698:	aa1503e0 	mov	x0, x21
+    a69c:	97ffe4f1 	bl	3a60 <free@plt>
+    a6a0:	52800060 	mov	w0, #0x3                   	// #3
+    a6a4:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a6a8:	913d0021 	add	x1, x1, #0xf40
+    a6ac:	97ffe505 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='ClientAuthentication, Error in encoding message.'
+    a6b0:	17ffffa3 	b	a53c <ws_authenticateClient@@Base+0x36c>
+    a6b4:	d503201f 	nop
+    a6b8:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a6bc:	52800060 	mov	w0, #0x3                   	// #3
+    a6c0:	913f4021 	add	x1, x1, #0xfd0
+    a6c4:	97ffe4ff 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='ClientAuthentication, setsockopt failed\n'
+    a6c8:	17ffffad 	b	a57c <ws_authenticateClient@@Base+0x3ac>
+    a6cc:	d503201f 	nop
+    a6d0:	d0000000 	adrp	x0, c000 <_fini@@Base+0xb18>
+    a6d4:	9139e000 	add	x0, x0, #0xe78
+    a6d8:	97ffe4ae 	bl	3990 <puts@plt> ; heuristic args: x0='setsockopt failed'
+    a6dc:	12800016 	mov	w22, #0xffffffff            	// #-1
+    a6e0:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a6e4:	52800060 	mov	w0, #0x3                   	// #3
+    a6e8:	913a4021 	add	x1, x1, #0xe90
+    a6ec:	97ffe4f5 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='ClientAuthentication, setsockopt failed.\n'
+    a6f0:	17ffff29 	b	a394 <ws_authenticateClient@@Base+0x1c4>
+    a6f4:	f94027ba 	ldr	x26, [x29, #72]
+    a6f8:	d0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    a6fc:	52800060 	mov	w0, #0x3                   	// #3
+    a700:	913c0021 	add	x1, x1, #0xf00
+    a704:	12800016 	mov	w22, #0xffffffff            	// #-1
+    a708:	97ffe4ee 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='ClientAuthentication, malloc failed.\n'
+    a70c:	17ffff22 	b	a394 <ws_authenticateClient@@Base+0x1c4>
+    a710:	f90027ba 	str	x26, [x29, #72]
+    a714:	97ffe463 	bl	38a0 <__stack_chk_fail@plt>

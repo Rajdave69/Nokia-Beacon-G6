@@ -1,0 +1,1 @@
+postWithCSRFToken(ke){const we=localStorage.getItem("pubkey"),nt=localStorage.getItem("token");return ke?ke+=`&csrf_token=${nt}`:ke=`csrf_token=${nt}`,""!=we&&(ke=crypto_page.encrypt_post_data(we,ke)),ke}

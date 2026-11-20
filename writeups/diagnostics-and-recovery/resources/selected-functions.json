@@ -1,0 +1,1641 @@
+{
+  "scope": "Exact named original HJL functions decoded offline; call constant annotations heuristic.",
+  "functions": [
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_start_cond_check_RULE_COMPLETED",
+      "va": "0x4037ac",
+      "bytes": 504,
+      "trace": "traces/G6-HJL--pcd--PCD_start_cond_check_RULE_COMPLETED.txt",
+      "calls": [
+        {
+          "va": "0x40383c",
+          "target": "PCD_rulesdb_get_rule_by_id",
+          "args": {}
+        },
+        {
+          "va": "0x4038fc",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sWarning, rule %s_%s not found%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x7": ".\n"
+          }
+        },
+        {
+          "va": "0x403924",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x403930",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_failure_action_NONE",
+      "va": "0x404e30",
+      "bytes": 408,
+      "trace": "traces/G6-HJL--pcd--PCD_failure_action_NONE.txt",
+      "calls": [
+        {
+          "va": "0x404f64",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sStatus:%d\nModuleID:%s_%s\nDo nothing %s%s",
+            "x3": "pcd: ",
+            "x4": "Info: "
+          }
+        },
+        {
+          "va": "0x404f8c",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x404f98",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_failure_action_REBOOT",
+      "va": "0x404fc8",
+      "bytes": 368,
+      "trace": "traces/G6-HJL--pcd--PCD_failure_action_REBOOT.txt",
+      "calls": [
+        {
+          "va": "0x405050",
+          "target": "PCD_exception_listen",
+          "args": {
+            "x0": 4,
+            "x1": 2
+          }
+        },
+        {
+          "va": "0x4050e4",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sStatus:%d\nModuleID:%s_%s\nReboot System%s",
+            "x3": "pcd: ",
+            "x4": "Info: "
+          }
+        },
+        {
+          "va": "0x40510c",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x405118",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40511c",
+          "target": "getpid@plt",
+          "args": {}
+        },
+        {
+          "va": "0x405124",
+          "target": "kill@plt",
+          "args": {
+            "x1": 15
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_failure_action_RESTART",
+      "va": "0x405284",
+      "bytes": 484,
+      "trace": "traces/G6-HJL--pcd--PCD_failure_action_RESTART.txt",
+      "calls": [
+        {
+          "va": "0x4053b4",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sStatus:%d\nModuleID:%s_%s\nStart/Restart Status%s",
+            "x3": "pcd: ",
+            "x4": "Info: "
+          }
+        },
+        {
+          "va": "0x4053dc",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x4053e8",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40544c",
+          "target": "PCD_failure_action_NONE",
+          "args": {}
+        },
+        {
+          "va": "0x405458",
+          "target": "PCD_action_RESTART",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_action_RESTART",
+      "va": "0x405138",
+      "bytes": 332,
+      "trace": "traces/G6-HJL--pcd--PCD_action_RESTART.txt",
+      "calls": [
+        {
+          "va": "0x40521c",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sStatus:%d\nModuleID:%s_%s\nStart/Restart%s",
+            "x3": "pcd: ",
+            "x4": "Info: ",
+            "x5": 1
+          }
+        },
+        {
+          "va": "0x405244",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x405250",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x405270",
+          "target": "PCD_process_stop",
+          "args": {
+            "x1": 1,
+            "x2": 0
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_process_iterate_stop",
+      "va": "0x40b350",
+      "bytes": 2020,
+      "trace": "traces/G6-HJL--pcd--PCD_process_iterate_stop.txt",
+      "calls": [
+        {
+          "va": "0x40b3ec",
+          "target": "IPC_cleanup_proc@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40b484",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sProcess %s (%d) exited unexpectedly (Rule %s_%s)%s",
+            "x3": "pcd: ",
+            "x4": "Error: "
+          }
+        },
+        {
+          "va": "0x40b4ac",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40b4b8",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40b4c0",
+          "target": "0x40bca8",
+          "args": {}
+        },
+        {
+          "va": "0x40b590",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sProcess %s (%d) exited with result code %d (Rule %s_%s)%s",
+            "x3": "pcd: ",
+            "x4": "Error: "
+          }
+        },
+        {
+          "va": "0x40b5b8",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40b5c4",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40b5cc",
+          "target": "0x40bca8",
+          "args": {}
+        },
+        {
+          "va": "0x40b5f8",
+          "target": "PCD_api_reply_message",
+          "args": {
+            "x1": 0
+          }
+        },
+        {
+          "va": "0x40b630",
+          "target": "strsignal@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40b6a0",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sUnhandled exception %d (%s) in process %s (%d) (Rule %s_%s)%s",
+            "x3": "pcd: ",
+            "x4": "Error: "
+          }
+        },
+        {
+          "va": "0x40b6c8",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40b6d4",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40b6dc",
+          "target": "0x40bca8",
+          "args": {}
+        },
+        {
+          "va": "0x40b708",
+          "target": "PCD_api_reply_message",
+          "args": {
+            "x1": 0
+          }
+        },
+        {
+          "va": "0x40b720",
+          "target": "strsignal@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40b790",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sException %d (%s) caused process %s (%d) to stop (Rule %s_%s)%s",
+            "x3": "pcd: ",
+            "x4": "Error: "
+          }
+        },
+        {
+          "va": "0x40b7b8",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40b7c4",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40b7cc",
+          "target": "0x40bca8",
+          "args": {}
+        },
+        {
+          "va": "0x40b868",
+          "target": "0x40ac3c",
+          "args": {}
+        },
+        {
+          "va": "0x40b888",
+          "target": "0x40ac70",
+          "args": {
+            "x1": 5
+          }
+        },
+        {
+          "va": "0x40b930",
+          "target": "fprintf@plt",
+          "args": {
+            "x1": "%sTerminating process %s (%d) (Rule %s_%s)%s",
+            "x2": "pcd: ",
+            "x7": ".\n"
+          }
+        },
+        {
+          "va": "0x40b94c",
+          "target": "kill@plt",
+          "args": {
+            "x1": 15
+          }
+        },
+        {
+          "va": "0x40ba0c",
+          "target": "fprintf@plt",
+          "args": {
+            "x1": "%sKilling process %s (%d) (Rule %s_%s)%s",
+            "x2": "pcd: ",
+            "x7": ".\n"
+          }
+        },
+        {
+          "va": "0x40ba34",
+          "target": "kill@plt",
+          "args": {
+            "x1": 9
+          }
+        },
+        {
+          "va": "0x40ba98",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sNo process %s spawned, removing (Rule %s_%s)%s",
+            "x3": "pcd: ",
+            "x4": "Error: "
+          }
+        },
+        {
+          "va": "0x40bac0",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40bacc",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_timer_iterate",
+      "va": "0x40c894",
+      "bytes": 356,
+      "trace": "traces/G6-HJL--pcd--PCD_timer_iterate.txt",
+      "calls": [
+        {
+          "va": "0x40c98c",
+          "target": "0x40d100",
+          "args": {}
+        },
+        {
+          "va": "0x40c9a8",
+          "target": "0x40d318",
+          "args": {}
+        },
+        {
+          "va": "0x40c9c4",
+          "target": "0x40cf24",
+          "args": {}
+        },
+        {
+          "va": "0x40c9e4",
+          "target": "0x40ce20",
+          "args": {}
+        },
+        {
+          "va": "0x40c9e8",
+          "target": "0x40ce90",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_rulesdb_add_rule",
+      "va": "0x40c054",
+      "bytes": 796,
+      "trace": "traces/G6-HJL--pcd--PCD_rulesdb_add_rule.txt",
+      "calls": [
+        {
+          "va": "0x40c088",
+          "target": "malloc@plt",
+          "args": {
+            "x0": 608
+          }
+        },
+        {
+          "va": "0x40c0d4",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sfailed to allocate memory%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x40c0fc",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c108",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40c120",
+          "target": "memcpy@plt",
+          "args": {
+            "x2": 608
+          }
+        },
+        {
+          "va": "0x40c134",
+          "target": "strcmp@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c148",
+          "target": "0x40beb0",
+          "args": {}
+        },
+        {
+          "va": "0x40c158",
+          "target": "free@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c190",
+          "target": "malloc@plt",
+          "args": {
+            "x0": 24
+          }
+        },
+        {
+          "va": "0x40c1a8",
+          "target": "free@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c1e4",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sfailed to allocate memory%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x40c20c",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c218",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40c228",
+          "target": "strlen@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c230",
+          "target": "malloc@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c254",
+          "target": "free@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c25c",
+          "target": "free@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c298",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sfailed to allocate memory%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x40c2c0",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c2cc",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x40c2e4",
+          "target": "strcpy@plt",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_rulesdb_setup_optional_params",
+      "va": "0x40c7a8",
+      "bytes": 152,
+      "trace": "traces/G6-HJL--pcd--PCD_rulesdb_setup_optional_params.txt",
+      "calls": [
+        {
+          "va": "0x40c7ec",
+          "target": "free@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c7f4",
+          "target": "strlen@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c7fc",
+          "target": "malloc@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40c830",
+          "target": "strcpy@plt",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_parser_add_rule",
+      "va": "0x4065b8",
+      "bytes": 220,
+      "trace": "traces/G6-HJL--pcd--PCD_parser_add_rule.txt",
+      "calls": [
+        {
+          "va": "0x4065c8",
+          "target": "PCD_rulesdb_add_rule",
+          "args": {}
+        },
+        {
+          "va": "0x4065ec",
+          "target": "0x406264",
+          "args": {}
+        },
+        {
+          "va": "0x40664c",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sFailed to add rule to database%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x406674",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x406680",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_parser_handle_FAILURE_ACTION",
+      "va": "0x408c6c",
+      "bytes": 872,
+      "trace": "traces/G6-HJL--pcd--PCD_parser_handle_FAILURE_ACTION.txt",
+      "calls": [
+        {
+          "va": "0x408c8c",
+          "target": "strtok@plt",
+          "args": {
+            "x1": ", \t"
+          }
+        },
+        {
+          "va": "0x408ca4",
+          "target": "strtok@plt",
+          "args": {
+            "x0": 0,
+            "x1": ", \t"
+          }
+        },
+        {
+          "va": "0x408cb0",
+          "target": "0x4064d0",
+          "args": {
+            "x0": 6
+          }
+        },
+        {
+          "va": "0x408d08",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sinvalid failure condition keyword%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x408d30",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x408d3c",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x408d5c",
+          "target": "strcmp@plt",
+          "args": {}
+        },
+        {
+          "va": "0x408df0",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sinvalid failure condition keyword%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x408e18",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x408e24",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x408e48",
+          "target": "__errno_location@plt",
+          "args": {}
+        },
+        {
+          "va": "0x408e5c",
+          "target": "strtoul@plt",
+          "args": {
+            "x1": 0,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x408e70",
+          "target": "__errno_location@plt",
+          "args": {
+            "x0": 4334816
+          }
+        },
+        {
+          "va": "0x408ec4",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sRESTART numeric value is invalid for rule = %s%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": 4334832,
+            "x6": ".\n"
+          }
+        },
+        {
+          "va": "0x408eec",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x408ef8",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x408f70",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%smissing failure condition keyword%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x408f98",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x408fa4",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x408fbc",
+          "target": "0x407438",
+          "args": {
+            "x0": 4335252
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_parser_handle_FAILURE_INTERVAL",
+      "va": "0x40827c",
+      "bytes": 456,
+      "trace": "traces/G6-HJL--pcd--PCD_parser_handle_FAILURE_INTERVAL.txt",
+      "calls": [
+        {
+          "va": "0x40829c",
+          "target": "__ctype_b_loc@plt",
+          "args": {
+            "x0": 1
+          }
+        },
+        {
+          "va": "0x4082f8",
+          "target": "__errno_location@plt",
+          "args": {}
+        },
+        {
+          "va": "0x40830c",
+          "target": "strtoul@plt",
+          "args": {
+            "x1": 0,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x408320",
+          "target": "__errno_location@plt",
+          "args": {
+            "x0": 4334816
+          }
+        },
+        {
+          "va": "0x408374",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sFAILURE_INTERVAL numeric value is invalid for rule = %s%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": 4334832,
+            "x6": ".\n"
+          }
+        },
+        {
+          "va": "0x40839c",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x4083a8",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x4083f4",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sFAILURE_INTERVAL is not a numeric entry for rule = %s%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": 4334832,
+            "x6": ".\n"
+          }
+        },
+        {
+          "va": "0x40841c",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x408428",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_parser_handle_FAILURE_RESET_COUNT",
+      "va": "0x408444",
+      "bytes": 456,
+      "trace": "traces/G6-HJL--pcd--PCD_parser_handle_FAILURE_RESET_COUNT.txt",
+      "calls": [
+        {
+          "va": "0x408464",
+          "target": "__ctype_b_loc@plt",
+          "args": {
+            "x0": 1
+          }
+        },
+        {
+          "va": "0x4084c0",
+          "target": "__errno_location@plt",
+          "args": {}
+        },
+        {
+          "va": "0x4084d4",
+          "target": "strtoul@plt",
+          "args": {
+            "x1": 0,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x4084e8",
+          "target": "__errno_location@plt",
+          "args": {
+            "x0": 4334816
+          }
+        },
+        {
+          "va": "0x40853c",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sFAILURE_RESET_COUNT numeric value is invalid for rule = %s%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": 4334832,
+            "x6": ".\n"
+          }
+        },
+        {
+          "va": "0x408564",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x408570",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x4085bc",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sFAILURE_RESET_COUNT is not a numeric entry for rule = %s%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": 4334832,
+            "x6": ".\n"
+          }
+        },
+        {
+          "va": "0x4085e4",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x4085f0",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_api_check_messages",
+      "va": "0x40988c",
+      "bytes": 1716,
+      "trace": "traces/G6-HJL--pcd--PCD_api_check_messages.txt",
+      "calls": [
+        {
+          "va": "0x4098a4",
+          "target": "IPC_get_msg@plt",
+          "args": {}
+        },
+        {
+          "va": "0x4098c4",
+          "target": "IPC_get_msg_context@plt",
+          "args": {}
+        },
+        {
+          "va": "0x4098e0",
+          "target": "IPC_alloc_msg@plt",
+          "args": {
+            "x1": 12
+          }
+        },
+        {
+          "va": "0x40992c",
+          "target": "snprintf@plt",
+          "args": {
+            "x1": 255,
+            "x2": "%s%sFailed to allocate memory for reply message%s",
+            "x3": "pcd: ",
+            "x4": "Error: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x409954",
+          "target": "fputs@plt",
+          "args": {}
+        },
+        {
+          "va": "0x409960",
+          "target": "PCD_errlog_log",
+          "args": {
+            "x1": 1
+          }
+        },
+        {
+          "va": "0x409968",
+          "target": "IPC_free_msg@plt",
+          "args": {}
+        },
+        {
+          "va": "0x409978",
+          "target": "IPC_get_msg@plt",
+          "args": {}
+        },
+        {
+          "va": "0x4099a8",
+          "target": "PCD_process_get_rule_by_pid",
+          "args": {}
+        },
+        {
+          "va": "0x409a1c",
+          "target": "fprintf@plt",
+          "args": {
+            "x1": "%s%sGot READY event, but cannot find an associated rule to pid %d%s",
+            "x2": "pcd: ",
+            "x3": "Warning: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x409aa4",
+          "target": "fprintf@plt",
+          "args": {
+            "x1": "%s%sGot READY event, but rule end condition is different%s",
+            "x2": "pcd: ",
+            "x3": "Warning: ",
+            "x4": ".\n"
+          }
+        },
+        {
+          "va": "0x409aec",
+          "target": "PCD_misc_reduce_net_rx_priority",
+          "args": {}
+        },
+        {
+          "va": "0x409af8",
+          "target": "PCD_misc_restore_net_rx_priority",
+          "args": {}
+        },
+        {
+          "va": "0x409b1c",
+          "target": "PCD_process_get_rule_by_pid",
+          "args": {}
+        },
+        {
+          "va": "0x409b90",
+          "target": "fprintf@plt",
+          "args": {
+            "x1": "%s%sGot PING event, but cannot find an associated rule to pid %d%s",
+            "x2": "pcd: ",
+            "x3": "Warning: ",
+            "x5": ".\n"
+          }
+        },
+        {
+          "va": "0x409bc0",
+          "target": "PCD_rulesdb_get_rule_by_id",
+          "args": {}
+        },
+        {
+          "va": "0x409c3c",
+          "target": "PCD_rulesdb_setup_optional_params",
+          "args": {}
+        },
+        {
+          "va": "0x409c44",
+          "target": "0x409638",
+          "args": {}
+        },
+        {
+          "va": "0x409c60",
+          "target": "0x4095bc",
+          "args": {
+            "x1": 0
+          }
+        },
+        {
+          "va": "0x409c84",
+          "target": "IPC_free_msg@plt",
+          "args": {}
+        },
+        {
+          "va": "0x409c9c",
+          "target": "0x4095bc",
+          "args": {
+            "x1": 0,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x409cb4",
+          "target": "0x4095bc",
+          "args": {
+            "x1": 1,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x409cd0",
+          "target": "0x409650",
+          "args": {}
+        },
+        {
+          "va": "0x409e14",
+          "target": "fprintf@plt",
+          "args": {
+            "x1": "%s%sInvalid request %d (for rule %s_%s), aborting%s",
+            "x2": "pcd: ",
+            "x3": "Warning: ",
+            "x7": ".\n"
+          }
+        },
+        {
+          "va": "0x409e98",
+          "target": "fprintf@plt",
+          "args": {
+            "x1": "%s%sRule %s_%s not found, aborting request %d%s",
+            "x2": "pcd: ",
+            "x3": "Warning: ",
+            "x7": ".\n"
+          }
+        },
+        {
+          "va": "0x409ed4",
+          "target": "IPC_reply_msg@plt",
+          "args": {}
+        },
+        {
+          "va": "0x409ee4",
+          "target": "IPC_free_msg@plt",
+          "args": {}
+        },
+        {
+          "va": "0x409ef8",
+          "target": "IPC_free_msg@plt",
+          "args": {}
+        },
+        {
+          "va": "0x409f24",
+          "target": "IPC_wait_msg@plt",
+          "args": {
+            "x2": 0
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/bin/pcd",
+      "function": "PCD_process_reboot",
+      "va": "0x40be28",
+      "bytes": 136,
+      "trace": "traces/G6-HJL--pcd--PCD_process_reboot.txt",
+      "calls": [
+        {
+          "va": "0x40be48",
+          "target": "kill@plt",
+          "args": {
+            "x0": 0,
+            "x1": 15
+          }
+        },
+        {
+          "va": "0x40be54",
+          "target": "system@plt",
+          "args": {
+            "x0": "reboot -f"
+          }
+        },
+        {
+          "va": "0x40be98",
+          "target": "write@plt",
+          "args": {
+            "x0": 2,
+            "x2": 46
+          }
+        },
+        {
+          "va": "0x40bea4",
+          "target": "exit@plt",
+          "args": {
+            "x0": 1
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/lib/libpcd.so",
+      "function": "PCD_api_reboot",
+      "va": "0x1bc4",
+      "bytes": 332,
+      "trace": "traces/G6-HJL--libpcd.so--PCD_api_reboot.txt",
+      "calls": [
+        {
+          "va": "0x1bd4",
+          "target": "getpid@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1bec",
+          "target": "memset@plt",
+          "args": {
+            "x1": 0,
+            "x2": 255
+          }
+        },
+        {
+          "va": "0x1c00",
+          "target": "sprintf@plt",
+          "args": {
+            "x1": "/proc/%d/cmdline"
+          }
+        },
+        {
+          "va": "0x1c0c",
+          "target": "open@plt",
+          "args": {
+            "x1": 0
+          }
+        },
+        {
+          "va": "0x1c30",
+          "target": "read@plt",
+          "args": {
+            "x2": 254
+          }
+        },
+        {
+          "va": "0x1c60",
+          "target": "close@plt",
+          "args": {
+            "x2": 7959953386440119612
+          }
+        },
+        {
+          "va": "0x1c98",
+          "target": "printf@plt",
+          "args": {
+            "x0": "pcd: Process %s (%d) requested system reboot.\n"
+          }
+        },
+        {
+          "va": "0x1cb4",
+          "target": "printf@plt",
+          "args": {
+            "x0": "Reboot reason:\n%s\n"
+          }
+        },
+        {
+          "va": "0x1cc4",
+          "target": "fflush@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1cdc",
+          "target": "PCD_api_find_process_id@plt",
+          "args": {
+            "x0": "/usr/sbin/pcd"
+          }
+        },
+        {
+          "va": "0x1cf8",
+          "target": "kill@plt",
+          "args": {
+            "x1": 15
+          }
+        },
+        {
+          "va": "0x1d08",
+          "target": "system@plt",
+          "args": {
+            "x0": "reboot -f"
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/lib/libpcd.so",
+      "function": "PCD_api_start_process",
+      "va": "0x1728",
+      "bytes": 40,
+      "trace": "traces/G6-HJL--libpcd.so--PCD_api_start_process.txt",
+      "calls": [
+        {
+          "va": "0x1744",
+          "target": "0x13d4",
+          "args": {
+            "x1": 0,
+            "x3": -1
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/lib/libpcd.so",
+      "function": "PCD_api_send_process_ping",
+      "va": "0x1808",
+      "bytes": 36,
+      "trace": "traces/G6-HJL--libpcd.so--PCD_api_send_process_ping.txt",
+      "calls": [
+        {
+          "va": "0x180c",
+          "target": "getpid@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1820",
+          "target": "0x13d4",
+          "args": {
+            "x0": 0,
+            "x1": 9,
+            "x2": 0
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/lib/libpcd.so",
+      "function": "PCD_api_register_exception_handlers",
+      "va": "0x1868",
+      "bytes": 568,
+      "trace": "traces/G6-HJL--libpcd.so--PCD_api_register_exception_handlers.txt",
+      "calls": [
+        {
+          "va": "0x1874",
+          "target": "getpid@plt",
+          "args": {}
+        },
+        {
+          "va": "0x18bc",
+          "target": "memset@plt",
+          "args": {
+            "x0": 77856,
+            "x1": 0,
+            "x2": 32
+          }
+        },
+        {
+          "va": "0x18d0",
+          "target": "strncpy@plt",
+          "args": {
+            "x0": 77856,
+            "x2": 31
+          }
+        },
+        {
+          "va": "0x1908",
+          "target": "sprintf@plt",
+          "args": {
+            "x0": 77920,
+            "x1": "%s/%d.maps",
+            "x2": "/tmp"
+          }
+        },
+        {
+          "va": "0x1928",
+          "target": "sprintf@plt",
+          "args": {
+            "x0": 77944,
+            "x1": "%s/%d.bt",
+            "x2": "/tmp"
+          }
+        },
+        {
+          "va": "0x1938",
+          "target": "memset@plt",
+          "args": {
+            "x1": 0,
+            "x2": 152
+          }
+        },
+        {
+          "va": "0x1964",
+          "target": "sigaction@plt",
+          "args": {
+            "x0": 2,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x1974",
+          "target": "memset@plt",
+          "args": {
+            "x1": 0,
+            "x2": 152
+          }
+        },
+        {
+          "va": "0x19a0",
+          "target": "sigaction@plt",
+          "args": {
+            "x0": 11,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x19b0",
+          "target": "memset@plt",
+          "args": {
+            "x1": 0,
+            "x2": 152
+          }
+        },
+        {
+          "va": "0x19dc",
+          "target": "sigaction@plt",
+          "args": {
+            "x0": 4,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x19ec",
+          "target": "memset@plt",
+          "args": {
+            "x1": 0,
+            "x2": 152
+          }
+        },
+        {
+          "va": "0x1a18",
+          "target": "sigaction@plt",
+          "args": {
+            "x0": 7,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x1a28",
+          "target": "memset@plt",
+          "args": {
+            "x1": 0,
+            "x2": 152
+          }
+        },
+        {
+          "va": "0x1a54",
+          "target": "sigaction@plt",
+          "args": {
+            "x0": 3,
+            "x2": 0
+          }
+        },
+        {
+          "va": "0x1a64",
+          "target": "memset@plt",
+          "args": {
+            "x1": 0,
+            "x2": 152
+          }
+        },
+        {
+          "va": "0x1a90",
+          "target": "sigaction@plt",
+          "args": {
+            "x0": 8,
+            "x2": 0
+          }
+        }
+      ]
+    },
+    {
+      "binary": "usr/lib/libpcd.so",
+      "function": "PCD_exception_default_handler",
+      "va": "0x1d10",
+      "bytes": 648,
+      "trace": "traces/G6-HJL--libpcd.so--PCD_exception_default_handler.txt",
+      "calls": [
+        {
+          "va": "0x1d7c",
+          "target": "getpid@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1da4",
+          "target": "__errno_location@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1dd0",
+          "target": "clock_gettime@plt",
+          "args": {
+            "x0": 0
+          }
+        },
+        {
+          "va": "0x1de4",
+          "target": "memset@plt",
+          "args": {
+            "x1": 0,
+            "x2": 4096
+          }
+        },
+        {
+          "va": "0x1df4",
+          "target": "do_backtrace@plt",
+          "args": {
+            "x1": 4096
+          }
+        },
+        {
+          "va": "0x1e10",
+          "target": "open@plt",
+          "args": {
+            "x0": 77944,
+            "x1": 1052737,
+            "x2": 504
+          }
+        },
+        {
+          "va": "0x1e38",
+          "target": "write@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1e40",
+          "target": "close@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1e50",
+          "target": "open@plt",
+          "args": {
+            "x0": 77896,
+            "x1": 0
+          }
+        },
+        {
+          "va": "0x1e7c",
+          "target": "open@plt",
+          "args": {
+            "x0": 77920,
+            "x1": 1052737,
+            "x2": 504
+          }
+        },
+        {
+          "va": "0x1ea8",
+          "target": "write@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1ec4",
+          "target": "read@plt",
+          "args": {
+            "x2": 512
+          }
+        },
+        {
+          "va": "0x1ee4",
+          "target": "close@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1eec",
+          "target": "close@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1f00",
+          "target": "open@plt",
+          "args": {
+            "x0": "/tmp/pcd_except",
+            "x1": 1052673
+          }
+        },
+        {
+          "va": "0x1f18",
+          "target": "exit@plt",
+          "args": {
+            "x0": 1
+          }
+        },
+        {
+          "va": "0x1f30",
+          "target": "write@plt",
+          "args": {
+            "x2": 96
+          }
+        },
+        {
+          "va": "0x1f64",
+          "target": "close@plt",
+          "args": {}
+        },
+        {
+          "va": "0x1f8c",
+          "target": "unknown",
+          "args": {}
+        },
+        {
+          "va": "0x1f94",
+          "target": "exit@plt",
+          "args": {
+            "x0": 1
+          }
+        }
+      ]
+    }
+  ]
+}

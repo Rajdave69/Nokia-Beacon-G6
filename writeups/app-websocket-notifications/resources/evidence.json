@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "scope": "Matched HJL native-code review, owner-supplied listener/hash/runtime metadata, one normal HTTP GET and one normal WebSocket upgrade/close. No live authentication attempt, password guess, nonce-mode attempt, collection start/stop, router setting change or candidate native execution.",
+  "profiles": {
+    "HJL": {
+      "buildinfo": {
+        "IMAGEVERSION": "3FE49996HJLL91",
+        "SOFTWAREVERSION": "HJL.L91p01",
+        "BUILDDATE": "20241227"
+      },
+      "files": {
+        "etc/buildinfo": {
+          "source": "private-source://PROFILE-G6-HJL/etc/buildinfo",
+          "bytes": 378,
+          "sha256": "d7b2d02c704bfb37c456c45feb401c68e6bc8840a748927e792849f3caedb09e"
+        },
+        "usr/bin/websocket": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/websocket",
+          "bytes": 22352,
+          "sha256": "389c219f7a198d83db263b2b4edb52e831c4c5591a6e651bedbecd827cef49fa"
+        },
+        "usr/lib/libwebsocket.so": {
+          "source": "private-source://PROFILE-G6-HJL/usr/lib/libwebsocket.so",
+          "bytes": 60368,
+          "sha256": "58e4c319e536c6906df98713ad9c02f64f1c2d8227ba5da0ef930514bf93fb82"
+        },
+        "usr/lib/libws_client.so": {
+          "source": "private-source://PROFILE-G6-HJL/usr/lib/libws_client.so",
+          "bytes": 9904,
+          "sha256": "caf8e20993a08311a9220f572354522472c90f5e26051ad0861e04d641008e2b"
+        },
+        "usr/bin/ddm": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/ddm",
+          "bytes": 783240,
+          "sha256": "888aea8760bde6d8194bc37cada16b5d7c2b5278d01977308fd0aeeb6595b8a5"
+        },
+        "lib/libcgi.so": {
+          "source": "private-source://PROFILE-G6-HJL/lib/libcgi.so",
+          "bytes": 161272,
+          "sha256": "d459984e507b09f9c1891853a54541d31a710e87f25f0af2801e82520682dc8c"
+        },
+        "webs/websoc_session_app.cgi": {
+          "source": "private-source://PROFILE-G6-HJL/webs/websoc_session_app.cgi",
+          "bytes": 14160,
+          "sha256": "bde76e40de92383e4bf8d4e6c4f640f6e9f723eab54c35f12f130630ea814f08"
+        },
+        "webs/websoc_session_web_app.cgi": {
+          "source": "private-source://PROFILE-G6-HJL/webs/websoc_session_web_app.cgi",
+          "bytes": 10064,
+          "sha256": "53736c29f0214320caa81e3159b206e5c40635d909a2d7f9d0a55f4fa57ca284"
+        },
+        "usr/bin/ws_cfg.conf": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/ws_cfg.conf",
+          "bytes": 69,
+          "sha256": "eeb9f1e7b743f7234fb9962a227bc188c9e1e0d4260a9abda88a727b09cc7f1f",
+          "stock_text": "TIMEOUT=30\nMAX_CONNECTIONS=5\nMAX_FAILURE_COUNT=3\nMAX_BLOCK_TIME=1800\n"
+        },
+        "usr/bin/ws_settings.dat": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/ws_settings.dat",
+          "bytes": 35,
+          "sha256": "09347b0afa8236134c8d51dfdaf1a8225b7993c1dd504adf321421d3b8ed07c3",
+          "stock_text": "1\nHost & Origin Validation : false\n"
+        },
+        "usr/bin/Hosts.dat": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/Hosts.dat",
+          "bytes": 23,
+          "sha256": "5c2c88ed15443364f3ad57fe76fa79cf188bd4ef4f1f9702776356eb9bd216c9",
+          "stock_text": "2\nlocalhost\n127.0.0.1\n\n"
+        },
+        "usr/bin/Origins.dat": {
+          "source": "private-source://PROFILE-G6-HJL/usr/bin/Origins.dat",
+          "bytes": 36,
+          "sha256": "19a29239f9402592f2aa35c7b776eb8bbbdfa47c01c05108a9abc7ccbd4fc4af",
+          "stock_text": "2\nhttp://localhost\nhttp://127.0.0.1\n"
+        },
+        "webs/web_whw/main.2a4163f300c9c8bc.js": {
+          "source": "private-source://PROFILE-G6-HJL/webs/web_whw/main.2a4163f300c9c8bc.js",
+          "bytes": 2598273,
+          "sha256": "DIGEST-WEBUI60980-SOURCE-BUNDLES-G6-HJL-MAIN-2A4163F300C9C8BC-JS"
+        }
+      }
+    }
+  },
+  "owner_observation": "owner-observations.json",
+  "protocol": {
+    "port": 8099,
+    "transport": "Plain TCP, RFC6455 WebSocket confirmed",
+    "first_client_application_frame": "Base64(username:password) as text for the normal inspected account flow, not JSON",
+    "successful_auth_text": "200 OK for ordinary password flow; not live-tested",
+    "encoded_credential_max_bytes": 199,
+    "network_post_auth_text": "echo/default -> same client; chat -> other authenticated clients, sender excluded; no router-command JSON dispatcher on traced path",
+    "local_IPC": "/tmp/wsappl, 0640; six ASCII decimal length prefix then producer text, separate from network protocol",
+    "source_functions": {
+      "Websocket": "libwebsocket.so0xb0a8",
+      "network_port_constant": "0xb10c",
+      "validate_account": "0x98b8",
+      "authenticate_client": "0xa1d0",
+      "handleClient": "0xaa30",
+      "communicate": "0x69b8",
+      "chat_multicast": "0x5f00",
+      "local_message_dispatch": "websocket0x2938",
+      "local_socket_chmod": "websocket0x2e54",
+      "publisher_send": "libws_client.so0x1248"
+    }
+  },
+  "runtime": {
+    "TIMEOUT": 30,
+    "MAX_CONNECTIONS": 5,
+    "MAX_FAILURE_COUNT": 3,
+    "MAX_BLOCK_TIME": 120,
+    "MAX_KEEP_ALIVE_TIME": 300,
+    "SERVER_IP_alias": "WS-8099-LIVE-LAN-IP"
+  },
+  "keepalive": {
+    "scope": "static native socket-option calculation",
+    "TCP_KEEPIDLE_seconds": 60,
+    "TCP_KEEPCNT": 9,
+    "TCP_KEEPINTVL_seconds_with_current_config": 26,
+    "formula": "(MAX_KEEP_ALIVE_TIME -60)/9, integer division",
+    "SO_SNDBUF_requested_bytes": 131072,
+    "TIMEOUT_semantics": "SO_RCVTIMEO during authentication; cleared after successful login",
+    "application_ping_pong": "communicate returns nonzero1003 for Ping/Pong; caller closes. Disable automatic library WebSocket pings when implementing this legacy client; no live ping test."
+  },
+  "session_control": {
+    "web_CGI": "websoc_session_web_app.cgi",
+    "commands": [
+      "Session_START{Mobile}",
+      "Session_STOP{Mobile}"
+    ],
+    "optional_start_timeout_seconds": {
+      "min": 5,
+      "max": 86400
+    },
+    "analytics_object_header_id": 625,
+    "analytics_buffer_bytes": 547,
+    "command_field_offset": 32,
+    "command_field_capacity": 513,
+    "cfg_get_set_flags": 4,
+    "mobile_app_CGI": "websoc_session_app.cgi",
+    "state_scope": "shared collection/session flags and timers, not a per-WebSocket filter",
+    "websocket_delivery_flag": "0x10",
+    "other_unix_delivery_flag": "0x100",
+    "live_invoked": false
+  },
+  "frontend_comparison": {
+    "source": "private-source://PROFILE-G6-HJL/webs/web_whw/main.2a4163f300c9c8bc.js",
+    "port": 60980,
+    "first_message_keys": [
+      "CSRFtoken",
+      "SessionID",
+      "PasswordType=3"
+    ],
+    "subscription": "Nokia.EventService / SubscribeEvents over HTTP callUBUS",
+    "relative_ubus_route": "service_function_web_app.cgi",
+    "relative_ubus_backend_present_in_selected_extracted_root": false,
+    "limits": "Both frontend reference and backend-file absence are static. No live60980 probe, route test or conclusion about runtime-generated aliases."
+  },
+  "live_checks": [
+    {
+      "test": "ordinary HTTP GET /",
+      "response_status": "HTTP/1.1 501 Not Implemented",
+      "response_bytes": 32,
+      "private_capture": {
+        "source": "private-source://WEBSOCKET-8099-ANALYSIS/live-http-get.json",
+        "bytes": 422,
+        "sha256_alias": "DIGEST-069"
+      }
+    },
+    {
+      "test": "RFC6455 upgrade then immediately masked close1000, no auth frame",
+      "response_status": "HTTP/1.1 101 Switching Protocols",
+      "accept_matches": true,
+      "post_close_frame": "text408 Request Timeout; authentication wrapper treats early nonzero return as timeout",
+      "private_capture": {
+        "source": "private-source://WEBSOCKET-8099-ANALYSIS/live-upgrade-close.json",
+        "bytes": 1036,
+        "sha256_alias": "DIGEST-071"
+      }
+    }
+  ],
+  "auth_review_limits": [
+    "Account flow compares cached username slots and delegates to loopback websoc_session_app.cgi, nal_handleUserAccount VERIFY/account/ClearText/MAPP_CGI. Linux passwd/shadow is not the traced verifier.",
+    "Reserved nonce/clientId branches exist; complete upstream session policy is unresolved. No claim of an authentication bypass or supported nonce-login client.",
+    "Do not execute websocket -d dump for routine collection: it prints cached credential material. The dump path was not run."
+  ],
+  "history_corrections": [
+    "8099 scanner OpenPegasus/WBEM guess is superseded by owner process identification and native port constant.",
+    "Live socket mode0640 matches chmod416; do not infer permissive/world-write access from existence of a chmod call.",
+    "Stock usr/bin/ws_cfg.conf uses blocktime1800; DDM-generated and live file use120.",
+    "The main WebUI bundle physically shipped here references60980/JSON auth; it is not the8099 wire client.",
+    "Next exported-symbol boundaries can include internal functions; adjacent shell/helper code is not evidence of a WebSocket command route.",
+    "Initial helper read unrelocated GOT zero as a pointer; unknown-GOT and low-address annotations were corrected. Raw instructions unchanged.",
+    "Initial assumed usr/lib/libcgi.so path was wrong; actual library is lib/libcgi.so.",
+    "Final annotation hardening restricts strings to .rodata, keeps unknown-base MOVK unknown and rejects unterminated bounded literal lookups; every unannotated instruction stream was rechecked against fresh objdump. Frontend fragment now matches exact source bounds without an added presentation newline."
+  ],
+  "private_source_references": {
+    "owner-observations.json": {
+      "source": "private-source://WEBSOCKET-8099-ANALYSIS/owner-observations.json",
+      "bytes": 476,
+      "sha256_alias": "DIGEST-067"
+    },
+    "owner-runtime.txt": {
+      "source": "private-source://WEBSOCKET-8099-ANALYSIS/owner-runtime.txt",
+      "bytes": 459,
+      "sha256_alias": "DIGEST-068"
+    },
+    "live-http-get.json": {
+      "source": "private-source://WEBSOCKET-8099-ANALYSIS/live-http-get.json",
+      "bytes": 422,
+      "sha256_alias": "DIGEST-069"
+    },
+    "live-http-get-response.bin": {
+      "source": "private-source://WEBSOCKET-8099-ANALYSIS/live-http-get-response.bin",
+      "bytes": 32,
+      "sha256_alias": "DIGEST-070"
+    },
+    "live-upgrade-close.json": {
+      "source": "private-source://WEBSOCKET-8099-ANALYSIS/live-upgrade-close.json",
+      "bytes": 1036,
+      "sha256_alias": "DIGEST-071"
+    }
+  },
+  "retained_artifacts": [
+    {
+      "file": "annotate-trace.py",
+      "bytes": 5325,
+      "sha256": "d8ee89c3a6f6849723e8a8aab6b6fc127b0909a77452816ec5254d2a0124b43a"
+    },
+    {
+      "file": "authentication-gate.txt",
+      "bytes": 17132,
+      "sha256": "e8cc7be1f8437fd4fcc430e4b5b7e0d7dde9a591e719ad59e7091cb6d3dc829b"
+    },
+    {
+      "file": "client-authentication.txt",
+      "bytes": 25288,
+      "sha256": "7427bfd7cbd74aad672d8903111eebb7d8c3d22458b003554daa194550b76a12"
+    },
+    {
+      "file": "client-handshake.txt",
+      "bytes": 52881,
+      "sha256": "ddc3afc53a22d4482ff9987328616cbd35e434e7326b5c6296a93b3cca354097"
+    },
+    {
+      "file": "client-keepalive.txt",
+      "bytes": 5212,
+      "sha256": "2f9e303db56ca3149cfb3967307846b2fc4fe12b14490c73e14f426038064c51"
+    },
+    {
+      "file": "client-loop-and-routing.txt",
+      "bytes": 20188,
+      "sha256": "159b4f422be2299e36eccb2867a7947b9799c065c167dfc9c0c6a83212b76ab1"
+    },
+    {
+      "file": "client-message-dispatch.txt",
+      "bytes": 11968,
+      "sha256": "9cfac8648d4c52f79f0d00970694f6417d3ef1672bf24a7b652dc701bf8cbdb3"
+    },
+    {
+      "file": "collect-websocket-evidence.py",
+      "bytes": 2210,
+      "sha256": "0e11f658fb9ad115d628cb31c75e5a28d1ac2da2a25b32d64fe774a7d9a11947"
+    },
+    {
+      "file": "ddm-credentials-and-config.txt",
+      "bytes": 51134,
+      "sha256": "9920f02faf86cc03e7d60eb5d08feaa3d5cc3988092ea05cce96aae4d943cb05"
+    },
+    {
+      "file": "ddm-event-builders.txt",
+      "bytes": 157448,
+      "sha256": "33d5e304a800ce69f12ad576ee8739586da7dca4d6931ecac189bb7d8c8a7cad"
+    },
+    {
+      "file": "ddm-notification-flags.txt",
+      "bytes": 6689,
+      "sha256": "4ea22cebc10d0e6f321d38b3f42bead4972c24102690e5454d356d177b8406d7"
+    },
+    {
+      "file": "ddm-session-start-stop.txt",
+      "bytes": 7465,
+      "sha256": "7d2ce90037db6b96fd618ab4b07219dc4fda86749bbb1888de18e894d6ba9dbb"
+    },
+    {
+      "file": "field-catalog.json",
+      "bytes": 11652,
+      "sha256": "3d34b17890c5db930c237a477749abb39af6886052b7187a2bb679f5b4287043"
+    },
+    {
+      "file": "frontend-event-service.txt",
+      "bytes": 2133,
+      "sha256": "DIGEST-WEBUI60980-FRAGMENTS-G6-HJL-WEBSOCKET-SERVICE-TXT"
+    },
+    {
+      "file": "http-mobile-session.txt",
+      "bytes": 27202,
+      "sha256": "34bde41006f5c5c002381e648f79ba751e576ee3286321072f0ce7ba8c6b4182"
+    },
+    {
+      "file": "http-web-session.txt",
+      "bytes": 6489,
+      "sha256": "9999e082a82ded5d35332ff663f2af71efbc226807fc8990a8ff8a173a5afda7"
+    },
+    {
+      "file": "local-notify-api.txt",
+      "bytes": 7260,
+      "sha256": "71c257a5199b3687adaa0c6376c1b809c44f38672dee727202e5b49fae80d17b"
+    },
+    {
+      "file": "local-socket-dispatch.txt",
+      "bytes": 28898,
+      "sha256": "c2bf99e1b3a5a5faba02cc0d9efda1f3fa0b2cb9e0ac7c5394e167a194300e09"
+    },
+    {
+      "file": "mesh-session-control.txt",
+      "bytes": 6255,
+      "sha256": "fdc41148611cde84e6e1d1a413b933b1781fb158c7f1cb2e19e6798b9da64ea1"
+    },
+    {
+      "file": "mesh-topology-builder.txt",
+      "bytes": 30039,
+      "sha256": "1b087d3267896e985cd9125caa1d733e410982d897121ef457e0e2e6065c2075"
+    },
+    {
+      "file": "mesh-topology-delivery.txt",
+      "bytes": 4123,
+      "sha256": "c14254b26ad755d57bfe6c2a8331f6576de36e1cfb72fe0d96614d4b0635c0a4"
+    },
+    {
+      "file": "owner-observations.json",
+      "bytes": 1702,
+      "sha256": "95f0b75888c65de69cde92219ee43e48e1be1ecd8462fbc7bb1950af93fe0451"
+    },
+    {
+      "file": "publisher-framing.txt",
+      "bytes": 5349,
+      "sha256": "a3bf705eff06816a13f2ca5ba0fc2ceb0f67500ae79af670a3b1966aee6abbe2"
+    },
+    {
+      "file": "server-and-config.txt",
+      "bytes": 12604,
+      "sha256": "3a97cb13beb2d931b537c760648c922db8ec8007a1ae3f140575e9b59ae38836"
+    },
+    {
+      "file": "text-fanout.txt",
+      "bytes": 5740,
+      "sha256": "768562c724663319e60cb7fccfff4f9dcfee85fef178ac0b24c172f95a207d23"
+    },
+    {
+      "file": "trace-index.json",
+      "bytes": 7572,
+      "sha256": "ff20370cc6b2c6cc976a1469d8c1a1692c3fa3fc6be706f4e8f98ef85dbec922"
+    },
+    {
+      "file": "validation-results.json",
+      "bytes": 767,
+      "sha256": "772c5a31d964186bf0bf5f72a079bc7e3e22cb9a3ee445219e06d3806a70c4d5"
+    }
+  ],
+  "validation": "validation-results.json",
+  "resource_directory": "project://Nokia-Beacon-G6/writeups/websocket-notifications/resources/",
+  "later_60980_followup_20261029": {
+    "record": "project://Nokia-Beacon-G6/knowledgebases/webui-event-service.md",
+    "correction": "Previous subscription description is intendedclientflow; actual POST_CSRF_FWA serializes Genericbody instead of Eventbody in all3profiles.",
+    "live": "ServedHJLassetsmatchstock;60980no listener, namedCGIabsent, Nokia.*notfound bothcheckedbrokers.",
+    "scope": "No live60980connection/auth/subscription/CGI or routerwrites. Native8099findingsunchanged."
+  }
+}

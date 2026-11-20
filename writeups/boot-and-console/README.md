@@ -1,144 +1,154 @@
-# From power-on to a shell: investigating the Beacon G6 boot chain
+# Following the Beacon G6 from power-on to a UART shell
 
-## The first surprise: UART output isn't the same as a UART console
+Why can the Beacon G6 print boot messages over UART but not give you a useful console? And when a prompt does appear, how do you know whether you are talking to the bootloader, Nokia's Linux CLI or a root shell?
 
-When I first connected to the Beacon G6's UART, I expected a familiar experience: boot messages, an opportunity to interrupt U-Boot, and eventually a Linux login prompt. Instead, the router printed some early messages and then effectively stopped talking. It was easy to suspect a wiring problem or a UART that supported output but not input.
+The answer is that **the same serial connection passes through several different stages of startup**. Each stage is a different program, with its own job and, in some cases, its own access check. A working wire can carry early boot output even when later interactive access is suppressed. Passing one prompt's check does not automatically pass the next one.
 
-The boot log pointed somewhere else. Among the messages were `serial_enable = 0`, `>>>>>>>> Serial console Disabled <<<<<<<<`, and a kernel message containing `serial_is_dis=1`. Those are software decisions, not evidence that the UART pins have disappeared. The next question was **which component made that decision, and whether the decision could be changed without replacing signed firmware**.
+This article follows that path on the Beacon G6: from the first boot messages, through the restricted Nokia and full U-Boot prompts, into Linux and its `Password2` gate. It also shows how a temporary recovery boot takes a different route to a shell. The main observations come from the examined G6 bootloaders and captured `IJL.J03p01` and `HJL.L91p01` firmware. Individual devices can differ; where a result is specific to one bootloader or a live test, that limit is noted.
 
-This document follows that investigation through the different prompts exposed by the router. It is an explanation of *why* the related tutorials work, not a set of instructions to bypass every protection in the boot chain. The observations concern the examined Beacon G6 firmware; a Beacon 1 or G6.2 may be different.
+## One cable, several programs
 
-## What is actually booting?
+UART is a serial communication interface. A terminal connected to the board can display text sent by firmware and transmit keystrokes back to it. It does not define what those keystrokes mean: the program currently controlling the interface decides that.
 
-The G6 is an embedded ARM64 system. Power-on code initializes enough hardware to load further firmware stages; the observed chain includes components identified as BL1, BL2, BL31, and BL33/U-Boot. Broadly, early stages initialize hardware and trusted execution, U-Boot chooses and boots an image, Linux initializes the platform, and Nokia's services provide networking and management. These are different programs, even though they can all print through the same UART connector.
+A simplified path through the examined G6 looks like this:
 
-A *bootloader prompt* belongs to firmware before Linux; a *routing CLI* can be a program running after Linux has booted; and `/bin/sh` is the operating system's command interpreter. The prompts that turned out to matter here were `NOKIA >`, `VENUS#`, `Cortina#`, and an ordinary shell. Recognizing which stage owns a prompt saved a great deal of confusion later.
-
-## Finding what disables the serial console
-
-I compared the boot messages with the U-Boot environment and the command line eventually passed to the kernel. Two similarly named variables stood out: `console` and `secboot`. It would be a serious mistake to treat them as interchangeable.
-
-The stock bootloader consults the `console` environment variable when deciding how to configure serial interaction. That does not require a pre-existing saved entry: both examined compiled default environments omit console, and `fw_setenv console 1` creates or updates it. An absent `fw_printenv` result is a valid unset state, not evidence that the variable is unsupported. On the examined build, enabling `console` also made Linux receive `serial_is_dis=0` instead of `serial_is_dis=1`. This explains why the UART was alive during early boot but stopped being useful later: the hardware worked, but the boot policy disabled the interactive path.
-
-From an already authorized privileged shell, the relevant read-only observations can be collected with:
-
-```sh
-fw_printenv console
-fw_printenv secboot
-cat /proc/cmdline
-cat /etc/fw_env.config
+```mermaid
+flowchart TD
+    A[Power on] --> B[Early firmware: BL1 and BL2]
+    B --> C[BL31 secure runtime and BL33 U-Boot]
+    C --> D{Interrupt autoboot?}
+    D -- Yes --> E[NOKIA > restricted prompt]
+    E -->|en authentication| F[VENUS# full U-Boot]
+    D -- No --> G[Load selected stock Linux image]
+    F -->|Boot Linux| G
+    G --> H[Linux kernel and normal init]
+    H --> I[Cortina# Nokia CLI]
+    I -->|shell and Password2 check| J[Linux shell]
+    F -->|Stock image with init=/bin/sh| K[Early PID 1 recovery shell]
 ```
 
-The environment itself was not stored in a random file under `/etc`. `/etc/fw_env.config` described two redundant copies in the NAND partition named `uboot-env` (observed as `mtd1`), at offsets `0x000000` and `0x100000`. The Linux utility `fw_setenv` knows that layout and its CRC rules; changing bytes in NAND by hand would be a different and much riskier operation.
+This is a guide to the interfaces, not a complete sequence of every firmware component. BL31 provides secure runtime services; it is not the program that asks for the U-Boot password or presents the Linux CLI. The recovery branch requires full U-Boot access and a compatible image; it was tested on a particular G6 setup, as described below.
 
-On this unit `secboot=2` was the existing provisioned setting. Inspecting the bootloader also showed a distinct `secboot=1` path which reaches OTP/hash-key provisioning and prints a warning about writing a hash key to OTP. **That is not a UART setting.** The [UART tutorial](../../tutorials/enable-uart-console/README.MD) therefore changes only `console`, checks the pre-existing `secboot` value before and after, and leaves secure-boot provisioning alone.
+| What you see                       | Stage that owns it                 | What it tells you                                                                                        |
+|------------------------------------|------------------------------------|----------------------------------------------------------------------------------------------------------|
+| Early firmware and U-Boot messages | Boot firmware, before Linux        | The serial output path works at that point. It does not prove later input or a Linux console is enabled. |
+| `NOKIA >`                          | Restricted bootloader command gate | Autoboot was interrupted and the limited Nokia prompt is available.                                      |
+| `VENUS#`                           | Full U-Boot                        | The bootloader command interface is available; Linux has not yet taken over.                             |
+| `Cortina#`                         | Nokia's CLI in Linux userspace     | Linux has started a command application, not necessarily a general-purpose shell.                        |
+| `/ #` or another shell prompt      | A Linux command interpreter        | Check the user and process context; a root shell can be reached by more than one route.                  |
 
-Note that setting `secboot=1` could cause an irreversible operation: blowing an e-Fuse, as it's documented [here on someone's Nokia Beacon 3.1](https://github.com/warber0x/NokiaBeacon3.1_Nand_Patcher/issues/1).
+Prompt text helps identify the stage, but the command and its result matter too. For example, `id -u` reports the shell's numeric user ID, while `echo $$` reports that shell's process ID. A shell running as root after normal startup and a root shell running as PID 1 have different surroundings even if their prompts look alike.
 
-The conclusion is narrow but useful: the console can be exposed through an existing configuration switch. This does **not** prove that secure boot has been defeated or that unsigned firmware will boot.
+## Early messages, then silence
 
-## The `NOKIA >` prompt was another gate, not a broken U-Boot
+When I first connected to the G6 UART, it printed early boot information and then became quiet. The log contained:
 
-With the serial path enabled and autoboot interrupted, the next surprise was a restricted prompt labeled `NOKIA >`. Typing commands normally associated with U-Boot did not work. Running `?` showed only a small set of options, including `show`, `exit`, and `en`. The `en` command asked for a password; successful authentication led to a different prompt, `VENUS#`, which was the full U-Boot command interpreter.
-
-This distinction matters: if `help`, `booti`, or another U-Boot command is unavailable at `NOKIA >`, it doesn't mean the full bootloader lacks that command. The request hasn't passed the bootloader's own authentication gate.
-
-That raised a more interesting question: what does the `en` prompt actually verify? Simply finding a function named after a bootloader password was not sufficient. There were multiple potential sources of password material in the firmware, and one was a serial-derived fallback.
-
-## Tracking the `en` verifier into `extfs`
-
-Investigation of the bootloader's verifier and the factory `SECURITY` record found that the active path on this unit reads a field named `EXT_BOOT_PWD` through the vendor `extfs` storage system. This field is a short verifier, not the plaintext that a user types.
-
-The relevant computation is SHA-256 of the candidate plaintext, standard Base64 of the 32-byte digest, and the **first twelve characters** of that encoded result. The bootloader compares the twelve-character result with `EXT_BOOT_PWD`. That also explains why reading the record did not reveal the original plaintext: a verifier is not reversible encryption.
-
-The firmware additionally contains a BLDR-key-based fallback derived using security configuration and an identity seed. I reproduced a fallback candidate during the investigation, but it did not pass the active `en` gate. The reason was not a failed hash reconstruction: on the examined unit the factory `EXT_BOOT_PWD` existed and took precedence. This is a recurring pattern in this router—**a valid implementation of a fallback algorithm does not necessarily describe the path actually used**.
-
-To inspect the storage backing the active field, first identify the partition by name instead of assuming its number:
-
-```sh
-grep '"extfs"' /proc/mtd
+```text
+serial_enable = 0
+>>>>>>>> Serial console Disabled <<<<<<<<
+...
+serial_is_dis=1
 ```
 
-On the examined NAND layout it was `mtd9`, but the verifier was a *logical record* within that partition, not a reliable raw flash offset. We used the API in `/usr/lib/libextfs.so` to read the `SECURITY` object and later built a guarded helper to change the verifier while backing up the whole record and checking the readback. See [setting the U-Boot `en` password](../../tutorials/unlock-uboot-en-console/README.MD) and [configuration and provisioning](../configuration-and-provisioning/README.md).
+Those messages point to a software-controlled serial path. Seeing early text establishes that output was working at that stage; it does not prove the wiring or terminal settings are correct for every possible problem. Here, the bootloader and kernel arguments provided a more specific explanation for the later silence.
 
-## Linux boots, and the UART changes owners again
+In the first examined G6 U-Boot, a saved environment setting named `console` influences the serial path and the kernel arguments. On that unit, setting `console=1` made the bootloader pass `serial_is_dis=0` in place of `serial_is_dis=1`, allowing the console path used in the investigation. This was my deliberate change, not evidence that the device shipped with that setting.
 
-After U-Boot starts Linux, the UART still does not necessarily lead to a normal login shell. On the analyzed firmware the visible post-boot CLI was `Cortina#`, a Quagga/vtysh-style environment providing selected networking and diagnostic commands. This is **not** the same U-Boot interface: Linux is running, and a user-space application now handles the command line.
+A U-Boot *environment* is a collection of stored bootloader settings. On the examined G6, two redundant copies are in the NAND partition named `uboot-env`, separate from the Linux firmware banks. `/etc/fw_env.config` tells Linux's environment tools where to find the copies; an absent `console` entry is a valid unset state. Both examined bootloaders omit it from their compiled default environments, even though the first has code that can consume it.
 
-The CLI exposes a `shell` command. Invoking it launches Nokia's `sec_cli`/`secmulti` security path and requests `Password2`. The name initially suggests a second stored password, but examining the verifier revealed a different design entirely.
+The two captured bootloaders are not identical. The G6-B kernel-argument builder uses a plain early-console/console string without the same `serial_is_dis` selection seen in the first bootloader. That is a measured code difference, not proof of exactly how the entire UART path behaves on G6-B: a second live UART trace was not collected. The [G6 comparison](../comparing-other-g6-routers/README.md) and [SSB evidence](../../knowledgebases/g6-ssb-comparison-evidence.json) describe the captured variants.
 
-The stock path reads `keysrc1` from `/tmp/secKeySrc.conf`, uses that exact string as the authorization message, and verifies the supplied Base64 token against the public key at `/usr/etc/ecc_pub.pem`. The public key in the examined image used the binary-field elliptic curve `sect131r2`, and the verifier hashed the message with SHA-256. The corresponding *private* signing key was not found in the runtime firmware; that absence is consistent with a support-token system in which the signing authority is held elsewhere.
+`console` must not be confused with `secboot`. The first concerns serial exposure in the examined path. A separate `secboot=1` branch reaches OTP/hash-key provisioning logic and warns about writing a hash key. On the examined unit, `secboot=2` was already provisioned. Enabling a console does not require treating `secboot` as a UART switch. The [UART console tutorial](../../tutorials/enable-uart-console/README.MD) documents the specific change, backup and verification steps.
 
-There was another format trap: the token's decoded representation was **not** the ordinary ASN.1 DER encoding emitted by OpenSSL. The reverse-engineered representation begins with a one-byte length for the ECDSA `R` value, followed by the `R` and `S` magnitudes, and is then Base64-encoded. The [UART root-shell tutorial](../../tutorials/unlock-uart-root-shell/README.MD) documents how a development unit can retain that verification design with a user-owned key pair, or replace the runtime handler for local experimentation. Those modifications should not be confused with discovering Nokia's private signing key.
+## Interrupting boot reaches a restricted prompt
 
-For a read-only check of the message source on a router you already administer:
+Once serial interaction was enabled, interrupting autoboot did not immediately expose the full U-Boot shell. The first prompt was:
 
-```sh
-cat /tmp/secKeySrc.conf
-ls -l /usr/etc/ecc_pub.pem
-command -v sec_cli
+```text
+NOKIA >
 ```
 
-## What about `ONTUSER` and `superadmin`?
+Its small command set includes `show`, `exit` and `en`. The `en` command asks for a password; a successful check leads to `VENUS#`, the full U-Boot command interpreter. If a familiar U-Boot command is unavailable at `NOKIA >`, that alone does not show that the underlying bootloader lacks it: the restricted gate is handling the command first.
 
-The Linux password database contains additional accounts. On the examined unit, both `ONTUSER` and `superadmin` had **UID 0**, although they had different home directories and login shells: `/bin/sh` for `ONTUSER`, `/usr/bin/vtysh` for `superadmin`. Their authentication hashes were ordinary Linux SHA-256-crypt entries in `/etc/shadow`, not `Password2` signature tokens or bootloader verifiers.
+These prompts occur **before Linux starts**. They are distinct from a WebUI login, an operating-system account and the later `Password2` prompt.
 
-This is why one apparently successful password change might have no effect at another prompt. A WebUI `superadmin` password, a Linux `superadmin` password, the U-Boot `en` verifier, and UART `Password2` belong to separate verification paths. The [credential map](../credential-map/README.md) and [credential investigation](../credential-reverse-engineering/README.md) show where their values came from and how we checked that they were distinct.
+### What the bootloader checks
 
-Inspect the account *metadata* without exposing the hashes:
+The examined G6 `en` verifier reads `EXT_BOOT_PWD` from the logical `SECURITY` record in `extfs` when that stored field is populated. It is a verifier, not the plaintext password:
 
-```sh
-grep -E '^(ONTUSER|superadmin):' /etc/passwd
-id
+```text
+typed candidate → SHA-256 → standard Base64 → first 12 characters
+                                             ↓
+                               compare with EXT_BOOT_PWD
 ```
 
-## Does enabling UART bypass secure boot?
+The traced gates require a twelve-byte candidate and an eight-byte identity. A stored hash-derived verifier does not reveal the original plaintext just by being read. The field belongs to a logical record accessed through Nokia's `libextfs` interface; its presence in the `extfs` partition should not be treated as a stable raw NAND offset. The [U-Boot access tutorial](../../tutorials/unlock-uboot-en-console/README.MD) explains the tested approach to setting a chosen verifier and preserving the record.
 
-No conclusion of that kind follows from this work. `console=1` affects the serial interface. Changing `EXT_BOOT_PWD` affects authentication at a U-Boot command gate. Modifying Linux account hashes affects Linux login. None of these operations, by itself, changes the image signature accepted by the bootloader.
+The verifier also has a serial-derived fallback. Reconstructing that calculation did not make it the active path on a unit with a populated `EXT_BOOT_PWD`: the stored field took precedence. That distinction explains why a correctly reconstructed fallback candidate need not open a particular device's gate.
 
-Full U-Boot on the development device can be used to load and start a custom Linux kernel through TFTP, but that observation is not a claim that every signed-stock-image verification rule was bypassed, or that persistent unsigned replacement images are accepted by the stock boot path. Those are separate questions requiring their own evidence.
+Both captured G6 bootloaders retain the stored-verifier and fallback paths. Thirty-six offline cases exercised the original verifier code with synthetic factory records and intercepted storage and SHA calls; they did not test a live login on the second unit. The examined Beacon 9 bootloader has matching normal comparison and fallback behavior in the identified paths, but also tries an RI `EXT_BOOT_PWD` after an unsuccessful or empty EXTFS lookup. These are behavior comparisons, not byte-identical bootloaders or proof of a common factory password. [Comparison evidence](../../knowledgebases/g6-ssb-comparison-evidence.json).
 
-## How I would document a different firmware version
+The saved original verifier values examined across multiple devices differ; the first G6's later modified snapshot must be kept separate from its earlier value. The ONT adds a distinct stored verifier to that comparison, but its bootloader verifier was not newly traced and no ONT UART login was tested. These observations do not recover factory plaintexts or establish how every factory password was generated. [ONT evidence](../xs2426xa-24-03-comparison/resources/writable-findings.json).
 
-I would start with the complete serial log, including the pre-kernel messages, then capture `/proc/cmdline`, `/etc/fw_env.config`, the named flash partitions, and the exact prompts reached. For a claim about authentication I would inspect the *verifier used by that prompt*, not just a similarly named function found elsewhere in a library. A second unit could retain the same prompt labels while changing the source of its credentials.
+## U-Boot loads Linux, and ownership changes
 
-The central lesson of this investigation is that the cable, the prompt, and the credential are three different things. **UART is a communications channel; `NOKIA >` is a pre-U-Boot gate; `VENUS#` is full U-Boot; `Cortina#` is a post-Linux CLI; and a Linux shell is yet another environment.** Once each owner is identified, the apparently contradictory behavior of the router starts to make sense.
+In a normal boot, U-Boot selects a firmware bank and loads its Linux **FIT** image. The FIT packages the kernel and device-tree information needed to start the system. The bootloader also passes a command line to the kernel: this is where arguments such as `serial_is_dis` can affect what happens after the handoff.
 
-## Checking a second G6
+The examined G6 has two Linux rootfs banks, separate from the shared bootloader and environment partitions. Changing a Linux bank therefore does not inherently replace U-Boot or its stored environment. An upgrade that changes shared components, boot policy or the layout is a different case; the [slot and rollback writeup](../firmware-slot-rollback/README.md) covers the bank-selection details.
 
-The [two-G6 follow-up](../comparing-other-g6-routers/README.md) confirms the same Password2 public key and ordinary keysrc1 verifier in IJL.J03/HJL.L91, with different normal per-device messages. The second live ECC public key and secmulti hashes match stock HJL.L91. The captured boot verifiers differ, but the first is the owner's `OpenWrt2026!` override; this is not a comparison of two original factory boot values.
+Once Linux starts, it mounts filesystems and launches userspace. In normal operation on the examined G6, stock squashfs is visible under `/rom`, the active root uses a runtime overlay, and persistent configuration is mounted separately under `/configs`. A temporary change in the runtime overlay and a persistent startup instruction are different things. The [storage writeup](../storage-and-flash/README.md) explains the layout and the [startup-hook investigation](../persistent-overlays/README.md) follows how persistent scripts can recreate runtime changes.
 
-The owner has now supplemented both dump directories with MTD0. Their BL2 and BL31 payloads are identical, while BL33/U-Boot and its certificate contents differ. The corresponding certificate public keys are unchanged. The two actual `en` verifiers retain the same factory-hash and serial-fallback paths;36 offline native cases pass with synthetic factory records and intercepted storage/SHA calls. This extends the first-unit trace to the supplied second bootloader, without a live gate login.
+The visible UART interface can then be Nokia's `Cortina#` CLI, a Quagga/vtysh-style userspace application. At this point Linux is already running. Commands understood by this program are not U-Boot commands, even though both programs use the same cable.
 
-The first router's `console=1` is my manual change following the UART tutorial. It lives in MTD1, not MTD0. Both first-unit environment copies have console1; both second-unit copies omit it; all four have valid CRCs and secboot2. The first U-Boot implements the console/serial_is_dis switch described above. Both compiled default environments omit console; that is separate from the code that may consume it. The second kernel-argument builder uses a plain earlycon/console string without the same serial_is_dis selection. That measured code difference does not prove console is unsupported elsewhere or predict the second router's complete UART behavior. The [SSB evidence](../../knowledgebases/g6-ssb-comparison-evidence.json) records the code addresses, component hashes and scope. No second live UART trace was collected. Both dump scripts now include MTD0 for future captures.
+## The Linux CLI's `Password2` is another kind of gate
 
-## Comparing the boot verifier with Beacon 9
+The `Cortina#` CLI offers a `shell` command. On the analyzed firmware it invokes Nokia's `sec_cli`/ `secmulti` security path and requests `Password2` before allowing the shell. Despite the name, the examined stock check is not simply a comparison with the U-Boot verifier or a Linux password hash.
 
-The normal password rule is the same in both G6 bootloaders and the examined Beacon 9 APPSBL: SHA-256 of the typed candidate, standard Base64, and the first twelve characters compared to stored `EXT_BOOT_PWD`. Both gates require a twelve-byte candidate and an eight-byte identity.
+The verifier reads the exact `keysrc1` message from `/tmp/secKeySrc.conf` and verifies a supplied Base64 token using the public key at `/usr/etc/ecc_pub.pem`. The examined key uses the binary-field elliptic curve `sect131r2`; the check uses ECDSA with SHA-256. The decoded token has the vendor's length-prefixed `R` and `S` representation rather than the ordinary ASN.1 DER format produced by a default OpenSSL signature operation.
 
-The serial fallback also uses the same embedded 32-byte constant and post-processing in all three: lowercase identity plus the XOR-decoded constant, SHA-256, Base64 filtering, character-class adjustment and padding. This is a shared fallback calculation, not a shared factory password. A populated stored verifier takes precedence.
+A public key can verify a signature without giving the device the corresponding private signing key. The stock private signing key was not found in the runtime firmware. The observed design is consistent with a separate signing authority, but it does not identify who holds that key or establish a universal support workflow.
 
-One lookup differs: Beacon 9 tries an RI `EXT_BOOT_PWD` value after an unsuccessful or empty EXTFS result; neither G6 verifier has that intervening lookup. The machine code also differs: the G6 routines are AArch64, while Beacon 9's are Thumb/Thumb-2. This comparison establishes matching behavior in the identified paths, not byte-identical bootloaders.
+The [UART root-shell tutorial](../../tutorials/unlock-uart-root-shell/README.MD) describes development-unit modifications that use a user-owned key pair or a runtime handler override. Those changes do not recover Nokia's private key, and they operate at a later stage than the `en` check.
 
-The owner-selected `OpenWrt2026!` matches the first G6 dump's stored field, and does not match the second G6 or Beacon 9 fields. None of the reconstructed serial fallback results matches it. The earlier G6 original-code tests remain valid because they use synthetic stored verifiers; this Beacon 9 comparison is based on disassembly and constant/input comparisons, without a new live login.
+### Why another password does not necessarily work here
 
-The original stored values are also different. The legacy first-unit `old/mtd_9.bin` contains two matching copies of the pre-change ASCII `EXT_BOOT_PWD`, agreeing with both its archived copy and the original value in the tutorial. It differs from the second G6 and Beacon 9 values, which differ from each other. The later first-unit clean dump remains a separate, owner-modified snapshot. This comparison concerns the original stored values, and does not recover the original plaintexts or establish a factory generation formula.
+Several credentials coexist on the device:
 
-## A fourth route: select the initial Linux process
+| Check | Consumer | Material being checked |
+| --- | --- | --- |
+| U-Boot `en` | Bootloader, before Linux | Candidate transformed and compared with the stored `EXT_BOOT_PWD` verifier, or a fallback path when applicable |
+| UART `Password2` | Linux `sec_cli`/ `secmulti` path | Signature token for the local `keysrc1` message |
+| Linux account login | Linux authentication path | The relevant account's password verifier |
+| WebUI login | Web management authentication | The WebUI account's configured credential |
 
-On 24 October 2026, the owner tested the [U-Boot recovery procedure](../../tutorials/recover-uart-root-shell-from-uboot/README.md): initialize the partition map in RAM, load the existing stock FIT from rootfs0, and boot it with init=/bin/sh. The supplied shell reported UID0/PID1. U-Boot reported successful RSA/SHA checks on the stock images. This reaches a shell before normal init/Quagga/Password2 rather than changing that verifier. It does not establish acceptance of a modified bootloader or an unsigned kernel.
+On the examined G6, `ONTUSER` and `superadmin` both had UID 0 in the Linux account database, with different login shells; their shadow entries used SHA-256-crypt. UID 0 describes their privileges after an applicable login, not a guarantee that either account can pass the UART CLI's signature check. WebUI and Linux accounts can also have different current values despite sharing a name. The [credential map](../credential-map/README.md) follows the separate consumers and [credential investigation](../credential-reverse-engineering/README.md) traces their sources.
 
-The [writeup](../uart-recovery-from-uboot/README.md) separates the live root result from untested older-bank and file-restore steps. The manual sequence must set mtdparts before using named UBI partitions; the unset-state listing command itself crashed during diagnosis. A new rootfs can still change the kernel policy or layout, so the successful known-image recovery is not a promise about arbitrary future firmware.
+## A different path: start a shell as Linux's first process
 
-## The ONT extends the original-value comparison
+The normal route through `Cortina#` is not the only way the examined G6 can start Linux. With access to full `VENUS#` U-Boot, I loaded the installed stock `HJL.L91p01` FIT from `rootfs0` and supplied `init=/bin/sh` as a temporary kernel argument. The resulting UART shell reported:
 
-The unchanged-owner Vodafone ONT factory record adds a sixth distinct original
-`EXT_BOOT_PWD` verifier alongside four G6s and Beacon 9. This compares provisioned
-values; it does not newly trace the ONT bootloader verifier or recover its
-plaintext. Both ONT images share the public Password2 verification key and
-firmware trust certificate with the Beacons. No ONT UART unlock, recovery boot,
-watchdog command or live Password2 test has been performed. [Provenance](../xs2426xa-24-03-comparison/resources/writable-findings.json).
+```text
+/ # id -u
+0
+/ # echo $$
+1
+```
 
-## Secure-boot follow-up
+That is a root shell acting as PID 1, the first Linux userspace process. The usual init chain and CLI had not run, so this route reached a shell before the normal `Password2` check. U-Boot reported successful signature and hash checks on the stock image. The result is not a demonstration that an unsigned image, modified bootloader or persistent replacement firmware is accepted.
 
-The [secure-boot writeup](../secure-boot/README.md) checks all four saved G6 SSB packages and records the fifth unit's owner-reported `ROTPK_Hash` status of `enabled`. It distinguishes the console gate, authenticated early stages, Linux FIT verification and the working external-initramfs route. The fifth status is not a serial-matched measurement of the four old captures.
+There was a practical bootloader detail: the manual sequence had to set the partition map in memory before U-Boot could find `rootfs0`. Attempting the `mtdparts` listing while its variable was unset caused an abort and reset. The [recovery writeup](../uart-recovery-from-uboot/README.md) explains that sequence and its limits; the [recovery tutorial](../../tutorials/recover-uart-root-shell-from-uboot/README.md) provides the commands.
+
+This early shell is not a normally booted router. Networking, services, the normal runtime overlay and `/configs` cannot be assumed to be ready. In a later session I mounted the configuration volume read-only, but UBIFS reported deferred recovery and the visible database pair differed from an earlier normal-boot observation. File restoration and its acceptance on a normal boot remain unverified. A delayed reset was also observed; watchdog expiry is plausible but unconfirmed, and sustained stability after the suggested watchdog-stop commands has not been established.
+
+## Console access and firmware trust answer different questions
+
+The serial switch, `en` gate, `Password2` verifier and signed boot chain are separate controls:
+
+- The serial setting affects whether the boot path exposes console interaction.
+- `en` determines whether the restricted bootloader prompt releases full U-Boot.
+- `Password2` is checked by a Linux userspace security path during the normal CLI route.
+- Image verification concerns whether an image is accepted under the applicable boot policy.
+
+Changing one does not by itself settle the others. The G6's early boot chain includes BL1, BL2, BL31 and BL33/U-Boot; saved packages and certificates provide evidence about later-stage authentication. A fifth G6 separately reported its root-key status as enabled. That status is not a serial-matched measurement of each earlier capture, and the first-stage BL1 binary was not recovered for direct analysis. The [secure-boot investigation](../secure-boot/README.md) separates those observations from the stock FIT checks and other boot experiments.
+
+When investigating another unit, record the model and build, the complete boot log, which prompt appears, the kernel command line and whether the environment values are saved or unset. Then identify the program receiving the command before interpreting a password failure or missing output. The [boot and console knowledgebase](../../knowledgebases/boot-and-console.md) retains the historical trace and the [research state](../../knowledgebases/research-state.json) records later corrections.

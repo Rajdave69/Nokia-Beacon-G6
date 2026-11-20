@@ -1,0 +1,201 @@
+
+PCD_rulesdb_add_rule:
+0040c054: ff0305d1  sub sp, sp, #0x140
+0040c058: fe0300f9  str x30, [sp]
+0040c05c: e00f00f9  str x0, [sp, #0x18]
+0040c060: a00000d0  adrp x0, #0x422000
+0040c064: 00801d91  add x0, x0, #0x760
+0040c068: 000040f9  ldr x0, [x0]
+0040c06c: e09f00f9  str x0, [sp, #0x138]
+0040c070: e00f40f9  ldr x0, [sp, #0x18]
+0040c074: 1f0000f1  cmp x0, #0
+0040c078: 61000054  b.ne #0x40c084
+0040c07c: 00008012  mov w0, #-1
+0040c080: b9000014  b #0x40c364
+0040c084: 004c80d2  mov x0, #0x260
+0040c088: 8adcff97  bl #0x4032b0 ; heuristic malloc@plt {"x0": 608}
+0040c08c: e09700f9  str x0, [sp, #0x128]
+0040c090: e09740f9  ldr x0, [sp, #0x128]
+0040c094: 1f0000f1  cmp x0, #0
+0040c098: e1030054  b.ne #0x40c114
+0040c09c: 000000f0  adrp x0, #0x40f000
+0040c0a0: 04c02691  add x4, x0, #0x9b0
+0040c0a4: 000000f0  adrp x0, #0x40f000
+0040c0a8: 03e02691  add x3, x0, #0x9b8
+0040c0ac: 000000f0  adrp x0, #0x40f000
+0040c0b0: 02002791  add x2, x0, #0x9c0
+0040c0b4: 000000f0  adrp x0, #0x40f000
+0040c0b8: 01002891  add x1, x0, #0xa00
+0040c0bc: e0a30091  add x0, sp, #0x28
+0040c0c0: e50304aa  mov x5, x4
+0040c0c4: e40303aa  mov x4, x3
+0040c0c8: e30302aa  mov x3, x2
+0040c0cc: e20301aa  mov x2, x1
+0040c0d0: e11f80d2  mov x1, #0xff
+0040c0d4: 5bdcff97  bl #0x403240 ; heuristic snprintf@plt {"x1": 255, "x2": "%s%sfailed to allocate memory%s", "x3": "pcd: ", "x4": "Error: ", "x5": ".\n"}
+0040c0d8: a00000b0  adrp x0, #0x421000
+0040c0dc: 00d847f9  ldr x0, [x0, #0xfb0]
+0040c0e0: 000040b9  ldr w0, [x0]
+0040c0e4: 1f000071  cmp w0, #0
+0040c0e8: c0000054  b.eq #0x40c100
+0040c0ec: a00000b0  adrp x0, #0x421000
+0040c0f0: 00d047f9  ldr x0, [x0, #0xfa0]
+0040c0f4: 010040f9  ldr x1, [x0]
+0040c0f8: e0a30091  add x0, sp, #0x28
+0040c0fc: 15dcff97  bl #0x403150 ; heuristic fputs@plt {}
+0040c100: e0a30091  add x0, sp, #0x28
+0040c104: 21008052  mov w1, #1
+0040c108: cddfff97  bl #0x40403c ; heuristic PCD_errlog_log {"x1": 1}
+0040c10c: 00008012  mov w0, #-1
+0040c110: 95000014  b #0x40c364
+0040c114: 024c80d2  mov x2, #0x260
+0040c118: e10f40f9  ldr x1, [sp, #0x18]
+0040c11c: e09740f9  ldr x0, [sp, #0x128]
+0040c120: f4dbff97  bl #0x4030f0 ; heuristic memcpy@plt {"x2": 608}
+0040c124: 14000014  b #0x40c174
+0040c128: e09f40f9  ldr x0, [sp, #0x138]
+0040c12c: 000040f9  ldr x0, [x0]
+0040c130: e19740f9  ldr x1, [sp, #0x128]
+0040c134: cbdcff97  bl #0x403460 ; heuristic strcmp@plt {}
+0040c138: 1f000071  cmp w0, #0
+0040c13c: 61010054  b.ne #0x40c168
+0040c140: e19740f9  ldr x1, [sp, #0x128]
+0040c144: e09f40f9  ldr x0, [sp, #0x138]
+0040c148: 5affff97  bl #0x40beb0 ; heuristic 0x40beb0 {}
+0040c14c: 1f040031  cmn w0, #1
+0040c150: 81000054  b.ne #0x40c160
+0040c154: e09740f9  ldr x0, [sp, #0x128]
+0040c158: d2dcff97  bl #0x4034a0 ; heuristic free@plt {}
+0040c15c: ff9700f9  str xzr, [sp, #0x128]
+0040c160: 00008052  mov w0, #0
+0040c164: 80000014  b #0x40c364
+0040c168: e09f40f9  ldr x0, [sp, #0x138]
+0040c16c: 000840f9  ldr x0, [x0, #0x10]
+0040c170: e09f00f9  str x0, [sp, #0x138]
+0040c174: e09f40f9  ldr x0, [sp, #0x138]
+0040c178: 1f0000f1  cmp x0, #0
+0040c17c: 61fdff54  b.ne #0x40c128
+0040c180: e09f40f9  ldr x0, [sp, #0x138]
+0040c184: 1f0000f1  cmp x0, #0
+0040c188: c10e0054  b.ne #0x40c360
+0040c18c: 000380d2  mov x0, #0x18
+0040c190: 48dcff97  bl #0x4032b0 ; heuristic malloc@plt {"x0": 24}
+0040c194: e09f00f9  str x0, [sp, #0x138]
+0040c198: e09f40f9  ldr x0, [sp, #0x138]
+0040c19c: 1f0000f1  cmp x0, #0
+0040c1a0: 21040054  b.ne #0x40c224
+0040c1a4: e09740f9  ldr x0, [sp, #0x128]
+0040c1a8: bedcff97  bl #0x4034a0 ; heuristic free@plt {}
+0040c1ac: 000000f0  adrp x0, #0x40f000
+0040c1b0: 04c02691  add x4, x0, #0x9b0
+0040c1b4: 000000f0  adrp x0, #0x40f000
+0040c1b8: 03e02691  add x3, x0, #0x9b8
+0040c1bc: 000000f0  adrp x0, #0x40f000
+0040c1c0: 02002791  add x2, x0, #0x9c0
+0040c1c4: 000000f0  adrp x0, #0x40f000
+0040c1c8: 01002891  add x1, x0, #0xa00
+0040c1cc: e0a30091  add x0, sp, #0x28
+0040c1d0: e50304aa  mov x5, x4
+0040c1d4: e40303aa  mov x4, x3
+0040c1d8: e30302aa  mov x3, x2
+0040c1dc: e20301aa  mov x2, x1
+0040c1e0: e11f80d2  mov x1, #0xff
+0040c1e4: 17dcff97  bl #0x403240 ; heuristic snprintf@plt {"x1": 255, "x2": "%s%sfailed to allocate memory%s", "x3": "pcd: ", "x4": "Error: ", "x5": ".\n"}
+0040c1e8: a00000b0  adrp x0, #0x421000
+0040c1ec: 00d847f9  ldr x0, [x0, #0xfb0]
+0040c1f0: 000040b9  ldr w0, [x0]
+0040c1f4: 1f000071  cmp w0, #0
+0040c1f8: c0000054  b.eq #0x40c210
+0040c1fc: a00000b0  adrp x0, #0x421000
+0040c200: 00d047f9  ldr x0, [x0, #0xfa0]
+0040c204: 010040f9  ldr x1, [x0]
+0040c208: e0a30091  add x0, sp, #0x28
+0040c20c: d1dbff97  bl #0x403150 ; heuristic fputs@plt {}
+0040c210: e0a30091  add x0, sp, #0x28
+0040c214: 21008052  mov w1, #1
+0040c218: 89dfff97  bl #0x40403c ; heuristic PCD_errlog_log {"x1": 1}
+0040c21c: 00008012  mov w0, #-1
+0040c220: 51000014  b #0x40c364
+0040c224: e09740f9  ldr x0, [sp, #0x128]
+0040c228: c6dbff97  bl #0x403140 ; heuristic strlen@plt {}
+0040c22c: 00040091  add x0, x0, #1
+0040c230: 20dcff97  bl #0x4032b0 ; heuristic malloc@plt {}
+0040c234: e10300aa  mov x1, x0
+0040c238: e09f40f9  ldr x0, [sp, #0x138]
+0040c23c: 010000f9  str x1, [x0]
+0040c240: e09f40f9  ldr x0, [sp, #0x138]
+0040c244: 000040f9  ldr x0, [x0]
+0040c248: 1f0000f1  cmp x0, #0
+0040c24c: 61040054  b.ne #0x40c2d8
+0040c250: e09740f9  ldr x0, [sp, #0x128]
+0040c254: 93dcff97  bl #0x4034a0 ; heuristic free@plt {}
+0040c258: e09f40f9  ldr x0, [sp, #0x138]
+0040c25c: 91dcff97  bl #0x4034a0 ; heuristic free@plt {}
+0040c260: 000000f0  adrp x0, #0x40f000
+0040c264: 04c02691  add x4, x0, #0x9b0
+0040c268: 000000f0  adrp x0, #0x40f000
+0040c26c: 03e02691  add x3, x0, #0x9b8
+0040c270: 000000f0  adrp x0, #0x40f000
+0040c274: 02002791  add x2, x0, #0x9c0
+0040c278: 000000f0  adrp x0, #0x40f000
+0040c27c: 01002891  add x1, x0, #0xa00
+0040c280: e0a30091  add x0, sp, #0x28
+0040c284: e50304aa  mov x5, x4
+0040c288: e40303aa  mov x4, x3
+0040c28c: e30302aa  mov x3, x2
+0040c290: e20301aa  mov x2, x1
+0040c294: e11f80d2  mov x1, #0xff
+0040c298: eadbff97  bl #0x403240 ; heuristic snprintf@plt {"x1": 255, "x2": "%s%sfailed to allocate memory%s", "x3": "pcd: ", "x4": "Error: ", "x5": ".\n"}
+0040c29c: a00000b0  adrp x0, #0x421000
+0040c2a0: 00d847f9  ldr x0, [x0, #0xfb0]
+0040c2a4: 000040b9  ldr w0, [x0]
+0040c2a8: 1f000071  cmp w0, #0
+0040c2ac: c0000054  b.eq #0x40c2c4
+0040c2b0: a00000b0  adrp x0, #0x421000
+0040c2b4: 00d047f9  ldr x0, [x0, #0xfa0]
+0040c2b8: 010040f9  ldr x1, [x0]
+0040c2bc: e0a30091  add x0, sp, #0x28
+0040c2c0: a4dbff97  bl #0x403150 ; heuristic fputs@plt {}
+0040c2c4: e0a30091  add x0, sp, #0x28
+0040c2c8: 21008052  mov w1, #1
+0040c2cc: 5cdfff97  bl #0x40403c ; heuristic PCD_errlog_log {"x1": 1}
+0040c2d0: 00008012  mov w0, #-1
+0040c2d4: 24000014  b #0x40c364
+0040c2d8: e09f40f9  ldr x0, [sp, #0x138]
+0040c2dc: 000040f9  ldr x0, [x0]
+0040c2e0: e19740f9  ldr x1, [sp, #0x128]
+0040c2e4: 8bdcff97  bl #0x403510 ; heuristic strcpy@plt {}
+0040c2e8: e09f40f9  ldr x0, [sp, #0x138]
+0040c2ec: e19740f9  ldr x1, [sp, #0x128]
+0040c2f0: 010400f9  str x1, [x0, #8]
+0040c2f4: e09f40f9  ldr x0, [sp, #0x138]
+0040c2f8: 1f0800f9  str xzr, [x0, #0x10]
+0040c2fc: a00000d0  adrp x0, #0x422000
+0040c300: 00801d91  add x0, x0, #0x760
+0040c304: 000040f9  ldr x0, [x0]
+0040c308: 1f0000f1  cmp x0, #0
+0040c30c: c1000054  b.ne #0x40c324
+0040c310: a00000d0  adrp x0, #0x422000
+0040c314: 00801d91  add x0, x0, #0x760
+0040c318: e19f40f9  ldr x1, [sp, #0x138]
+0040c31c: 010000f9  str x1, [x0]
+0040c320: 10000014  b #0x40c360
+0040c324: a00000d0  adrp x0, #0x422000
+0040c328: 00801d91  add x0, x0, #0x760
+0040c32c: 000040f9  ldr x0, [x0]
+0040c330: e09b00f9  str x0, [sp, #0x130]
+0040c334: 04000014  b #0x40c344
+0040c338: e09b40f9  ldr x0, [sp, #0x130]
+0040c33c: 000840f9  ldr x0, [x0, #0x10]
+0040c340: e09b00f9  str x0, [sp, #0x130]
+0040c344: e09b40f9  ldr x0, [sp, #0x130]
+0040c348: 000840f9  ldr x0, [x0, #0x10]
+0040c34c: 1f0000f1  cmp x0, #0
+0040c350: 41ffff54  b.ne #0x40c338
+0040c354: e09b40f9  ldr x0, [sp, #0x130]
+0040c358: e19f40f9  ldr x1, [sp, #0x138]
+0040c35c: 010800f9  str x1, [x0, #0x10]
+0040c360: 00008052  mov w0, #0
+0040c364: fe0340f9  ldr x30, [sp]
+0040c368: ff030591  add sp, sp, #0x140
+0040c36c: c0035fd6  ret 

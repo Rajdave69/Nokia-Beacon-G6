@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-28",
+  "model": "Beacon G6",
+  "physical_device_alias": "Not supplied; do not assign G6-A/B/C/D",
+  "listener": {
+    "address_alias": "WS-8099-LIVE-LAN-IP",
+    "port": 8099,
+    "process": "websocket",
+    "bind_scope": "Specific LAN IPv4, not wildcard"
+  },
+  "buildinfo": {
+    "IMAGEVERSION": "3FE49996HJLL91",
+    "SOFTWAREVERSION": "HJL.L91p01",
+    "BUILDDATE": "20241227"
+  },
+  "binary_sha256": {
+    "usr/bin/websocket": "389c219f7a198d83db263b2b4edb52e831c4c5591a6e651bedbecd827cef49fa",
+    "usr/lib/libwebsocket.so": "58e4c319e536c6906df98713ad9c02f64f1c2d8227ba5da0ef930514bf93fb82"
+  },
+  "dump_hashes_match_live_owner_hashes": true,
+  "runtime_config": {
+    "TIMEOUT": 30,
+    "MAX_CONNECTIONS": 5,
+    "MAX_FAILURE_COUNT": 3,
+    "MAX_BLOCK_TIME": 120,
+    "MAX_KEEP_ALIVE_TIME": 300,
+    "SERVER_IP_alias": "WS-8099-LIVE-LAN-IP"
+  },
+  "files": {
+    "/tmp/wsappl": {
+      "type": "AF_UNIX socket",
+      "mode": "0640",
+      "owner_display": "appServi",
+      "group_display": "appServi"
+    },
+    "/flash/ws_settings.dat": {
+      "type": "regular",
+      "bytes": 0,
+      "mode": "0644"
+    },
+    "/tmp/ws_hosts.dat": {
+      "type": "regular",
+      "bytes": 0,
+      "mode": "0644"
+    },
+    "/tmp/ws_origins.dat": {
+      "observation": "Not listed; stderr suppressed, so do not infer a precise failure reason."
+    }
+  },
+  "private_sources": [
+    {
+      "source": "private-source://WEBSOCKET-8099-ANALYSIS/owner-observations.json",
+      "bytes": 476,
+      "sha256_alias": "DIGEST-067"
+    },
+    {
+      "source": "private-source://WEBSOCKET-8099-ANALYSIS/owner-runtime.txt",
+      "bytes": 459,
+      "sha256_alias": "DIGEST-068"
+    }
+  ]
+}

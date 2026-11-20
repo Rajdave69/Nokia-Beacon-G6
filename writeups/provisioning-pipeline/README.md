@@ -1,8 +1,16 @@
 # Putting the Beacon G6 provisioning files together
 
-Device references use the [shared aliases](../README.md#device-aliases). Per-device source references, key-input values and service fingerprints in the accompanying resources are aliases; the private mapping is not published.
+How does a router turn factory identity and an operator's instructions into
+the settings used by its management services? The captured Beacon G6 files
+show several parts of that path, from a common operator recipe to settings
+retained by the router. They also show why finding a recipe is not the same as
+proving that a router applied it or connected to an operator's server.
 
-The files named `ENC_CFGBOQA112` and `ENC_CFGBOQA114.org` are now readable.
+Device references use the [shared aliases](../README.md#device-aliases). Per-device source 
+references, key-input values and service fingerprints in the accompanying resources are 
+aliases; the private mapping is not published.
+
+The files named `ENC_CFGBOQA112` and `ENC_CFGBOQA114.org` contain encrypted operator recipes.
 They contain operator configuration, rather than another firmware image.
 The most useful result is that all six captured 114 copies decrypt to exactly
 the same 7,564-byte text across four G6s. Their different ciphertext had hidden
@@ -18,20 +26,54 @@ All work here was offline. The original G6 cryptographic API was checked under
 QEMU; no provisioning handler, import, reset, daemon start, firmware boot,
 router command or external server request was performed.
 
+## What provisioning means
+
+Provisioning is the process of preparing a device with the identity, settings
+and service information it needs for its intended environment. A firmware
+image supplies the software the router can run; provisioning supplies or
+selects configuration for that software. For example, an operator can use a
+common set of instructions to configure a management service while each
+router contributes its own identity and credentials.
+
+In general, provisioning can draw on values written at manufacture, defaults
+packaged with firmware, and configuration supplied by an operator. A device
+or its management software reads those inputs, selects or expands relevant
+values, and writes settings for services to use. This can happen during
+initial setup or when configuration is rebuilt or changed later. The exact
+delivery and application sequence depends on the product and situation; it
+should not be assumed from this general description.
+
+On the G6, these inputs and results are spread across several places. The RI
+partitions hold device identity; factory `SECURITY` material holds protected
+values; packaged definitions describe available settings and defaults; and
+operator recipes request particular values. The router's configuration
+databases and service-specific stores can then hold settings separately from
+those original inputs. A saved value may be retained even when a service is
+disabled, and a requested value does not by itself prove it was applied.
+
+The recipe examined here concerns remote management. The **data model** is
+the organized set of named parameters used to represent device settings and
+state. TR-181 describes such parameters, while USP (TR-369) is a protocol for
+managing devices; the captured recipe configures a USP agent to use MQTT, a
+messaging protocol, over TLS. An agent can be configured with a broker and a
+controller without a saved file showing whether a connection succeeded. For
+the wider relationship between configuration and services, see
+[firmware architecture](../firmware-architecture/README.md).
+
 ## What provisioning material we actually have
 
-| Material | What it supplies | What it does not establish |
-| --- | --- | --- |
-| RI partitions | Serial, operator, country, label code, programming date and hardware identity | Current management settings or a complete factory password generator |
-| `extfs` / `SECURITY` | Factory password verifiers, protected variable fields and Wi-Fi material; Beacon 9 also has `EXT_KEY_FW` | Plaintext for every field or one interchangeable device key |
-| Packaged data-model definitions and `preconfiguration_global.xml` | Schema defaults and operator-specific rules, including factory-versus-generated account choices | Which mutable values are current after later provisioning |
-| `sec.key`, `se.conf` and runtime security databases | Packaged keys and runtime key sources used by particular consumers | A single encryption scheme for all files |
-| `ENC_CFGBOQA112` / `114.org` | Captured operator parameter recipes stored by Zeroman | A Linux image, a device-specific plaintext password, or proof of the delivery channel |
-| `cfg_update_remote_encryption.kv` and availability markers | A retained remote-update parameter file and loader bookkeeping | Whole-file encryption merely because of the filename |
-| `usp.db`, TR-069 transport files and the binary configuration DB | Separate persisted settings/state for the configuration and management layers | That a configured agent is currently connected or enabled |
-| HTTP/SSH keys and certificate provisioning paths | Service identity and locally protected certificate/key files | Nokia's firmware-signing or Password2 private authority keys |
-| `default_scfg.txt` / `scfg.txt` | ASIC and board startup defaults plus customization | Another copy of the operator's full InternetGatewayDevice database |
-| `/opt/.backup/configs` and preservation policy | Retained settings, overlay and key copies on examined G6s | Another firmware bank or an atomic rollback of all router state |
+| Material                                                          | What it supplies                                                                                         | What it does not establish                                                            |
+|-------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| RI partitions                                                     | Serial, operator, country, label code, programming date and hardware identity                            | Current management settings or a complete factory password generator                  |
+| `extfs` / `SECURITY`                                              | Factory password verifiers, protected variable fields and Wi-Fi material; Beacon 9 also has `EXT_KEY_FW` | Plaintext for every field or one interchangeable device key                           |
+| Packaged data-model definitions and `preconfiguration_global.xml` | Schema defaults and operator-specific rules, including factory-versus-generated account choices          | Which mutable values are current after later provisioning                             |
+| `sec.key`, `se.conf` and runtime security databases               | Packaged keys and runtime key sources used by particular consumers                                       | A single encryption scheme for all files                                              |
+| `ENC_CFGBOQA112` / `114.org`                                      | Captured operator parameter recipes stored by Zeroman                                                    | A Linux image, a device-specific plaintext password, or proof of the delivery channel |
+| `cfg_update_remote_encryption.kv` and availability markers        | A retained remote-update parameter file and loader bookkeeping                                           | Whole-file encryption merely because of the filename                                  |
+| `usp.db`, TR-069 transport files and the binary configuration DB  | Separate persisted settings/state for the configuration and management layers                            | That a configured agent is currently connected or enabled                             |
+| HTTP/SSH keys and certificate provisioning paths                  | Service identity and locally protected certificate/key files                                             | Nokia's firmware-signing or Password2 private authority keys                          |
+| `default_scfg.txt` / `scfg.txt`                                   | ASIC and board startup defaults plus customization                                                       | Another copy of the operator's full InternetGatewayDevice database                    |
+| `/opt/.backup/configs` and preservation policy                    | Retained settings, overlay and key copies on examined G6s                                                | Another firmware bank or an atomic rollback of all router state                       |
 
 There are also supported provisioning types in the code for XML, PRE, GFT,
 WEB, CFP, VDR, CFG, CRT and DBG payloads. Those references describe capabilities;
@@ -65,10 +107,17 @@ router replays every step on each boot. Existing databases, migration results,
 availability markers, immediate-versus-deferred application and reset paths
 change which branches run.
 
+Read the diagram as two related sources of settings: factory identity and
+packaged defaults can contribute to an initial or rebuilt configuration, while
+a configuration bundle can provide a recipe for later settings. Zeroman is
+the firmware component whose traced file handling stores and reads the local
+encrypted recipe. The legacy data-model path and the USP setter lead to
+different stores, which services can then consume. The diagram shows these
+relationships, not a measured end-to-end run.
+
 Factory data is a source. The current data model and Linux account database
 are destinations with their own writers. For example, the BOQA
-`KeepLablePassword` path selects factory WebUI verifiers, while the G6's
-ordinary ONTUSER creator uses the already documented version-derived generator.
+`KeepLablePassword` path selects factory WebUI verifiers.
 The Beacon 9 retains related schema but its normal dedicated creator is a
 no-op. A provisioning flag does not override the need for consuming code.
 
@@ -76,6 +125,12 @@ The old `cfg/se.conf` label `3TN00121LJJJ37` remains configuration/security
 metadata. It is not a newly recovered complete firmware image.
 
 ## What the ENC layer encrypts
+
+The `ENC_` files are local protected copies of configuration recipes. Encryption
+explains why copies with different bytes can contain the same instructions;
+it does not establish where the original bundle came from or whether its
+instructions ran. The following details identify the G6 file format and the
+offline checks that recovered its contents.
 
 G6 `libzeroman.so` explicitly requests `key10`, then calls
 `SE_aesGcmDeFile()` to read the local `ENC_` copy. The writer extracts a
@@ -97,11 +152,11 @@ The captured samples validate `effective_source5 = b"invalid_key_src5_str"`.
 The serial retains its lowercase RI spelling. This is the same derived key10
 already verified against their stored databases, with a different file wrapper:
 
-| File | Wrapper | Cryptographic input |
-| --- | --- | --- |
-| Zeroman `ENC_…` | `salt4 | GCM tag16 | ciphertext`, no WebUI header | key10's 64 returned ASCII bytes |
-| Stored `dmdb_encryption.cfg` | Header magic `0x124126`, then salted CBC container | key10, with the stored-file CBC rules |
-| WebUI exported `.cfg` | Header magic `0x123123`, then GCM payload | SHA-512 composition of serial, key7_2, applicable key18 fragment, operator and mnemonic |
+| File                         | Wrapper                                            | Cryptographic input                                                                     |
+|------------------------------|----------------------------------------------------|-----------------------------------------------------------------------------------------|
+| Zeroman `ENC_…`              | `salt4                                             | GCM tag16                                                                               | ciphertext`, no WebUI header | key10's 64 returned ASCII bytes |
+| Stored `dmdb_encryption.cfg` | Header magic `0x124126`, then salted CBC container | key10, with the stored-file CBC rules                                                   |
+| WebUI exported `.cfg`        | Header magic `0x123123`, then GCM payload          | SHA-512 composition of serial, key7_2, applicable key18 fragment, operator and mnemonic |
 
 Zeroman derives 44 bytes with PBKDF2-HMAC-SHA256, its four-byte file salt and
 10 iterations. The split is AES key32/IV12. It uses the same examined fixed
@@ -124,6 +179,10 @@ recipe is shared plaintext; key10 is not thereby a shared per-device key.
 This does not turn an ENC file into a valid ordinary WebUI import.
 
 ## What 114 actually asks the router to configure
+
+The decoded file is a list of parameter assignments, with metadata telling the
+loader how to handle the following section. It is useful to read it as a
+request for configuration, not as a snapshot of the router's current state.
 
 The file starts with `#!file_type=cfg_update_remote`. Its active metadata is
 `$version=0.0.1`, `$no_rts_called=0`, `$if_reboot=1` and `$usp=1`.
@@ -160,12 +219,12 @@ alongside a semantic view; these JSON reports are not upload files.
 
 The HJL `restoreRemoteCfg()` path resolves these placeholders:
 
-| Token | Traced successful-source behavior |
-| --- | --- |
-| `%M` | RI MAC address formatted with hyphens and uppercase letters |
-| `%U` | The same formatted MAC string; used for this profile's MQTT username |
-| `%P` | Default Wi-Fi credential obtained through the selected preconfiguration's WLAN1 PreSharedKey accessor |
-| `%S` | `ALCL` followed by the uppercase RI serial suffix; supported by the helper |
+| Token | Traced successful-source behavior                                                                     |
+|-------|-------------------------------------------------------------------------------------------------------|
+| `%M`  | RI MAC address formatted with hyphens and uppercase letters                                           |
+| `%U`  | The same formatted MAC string; used for this profile's MQTT username                                  |
+| `%P`  | Default Wi-Fi credential obtained through the selected preconfiguration's WLAN1 PreSharedKey accessor |
+| `%S`  | `ALCL` followed by the uppercase RI serial suffix; supported by the helper                            |
 
 Thus the common recipe can be identical while the broker credentials and
 per-device topics differ. There is no literal universal MQTT password in these
@@ -179,15 +238,15 @@ the provisioning callback. No credential was sent to a server.
 
 ## What changed between the packages named 112 and 114
 
-| Setting | 112 | 114 |
-| --- | --- | --- |
-| Total active assignments, including metadata | 97 | 99 |
-| MQTT ConnectRetryTime | 5 seconds | 120 seconds |
-| MQTT ConnectRetryMaxInterval | 120 seconds | 7,200 seconds |
-| Boot parameter entries | 17 | 15 |
-| MQTT PublishQoS | Not explicitly assigned | 1 |
-| MQTT CleanStart / RequestResponseInfo | Not explicitly assigned | Both true |
-| USP notification retry / expiry fields | Not explicitly assigned | Added |
+| Setting                                      | 112                     | 114           |
+|----------------------------------------------|-------------------------|---------------|
+| Total active assignments, including metadata | 97                      | 99            |
+| MQTT ConnectRetryTime                        | 5 seconds               | 120 seconds   |
+| MQTT ConnectRetryMaxInterval                 | 120 seconds             | 7,200 seconds |
+| Boot parameter entries                       | 17                      | 15            |
+| MQTT PublishQoS                              | Not explicitly assigned | 1             |
+| MQTT CleanStart / RequestResponseInfo        | Not explicitly assigned | Both true     |
+| USP notification retry / expiry fields       | Not explicitly assigned | Added         |
 
 The later-named file adds explicit ProvisioningCode and USP notification retry
 settings. Its boot list drops FriendlyName, ControllerCode and ProvisioningCode,
@@ -223,16 +282,20 @@ configuration-bank state. They are separate from rootfs0/rootfs1 and U-Boot's
 
 ## Which settings survived into agent storage
 
+To look beyond the recipe, we can inspect the agent's saved database for
+specific values. Finding those values connects the recipe to retained state,
+but the captures alone do not show when or how each value was written.
+
 The saved USP SQLite `data_model` tables contain hashed keys, instance strings
 and values. Exact broker/controller value witnesses were found as follows:
 
 | Captured store | Rows | Ooredoo broker and Nokia controller values present |
-| --- | --- | --- |
-| `G6-A` | 691 | No |
-| `G6-B` | 698 | Yes |
-| `G6-C` | 689 | Yes |
-| `G6-D` | 102 | Yes |
-| Beacon 9 | 717 | Yes |
+|----------------|------|----------------------------------------------------|
+| `G6-A`         | 691  | No                                                 |
+| `G6-B`         | 698  | Yes                                                |
+| `G6-C`         | 689  | Yes                                                |
+| `G6-D`         | 102  | Yes                                                |
+| Beacon 9       | 717  | Yes                                                |
 
 These are saved-state witnesses, not a complete reverse mapping of every
 hashed URI or a live authentication test. The first G6's different retained
@@ -267,6 +330,8 @@ The hardware `default_scfg.txt` and overriding `scfg.txt` are another distinct
 layer: their comments and entries describe ASIC/board startup values. They
 should not be mistaken for operator parameter recipes simply because they
 also contain the word configuration.
+
+The [physical reset handler](../factory-reset/README.md) explains why these inputs can survive while the live database disappears. A normal G6 reset retains the union of the normal and deep preserve lists, skips hidden top-level entries, and leaves most of `opt/.backup`. Beacon 9 clears its separate backup area. Deep reset removes operator material on the normal preserve list; the G6 formatter targets selected data volumes. These are traced paths. Final login and configuration after a live reset were not measured.
 
 ## Certificates add two more key consumers
 
@@ -306,13 +371,9 @@ credential behavior and the key15/16 lifecycle.
 The [complete knowledgebase](../../knowledgebases/provisioning-pipeline.md) and
 [source-pinned evidence](../../knowledgebases/provisioning-pipeline-evidence.json)
 retain the full decoded parameter maps, source traces, negative results and
-private-source references. The [Beacon 9 companion](../../../Nokia-Beacon-9/writeups/provisioning-pipeline/README.md)
+private-source references. The [Beacon 9 companion repository](https://github.com/Rajdave69/Nokia-Beacon-9) (`writeups/provisioning-pipeline/README.md` in the research checkout)
 keeps its model-specific limits explicit.
 
 The [validation record](resources/validation-results.json) retains the seven real-file checks,
 14 negative cases, source fingerprints and documentation/privacy checks. No
 provisioning callback or live management connection was tested.
-
-## Physical reset behavior traced
-
-The [physical reset investigation](../factory-reset/README.md) now follows the actual button handler, scheduled environment flag and startup cleanup. Normal reset preserves the union of the deep and normal lists while deleting the working database and custom configs startup payloads. G6 normal reset also skips hidden top-level entries and leaves most opt/.backup; Beacon9 clears its separate backup area. Deep reset removes stored normal-reset operator material, with G6 reformatting only selected data volumes. No live reset or final configuration/login test was performed.

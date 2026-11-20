@@ -1,5 +1,7 @@
 # Following the Beacon G6 security keys through the firmware
 
+Start with the file you are trying to read. A WebUI backup uses the export keys, an internal database uses a stored-file key, and a firmware package can use a separate key. The same router can have all three. The format and the code that consumes it determine which inputs to look for.
+
 Device references use the [shared aliases](../README.md#device-aliases). Per-device source references, key-input values and service fingerprints in the accompanying resources are aliases; the private mapping is not published.
 
 The configuration work kept returning to similarly named keys: key7_2 in a
@@ -34,9 +36,11 @@ G6 save path selects `key10` even though one failure message misleadingly says
 
 ## Where the named keys come from
 
-`SE_getKeyByName()` tries the runtime security database first, then the static
-one. A value packaged in the rootfs therefore needs to be distinguished from
-the value returned by a running router.
+`SE_getKeyByName()` normally tries the runtime security database first, then the static
+one. The current G6, examined XS-2426X-A and Beacon 9 implementations first reject
+the exact names `key0`, `key1` and `key2` as deprecated, returning error `7`. Their
+remaining consumers use compiled copies instead. For other names, a value packaged
+in the rootfs still needs to be distinguished from the value returned at runtime.
 
 For the static database, I used the version source in the matching
 `/usr/etc/se.conf`. G6 HJL and Beacon 9 call it `versrc0`; G6 IJL and both
@@ -84,7 +88,9 @@ lookups. Equality below describes these samples only.
 
 | Entry | Stored representation | Known use | Measured comparison or status |
 | --- | --- | --- | --- |
-| `key0`, `key1`, `key2` | Each 191 ASCII characters, representing 64 colon-separated hex bytes | Complete consumer mapping unresolved | Equal across all five static profiles |
+| `key0` | 191 ASCII characters encoding 64 colon-separated hex bytes | Default AES-256 key (first 32 bytes); default file-integrity and TLS-password helper material | Packaged value equals embedded slot 0 in all five modern profiles |
+| `key1` | Same encoding, 64 decoded bytes | Default AES-CBC IV (first 16 bytes) | Packaged value equals embedded slot 1 in all five modern profiles |
+| `key2` | Same encoding, 64 decoded bytes | Default SHA-256 suffix (first 32 bytes), including the traced ONTUSER and password-history paths | Packaged value equals embedded slot 2 in all five modern profiles |
 | `key3` | 64 string bytes | Encrypted packaged `preconfiguration_global.xml` | Rotates between both G6 builds and both ONT builds; all five profiles differ |
 | `key4` | 64 string bytes | Complete consumer mapping unresolved | Rotates between both G6 builds and both ONT builds; all five profiles differ |
 | `key7` | 64 string bytes | Complete consumer mapping unresolved | Equal across all five; separate lookup from `key7_2` |
@@ -102,12 +108,98 @@ lookups. Equality below describes these samples only.
 This is the list of observed names and references, not a claim that the numeric
 sequence is fully populated. Literal `key6` is a derivation salt/container label,
 not an observed `[keys].key6` entry. An unresolved consumer is not an unused key.
-Named INI `key2` is separate from the embedded deprecated-index2 32-byte constant
-used by the dedicated ONTUSER generator.
+Named INI `key2` and embedded deprecated index 2 have different representations
+and access paths, but their bytes match: the ONTUSER hash consumes the first 32
+bytes of the 64-byte decoded entry. They are not unrelated secrets.
 
 The export uses returned `key7_2` string bytes directly. Decode a helper's outer
 JSON hex once; do not decode the resulting bytes again as Base64 or hex.
 The generic `key14` callers, in contrast, explicitly decode its slot material.
+
+## The legacy defaults behind key0, key1 and key2
+
+These entries belonged to the security engine's default cryptographic operations.
+The older R21.04 and R23.03 XS-2426G-B implementations fetch a named colon-hex
+entry and decode it through `SE_hexstr2buf`. Their internal numbered selector
+maps `1` to `key0`, `2` to `key1`, and `3` to `key2`.
+
+Both captured G6 builds, both examined XS-2426X-A builds and Beacon 9 instead
+retain three compiled 64-byte slots. The engine calls them deprecated keys and
+refuses ordinary name-based retrieval. Decrypting each matched `sec.key` and
+comparing its decoded entries against the library establishes that the compiled
+slots are exact copies of `key0`, `key1` and `key2`. The packaged entries remain,
+but changing them alone would not change these compiled default branches.
+
+For the operations below, `K0`, `K1` and `K2` mean the **decoded bytes**, not the
+191-character text. This differs from the export's direct use of `key7_2` text.
+
+### The default AES key and IV
+
+The algorithm-1 implementation behind `CS_crypt()` uses AES-256-CBC. If the
+request has no key pointer, its initializer supplies `K0[:32]`. Independently,
+if there is no IV pointer, it supplies `K1[:16]`. Explicit pointers replace the
+corresponding defaults. With the probe's encryption settings, standard PKCS7
+padding is applied.
+
+This assigns a role to both entries without making them universal configuration
+keys. WebUI exports use their own GCM path, and current stored databases use
+`key10`. A caller that supplies its own AES material does not use these defaults.
+
+### The default SHA-256 suffix
+
+With a null optional key, `CS_getSha256Str()` produces:
+
+```python
+base64.b64encode(hashlib.sha256(input_bytes + K2[:32]).digest())
+```
+
+An explicit suffix and length replace `K2[:32]`. This is concatenation followed
+by SHA-256, not HMAC. The existing G6/ONT version-derived ONTUSER calculation
+reaches this default branch, explaining where its previously documented
+32-byte constant comes from. Beacon 9 retains the calculation and material;
+its dedicated account-creation routine remains inactive in the examined build.
+
+The library's password-history code is another caller. Its `genPwdHash()`
+helper hashes an eight-character salt prefix plus the supplied password through
+this default operation, and stores the prefix with the resulting hash. Saving
+history and `SE_isOldPasswd()` reuse it. That is password-history processing;
+it does not establish a formula for a factory Linux `root` or `superadmin` password.
+
+### Other key0 consumers
+
+A SHA-256-based file-integrity helper uses the first 32 bytes of `key0` when
+no explicit keyword is supplied. Its generation and verification paths share
+that fallback. Callers can supply other keywords, so this does not assign
+`key0` to every script or protected file.
+
+The TLS context helper has a separate use for the same first 32 bytes. When
+no default private-key password has been supplied through
+`SE_set_default_key_pwd()`, `SE_tls_ctx_new()` uses them in an
+`EVP_BytesToKey` derivation with AES-256-CBC, SHA-256, no salt and one iteration.
+It decrypts an embedded 16-byte value and places the resulting fallback
+password into the context. `SE_tls_new()` passes that field to OpenSSL's
+private-key password callback. This is protection of a fallback password, not
+a recovered TLS private key or certificate-authority signing key, and it is
+separate from the named `key15` PEM-protection path.
+
+### How the mapping was checked
+
+The older store-backed selectors and the current default branches were traced
+in original native code. Exact-byte comparisons covered the five modern
+profiles and the three older XS-2426G-B images; the older libraries lack the
+modern embedded copies and use the store-backed route instead.
+
+A guarded host-QEMU probe then invoked the original crypto library from each
+of the five modern profiles. All passed four comparisons: default AES, explicit
+AES key/IV, default SHA-256 suffix, and an explicit suffix. All three name-based
+lookups returned `7` in every profile. The original G6/ONT glibc and Beacon 9
+musl runtimes were used. These are isolated synthetic-input tests, not live
+router tests or proof that every installed service selects the defaults.
+
+The [consumer map](resources/key012/consumer-map.json),
+[selected native traces](resources/key012/hjl-default-consumers.trace.txt) and
+[reproduction instructions](resources/key012/README.md) retain the call sites,
+source hashes, legacy comparison and test boundaries without publishing key bytes.
 
 ## What import/export can do without a target shell
 
@@ -196,7 +288,19 @@ The Beacon 9 reader has the same legacy/current selector. Its actual current
 databases now decode with its own factory-derived source5, as detailed below.
 No real `0x124125` file has been decoded in these comparisons.
 
-## The source5 input is now resolved
+Decoding the ONT database exposes a 76-byte wrapped OTA field. The live stock getter independently matched the packaged API key used in the [OTA experiment](../ota-firmware-downloads/README.md#what-the-vodafone-ont-queries-established). The getter result establishes the effective value; the wrapped field’s independent decoding remains open. [Field-format evidence](../../knowledgebases/editorial-evidence/security-keys.md).
+
+The [fourth capture](../comparing-other-g6-routers/README.md) adds another unchanged-owner sample,
+with the same complete IJL/HJL payloads as the second unit. Its factory boot
+verifier and service keys differ from the prior units. Its six stored database
+files also decode with the known key10 profile using exact RI serial
+`G6-D:RI-G984Serial`, programming date `PROGDATE-C` and the missing-source5 literal. They
+represent two distinct states; the selected data1 and opt-backup copies match.
+No fourth WebUI export, live key18 lookup, shadow snapshot or edited import
+was supplied. This extends the G6 comparison without changing the Beacon 9
+unknown-key18 boundary.
+
+## How source5 enters stored-file keys
 
 The formula is unchanged:
 
@@ -233,6 +337,12 @@ derivation, an ONT WebUI-export test, a live restore or a new key18 recovery.
 This helper already exists in 24.03. Calling its presence a new 25.xx feature
 would contradict the ONT capture.
 
+The new XS-2426X-A comparison adds two real R24.03 builds and validates sec_extfs source5 as Base64(SHA256(ordered decoded accepted factory strings)). Exact RI serial/programming date plus this source derive key10. The earlier G6 missing-source literal remains correct for its verified captures; it is not the right input when sec_extfs succeeds. Actual ONT saved files and all four Beacon 9 p28/p29 copies now decode offline using their own factory material. This is separate from WebUI exports and does not remove their applicable key18 requirement.
+
+The ONT shares the observed static constants 0/1/2/7/12/13/14/17, rotates3/4 between builds, and has a different model-specific7_2 shared across its own banks. No ONT live key18 status was measured.
+
+[Full ONT findings](../xs2426xa-24-03-comparison/README.md).
+
 ## key17 unwraps; key18 supplies another secret
 
 The examined initialization chain is:
@@ -262,6 +372,16 @@ Symmetric content keys and firmware signing keys are separate. Knowing an
 export key or firmware decryption input does not provide Nokia's signing private
 key. The separately documented firmware-validation exception is a property of
 its validation path, not an implication of shared key names.
+
+### Following the missing firmware-key input
+
+On the examined G6 HomeOS 24.04 `HJL.L91p01` capture, two parsed factory `SECURITY` copies contain no `EXT_KEY_FW`. The captured ROM also lacks the `sec_extfs` executable and package even though `secInit` refers to it. A later live metadata check successfully read the current logical record, found no `EXT_KEY_FW` or `/tmp/.ext_fwkey`, and found `sec_extfs` unavailable through PATH. The G6-B 24.04 live diagnostic independently reported the same missing field and failed key18 lookup. These observations do not exhaust every G6 build or device.
+
+The retained `procFwKeyFile()` consumer reads an existing input and uses key17 to decrypt it before adding key18 to the runtime database. It does not reconstruct an absent factory value from key17. An original-code QEMU probe with synthetic values inserted the expected key18 only for a valid wrapped input and matching synthetic key17; missing, empty, malformed and wrong-key inputs did not insert it. A separate native test rejected a zero-length firmware password. Neither test uploaded, flashed or booted firmware. [Probe source](../security-keys/resources/key18/g6-key18-loader-probe.c) · [sanitized evidence](../../knowledgebases/firmware-key18-provenance-evidence.json).
+
+The Beacon 9 HomeOS 25.03 `JJM.K44p01` capture contains a wrapped `EXT_KEY_FW` field and its firmware includes the extractor; the supplied live helper returned a usable runtime key18. The XS-2426X-A HomeOS 24.03 captures include the extractor but their examined factory record lacks the field; no live ONT key18 lookup was performed. The G6 HomeOS 24.02 `IJL.J03p01` capture also retains the consumer but lacks the extractor. This compares specific captures, not proof that hardware, release or operator alone explains the difference.
+
+The [metadata-only diagnostic source](../security-keys/resources/key18/check-key18-state.c) reports lookup status and factory-field presence without printing key values. Its eight mocked API cases and the two supplied live G6 results have separate scopes; a record must be read and parsed successfully before an absent-field result is meaningful. Build commands and traces remain in the [provenance knowledgebase](../../knowledgebases/firmware-key18-provenance.md). For the upgrade handler and rooted key-reading procedure, see [firmware validation and flashing](../firmware-upgrade-path/README.md#reading-key18-from-an-already-rooted-router).
 
 ## Password generators use other material again
 
@@ -324,7 +444,7 @@ to their caller-integrity format and are another separate category.
 
 ## Reading an existing live profile
 
-If a root shell already exists, the matching [key-reader source](../../webui/scripts/read-config-key.c)
+If a root shell already exists, the matching [key-reader source](../../network-services/webui/scripts/read-config-key.c)
 can be compiled for that router and copied as `/tmp/read-config-key`. It reads
 RI plus the effective `key7_2`/`key18` values, rather than every named entry:
 
@@ -347,11 +467,11 @@ production key18 across units, full binary-database editing, and actual edited
 imports. Those gaps should remain visible rather than being filled by assuming
 that a shared value means a shared purpose or credential.
 
-The [Beacon 9 companion](../../../Nokia-Beacon-9/writeups/security-keys/README.md)
+The [Beacon 9 companion repository](https://github.com/Rajdave69/Nokia-Beacon-9) (`writeups/security-keys/README.md` in the research checkout)
 puts its nonempty runtime key18 requirement in the foreground. Related G6 work:
 [configuration exports](../configuration-import-export/README.md),
-[key18 provenance](../firmware-key18-provenance/README.md),
-[the three-unit stored-file result](../third-g6-comparison/README.md), and
+[key18 provenance](../security-keys/README.md#following-the-missing-firmware-key-input),
+[the three-unit stored-file result](../comparing-other-g6-routers/README.md), and
 [operator/account policy](../operator-profiles-and-credential-policy/README.md).
 
 The [static inventory](resources/static-key-inventory.json),
@@ -366,18 +486,6 @@ The [offline validation record](resources/validation-results.json) checks the fi
 fingerprints, links and known-secret exclusion. The ONT comparison retains its
 separate factory-parser and actual-database evidence. Neither establishes live
 edited import acceptance or cross-unit key18 sharing.
-
-## The fourth G6 repeats the profile
-
-The [fourth capture](../fourth-g6-comparison/README.md) adds another unchanged-owner sample,
-with the same complete IJL/HJL payloads as the second unit. Its factory boot
-verifier and service keys differ from the prior units. Its six stored database
-files also decode with the known key10 profile using exact RI serial
-`G6-D:RI-G984Serial`, programming date `PROGDATE-C` and the missing-source5 literal. They
-represent two distinct states; the selected data1 and opt-backup copies match.
-No fourth WebUI export, live key18 lookup, shadow snapshot or edited import
-was supplied. This extends the G6 comparison without changing the Beacon 9
-unknown-key18 boundary.
 
 ## Provisioning adds another key10 format
 
@@ -399,104 +507,6 @@ X.509/firmware/Password2 signing private key. The new extraction also measured
 the Beacon 9 HTTP keypair: internally matching, 1024-bit RSA; broader service-key
 comparisons remain separately scoped.
 
-## The Vodafone ONT resolves the extra source
+## Boot-chain keys are a separate domain
 
-The new XS-2426X-A comparison adds two real R24.03 builds and validates sec_extfs source5 as Base64(SHA256(ordered decoded accepted factory strings)). Exact RI serial/programming date plus this source derive key10. The earlier G6 missing-source literal remains correct for its verified captures; it is not the right input when sec_extfs succeeds. Actual ONT saved files and all four Beacon 9 p28/p29 copies now decode offline using their own factory material. This is separate from WebUI exports and does not remove their applicable key18 requirement.
-
-The ONT shares the observed static constants 0/1/2/7/12/13/14/17, rotates3/4 between builds, and has a different model-specific7_2 shared across its own banks. No ONT live key18 status was measured.
-
-[Full ONT findings](../xs2426xa-24-03-comparison/README.md).
-
-## Saved OTA credential: field-specific decoding review, 28 October 2026
-
-The outer stored database was decoded; that did not decrypt every sensitive
-parameter inside it. The earlier `dm_node_get_value` probe read the stored raw
-API value without the configuration database's field-decryption callback. A
-new bounded native metadata probe finds `ealgo=sab` and `ckn=key7` on
-`InternetGatewayDevice.X_ALU-COM_Wifi.X_ALU-COM_SwMgnt.X_ALU-COM_Client_Auth_Key`.
-The selected name is `key7`, separate from export `key7_2` and whole-file `key10`.
-
-The current ONT `libcfgdb.so` route reads `ckn`, resolves its key through
-`SE_getKeyByName`, then calls `SE_encStr2StrEx`. Runtime/working key lookup
-precedes the packaged fallback. The matching packaged container decodes and
-passes its integrity check, but its `key7` does not decrypt this actual field:
-independent 10/100-round attempts fail PKCS7 padding; the stock function also
-returns 711 without plaintext. This is an observed failure, not proof that
-the effective key is absent, random, hardware-protected or impossible to recover.
-
-The probe was checked using a fixed harmless 41-byte test string. Stock
-encryption/decryption round-trips it, and an independent PBKDF2-HMAC-SHA256
-10-round/AES-256-CBC decoder agrees after including the terminal NUL encrypted
-by the string routine. Boolean-only interposition confirms 64 passphrase bytes,
-8 salt bytes, 48 derived bytes and matching cipher key/IV inputs. The first
-positive-control comparison omitted that NUL; its apparent mismatch is
-superseded. It does not change the real-field padding failures. Eight explicit
-identity-derived key7 hypotheses also failed; these are guesses, not recovered
-key7 derivation rules.
-
-The metadata helper ignores the string-conversion return. The older raw-parser
-`to_string_status` auxiliary integer is not a meaningful conversion status;
-`read_status=1` and exact output bytes support the successful reads. Only the
-new metadata helper source was corrected; the historical capture is retained.
-
-The unresolved step is reconstructing the field's effective key/configuration
-state. A live read is an optional discriminating method, not an established
-requirement. No missing input from the owner's dump has been demonstrated.
-The saved field decryption remains unresolved, but the later v2 live getter
-result below confirms the effective API key equals the default used for the
-queries. This does not explain the server's no-offer. No new network request or router operation was performed.
-
-The complete probe sources, native traces, positive and negative results,
-private provenance, corrections and remaining work are retained in
-`ota-field-credential-review.json` in the XS comparison resources.
-
-## Effective ONT OTA credential verified live, 28 October 2026
-
-The owner ran `check-ont-ota-request-v2` on the actual XS-2426X-A and reported:
-
-```json
-{"cfg_getObj_status":0,"key_bytes":41,"key_matches_requested_default":true,"url_matches_requested_profile":true,"OTA_enabled":false}
-```
-
-The helper exited0. This independently confirms that the stock getter's
-effective41-byte API key equals the packaged default used in all three
-completed ONT availability queries. Its effective polling URL also matches.
-The helper uses the exact oid599/size0x8c5/flags0x1000 call used by
-nal_getSwAutoUpgradeInfo. The expected72-byte file contains lengths and
-SHA256 digests, and its bytes reproduce from the unchanged private profile.
-Only status, length and match booleans were printed. No live credential bytes
-were sent back to the workstation. Earlier statements that effective credential
-equality was unverified or pending are superseded by this owner result.
-
-The first helper's silent exit127 was a build error. A reproduction with the
-ONT's original glibc2.27 showed that v1 incorrectly expected dlopen/dlsym in
-libc.so.6 because the modern build host merges libdl into libc. The ONT supplies
-them through separate libdl.so.2. stderr had already been redirected when lazy
-resolution failed, hiding the message. v2 explicitly links the target libdl,
-keeps GLIBC_2.17 requirements with correct provider attribution, binds symbols
-before output suppression and adds a15-second stage-specific timeout. Eight
-synthetic cases pass with the exact stock loader/libc/libdl/crypto; an additional
-real-library test without router cfgmgr returns an explicit getter error rather
-than disappearing. The owner's successful run is separate live evidence.
-
-This resolves the effective-key input question. It does not independently
-decrypt the saved76-byte ealgo=sab/ckn=key7 blob or establish how cfgmgr obtained
-its current effective value; those remain distinct reverse-engineering work.
-The prior request remains non-identical at the byte/transport level because
-of compact102-byte versus native formatted120-byte JSON and client headers.
-Its JSON values agree with the native fixture, and credential substitution is
-no longer an unresolved caveat for that profile. The native mesh-cache state
-and entire historical TLS session were not captured.
-
-OTA_enabled=false is a confirmed live setting, but the enable flag is absent
-from the external availability request. It is not established as the direct
-cause of a no-offer response. The no-offer is for the tested VDQA/qa profile
-with a now-verified effective key/URL; it is not proof of global firmware
-availability or the operator's delivery policy. No new cloud request was made.
-Totals remain105 completed device availability POSTs and one earlier CDN GET.
-
-Exact owner output, v1/v2 binaries and sources, runtime provenance, failure
-reproduction and validation scope are retained in the XS resources
-`ota-request-comparator-owner-live-result-20261028.json` and
-`ota-request-comparator-v2-fix.json`. The active helper source and instructions
-are `check-ont-ota-request-v2.c` and `ota-request-equivalence-README.md`.
+The [secure-boot follow-up](../secure-boot/README.md) verifies the four G6 SSB certificate/key relationships and their BL2/BL31/BL33 payload digests. U-Boot's embedded FIT RSA key differs from the firmware-upgrader certificate key. Neither configuration-export keys nor Password2 credentials provide those signing private keys. The fifth G6 reports enabled hardware root-key status; complete early-stage unlock remains unproven.

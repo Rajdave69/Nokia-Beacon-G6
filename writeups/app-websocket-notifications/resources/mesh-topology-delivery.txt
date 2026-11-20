@@ -1,0 +1,83 @@
+
+ddm:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000006cf98 <meshctl_sendMeshNetworkOnSessionMobile@@Base>:
+   6cf98:	d10d83ff 	sub	sp, sp, #0x360
+   6cf9c:	f00002e1 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6cfa0:	d2806502 	mov	x2, #0x328                 	// #808
+   6cfa4:	a9007bfd 	stp	x29, x30, [sp]
+   6cfa8:	910003fd 	mov	x29, sp
+   6cfac:	9100c3a3 	add	x3, x29, #0x30
+   6cfb0:	f9471021 	ldr	x1, [x1, #3616]
+   6cfb4:	f9000bf3 	str	x19, [sp, #16]
+   6cfb8:	f00002f3 	adrp	x19, cb000 <_IO_stdin_used@@Base+0x49f68>
+   6cfbc:	aa0303e0 	mov	x0, x3
+   6cfc0:	97fea208 	bl	157e0 <memcpy@plt> ; heuristic args: x2=808
+   6cfc4:	f9473a73 	ldr	x19, [x19, #3696]
+   6cfc8:	aa0003e1 	mov	x1, x0
+   6cfcc:	aa1303e0 	mov	x0, x19
+   6cfd0:	97fff1e8 	bl	69770 <meshctl_getMeshTopoNodeRole@@Base>
+   6cfd4:	7100041f 	cmp	w0, #0x1
+   6cfd8:	540000c0 	b.eq	6cff0 <meshctl_sendMeshNetworkOnSessionMobile@@Base+0x58>  // b.none
+   6cfdc:	a9407bfd 	ldp	x29, x30, [sp]
+   6cfe0:	f9400bf3 	ldr	x19, [sp, #16]
+   6cfe4:	910d83ff 	add	sp, sp, #0x360
+   6cfe8:	d65f03c0 	ret
+   6cfec:	d503201f 	nop
+   6cff0:	f9000fb4 	str	x20, [x29, #24]
+   6cff4:	d2900000 	mov	x0, #0x8000                	// #32768
+   6cff8:	97fea4ee 	bl	163b0 <malloc@plt> ; heuristic args: x0=32768
+   6cffc:	aa0003f4 	mov	x20, x0
+   6d000:	b4000440 	cbz	x0, 6d088 <meshctl_sendMeshNetworkOnSessionMobile@@Base+0xf0>
+   6d004:	f90013b5 	str	x21, [x29, #32]
+   6d008:	90000175 	adrp	x21, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6d00c:	9139e2a0 	add	x0, x21, #0xe78
+   6d010:	528148a1 	mov	w1, #0xa45                 	// #2629
+   6d014:	9110c000 	add	x0, x0, #0x430
+   6d018:	f0000162 	adrp	x2, 9c000 <_IO_stdin_used@@Base+0x1af68>
+   6d01c:	9121a042 	add	x2, x2, #0x868
+   6d020:	97fea200 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='meshctl_sendMeshNetworkOnSessionMobile', x1=2629, x2='meshctl_sendMeshNetworkOnSessionMobile : Sending meshnetwork to mobile\n'
+   6d024:	d2900002 	mov	x2, #0x8000                	// #32768
+   6d028:	52800001 	mov	w1, #0x0                   	// #0
+   6d02c:	aa1403e0 	mov	x0, x20
+   6d030:	97fea310 	bl	15c70 <memset@plt> ; heuristic args: x1=0, x2=32768
+   6d034:	aa1403e1 	mov	x1, x20
+   6d038:	aa1303e0 	mov	x0, x19
+   6d03c:	94004913 	bl	7f488 <meshctl_getMeshNetworkInfo@@Base>
+   6d040:	39400280 	ldrb	w0, [x20]
+   6d044:	350003a0 	cbnz	w0, 6d0b8 <meshctl_sendMeshNetworkOnSessionMobile@@Base+0x120>
+   6d048:	aa1403e1 	mov	x1, x20
+   6d04c:	f0000160 	adrp	x0, 9c000 <_IO_stdin_used@@Base+0x1af68>
+   6d050:	91044000 	add	x0, x0, #0x110
+   6d054:	97fffba3 	bl	6bee0 <meshctl_meshDataDumpFile@@Base> ; heuristic args: x0='/tmp/meshctl_networks_dump.txt'
+   6d058:	9139e2a0 	add	x0, x21, #0xe78
+   6d05c:	528149a1 	mov	w1, #0xa4d                 	// #2637
+   6d060:	9110c000 	add	x0, x0, #0x430
+   6d064:	f0000162 	adrp	x2, 9c000 <_IO_stdin_used@@Base+0x1af68>
+   6d068:	9122c042 	add	x2, x2, #0x8b0
+   6d06c:	97fea1ed 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='meshctl_sendMeshNetworkOnSessionMobile', x1=2637, x2='[SendMeshNetworkOnSessionMobile]MeshTopo Info is sent to ws.\n'
+   6d070:	aa1403e0 	mov	x0, x20
+   6d074:	f9400bf3 	ldr	x19, [sp, #16]
+   6d078:	a941d7b4 	ldp	x20, x21, [x29, #24]
+   6d07c:	a9407bfd 	ldp	x29, x30, [sp]
+   6d080:	910d83ff 	add	sp, sp, #0x360
+   6d084:	17fea2f3 	b	15c50 <free@plt>
+   6d088:	f9400fb4 	ldr	x20, [x29, #24]
+   6d08c:	90000160 	adrp	x0, 99000 <_IO_stdin_used@@Base+0x17f68>
+   6d090:	a9407bfd 	ldp	x29, x30, [sp]
+   6d094:	9139e000 	add	x0, x0, #0xe78
+   6d098:	f9400bf3 	ldr	x19, [sp, #16]
+   6d09c:	f0000162 	adrp	x2, 9c000 <_IO_stdin_used@@Base+0x1af68>
+   6d0a0:	52814821 	mov	w1, #0xa41                 	// #2625
+   6d0a4:	91216042 	add	x2, x2, #0x858
+   6d0a8:	9110c000 	add	x0, x0, #0x430
+   6d0ac:	910d83ff 	add	sp, sp, #0x360
+   6d0b0:	17fea4dc 	b	16420 <nalLogError@plt>
+   6d0b4:	d503201f 	nop
+   6d0b8:	aa1403e0 	mov	x0, x20
+   6d0bc:	97fea4c1 	bl	163c0 <wsappl_send@plt> ; heuristic args: x1=2625, x2='malloc failed\n'
+   6d0c0:	17ffffe2 	b	6d048 <meshctl_sendMeshNetworkOnSessionMobile@@Base+0xb0>
+   6d0c4:	d503201f 	nop

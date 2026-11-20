@@ -1,0 +1,1 @@
+subscribeToEvent(){let i='[{"Source": "Web"},{"wssessionid": '+this.webSessionID.toString()+'}, {"timeout": "'+this.eventTimer.toString()+'"},{ "eventlist":['+this.events.toString()+"]} ]";this.backendservice.createSocketBody("SubscribeEvents",i),this.backendservice.request(this.handleSubscribeEvents,"callUBUS")}

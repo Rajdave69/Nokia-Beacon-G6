@@ -211,7 +211,7 @@ by `wdt stop` for the recovery sequence. Watchdog expiry is the suspected cause;
 result or sustained-stability test was supplied. The [UART recovery writeup](../uart-recovery-from-uboot/README.md) records the procedure
 and its verification limits.
 
-## What the second G6 confirms
+## Board features shared across the G6 captures
 
 The two units, `G6-A` and `G6-B`, have matching NAND identification and physical partition maps. 
 Their captured current HJL.L91 FIT files are byte-identical, including the **38,940-byte G6 DTB**. 
@@ -255,4 +255,3 @@ board's internal interface/port mappings, and records the GPIO, LED, button, clo
 bindings. It also preserves the full original NI resource cells, including `0x4f4300000`, and finds a 
 significant SDK numbering change between IJL and HJL. These are useful porting inputs; physical connector
 mapping and packet-level behavior still require controlled tests.
-

@@ -1,0 +1,607 @@
+
+ddm:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+000000000007eb28 <jsonCreateMeshNetwork@@Base>:
+   7eb28:	a9aa7bfd 	stp	x29, x30, [sp, #-352]!
+   7eb2c:	910003fd 	mov	x29, sp
+   7eb30:	f90013f5 	str	x21, [sp, #32]
+   7eb34:	aa0103f5 	mov	x21, x1
+   7eb38:	b0000261 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   7eb3c:	910803a4 	add	x4, x29, #0x200
+   7eb40:	a90dffbf 	stp	xzr, xzr, [x29, #216]
+   7eb44:	f10002bf 	cmp	x21, #0x0
+   7eb48:	f946b421 	ldr	x1, [x1, #3432]
+   7eb4c:	fa401844 	ccmp	x2, #0x0, #0x4, ne	// ne = any
+   7eb50:	a930fc9f 	stp	xzr, xzr, [x4, #-248]
+   7eb54:	a931fc9f 	stp	xzr, xzr, [x4, #-232]
+   7eb58:	f9400024 	ldr	x4, [x1]
+   7eb5c:	f900afa4 	str	x4, [x29, #344]
+   7eb60:	d2800004 	mov	x4, #0x0                   	// #0
+   7eb64:	910803a1 	add	x1, x29, #0x200
+   7eb68:	a90effbf 	stp	xzr, xzr, [x29, #232]
+   7eb6c:	a90fffbf 	stp	xzr, xzr, [x29, #248]
+   7eb70:	b90067a3 	str	w3, [x29, #100]
+   7eb74:	a932fc3f 	stp	xzr, xzr, [x1, #-216]
+   7eb78:	a933fc3f 	stp	xzr, xzr, [x1, #-200]
+   7eb7c:	910903a1 	add	x1, x29, #0x240
+   7eb80:	f90037a2 	str	x2, [x29, #104]
+   7eb84:	f90047a0 	str	x0, [x29, #136]
+   7eb88:	a930fc3f 	stp	xzr, xzr, [x1, #-248]
+   7eb8c:	540045e0 	b.eq	7f448 <jsonCreateMeshNetwork@@Base+0x920>  // b.none
+   7eb90:	b0000120 	adrp	x0, a3000 <_IO_stdin_used@@Base+0x21f68>
+   7eb94:	91150000 	add	x0, x0, #0x540
+   7eb98:	91108000 	add	x0, x0, #0x420
+   7eb9c:	90000142 	adrp	x2, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7eba0:	91284042 	add	x2, x2, #0xa10
+   7eba4:	5280c4e1 	mov	w1, #0x627                 	// #1575
+   7eba8:	a90153b3 	stp	x19, x20, [x29, #16]
+   7ebac:	910363b3 	add	x19, x29, #0xd8
+   7ebb0:	a902dfb6 	stp	x22, x23, [x29, #40]
+   7ebb4:	910042b4 	add	x20, x21, #0x10
+   7ebb8:	a903e7b8 	stp	x24, x25, [x29, #56]
+   7ebbc:	a904efba 	stp	x26, x27, [x29, #72]
+   7ebc0:	f9002fbc 	str	x28, [x29, #88]
+   7ebc4:	97fe5b17 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='jsonCreateMeshNetwork', x1=1575, x2='[MeshNetworkJSON]Creating MeshNetwork JSON...\n', x4=0
+   7ebc8:	97fe5bc6 	bl	15ae0 <json_object_new_array@plt>
+   7ebcc:	f90043a0 	str	x0, [x29, #128]
+   7ebd0:	97fe5d60 	bl	16150 <json_object_new_object@plt>
+   7ebd4:	aa0003f7 	mov	x23, x0
+   7ebd8:	b0000260 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   7ebdc:	a90dffbf 	stp	xzr, xzr, [x29, #216]
+   7ebe0:	a90effbf 	stp	xzr, xzr, [x29, #232]
+   7ebe4:	d00000e2 	adrp	x2, 9c000 <_IO_stdin_used@@Base+0x1af68>
+   7ebe8:	f9471016 	ldr	x22, [x0, #3616]
+   7ebec:	910803a0 	add	x0, x29, #0x200
+   7ebf0:	a90fffbf 	stp	xzr, xzr, [x29, #248]
+   7ebf4:	91138042 	add	x2, x2, #0x4e0
+   7ebf8:	91026ac3 	add	x3, x22, #0x9a
+   7ebfc:	d2800601 	mov	x1, #0x30                  	// #48
+   7ec00:	a930fc1f 	stp	xzr, xzr, [x0, #-248]
+   7ec04:	a931fc1f 	stp	xzr, xzr, [x0, #-232]
+   7ec08:	a932fc1f 	stp	xzr, xzr, [x0, #-216]
+   7ec0c:	a933fc1f 	stp	xzr, xzr, [x0, #-200]
+   7ec10:	910903a0 	add	x0, x29, #0x240
+   7ec14:	f9003bb7 	str	x23, [x29, #112]
+   7ec18:	a930fc1f 	stp	xzr, xzr, [x0, #-248]
+   7ec1c:	aa1303e0 	mov	x0, x19
+   7ec20:	97fe5d2c 	bl	160d0 <snprintf@plt> ; heuristic args: x1=48, x2='%s'
+   7ec24:	aa1303e0 	mov	x0, x19
+   7ec28:	97fe5b4a 	bl	15950 <json_object_new_string@plt>
+   7ec2c:	d0000121 	adrp	x1, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7ec30:	aa0003e2 	mov	x2, x0
+   7ec34:	91092021 	add	x1, x1, #0x248
+   7ec38:	aa1703e0 	mov	x0, x23
+   7ec3c:	97fe5ecd 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='gw'
+   7ec40:	90000140 	adrp	x0, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7ec44:	91290000 	add	x0, x0, #0xa40
+   7ec48:	97fe5b42 	bl	15950 <json_object_new_string@plt> ; heuristic args: x0='MeshNetwork'
+   7ec4c:	aa0003e2 	mov	x2, x0
+   7ec50:	b0000121 	adrp	x1, a3000 <_IO_stdin_used@@Base+0x21f68>
+   7ec54:	910be021 	add	x1, x1, #0x2f8
+   7ec58:	aa1703e0 	mov	x0, x23
+   7ec5c:	97fe5ec5 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='event'
+   7ec60:	f00000e0 	adrp	x0, 9d000 <_IO_stdin_used@@Base+0x1bf68>
+   7ec64:	91344000 	add	x0, x0, #0xd10
+   7ec68:	97fe5b3a 	bl	15950 <json_object_new_string@plt> ; heuristic args: x0='6.1'
+   7ec6c:	aa0003e2 	mov	x2, x0
+   7ec70:	f00000c1 	adrp	x1, 99000 <_IO_stdin_used@@Base+0x17f68>
+   7ec74:	aa1703e0 	mov	x0, x23
+   7ec78:	91138021 	add	x1, x1, #0x4e0
+   7ec7c:	97fe5ebd 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='version'
+   7ec80:	d28a4201 	mov	x1, #0x5210                	// #21008
+   7ec84:	8b0102a1 	add	x1, x21, x1
+   7ec88:	d2800000 	mov	x0, #0x0                   	// #0
+   7ec8c:	f9004ba1 	str	x1, [x29, #144]
+   7ec90:	9102a3b5 	add	x21, x29, #0xa8
+   7ec94:	97fe5d37 	bl	16170 <time@plt> ; heuristic args: x0=0
+   7ec98:	2a0003e0 	mov	w0, w0
+   7ec9c:	97fe5c79 	bl	15e80 <json_object_new_int64@plt>
+   7eca0:	aa0003e2 	mov	x2, x0
+   7eca4:	d0000121 	adrp	x1, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7eca8:	91098021 	add	x1, x1, #0x260
+   7ecac:	aa1703e0 	mov	x0, x23
+   7ecb0:	97fe5eb0 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='timestamp'
+   7ecb4:	910472c0 	add	x0, x22, #0x11c
+   7ecb8:	97fe5b26 	bl	15950 <json_object_new_string@plt>
+   7ecbc:	aa0003e2 	mov	x2, x0
+   7ecc0:	d0000121 	adrp	x1, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7ecc4:	aa1703e0 	mov	x0, x23
+   7ecc8:	9109c021 	add	x1, x1, #0x270
+   7eccc:	97fe5ea9 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='timeZone'
+   7ecd0:	d0000120 	adrp	x0, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7ecd4:	913b2000 	add	x0, x0, #0xec8
+   7ecd8:	f9003fa0 	str	x0, [x29, #120]
+   7ecdc:	39400280 	ldrb	w0, [x20]
+   7ece0:	34000880 	cbz	w0, 7edf0 <jsonCreateMeshNetwork@@Base+0x2c8>
+   7ece4:	97fe5d1b 	bl	16150 <json_object_new_object@plt>
+   7ece8:	aa0003f6 	mov	x22, x0
+   7ecec:	97fe5b7d 	bl	15ae0 <json_object_new_array@plt>
+   7ecf0:	a9007e7f 	stp	xzr, xzr, [x19]
+   7ecf4:	a9017e7f 	stp	xzr, xzr, [x19, #16]
+   7ecf8:	d2800422 	mov	x2, #0x21                  	// #33
+   7ecfc:	a9027e7f 	stp	xzr, xzr, [x19, #32]
+   7ed00:	aa1403e1 	mov	x1, x20
+   7ed04:	a9037e7f 	stp	xzr, xzr, [x19, #48]
+   7ed08:	aa0003f8 	mov	x24, x0
+   7ed0c:	a9047e7f 	stp	xzr, xzr, [x19, #64]
+   7ed10:	aa1303e0 	mov	x0, x19
+   7ed14:	a9057e7f 	stp	xzr, xzr, [x19, #80]
+   7ed18:	9000015b 	adrp	x27, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7ed1c:	a9067e7f 	stp	xzr, xzr, [x19, #96]
+   7ed20:	9129437b 	add	x27, x27, #0xa50
+   7ed24:	a9077e7f 	stp	xzr, xzr, [x19, #112]
+   7ed28:	52800019 	mov	w25, #0x0                   	// #0
+   7ed2c:	97fe5ca5 	bl	15fc0 <strncpy@plt> ; heuristic args: x2=33
+   7ed30:	aa1303e0 	mov	x0, x19
+   7ed34:	52800741 	mov	w1, #0x3a                  	// #58
+   7ed38:	97ffaf9c 	bl	6aba8 <meshctl_changeMacFormat@@Base> ; heuristic args: x1=58
+   7ed3c:	f94047bc 	ldr	x28, [x29, #136]
+   7ed40:	b0000120 	adrp	x0, a3000 <_IO_stdin_used@@Base+0x21f68>
+   7ed44:	9115001a 	add	x26, x0, #0x540
+   7ed48:	9110835a 	add	x26, x26, #0x420
+   7ed4c:	14000005 	b	7ed60 <jsonCreateMeshNetwork@@Base+0x238>
+   7ed50:	11000739 	add	w25, w25, #0x1
+   7ed54:	9105c39c 	add	x28, x28, #0x170
+   7ed58:	7100433f 	cmp	w25, #0x10
+   7ed5c:	540003a0 	b.eq	7edd0 <jsonCreateMeshNetwork@@Base+0x2a8>  // b.none
+   7ed60:	aa1303e4 	mov	x4, x19
+   7ed64:	2a1903e3 	mov	w3, w25
+   7ed68:	aa1b03e2 	mov	x2, x27
+   7ed6c:	5280c8a1 	mov	w1, #0x645                 	// #1605
+   7ed70:	aa1a03e0 	mov	x0, x26
+   7ed74:	91034b97 	add	x23, x28, #0xd2
+   7ed78:	97fe5aaa 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='jsonCreateMeshNetwork', x1=1605, x2='[MeshNetworkJSON]Meshnetwork AP [index: %d][mac: %s]\n', x3=1
+   7ed7c:	d2800422 	mov	x2, #0x21                  	// #33
+   7ed80:	aa1703e1 	mov	x1, x23
+   7ed84:	aa1303e0 	mov	x0, x19
+   7ed88:	97fe5e42 	bl	16690 <strncasecmp@plt> ; heuristic args: x2=33
+   7ed8c:	35fffe20 	cbnz	w0, 7ed50 <jsonCreateMeshNetwork@@Base+0x228>
+   7ed90:	b00000e4 	adrp	x4, 9b000 <_IO_stdin_used@@Base+0x19f68>
+   7ed94:	91054084 	add	x4, x4, #0x150
+   7ed98:	9104f39b 	add	x27, x28, #0x13c
+   7ed9c:	d28000e2 	mov	x2, #0x7                   	// #7
+   7eda0:	aa0403e1 	mov	x1, x4
+   7eda4:	aa1b03e0 	mov	x0, x27
+   7eda8:	f9004fa4 	str	x4, [x29, #152]
+   7edac:	97fe5c7d 	bl	15fa0 <strncmp@plt> ; heuristic args: x1='REMOVED', x2=7, x4='REMOVED'
+   7edb0:	350007c0 	cbnz	w0, 7eea8 <jsonCreateMeshNetwork@@Base+0x380>
+   7edb4:	f9404fa4 	ldr	x4, [x29, #152]
+   7edb8:	90000142 	adrp	x2, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7edbc:	aa1703e3 	mov	x3, x23
+   7edc0:	912a2042 	add	x2, x2, #0xa88
+   7edc4:	5280c901 	mov	w1, #0x648                 	// #1608
+   7edc8:	aa1a03e0 	mov	x0, x26
+   7edcc:	97fe5a95 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='jsonCreateMeshNetwork', x1=1608, x2='[AP REMOVED] Discarding AP with MAC[%s] Status[%s]'
+   7edd0:	aa1603e0 	mov	x0, x22
+   7edd4:	97fe5b6f 	bl	15b90 <json_object_put@plt>
+   7edd8:	aa1803e0 	mov	x0, x24
+   7eddc:	97fe5b6d 	bl	15b90 <json_object_put@plt>
+   7ede0:	f9404ba0 	ldr	x0, [x29, #144]
+   7ede4:	91148294 	add	x20, x20, #0x520
+   7ede8:	eb14001f 	cmp	x0, x20
+   7edec:	54fff781 	b.ne	7ecdc <jsonCreateMeshNetwork@@Base+0x1b4>  // b.any
+   7edf0:	f94043a2 	ldr	x2, [x29, #128]
+   7edf4:	b0000121 	adrp	x1, a3000 <_IO_stdin_used@@Base+0x21f68>
+   7edf8:	f9403bb3 	ldr	x19, [x29, #112]
+   7edfc:	91336021 	add	x1, x1, #0xcd8
+   7ee00:	aa1303e0 	mov	x0, x19
+   7ee04:	97fe5e5b 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='aps'
+   7ee08:	b0000260 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   7ee0c:	f947b800 	ldr	x0, [x0, #3952]
+   7ee10:	f9400000 	ldr	x0, [x0]
+   7ee14:	97fffd75 	bl	7e3e8 <jsonCreateLinks@@Base>
+   7ee18:	aa0003e2 	mov	x2, x0
+   7ee1c:	90000141 	adrp	x1, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7ee20:	91046021 	add	x1, x1, #0x118
+   7ee24:	aa1303e0 	mov	x0, x19
+   7ee28:	97fe5e52 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='links'
+   7ee2c:	aa1303e0 	mov	x0, x19
+   7ee30:	97fe5e54 	bl	16780 <json_object_to_json_string@plt>
+   7ee34:	aa0003e1 	mov	x1, x0
+   7ee38:	b98067a2 	ldrsw	x2, [x29, #100]
+   7ee3c:	f94037a0 	ldr	x0, [x29, #104]
+   7ee40:	97fe5c60 	bl	15fc0 <strncpy@plt>
+   7ee44:	90000142 	adrp	x2, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7ee48:	912e6042 	add	x2, x2, #0xb98
+   7ee4c:	5280dc81 	mov	w1, #0x6e4                 	// #1764
+   7ee50:	b0000120 	adrp	x0, a3000 <_IO_stdin_used@@Base+0x21f68>
+   7ee54:	91150000 	add	x0, x0, #0x540
+   7ee58:	91108000 	add	x0, x0, #0x420
+   7ee5c:	97fe5a71 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='jsonCreateMeshNetwork', x1=1764, x2='[MeshNetworkJSON]MeshNetwork JSON data created successfully.\n'
+   7ee60:	aa1303e0 	mov	x0, x19
+   7ee64:	97fe5b4b 	bl	15b90 <json_object_put@plt>
+   7ee68:	a94153b3 	ldp	x19, x20, [x29, #16]
+   7ee6c:	52800000 	mov	w0, #0x0                   	// #0
+   7ee70:	a942dfb6 	ldp	x22, x23, [x29, #40]
+   7ee74:	a943e7b8 	ldp	x24, x25, [x29, #56]
+   7ee78:	a944efba 	ldp	x26, x27, [x29, #72]
+   7ee7c:	f9402fbc 	ldr	x28, [x29, #88]
+   7ee80:	b0000261 	adrp	x1, cb000 <_IO_stdin_used@@Base+0x49f68>
+   7ee84:	f946b421 	ldr	x1, [x1, #3432]
+   7ee88:	f940afa2 	ldr	x2, [x29, #344]
+   7ee8c:	f9400021 	ldr	x1, [x1]
+   7ee90:	ca010041 	eor	x1, x2, x1
+   7ee94:	b5002ec1 	cbnz	x1, 7f46c <jsonCreateMeshNetwork@@Base+0x944>
+   7ee98:	f94013f5 	ldr	x21, [sp, #32]
+   7ee9c:	a8d67bfd 	ldp	x29, x30, [sp], #352
+   7eea0:	d65f03c0 	ret
+   7eea4:	d503201f 	nop
+   7eea8:	aa1c03e0 	mov	x0, x28
+   7eeac:	97fe5aa9 	bl	15950 <json_object_new_string@plt>
+   7eeb0:	f00000c1 	adrp	x1, 99000 <_IO_stdin_used@@Base+0x17f68>
+   7eeb4:	aa0003e2 	mov	x2, x0
+   7eeb8:	91136021 	add	x1, x1, #0x4d8
+   7eebc:	aa1603e0 	mov	x0, x22
+   7eec0:	97fe5e2c 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='id'
+   7eec4:	f9403280 	ldr	x0, [x20, #96]
+   7eec8:	97fe5bee 	bl	15e80 <json_object_new_int64@plt>
+   7eecc:	aa0003e2 	mov	x2, x0
+   7eed0:	d0000121 	adrp	x1, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7eed4:	aa1603e0 	mov	x0, x22
+   7eed8:	91154021 	add	x1, x1, #0x550
+   7eedc:	97fe5e25 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='router-id'
+   7eee0:	a9007e7f 	stp	xzr, xzr, [x19]
+   7eee4:	52801002 	mov	w2, #0x80                  	// #128
+   7eee8:	a9017e7f 	stp	xzr, xzr, [x19, #16]
+   7eeec:	aa1303e1 	mov	x1, x19
+   7eef0:	a9027e7f 	stp	xzr, xzr, [x19, #32]
+   7eef4:	aa1703e0 	mov	x0, x23
+   7eef8:	a9037e7f 	stp	xzr, xzr, [x19, #48]
+   7eefc:	a9047e7f 	stp	xzr, xzr, [x19, #64]
+   7ef00:	a9057e7f 	stp	xzr, xzr, [x19, #80]
+   7ef04:	a9067e7f 	stp	xzr, xzr, [x19, #96]
+   7ef08:	a9077e7f 	stp	xzr, xzr, [x19, #112]
+   7ef0c:	97ffbb1b 	bl	6db78 <meshctl_getNodeSwVersion@@Base> ; heuristic args: x2=128
+   7ef10:	3100041f 	cmn	w0, #0x1
+   7ef14:	540027a0 	b.eq	7f408 <jsonCreateMeshNetwork@@Base+0x8e0>  // b.none
+   7ef18:	aa1303e0 	mov	x0, x19
+   7ef1c:	97fe5a8d 	bl	15950 <json_object_new_string@plt>
+   7ef20:	90000141 	adrp	x1, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7ef24:	aa0003e2 	mov	x2, x0
+   7ef28:	912bc021 	add	x1, x1, #0xaf0
+   7ef2c:	aa1603e0 	mov	x0, x22
+   7ef30:	97fe5e10 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='imageVersion'
+   7ef34:	9100c380 	add	x0, x28, #0x30
+   7ef38:	97fe5a86 	bl	15950 <json_object_new_string@plt>
+   7ef3c:	aa0003e2 	mov	x2, x0
+   7ef40:	f0000121 	adrp	x1, a5000 <_IO_stdin_used@@Base+0x23f68>
+   7ef44:	9111c021 	add	x1, x1, #0x470
+   7ef48:	aa1603e0 	mov	x0, x22
+   7ef4c:	97fe5e09 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='ipaddress'
+   7ef50:	97fe5ae4 	bl	15ae0 <json_object_new_array@plt>
+   7ef54:	aa0003fa 	mov	x26, x0
+   7ef58:	39410380 	ldrb	w0, [x28, #64]
+   7ef5c:	350022e0 	cbnz	w0, 7f3b8 <jsonCreateMeshNetwork@@Base+0x890>
+   7ef60:	3941a780 	ldrb	w0, [x28, #105]
+   7ef64:	35002380 	cbnz	w0, 7f3d4 <jsonCreateMeshNetwork@@Base+0x8ac>
+   7ef68:	aa1a03e2 	mov	x2, x26
+   7ef6c:	90000141 	adrp	x1, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7ef70:	912c0021 	add	x1, x1, #0xb00
+   7ef74:	aa1603e0 	mov	x0, x22
+   7ef78:	97fe5dfe 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='ipv6address'
+   7ef7c:	aa1703e0 	mov	x0, x23
+   7ef80:	97fe5a74 	bl	15950 <json_object_new_string@plt>
+   7ef84:	aa0003e2 	mov	x2, x0
+   7ef88:	f0000121 	adrp	x1, a5000 <_IO_stdin_used@@Base+0x23f68>
+   7ef8c:	91120021 	add	x1, x1, #0x480
+   7ef90:	aa1603e0 	mov	x0, x22
+   7ef94:	97fe5df7 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='macaddress'
+   7ef98:	a9007e7f 	stp	xzr, xzr, [x19]
+   7ef9c:	aa1703e0 	mov	x0, x23
+   7efa0:	a9017e7f 	stp	xzr, xzr, [x19, #16]
+   7efa4:	a9027e7f 	stp	xzr, xzr, [x19, #32]
+   7efa8:	a9037e7f 	stp	xzr, xzr, [x19, #48]
+   7efac:	a9047e7f 	stp	xzr, xzr, [x19, #64]
+   7efb0:	a9057e7f 	stp	xzr, xzr, [x19, #80]
+   7efb4:	a9067e7f 	stp	xzr, xzr, [x19, #96]
+   7efb8:	a9077e7f 	stp	xzr, xzr, [x19, #112]
+   7efbc:	97ffcd45 	bl	724d0 <meshctl_getBeaconFriendlyName@@Base>
+   7efc0:	b4002180 	cbz	x0, 7f3f0 <jsonCreateMeshNetwork@@Base+0x8c8>
+   7efc4:	aa0003e1 	mov	x1, x0
+   7efc8:	d2800fe2 	mov	x2, #0x7f                  	// #127
+   7efcc:	aa1303e0 	mov	x0, x19
+   7efd0:	97fe5bfc 	bl	15fc0 <strncpy@plt> ; heuristic args: x2=127
+   7efd4:	aa1303e0 	mov	x0, x19
+   7efd8:	97fe5a5e 	bl	15950 <json_object_new_string@plt>
+   7efdc:	d00000e1 	adrp	x1, 9c000 <_IO_stdin_used@@Base+0x1af68>
+   7efe0:	aa0003e2 	mov	x2, x0
+   7efe4:	91292021 	add	x1, x1, #0xa48
+   7efe8:	aa1603e0 	mov	x0, x22
+   7efec:	97fe5de1 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='name'
+   7eff0:	a9007e7f 	stp	xzr, xzr, [x19]
+   7eff4:	a9017e7f 	stp	xzr, xzr, [x19, #16]
+   7eff8:	52801002 	mov	w2, #0x80                  	// #128
+   7effc:	a9027e7f 	stp	xzr, xzr, [x19, #32]
+   7f000:	aa1303e1 	mov	x1, x19
+   7f004:	a9037e7f 	stp	xzr, xzr, [x19, #48]
+   7f008:	aa1703e0 	mov	x0, x23
+   7f00c:	a9047e7f 	stp	xzr, xzr, [x19, #64]
+   7f010:	a9057e7f 	stp	xzr, xzr, [x19, #80]
+   7f014:	a9067e7f 	stp	xzr, xzr, [x19, #96]
+   7f018:	a9077e7f 	stp	xzr, xzr, [x19, #112]
+   7f01c:	97ffb5b1 	bl	6c6e0 <meshctl_getModelName@@Base> ; heuristic args: x2=128
+   7f020:	3100041f 	cmn	w0, #0x1
+   7f024:	54002000 	b.eq	7f424 <jsonCreateMeshNetwork@@Base+0x8fc>  // b.none
+   7f028:	aa1303e0 	mov	x0, x19
+   7f02c:	97fe5a49 	bl	15950 <json_object_new_string@plt>
+   7f030:	d0000121 	adrp	x1, a5000 <_IO_stdin_used@@Base+0x23f68>
+   7f034:	aa0003e2 	mov	x2, x0
+   7f038:	91134021 	add	x1, x1, #0x4d0
+   7f03c:	aa1603e0 	mov	x0, x22
+   7f040:	97fe5dcc 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='modelName'
+   7f044:	a9007e7f 	stp	xzr, xzr, [x19]
+   7f048:	a9017e7f 	stp	xzr, xzr, [x19, #16]
+   7f04c:	d2801002 	mov	x2, #0x80                  	// #128
+   7f050:	a9027e7f 	stp	xzr, xzr, [x19, #32]
+   7f054:	91045381 	add	x1, x28, #0x114
+   7f058:	a9037e7f 	stp	xzr, xzr, [x19, #48]
+   7f05c:	aa1303e0 	mov	x0, x19
+   7f060:	a9047e7f 	stp	xzr, xzr, [x19, #64]
+   7f064:	a9057e7f 	stp	xzr, xzr, [x19, #80]
+   7f068:	a9067e7f 	stp	xzr, xzr, [x19, #96]
+   7f06c:	a9077e7f 	stp	xzr, xzr, [x19, #112]
+   7f070:	97fe5bd4 	bl	15fc0 <strncpy@plt> ; heuristic args: x2=128
+   7f074:	b00000e1 	adrp	x1, 9c000 <_IO_stdin_used@@Base+0x1af68>
+   7f078:	d2801002 	mov	x2, #0x80                  	// #128
+   7f07c:	913bc021 	add	x1, x1, #0xef0
+   7f080:	aa1303e0 	mov	x0, x19
+   7f084:	97fe5bc7 	bl	15fa0 <strncmp@plt> ; heuristic args: x1='REXT', x2=128
+   7f088:	35001900 	cbnz	w0, 7f3a8 <jsonCreateMeshNetwork@@Base+0x880>
+   7f08c:	d0000101 	adrp	x1, a1000 <_IO_stdin_used@@Base+0x1ff68>
+   7f090:	d2801002 	mov	x2, #0x80                  	// #128
+   7f094:	9122e021 	add	x1, x1, #0x8b8
+   7f098:	aa1303e0 	mov	x0, x19
+   7f09c:	97fe5bc9 	bl	15fc0 <strncpy@plt> ; heuristic args: x1='beacon', x2=128
+   7f0a0:	aa1303e0 	mov	x0, x19
+   7f0a4:	97fe5a2b 	bl	15950 <json_object_new_string@plt>
+   7f0a8:	b0000121 	adrp	x1, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7f0ac:	aa0003e2 	mov	x2, x0
+   7f0b0:	91078021 	add	x1, x1, #0x1e0
+   7f0b4:	aa1603e0 	mov	x0, x22
+   7f0b8:	97fe5dae 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='role'
+   7f0bc:	a9007e7f 	stp	xzr, xzr, [x19]
+   7f0c0:	91047381 	add	x1, x28, #0x11c
+   7f0c4:	a9017e7f 	stp	xzr, xzr, [x19, #16]
+   7f0c8:	a9027e7f 	stp	xzr, xzr, [x19, #32]
+   7f0cc:	d2801002 	mov	x2, #0x80                  	// #128
+   7f0d0:	a9037e7f 	stp	xzr, xzr, [x19, #48]
+   7f0d4:	aa1303e0 	mov	x0, x19
+   7f0d8:	a9047e7f 	stp	xzr, xzr, [x19, #64]
+   7f0dc:	a9057e7f 	stp	xzr, xzr, [x19, #80]
+   7f0e0:	a9067e7f 	stp	xzr, xzr, [x19, #96]
+   7f0e4:	a9077e7f 	stp	xzr, xzr, [x19, #112]
+   7f0e8:	97fe5bb6 	bl	15fc0 <strncpy@plt> ; heuristic args: x2=128
+   7f0ec:	aa1303e0 	mov	x0, x19
+   7f0f0:	97ffaef6 	bl	6acc8 <meshctl_toLower@@Base>
+   7f0f4:	aa1303e0 	mov	x0, x19
+   7f0f8:	97fe5a16 	bl	15950 <json_object_new_string@plt>
+   7f0fc:	b0000121 	adrp	x1, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7f100:	aa0003e2 	mov	x2, x0
+   7f104:	9107a021 	add	x1, x1, #0x1e8
+   7f108:	aa1603e0 	mov	x0, x22
+   7f10c:	97fe5d99 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='operMode'
+   7f110:	a9007e7f 	stp	xzr, xzr, [x19]
+   7f114:	aa1b03e1 	mov	x1, x27
+   7f118:	a9017e7f 	stp	xzr, xzr, [x19, #16]
+   7f11c:	a9027e7f 	stp	xzr, xzr, [x19, #32]
+   7f120:	d2801002 	mov	x2, #0x80                  	// #128
+   7f124:	a9037e7f 	stp	xzr, xzr, [x19, #48]
+   7f128:	aa1303e0 	mov	x0, x19
+   7f12c:	a9047e7f 	stp	xzr, xzr, [x19, #64]
+   7f130:	a9057e7f 	stp	xzr, xzr, [x19, #80]
+   7f134:	a9067e7f 	stp	xzr, xzr, [x19, #96]
+   7f138:	a9077e7f 	stp	xzr, xzr, [x19, #112]
+   7f13c:	97fe5ba1 	bl	15fc0 <strncpy@plt> ; heuristic args: x2=128
+   7f140:	aa1303e0 	mov	x0, x19
+   7f144:	97ffaee1 	bl	6acc8 <meshctl_toLower@@Base>
+   7f148:	aa1303e0 	mov	x0, x19
+   7f14c:	97fe5a01 	bl	15950 <json_object_new_string@plt>
+   7f150:	b0000121 	adrp	x1, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7f154:	aa0003e2 	mov	x2, x0
+   7f158:	9107e021 	add	x1, x1, #0x1f8
+   7f15c:	aa1603e0 	mov	x0, x22
+   7f160:	97fe5d84 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='status'
+   7f164:	a9007e7f 	stp	xzr, xzr, [x19]
+   7f168:	9104d381 	add	x1, x28, #0x134
+   7f16c:	a9017e7f 	stp	xzr, xzr, [x19, #16]
+   7f170:	a9027e7f 	stp	xzr, xzr, [x19, #32]
+   7f174:	d2801002 	mov	x2, #0x80                  	// #128
+   7f178:	a9037e7f 	stp	xzr, xzr, [x19, #48]
+   7f17c:	aa1303e0 	mov	x0, x19
+   7f180:	a9047e7f 	stp	xzr, xzr, [x19, #64]
+   7f184:	a9057e7f 	stp	xzr, xzr, [x19, #80]
+   7f188:	a9067e7f 	stp	xzr, xzr, [x19, #96]
+   7f18c:	a9077e7f 	stp	xzr, xzr, [x19, #112]
+   7f190:	97fe5b8c 	bl	15fc0 <strncpy@plt> ; heuristic args: x2=128
+   7f194:	aa1303e0 	mov	x0, x19
+   7f198:	97ffaecc 	bl	6acc8 <meshctl_toLower@@Base>
+   7f19c:	aa1303e0 	mov	x0, x19
+   7f1a0:	97fe59ec 	bl	15950 <json_object_new_string@plt>
+   7f1a4:	d0000121 	adrp	x1, a5000 <_IO_stdin_used@@Base+0x23f68>
+   7f1a8:	aa0003e2 	mov	x2, x0
+   7f1ac:	91138021 	add	x1, x1, #0x4e0
+   7f1b0:	aa1603e0 	mov	x0, x22
+   7f1b4:	97fe5d6f 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='backhaulQuality'
+   7f1b8:	aa1703e0 	mov	x0, x23
+   7f1bc:	97ffb6d7 	bl	6cd18 <meshctl_getLedStatus@@Base>
+   7f1c0:	12001c00 	and	w0, w0, #0xff
+   7f1c4:	97fe5d07 	bl	165e0 <json_object_new_boolean@plt>
+   7f1c8:	aa0003e2 	mov	x2, x0
+   7f1cc:	f0000121 	adrp	x1, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7f1d0:	aa1603e0 	mov	x0, x22
+   7f1d4:	912c4021 	add	x1, x1, #0xb10
+   7f1d8:	97fe5d66 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='ledState'
+   7f1dc:	b9406e80 	ldr	w0, [x20, #108]
+   7f1e0:	97fe5d4c 	bl	16710 <json_object_new_int@plt>
+   7f1e4:	aa0003e2 	mov	x2, x0
+   7f1e8:	d0000121 	adrp	x1, a5000 <_IO_stdin_used@@Base+0x23f68>
+   7f1ec:	aa1603e0 	mov	x0, x22
+   7f1f0:	9113c021 	add	x1, x1, #0x4f0
+   7f1f4:	97fe5d5f 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='costtogateway'
+   7f1f8:	3941c680 	ldrb	w0, [x20, #113]
+   7f1fc:	34000ce0 	cbz	w0, 7f398 <jsonCreateMeshNetwork@@Base+0x870>
+   7f200:	90000260 	adrp	x0, cb000 <_IO_stdin_used@@Base+0x49f68>
+   7f204:	f9471000 	ldr	x0, [x0, #3616]
+   7f208:	39498c00 	ldrb	w0, [x0, #611]
+   7f20c:	97fe5cf5 	bl	165e0 <json_object_new_boolean@plt>
+   7f210:	aa0003e2 	mov	x2, x0
+   7f214:	d0000121 	adrp	x1, a5000 <_IO_stdin_used@@Base+0x23f68>
+   7f218:	91140021 	add	x1, x1, #0x500
+   7f21c:	aa1603e0 	mov	x0, x22
+   7f220:	97fe5d54 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='isbackhaul-connected'
+   7f224:	b000013a 	adrp	x26, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7f228:	9101ce9b 	add	x27, x20, #0x73
+   7f22c:	910bee9c 	add	x28, x20, #0x2fb
+   7f230:	97fe5a2c 	bl	15ae0 <json_object_new_array@plt>
+   7f234:	9111e35a 	add	x26, x26, #0x478
+   7f238:	aa0003f9 	mov	x25, x0
+   7f23c:	b0000120 	adrp	x0, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7f240:	9112a000 	add	x0, x0, #0x4a8
+   7f244:	f9004fa0 	str	x0, [x29, #152]
+   7f248:	39400360 	ldrb	w0, [x27]
+   7f24c:	35000060 	cbnz	w0, 7f258 <jsonCreateMeshNetwork@@Base+0x730>
+   7f250:	3940c360 	ldrb	w0, [x27, #48]
+   7f254:	340002a0 	cbz	w0, 7f2a8 <jsonCreateMeshNetwork@@Base+0x780>
+   7f258:	97fe5bbe 	bl	16150 <json_object_new_object@plt>
+   7f25c:	aa0003f7 	mov	x23, x0
+   7f260:	aa1b03e0 	mov	x0, x27
+   7f264:	97fe59bb 	bl	15950 <json_object_new_string@plt>
+   7f268:	aa1a03e1 	mov	x1, x26
+   7f26c:	aa0003e2 	mov	x2, x0
+   7f270:	aa1703e0 	mov	x0, x23
+   7f274:	97fe5d3f 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='ssid'
+   7f278:	9100c360 	add	x0, x27, #0x30
+   7f27c:	9101477b 	add	x27, x27, #0x51
+   7f280:	97fe59b4 	bl	15950 <json_object_new_string@plt>
+   7f284:	aa0003e2 	mov	x2, x0
+   7f288:	f9404fa1 	ldr	x1, [x29, #152]
+   7f28c:	aa1703e0 	mov	x0, x23
+   7f290:	97fe5d38 	bl	16770 <json_object_object_add@plt>
+   7f294:	aa1703e1 	mov	x1, x23
+   7f298:	aa1903e0 	mov	x0, x25
+   7f29c:	97fe5b85 	bl	160b0 <json_object_array_add@plt>
+   7f2a0:	eb1c037f 	cmp	x27, x28
+   7f2a4:	54fffd21 	b.ne	7f248 <jsonCreateMeshNetwork@@Base+0x720>  // b.any
+   7f2a8:	b0000121 	adrp	x1, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7f2ac:	aa1903e2 	mov	x2, x25
+   7f2b0:	91176021 	add	x1, x1, #0x5d8
+   7f2b4:	aa1603e0 	mov	x0, x22
+   7f2b8:	f000013b 	adrp	x27, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7f2bc:	91142e9a 	add	x26, x20, #0x50b
+   7f2c0:	97fe5d2c 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='ssids'
+   7f2c4:	912c837b 	add	x27, x27, #0xb20
+   7f2c8:	14000011 	b	7f30c <jsonCreateMeshNetwork@@Base+0x7e4>
+   7f2cc:	d503201f 	nop
+   7f2d0:	a9007ebf 	stp	xzr, xzr, [x21]
+   7f2d4:	aa1503e1 	mov	x1, x21
+   7f2d8:	a9017ebf 	stp	xzr, xzr, [x21, #16]
+   7f2dc:	aa1c03e0 	mov	x0, x28
+   7f2e0:	a9027ebf 	stp	xzr, xzr, [x21, #32]
+   7f2e4:	97ffc7b7 	bl	711c0 <meshctl_findOPS@@Base>
+   7f2e8:	35000480 	cbnz	w0, 7f378 <jsonCreateMeshNetwork@@Base+0x850>
+   7f2ec:	aa1503e0 	mov	x0, x21
+   7f2f0:	97fe5998 	bl	15950 <json_object_new_string@plt>
+   7f2f4:	aa0003e1 	mov	x1, x0
+   7f2f8:	aa1803e0 	mov	x0, x24
+   7f2fc:	97fe5b6d 	bl	160b0 <json_object_array_add@plt>
+   7f300:	aa1703fc 	mov	x28, x23
+   7f304:	eb17035f 	cmp	x26, x23
+   7f308:	54000240 	b.eq	7f350 <jsonCreateMeshNetwork@@Base+0x828>  // b.none
+   7f30c:	39400380 	ldrb	w0, [x28]
+   7f310:	34000200 	cbz	w0, 7f350 <jsonCreateMeshNetwork@@Base+0x828>
+   7f314:	aa1c03e0 	mov	x0, x28
+   7f318:	91008797 	add	x23, x28, #0x21
+   7f31c:	97fffbdb 	bl	7e288 <meshctl_isApMacFound@@Base>
+   7f320:	72001c1f 	tst	w0, #0xff
+   7f324:	54fffd61 	b.ne	7f2d0 <jsonCreateMeshNetwork@@Base+0x7a8>  // b.any
+   7f328:	90000120 	adrp	x0, a3000 <_IO_stdin_used@@Base+0x21f68>
+   7f32c:	91150000 	add	x0, x0, #0x540
+   7f330:	aa1c03e3 	mov	x3, x28
+   7f334:	aa1b03e2 	mov	x2, x27
+   7f338:	5280d981 	mov	w1, #0x6cc                 	// #1740
+   7f33c:	91108000 	add	x0, x0, #0x420
+   7f340:	97fe5c38 	bl	16420 <nalLogError@plt> ; heuristic args: x0='jsonCreateMeshNetwork', x1=1740, x2='[meshctl-unium]Ap[%s]not found in meshctlnetworktable, so discarding meshbackhaulnode...'
+   7f344:	aa1703fc 	mov	x28, x23
+   7f348:	eb17035f 	cmp	x26, x23
+   7f34c:	54fffe01 	b.ne	7f30c <jsonCreateMeshNetwork@@Base+0x7e4>  // b.any
+   7f350:	aa1803e2 	mov	x2, x24
+   7f354:	aa1603e0 	mov	x0, x22
+   7f358:	f0000121 	adrp	x1, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7f35c:	912e0021 	add	x1, x1, #0xb80
+   7f360:	97fe5d04 	bl	16770 <json_object_object_add@plt> ; heuristic args: x1='meshbackhaulnodes'
+   7f364:	f94043a0 	ldr	x0, [x29, #128]
+   7f368:	aa1603e1 	mov	x1, x22
+   7f36c:	97fe5b51 	bl	160b0 <json_object_array_add@plt>
+   7f370:	17fffe9c 	b	7ede0 <jsonCreateMeshNetwork@@Base+0x2b8>
+   7f374:	d503201f 	nop
+   7f378:	f9403fa4 	ldr	x4, [x29, #120]
+   7f37c:	aa1c03e5 	mov	x5, x28
+   7f380:	d2800603 	mov	x3, #0x30                  	// #48
+   7f384:	52800022 	mov	w2, #0x1                   	// #1
+   7f388:	d28005e1 	mov	x1, #0x2f                  	// #47
+   7f38c:	aa1503e0 	mov	x0, x21
+   7f390:	97fe5a64 	bl	15d20 <__snprintf_chk@plt> ; heuristic args: x1=47, x2=1, x3=48
+   7f394:	17ffffd6 	b	7f2ec <jsonCreateMeshNetwork@@Base+0x7c4>
+   7f398:	3941c280 	ldrb	w0, [x20, #112]
+   7f39c:	97fe5c91 	bl	165e0 <json_object_new_boolean@plt>
+   7f3a0:	17ffff9c 	b	7f210 <jsonCreateMeshNetwork@@Base+0x6e8>
+   7f3a4:	d503201f 	nop
+   7f3a8:	aa1303e0 	mov	x0, x19
+   7f3ac:	97ffae47 	bl	6acc8 <meshctl_toLower@@Base>
+   7f3b0:	17ffff3c 	b	7f0a0 <jsonCreateMeshNetwork@@Base+0x578>
+   7f3b4:	d503201f 	nop
+   7f3b8:	91010380 	add	x0, x28, #0x40
+   7f3bc:	97fe5965 	bl	15950 <json_object_new_string@plt>
+   7f3c0:	aa0003e1 	mov	x1, x0
+   7f3c4:	aa1a03e0 	mov	x0, x26
+   7f3c8:	97fe5b3a 	bl	160b0 <json_object_array_add@plt>
+   7f3cc:	3941a780 	ldrb	w0, [x28, #105]
+   7f3d0:	34ffdcc0 	cbz	w0, 7ef68 <jsonCreateMeshNetwork@@Base+0x440>
+   7f3d4:	9101a780 	add	x0, x28, #0x69
+   7f3d8:	97fe595e 	bl	15950 <json_object_new_string@plt>
+   7f3dc:	aa0003e1 	mov	x1, x0
+   7f3e0:	aa1a03e0 	mov	x0, x26
+   7f3e4:	97fe5b33 	bl	160b0 <json_object_array_add@plt>
+   7f3e8:	17fffee0 	b	7ef68 <jsonCreateMeshNetwork@@Base+0x440>
+   7f3ec:	d503201f 	nop
+   7f3f0:	d0000121 	adrp	x1, a5000 <_IO_stdin_used@@Base+0x23f68>
+   7f3f4:	d2800fe2 	mov	x2, #0x7f                  	// #127
+   7f3f8:	91128021 	add	x1, x1, #0x4a0
+   7f3fc:	aa1303e0 	mov	x0, x19
+   7f400:	97fe5af0 	bl	15fc0 <strncpy@plt> ; heuristic args: x1='AP', x2=127
+   7f404:	17fffef4 	b	7efd4 <jsonCreateMeshNetwork@@Base+0x4ac>
+   7f408:	f0000122 	adrp	x2, a6000 <_IO_stdin_used@@Base+0x24f68>
+   7f40c:	aa1a03e0 	mov	x0, x26
+   7f410:	912b0042 	add	x2, x2, #0xac0
+   7f414:	aa1703e3 	mov	x3, x23
+   7f418:	5280caa1 	mov	w1, #0x655                 	// #1621
+   7f41c:	97fe5901 	bl	15820 <nalLogDebug@plt> ; heuristic args: x1=1621, x2='Unable to get software version for MAC[%s]'
+   7f420:	17fffebe 	b	7ef18 <jsonCreateMeshNetwork@@Base+0x3f0>
+   7f424:	90000120 	adrp	x0, a3000 <_IO_stdin_used@@Base+0x21f68>
+   7f428:	91150000 	add	x0, x0, #0x540
+   7f42c:	d0000122 	adrp	x2, a5000 <_IO_stdin_used@@Base+0x23f68>
+   7f430:	91108000 	add	x0, x0, #0x420
+   7f434:	9112a042 	add	x2, x2, #0x4a8
+   7f438:	aa1703e3 	mov	x3, x23
+   7f43c:	5280cf01 	mov	w1, #0x678                 	// #1656
+   7f440:	97fe58f8 	bl	15820 <nalLogDebug@plt> ; heuristic args: x0='jsonCreateMeshNetwork', x1=1656, x2='Unable to get model name for MAC[%s]'
+   7f444:	17fffef9 	b	7f028 <jsonCreateMeshNetwork@@Base+0x500>
+   7f448:	90000120 	adrp	x0, a3000 <_IO_stdin_used@@Base+0x21f68>
+   7f44c:	91150000 	add	x0, x0, #0x540
+   7f450:	91108000 	add	x0, x0, #0x420
+   7f454:	b0000122 	adrp	x2, a4000 <_IO_stdin_used@@Base+0x22f68>
+   7f458:	5280c481 	mov	w1, #0x624                 	// #1572
+   7f45c:	910b4042 	add	x2, x2, #0x2d0
+   7f460:	97fe5bf0 	bl	16420 <nalLogError@plt> ; heuristic args: x0='jsonCreateMeshNetwork', x1=1572, x2='[meshctl-unium]Null Pointer passed.\n'
+   7f464:	12800000 	mov	w0, #0xffffffff            	// #-1
+   7f468:	17fffe86 	b	7ee80 <jsonCreateMeshNetwork@@Base+0x358>
+   7f46c:	a90153b3 	stp	x19, x20, [x29, #16]
+   7f470:	a902dfb6 	stp	x22, x23, [x29, #40]
+   7f474:	a903e7b8 	stp	x24, x25, [x29, #56]
+   7f478:	a904efba 	stp	x26, x27, [x29, #72]
+   7f47c:	f9002fbc 	str	x28, [x29, #88]
+   7f480:	97fe5960 	bl	15a00 <__stack_chk_fail@plt>
+   7f484:	d503201f 	nop

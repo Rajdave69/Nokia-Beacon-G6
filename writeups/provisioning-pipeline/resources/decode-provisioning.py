@@ -11,7 +11,7 @@ AAD=bytes.fromhex('d92ae1d30dd96d2be8de7318c6fd18fc4b9faa645678acf6427c2ac98ab84
 MAX_SIZE=32*1024*1024
 
 def derive(serial,date,source5=b'invalid_key_src5_str'):
- spec=importlib.util.spec_from_file_location('stored',ROOT/'writeups/configuration-import-export/resources/stored-database/decrypt-stored-config.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+ spec=importlib.util.spec_from_file_location('stored',ROOT/'writeups/stored-configuration-database/resources/decrypt-stored-config.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
  return m.derive_key10(serial,date,source5)
 
 def decrypt_zeroman(raw,key10):

@@ -1,0 +1,169 @@
+
+libwebsocket.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000008e20 <ws_notifyAll@@Base>:
+    8e20:	a9bd7bfd 	stp	x29, x30, [sp, #-48]!
+    8e24:	910003fd 	mov	x29, sp
+    8e28:	f9000bf3 	str	x19, [sp, #16]
+    8e2c:	f90013f5 	str	x21, [sp, #32]
+    8e30:	aa0003f5 	mov	x21, x0
+    8e34:	97ffea4b 	bl	3760 <message_new@plt>
+    8e38:	aa0003f3 	mov	x19, x0
+    8e3c:	aa1503e0 	mov	x0, x21
+    8e40:	97ffe990 	bl	3480 <strlen@plt>
+    8e44:	aa0003e2 	mov	x2, x0
+    8e48:	d2800021 	mov	x1, #0x1                   	// #1
+    8e4c:	f9000662 	str	x2, [x19, #8]
+    8e50:	8b010000 	add	x0, x0, x1
+    8e54:	97ffea6f 	bl	3810 <calloc@plt> ; heuristic args: x1=1
+    8e58:	b40004e0 	cbz	x0, 8ef4 <ws_notifyAll@@Base+0xd4>
+    8e5c:	f9400662 	ldr	x2, [x19, #8]
+    8e60:	aa1503e1 	mov	x1, x21
+    8e64:	f9000fb4 	str	x20, [x29, #24]
+    8e68:	aa0003f4 	mov	x20, x0
+    8e6c:	97ffe97d 	bl	3460 <memcpy@plt>
+    8e70:	f9001274 	str	x20, [x19, #32]
+    8e74:	aa1303e0 	mov	x0, x19
+    8e78:	97ffea52 	bl	37c0 <encodeMessage@plt>
+    8e7c:	35000260 	cbnz	w0, 8ec8 <ws_notifyAll@@Base+0xa8>
+    8e80:	b00000b4 	adrp	x20, 1d000 <_fini@@Base+0x11b18>
+    8e84:	aa1303e1 	mov	x1, x19
+    8e88:	f947d280 	ldr	x0, [x20, #4000]
+    8e8c:	f9400000 	ldr	x0, [x0]
+    8e90:	97ffea44 	bl	37a0 <list_multicast_all@plt>
+    8e94:	aa1303e0 	mov	x0, x19
+    8e98:	97ffeae2 	bl	3a20 <message_free@plt>
+    8e9c:	aa1303e0 	mov	x0, x19
+    8ea0:	97ffeaf0 	bl	3a60 <free@plt>
+    8ea4:	f947e294 	ldr	x20, [x20, #4032]
+    8ea8:	f9400280 	ldr	x0, [x20]
+    8eac:	97ffeb25 	bl	3b40 <fflush@plt>
+    8eb0:	f9400fb4 	ldr	x20, [x29, #24]
+    8eb4:	52800000 	mov	w0, #0x0                   	// #0
+    8eb8:	f9400bf3 	ldr	x19, [sp, #16]
+    8ebc:	f94013f5 	ldr	x21, [sp, #32]
+    8ec0:	a8c37bfd 	ldp	x29, x30, [sp], #48
+    8ec4:	d65f03c0 	ret
+    8ec8:	aa1303e0 	mov	x0, x19
+    8ecc:	97ffead5 	bl	3a20 <message_free@plt>
+    8ed0:	aa1303e0 	mov	x0, x19
+    8ed4:	97ffeae3 	bl	3a60 <free@plt>
+    8ed8:	52800060 	mov	w0, #0x3                   	// #3
+    8edc:	90000021 	adrp	x1, c000 <_fini@@Base+0xb18>
+    8ee0:	91132021 	add	x1, x1, #0x4c8
+    8ee4:	97ffeaf7 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='NotifyAll, Error in message encoding.\n'
+    8ee8:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8eec:	f9400fb4 	ldr	x20, [x29, #24]
+    8ef0:	17fffff2 	b	8eb8 <ws_notifyAll@@Base+0x98>
+    8ef4:	52800060 	mov	w0, #0x3                   	// #3
+    8ef8:	90000021 	adrp	x1, c000 <_fini@@Base+0xb18>
+    8efc:	9112c021 	add	x1, x1, #0x4b0
+    8f00:	97ffeaf0 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='Notify, malloc failed.\n'
+    8f04:	12800000 	mov	w0, #0xffffffff            	// #-1
+    8f08:	17ffffec 	b	8eb8 <ws_notifyAll@@Base+0x98>
+    8f0c:	d503201f 	nop
+
+0000000000008f10 <ws_notifyClient@@Base>:
+    8f10:	a9bb7bfd 	stp	x29, x30, [sp, #-80]!
+    8f14:	910003fd 	mov	x29, sp
+    8f18:	a901d7f4 	stp	x20, x21, [sp, #24]
+    8f1c:	aa0103f5 	mov	x21, x1
+    8f20:	f90017f6 	str	x22, [sp, #40]
+    8f24:	aa0003f4 	mov	x20, x0
+    8f28:	97ffea0e 	bl	3760 <message_new@plt>
+    8f2c:	aa0003f6 	mov	x22, x0
+    8f30:	aa1403e0 	mov	x0, x20
+    8f34:	97ffe953 	bl	3480 <strlen@plt>
+    8f38:	d2800021 	mov	x1, #0x1                   	// #1
+    8f3c:	f90006c0 	str	x0, [x22, #8]
+    8f40:	8b010000 	add	x0, x0, x1
+    8f44:	97ffea33 	bl	3810 <calloc@plt> ; heuristic args: x1=1
+    8f48:	b40009e0 	cbz	x0, 9084 <ws_notifyClient@@Base+0x174>
+    8f4c:	f94006c2 	ldr	x2, [x22, #8]
+    8f50:	aa1403e1 	mov	x1, x20
+    8f54:	f9000bb3 	str	x19, [x29, #16]
+    8f58:	aa0003f3 	mov	x19, x0
+    8f5c:	97ffe941 	bl	3460 <memcpy@plt>
+    8f60:	f90012d3 	str	x19, [x22, #32]
+    8f64:	aa1603e0 	mov	x0, x22
+    8f68:	97ffea16 	bl	37c0 <encodeMessage@plt>
+    8f6c:	350006e0 	cbnz	w0, 9048 <ws_notifyClient@@Base+0x138>
+    8f70:	a903e7b8 	stp	x24, x25, [x29, #56]
+    8f74:	b00000b8 	adrp	x24, 1d000 <_fini@@Base+0x11b18>
+    8f78:	f947d300 	ldr	x0, [x24, #4000]
+    8f7c:	f9400019 	ldr	x25, [x0]
+    8f80:	f9400733 	ldr	x19, [x25, #8]
+    8f84:	b4000793 	cbz	x19, 9074 <ws_notifyClient@@Base+0x164>
+    8f88:	f9001bb7 	str	x23, [x29, #48]
+    8f8c:	aa1503e0 	mov	x0, x21
+    8f90:	97ffe93c 	bl	3480 <strlen@plt>
+    8f94:	aa0003f7 	mov	x23, x0
+    8f98:	14000004 	b	8fa8 <ws_notifyClient@@Base+0x98>
+    8f9c:	d503201f 	nop
+    8fa0:	f9401a73 	ldr	x19, [x19, #48]
+    8fa4:	b4000373 	cbz	x19, 9010 <ws_notifyClient@@Base+0x100>
+    8fa8:	f9400661 	ldr	x1, [x19, #8]
+    8fac:	aa1703e2 	mov	x2, x23
+    8fb0:	aa1503e0 	mov	x0, x21
+    8fb4:	97ffe9d3 	bl	3700 <strncmp@plt>
+    8fb8:	2a0003f4 	mov	w20, w0
+    8fbc:	35ffff20 	cbnz	w0, 8fa0 <ws_notifyClient@@Base+0x90>
+    8fc0:	aa1303e1 	mov	x1, x19
+    8fc4:	aa1603e2 	mov	x2, x22
+    8fc8:	aa1903e0 	mov	x0, x25
+    8fcc:	97ffea45 	bl	38e0 <list_multicast_one@plt>
+    8fd0:	aa1603e0 	mov	x0, x22
+    8fd4:	97ffea93 	bl	3a20 <message_free@plt>
+    8fd8:	aa1603e0 	mov	x0, x22
+    8fdc:	97ffeaa1 	bl	3a60 <free@plt>
+    8fe0:	f947e318 	ldr	x24, [x24, #4032]
+    8fe4:	f9400300 	ldr	x0, [x24]
+    8fe8:	97ffead6 	bl	3b40 <fflush@plt>
+    8fec:	f9400bb3 	ldr	x19, [x29, #16]
+    8ff0:	a94363b7 	ldp	x23, x24, [x29, #48]
+    8ff4:	f94023b9 	ldr	x25, [x29, #64]
+    8ff8:	2a1403e0 	mov	w0, w20
+    8ffc:	f94017f6 	ldr	x22, [sp, #40]
+    9000:	a941d7f4 	ldp	x20, x21, [sp, #24]
+    9004:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    9008:	d65f03c0 	ret
+    900c:	d503201f 	nop
+    9010:	aa1503e2 	mov	x2, x21
+    9014:	528000e0 	mov	w0, #0x7                   	// #7
+    9018:	12800014 	mov	w20, #0xffffffff            	// #-1
+    901c:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9020:	91150021 	add	x1, x1, #0x540
+    9024:	97ffeaa7 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=7, x1='NotifyClient, No connection found from IP [%s]\n'
+    9028:	2a1403e0 	mov	w0, w20
+    902c:	f9400bb3 	ldr	x19, [x29, #16]
+    9030:	a94363b7 	ldp	x23, x24, [x29, #48]
+    9034:	f94023b9 	ldr	x25, [x29, #64]
+    9038:	a941d7f4 	ldp	x20, x21, [sp, #24]
+    903c:	f94017f6 	ldr	x22, [sp, #40]
+    9040:	a8c57bfd 	ldp	x29, x30, [sp], #80
+    9044:	d65f03c0 	ret
+    9048:	aa1603e0 	mov	x0, x22
+    904c:	97ffea75 	bl	3a20 <message_free@plt>
+    9050:	aa1603e0 	mov	x0, x22
+    9054:	97ffea83 	bl	3a60 <free@plt>
+    9058:	52800060 	mov	w0, #0x3                   	// #3
+    905c:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9060:	12800014 	mov	w20, #0xffffffff            	// #-1
+    9064:	91144021 	add	x1, x1, #0x510
+    9068:	97ffea96 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='NotifyClient, Error in message encoding.\n'
+    906c:	f9400bb3 	ldr	x19, [x29, #16]
+    9070:	17ffffe2 	b	8ff8 <ws_notifyClient@@Base+0xe8>
+    9074:	12800014 	mov	w20, #0xffffffff            	// #-1
+    9078:	f9400bb3 	ldr	x19, [x29, #16]
+    907c:	a943e7b8 	ldp	x24, x25, [x29, #56]
+    9080:	17ffffde 	b	8ff8 <ws_notifyClient@@Base+0xe8>
+    9084:	f0000001 	adrp	x1, c000 <_fini@@Base+0xb18>
+    9088:	52800060 	mov	w0, #0x3                   	// #3
+    908c:	9113c021 	add	x1, x1, #0x4f0
+    9090:	12800014 	mov	w20, #0xffffffff            	// #-1
+    9094:	97ffea8b 	bl	3ac0 <ws_log@plt> ; heuristic args: x0=3, x1='NotifyClient, malloc failed.\n'
+    9098:	17ffffd8 	b	8ff8 <ws_notifyClient@@Base+0xe8>
+    909c:	d503201f 	nop
