@@ -30,11 +30,11 @@ The protocol has no recovered credential exchange in the reviewed path. The pack
 
 ## Source references
 
-- [Original investigation and instruction traces](../../writeups/mesh-messaging/README.md)
-- [Controller dispatcher](../../writeups/mesh-messaging/resources/controller-application.txt)
-- [Agent dispatcher](../../writeups/mesh-messaging/resources/agent-actions.txt)
-- [Transport implementation](../../writeups/mesh-messaging/resources/meshmsg-core.txt)
-- [Detailed continuation record](../../knowledgebases/mesh-messaging.md)
+- [Original investigation and instruction traces](../../../writeups/mesh-messaging/README.md)
+- [Controller dispatcher](../../../writeups/mesh-messaging/resources/controller-application.txt)
+- [Agent dispatcher](../../../writeups/mesh-messaging/resources/agent-actions.txt)
+- [Transport implementation](../../../writeups/mesh-messaging/resources/meshmsg-core.txt)
+- [Detailed continuation record](../../../knowledgebases/mesh-messaging.md)
 
 The application map is HJL static analysis. Both reference codec implementations produced the same bytes for the fixture inputs; their internal buffer capacities and addresses differ. Previous static-only investigation statements describe the earlier phase; this package's codec oracle is a separate later offline execution phase.
 
@@ -59,7 +59,7 @@ The private raw captures contain actual addresses, MACs, filter values and nativ
 For an explicitly authorized repeat, the bounded [live_smoke.py](../research/live_smoke.py) sends control records only and retains raw results in a new private directory:
 
 ```sh
-python port-37591/research/live_smoke.py router.example --seconds 45 \
+python network-services/port-37591/research/live_smoke.py router.example --seconds 45 \
   --output config-private/mesh-live-check
 ```
 

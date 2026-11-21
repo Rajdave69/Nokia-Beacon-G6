@@ -47,7 +47,7 @@ For types 0/7, the root parser checks presence of `ts`, `mac_addr`, `ip_addr`, `
 | `buddies` | Neighbor/buddy information | Complete nested entry schema |
 | `vhtmode`, `available_channel`, `channels`, `ch_survey` | Further fields used in per-band/channel branches | Every nested path, unit and conditional |
 
-Source: HJL controller 0x45290..0x46558 and the [retained field trace](../../writeups/mesh-messaging/resources/controller-telemetry-fields.txt). The `ts` literal was resolved directly from ELF VA0x6c881. There is no guessed full sensing-report example in this package: an incomplete example could imply firmware validity that has not been established. Reports 6/10 are transmitted/received transparently; their full nested schemas are likewise not claimed complete.
+Source: HJL controller 0x45290..0x46558 and the [retained field trace](../../../writeups/mesh-messaging/resources/controller-telemetry-fields.txt). The `ts` literal was resolved directly from ELF VA0x6c881. There is no guessed full sensing-report example in this package: an incomplete example could imply firmware validity that has not been established. Reports 6/10 are transmitted/received transparently; their full nested schemas are likewise not claimed complete.
 
 A software client connected to the controller usually receives controller instructions, not the reports sent by every other agent. No read-all-nodes RPC or retained-history query was established on this endpoint.
 

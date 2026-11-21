@@ -115,7 +115,7 @@ mesh37591 decode heartbeat.bin
 - [Application data: directions, commands, reports and schema limits](docs/application-data.md)
 - [Python API, CLI and session behavior](docs/api.md)
 - [Native interoperability evidence and reproducible validation](docs/validation.md)
-- [Firmware investigation](../writeups/mesh-messaging/README.md)
+- [Firmware investigation](../../writeups/mesh-messaging/README.md)
 
 ## Compatibility and limits
 
